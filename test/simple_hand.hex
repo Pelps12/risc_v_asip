@@ -1,0 +1,21 @@
+# Hand-assembled RV32I test program
+# Tests: ADDI, ADD, SW, ECALL
+#
+# Expected final state:
+#   x1 = 5
+#   x2 = 10  
+#   x3 = 15 (x1 + x2)
+#   Memory[0x40000] = 15
+
+# ADDI x1, x0, 5     -> x1 = 5
+00500093
+# ADDI x2, x0, 10    -> x2 = 10
+00a00113
+# ADD  x3, x1, x2    -> x3 = 15
+002081b3
+# LUI  x4, 0x40      -> x4 = 0x40000
+00040237
+# SW   x3, 0(x4)     -> mem[0x40000] = 15
+00322023
+# ECALL              -> halt
+00000073

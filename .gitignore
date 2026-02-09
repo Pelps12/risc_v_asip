@@ -1,0 +1,7 @@
+scripts/*.hex
+scripts/*.dis
+scripts/*.elf
+*.rpt
+scripts/*.bin
+*.bak
+rv32i_sim
