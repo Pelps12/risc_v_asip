@@ -3,7 +3,7 @@
 # Usage: ./run_test.sh <test_name> [--rtl [variant]]
 # Example: ./run_test.sh simple_2
 #          ./run_test.sh simple_2 --rtl              (uses rtl/baseline/)
-#          ./run_test.sh simple_2 --rtl aes_custom   (uses rtl/aes_custom/)
+#          ./run_test.sh simple_2 --rtl aes_gfmul   (uses rtl/aes_gfmul/)
 
 set -e
 
@@ -46,7 +46,7 @@ if [ -z "$TEST_NAME" ]; then
     echo ""
     echo "Options:"
     echo "  --rtl [variant]  Run RTL simulation (default: baseline)"
-    echo "                   e.g. --rtl aes_custom => rtl/aes_custom/computer_E.v"
+    echo "                   e.g. --rtl aes_gfmul => rtl/aes_gfmul/computer_E.v"
     echo ""
     echo "Available tests:"
     # List flat tests

@@ -23,7 +23,7 @@ AES-128 encryption and decryption that uses the `GFMUL` custom instruction to ac
 
 | File            | Description                                          |
 | --------------- | ---------------------------------------------------- |
-| `aes_custom.c`  | Main entry point (encrypt + decrypt + verify)        |
+| `aes_gfmul.c`   | Main entry point (encrypt + decrypt + verify)        |
 | `aes_func.c`    | AES round operations using `GFMUL` for InvMixColumns |
 | `aes_enc.c`     | Encryption routine                                   |
 | `aes_dec.c`     | Decryption routine                                   |
@@ -34,6 +34,6 @@ AES-128 encryption and decryption that uses the `GFMUL` custom instruction to ac
 ## Run
 
 ```bash
-bash scripts/run_test.sh aes_custom/aes_custom
-bash scripts/run_test.sh aes_custom/aes_custom --rtl aes_custom
+bash scripts/run_test.sh aes_gfmul/aes_gfmul
+bash scripts/run_test.sh aes_gfmul/aes_gfmul --rtl aes_gfmul
 ```

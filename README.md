@@ -11,7 +11,7 @@ risc_v_asip/
 │   └── Makefile
 ├── rtl/                        # HLS-generated RTL
 │   ├── baseline/               #   Baseline RV32I (computer_E.v + computer.qor)
-│   ├── aes_custom/             #   RV32I + GFMUL
+│   ├── aes_gfmul/             #   RV32I + GFMUL
 │   ├── aes_sbox/               #   RV32I + S-Box lookup
 │   ├── aes_quadsbox/           #   RV32I + Quad S-Box
 │   ├── jpeg_idct/              #   RV32I + multiply-shift
@@ -26,7 +26,7 @@ risc_v_asip/
 │   └── hex2h.py                #   Hex-to-header conversion utility
 ├── test/                       # Test programs
 │   ├── aes/                    #   AES baseline (pure RV32I)
-│   ├── aes_custom/             #   AES + GFMUL custom instruction
+│   ├── aes_gfmul/             #   AES + GFMUL custom instruction
 │   ├── aes_sbox/               #   AES + hardware S-Box lookup
 │   ├── aes_quadsbox/           #   AES + packed 4-byte S-Box lookup
 │   ├── jpeg_idct/              #   JPEG IDCT + fixed-point multiply
@@ -52,13 +52,13 @@ bash scripts/run_test.sh simple_2
 
 # Subdirectory tests
 bash scripts/run_test.sh aes/aes              # AES baseline
-bash scripts/run_test.sh aes_custom/aes_custom # AES with custom instructions
+bash scripts/run_test.sh aes_gfmul/aes_gfmul # AES with custom instructions
 
 # Include RTL simulation (default: baseline variant)
 bash scripts/run_test.sh simple_2 --rtl
 
 # RTL simulation with a specific variant
-bash scripts/run_test.sh aes_custom/aes_custom --rtl aes_custom
+bash scripts/run_test.sh aes_gfmul/aes_gfmul --rtl aes_gfmul
 ```
 
 **Success criteria:** simulation halts cleanly with `a0 = 0x00000000`.
@@ -92,7 +92,7 @@ Each accelerated variant adds its own custom instructions. See the per-folder RE
 
 | Variant        | Instruction(s)                                 | Opcode | Description                           |
 | -------------- | ---------------------------------------------- | ------ | ------------------------------------- |
-| `aes_custom`   | `GFMUL`                                        | `0x0B` | GF(2⁸) multiply for InverseMixColumns |
+| `aes_gfmul`    | `GFMUL`                                        | `0x0B` | GF(2⁸) multiply for InverseMixColumns |
 | `aes_sbox`     | `SBOX`, `INVSBOX`                              | `0x2B` | Hardware S-Box lookup (1 byte)        |
 | `aes_quadsbox` | `SBOX`, `INVSBOX`, `QUAD_SBOX`, `QUAD_INVSBOX` | `0x2B` | Packed 4-byte S-Box lookup            |
 | `jpeg_idct`    | `FPMUL9`                                       | `0x0B` | Fixed-point multiply-shift for IDCT   |
@@ -102,7 +102,7 @@ Each accelerated variant adds its own custom instructions. See the per-folder RE
 | Variant        | Path                | Description                     |
 | -------------- | ------------------- | ------------------------------- |
 | `baseline`     | `rtl/baseline/`     | Standard RV32I (no extensions)  |
-| `aes_custom`   | `rtl/aes_custom/`   | RV32I + GFMUL hardware          |
+| `aes_gfmul`    | `rtl/aes_gfmul/`    | RV32I + GFMUL hardware          |
 | `aes_sbox`     | `rtl/aes_sbox/`     | RV32I + S-Box lookup hardware   |
 | `aes_quadsbox` | `rtl/aes_quadsbox/` | RV32I + Quad S-Box hardware     |
 | `jpeg_idct`    | `rtl/jpeg_idct/`    | RV32I + multiply-shift hardware |

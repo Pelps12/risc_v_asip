@@ -2,7 +2,7 @@
 
 RV32I processor extended with `GFMUL` hardware for GF(2⁸) multiplication used in AES InverseMixColumns.
 
-See [test/aes_custom/README.md](../../test/aes_custom/README.md) for instruction encoding details.
+See [test/aes_gfmul/README.md](../../test/aes_gfmul/README.md) for instruction encoding details.
 
 ## Files
 
