@@ -53,7 +53,7 @@ fi
 
 # Generate binary
 echo "Generating binary..."
-llvm-objcopy-14 -O binary "${PREFIX}.elf" "${PREFIX}.bin"
+llvm-objcopy-18 -O binary "${PREFIX}.elf" "${PREFIX}.bin"
 
 # Generate hex dump for simulator (one 32-bit word per line, little-endian)
 echo "Generating hex file..."
@@ -61,7 +61,7 @@ od -t x4 -An -w4 -v "${PREFIX}.bin" | awk '{print $1}' > "${PREFIX}.hex"
 
 # Also dump disassembly for debugging
 echo "Generating disassembly..."
-llvm-objdump-14 -d "${PREFIX}.elf" > "${PREFIX}.dis"
+llvm-objdump-18 -d "${PREFIX}.elf" > "${PREFIX}.dis"
 
 echo ""
 echo "Generated files:"
