@@ -90,8 +90,17 @@ echo "=== Step 1: Compiling ${TEST_NAME} ==="
 # ==========================================================================
 echo ""
 echo "=== Step 2: Building C Simulator ==="
+# Prefer test-local simulator.cpp if it exists (for custom instructions)
+TEST_SUBDIR="$(dirname "${TEST_NAME}")"
+if [ "${TEST_SUBDIR}" != "." ] && [ -f "${TEST_DIR}/${TEST_SUBDIR}/simulator.cpp" ]; then
+    SIM_SRC="${TEST_DIR}/${TEST_SUBDIR}/simulator.cpp"
+    echo "Using test-local simulator: ${SIM_SRC}"
+else
+    SIM_SRC="${ROOT_DIR}/sim/simulator.cpp"
+    echo "Using baseline simulator: ${SIM_SRC}"
+fi
 clang++ -O2 -DC -Wall -std=c++17 -Wno-c++11-narrowing \
-    -o "${SIM_EXEC}" "${ROOT_DIR}/sim/simulator.cpp"
+    -o "${SIM_EXEC}" "${SIM_SRC}"
 echo "Built: ${SIM_EXEC}"
 
 echo ""
@@ -125,7 +134,12 @@ if [ "$RUN_RTL" -eq 1 ]; then
         exit 1
     fi
 
-    make -C "${RTL_DIR}" build DUT_SRC="${DUT_FILE}"
+    EXTRA_MAKE_ARGS=""
+    if [ "$RTL_VARIANT" == "aes_sbox" ]; then
+        EXTRA_MAKE_ARGS="PC_SIG=RG_mask_op1_PC"
+    fi
+
+    make -B -C "${RTL_DIR}" build DUT_SRC="${DUT_FILE}" ${EXTRA_MAKE_ARGS}
 
     echo ""
     echo "=== Step 6: Running RTL Simulation ==="

@@ -23,6 +23,8 @@ VFLAGS     := --binary --timing -Wno-fatal -Wno-lint
 VFLAGS     += --top-module tb_computer
 VFLAGS     += -o tb_computer_sim
 VFLAGS     += --Mdir $(OBJ_DIR)
+PC_SIG     ?= RG_addr_addr1_PC
+VFLAGS     += -DPC_SIG=$(PC_SIG)
 
 .PHONY: all build run clean
 

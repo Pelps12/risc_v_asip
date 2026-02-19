@@ -33,7 +33,8 @@ enum Opcode {
   OP_IMM = 0x13,    // I-type: Immediate ALU Operations
   OP_REG = 0x33,    // R-type: Register-Register ALU
   OP_FENCE = 0x0F,  // Fence (NOP for now)
-  OP_SYSTEM = 0x73  // ECALL, EBREAK
+  OP_SYSTEM = 0x73, // ECALL, EBREAK
+  OP_CUSTOM0 = 0x0B // Custom Instruction: (rs1 * rs2) >> 9
 };
 
 // funct3 codes for branches
@@ -528,6 +529,18 @@ bool computer(uint32_t imem_arg[MEM_SIZE], uint32_t dmem_arg[MEM_SIZE]
     case OP_SYSTEM: {
       // ECALL (imm=0) or EBREAK (imm=1) - both halt for now
       halt = true;
+      break;
+    }
+
+    // ================================================================
+    // OP_CUSTOM0: rd = (rs1 * rs2) >> 9
+    // ================================================================
+    case OP_CUSTOM0: {
+      int32_t op1 = (int32_t)regs[rs1];
+      int32_t op2 = (int32_t)regs[rs2];
+      int32_t res = (op1 * op2) >> 9;
+      if (rd != 0)
+        regs[rd] = (uint32_t)res;
       break;
     }
 

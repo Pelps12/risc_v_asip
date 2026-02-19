@@ -33,7 +33,8 @@ enum Opcode {
   OP_IMM = 0x13,    // I-type: Immediate ALU Operations
   OP_REG = 0x33,    // R-type: Register-Register ALU
   OP_FENCE = 0x0F,  // Fence (NOP for now)
-  OP_SYSTEM = 0x73  // ECALL, EBREAK
+  OP_SYSTEM = 0x73, // ECALL, EBREAK
+  OP_CUSTOM0 = 0x0B // Custom-0: AES GF(2^8) multiply
 };
 
 // funct3 codes for branches
@@ -77,7 +78,30 @@ enum RegFunct3 {
 };
 
 // ============================================================================
-// Helper Functions
+// GF(2^8) Helper Functions for AES Acceleration
+// ============================================================================
+
+// xtime: multiply by 2 in GF(2^8) with AES polynomial (x^8 + x^4 + x^3 + x + 1)
+inline uint32_t gf_xtime(uint32_t x) {
+  x = (x & 0xFF) << 1;
+  return (x & 0x100) ? (x ^ 0x11B) : x;
+}
+
+// General GF(2^8) multiply using Russian peasant algorithm
+inline uint32_t gf_mul(uint32_t a, uint32_t b) {
+  a &= 0xFF;
+  b &= 0xFF;
+  uint32_t result = 0;
+  uint32_t temp = a;
+  for (int i = 0; i < 8; i++) {
+    if (b & 1)
+      result ^= temp;
+    temp = gf_xtime(temp);
+    b >>= 1;
+  }
+  return result;
+}
+
 // ============================================================================
 
 // Sign-extend a value from bit 'bits' to 32 bits
@@ -509,6 +533,18 @@ bool computer(uint32_t imem_arg[MEM_SIZE], uint32_t dmem_arg[MEM_SIZE]
         result = op1 & op2;
         break;
       }
+      if (rd != 0)
+        regs[rd] = result;
+      break;
+    }
+
+    // ================================================================
+    // CUSTOM-0: AES GF(2^8) Multiply (I-type)
+    // GFMUL rd, rs1, imm  =>  rd = gf_mul(rs1, imm)
+    // ================================================================
+    case OP_CUSTOM0: {
+      uint32_t imm = decode_imm_i(instr) & 0xFF;
+      uint32_t result = gf_mul(regs[rs1], imm);
       if (rd != 0)
         regs[rd] = result;
       break;
