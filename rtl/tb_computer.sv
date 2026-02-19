@@ -137,6 +137,10 @@ module tb_computer;
   integer cycle_count;
   integer max_cycles = 50000;
 
+  // Report file handle (optional, via +RPT_FILE=...)
+  integer rpt_fd;
+  string  rpt_file;
+
   // Combined memory for loading hex (imem + dmem concatenated)
   reg [31:0] full_mem [0:2*MEM_SIZE-1];
 
@@ -148,6 +152,15 @@ module tb_computer;
     if (!$value$plusargs("HEX_FILE=%s", hex_file)) begin
       $display("ERROR: No hex file specified. Use +HEX_FILE=/path/to/file.hex");
       $finish;
+    end
+
+    // Optional report file
+    rpt_fd = 0;
+    if ($value$plusargs("RPT_FILE=%s", rpt_file)) begin
+      rpt_fd = $fopen(rpt_file, "w");
+      if (rpt_fd == 0) begin
+        $display("WARNING: Could not open report file: %s", rpt_file);
+      end
     end
 
     // Load combined hex: first 65536 words = imem, rest = dmem
@@ -199,6 +212,25 @@ module tb_computer;
     $display("\n=== DMEM Dump (first 8 words) ===");
     for (int i = 0; i < 8; i++)
       $display("  dmem[%0d] = 0x%08h", i, dmem[i]);
+
+    // Write report file if requested
+    if (rpt_fd != 0) begin
+      $fwrite(rpt_fd, "=== RTL Simulation Report ===\n");
+      $fwrite(rpt_fd, "Hex file: %s\n", hex_file);
+      $fwrite(rpt_fd, "Total cycles: %0d\n", cycle_count);
+      $fwrite(rpt_fd, "Status: HALTED\n");
+      $fwrite(rpt_fd, "\n=== Register Dump ===\n");
+      for (int i = 0; i < 32; i += 8) begin
+        for (int j = 0; j < 8 && (i+j) < 32; j++)
+          $fwrite(rpt_fd, "x%02d: %08h ", i+j, shadow_regs[i+j]);
+        $fwrite(rpt_fd, "\n");
+      end
+      $fwrite(rpt_fd, "\n=== DMEM Dump (first 8 words) ===\n");
+      for (int i = 0; i < 8; i++)
+        $fwrite(rpt_fd, "dmem[%0d] = 0x%08h\n", i, dmem[i]);
+      $fclose(rpt_fd);
+      $display("\nReport written to: %s", rpt_file);
+    end
 
     $display("\n=== Done ===");
     $finish;

@@ -39,7 +39,7 @@ run: $(SIM_BIN)
 ifndef HEX
 	$(error HEX is not set. Usage: make run HEX=/path/to/program.hex)
 endif
-	$(SIM_BIN) +HEX_FILE=$(abspath $(HEX))
+	$(SIM_BIN) +HEX_FILE=$(abspath $(HEX)) $(if $(RPT_FILE),+RPT_FILE=$(abspath $(RPT_FILE)))
 
 clean:
 	rm -rf $(OBJ_DIR)

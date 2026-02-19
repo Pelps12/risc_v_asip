@@ -141,7 +141,10 @@ if [ "$RUN_RTL" -eq 1 ]; then
 
     make -B -C "${RTL_DIR}" build DUT_SRC="${DUT_FILE}" ${EXTRA_MAKE_ARGS}
 
+    # Determine report file path (in the RTL variant's folder)
+    RTL_RPT_FILE="${RTL_VARIANT_DIR}/sim_rtl.rpt"
+
     echo ""
     echo "=== Step 6: Running RTL Simulation ==="
-    make -C "${RTL_DIR}" run HEX="$(cd "${SCRIPT_DIR}" && pwd)/${TEST_NAME}.hex"
+    make -C "${RTL_DIR}" run HEX="$(cd "${SCRIPT_DIR}" && pwd)/${TEST_NAME}.hex" RPT_FILE="${RTL_RPT_FILE}"
 fi
