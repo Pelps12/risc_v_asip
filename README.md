@@ -27,7 +27,10 @@ risc_v_asip/
 │   └── hex2h.py                #   Hex-to-header conversion utility
 ├── test/                       # Test programs
 │   ├── aes/                    #   AES baseline (pure RV32I)
-│   ├── aes_custom/             #   AES accelerated (GFMUL custom instruction)
+│   ├── aes_custom/             #   AES + GFMUL custom instruction
+│   ├── aes_sbox/               #   AES + hardware S-Box lookup
+│   ├── aes_quadsbox/           #   AES + packed 4-byte S-Box lookup
+│   ├── jpeg_idct/              #   JPEG IDCT + fixed-point multiply
 │   ├── simple.c, simple_2.c    #   Minimal test programs
 │   └── msdap_bare.cpp          #   MSDAP signal processing benchmark
 ├── profiling/                  # Profiling output
@@ -86,30 +89,26 @@ Base: **RV32I** (integer only, no multiply/divide hardware).
 
 #### Custom Instructions
 
-| Mnemonic | Opcode            | Type   | Encoding                        | Operation                      |
-| -------- | ----------------- | ------ | ------------------------------- | ------------------------------ |
-| `GFMUL`  | `0x0B` (CUSTOM-0) | I-type | `.insn i 0x0B, 0, rd, rs1, imm` | `rd = gf_mul(rs1, imm & 0xFF)` |
+Each accelerated variant adds its own custom instructions. See the per-folder READMEs for full encoding and operation details:
 
-`GFMUL` performs GF(2⁸) multiplication with the AES irreducible polynomial (x⁸ + x⁴ + x³ + x + 1). It is used in the `aes_custom` variant to accelerate the `AddRoundKey_InversMixColumn` function, replacing ~50 lines of shift/branch/XOR chains per coefficient with a single instruction.
-
-**Coefficients used in InverseMixColumns:**
-
-| Coefficient | Hex    | Usage             |
-| ----------- | ------ | ----------------- |
-| 14          | `0x0E` | Column 0 multiply |
-| 11          | `0x0B` | Column 1 multiply |
-| 13          | `0x0D` | Column 2 multiply |
-| 9           | `0x09` | Column 3 multiply |
+| Variant        | Instruction(s)                                 | Opcode | Description                           |
+| -------------- | ---------------------------------------------- | ------ | ------------------------------------- |
+| `aes_custom`   | `GFMUL`                                        | `0x0B` | GF(2⁸) multiply for InverseMixColumns |
+| `aes_sbox`     | `SBOX`, `INVSBOX`                              | `0x2B` | Hardware S-Box lookup (1 byte)        |
+| `aes_quadsbox` | `SBOX`, `INVSBOX`, `QUAD_SBOX`, `QUAD_INVSBOX` | `0x2B` | Packed 4-byte S-Box lookup            |
+| `jpeg_idct`    | `FPMUL9`                                       | `0x0B` | Fixed-point multiply-shift for IDCT   |
 
 ### RTL Variants
 
-| Variant      | Path              | Description                                                    |
-| ------------ | ----------------- | -------------------------------------------------------------- |
-| `baseline`   | `rtl/baseline/`   | Standard RV32I (2,365 ALUTs, 249 regs, 13.09 ns critical path) |
-| `aes_custom` | `rtl/aes_custom/` | RV32I + GFMUL hardware                                         |
+| Variant        | Path                | Description                     |
+| -------------- | ------------------- | ------------------------------- |
+| `baseline`     | `rtl/baseline/`     | Standard RV32I (no extensions)  |
+| `aes_custom`   | `rtl/aes_custom/`   | RV32I + GFMUL hardware          |
+| `aes_sbox`     | `rtl/aes_sbox/`     | RV32I + S-Box lookup hardware   |
+| `aes_quadsbox` | `rtl/aes_quadsbox/` | RV32I + Quad S-Box hardware     |
+| `jpeg_idct`    | `rtl/jpeg_idct/`    | RV32I + multiply-shift hardware |
 
-RTL is synthesized via CyberWorkBench targeting Intel Cyclone V.
-Will be modified to target GF65 using Design Compiler
+RTL is synthesized via CyberWorkBench. See each variant's `README.md` and `computer.qor` for synthesis results.
 
 ## Toolchain
 
