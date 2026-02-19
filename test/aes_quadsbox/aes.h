@@ -71,6 +71,55 @@ int statemt[32];
 int result[32];
 int word[4][120];
 
+/* ============================================================
+ * Packed-column helpers (RISC-V DLP path)
+ * State: statemt[j] = { row3<<24 | row2<<16 | row1<<8 | row0 }
+ * ============================================================ */
+#ifdef __riscv
+
+static inline void pack_state(int s[32]) {
+  int j;
+  for (j = 0; j < 4; j++) {
+    int idx = j * 4;
+    s[j] = (s[idx] & 0xFF) | ((s[idx + 1] & 0xFF) << 8) |
+           ((s[idx + 2] & 0xFF) << 16) | ((s[idx + 3] & 0xFF) << 24);
+  }
+}
+
+static inline void unpack_state(int s[32]) {
+  int tmp[4];
+  int j;
+  for (j = 0; j < 4; j++)
+    tmp[j] = s[j];
+  for (j = 0; j < 4; j++) {
+    unsigned int c = (unsigned int)tmp[j];
+    s[j * 4] = c & 0xFF;
+    s[j * 4 + 1] = (c >> 8) & 0xFF;
+    s[j * 4 + 2] = (c >> 16) & 0xFF;
+    s[j * 4 + 3] = (c >> 24) & 0xFF;
+  }
+}
+
+static inline unsigned int packed_xtime(unsigned int x) {
+  unsigned int hi = (x >> 7) & 0x01010101u;
+  unsigned int mask = hi * 0x1Bu;
+  return ((x & 0x7F7F7F7Fu) << 1) ^ mask;
+}
+
+static inline unsigned int rotr8(unsigned int x) {
+  return (x >> 8) | (x << 24);
+}
+
+static inline unsigned int rotr16(unsigned int x) {
+  return (x >> 16) | (x << 16);
+}
+
+static inline unsigned int rotl8(unsigned int x) {
+  return (x << 8) | (x >> 24);
+}
+
+#endif /* __riscv */
+
 /* key generate */
 int KeySchedule(int, int *);
 int SubByte(int);

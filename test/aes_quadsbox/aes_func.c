@@ -66,61 +66,7 @@ const int invSbox[16][16] = {{0x52, 0x09, 0x6a, 0xd5, 0x30, 0x36, 0xa5, 0x38,
                              {0x17, 0x2b, 0x04, 0x7e, 0xba, 0x77, 0xd6, 0x26,
                               0xe1, 0x69, 0x14, 0x63, 0x55, 0x21, 0x0c, 0x7d}};
 
-/* ============================================================
- * Packed-column helpers (RISC-V DLP path)
- *
- * State layout:  statemt[j] = column j packed as
- *   { row3<<24 | row2<<16 | row1<<8 | row0 }
- *
- * Key layout:  word[row][col_index], one byte per entry
- *   packed on-the-fly: pk = word[0][k]|(word[1][k]<<8)|...
- * ============================================================ */
-
-#ifdef __riscv
-
-/* Pack 16-byte state into 4 packed columns */
-static inline void pack_state(int s[32]) {
-  int j;
-  for (j = 0; j < 4; j++) {
-    int idx = j * 4;
-    s[j] = (s[idx] & 0xFF) | ((s[idx + 1] & 0xFF) << 8) |
-           ((s[idx + 2] & 0xFF) << 16) | ((s[idx + 3] & 0xFF) << 24);
-  }
-}
-
-/* Unpack 4 packed columns back to 16 bytes */
-static inline void unpack_state(int s[32]) {
-  int tmp[4];
-  int j;
-  for (j = 0; j < 4; j++)
-    tmp[j] = s[j];
-  for (j = 0; j < 4; j++) {
-    unsigned int c = (unsigned int)tmp[j];
-    s[j * 4] = c & 0xFF;
-    s[j * 4 + 1] = (c >> 8) & 0xFF;
-    s[j * 4 + 2] = (c >> 16) & 0xFF;
-    s[j * 4 + 3] = (c >> 24) & 0xFF;
-  }
-}
-
-/* Packed xtime: GF(2^8) multiply-by-2 on all 4 bytes simultaneously */
-static inline unsigned int packed_xtime(unsigned int x) {
-  unsigned int hi = (x >> 7) & 0x01010101u;
-  unsigned int mask = hi * 0x1Bu; /* 0x1B where high bit was set */
-  return ((x & 0x7F7F7F7Fu) << 1) ^ mask;
-}
-
-/* ROTR8: rotate 32-bit word right by 8 (byte rotate down by 1) */
-static inline unsigned int rotr8(unsigned int x) {
-  return (x >> 8) | (x << 24);
-}
-
-/* ROTR16: swap upper and lower halfwords */
-static inline unsigned int rotr16(unsigned int x) {
-  return (x >> 16) | (x << 16);
-}
-
-#endif /* __riscv */
+/* Packed-column helpers are defined in aes.h */
 
 /* ********* ByteSub & ShiftRow ********* */
 void ByteSub_ShiftRow(int statemt[32], int nb) {
