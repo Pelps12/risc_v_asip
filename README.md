@@ -10,12 +10,11 @@ risc_v_asip/
 │   ├── simulator.cpp           #   RV32I + custom instruction support
 │   └── Makefile
 ├── rtl/                        # HLS-generated RTL
-│   ├── baseline/               #   Baseline RV32I processor
-│   │   ├── computer_E.v        #   Synthesized Verilog
-│   │   └── computer.qor        #   Synthesis QoR report
-│   ├── aes_custom/             #   AES-accelerated variant
-│   │   ├── computer_E.v        #   Synthesized Verilog
-│   │   └── computer.qor        #   Synthesis QoR report
+│   ├── baseline/               #   Baseline RV32I (computer_E.v + computer.qor)
+│   ├── aes_custom/             #   RV32I + GFMUL
+│   ├── aes_sbox/               #   RV32I + S-Box lookup
+│   ├── aes_quadsbox/           #   RV32I + Quad S-Box
+│   ├── jpeg_idct/              #   RV32I + multiply-shift
 │   ├── tb_computer.sv          #   SystemVerilog testbench
 │   └── Makefile                #   Verilator build rules
 ├── scripts/                    # Build & automation scripts
