@@ -34,6 +34,8 @@ risc_v_asip/
 │   └── msdap_bare.cpp          #   MSDAP signal processing benchmark
 ├── profiling/                  # Profiling output
 │   └── output/                 #   Generated profiling reports
+├── Dockerfile                  # Multi-stage build (tools + SystemC 3.0)
+├── .dockerignore
 └── README.md
 ```
 
@@ -43,6 +45,58 @@ risc_v_asip/
 
 - **clang** (with RISC-V target support)
 - **Verilator** (for RTL simulation, optional)
+
+Or use the **Docker image** which bundles everything (see below).
+
+## Docker
+
+A `Dockerfile` is provided that packages the entire toolchain into a reproducible container image based on Ubuntu 24.04.
+
+### Included Tools
+
+| Tool            | Version      | Purpose                                                 |
+| --------------- | ------------ | ------------------------------------------------------- |
+| Clang / LLVM    | 18           | Cross-compile C/C++ → RV32I, build simulator, profiling |
+| Verilator       | latest (APT) | RTL simulation                                          |
+| SystemC         | 3.0.0        | SystemC simulation library (`/opt/systemc`)             |
+| Python 3        | latest (APT) | Utility scripts (`hex2h.py`)                            |
+| GTKWave         | latest (APT) | Waveform viewer                                         |
+| Make, git, gawk | —            | Build essentials                                        |
+
+### Build the Image
+
+```bash
+docker build -t risc-v-asip .
+```
+
+### Run a Test
+
+```bash
+docker run --rm -v $(pwd):/workspace risc-v-asip bash scripts/run_test.sh simple_2
+```
+
+### Interactive Shell
+
+```bash
+docker run --rm -it -v $(pwd):/workspace risc-v-asip
+```
+
+### Using SystemC
+
+Inside the container, SystemC is installed at `/opt/systemc`. The environment variables `SYSTEMC_HOME` and `LD_LIBRARY_PATH` are pre-configured. To compile against SystemC:
+
+```bash
+g++ -std=c++17 -I$SYSTEMC_HOME/include -L$SYSTEMC_HOME/lib -lsystemc my_module.cpp -o my_module
+```
+
+### Troubleshooting
+
+If you get **"permission denied while trying to connect to the Docker daemon"**, add your user to the `docker` group:
+
+```bash
+sudo usermod -aG docker $USER
+newgrp docker   # apply immediately (or log out and back in)
+```
 
 ### Run a Test Program
 

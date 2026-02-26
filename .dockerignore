@@ -1,0 +1,32 @@
+# Git
+.git
+.gitignore
+
+# Build artifacts
+*.bin
+*.elf
+*.hex
+*.dis
+*.o
+
+# Verilator build output
+rtl/obj_dir/
+
+# Compiled simulator binary
+sim/rv32i_sim
+
+# Profiling output
+profiling/output/
+
+# IDE / editor files
+.clangd
+.vscode/
+.idea/
+
+# Docker
+Dockerfile
+.dockerignore
+
+# Reports
+*.rpt
+*.fst
