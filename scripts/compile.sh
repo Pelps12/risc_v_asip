@@ -1,18 +1,19 @@
 #!/bin/bash
 # compile.sh - Compile C to RV32I bare-metal binary
-# Usage: ./compile.sh <source.c> [output_prefix]
+# Usage: ./compile.sh <source.c> [output_prefix] [extra_cflags]
 
 set -e
 
 SCRIPT_DIR="$(dirname "$0")"
 
 if [ $# -lt 1 ]; then
-    echo "Usage: $0 <source.c> [output_prefix]"
+    echo "Usage: $0 <source.c> [output_prefix] [extra_cflags]"
     exit 1
 fi
 
 SOURCE="$1"
 PREFIX="${2:-output}"
+EXTRA_CFLAGS="${3:-}"
 
 # Determine language based on extension
 if [[ "$SOURCE" == *.cpp ]]; then
@@ -29,6 +30,7 @@ if [[ "$SOURCE" == *.cpp ]]; then
         -fno-exceptions \
         -fno-rtti \
         -O0 \
+        ${EXTRA_CFLAGS} \
         -I"$(dirname "${SOURCE}")" \
         -Wl,-T,"${SCRIPT_DIR}/linker.ld" \
         -o "${PREFIX}.elf" \
@@ -44,6 +46,7 @@ else
         -nostdlib \
         -ffreestanding \
         -O0 \
+        ${EXTRA_CFLAGS} \
         -I"$(dirname "${SOURCE}")" \
         -Wl,-T,"${SCRIPT_DIR}/linker.ld" \
         -o "${PREFIX}.elf" \

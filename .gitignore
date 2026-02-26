@@ -8,6 +8,7 @@ scripts/*/*.bin
 scripts/*/*.hex
 *.rpt
 *.bak
+*.fst
 rv32i_sim
 rtl/obj_dir
 test/sim

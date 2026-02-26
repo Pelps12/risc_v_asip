@@ -70,7 +70,7 @@ BASE_NAME="$(basename "${TEST_NAME}")"
 BIN="${OUT_DIR}/${BASE_NAME}_profiled"
 RAW="${OUT_DIR}/default.profraw"
 MERGED="${OUT_DIR}/default.profdata"
-ANNOTATED="${OUT_DIR}/annotated_source.txt"
+FUNC_RPT="${OUT_DIR}/function_report.txt"
 JSON_SUM="${OUT_DIR}/summary.json"
 
 # Determine compiler based on extension
@@ -109,18 +109,14 @@ stage "Merge profile data"
 llvm-profdata merge -sparse "$RAW" -o "$MERGED"
 info "Merged profile: $MERGED"
 
-# ── 4. Function-level summary ───────────────────────────────
+# ── 4. Function-level report ────────────────────────────────
 stage "Function-level report"
-llvm-cov report "$BIN" -instr-profile="$MERGED"
+llvm-cov report "$BIN" -instr-profile="$MERGED" \
+    --show-functions \
+    "$SRC" \
+    | tee "$FUNC_RPT"
 
-# ── 5. Line-by-line annotated source ────────────────────────
-stage "Line-level hotspot annotations"
-llvm-cov show "$BIN" -instr-profile="$MERGED" \
-    -show-line-counts-or-regions \
-    -show-branches=count \
-    | tee "$ANNOTATED"
-
-info "Annotated source saved to $ANNOTATED"
+info "Function report saved to $FUNC_RPT"
 
 # ── 6. JSON export for tooling ──────────────────────────────
 stage "Export JSON"
