@@ -1,9 +1,13 @@
 #!/bin/bash
 # run_test.sh - Compile and run a C test program on RV32I simulator
-# Usage: ./run_test.sh <test_name> [--rtl [variant]]
-# Example: ./run_test.sh simple_2
-#          ./run_test.sh simple_2 --rtl              (uses rtl/baseline/)
-#          ./run_test.sh simple_2 --rtl aes_gfmul   (uses rtl/aes_gfmul/)
+# Usage: ./run_test.sh <test_name> [--accel FLAG ...] [--rtl [variant]] [--trace]
+#
+# Examples:
+#   ./run_test.sh aes_fullcustom/aes                          # baseline (no ACCEL)
+#   ./run_test.sh aes_fullcustom/aes --accel ACCEL_SUBBYTES   # C sim with SubBytes accel
+#   ./run_test.sh aes_fullcustom/aes --accel ACCEL_SUBBYTES --accel ACCEL_MIXCOLS
+#   ./run_test.sh aes_fullcustom/aes --rtl aes_subbytes       # reads rtl/aes_subbytes/accel.conf
+#   ./run_test.sh aes_fullcustom/aes --rtl aes_mixcols --trace  # with FST waveform
 
 set -e
 
@@ -17,36 +21,49 @@ RTL_DIR="${ROOT_DIR}/rtl"
 RUN_RTL=0
 RTL_VARIANT="baseline"
 TEST_NAME=""
-NEXT_IS_VARIANT=0
+ACCEL_FLAGS=()
+RUN_TRACE=0
 
-for arg in "$@"; do
-    if [ "$NEXT_IS_VARIANT" -eq 1 ]; then
-        # Check if this looks like a variant name (not a flag)
-        case "$arg" in
-            -*) ;; # It's another flag, keep default variant
-            *)  RTL_VARIANT="$arg"; NEXT_IS_VARIANT=0; continue ;;
-        esac
-        NEXT_IS_VARIANT=0
-    fi
-    case "$arg" in
+while [ $# -gt 0 ]; do
+    case "$1" in
         --rtl)
             RUN_RTL=1
-            NEXT_IS_VARIANT=1
+            # Next arg might be variant name (if not another flag)
+            if [ $# -gt 1 ] && [[ "$2" != --* ]]; then
+                RTL_VARIANT="$2"
+                shift
+            fi
+            ;;
+        --accel)
+            if [ $# -gt 1 ]; then
+                ACCEL_FLAGS+=("$2")
+                shift
+            else
+                echo "Error: --accel requires a flag name (e.g. ACCEL_SUBBYTES)"
+                exit 1
+            fi
+            ;;
+        --trace)
+            RUN_TRACE=1
             ;;
         *)
             if [ -z "$TEST_NAME" ]; then
-                TEST_NAME="$arg"
+                TEST_NAME="$1"
             fi
             ;;
     esac
+    shift
 done
 
 if [ -z "$TEST_NAME" ]; then
-    echo "Usage: $0 <test_name> [--rtl [variant]]"
+    echo "Usage: $0 <test_name> [--accel FLAG ...] [--rtl [variant]] [--trace]"
     echo ""
     echo "Options:"
+    echo "  --accel FLAG     Enable an ACCEL flag (repeatable)"
+    echo "                   e.g. --accel ACCEL_SUBBYTES --accel ACCEL_MIXCOLS"
     echo "  --rtl [variant]  Run RTL simulation (default: baseline)"
-    echo "                   e.g. --rtl aes_gfmul => rtl/aes_gfmul/computer_E.v"
+    echo "                   Reads rtl/<variant>/accel.conf for ACCEL flags"
+    echo "  --trace          Enable FST waveform tracing (requires --rtl)"
     echo ""
     echo "Available tests:"
     # List flat tests
@@ -57,7 +74,45 @@ if [ -z "$TEST_NAME" ]; then
         local_name="$(basename "$dir")"
         (ls "$dir"/*.c "$dir"/*.cpp 2>/dev/null) | xargs -n 1 basename | sed 's/\.[^.]*$//' | sort | uniq | sed "s|^|${local_name}/|"
     done
+    echo ""
+    echo "Available RTL variants (with accel.conf):"
+    for d in "${RTL_DIR}"/*/; do
+        [ -d "$d" ] || continue
+        vname="$(basename "$d")"
+        if [ -f "${d}accel.conf" ]; then
+            flags=$(cat "${d}accel.conf" | tr '\n' ' ')
+            echo "  ${vname}:  ${flags}"
+        elif [ -f "${d}computer_E.v" ]; then
+            echo "  ${vname}:  (no accel.conf - baseline)"
+        fi
+    done
     exit 1
+fi
+
+# ==========================================================================
+# Read accel.conf from RTL variant (if --rtl specified)
+# ==========================================================================
+if [ "$RUN_RTL" -eq 1 ]; then
+    ACCEL_CONF="${RTL_DIR}/${RTL_VARIANT}/accel.conf"
+    if [ -f "$ACCEL_CONF" ]; then
+        echo "Reading ACCEL flags from ${ACCEL_CONF}"
+        while IFS= read -r line || [ -n "$line" ]; do
+            # Skip empty lines and comments
+            line="$(echo "$line" | sed 's/#.*//' | xargs)"
+            [ -z "$line" ] && continue
+            ACCEL_FLAGS+=("$line")
+        done < "$ACCEL_CONF"
+    fi
+fi
+
+# Build EXTRA_CFLAGS string from accumulated ACCEL flags
+EXTRA_CFLAGS=""
+if [ ${#ACCEL_FLAGS[@]} -gt 0 ]; then
+    for flag in "${ACCEL_FLAGS[@]}"; do
+        EXTRA_CFLAGS="${EXTRA_CFLAGS} -D${flag}"
+    done
+    echo "ACCEL flags: ${ACCEL_FLAGS[*]}"
+    echo "EXTRA_CFLAGS:${EXTRA_CFLAGS}"
 fi
 
 # Check for .c or .cpp file (supports flat and subdirectory tests)
@@ -80,10 +135,10 @@ mkdir -p "$(dirname "${OUTPUT_PREFIX}")"
 HEX_FILE="${OUTPUT_PREFIX}.hex"
 
 # ==========================================================================
-# Step 1: Compile Test Program
+# Step 1: Compile Test Program (with ACCEL flags)
 # ==========================================================================
 echo "=== Step 1: Compiling ${TEST_NAME} ==="
-"${SCRIPT_DIR}/compile.sh" "${SOURCE_FILE}" "${OUTPUT_PREFIX}"
+"${SCRIPT_DIR}/compile.sh" "${SOURCE_FILE}" "${OUTPUT_PREFIX}" "${EXTRA_CFLAGS}"
 
 # ==========================================================================
 # Step 2: Build & Run C Simulator
@@ -99,7 +154,13 @@ else
     SIM_SRC="${ROOT_DIR}/sim/simulator.cpp"
     echo "Using baseline simulator: ${SIM_SRC}"
 fi
-clang++ -O2 -DC -Wall -std=c++17 -Wno-c++11-narrowing \
+
+# Build simulator with same ACCEL flags so it only handles enabled instructions
+SIM_ACCEL_DEFS=""
+for flag in "${ACCEL_FLAGS[@]}"; do
+    SIM_ACCEL_DEFS="${SIM_ACCEL_DEFS} -D${flag}"
+done
+clang++ -O2 -DC ${SIM_ACCEL_DEFS} -Wall -std=c++17 -Wno-c++11-narrowing \
     -o "${SIM_EXEC}" "${SIM_SRC}"
 echo "Built: ${SIM_EXEC}"
 
@@ -139,12 +200,27 @@ if [ "$RUN_RTL" -eq 1 ]; then
         EXTRA_MAKE_ARGS="PC_SIG=RG_mask_op1_PC"
     fi
 
-    make -B -C "${RTL_DIR}" build DUT_SRC="${DUT_FILE}" ${EXTRA_MAKE_ARGS}
+    TRACE_ARG=""
+    FST_ARG=""
+    FST_FILE="${RTL_VARIANT_DIR}/trace.fst"
+    if [ "$RUN_TRACE" -eq 1 ]; then
+        TRACE_ARG="TRACE=1"
+        FST_ARG="FST_FILE=${FST_FILE}"
+        echo "  FST tracing enabled -> ${FST_FILE}"
+    fi
+
+    make -B -C "${RTL_DIR}" build DUT_SRC="${DUT_FILE}" ${EXTRA_MAKE_ARGS} ${TRACE_ARG}
 
     # Determine report file path (in the RTL variant's folder)
     RTL_RPT_FILE="${RTL_VARIANT_DIR}/sim_rtl.rpt"
 
     echo ""
     echo "=== Step 6: Running RTL Simulation ==="
-    make -C "${RTL_DIR}" run HEX="$(cd "${SCRIPT_DIR}" && pwd)/${TEST_NAME}.hex" RPT_FILE="${RTL_RPT_FILE}"
+    make -C "${RTL_DIR}" run DUT_SRC="${DUT_FILE}" HEX="$(cd "${SCRIPT_DIR}" && pwd)/${TEST_NAME}.hex" RPT_FILE="${RTL_RPT_FILE}" ${TRACE_ARG} ${FST_ARG}
+
+    if [ "$RUN_TRACE" -eq 1 ] && [ -f "${FST_FILE}" ]; then
+        echo ""
+        echo "=== Waveform trace saved: ${FST_FILE} ==="
+        echo "  Open with: gtkwave ${FST_FILE}"
+    fi
 fi

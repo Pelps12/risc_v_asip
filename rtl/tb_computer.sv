@@ -147,6 +147,9 @@ module tb_computer;
   // Hex file path from plusarg
   string hex_file;
 
+  // FST trace file path (optional, via +FST_FILE=...)
+  string fst_file;
+
   initial begin
     // Get hex file path from +HEX_FILE=... plusarg
     if (!$value$plusargs("HEX_FILE=%s", hex_file)) begin
@@ -182,6 +185,15 @@ module tb_computer;
     rst = 0;
 
     $display("\n=== RTL Simulation Start ===");
+
+    // Optional FST tracing (enabled via make TRACE=1)
+    `ifdef TRACE_EN
+      if (!$value$plusargs("FST_FILE=%s", fst_file))
+        fst_file = "trace.fst";
+      $dumpfile(fst_file);
+      $dumpvars(0, tb_computer);
+      $display("  FST tracing enabled -> %s", fst_file);
+    `endif
 
     // Run until halt
     cycle_count = 0;
