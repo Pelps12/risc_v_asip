@@ -11,10 +11,9 @@ risc_v_asip/
 │   └── Makefile
 ├── rtl/                        # HLS-generated RTL
 │   ├── baseline/               #   Baseline RV32I (computer_E.v + computer.qor)
-│   ├── aes_gfmul/             #   RV32I + GFMUL
-│   ├── aes_sbox/               #   RV32I + S-Box lookup
-│   ├── aes_quadsbox/           #   RV32I + Quad S-Box
-│   ├── jpeg_idct/              #   RV32I + multiply-shift
+│   ├── aes_subbytes/           #   RV32I + SubBytes
+│   ├── aes_mixcols/            #   RV32I + MixColumns
+│   ├── aes_mixcols_zero_unroll/#   RV32I + MixColumns (zero-unroll)
 │   ├── tb_computer.sv          #   SystemVerilog testbench
 │   └── Makefile                #   Verilator build rules
 ├── scripts/                    # Build & automation scripts
@@ -26,14 +25,13 @@ risc_v_asip/
 │   └── hex2h.py                #   Hex-to-header conversion utility
 ├── test/                       # Test programs
 │   ├── aes/                    #   AES baseline (pure RV32I)
-│   ├── aes_gfmul/             #   AES + GFMUL custom instruction
-│   ├── aes_sbox/               #   AES + hardware S-Box lookup
-│   ├── aes_quadsbox/           #   AES + packed 4-byte S-Box lookup
-│   ├── jpeg_idct/              #   JPEG IDCT + fixed-point multiply
+│   ├── aes_fullcustom/         #   AES + all function-level custom instructions
 │   ├── simple.c, simple_2.c    #   Minimal test programs
 │   └── msdap_bare.cpp          #   MSDAP signal processing benchmark
 ├── profiling/                  # Profiling output
 │   └── output/                 #   Generated profiling reports
+├── Dockerfile                  # Multi-stage build (tools + SystemC 3.0)
+├── .dockerignore
 └── README.md
 ```
 
@@ -44,6 +42,58 @@ risc_v_asip/
 - **clang** (with RISC-V target support)
 - **Verilator** (for RTL simulation, optional)
 
+Or use the **Docker image** which bundles everything (see below).
+
+## Docker
+
+A `Dockerfile` is provided that packages the entire toolchain into a reproducible container image based on Ubuntu 24.04.
+
+### Included Tools
+
+| Tool            | Version      | Purpose                                                 |
+| --------------- | ------------ | ------------------------------------------------------- |
+| Clang / LLVM    | 18           | Cross-compile C/C++ → RV32I, build simulator, profiling |
+| Verilator       | latest (APT) | RTL simulation                                          |
+| SystemC         | 3.0.0        | SystemC simulation library (`/opt/systemc`)             |
+| Python 3        | latest (APT) | Utility scripts (`hex2h.py`)                            |
+| GTKWave         | latest (APT) | Waveform viewer                                         |
+| Make, git, gawk | —            | Build essentials                                        |
+
+### Build the Image
+
+```bash
+docker build -t risc-v-asip .
+```
+
+### Run a Test
+
+```bash
+docker run --rm -v $(pwd):/workspace risc-v-asip bash scripts/run_test.sh simple_2
+```
+
+### Interactive Shell
+
+```bash
+docker run --rm -it -v $(pwd):/workspace risc-v-asip
+```
+
+### Using SystemC
+
+Inside the container, SystemC is installed at `/opt/systemc`. The environment variables `SYSTEMC_HOME` and `LD_LIBRARY_PATH` are pre-configured. To compile against SystemC:
+
+```bash
+g++ -std=c++17 -I$SYSTEMC_HOME/include -L$SYSTEMC_HOME/lib -lsystemc my_module.cpp -o my_module
+```
+
+### Troubleshooting
+
+If you get **"permission denied while trying to connect to the Docker daemon"**, add your user to the `docker` group:
+
+```bash
+sudo usermod -aG docker $USER
+newgrp docker   # apply immediately (or log out and back in)
+```
+
 ### Run a Test Program
 
 ```bash
@@ -51,14 +101,14 @@ risc_v_asip/
 bash scripts/run_test.sh simple_2
 
 # Subdirectory tests
-bash scripts/run_test.sh aes/aes              # AES baseline
-bash scripts/run_test.sh aes_gfmul/aes_gfmul # AES with custom instructions
+bash scripts/run_test.sh aes/aes                            # AES baseline
+bash scripts/run_test.sh aes_fullcustom/aes --accel ACCEL_SUBBYTES --accel ACCEL_MIXCOLS
 
 # Include RTL simulation (default: baseline variant)
 bash scripts/run_test.sh simple_2 --rtl
 
 # RTL simulation with a specific variant
-bash scripts/run_test.sh aes_gfmul/aes_gfmul --rtl aes_gfmul
+bash scripts/run_test.sh aes_fullcustom/aes --rtl aes_subbytes
 ```
 
 **Success criteria:** simulation halts cleanly with `a0 = 0x00000000`.
@@ -88,24 +138,26 @@ Base: **RV32I** (integer only, no multiply/divide hardware).
 
 #### Custom Instructions
 
-Each accelerated variant adds its own custom instructions. See the per-folder READMEs for full encoding and operation details:
+All custom instructions use opcode `0x0B` (custom-0) with R-type encoding. The `funct3` field selects the operation, and `rs1`/`rs2` point to the base GPR holding the packed state or key. Each can be individually enabled via `ACCEL_*` defines.
 
-| Variant        | Instruction(s)                                 | Opcode | Description                           |
-| -------------- | ---------------------------------------------- | ------ | ------------------------------------- |
-| `aes_gfmul`    | `GFMUL`                                        | `0x0B` | GF(2⁸) multiply for InverseMixColumns |
-| `aes_sbox`     | `SBOX`, `INVSBOX`                              | `0x2B` | Hardware S-Box lookup (1 byte)        |
-| `aes_quadsbox` | `SBOX`, `INVSBOX`, `QUAD_SBOX`, `QUAD_INVSBOX` | `0x2B` | Packed 4-byte S-Box lookup            |
-| `jpeg_idct`    | `FPMUL9`                                       | `0x0B` | Fixed-point multiply-shift for IDCT   |
+| funct3 | ACCEL Flag        | Instruction     | Description                            |
+| ------ | ----------------- | --------------- | -------------------------------------- |
+| `0`    | `ACCEL_SUBBYTES`  | `AES.SUBBYTES`  | S-box on 4 packed GPRs (16 bytes)      |
+| `1`    | `ACCEL_SHIFTROWS` | `AES.SHIFTROWS` | Byte permutation across 4 packed GPRs  |
+| `2`    | `ACCEL_MIXCOLS`   | `AES.MIXCOLS`   | MixColumns on 4 packed GPRs            |
+| `3`    | `ACCEL_ADDRK`     | `AES.ADDRK`     | XOR state GPRs with key GPRs           |
+| `4`    | `ACCEL_EXPKEY`    | `AES.EXPKEY`    | AES-256 key expansion on 8 GPRs + rcon |
+
+See `test/aes_fullcustom/aes.c` and `test/aes_fullcustom/simulator.cpp` for the C and simulator implementations.
 
 ### RTL Variants
 
-| Variant        | Path                | Description                     |
-| -------------- | ------------------- | ------------------------------- |
-| `baseline`     | `rtl/baseline/`     | Standard RV32I (no extensions)  |
-| `aes_gfmul`    | `rtl/aes_gfmul/`    | RV32I + GFMUL hardware          |
-| `aes_sbox`     | `rtl/aes_sbox/`     | RV32I + S-Box lookup hardware   |
-| `aes_quadsbox` | `rtl/aes_quadsbox/` | RV32I + Quad S-Box hardware     |
-| `jpeg_idct`    | `rtl/jpeg_idct/`    | RV32I + multiply-shift hardware |
+| Variant                   | Path                           | ACCEL Flags      | Description                              |
+| ------------------------- | ------------------------------ | ---------------- | ---------------------------------------- |
+| `baseline`                | `rtl/baseline/`                | —                | Standard RV32I (no extensions)           |
+| `aes_subbytes`            | `rtl/aes_subbytes/`            | `ACCEL_SUBBYTES` | RV32I + SubBytes hardware                |
+| `aes_mixcols`             | `rtl/aes_mixcols/`             | `ACCEL_MIXCOLS`  | RV32I + MixColumns hardware              |
+| `aes_mixcols_zero_unroll` | `rtl/aes_mixcols_zero_unroll/` | `ACCEL_MIXCOLS`  | RV32I + MixColumns (zero-unroll variant) |
 
 RTL is synthesized via CyberWorkBench. See each variant's `README.md` and `computer.qor` for synthesis results.
 
