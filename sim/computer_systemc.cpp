@@ -12,7 +12,7 @@ using namespace std;
 const int MEM_SIZE = 65536; 
 const uint32_t DMEM_BASE = 0x40000;
 
-// Opcodes and Funct3 Enums (Reused from your logic)
+// Opcodes and Funct3 Enums
 enum Opcode { OP_LUI=0x37, OP_AUIPC=0x17, OP_JAL=0x6F, OP_JALR=0x67, OP_BRANCH=0x63, 
               OP_LOAD=0x03, OP_STORE=0x23, OP_IMM=0x13, OP_REG=0x33, OP_SYSTEM=0x73 };
 

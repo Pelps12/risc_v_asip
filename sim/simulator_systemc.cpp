@@ -39,11 +39,6 @@ int sc_main(int argc, char* argv[]) {
         }
     }
 
-    // Simulation Trace (Optional)
-    sc_trace_file *tf = sc_create_vcd_trace_file("waveform");
-    sc_trace(tf, clk, "clock");
-    sc_trace(tf, halt, "halt");
-
     // Execution
     cout << "Starting SystemC Simulation..." << endl;
     rst.write(true);
@@ -59,6 +54,5 @@ int sc_main(int argc, char* argv[]) {
     cout << "Simulation Finished." << endl;
     cout << "Final PC: 0x" << hex << core.PC << endl;
     
-    sc_close_vcd_trace_file(tf);
     return 0;
 }
