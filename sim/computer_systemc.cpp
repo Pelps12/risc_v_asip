@@ -84,7 +84,6 @@ SC_MODULE(rv32i_core) {
                     if (rd != 0) {
                         if (funct3 == 0) regs[rd] = regs[rs1] + imm; // ADDI
                         else if (funct3 == 0x7) regs[rd] = regs[rs1] & imm; // ANDI
-                        // ... Other IMM ops follow same logic as your C++ code
                     }
                     break;
                 }
