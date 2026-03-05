@@ -147,11 +147,11 @@ echo ""
 echo "=== Step 2: Building C Simulator ==="
 # Prefer test-local simulator.cpp if it exists (for custom instructions)
 TEST_SUBDIR="$(dirname "${TEST_NAME}")"
-if [ "${TEST_SUBDIR}" != "." ] && [ -f "${TEST_DIR}/${TEST_SUBDIR}/simulator_systemc.cpp" ]; then
-    SIM_SRC="${TEST_DIR}/${TEST_SUBDIR}/simulator_systemc.cpp"
+if [ "${TEST_SUBDIR}" != "." ] && [ -f "${TEST_DIR}/${TEST_SUBDIR}/simulator.cpp" ]; then
+    SIM_SRC="${TEST_DIR}/${TEST_SUBDIR}/simulator.cpp"
     echo "Using test-local simulator: ${SIM_SRC}"
 else
-    SIM_SRC="${ROOT_DIR}/sim/simulator_systemc.cpp"
+    SIM_SRC="${ROOT_DIR}/sim/simulator.cpp"
     echo "Using baseline simulator: ${SIM_SRC}"
 fi
 
@@ -161,8 +161,7 @@ for flag in "${ACCEL_FLAGS[@]}"; do
     SIM_ACCEL_DEFS="${SIM_ACCEL_DEFS} -D${flag}"
 done
 clang++ -O2 -DC ${SIM_ACCEL_DEFS} -Wall -std=c++17 -Wno-c++11-narrowing \
-    -I$SYSTEMC_HOME/include -L$SYSTEMC_HOME/lib \
-    -o "${SIM_EXEC}" "${SIM_SRC}" -lsystemc
+    -o "${SIM_EXEC}" "${SIM_SRC}"
 echo "Built: ${SIM_EXEC}"
 
 echo ""
