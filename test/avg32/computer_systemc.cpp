@@ -22,7 +22,7 @@ static inline int32_t sign_extend(uint32_t val, int bits) {
     return (int32_t)((val ^ sign_bit) - sign_bit);
 }
 
-// SystemC Module for the RV32I Core
+// SystemC Module for the RV32I Core + AVE custom instruction
 SC_MODULE(rv32i_core) {
     // Signals/Ports
     sc_in<bool> clk;
@@ -45,6 +45,15 @@ SC_MODULE(rv32i_core) {
     void mem_write_word(uint32_t addr, uint32_t val) {
         uint32_t offset = addr - DMEM_BASE;
         if (offset / 4 < MEM_SIZE) dmem[offset >> 2] = val;
+    }
+
+    // AVE accelerator: average of 32 consecutive unsigned words
+    uint32_t compute_avg32(uint32_t base_addr) {
+        uint64_t sum = 0;
+        for (int i = 0; i < 32; i++) {
+            sum += mem_read_word(base_addr + i * 4);
+        }
+        return (uint32_t)(sum >> 5);
     }
 
     // Immediate decode helpers (pure integer bit manipulation)
@@ -121,32 +130,32 @@ SC_MODULE(rv32i_core) {
                     int32_t s1 = (int32_t)regs[rs1], s2 = (int32_t)regs[rs2];
                     bool taken = false;
                     switch (funct3) {
-                        case 0x0: taken = (regs[rs1] == regs[rs2]); break; // BEQ
-                        case 0x1: taken = (regs[rs1] != regs[rs2]); break; // BNE
-                        case 0x4: taken = (s1 < s2); break;               // BLT
-                        case 0x5: taken = (s1 >= s2); break;              // BGE
-                        case 0x6: taken = (regs[rs1] < regs[rs2]); break; // BLTU
-                        case 0x7: taken = (regs[rs1] >= regs[rs2]); break;// BGEU
+                        case 0x0: taken = (regs[rs1] == regs[rs2]); break;
+                        case 0x1: taken = (regs[rs1] != regs[rs2]); break;
+                        case 0x4: taken = (s1 < s2); break;
+                        case 0x5: taken = (s1 >= s2); break;
+                        case 0x6: taken = (regs[rs1] < regs[rs2]); break;
+                        case 0x7: taken = (regs[rs1] >= regs[rs2]); break;
                     }
                     if (taken) next_pc = PC + offset;
                     break;
                 }
                 case OP_IMM: {
                     int32_t imm = decode_imm_i(instr);
-                    uint32_t shamt = rs2; // shift amount is in rs2 field
+                    uint32_t shamt = rs2;
                     if (rd != 0) {
                         switch (funct3) {
-                            case 0x0: regs[rd] = regs[rs1] + imm; break;              // ADDI
-                            case 0x1: regs[rd] = regs[rs1] << shamt; break;           // SLLI
-                            case 0x2: regs[rd] = ((int32_t)regs[rs1] < imm) ? 1 : 0; break; // SLTI
-                            case 0x3: regs[rd] = (regs[rs1] < (uint32_t)imm) ? 1 : 0; break; // SLTIU
-                            case 0x4: regs[rd] = regs[rs1] ^ imm; break;              // XORI
-                            case 0x5: // SRLI / SRAI
-                                if (funct7 == 0x20) regs[rd] = (int32_t)regs[rs1] >> shamt; // SRAI
-                                else regs[rd] = regs[rs1] >> shamt;                        // SRLI
+                            case 0x0: regs[rd] = regs[rs1] + imm; break;
+                            case 0x1: regs[rd] = regs[rs1] << shamt; break;
+                            case 0x2: regs[rd] = ((int32_t)regs[rs1] < imm) ? 1 : 0; break;
+                            case 0x3: regs[rd] = (regs[rs1] < (uint32_t)imm) ? 1 : 0; break;
+                            case 0x4: regs[rd] = regs[rs1] ^ imm; break;
+                            case 0x5:
+                                if (funct7 == 0x20) regs[rd] = (int32_t)regs[rs1] >> shamt;
+                                else regs[rd] = regs[rs1] >> shamt;
                                 break;
-                            case 0x6: regs[rd] = regs[rs1] | imm; break;              // ORI
-                            case 0x7: regs[rd] = regs[rs1] & imm; break;              // ANDI
+                            case 0x6: regs[rd] = regs[rs1] | imm; break;
+                            case 0x7: regs[rd] = regs[rs1] & imm; break;
                         }
                     }
                     break;
@@ -154,20 +163,20 @@ SC_MODULE(rv32i_core) {
                 case OP_REG: {
                     if (rd != 0) {
                         switch (funct3) {
-                            case 0x0: // ADD / SUB
+                            case 0x0:
                                 if (funct7 == 0x20) regs[rd] = regs[rs1] - regs[rs2];
                                 else regs[rd] = regs[rs1] + regs[rs2];
                                 break;
-                            case 0x1: regs[rd] = regs[rs1] << (regs[rs2] & 0x1F); break; // SLL
-                            case 0x2: regs[rd] = ((int32_t)regs[rs1] < (int32_t)regs[rs2]) ? 1 : 0; break; // SLT
-                            case 0x3: regs[rd] = (regs[rs1] < regs[rs2]) ? 1 : 0; break; // SLTU
-                            case 0x4: regs[rd] = regs[rs1] ^ regs[rs2]; break;           // XOR
-                            case 0x5: // SRL / SRA
+                            case 0x1: regs[rd] = regs[rs1] << (regs[rs2] & 0x1F); break;
+                            case 0x2: regs[rd] = ((int32_t)regs[rs1] < (int32_t)regs[rs2]) ? 1 : 0; break;
+                            case 0x3: regs[rd] = (regs[rs1] < regs[rs2]) ? 1 : 0; break;
+                            case 0x4: regs[rd] = regs[rs1] ^ regs[rs2]; break;
+                            case 0x5:
                                 if (funct7 == 0x20) regs[rd] = (int32_t)regs[rs1] >> (regs[rs2] & 0x1F);
                                 else regs[rd] = regs[rs1] >> (regs[rs2] & 0x1F);
                                 break;
-                            case 0x6: regs[rd] = regs[rs1] | regs[rs2]; break;           // OR
-                            case 0x7: regs[rd] = regs[rs1] & regs[rs2]; break;           // AND
+                            case 0x6: regs[rd] = regs[rs1] | regs[rs2]; break;
+                            case 0x7: regs[rd] = regs[rs1] & regs[rs2]; break;
                         }
                     }
                     break;
@@ -175,38 +184,35 @@ SC_MODULE(rv32i_core) {
                 case OP_LOAD: {
                     int32_t imm_i = decode_imm_i(instr);
                     uint32_t addr = regs[rs1] + imm_i;
-                    uint32_t word = mem_read_word(addr & ~3u);
-                    if (rd != 0) {
-                        uint32_t byte_offset = addr & 3;
-                        switch (funct3) {
-                            case 0x0: regs[rd] = sign_extend((word >> (byte_offset * 8)) & 0xFF, 8); break;       // LB
-                            case 0x1: regs[rd] = sign_extend((word >> (byte_offset * 8)) & 0xFFFF, 16); break;    // LH
-                            case 0x2: regs[rd] = word; break;                                                     // LW
-                            case 0x4: regs[rd] = (word >> (byte_offset * 8)) & 0xFF; break;                       // LBU
-                            case 0x5: regs[rd] = (word >> (byte_offset * 8)) & 0xFFFF; break;                     // LHU
-                        }
-                    }
+                    if (rd != 0 && funct3 == 0x2) regs[rd] = mem_read_word(addr);
                     break;
                 }
                 case OP_STORE: {
                     int32_t imm_s = decode_imm_s(instr);
                     uint32_t addr = regs[rs1] + imm_s;
-                    uint32_t byte_offset = addr & 3;
-                    if (funct3 == 0x2) {       // SW
-                        mem_write_word(addr & ~3u, regs[rs2]);
-                    } else if (funct3 == 0x0) { // SB
-                        uint32_t word = mem_read_word(addr & ~3u);
-                        uint32_t mask = ~(0xFFu << (byte_offset * 8));
-                        word = (word & mask) | ((regs[rs2] & 0xFF) << (byte_offset * 8));
-                        mem_write_word(addr & ~3u, word);
-                    } else if (funct3 == 0x1) { // SH
-                        uint32_t word = mem_read_word(addr & ~3u);
-                        uint32_t mask = ~(0xFFFFu << (byte_offset * 8));
-                        word = (word & mask) | ((regs[rs2] & 0xFFFF) << (byte_offset * 8));
-                        mem_write_word(addr & ~3u, word);
+                    if (funct3 == 0x2) mem_write_word(addr, regs[rs2]);
+                    break;
+                }
+
+#ifdef ACCEL_AVE
+                // ================================================================
+                // CUSTOM-0 (0x0B): AVE instruction (I-type, funct3=5)
+                //   AVE rd, imm(rs1)
+                //   Reads 32 consecutive words from mem[rs1+imm],
+                //   computes unsigned average (sum >> 5), stores in rd.
+                // ================================================================
+                case 0x0B: {
+                    if (funct3 == 5) {
+                        int32_t imm = decode_imm_i(instr);
+                        uint32_t base_addr = regs[rs1] + imm;
+                        if (rd != 0)
+                            regs[rd] = compute_avg32(base_addr);
+                    } else {
+                        halt_requested = true;
                     }
                     break;
                 }
+#endif
 
                 case OP_SYSTEM:
                     halt_requested = true;
@@ -219,7 +225,7 @@ SC_MODULE(rv32i_core) {
                 halt_sig.write(true);
                 break;
             }
-            wait(); // Wait for next clock cycle
+            wait();
         }
     }
 

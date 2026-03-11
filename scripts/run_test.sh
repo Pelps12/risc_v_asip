@@ -133,6 +133,7 @@ fi
 OUTPUT_PREFIX="${SCRIPT_DIR}/${TEST_NAME}"
 mkdir -p "$(dirname "${OUTPUT_PREFIX}")"
 HEX_FILE="${OUTPUT_PREFIX}.hex"
+ISS_RPT_FILE="${OUTPUT_PREFIX}.iss.rpt"
 
 # ==========================================================================
 # Step 1: Compile Test Program (with ACCEL flags)
@@ -167,14 +168,14 @@ echo "Built: ${SIM_EXEC}"
 
 echo ""
 echo "=== Step 3: Running C Simulation ==="
-"${SIM_EXEC}" "${HEX_FILE}"
+"${SIM_EXEC}" "${HEX_FILE}" "${ISS_RPT_FILE}"
 
 echo ""
-echo "=== Step 4: Simulation Report (Last 10 lines) ==="
-if [ -f "sim_cpu.rpt" ]; then
-    tail -n 10 "sim_cpu.rpt"
+echo "=== Step 4: ISS Report (last 10 lines) — ${ISS_RPT_FILE} ==="
+if [ -f "${ISS_RPT_FILE}" ]; then
+    tail -n 10 "${ISS_RPT_FILE}"
 else
-    echo "Warning: No simulation report generated."
+    echo "Warning: No ISS report generated."
 fi
 
 # ==========================================================================
@@ -212,12 +213,40 @@ if [ "$RUN_RTL" -eq 1 ]; then
 
     make -B -C "${RTL_DIR}" build DUT_SRC="${DUT_FILE}" ${EXTRA_MAKE_ARGS} ${TRACE_ARG}
 
-    # Determine report file path (in the RTL variant's folder)
-    RTL_RPT_FILE="${RTL_VARIANT_DIR}/sim_rtl.rpt"
+    # Report file co-located with the hex/ISS report, variant-suffixed
+    RTL_RPT_FILE="${OUTPUT_PREFIX}.${RTL_VARIANT}.rtl.rpt"
 
     echo ""
     echo "=== Step 6: Running RTL Simulation ==="
-    make -C "${RTL_DIR}" run DUT_SRC="${DUT_FILE}" HEX="$(cd "${SCRIPT_DIR}" && pwd)/${TEST_NAME}.hex" RPT_FILE="${RTL_RPT_FILE}" ${TRACE_ARG} ${FST_ARG}
+    make -C "${RTL_DIR}" run DUT_SRC="${DUT_FILE}" HEX="$(cd "${SCRIPT_DIR}" && pwd)/${TEST_NAME}.hex" RPT_FILE="${RTL_RPT_FILE}" ${EXTRA_MAKE_ARGS} ${TRACE_ARG} ${FST_ARG}
+
+    echo ""
+    echo "=== Step 7: RTL Report (last 10 lines) — ${RTL_RPT_FILE} ==="
+    if [ -f "${RTL_RPT_FILE}" ]; then
+        tail -n 10 "${RTL_RPT_FILE}"
+    else
+        echo "Warning: No RTL report generated."
+    fi
+
+    # -----------------------------------------------------------------------
+    # Step 8: Diff ISS vs RTL reports
+    # -----------------------------------------------------------------------
+    if [ -f "${ISS_RPT_FILE}" ] && [ -f "${RTL_RPT_FILE}" ]; then
+        echo ""
+        echo "=== Step 8: ISS vs RTL Report Diff ==="
+        echo "  ISS: ${ISS_RPT_FILE}"
+        echo "  RTL: ${RTL_RPT_FILE}"
+        echo ""
+        if diff --color=always "${ISS_RPT_FILE}" "${RTL_RPT_FILE}"; then
+            echo "  ✓  Reports match — ISS and RTL are identical."
+        else
+            echo ""
+            echo "  ✗  Reports differ — see above for mismatches."
+        fi
+    else
+        echo ""
+        echo "=== Step 8: Skipping diff (one or both reports missing) ==="
+    fi
 
     if [ "$RUN_TRACE" -eq 1 ] && [ -f "${FST_FILE}" ]; then
         echo ""

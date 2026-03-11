@@ -26,6 +26,7 @@ risc_v_asip/
 ├── test/                       # Test programs
 │   ├── aes/                    #   AES baseline (pure RV32I)
 │   ├── aes_fullcustom/         #   AES + all function-level custom instructions
+│   ├── avg32/                  #   AVE custom instruction test (average of 32)
 │   ├── simple.c, simple_2.c    #   Minimal test programs
 │   └── msdap_bare.cpp          #   MSDAP signal processing benchmark
 ├── profiling/                  # Profiling output
@@ -138,15 +139,16 @@ Base: **RV32I** (integer only, no multiply/divide hardware).
 
 #### Custom Instructions
 
-All custom instructions use opcode `0x0B` (custom-0) with R-type encoding. The `funct3` field selects the operation, and `rs1`/`rs2` point to the base GPR holding the packed state or key. Each can be individually enabled via `ACCEL_*` defines.
+All custom instructions use opcode `0x0B` (custom-0). AES instructions use R-type encoding; AVE uses I-type. The `funct3` field selects the operation. Each can be individually enabled via `ACCEL_*` defines.
 
-| funct3 | ACCEL Flag        | Instruction     | Description                            |
-| ------ | ----------------- | --------------- | -------------------------------------- |
-| `0`    | `ACCEL_SUBBYTES`  | `AES.SUBBYTES`  | S-box on 4 packed GPRs (16 bytes)      |
-| `1`    | `ACCEL_SHIFTROWS` | `AES.SHIFTROWS` | Byte permutation across 4 packed GPRs  |
-| `2`    | `ACCEL_MIXCOLS`   | `AES.MIXCOLS`   | MixColumns on 4 packed GPRs            |
-| `3`    | `ACCEL_ADDRK`     | `AES.ADDRK`     | XOR state GPRs with key GPRs           |
-| `4`    | `ACCEL_EXPKEY`    | `AES.EXPKEY`    | AES-256 key expansion on 8 GPRs + rcon |
+| funct3 | ACCEL Flag        | Instruction     | Encoding | Description                                  |
+| ------ | ----------------- | --------------- | -------- | -------------------------------------------- |
+| `0`    | `ACCEL_SUBBYTES`  | `AES.SUBBYTES`  | R-type   | S-box on 4 packed GPRs (16 bytes)            |
+| `1`    | `ACCEL_SHIFTROWS` | `AES.SHIFTROWS` | R-type   | Byte permutation across 4 packed GPRs        |
+| `2`    | `ACCEL_MIXCOLS`   | `AES.MIXCOLS`   | R-type   | MixColumns on 4 packed GPRs                  |
+| `3`    | `ACCEL_ADDRK`     | `AES.ADDRK`     | R-type   | XOR state GPRs with key GPRs                 |
+| `4`    | `ACCEL_EXPKEY`    | `AES.EXPKEY`    | R-type   | AES-256 key expansion on 8 GPRs + rcon       |
+| `5`    | `ACCEL_AVE`       | `AVE`           | I-type   | Average 32 words: `rd = sum(mem[rs1+imm..]) >> 5` |
 
 See `test/aes_fullcustom/aes.c` and `test/aes_fullcustom/simulator.cpp` for the C and simulator implementations.
 
