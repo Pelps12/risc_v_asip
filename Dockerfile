@@ -88,6 +88,7 @@ COPY --from=systemc-builder /opt/systemc /opt/systemc
 
 # ---------- Environment ----------
 ENV SYSTEMC_HOME=/opt/systemc
+ENV CPATH=/opt/systemc/include:${CPATH}
 ENV LD_LIBRARY_PATH=/opt/systemc/lib:${LD_LIBRARY_PATH}
 ENV PATH=/opt/systemc/bin:${PATH}
 
