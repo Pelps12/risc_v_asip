@@ -109,7 +109,7 @@ SC_MODULE(rv32i_core) {
         wait(); 
 
         while (true) {
-            if (PC >= MEM_SIZE * 4) break;
+            if (halt_sig.read()) break;
 
             uint32_t instr = imem[PC >> 2];
 
@@ -245,23 +245,20 @@ SC_MODULE(rv32i_core) {
                         if (rd != 0)
                             regs[rd] = compute_filt(base_addr);
                     } else {
-                        halt_requested = true;
+                        halt_sig.write(true);
                     }
                     break;
                 }
 #endif
 
                 case OP_SYSTEM:
-                    halt_requested = true;
+                    halt_sig.write(true);
                     break;
                 default: break;
             }
 
             PC = next_pc;
-            if (halt_requested) {
-                halt_sig.write(true);
-                break;
-            }
+
             wait(); // Wait for next clock cycle
         }
     }

@@ -49,5 +49,15 @@ ifndef HEX
 endif
 	$(SIM_BIN) +HEX_FILE=$(abspath $(HEX)) $(if $(RPT_FILE),+RPT_FILE=$(abspath $(RPT_FILE))) $(if $(FST_FILE),+FST_FILE=$(abspath $(FST_FILE)))
 
+build_iverilog: $(SRCS)
+	mkdir -p $(OBJ_DIR)
+	/proj/cad/iverilog/verilog-12.0/bin/iverilog -g2012 $(if $(filter 1,$(TRACE)),-DTRACE_EN,) -DPC_SIG=$(PC_SIG) -s tb_computer -o $(SIM_BIN)_iv $(SRCS)
+
+run_iverilog: $(SIM_BIN)_iv
+ifndef HEX
+	$(error HEX is not set)
+endif
+	/proj/cad/iverilog/verilog-12.0/bin/vvp $(SIM_BIN)_iv +HEX_FILE=$(abspath $(HEX)) $(if $(RPT_FILE),+RPT_FILE=$(abspath $(RPT_FILE))) $(if $(FST_FILE),+FST_FILE=$(abspath $(FST_FILE))) -fst
+
 clean:
 	rm -rf $(OBJ_DIR) *.fst

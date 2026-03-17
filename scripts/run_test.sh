@@ -19,10 +19,12 @@ RTL_COMMON_DIR="${ROOT_DIR}/sim/verilog"
 
 # Parse arguments
 RUN_RTL=0
+RUN_RTL_ONLY=0
 RTL_VARIANT="baseline"
 TEST_NAME=""
 ACCEL_FLAGS=()
 RUN_TRACE=0
+SIM_TOOL="verilator"
 
 while [ $# -gt 0 ]; do
     case "$1" in
@@ -32,6 +34,24 @@ while [ $# -gt 0 ]; do
             if [ $# -gt 1 ] && [[ "$2" != --* ]]; then
                 RTL_VARIANT="$2"
                 shift
+            fi
+            ;;
+        --rtl-only)
+            RUN_RTL=1
+            RUN_RTL_ONLY=1
+            # Next arg might be variant name (if not another flag)
+            if [ $# -gt 1 ] && [[ "$2" != --* ]]; then
+                RTL_VARIANT="$2"
+                shift
+            fi
+            ;;
+        --sim)
+            if [ $# -gt 1 ]; then
+                SIM_TOOL="$2"
+                shift
+            else
+                echo "Error: --sim requires a tool name (e.g. iverilog or verilator)"
+                exit 1
             fi
             ;;
         --accel)
@@ -63,6 +83,8 @@ if [ -z "$TEST_NAME" ]; then
     echo "                   e.g. --accel ACCEL_SUBBYTES --accel ACCEL_MIXCOLS"
     echo "  --rtl [variant]  Run RTL simulation (default: baseline)"
     echo "                   Reads rtl/<variant>/accel.conf for ACCEL flags"
+    echo "  --rtl-only [var] Run strictly the RTL simulation and skip ISS compilation/running."
+    echo "  --sim [tool]     RTL Simulator selection (verilator or iverilog). Default is verilator."
     echo "  --trace          Enable FST waveform tracing (requires --rtl)"
     echo ""
     echo "Available tests:"
@@ -175,46 +197,47 @@ HEX_FILE="${OUTPUT_PREFIX}.hex"
 ISS_RPT_FILE="${OUTPUT_PREFIX}.iss.rpt"
 
 # ==========================================================================
-# Step 1: Compile Test Program (with ACCEL flags)
+# C Compilation and Simulation (Skipped if --rtl-only)
 # ==========================================================================
-echo "=== Step 1: Compiling ${TEST_NAME} ==="
-"${SCRIPT_DIR}/compile.sh" "${SOURCE_FILE}" "${OUTPUT_PREFIX}" "${EXTRA_CFLAGS}"
+if [ "$RUN_RTL_ONLY" -eq 0 ]; then
+    echo "=== Step 1: Compiling ${TEST_NAME} ==="
+    "${SCRIPT_DIR}/compile.sh" "${SOURCE_FILE}" "${OUTPUT_PREFIX}" "${EXTRA_CFLAGS}"
 
-# ==========================================================================
-# Step 2: Build & Run C Simulator
-# ==========================================================================
-echo ""
-echo "=== Step 2: Building C Simulator ==="
-# Prefer test-local simulator.cpp if it exists (for custom instructions)
-TEST_SUBDIR="$(dirname "${TEST_NAME}")"
-if [ "${TEST_SUBDIR}" != "." ] && [ -f "${TEST_DIR}/${TEST_SUBDIR}/simulator_systemc.cpp" ]; then
-    SIM_SRC="${TEST_DIR}/${TEST_SUBDIR}/simulator_systemc.cpp"
-    echo "Using test-local simulator: ${SIM_SRC}"
+    echo ""
+    echo "=== Step 2: Building C Simulator ==="
+    # Prefer test-local simulator.cpp if it exists (for custom instructions)
+    TEST_SUBDIR="$(dirname "${TEST_NAME}")"
+    if [ "${TEST_SUBDIR}" != "." ] && [ -f "${TEST_DIR}/${TEST_SUBDIR}/simulator_systemc.cpp" ]; then
+        SIM_SRC="${TEST_DIR}/${TEST_SUBDIR}/simulator_systemc.cpp"
+        echo "Using test-local simulator: ${SIM_SRC}"
+    else
+        SIM_SRC="${ROOT_DIR}/sim/simulator_systemc.cpp"
+        echo "Using baseline simulator: ${SIM_SRC}"
+    fi
+
+    # Build simulator with same ACCEL flags so it only handles enabled instructions
+    SIM_ACCEL_DEFS=""
+    for flag in "${ACCEL_FLAGS[@]}"; do
+        SIM_ACCEL_DEFS="${SIM_ACCEL_DEFS} -D${flag}"
+    done
+    clang++ -O2 -DC ${SIM_ACCEL_DEFS} -Wall -std=c++17 -Wno-c++11-narrowing \
+        -I$SYSTEMC_HOME/include -L$SYSTEMC_HOME/lib \
+        -o "${SIM_EXEC}" "${SIM_SRC}" -lsystemc
+    echo "Built: ${SIM_EXEC}"
+
+    echo ""
+    echo "=== Step 3: Running C Simulation ==="
+    "${SIM_EXEC}" "${HEX_FILE}" "${ISS_RPT_FILE}"
+
+    echo ""
+    echo "=== Step 4: ISS Report (last 10 lines) — ${ISS_RPT_FILE} ==="
+    if [ -f "${ISS_RPT_FILE}" ]; then
+        tail -n 10 "${ISS_RPT_FILE}"
+    else
+        echo "Warning: No ISS report generated."
+    fi
 else
-    SIM_SRC="${ROOT_DIR}/sim/simulator_systemc.cpp"
-    echo "Using baseline simulator: ${SIM_SRC}"
-fi
-
-# Build simulator with same ACCEL flags so it only handles enabled instructions
-SIM_ACCEL_DEFS=""
-for flag in "${ACCEL_FLAGS[@]}"; do
-    SIM_ACCEL_DEFS="${SIM_ACCEL_DEFS} -D${flag}"
-done
-clang++ -O2 -DC ${SIM_ACCEL_DEFS} -Wall -std=c++17 -Wno-c++11-narrowing \
-    -I$SYSTEMC_HOME/include -L$SYSTEMC_HOME/lib \
-    -o "${SIM_EXEC}" "${SIM_SRC}" -lsystemc
-echo "Built: ${SIM_EXEC}"
-
-echo ""
-echo "=== Step 3: Running C Simulation ==="
-"${SIM_EXEC}" "${HEX_FILE}" "${ISS_RPT_FILE}"
-
-echo ""
-echo "=== Step 4: ISS Report (last 10 lines) — ${ISS_RPT_FILE} ==="
-if [ -f "${ISS_RPT_FILE}" ]; then
-    tail -n 10 "${ISS_RPT_FILE}"
-else
-    echo "Warning: No ISS report generated."
+    echo "=== Skipping Step 1-4 (C Compilation & Simulation) due to --rtl-only ==="
 fi
 
 # ==========================================================================
@@ -243,14 +266,22 @@ if [ "$RUN_RTL" -eq 1 ]; then
         echo "  FST tracing enabled -> ${FST_FILE}"
     fi
 
-    make -B -C "${RTL_COMMON_DIR}" build DUT_SRC="${DUT_FILE}" ${EXTRA_MAKE_ARGS} ${TRACE_ARG}
+    if [ "$SIM_TOOL" == "iverilog" ]; then
+        make -B -C "${RTL_COMMON_DIR}" build_iverilog DUT_SRC="${DUT_FILE}" ${EXTRA_MAKE_ARGS} ${TRACE_ARG}
+    else
+        make -B -C "${RTL_COMMON_DIR}" build DUT_SRC="${DUT_FILE}" ${EXTRA_MAKE_ARGS} ${TRACE_ARG}
+    fi
 
     # Report file routed to the RTL artifacts directory
     RTL_RPT_FILE="${RTL_ARTIFACTS_DIR}/${BASE_TEST}.rtl.rpt"
 
     echo ""
     echo "=== Step 6: Running RTL Simulation ==="
-    make -C "${RTL_COMMON_DIR}" run DUT_SRC="${DUT_FILE}" HEX="${HEX_FILE}" RPT_FILE="${RTL_RPT_FILE}" ${EXTRA_MAKE_ARGS} ${TRACE_ARG} ${FST_ARG} | tee /tmp/rtl_sim.log
+    if [ "$SIM_TOOL" == "iverilog" ]; then
+        make -C "${RTL_COMMON_DIR}" run_iverilog DUT_SRC="${DUT_FILE}" HEX="${HEX_FILE}" RPT_FILE="${RTL_RPT_FILE}" ${EXTRA_MAKE_ARGS} ${TRACE_ARG} ${FST_ARG} | tee /tmp/rtl_sim.log
+    else
+        make -C "${RTL_COMMON_DIR}" run DUT_SRC="${DUT_FILE}" HEX="${HEX_FILE}" RPT_FILE="${RTL_RPT_FILE}" ${EXTRA_MAKE_ARGS} ${TRACE_ARG} ${FST_ARG} | tee /tmp/rtl_sim.log
+    fi
     
     if grep -q "WARNING: Hit max_cycles limit" /tmp/rtl_sim.log; then
         echo "Error: RTL Simulation hit max_cycles limit without halting."
@@ -263,6 +294,12 @@ if [ "$RUN_RTL" -eq 1 ]; then
         tail -n 10 "${RTL_RPT_FILE}"
     else
         echo "Warning: No RTL report generated."
+    fi
+
+    CYCLE_COUNT_FILE="${RTL_ARTIFACTS_DIR}/${BASE_TEST}.cycle_count.rpt"
+    if grep -q "Total cycles:" /tmp/rtl_sim.log; then
+        grep "Total cycles:" /tmp/rtl_sim.log | awk '{print $3}' > "${CYCLE_COUNT_FILE}"
+        echo "Cycle count saved to: ${CYCLE_COUNT_FILE}"
     fi
 
     # -----------------------------------------------------------------------
