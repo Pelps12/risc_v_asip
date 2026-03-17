@@ -87,7 +87,7 @@ SC_MODULE(rv32i_core) {
         wait(); 
 
         while (true) {
-            if (PC >= MEM_SIZE * 4) break;
+            if (halt_sig.read()) break;
 
             uint32_t instr = imem[PC >> 2];
 
@@ -209,16 +209,12 @@ SC_MODULE(rv32i_core) {
                 }
 
                 case OP_SYSTEM:
-                    halt_requested = true;
+                    halt_sig.write(true);
                     break;
                 default: break;
             }
 
             PC = next_pc;
-            if (halt_requested) {
-                halt_sig.write(true);
-                break;
-            }
             wait(); // Wait for next clock cycle
         }
     }
@@ -228,7 +224,5 @@ SC_MODULE(rv32i_core) {
         sensitive << clk.pos();
         async_reset_signal_is(rst, true);
         
-        // Clear memory
-        for(int i=0; i<MEM_SIZE; i++) { imem[i] = 0; dmem[i] = 0; }
     }
 };

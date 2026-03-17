@@ -3,6 +3,7 @@
 #endif
 
 #include <systemc.h>
+#include <cstdint>
 #include <iostream>
 #include <iomanip>
 
