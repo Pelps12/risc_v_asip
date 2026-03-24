@@ -32,6 +32,7 @@ unsigned char filter(
     unsigned char i ;
     sum = 0 ;
     /*--- Multiply accumulate data ------------*/
+    //Cyber unroll_times=all
     for(i=0;i<SIZE;i++){
         sum += data[i] * coef[i] ;
     }
@@ -152,5 +153,5 @@ int main(void) {
         }
     }
 
-    return 0; /* PASS */
+    return 2; /* PASS */
 }

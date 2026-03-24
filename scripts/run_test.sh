@@ -99,17 +99,20 @@ if [ -z "$TEST_NAME" ]; then
     echo ""
     echo "Available RTL variants (with accel.conf):"
     echo "  baseline:  (baseline - uses ${RTL_COMMON_DIR}/computer_E.v)"
-    # Also list variants in test-local rtl folder if they exist
+    # Also list variants in test-local filter/variant directory if they exist
     TEST_SUBDIR="$(dirname "${TEST_NAME}")"
-    if [ "${TEST_SUBDIR}" != "." ] && [ -d "${TEST_DIR}/${TEST_SUBDIR}/rtl" ]; then
-        for d in "${TEST_DIR}/${TEST_SUBDIR}/rtl"/*/; do
+    if [ "${TEST_SUBDIR}" != "." ] && [ -d "${TEST_DIR}/${TEST_SUBDIR}" ]; then
+        for d in "${TEST_DIR}/${TEST_SUBDIR}"/*/; do
             [ -d "$d" ] || continue
-            vname="$(basename "$d")"
-            if [ -f "${d}accel.conf" ]; then
-                flags=$(cat "${d}accel.conf" | tr '\n' ' ')
-                echo "  ${vname}:  ${flags}"
-            elif [ -f "${d}computer_E.v" ]; then
-                echo "  ${vname}:  (no accel.conf)"
+            # Only count as RTL variant if it has an rtl/ folder or it's baseline
+            if [ -d "${d}rtl" ]; then
+                vname="$(basename "$d")"
+                if [ -f "${d}accel.conf" ]; then
+                    flags=$(cat "${d}accel.conf" | tr '\n' ' ')
+                    echo "  ${vname}:  ${flags}"
+                elif [ -f "${d}rtl/rv32i_core_E.v" ]; then
+                    echo "  ${vname}:  (no accel.conf)"
+                fi
             fi
         done
     fi
@@ -129,8 +132,8 @@ if [ "$RUN_RTL" -eq 1 ]; then
         echo "Using baseline RTL: ${DUT_FILE}"
     else
         # Look in test-specific RTL directory
-        RTL_VARIANT_DIR="${TEST_DIR}/${TEST_SUBDIR}/rtl/${RTL_VARIANT}"
-        DUT_CORE="${RTL_VARIANT_DIR}/rv32i_core_E.v"
+        RTL_VARIANT_DIR="${TEST_DIR}/${TEST_SUBDIR}/${RTL_VARIANT}"
+        DUT_CORE="${RTL_VARIANT_DIR}/rtl/rv32i_core_E.v"
         DUT_SIM="${RTL_COMMON_DIR}/rv32i_core_E_SIM.v"
         DUT_FILE="${DUT_CORE} ${DUT_SIM}"
         ACCEL_CONF="${RTL_VARIANT_DIR}/accel.conf"
@@ -162,7 +165,7 @@ if [ ${#ACCEL_FLAGS[@]} -gt 0 ]; then
 fi
 
 # Check for .c or .cpp file (supports flat and subdirectory tests)
-BASE_TEST="$(basename "$TEST_NAME")"
+BASE_TEST="$(basename "${TEST_NAME}")"
 if [ -f "${TEST_DIR}/${TEST_NAME}.c" ]; then
     SOURCE_FILE="${TEST_DIR}/${TEST_NAME}.c"
 elif [ -f "${TEST_DIR}/${TEST_NAME}.cpp" ]; then
@@ -175,7 +178,6 @@ else
     echo "Error: Test file '${TEST_NAME}' not found in ${TEST_DIR}!"
     exit 1
 fi
-
 # Ensure we have the sub-directory name for the test
 TEST_SUBDIR="$(dirname "${TEST_NAME}")"
 BASE_TEST="$(basename "${TEST_NAME}")"

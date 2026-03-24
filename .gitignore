@@ -6,6 +6,7 @@ scripts/*/*.dis
 scripts/*/*.elf
 scripts/*/*.bin
 scripts/*/*.hex
+*.vcd
 *.rpt
 *.bak
 *.fst
