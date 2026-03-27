@@ -1,9 +1,9 @@
-#! /bin/bash -i
+#! /bin/bash
 #define process
 inFile='computer_systemc'
-SCRIPT_PATH='/home/013/o/om/oma190007/cad/fpga/risc_v_asip_script/run' #Where the HLS and LS are run and output files are generated
+SCRIPT_PATH='/home/013/o/om/oma190007/cad/fpga/risc_v_asip/scripts/run' #Where the HLS and LS are run and output files are generated
 BASH_FILE='/home/013/o/om/oma190007/.bashrc'
-ORIGINAL_PATH='/home/013/o/om/oma190007/cad/fpga/risc_v_asip_script/source' #Where this file is ran
+ORIGINAL_PATH='/home/013/o/om/oma190007/cad/fpga/risc_v_asip/scripts/source' #Where this file is ran
 CWB_PATH='/proj/cad/cwb-6.1/bin'
 DB_PATH='/proj/cad/cwb-6.1/packages/'
 TOP_MODULE='rv32i_core'
