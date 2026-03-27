@@ -15,14 +15,16 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ROOT_DIR="${SCRIPT_DIR}/.."
 TEST_DIR="${ROOT_DIR}/test"
 SIM_EXEC="${ROOT_DIR}/sim/rv32i_sim"
-RTL_DIR="${ROOT_DIR}/rtl"
+RTL_COMMON_DIR="${ROOT_DIR}/sim/verilog"
 
 # Parse arguments
 RUN_RTL=0
+RUN_RTL_ONLY=0
 RTL_VARIANT="baseline"
 TEST_NAME=""
 ACCEL_FLAGS=()
 RUN_TRACE=0
+SIM_TOOL="verilator"
 
 while [ $# -gt 0 ]; do
     case "$1" in
@@ -32,6 +34,24 @@ while [ $# -gt 0 ]; do
             if [ $# -gt 1 ] && [[ "$2" != --* ]]; then
                 RTL_VARIANT="$2"
                 shift
+            fi
+            ;;
+        --rtl-only)
+            RUN_RTL=1
+            RUN_RTL_ONLY=1
+            # Next arg might be variant name (if not another flag)
+            if [ $# -gt 1 ] && [[ "$2" != --* ]]; then
+                RTL_VARIANT="$2"
+                shift
+            fi
+            ;;
+        --sim)
+            if [ $# -gt 1 ]; then
+                SIM_TOOL="$2"
+                shift
+            else
+                echo "Error: --sim requires a tool name (e.g. iverilog or verilator)"
+                exit 1
             fi
             ;;
         --accel)
@@ -63,6 +83,8 @@ if [ -z "$TEST_NAME" ]; then
     echo "                   e.g. --accel ACCEL_SUBBYTES --accel ACCEL_MIXCOLS"
     echo "  --rtl [variant]  Run RTL simulation (default: baseline)"
     echo "                   Reads rtl/<variant>/accel.conf for ACCEL flags"
+    echo "  --rtl-only [var] Run strictly the RTL simulation and skip ISS compilation/running."
+    echo "  --sim [tool]     RTL Simulator selection (verilator or iverilog). Default is verilator."
     echo "  --trace          Enable FST waveform tracing (requires --rtl)"
     echo ""
     echo "Available tests:"
@@ -76,16 +98,24 @@ if [ -z "$TEST_NAME" ]; then
     done
     echo ""
     echo "Available RTL variants (with accel.conf):"
-    for d in "${RTL_DIR}"/*/; do
-        [ -d "$d" ] || continue
-        vname="$(basename "$d")"
-        if [ -f "${d}accel.conf" ]; then
-            flags=$(cat "${d}accel.conf" | tr '\n' ' ')
-            echo "  ${vname}:  ${flags}"
-        elif [ -f "${d}computer_E.v" ]; then
-            echo "  ${vname}:  (no accel.conf - baseline)"
-        fi
-    done
+    echo "  baseline:  (baseline - uses ${RTL_COMMON_DIR}/computer_E.v)"
+    # Also list variants in test-local filter/variant directory if they exist
+    TEST_SUBDIR="$(dirname "${TEST_NAME}")"
+    if [ "${TEST_SUBDIR}" != "." ] && [ -d "${TEST_DIR}/${TEST_SUBDIR}" ]; then
+        for d in "${TEST_DIR}/${TEST_SUBDIR}"/*/; do
+            [ -d "$d" ] || continue
+            # Only count as RTL variant if it has an rtl/ folder or it's baseline
+            if [ -d "${d}rtl" ]; then
+                vname="$(basename "$d")"
+                if [ -f "${d}accel.conf" ]; then
+                    flags=$(cat "${d}accel.conf" | tr '\n' ' ')
+                    echo "  ${vname}:  ${flags}"
+                elif [ -f "${d}rtl/rv32i_core_E.v" ]; then
+                    echo "  ${vname}:  (no accel.conf)"
+                fi
+            fi
+        done
+    fi
     exit 1
 fi
 
@@ -93,15 +123,34 @@ fi
 # Read accel.conf from RTL variant (if --rtl specified)
 # ==========================================================================
 if [ "$RUN_RTL" -eq 1 ]; then
-    ACCEL_CONF="${RTL_DIR}/${RTL_VARIANT}/accel.conf"
-    if [ -f "$ACCEL_CONF" ]; then
-        echo "Reading ACCEL flags from ${ACCEL_CONF}"
-        while IFS= read -r line || [ -n "$line" ]; do
-            # Skip empty lines and comments
-            line="$(echo "$line" | sed 's/#.*//' | xargs)"
-            [ -z "$line" ] && continue
-            ACCEL_FLAGS+=("$line")
-        done < "$ACCEL_CONF"
+    # We need TEST_SUBDIR to find local RTL
+    TEST_SUBDIR="$(dirname "${TEST_NAME}")"
+    if [ "$RTL_VARIANT" == "baseline" ]; then
+        DUT_CORE="${RTL_COMMON_DIR}/rv32i_core_E.v"
+        DUT_SIM="${RTL_COMMON_DIR}/rv32i_core_E_SIM.v"
+        DUT_FILE="${DUT_CORE} ${DUT_SIM}"
+        echo "Using baseline RTL: ${DUT_FILE}"
+    else
+        # Look in test-specific RTL directory
+        RTL_VARIANT_DIR="${TEST_DIR}/${TEST_SUBDIR}/${RTL_VARIANT}"
+        DUT_CORE="${RTL_VARIANT_DIR}/rtl/rv32i_core_E.v"
+        DUT_SIM="${RTL_COMMON_DIR}/rv32i_core_E_SIM.v"
+        DUT_FILE="${DUT_CORE} ${DUT_SIM}"
+        ACCEL_CONF="${RTL_VARIANT_DIR}/accel.conf"
+        
+        if [ ! -f "${DUT_CORE}" ]; then
+            echo "Error: RTL core file '${DUT_CORE}' not found."
+            exit 1
+        fi
+
+        if [ -f "$ACCEL_CONF" ]; then
+            echo "Reading ACCEL flags from ${ACCEL_CONF}"
+            while IFS= read -r line || [ -n "$line" ]; do
+                line="$(echo "$line" | sed 's/#.*//' | xargs)"
+                [ -z "$line" ] && continue
+                ACCEL_FLAGS+=("$line")
+            done < "$ACCEL_CONF"
+        fi
     fi
 fi
 
@@ -116,7 +165,7 @@ if [ ${#ACCEL_FLAGS[@]} -gt 0 ]; then
 fi
 
 # Check for .c or .cpp file (supports flat and subdirectory tests)
-BASE_TEST="$(basename "$TEST_NAME")"
+BASE_TEST="$(basename "${TEST_NAME}")"
 if [ -f "${TEST_DIR}/${TEST_NAME}.c" ]; then
     SOURCE_FILE="${TEST_DIR}/${TEST_NAME}.c"
 elif [ -f "${TEST_DIR}/${TEST_NAME}.cpp" ]; then
@@ -129,71 +178,81 @@ else
     echo "Error: Test file '${TEST_NAME}' not found in ${TEST_DIR}!"
     exit 1
 fi
-
-OUTPUT_PREFIX="${SCRIPT_DIR}/${TEST_NAME}"
-mkdir -p "$(dirname "${OUTPUT_PREFIX}")"
-HEX_FILE="${OUTPUT_PREFIX}.hex"
-
-# ==========================================================================
-# Step 1: Compile Test Program (with ACCEL flags)
-# ==========================================================================
-echo "=== Step 1: Compiling ${TEST_NAME} ==="
-"${SCRIPT_DIR}/compile.sh" "${SOURCE_FILE}" "${OUTPUT_PREFIX}" "${EXTRA_CFLAGS}"
-
-# ==========================================================================
-# Step 2: Build & Run C Simulator
-# ==========================================================================
-echo ""
-echo "=== Step 2: Building C Simulator ==="
-# Prefer test-local simulator.cpp if it exists (for custom instructions)
+# Ensure we have the sub-directory name for the test
 TEST_SUBDIR="$(dirname "${TEST_NAME}")"
-if [ "${TEST_SUBDIR}" != "." ] && [ -f "${TEST_DIR}/${TEST_SUBDIR}/simulator.cpp" ]; then
-    SIM_SRC="${TEST_DIR}/${TEST_SUBDIR}/simulator.cpp"
-    echo "Using test-local simulator: ${SIM_SRC}"
-else
-    SIM_SRC="${ROOT_DIR}/sim/simulator.cpp"
-    echo "Using baseline simulator: ${SIM_SRC}"
+BASE_TEST="$(basename "${TEST_NAME}")"
+
+if [ "${TEST_SUBDIR}" == "." ]; then
+    TEST_SUBDIR="${BASE_TEST}"
 fi
 
-# Build simulator with same ACCEL flags so it only handles enabled instructions
-SIM_ACCEL_DEFS=""
-for flag in "${ACCEL_FLAGS[@]}"; do
-    SIM_ACCEL_DEFS="${SIM_ACCEL_DEFS} -D${flag}"
-done
-clang++ -O2 -DC ${SIM_ACCEL_DEFS} -Wall -std=c++17 -Wno-c++11-narrowing \
-    -o "${SIM_EXEC}" "${SIM_SRC}"
-echo "Built: ${SIM_EXEC}"
+# Define output directories according to the new schema
+ISS_ARTIFACTS_DIR="${TEST_DIR}/${TEST_SUBDIR}/${RTL_VARIANT}/iss/artifacts"
+RTL_ARTIFACTS_DIR="${TEST_DIR}/${TEST_SUBDIR}/${RTL_VARIANT}/rtl/artifacts"
 
-echo ""
-echo "=== Step 3: Running C Simulation ==="
-"${SIM_EXEC}" "${HEX_FILE}"
+mkdir -p "${ISS_ARTIFACTS_DIR}"
+mkdir -p "${RTL_ARTIFACTS_DIR}"
 
-echo ""
-echo "=== Step 4: Simulation Report (Last 10 lines) ==="
-if [ -f "sim_cpu.rpt" ]; then
-    tail -n 10 "sim_cpu.rpt"
+# Point OUTPUT_PREFIX to the ISS artifacts directory so compile.sh outputs go there
+OUTPUT_PREFIX="${ISS_ARTIFACTS_DIR}/${BASE_TEST}"
+HEX_FILE="${OUTPUT_PREFIX}.hex"
+ISS_RPT_FILE="${OUTPUT_PREFIX}.iss.rpt"
+
+# ==========================================================================
+# C Compilation and Simulation (Skipped if --rtl-only)
+# ==========================================================================
+if [ "$RUN_RTL_ONLY" -eq 0 ]; then
+    echo "=== Step 1: Compiling ${TEST_NAME} ==="
+    "${SCRIPT_DIR}/compile.sh" "${SOURCE_FILE}" "${OUTPUT_PREFIX}" "${EXTRA_CFLAGS}"
+
+    echo ""
+    echo "=== Step 2: Building C Simulator ==="
+    # Prefer test-local simulator.cpp if it exists (for custom instructions)
+    TEST_SUBDIR="$(dirname "${TEST_NAME}")"
+    if [ "${TEST_SUBDIR}" != "." ] && [ -f "${TEST_DIR}/${TEST_SUBDIR}/simulator_systemc.cpp" ]; then
+        SIM_SRC="${TEST_DIR}/${TEST_SUBDIR}/simulator_systemc.cpp"
+        echo "Using test-local simulator: ${SIM_SRC}"
+    else
+        SIM_SRC="${ROOT_DIR}/sim/simulator_systemc.cpp"
+        echo "Using baseline simulator: ${SIM_SRC}"
+    fi
+
+    # Build simulator with same ACCEL flags so it only handles enabled instructions
+    SIM_ACCEL_DEFS=""
+    for flag in "${ACCEL_FLAGS[@]}"; do
+        SIM_ACCEL_DEFS="${SIM_ACCEL_DEFS} -D${flag}"
+    done
+    clang++ -O2 -DC ${SIM_ACCEL_DEFS} -Wall -std=c++17 -Wno-c++11-narrowing \
+        -I$SYSTEMC_HOME/include -L$SYSTEMC_HOME/lib \
+        -o "${SIM_EXEC}" "${SIM_SRC}" -lsystemc
+    echo "Built: ${SIM_EXEC}"
+
+    echo ""
+    echo "=== Step 3: Running C Simulation ==="
+    "${SIM_EXEC}" "${HEX_FILE}" "${ISS_RPT_FILE}"
+
+    echo ""
+    echo "=== Step 4: ISS Report (last 10 lines) — ${ISS_RPT_FILE} ==="
+    if [ -f "${ISS_RPT_FILE}" ]; then
+        tail -n 10 "${ISS_RPT_FILE}"
+    else
+        echo "Warning: No ISS report generated."
+    fi
 else
-    echo "Warning: No simulation report generated."
+    echo "=== Skipping Step 1-4 (C Compilation & Simulation) due to --rtl-only ==="
 fi
 
 # ==========================================================================
 # Step 5 (optional): RTL Simulation via Verilator
 # ==========================================================================
 if [ "$RUN_RTL" -eq 1 ]; then
-    RTL_VARIANT_DIR="${RTL_DIR}/${RTL_VARIANT}"
-    DUT_FILE="${RTL_VARIANT_DIR}/computer_E.v"
-
     echo ""
     echo "=== Step 5: Building RTL Simulation (variant: ${RTL_VARIANT}) ==="
 
-    if [ ! -f "${DUT_FILE}" ]; then
-        echo "Error: RTL file '${DUT_FILE}' not found."
-        echo "       Available variants:"
-        for d in "${RTL_DIR}"/*/; do
-            [ -f "${d}computer_E.v" ] && echo "         $(basename "$d")"
-        done
-        exit 1
-    fi
+    case "$RTL_VARIANT" in
+        baseline) FST_FILE="${RTL_ARTIFACTS_DIR}/trace.fst" ;;
+        *)        FST_FILE="${RTL_ARTIFACTS_DIR}/trace.fst" ;;
+    esac
 
     EXTRA_MAKE_ARGS=""
     if [ "$RTL_VARIANT" == "aes_sbox" ]; then
@@ -202,21 +261,75 @@ if [ "$RUN_RTL" -eq 1 ]; then
 
     TRACE_ARG=""
     FST_ARG=""
-    FST_FILE="${RTL_VARIANT_DIR}/trace.fst"
+    # FST_FILE is already set above
     if [ "$RUN_TRACE" -eq 1 ]; then
         TRACE_ARG="TRACE=1"
         FST_ARG="FST_FILE=${FST_FILE}"
         echo "  FST tracing enabled -> ${FST_FILE}"
     fi
 
-    make -B -C "${RTL_DIR}" build DUT_SRC="${DUT_FILE}" ${EXTRA_MAKE_ARGS} ${TRACE_ARG}
+    if [ "$SIM_TOOL" == "iverilog" ]; then
+        make -B -C "${RTL_COMMON_DIR}" build_iverilog DUT_SRC="${DUT_FILE}" ${EXTRA_MAKE_ARGS} ${TRACE_ARG}
+    else
+        make -B -C "${RTL_COMMON_DIR}" build DUT_SRC="${DUT_FILE}" ${EXTRA_MAKE_ARGS} ${TRACE_ARG}
+    fi
 
-    # Determine report file path (in the RTL variant's folder)
-    RTL_RPT_FILE="${RTL_VARIANT_DIR}/sim_rtl.rpt"
+    # Report file routed to the RTL artifacts directory
+    RTL_RPT_FILE="${RTL_ARTIFACTS_DIR}/${BASE_TEST}.rtl.rpt"
 
     echo ""
     echo "=== Step 6: Running RTL Simulation ==="
-    make -C "${RTL_DIR}" run DUT_SRC="${DUT_FILE}" HEX="$(cd "${SCRIPT_DIR}" && pwd)/${TEST_NAME}.hex" RPT_FILE="${RTL_RPT_FILE}" ${TRACE_ARG} ${FST_ARG}
+    if [ "$SIM_TOOL" == "iverilog" ]; then
+        make -C "${RTL_COMMON_DIR}" run_iverilog DUT_SRC="${DUT_FILE}" HEX="${HEX_FILE}" RPT_FILE="${RTL_RPT_FILE}" ${EXTRA_MAKE_ARGS} ${TRACE_ARG} ${FST_ARG} | tee /tmp/rtl_sim.log
+    else
+        make -C "${RTL_COMMON_DIR}" run DUT_SRC="${DUT_FILE}" HEX="${HEX_FILE}" RPT_FILE="${RTL_RPT_FILE}" ${EXTRA_MAKE_ARGS} ${TRACE_ARG} ${FST_ARG} | tee /tmp/rtl_sim.log
+    fi
+    
+    if grep -q "WARNING: Hit max_cycles limit" /tmp/rtl_sim.log; then
+        echo "Error: RTL Simulation hit max_cycles limit without halting."
+        exit 1
+    fi
+
+    echo ""
+    echo "=== Step 7: RTL Report (last 10 lines) — ${RTL_RPT_FILE} ==="
+    if [ -f "${RTL_RPT_FILE}" ]; then
+        tail -n 10 "${RTL_RPT_FILE}"
+    else
+        echo "Warning: No RTL report generated."
+    fi
+
+    CYCLE_COUNT_FILE="${RTL_ARTIFACTS_DIR}/${BASE_TEST}.cycle_count.rpt"
+    if grep -q "Total cycles:" /tmp/rtl_sim.log; then
+        grep "Total cycles:" /tmp/rtl_sim.log | awk '{print $3}' > "${CYCLE_COUNT_FILE}"
+        echo "Cycle count saved to: ${CYCLE_COUNT_FILE}"
+    fi
+
+    # -----------------------------------------------------------------------
+    # Step 8: Diff Final Register x10 (ISS vs RTL)
+    # -----------------------------------------------------------------------
+    if [ -f "${ISS_RPT_FILE}" ] && [ -f "${RTL_RPT_FILE}" ]; then
+        echo ""
+        echo "=== Step 8: Final x10 Register Comparison ==="
+        
+        # Extract last x10 value from both reports
+        ISS_X10=$(grep -o 'x10: [0-9a-f]\+' "${ISS_RPT_FILE}" | tail -n 1 | awk '{print $2}')
+        RTL_X10=$(grep -o 'x10: [0-9a-f]\+' "${RTL_RPT_FILE}" | tail -n 1 | awk '{print $2}')
+
+        echo "  ISS Final x10: 0x${ISS_X10}"
+        echo "  RTL Final x10: 0x${RTL_X10}"
+
+        if [ "$ISS_X10" == "$RTL_X10" ] && [ -n "$ISS_X10" ]; then
+            echo ""
+            echo "  ✓  Final x10 values match. Success!"
+        else
+            echo ""
+            echo "  ✗  MISMATCH in final x10 values!"
+            # We don't exit with error here to allow seeing the output
+        fi
+    else
+        echo ""
+        echo "=== Step 8: Skipping comparison (one or both reports missing) ==="
+    fi
 
     if [ "$RUN_TRACE" -eq 1 ] && [ -f "${FST_FILE}" ]; then
         echo ""
