@@ -72,7 +72,7 @@ rm -rf "${RUN_DIR}"
 mkdir -p "${RUN_DIR}"
 
 # Base filename for CWB (scpars uses this as the IFF base name)
-inFile="simulator"
+inFile="computer"
 
 cp "${SIM_SRC}" "${RUN_DIR}/${inFile}.cpp"
 
