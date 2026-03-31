@@ -96,8 +96,8 @@ echo "Clock  : ${freq} (10ns)"
 # Step 1: Parse C++ source -> IFF
 # ============================================================================
 echo ""
-echo "--- Step 1: scpars ---"
-${CWB_PATH}/scpars -EE ${ACCEL_FLAGS} -info_base_name ${inFile} "${inFile}.cpp"
+echo "--- Step 1: cpars ---"
+${CWB_PATH}/cpars -EE ${ACCEL_FLAGS} -info_base_name ${inFile} "${inFile}.cpp"
 
 # ============================================================================
 # Step 2: HLS (bdltran) -> synthesized IFF
