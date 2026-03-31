@@ -1,0 +1,12 @@
+"computer_systemc.cpp", line 271: warning: last line of file ends without a newline
+  };
+    ^
+
+"computer_systemc.cpp", line 123: warning: variable "halt_requested" was declared but never referenced
+              bool halt_requested = false;
+                   ^
+
+Create: rv32i_core.IFF
+Token count: 963
+The total token count is 963. 
+scpars finished successfully.

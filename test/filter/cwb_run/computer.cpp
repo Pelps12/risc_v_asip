@@ -163,7 +163,7 @@ inline void mem_write_word(uint32_t dmem_arg[], uint32_t addr, uint32_t val) {
 //           saturate to [0, 255<<10], then return (sum >> 10) & 0xFF
 // ============================================================================
 #ifdef ACCEL_FILT
-
+/* Cyber func=process */
 uint32_t compute_filt(uint32_t dmem_arg[], uint32_t base_addr) {
   int32_t sum = 0;
   int i;

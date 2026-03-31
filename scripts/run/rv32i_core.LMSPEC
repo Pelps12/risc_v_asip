@@ -1,0 +1,30 @@
+#@VERSION{3.00}
+#@CNT{rv32i_core}
+#@KIND{BASIC_OPERATOR}
+#@CLK 10000000
+#@UNIT 1/10ps
+@PROCESS{
+	NAME	rv32i_core
+#	KIND
+#	LIMIT
+#	BITWIDTH
+#	DELAY
+	AREA	16972
+	AREA_REG	6990
+	AREA_COMB	9982
+	AREA_FU	4133
+	AREA_MUX	4479
+	AREA_DEC	42
+	AREA_MISC	1328
+	NET	14458
+	PIN_PAIR	35021
+#	SPECULATION
+#	COMMENT
+	DEFMOD {
+		clock                    clk              /* c, clk, @clock_period = 1000ns, clock_edge = \pos, org_type = bool */;
+		reset                    rst              /* r, rst, reset_active = high, reset_mode = async, org_type = bool */;
+		out   unsigned ter(0..0) halt_sig         /* glo, halt_sig, org_type = bool, sig_id = 3, org_sig_phyty_reg = YES */;
+	}
+}
+#@HASH{2e2a231c4c47f98f867c8cd32001010e}
+#@END{rv32i_core}

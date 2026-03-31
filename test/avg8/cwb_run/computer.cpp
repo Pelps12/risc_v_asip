@@ -151,33 +151,29 @@ inline void mem_write_word(uint32_t dmem_arg[], uint32_t addr, uint32_t val) {
 }
 
 // ============================================================================
-// FILT Accelerator
-// Encoding: .insn i 0x0B, 0, rd, imm(rs1)
-//   rd       <- saturated 8-bit result
-//   rs1+imm  <- base address of 8 packed words in dmem
-//
-// Each word at base_addr + i*4 is packed as:
-//   [31:24] unused | [23:16] data (8-bit) | [15:0] coeff (16-bit signed)
-//
-// Computes: sum = Σ data[i] * coeff[i]  for i in 0..7
-//           saturate to [0, 255<<10], then return (sum >> 10) & 0xFF
+// AVE8 Accelerator
+// Encoding: .insn r 0x0B, 5, 0, rd, rs1, x0
+//   rd  <- running average of last 8 words
+//   rs1 <- new input word (32-bit)
+// Internal buffer (8 x 32-bit words) is private to the accelerator hardware.
 // ============================================================================
-#ifdef ACCEL_FILT
+#ifdef ACCEL_AVE
+uint32_t ave8_buffer[8] = {0, 0, 0, 0, 0, 0, 0, 0};
 
-uint32_t compute_filt(uint32_t dmem_arg[], uint32_t base_addr) {
-  int32_t sum = 0;
-  int i;
-  for (i = 0; i < 8; i++) {
-    uint32_t packed = mem_read_word(dmem_arg, base_addr + i * 4);
-    uint32_t data   = (packed >> 16) & 0xFF;
-    int32_t  coeff  = sign_extend(packed & 0xFFFF, 16);
-    sum += (int32_t)data * coeff;
-  }
-  if (sum < 0)
-    sum = 0;
-  else if (sum > (255 << 10))
-    sum = (255 << 10);
-  return (uint32_t)((sum >> 10) & 0xFF);
+/* Cyber func=process */
+uint32_t compute_ave8(uint32_t in0) {
+  uint32_t sum, i;
+
+  for (i = 7; i > 0; i--)
+    ave8_buffer[i] = ave8_buffer[i - 1];
+
+  ave8_buffer[0] = in0;
+
+  sum = 0;
+  for (i = 0; i < 8; i++)
+    sum += ave8_buffer[i];
+
+  return sum / 8;
 }
 #endif
 
@@ -353,18 +349,16 @@ bool computer(uint32_t imem_arg[MEM_SIZE], uint32_t dmem_arg[MEM_SIZE]
     }
 
     // ========================================================================
-    // CUSTOM-0 (0x0B): FILT instruction (I-type, funct3=0)
-    //   .insn i 0x0B, 0, rd, imm(rs1)
-    //   rd <- saturated 8-bit filter result
-    //   rs1+imm <- base address of 8 packed words in dmem
+    // CUSTOM-0 (0x0B): AVE8 instruction (R-type, funct3=5, funct7=0)
+    //   .insn r 0x0B, 5, 0, rd, rs1, x0
+    //   rd  <- running average of last 8 words
+    //   rs1 <- new input word (32-bit)
     // ========================================================================
-#ifdef ACCEL_FILT
+#ifdef ACCEL_AVE
     case 0x0B: {
-      if (funct3 == 0) {
-        int32_t imm = decode_imm_i(instr);
-        uint32_t base_addr = regs[rs1] + imm;
+      if (funct3 == 5 && funct7 == 0) {
         if (rd != 0)
-          regs[rd] = compute_filt(dmem_arg, base_addr);
+          regs[rd] = compute_ave8(regs[rs1]);
       } else {
         halt = true;
       }

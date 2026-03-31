@@ -1,0 +1,12 @@
+
+#@VERSION { 3.00 }
+#@CNT { rv32i_core }
+@MCNT {
+     NAME	MEMB32W65536
+     LIMIT	1
+}
+@MCNT {
+     NAME	MEMB32W65536_0
+     LIMIT	1
+}
+#@END { rv32i_core }

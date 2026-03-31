@@ -1,0 +1,90 @@
+Copyright (C) 1988-2018 NEC Corporation. All rights reserved.
+bdltran version : 6.10.04 (Linux 64-bit) Thu Mar 22 14:18:17 JST 2018
+         (BIF version : 3.41F)
+         (LICflex version : 1.53 cylmd)
+         make at Thu Mar 22 14:30:59 JST 2018
+ Option  -EE computer.IFF -c1000 -s -Zresource_fcnt=GENERATE -Zresource_mcnt=GENERATE -Zsync -Zdup_reset=YES -Zfolding_sharing=inter_stage -lb /proj/cad/cwb-6.1/packages/asic_45.BLIB -lfl /proj/cad/cwb-6.1/packages/asic_45.FLIB -o-P 
+
+scpars  -EE -DACCEL_AVE -info_base_name computer computer.cpp
+
+############## CyberII started (automatic scheduling mode) ##############
+[Clock period]    100,000 (1/10ps) [define]
+[Datapath delay]   90,000 (1/10ps)
+[Clock uncertainty] 10,000 (1/10ps)
+
+******* Initial # of operations in the input behavior description *******
+ === Operators ===
+  != : 14  (1bit:2, 32bit:12)
+  !  :  1  (1bit:1)
+  <  :  8  (32bit:8)
+  >> :  7  (32bit:7)
+  &  : 36  (1bit:2, 32bit:24, 34bit:1, 39bit:1, 47bit:3, 63bit:3, 32769bit:2)
+  +  : 20  (32bit:20)
+  << :  7  (32bit:7)
+  |  : 11  (32bit:2, 39bit:1, 62bit:3, 78bit:3, 32769bit:2)
+  -  :  9  (32bit:9)
+  == :  3  (32bit:3)
+  >= :  2  (32bit:2)
+  *  :  6  (32bit:6)
+  ~  :  2  (32769bit:2)
+  ^  :  2  (32bit:2)
+  >  :  1  (32bit:1)
+  -- :  1  (32bit:1)
+  ++ :  1  (32bit:1)
+  += :  1  (32bit:1)
+  /  :  1  (32bit:1)
+  |> :  4  (1bit:4)
+  Data transfer : 404
+
+ === array / memory ===
+  read  : 39
+  write : 10
+
+********* After optimizing & expanding the behavior description *********
+ === Operators ===
+  != : 12  (1bit:3, 5bit:8, 32bit:1)
+  <  :  6  (32bit:6)
+  >> :  8  (32bit:8)
+  &  :  6  (1bit:2, 32bit:4)
+  +  : 16  (32bit:16)
+  << :  6  (8bit:2, 16bit:2, 32bit:2)
+  |  :  4  (32bit:4)
+  -  :  7  (32bit:7)
+  == :  3  (3bit:1, 7bit:1, 32bit:1)
+  >= :  2  (32bit:2)
+  ~  :  3  (1bit:1, 32bit:2)
+  ^  :  2  (32bit:2)
+  |> :  1  (1bit:1)
+  ~|>:  1  (14bit:1)
+  Data transfer : 381
+
+ === array / memory ===
+  read  : 36
+  write : 43
+
+#########################  Synthesized Circuit  #########################
+[Performance index max/min/ave] 4 / 4 / 4.00
+
+  Module Name         : computer
+  Basic Library Name  : CWBSTDBLIB
+
+  Total Area          :     18,982
+    Sequential        :      9,534
+    Combinational     :      9,448
+
+  Latency Index       :          4
+  Total States        :          4
+
+  Clock Period        :       10ns
+  Critical Path Delay :     4.01ns
+
+  Net                 :     15,080
+  Pin Pair            :     35,773
+
+  Port                :        150
+    In                :         66
+    Out               :         84
+
+TOTAL AREA 18,982 (FU: 3,513 + REG: 9,534 + MUX: 4,436 + DEC: 42 + MISC: 1,457) + pin pair 35,773(net 15,080) + 1FSM of 4state
+##### CyberII Normal finish (automatic scheduling mode) [computer] #####
+

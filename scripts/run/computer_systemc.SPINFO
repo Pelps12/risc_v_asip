@@ -1,0 +1,7 @@
+<hierarchy>
+[SC_MODULE:rv32i_core]
+  module_kind	single_process	module
+  process	SC_THREAD	sequential	rv32i_core_process_thread	rv32i_core.IFF
+
+<hash>
+  778754386602cf4b003e737498fe20a6	rv32i_core.IFF

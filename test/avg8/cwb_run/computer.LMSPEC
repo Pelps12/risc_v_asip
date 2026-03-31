@@ -1,0 +1,52 @@
+#@VERSION{3.00}
+#@CNT{computer}
+#@KIND{BASIC_OPERATOR}
+#@CLK 100000
+#@UNIT 1/10ps
+@PROCESS{
+	NAME	computer
+#	KIND
+#	LIMIT
+#	BITWIDTH
+#	DELAY
+	AREA	14746
+	AREA_REG	7374
+	AREA_COMB	7372
+	AREA_FU	2673
+	AREA_MUX	3380
+	AREA_DEC	42
+	AREA_MISC	1277
+	NET	12142
+	PIN_PAIR	28143
+#	SPECULATION
+#	COMMENT
+	DEFMOD {
+		out   unsigned ter(15..0) imem_arg_MEMB32W65536_RA1 /* glo, imem_arg[#], ra:1 */;
+		in    unsigned ter(31..0) imem_arg_MEMB32W65536_RD1 /* glo, imem_arg[#], rd:1, clock_sig = CLOCK */;
+		out   unsigned ter(0..0) imem_arg_MEMB32W65536_RE1 /* glo, imem_arg[#], re:1 */;
+		out   unsigned ter(15..0) imem_arg_MEMB32W65536_WA2 /* glo, imem_arg[#], wa:1, del_sig = YES */;
+		out   unsigned ter(31..0) imem_arg_MEMB32W65536_WD2 /* glo, imem_arg[#], wd:1, del_sig = YES */;
+		out   unsigned ter(0..0) imem_arg_MEMB32W65536_WE2 /* glo, imem_arg[#], we:1, del_sig = YES */;
+		out   unsigned ter(15..0) dmem_arg_MEMB32W65536_RA1 /* glo, dmem_arg[#], ra:1 */;
+		in    unsigned ter(31..0) dmem_arg_MEMB32W65536_RD1 /* glo, dmem_arg[#], rd:1, clock_sig = CLOCK */;
+		out   unsigned ter(0..0) dmem_arg_MEMB32W65536_RE1 /* glo, dmem_arg[#], re:1 */;
+		out   unsigned ter(15..0) dmem_arg_MEMB32W65536_WA2 /* glo, dmem_arg[#], wa:1 */;
+		out   unsigned ter(31..0) dmem_arg_MEMB32W65536_WD2 /* glo, dmem_arg[#], wd:1, clock_sig = CLOCK */;
+		out   unsigned ter(0..0) dmem_arg_MEMB32W65536_WE2 /* glo, dmem_arg[#], we:1 */;
+		out   unsigned ter(0..0) computer_ret     /* glo, computer_ret, org_sig_phyty_reg = YES, ansi_func_return = YES */;
+		clock                    CLOCK            /* c, CLOCK, @clock_period = 10ns, @auto_gen_sig = YES, clock_edge = \pos */;
+		reset                    RESET            /* r, RESET, @auto_gen_sig = YES, reset_mode = sync, reset_active = high */;
+	}
+	ARRAY {
+		NAME	imem_arg[]
+		KIND	R1,W1
+		RESOURCE	MEM
+	}
+	ARRAY {
+		NAME	dmem_arg[]
+		KIND	R1,W1
+		RESOURCE	MEM
+	}
+}
+#@HASH{b968ddec07143661b0680be139429864}
+#@END{computer}

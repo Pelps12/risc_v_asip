@@ -1,0 +1,73 @@
+I_BT1173: LOG file is generated. (/home/013/o/om/oma190007/cad/fpga/risc_v_asip/scripts/run/rv32i_core.LOG.gz)
+I_BT1921: License has been successfully obtained by FLEXlm.
+I_BT2619: Synthesize in ASIC mode.
+I_BT6773: The BLIB and FLIB files are loaded.
+	/proj/cad/cwb-6.1/packages//asic_45.BLIB
+	/proj/cad/cwb-6.1/packages//asic_45.FLIB
+I_BT4568: Function sign_extend is inline-expanded.
+I_BT4568: Function rv32i_core_mem_write_word is inline-expanded.
+I_BT4568: Function decode_imm_s is inline-expanded.
+I_BT4568: Function rv32i_core_mem_read_word is inline-expanded.
+I_BT4568: Function decode_imm_b is inline-expanded.
+I_BT4568: Function decode_imm_j is inline-expanded.
+I_BT4568: Function decode_imm_u is inline-expanded.
+I_BT4607: for loop is unrolled
+	[Source Lines]
+	105(computer_systemc.cpp):         for (int i = 0; i < 32; i++) regs[i] = 0;
+I_BT4568: Function decode_imm_i is inline-expanded.
+I_BT5514: 38 address decoders (R37,W1) to access to array signal 'regs'.
+	[Source Lines]
+	35(computer_systemc.cpp):     uint32_t regs[32];
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	83(computer_systemc.cpp):         uint32_t raw = ((instr >> 31) << 12)
+	84(computer_systemc.cpp):                      | (((instr >> 7) & 1) << 11)
+	85(computer_systemc.cpp):                      | (((instr >> 25) & 0x3F) << 5)
+	86(computer_systemc.cpp):                      | (((instr >> 8) & 0xF) << 1);
+	120(computer_systemc.cpp):             uint32_t funct7 = (instr >> 25) & 0x7F;
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	95(computer_systemc.cpp):         uint32_t raw = ((instr >> 31) << 20)
+	96(computer_systemc.cpp):                      | (((instr >> 12) & 0xFF) << 12)
+	97(computer_systemc.cpp):                      | (((instr >> 20) & 1) << 11)
+	98(computer_systemc.cpp):                      | (((instr >> 21) & 0x3FF) << 1);
+	117(computer_systemc.cpp):             uint32_t funct3 = (instr >> 12) & 0x7;
+	119(computer_systemc.cpp):             uint32_t rs2    = (instr >> 20) & 0x1F;
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	198(computer_systemc.cpp):                     uint32_t addr = regs[rs1] + imm_i;
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	135(computer_systemc.cpp):                     uint32_t target = (regs[rs1] + imm_i) & ~1u;
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	214(computer_systemc.cpp):                     uint32_t addr = regs[rs1] + imm_s;
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	22(computer_systemc.cpp):     return (int32_t)((val ^ sign_bit) - sign_bit);
+	99(computer_systemc.cpp):         return sign_extend(raw & 0x1FFFFF, 21);
+	130(computer_systemc.cpp):                     next_pc = PC + decode_imm_j(instr);
+I_BT4383: Generate memory library file / memory constraint file.
+	/home/013/o/om/oma190007/cad/fpga/risc_v_asip/scripts/run/rv32i_core-auto.MLIB
+	/home/013/o/om/oma190007/cad/fpga/risc_v_asip/scripts/run/rv32i_core-auto.MCNT
+I_BT4392: No arithmetic macro functional unit required.
+I_BT4398: The empty FLIB file generated since additional functional units are not required.
+I_BT4319: Empty FLIB file (/home/013/o/om/oma190007/cad/fpga/risc_v_asip/scripts/run/rv32i_core-amacro-auto.FLIB) generated. No functional units required.
+ [Action] If required, confirm the description.
+I_BT4318: Empty FCNT file (/home/013/o/om/oma190007/cad/fpga/risc_v_asip/scripts/run/rv32i_core-amacro-auto.FCNT) generated. No functional units required.
+ [Action] If required, confirm the description.
+I_BT4382: Generate functional unit library files / functional unit constraint files.
+	/home/013/o/om/oma190007/cad/fpga/risc_v_asip/scripts/run/rv32i_core-auto.FLIB
+	/home/013/o/om/oma190007/cad/fpga/risc_v_asip/scripts/run/rv32i_core-auto.FCNT
+	/home/013/o/om/oma190007/cad/fpga/risc_v_asip/scripts/run/rv32i_core-amacro-auto.FLIB
+	/home/013/o/om/oma190007/cad/fpga/risc_v_asip/scripts/run/rv32i_core-amacro-auto.FCNT
+I_BT4392: No arithmetic macro functional unit required.
+W_BT5521: Since the wiring of array(regs) implemented in register file become excessive, layout becomes difficult.
+ [Action] Confirm the size of array (regs), location utilized, implementation method.
+W_BT2751: No information about memory area in MLIB file.
+ [Action] Add area information to MLIB file using MLIBgen.
+I_BT1190: The following ERROR/WARNING/INFO/TIPS exist.
+	 2 warning      exist
+	27 information  exist
+	 2 tips         exist
+	---> SEE /home/013/o/om/oma190007/cad/fpga/risc_v_asip/scripts/run/rv32i_core.err FILE and /home/013/o/om/oma190007/cad/fpga/risc_v_asip/scripts/run/rv32i_core.tips FILE for DETAILS

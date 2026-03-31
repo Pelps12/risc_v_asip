@@ -36,11 +36,36 @@ enum Opcode {
   OP_SYSTEM = 0x73
 };
 
-enum BranchFunct3 { BEQ=0x0, BNE=0x1, BLT=0x4, BGE=0x5, BLTU=0x6, BGEU=0x7 };
-enum LoadFunct3   { LB=0x0, LH=0x1, LW=0x2, LBU=0x4, LHU=0x5 };
-enum StoreFunct3  { SB=0x0, SH=0x1, SW=0x2 };
-enum ImmFunct3    { ADDI=0x0, SLTI=0x2, SLTIU=0x3, XORI=0x4, ORI=0x6, ANDI=0x7, SLLI=0x1, SRXI=0x5 };
-enum RegFunct3    { ADD_SUB=0x0, SLL=0x1, SLT=0x2, SLTU=0x3, XOR=0x4, SRX=0x5, OR=0x6, AND=0x7 };
+enum BranchFunct3 {
+  BEQ = 0x0,
+  BNE = 0x1,
+  BLT = 0x4,
+  BGE = 0x5,
+  BLTU = 0x6,
+  BGEU = 0x7
+};
+enum LoadFunct3 { LB = 0x0, LH = 0x1, LW = 0x2, LBU = 0x4, LHU = 0x5 };
+enum StoreFunct3 { SB = 0x0, SH = 0x1, SW = 0x2 };
+enum ImmFunct3 {
+  ADDI = 0x0,
+  SLTI = 0x2,
+  SLTIU = 0x3,
+  XORI = 0x4,
+  ORI = 0x6,
+  ANDI = 0x7,
+  SLLI = 0x1,
+  SRXI = 0x5
+};
+enum RegFunct3 {
+  ADD_SUB = 0x0,
+  SLL = 0x1,
+  SLT = 0x2,
+  SLTU = 0x3,
+  XOR = 0x4,
+  SRX = 0x5,
+  OR = 0x6,
+  AND = 0x7
+};
 
 // ============================================================================
 // Helper Functions
@@ -61,20 +86,16 @@ inline int32_t decode_imm_s(uint32_t instr) {
 }
 
 inline int32_t decode_imm_b(uint32_t instr) {
-  uint32_t imm = ((instr >> 31) << 12) |
-                 (((instr >> 7) & 0x1) << 11) |
-                 (((instr >> 25) & 0x3F) << 5) |
-                 (((instr >> 8) & 0xF) << 1);
+  uint32_t imm = ((instr >> 31) << 12) | (((instr >> 7) & 0x1) << 11) |
+                 (((instr >> 25) & 0x3F) << 5) | (((instr >> 8) & 0xF) << 1);
   return sign_extend(imm, 13);
 }
 
 inline uint32_t decode_imm_u(uint32_t instr) { return instr & 0xFFFFF000; }
 
 inline int32_t decode_imm_j(uint32_t instr) {
-  uint32_t imm = ((instr >> 31) << 20) |
-                 (((instr >> 12) & 0xFF) << 12) |
-                 (((instr >> 20) & 0x1) << 11) |
-                 (((instr >> 21) & 0x3FF) << 1);
+  uint32_t imm = ((instr >> 31) << 20) | (((instr >> 12) & 0xFF) << 12) |
+                 (((instr >> 20) & 0x1) << 11) | (((instr >> 21) & 0x3FF) << 1);
   return sign_extend(imm, 21);
 }
 
@@ -87,8 +108,10 @@ const uint32_t DMEM_BASE = 0x40000;
 inline uint8_t mem_read_byte(uint32_t dmem_arg[], uint32_t addr) {
   uint32_t offset_addr = addr - DMEM_BASE;
 #ifdef C
-  if (addr < DMEM_BASE) return 0;
-  if (offset_addr >= MEM_SIZE * 4) return 0;
+  if (addr < DMEM_BASE)
+    return 0;
+  if (offset_addr >= MEM_SIZE * 4)
+    return 0;
 #endif
   uint32_t word_addr = offset_addr >> 2;
   uint32_t byte_offset = offset_addr & 0x3;
@@ -98,8 +121,10 @@ inline uint8_t mem_read_byte(uint32_t dmem_arg[], uint32_t addr) {
 inline uint16_t mem_read_half(uint32_t dmem_arg[], uint32_t addr) {
   uint32_t offset_addr = addr - DMEM_BASE;
 #ifdef C
-  if (addr < DMEM_BASE) return 0;
-  if (offset_addr >= MEM_SIZE * 4) return 0;
+  if (addr < DMEM_BASE)
+    return 0;
+  if (offset_addr >= MEM_SIZE * 4)
+    return 0;
 #endif
   uint32_t word_addr = offset_addr >> 2;
   uint32_t byte_offset = offset_addr & 0x3;
@@ -109,8 +134,10 @@ inline uint16_t mem_read_half(uint32_t dmem_arg[], uint32_t addr) {
 inline uint32_t mem_read_word(uint32_t dmem_arg[], uint32_t addr) {
   uint32_t offset_addr = addr - DMEM_BASE;
 #ifdef C
-  if (addr < DMEM_BASE) return 0;
-  if (offset_addr >= MEM_SIZE * 4) return 0;
+  if (addr < DMEM_BASE)
+    return 0;
+  if (offset_addr >= MEM_SIZE * 4)
+    return 0;
 #endif
   return dmem_arg[offset_addr >> 2];
 }
@@ -118,8 +145,10 @@ inline uint32_t mem_read_word(uint32_t dmem_arg[], uint32_t addr) {
 inline void mem_write_byte(uint32_t dmem_arg[], uint32_t addr, uint8_t val) {
   uint32_t offset_addr = addr - DMEM_BASE;
 #ifdef C
-  if (addr < DMEM_BASE) return;
-  if (offset_addr >= MEM_SIZE * 4) return;
+  if (addr < DMEM_BASE)
+    return;
+  if (offset_addr >= MEM_SIZE * 4)
+    return;
 #endif
   uint32_t word_addr = offset_addr >> 2;
   uint32_t byte_offset = offset_addr & 0x3;
@@ -131,8 +160,10 @@ inline void mem_write_byte(uint32_t dmem_arg[], uint32_t addr, uint8_t val) {
 inline void mem_write_half(uint32_t dmem_arg[], uint32_t addr, uint16_t val) {
   uint32_t offset_addr = addr - DMEM_BASE;
 #ifdef C
-  if (addr < DMEM_BASE) return;
-  if (offset_addr >= MEM_SIZE * 4) return;
+  if (addr < DMEM_BASE)
+    return;
+  if (offset_addr >= MEM_SIZE * 4)
+    return;
 #endif
   uint32_t word_addr = offset_addr >> 2;
   uint32_t byte_offset = offset_addr & 0x3;
@@ -144,40 +175,37 @@ inline void mem_write_half(uint32_t dmem_arg[], uint32_t addr, uint16_t val) {
 inline void mem_write_word(uint32_t dmem_arg[], uint32_t addr, uint32_t val) {
   uint32_t offset_addr = addr - DMEM_BASE;
 #ifdef C
-  if (addr < DMEM_BASE) return;
-  if (offset_addr >= MEM_SIZE * 4) return;
+  if (addr < DMEM_BASE)
+    return;
+  if (offset_addr >= MEM_SIZE * 4)
+    return;
 #endif
   dmem_arg[offset_addr >> 2] = val;
 }
 
 // ============================================================================
-// FILT Accelerator
-// Encoding: .insn i 0x0B, 0, rd, imm(rs1)
-//   rd       <- saturated 8-bit result
-//   rs1+imm  <- base address of 8 packed words in dmem
-//
-// Each word at base_addr + i*4 is packed as:
-//   [31:24] unused | [23:16] data (8-bit) | [15:0] coeff (16-bit signed)
-//
-// Computes: sum = Σ data[i] * coeff[i]  for i in 0..7
-//           saturate to [0, 255<<10], then return (sum >> 10) & 0xFF
+// AVE8 Accelerator
+// Encoding: .insn r 0x0B, 5, 0, rd, rs1, x0
+//   rd  <- running average of last 8 words
+//   rs1 <- new input word (32-bit)
+// Internal buffer (8 x 32-bit words) is private to the accelerator hardware.
 // ============================================================================
-#ifdef ACCEL_FILT
+#ifdef ACCEL_AVE
+uint32_t ave8_buffer[8] = {0, 0, 0, 0, 0, 0, 0, 0};
 
-uint32_t compute_filt(uint32_t dmem_arg[], uint32_t base_addr) {
-  int32_t sum = 0;
-  int i;
-  for (i = 0; i < 8; i++) {
-    uint32_t packed = mem_read_word(dmem_arg, base_addr + i * 4);
-    uint32_t data   = (packed >> 16) & 0xFF;
-    int32_t  coeff  = sign_extend(packed & 0xFFFF, 16);
-    sum += (int32_t)data * coeff;
-  }
-  if (sum < 0)
-    sum = 0;
-  else if (sum > (255 << 10))
-    sum = (255 << 10);
-  return (uint32_t)((sum >> 10) & 0xFF);
+uint32_t compute_ave8(uint32_t in0) {
+  uint32_t sum, i;
+
+  for (i = 7; i > 0; i--)
+    ave8_buffer[i] = ave8_buffer[i - 1];
+
+  ave8_buffer[0] = in0;
+
+  sum = 0;
+  for (i = 0; i < 8; i++)
+    sum += ave8_buffer[i];
+
+  return sum / 8;
 }
 #endif
 
@@ -194,7 +222,8 @@ void load_program(const string &filename) {
   string line;
   int addr = 0;
   while (getline(file, line)) {
-    if (line.empty() || line[0] == '#') continue;
+    if (line.empty() || line[0] == '#')
+      continue;
     if (line[0] == '@') {
       addr = stoi(line.substr(1), nullptr, 16);
     } else {
@@ -212,9 +241,10 @@ void load_program(const string &filename) {
 void dump_regs(ofstream &rpt) {
   rpt << "PC: " << hex << setw(8) << setfill('0') << PC << " | ";
   for (int i = 0; i < 32; i++) {
-    if (i % 8 == 0 && i > 0) rpt << endl << "    ";
-    rpt << "x" << dec << setw(2) << setfill('0') << i << ": " << hex
-        << setw(8) << setfill('0') << regs[i] << " ";
+    if (i % 8 == 0 && i > 0)
+      rpt << endl << "    ";
+    rpt << "x" << dec << setw(2) << setfill('0') << i << ": " << hex << setw(8)
+        << setfill('0') << regs[i] << " ";
   }
   rpt << endl;
 }
@@ -227,7 +257,8 @@ void dump_regs(ofstream &rpt) {
 // Cyber func=process
 bool computer(uint32_t imem_arg[MEM_SIZE], uint32_t dmem_arg[MEM_SIZE]
 #ifdef C
-              , ofstream &rpt
+              ,
+              ofstream &rpt
 #endif
 ) {
   bool halt = false;
@@ -241,30 +272,34 @@ bool computer(uint32_t imem_arg[MEM_SIZE], uint32_t dmem_arg[MEM_SIZE]
 #endif
 
     uint32_t opcode = instr & 0x7F;
-    uint32_t rd     = (instr >> 7) & 0x1F;
+    uint32_t rd = (instr >> 7) & 0x1F;
     uint32_t funct3 = (instr >> 12) & 0x7;
-    uint32_t rs1    = (instr >> 15) & 0x1F;
-    uint32_t rs2    = (instr >> 20) & 0x1F;
+    uint32_t rs1 = (instr >> 15) & 0x1F;
+    uint32_t rs2 = (instr >> 20) & 0x1F;
     uint32_t funct7 = (instr >> 25) & 0x7F;
     uint32_t next_pc = PC + 4;
 
     switch (opcode) {
     case OP_LUI: {
-      if (rd != 0) regs[rd] = decode_imm_u(instr);
+      if (rd != 0)
+        regs[rd] = decode_imm_u(instr);
       break;
     }
     case OP_AUIPC: {
-      if (rd != 0) regs[rd] = PC + decode_imm_u(instr);
+      if (rd != 0)
+        regs[rd] = PC + decode_imm_u(instr);
       break;
     }
     case OP_JAL: {
-      if (rd != 0) regs[rd] = PC + 4;
+      if (rd != 0)
+        regs[rd] = PC + 4;
       next_pc = PC + decode_imm_j(instr);
       break;
     }
     case OP_JALR: {
       uint32_t target = (regs[rs1] + decode_imm_i(instr)) & ~1u;
-      if (rd != 0) regs[rd] = PC + 4;
+      if (rd != 0)
+        regs[rd] = PC + 4;
       next_pc = target;
       break;
     }
@@ -272,36 +307,66 @@ bool computer(uint32_t imem_arg[MEM_SIZE], uint32_t dmem_arg[MEM_SIZE]
       int32_t imm = decode_imm_b(instr);
       bool take = false;
       switch (funct3) {
-      case BEQ:  take = (regs[rs1] == regs[rs2]); break;
-      case BNE:  take = (regs[rs1] != regs[rs2]); break;
-      case BLT:  take = ((int32_t)regs[rs1] < (int32_t)regs[rs2]); break;
-      case BGE:  take = ((int32_t)regs[rs1] >= (int32_t)regs[rs2]); break;
-      case BLTU: take = (regs[rs1] < regs[rs2]); break;
-      case BGEU: take = (regs[rs1] >= regs[rs2]); break;
+      case BEQ:
+        take = (regs[rs1] == regs[rs2]);
+        break;
+      case BNE:
+        take = (regs[rs1] != regs[rs2]);
+        break;
+      case BLT:
+        take = ((int32_t)regs[rs1] < (int32_t)regs[rs2]);
+        break;
+      case BGE:
+        take = ((int32_t)regs[rs1] >= (int32_t)regs[rs2]);
+        break;
+      case BLTU:
+        take = (regs[rs1] < regs[rs2]);
+        break;
+      case BGEU:
+        take = (regs[rs1] >= regs[rs2]);
+        break;
       }
-      if (take) next_pc = PC + imm;
+      if (take)
+        next_pc = PC + imm;
       break;
     }
     case OP_LOAD: {
       uint32_t addr = regs[rs1] + decode_imm_i(instr);
       uint32_t val = 0;
       switch (funct3) {
-      case LB:  val = sign_extend(mem_read_byte(dmem_arg, addr), 8); break;
-      case LH:  val = sign_extend(mem_read_half(dmem_arg, addr), 16); break;
-      case LW:  val = mem_read_word(dmem_arg, addr); break;
-      case LBU: val = mem_read_byte(dmem_arg, addr); break;
-      case LHU: val = mem_read_half(dmem_arg, addr); break;
+      case LB:
+        val = sign_extend(mem_read_byte(dmem_arg, addr), 8);
+        break;
+      case LH:
+        val = sign_extend(mem_read_half(dmem_arg, addr), 16);
+        break;
+      case LW:
+        val = mem_read_word(dmem_arg, addr);
+        break;
+      case LBU:
+        val = mem_read_byte(dmem_arg, addr);
+        break;
+      case LHU:
+        val = mem_read_half(dmem_arg, addr);
+        break;
       }
-      if (rd != 0) regs[rd] = val;
+      if (rd != 0)
+        regs[rd] = val;
       break;
     }
     case OP_STORE: {
       uint32_t addr = regs[rs1] + decode_imm_s(instr);
       uint32_t val = regs[rs2];
       switch (funct3) {
-      case SB: mem_write_byte(dmem_arg, addr, val & 0xFF); break;
-      case SH: mem_write_half(dmem_arg, addr, val & 0xFFFF); break;
-      case SW: mem_write_word(dmem_arg, addr, val); break;
+      case SB:
+        mem_write_byte(dmem_arg, addr, val & 0xFF);
+        break;
+      case SH:
+        mem_write_half(dmem_arg, addr, val & 0xFFFF);
+        break;
+      case SW:
+        mem_write_word(dmem_arg, addr, val);
+        break;
       }
       break;
     }
@@ -310,38 +375,72 @@ bool computer(uint32_t imem_arg[MEM_SIZE], uint32_t dmem_arg[MEM_SIZE]
       uint32_t shamt = rs2;
       uint32_t result = 0;
       switch (funct3) {
-      case ADDI:  result = regs[rs1] + imm; break;
-      case SLTI:  result = ((int32_t)regs[rs1] < imm) ? 1 : 0; break;
-      case SLTIU: result = (regs[rs1] < (uint32_t)imm) ? 1 : 0; break;
-      case XORI:  result = regs[rs1] ^ imm; break;
-      case ORI:   result = regs[rs1] | imm; break;
-      case ANDI:  result = regs[rs1] & imm; break;
-      case SLLI:  result = regs[rs1] << shamt; break;
+      case ADDI:
+        result = regs[rs1] + imm;
+        break;
+      case SLTI:
+        result = ((int32_t)regs[rs1] < imm) ? 1 : 0;
+        break;
+      case SLTIU:
+        result = (regs[rs1] < (uint32_t)imm) ? 1 : 0;
+        break;
+      case XORI:
+        result = regs[rs1] ^ imm;
+        break;
+      case ORI:
+        result = regs[rs1] | imm;
+        break;
+      case ANDI:
+        result = regs[rs1] & imm;
+        break;
+      case SLLI:
+        result = regs[rs1] << shamt;
+        break;
       case SRXI:
-        if (funct7 & 0x20) result = (uint32_t)((int32_t)regs[rs1] >> shamt);
-        else                result = regs[rs1] >> shamt;
+        if (funct7 & 0x20)
+          result = (uint32_t)((int32_t)regs[rs1] >> shamt);
+        else
+          result = regs[rs1] >> shamt;
         break;
       }
-      if (rd != 0) regs[rd] = result;
+      if (rd != 0)
+        regs[rd] = result;
       break;
     }
     case OP_REG: {
       uint32_t op1 = regs[rs1], op2 = regs[rs2];
       uint32_t result = 0;
       switch (funct3) {
-      case ADD_SUB: result = (funct7 & 0x20) ? op1 - op2 : op1 + op2; break;
-      case SLL:  result = op1 << (op2 & 0x1F); break;
-      case SLT:  result = ((int32_t)op1 < (int32_t)op2) ? 1 : 0; break;
-      case SLTU: result = (op1 < op2) ? 1 : 0; break;
-      case XOR:  result = op1 ^ op2; break;
-      case SRX:
-        if (funct7 & 0x20) result = (uint32_t)((int32_t)op1 >> (op2 & 0x1F));
-        else                result = op1 >> (op2 & 0x1F);
+      case ADD_SUB:
+        result = (funct7 & 0x20) ? op1 - op2 : op1 + op2;
         break;
-      case OR:  result = op1 | op2; break;
-      case AND: result = op1 & op2; break;
+      case SLL:
+        result = op1 << (op2 & 0x1F);
+        break;
+      case SLT:
+        result = ((int32_t)op1 < (int32_t)op2) ? 1 : 0;
+        break;
+      case SLTU:
+        result = (op1 < op2) ? 1 : 0;
+        break;
+      case XOR:
+        result = op1 ^ op2;
+        break;
+      case SRX:
+        if (funct7 & 0x20)
+          result = (uint32_t)((int32_t)op1 >> (op2 & 0x1F));
+        else
+          result = op1 >> (op2 & 0x1F);
+        break;
+      case OR:
+        result = op1 | op2;
+        break;
+      case AND:
+        result = op1 & op2;
+        break;
       }
-      if (rd != 0) regs[rd] = result;
+      if (rd != 0)
+        regs[rd] = result;
       break;
     }
     case OP_FENCE: {
@@ -353,18 +452,16 @@ bool computer(uint32_t imem_arg[MEM_SIZE], uint32_t dmem_arg[MEM_SIZE]
     }
 
     // ========================================================================
-    // CUSTOM-0 (0x0B): FILT instruction (I-type, funct3=0)
-    //   .insn i 0x0B, 0, rd, imm(rs1)
-    //   rd <- saturated 8-bit filter result
-    //   rs1+imm <- base address of 8 packed words in dmem
+    // CUSTOM-0 (0x0B): AVE8 instruction (R-type, funct3=5, funct7=0)
+    //   .insn r 0x0B, 5, 0, rd, rs1, x0
+    //   rd  <- running average of last 8 words
+    //   rs1 <- new input word (32-bit)
     // ========================================================================
-#ifdef ACCEL_FILT
+#ifdef ACCEL_AVE
     case 0x0B: {
-      if (funct3 == 0) {
-        int32_t imm = decode_imm_i(instr);
-        uint32_t base_addr = regs[rs1] + imm;
+      if (funct3 == 5 && funct7 == 0) {
         if (rd != 0)
-          regs[rd] = compute_filt(dmem_arg, base_addr);
+          regs[rd] = compute_ave8(regs[rs1]);
       } else {
         halt = true;
       }

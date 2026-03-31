@@ -1,0 +1,2550 @@
+/*
+* computer_E.BDL
+# Design Name        computer
+# FU Library File    /proj/cad/cwb-6.1/packages/asic_45.FLIB
+# MEM  Limit File    %AUTO%.MLMT
+# Basic Library File /proj/cad/cwb-6.1/packages/asic_45.BLIB
+# PORT Limit File    %AUTO%.PLMT
+# PORT relation File %AUTO%.PREL
+# Clock Cycle        100000 (1/10ps).
+# Clock Uncertainty  0-->10000 (1/10ps)
+# Performance index  max/min/ave  11 / 11 / 11.00
+# Data-path info.    REG: 7458(area),1243(FFs), MUX: 9306(area),9693(fanins)
+# CSV info.          20269,11,4692,7458,6637,42,42047,16990,11,11,11.00,1440,-,4.7372ns,-,-,-,-,11,-,-
+# Bp-Option  -EE -DACCEL_FILT -info_base_name computer computer.cpp
+# Option  -EE computer.IFF -c1000 -s -Zresource_fcnt=GENERATE -Zresource_mcnt=GENERATE -Zsync -Zdup_reset=YES -Zfolding_sharing=inter_stage -lb /proj/cad/cwb-6.1/packages/asic_45.BLIB -lfl /proj/cad/cwb-6.1/packages/asic_45.FLIB -o-P 
+# Version  bdltran version : 6.10.04  Thu Mar 22 14:18:17 JST 2018
+*/
+
+out  unsigned ter(15..0)  imem_arg_MEMB32W65536_RA1/* Cyber mem_id = MEMB32W65536@2, other = DC */;
+in   unsigned ter(31..0)  imem_arg_MEMB32W65536_RD1/* Cyber mem_id = MEMB32W65536@2 */;
+out  unsigned ter(0..0)  imem_arg_MEMB32W65536_RE1/* Cyber mem_id = MEMB32W65536@2 */;
+out  unsigned ter(15..0)  dmem_arg_MEMB32W65536_RA1/* Cyber mem_id = MEMB32W65536@1, other = DC */;
+in   unsigned ter(31..0)  dmem_arg_MEMB32W65536_RD1/* Cyber mem_id = MEMB32W65536@1 */;
+out  unsigned ter(0..0)  dmem_arg_MEMB32W65536_RE1/* Cyber mem_id = MEMB32W65536@1 */;
+out  unsigned ter(15..0)  dmem_arg_MEMB32W65536_WA2/* Cyber mem_id = MEMB32W65536@1, other = DC */;
+out  unsigned ter(31..0)  dmem_arg_MEMB32W65536_WD2/* Cyber mem_id = MEMB32W65536@1, other = DC */;
+out  unsigned ter(0..0)  dmem_arg_MEMB32W65536_WE2/* Cyber mem_id = MEMB32W65536@1 */;
+out  unsigned ter(0..0)  computer_ret/* Cyber sche = reg */ /* line# computer.cpp:228 */;
+clock         CLOCK/* Cyber clock_edge = pos */;
+reset         RESET/* Cyber reset_mode = sync, reset_active = high */;
+    
+unsigned const ter(3..0)  ST1_01 = 0;
+unsigned const ter(3..0)  ST1_02 = 1;
+unsigned const ter(3..0)  ST1_03 = 2;
+unsigned const ter(3..0)  ST1_04 = 3;
+unsigned const ter(3..0)  ST1_05 = 4;
+unsigned const ter(3..0)  ST1_06 = 5;
+unsigned const ter(3..0)  ST1_07 = 6;
+unsigned const ter(3..0)  ST1_08 = 7;
+unsigned const ter(3..0)  ST1_09 = 8;
+unsigned const ter(3..0)  ST1_10 = 9;
+unsigned const ter(3..0)  ST1_11 = 10;
+
+/* Cyber func = process, default_bit_order = down */
+process
+computer()
+{
+    unsigned ter(20..0)  M_323/* Cyber other = DC */;
+    unsigned ter(13..0)  M_322/* Cyber other = DC */;
+    unsigned ter(5..0)  M_320/* Cyber other = DC */;
+    unsigned ter(1..0)  M_319/* Cyber other = DC */;
+    unsigned ter(2..0)  M_318/* Cyber other = DC */;
+    unsigned ter(1..0)  M_317/* Cyber FSM = ter */;
+    unsigned ter(1..0)  M_315/* Cyber other = DC */;
+    unsigned ter(0..0)  TR_24;
+    unsigned ter(0..0)  M_313/* Cyber FSM = ter */;
+    unsigned ter(0..0)  M_312/* Cyber FSM = ter */;
+    unsigned ter(0..0)  M_308;
+    unsigned ter(0..0)  M_306;
+    unsigned ter(0..0)  M_304;
+    unsigned ter(0..0)  M_300;
+    unsigned ter(0..0)  M_299;
+    unsigned ter(0..0)  M_295;
+    unsigned ter(0..0)  M_292;
+    unsigned ter(0..0)  M_288;
+    unsigned ter(0..0)  M_287;
+    unsigned ter(0..0)  M_286;
+    unsigned ter(0..0)  M_283;
+    unsigned ter(0..0)  M_282;
+    unsigned ter(0..0)  M_281;
+    unsigned ter(0..0)  M_280;
+    unsigned ter(0..0)  M_279;
+    unsigned ter(0..0)  M_278;
+    unsigned ter(0..0)  M_277;
+    unsigned ter(0..0)  M_276;
+    unsigned ter(0..0)  M_275;
+    unsigned ter(0..0)  M_272;
+    unsigned ter(0..0)  M_271;
+    unsigned ter(0..0)  M_270;
+    unsigned ter(0..0)  M_269;
+    unsigned ter(0..0)  M_268;
+    unsigned ter(0..0)  M_267;
+    unsigned ter(0..0)  M_266;
+    unsigned ter(0..0)  M_265;
+    unsigned ter(31..0)  M_264;
+    unsigned ter(0..0)  M_263/* Cyber FSM = ter */;
+    unsigned ter(0..0)  M_260/* Cyber FSM = ter */;
+    unsigned ter(0..0)  M_258/* Cyber FSM = ter */;
+    unsigned ter(0..0)  M_256/* Cyber FSM = ter */;
+    unsigned ter(0..0)  M_254/* Cyber FSM = ter */;
+    unsigned ter(0..0)  M_252/* Cyber FSM = ter */;
+    unsigned ter(0..0)  M_251/* Cyber FSM = ter */;
+    unsigned ter(0..0)  M_249/* Cyber FSM = ter */;
+    unsigned ter(0..0)  M_248/* Cyber FSM = ter */;
+    unsigned ter(0..0)  M_246;
+    unsigned ter(0..0)  M_245;
+    unsigned ter(31..0)  M_244;
+    unsigned ter(0..0)  M_243;
+    unsigned ter(0..0)  M_241;
+    unsigned ter(0..0)  M_240;
+    unsigned ter(0..0)  M_239;
+    unsigned ter(0..0)  M_238;
+    unsigned ter(0..0)  M_237;
+    unsigned ter(0..0)  M_236;
+    unsigned ter(0..0)  M_235;
+    unsigned ter(0..0)  M_234;
+    unsigned ter(0..0)  M_233;
+    unsigned ter(0..0)  M_232;
+    unsigned ter(0..0)  M_230;
+    unsigned ter(0..0)  M_229;
+    unsigned ter(0..0)  M_228;
+    unsigned ter(0..0)  M_227;
+    unsigned ter(0..0)  M_226;
+    unsigned ter(0..0)  M_225;
+    unsigned ter(0..0)  M_224;
+    unsigned ter(0..0)  M_223;
+    unsigned ter(0..0)  M_222;
+    unsigned ter(0..0)  M_221;
+    unsigned ter(0..0)  M_220;
+    unsigned ter(0..0)  M_219;
+    unsigned ter(0..0)  M_218;
+    unsigned ter(0..0)  M_216;
+    unsigned ter(0..0)  M_215;
+    unsigned ter(0..0)  M_214;
+    unsigned ter(0..0)  M_213;
+    unsigned ter(0..0)  M_212;
+    unsigned ter(0..0)  M_210;
+    unsigned ter(0..0)  M_209;
+    unsigned ter(0..0)  M_207;
+    unsigned ter(0..0)  M_206;
+    unsigned ter(0..0)  M_204;
+    unsigned ter(0..0)  M_203;
+    unsigned ter(0..0)  M_202;
+    unsigned ter(0..0)  M_201;
+    unsigned ter(0..0)  M_200;
+    unsigned ter(0..0)  M_199;
+    unsigned ter(0..0)  M_198;
+    unsigned ter(0..0)  M_197;
+    unsigned ter(19..0)  TR_23/* Cyber other = DC */;
+    unsigned ter(7..0)  TR_22/* Cyber other = DC */;
+    unsigned ter(7..0)  TR_21/* Cyber other = DC */;
+    unsigned ter(2..0)  TR_19/* Cyber other = DC */;
+    unsigned ter(1..0)  TR_18/* Cyber FSM = ter, other = DC */;
+    unsigned ter(7..0)  TR_15/* Cyber other = DC */;
+    unsigned ter(15..0)  TR_08/* Cyber other = DC */;
+    unsigned ter(4..0)  TR_07/* Cyber other = DC */;
+    unsigned ter(23..0)  TR_05/* Cyber other = DC */;
+    unsigned ter(23..0)  TR_04/* Cyber other = DC */;
+    unsigned ter(30..0)  TR_03/* Cyber other = DC */;
+    unsigned ter(15..0)  TR_02/* Cyber other = DC */;
+    unsigned ter(15..0)  TR_01/* Cyber other = DC */;
+    unsigned reg(3..0)  B01_streg/* Cyber FSM = reg */;
+    unsigned ter(0..0)  U_256;
+    unsigned ter(0..0)  U_251;
+    unsigned ter(0..0)  U_250;
+    unsigned ter(0..0)  U_249;
+    unsigned ter(0..0)  U_242;
+    unsigned ter(0..0)  U_236;
+    unsigned ter(0..0)  U_234;
+    unsigned ter(0..0)  U_232;
+    unsigned ter(0..0)  U_231;
+    unsigned ter(0..0)  U_229;
+    unsigned ter(0..0)  U_227;
+    unsigned ter(0..0)  U_225;
+    unsigned ter(0..0)  U_220;
+    unsigned ter(0..0)  U_219;
+    unsigned ter(0..0)  U_218;
+    unsigned ter(0..0)  U_211;
+    unsigned ter(0..0)  U_210;
+    unsigned ter(0..0)  U_206;
+    unsigned ter(0..0)  U_205;
+    unsigned ter(0..0)  U_202;
+    unsigned ter(0..0)  U_197;
+    unsigned ter(0..0)  U_196;
+    unsigned ter(0..0)  U_186;
+    unsigned ter(0..0)  U_178;
+    unsigned ter(0..0)  U_176;
+    unsigned ter(0..0)  U_175;
+    unsigned ter(0..0)  U_172;
+    unsigned ter(0..0)  U_170;
+    unsigned ter(0..0)  U_167;
+    unsigned ter(0..0)  U_165;
+    unsigned ter(0..0)  U_164;
+    unsigned ter(0..0)  U_152;
+    unsigned ter(0..0)  U_149;
+    unsigned ter(0..0)  U_148;
+    unsigned ter(0..0)  U_146;
+    unsigned ter(0..0)  U_140;
+    unsigned ter(0..0)  U_138;
+    unsigned ter(0..0)  U_137;
+    unsigned ter(0..0)  U_135;
+    unsigned ter(0..0)  U_125;
+    unsigned ter(0..0)  U_124;
+    unsigned ter(0..0)  U_123;
+    unsigned ter(0..0)  U_117;
+    unsigned ter(0..0)  U_113;
+    unsigned ter(0..0)  U_110;
+    unsigned ter(0..0)  U_108;
+    unsigned ter(0..0)  U_107;
+    unsigned ter(0..0)  U_103;
+    unsigned ter(0..0)  U_99;
+    unsigned ter(0..0)  U_97;
+    unsigned ter(0..0)  U_96;
+    unsigned ter(0..0)  U_89;
+    unsigned ter(0..0)  U_85;
+    unsigned ter(0..0)  U_81;
+    unsigned ter(0..0)  U_73;
+    unsigned ter(0..0)  U_71;
+    unsigned ter(0..0)  U_67;
+    unsigned ter(0..0)  U_46;
+    unsigned ter(0..0)  U_44;
+    unsigned ter(0..0)  U_43;
+    unsigned ter(0..0)  U_42;
+    unsigned ter(0..0)  U_39;
+    unsigned ter(0..0)  U_35;
+    unsigned ter(0..0)  U_18;
+    unsigned ter(0..0)  U_16;
+    unsigned ter(0..0)  U_13;
+    unsigned ter(0..0)  U_12;
+    unsigned ter(0..0)  U_11;
+    unsigned ter(0..0)  U_10;
+    unsigned ter(0..0)  U_09;
+    unsigned ter(0..0)  U_07;
+    unsigned ter(0..0)  U_01;
+    unsigned ter(0..0)  ST1_11d/* Cyber FSM = dec */;
+    unsigned ter(0..0)  ST1_10d/* Cyber FSM = dec */;
+    unsigned ter(0..0)  ST1_09d/* Cyber FSM = dec */;
+    unsigned ter(0..0)  ST1_08d/* Cyber FSM = dec */;
+    unsigned ter(0..0)  ST1_07d/* Cyber FSM = dec */;
+    unsigned ter(0..0)  ST1_06d/* Cyber FSM = dec */;
+    unsigned ter(0..0)  ST1_05d/* Cyber FSM = dec */;
+    unsigned ter(0..0)  ST1_04d/* Cyber FSM = dec */;
+    unsigned ter(0..0)  ST1_03d/* Cyber FSM = dec */;
+    unsigned ter(0..0)  ST1_02d/* Cyber FSM = dec */;
+    unsigned ter(0..0)  ST1_01d/* Cyber FSM = dec */;
+    unsigned ter(0..0)  regs_we03 /* line# computer.cpp:19 */;
+    unsigned ter(31..0)  regs_wd03/* Cyber other = DC */ /* line# computer.cpp:19 */;
+    unsigned ter(31..0)  regs_rd02/* Cyber other = DC */ /* line# computer.cpp:19 */;
+    unsigned ter(31..0)  regs_rd01/* Cyber other = DC */ /* line# computer.cpp:19 */;
+    unsigned ter(31..0)  regs_rd00/* Cyber other = DC */ /* line# computer.cpp:19 */;
+    unsigned ter(31..0)  regs_d03 /* line# computer.cpp:19 */;
+    unsigned ter(4..0)  regs_ad03/* Cyber other = DC */ /* line# computer.cpp:19 */;
+    unsigned ter(4..0)  regs_ad02/* Cyber other = DC */ /* line# computer.cpp:19 */;
+    unsigned ter(4..0)  regs_ad01/* Cyber other = DC */ /* line# computer.cpp:19 */;
+    unsigned reg(31..0)  regs_rg31/* Cyber reg_init_val = 0, org_type = u_int */ /* line# computer.cpp:19 */;
+    unsigned reg(31..0)  regs_rg30/* Cyber reg_init_val = 0, org_type = u_int */ /* line# computer.cpp:19 */;
+    unsigned reg(31..0)  regs_rg29/* Cyber reg_init_val = 0, org_type = u_int */ /* line# computer.cpp:19 */;
+    unsigned reg(31..0)  regs_rg28/* Cyber reg_init_val = 0, org_type = u_int */ /* line# computer.cpp:19 */;
+    unsigned reg(31..0)  regs_rg27/* Cyber reg_init_val = 0, org_type = u_int */ /* line# computer.cpp:19 */;
+    unsigned reg(31..0)  regs_rg26/* Cyber reg_init_val = 0, org_type = u_int */ /* line# computer.cpp:19 */;
+    unsigned reg(31..0)  regs_rg25/* Cyber reg_init_val = 0, org_type = u_int */ /* line# computer.cpp:19 */;
+    unsigned reg(31..0)  regs_rg24/* Cyber reg_init_val = 0, org_type = u_int */ /* line# computer.cpp:19 */;
+    unsigned reg(31..0)  regs_rg23/* Cyber reg_init_val = 0, org_type = u_int */ /* line# computer.cpp:19 */;
+    unsigned reg(31..0)  regs_rg22/* Cyber reg_init_val = 0, org_type = u_int */ /* line# computer.cpp:19 */;
+    unsigned reg(31..0)  regs_rg21/* Cyber reg_init_val = 0, org_type = u_int */ /* line# computer.cpp:19 */;
+    unsigned reg(31..0)  regs_rg20/* Cyber reg_init_val = 0, org_type = u_int */ /* line# computer.cpp:19 */;
+    unsigned reg(31..0)  regs_rg19/* Cyber reg_init_val = 0, org_type = u_int */ /* line# computer.cpp:19 */;
+    unsigned reg(31..0)  regs_rg18/* Cyber reg_init_val = 0, org_type = u_int */ /* line# computer.cpp:19 */;
+    unsigned reg(31..0)  regs_rg17/* Cyber reg_init_val = 0, org_type = u_int */ /* line# computer.cpp:19 */;
+    unsigned reg(31..0)  regs_rg16/* Cyber reg_init_val = 0, org_type = u_int */ /* line# computer.cpp:19 */;
+    unsigned reg(31..0)  regs_rg15/* Cyber reg_init_val = 0, org_type = u_int */ /* line# computer.cpp:19 */;
+    unsigned reg(31..0)  regs_rg14/* Cyber reg_init_val = 0, org_type = u_int */ /* line# computer.cpp:19 */;
+    unsigned reg(31..0)  regs_rg13/* Cyber reg_init_val = 0, org_type = u_int */ /* line# computer.cpp:19 */;
+    unsigned reg(31..0)  regs_rg12/* Cyber reg_init_val = 0, org_type = u_int */ /* line# computer.cpp:19 */;
+    unsigned reg(31..0)  regs_rg11/* Cyber reg_init_val = 0, org_type = u_int */ /* line# computer.cpp:19 */;
+    unsigned reg(31..0)  regs_rg10/* Cyber reg_init_val = 0, org_type = u_int */ /* line# computer.cpp:19 */;
+    unsigned reg(31..0)  regs_rg09/* Cyber reg_init_val = 0, org_type = u_int */ /* line# computer.cpp:19 */;
+    unsigned reg(31..0)  regs_rg08/* Cyber reg_init_val = 0, org_type = u_int */ /* line# computer.cpp:19 */;
+    unsigned reg(31..0)  regs_rg07/* Cyber reg_init_val = 0, org_type = u_int */ /* line# computer.cpp:19 */;
+    unsigned reg(31..0)  regs_rg06/* Cyber reg_init_val = 0, org_type = u_int */ /* line# computer.cpp:19 */;
+    unsigned reg(31..0)  regs_rg05/* Cyber reg_init_val = 0, org_type = u_int */ /* line# computer.cpp:19 */;
+    unsigned reg(31..0)  regs_rg04/* Cyber reg_init_val = 0, org_type = u_int */ /* line# computer.cpp:19 */;
+    unsigned reg(31..0)  regs_rg03/* Cyber reg_init_val = 0, org_type = u_int */ /* line# computer.cpp:19 */;
+    unsigned reg(31..0)  regs_rg02/* Cyber reg_init_val = 0, org_type = u_int */ /* line# computer.cpp:19 */;
+    unsigned reg(31..0)  regs_rg01/* Cyber reg_init_val = 0, org_type = u_int */ /* line# computer.cpp:19 */;
+    unsigned reg(31..0)  regs_rg00/* Cyber reg_init_val = 0, org_type = u_int */ /* line# computer.cpp:19 */;
+    signed   ter(11..0)  comp32s_1_11i2/* Cyber other = DC */;
+    signed   ter(31..0)  comp32s_1_11i1/* Cyber other = DC */;
+    unsigned ter(3..0)  comp32s_1_11ot;
+    signed   ter(24..0)  add28s_27_261i2/* Cyber other = DC */;
+    signed   ter(24..0)  add28s_27_261i1/* Cyber other = DC */;
+    signed   ter(25..0)  add28s_27_261ot;
+    signed   ter(31..0)  comp32s_12i2/* Cyber other = DC */;
+    signed   ter(31..0)  comp32s_12i1/* Cyber other = DC */;
+    unsigned ter(3..0)  comp32s_12ot;
+    signed   ter(31..0)  comp32s_11i2/* Cyber other = DC */;
+    signed   ter(31..0)  comp32s_11i1/* Cyber other = DC */;
+    unsigned ter(3..0)  comp32s_11ot;
+    unsigned ter(31..0)  comp32u_13i2/* Cyber other = DC */;
+    unsigned ter(31..0)  comp32u_13i1/* Cyber other = DC */;
+    unsigned ter(3..0)  comp32u_13ot;
+    unsigned ter(31..0)  comp32u_12i2/* Cyber other = DC */;
+    unsigned ter(31..0)  comp32u_12i1/* Cyber other = DC */;
+    unsigned ter(3..0)  comp32u_12ot;
+    unsigned ter(31..0)  comp32u_11i2/* Cyber other = DC */;
+    unsigned ter(31..0)  comp32u_11i1/* Cyber other = DC */;
+    unsigned ter(3..0)  comp32u_11ot;
+    unsigned ter(1..0)  addsub32u1_f/* Cyber other = DC */;
+    unsigned ter(31..0)  addsub32u1i2/* Cyber other = DC */;
+    unsigned ter(31..0)  addsub32u1i1/* Cyber other = DC */;
+    unsigned ter(31..0)  addsub32u1ot;
+    unsigned ter(1..0)  addsub20s_183_f/* Cyber other = DC */;
+    signed   ter(17..0)  addsub20s_183i2/* Cyber other = DC */;
+    signed   ter(17..0)  addsub20s_183i1/* Cyber other = DC */;
+    signed   ter(17..0)  addsub20s_183ot;
+    unsigned ter(1..0)  addsub20s_182_f/* Cyber other = DC */;
+    signed   ter(17..0)  addsub20s_182i2/* Cyber other = DC */;
+    signed   ter(17..0)  addsub20s_182i1/* Cyber other = DC */;
+    signed   ter(17..0)  addsub20s_182ot;
+    unsigned ter(1..0)  addsub20s_181_f/* Cyber other = DC */;
+    signed   ter(17..0)  addsub20s_181i2/* Cyber other = DC */;
+    signed   ter(17..0)  addsub20s_181i1/* Cyber other = DC */;
+    signed   ter(17..0)  addsub20s_181ot;
+    unsigned ter(17..0)  gop28u_11i2/* Cyber other = DC */;
+    unsigned ter(25..0)  gop28u_11i1/* Cyber other = DC */;
+    unsigned ter(0..0)  gop28u_11ot;
+    signed   ter(4..0)  rsft32s1i2/* Cyber other = DC */;
+    signed   ter(31..0)  rsft32s1i1/* Cyber other = DC */;
+    signed   ter(31..0)  rsft32s1ot;
+    unsigned ter(4..0)  rsft32u1i2/* Cyber other = DC */;
+    unsigned ter(31..0)  rsft32u1i1/* Cyber other = DC */;
+    unsigned ter(31..0)  rsft32u1ot;
+    unsigned ter(4..0)  lsft32u2i2/* Cyber other = DC */;
+    unsigned ter(31..0)  lsft32u2i1/* Cyber other = DC */;
+    unsigned ter(31..0)  lsft32u2ot;
+    unsigned ter(4..0)  lsft32u1i2/* Cyber other = DC */;
+    unsigned ter(31..0)  lsft32u1i1/* Cyber other = DC */;
+    unsigned ter(31..0)  lsft32u1ot;
+    signed   ter(15..0)  mul16s1i2/* Cyber other = DC */;
+    signed   ter(8..0)  mul16s1i1/* Cyber other = DC */;
+    signed   ter(23..0)  mul16s1ot;
+    signed   ter(20..0)  add32s1i2/* Cyber other = DC */;
+    signed   ter(31..0)  add32s1i1/* Cyber other = DC */;
+    signed   ter(31..0)  add32s1ot;
+    signed   ter(25..0)  add28s_271i2/* Cyber other = DC */;
+    signed   ter(25..0)  add28s_271i1/* Cyber other = DC */;
+    signed   ter(26..0)  add28s_271ot;
+    signed   ter(23..0)  add24s1i2/* Cyber other = DC */;
+    signed   ter(23..0)  add24s1i1/* Cyber other = DC */;
+    signed   ter(24..0)  add24s1ot;
+    unsigned ter(30..0)  M_139_t/* Cyber other = DC */;
+    unsigned ter(7..0)  sum11_t/* Cyber other = DC */;
+    unsigned ter(31..0)  val2_t4/* Cyber other = DC */;
+    unsigned ter(0..0)  take_t1/* Cyber other = DC */;
+    unsigned ter(0..0)  CT_19/* Cyber other = DC */;
+    unsigned ter(0..0)  JF_13/* Cyber other = DC */;
+    unsigned ter(0..0)  JF_10/* Cyber other = DC */;
+    unsigned ter(0..0)  JF_07/* Cyber other = DC */;
+    unsigned ter(0..0)  JF_04/* Cyber other = DC */;
+    unsigned ter(0..0)  CT_04/* Cyber other = DC */;
+    unsigned ter(0..0)  CT_03/* Cyber other = DC */;
+    unsigned ter(0..0)  CT_01/* Cyber other = DC */;
+    unsigned reg(31..0)  RG_PC/* Cyber reg_init_val = 0 */ /* line# computer.cpp:20 */;
+    unsigned reg(0..0)  FF_halt/* Cyber reset_sig = void */ /* line# computer.cpp:233 */;
+    unsigned /* mixed */ reg(31..0)  RG_mask_op2/* Cyber reset_sig = void */ /* line# computer.cpp:126,139,329 */;
+    unsigned reg(31..0)  RG_03/* Cyber reset_sig = void */;
+    unsigned /* mixed */ reg(31..0)  RL_addr_next_pc_op1_result/* Cyber reset_sig = void */ /* line# computer.cpp:249,286,300,311,329,330 */;
+    unsigned reg(0..0)  FF_take/* Cyber reset_sig = void */ /* line# computer.cpp:273 */;
+    unsigned reg(31..0)  RG_07/* Cyber reset_sig = void */;
+    unsigned /* mixed */ reg(24..0)  RG_base_addr_imm1_instr/* Cyber reset_sig = void */ /* line# computer.cpp:309,365 */;
+    unsigned reg(4..0)  RG_rs1/* Cyber reset_sig = void */ /* line# computer.cpp:246 */;
+    unsigned reg(4..0)  RG_byte_offset_rd/* Cyber reset_sig = void */ /* line# computer.cpp:125,244 */;
+    unsigned reg(15..0)  RG_funct3_rs2_word_addr/* Cyber reset_sig = void */ /* line# computer.cpp:93,124,137,245,247 */;
+    unsigned reg(0..0)  FF_take_1/* Cyber reset_sig = void */ /* line# computer.cpp:273 */;
+    unsigned reg(0..0)  computer_ret_r /* line# computer.cpp:228 */;
+
+ST1_01 :
+    comp32s_1_11ot(3..0) ::= comp32s_1_1@1(comp32s_1_11i1(31..0), comp32s_1_11i2(11..0)); 	/* line# computer.cpp:314 */
+    add28s_27_261ot(25..0) ::= add28s_27_26@1(add28s_27_261i1(24..0), add28s_27_261i2(24..0)); 	/* line# computer.cpp:174 */
+    comp32s_11ot(3..0) ::= comp32s_1@1(comp32s_11i1(31..0), comp32s_11i2(31..0)); 	/* line# computer.cpp:334 */
+    comp32s_12ot(3..0) ::= comp32s_1@2(comp32s_12i1(31..0), comp32s_12i2(31..0)); 	/* line# computer.cpp:277,278 */
+    comp32u_11ot(3..0) ::= comp32u_1@1(comp32u_11i1(31..0), comp32u_11i2(31..0)); 	/* line# computer.cpp:279,280 */
+    comp32u_12ot(3..0) ::= comp32u_1@2(comp32u_12i1(31..0), comp32u_12i2(31..0)); 	/* line# computer.cpp:315 */
+    comp32u_13ot(3..0) ::= comp32u_1@3(comp32u_13i1(31..0), comp32u_13i2(31..0)); 	/* line# computer.cpp:335 */
+    addsub32u1ot(31..0) ::= addsub32u@1(addsub32u1i1(31..0), addsub32u1i2(31..0), addsub32u1_f(1..0)); 	/* line# computer.cpp:71,88,99,119,132,249,257,332 */
+    addsub20s_181ot(17..0) ::= addsub20s_18@1(addsub20s_181i1(17..0), addsub20s_181i2(17..0), addsub20s_181_f(1..0)); 	/* line# computer.cpp:110,171,365 */
+    addsub20s_182ot(17..0) ::= addsub20s_18@2(addsub20s_182i1(17..0), addsub20s_182i2(17..0), addsub20s_182_f(1..0)); 	/* line# computer.cpp:110,171 */
+    addsub20s_183ot(17..0) ::= addsub20s_18@3(addsub20s_183i1(17..0), addsub20s_183i2(17..0), addsub20s_183_f(1..0)); 	/* line# computer.cpp:110,171 */
+    gop28u_11ot(0..0) ::= gop28u_1@1(gop28u_11i1(25..0), gop28u_11i2(17..0)); 	/* line# computer.cpp:178 */
+    rsft32s1ot(31..0) ::= rsft32s@1(rsft32s1i1(31..0), rsft32s1i2(4..0)); 	/* line# computer.cpp:321,338 */
+    rsft32u1ot(31..0) ::= rsft32u@1(rsft32u1i1(31..0), rsft32u1i2(4..0)); 	/* line# computer.cpp:94,95,105,106,289,290,292,293,322,339 */
+    lsft32u1ot(31..0) ::= lsft32u@1(lsft32u1i1(31..0), lsft32u1i2(4..0)); 	/* line# computer.cpp:126,127,128,139,140,141,302,303,333 */
+    lsft32u2ot(31..0) ::= lsft32u@2(lsft32u2i1(31..0), lsft32u2i2(4..0)); 	/* line# computer.cpp:319 */
+    mul16s1ot(23..0) ::= mul16s@1(mul16s1i1(8..0), mul16s1i2(15..0)); 	/* line# computer.cpp:174 */
+    add32s1ot(31..0) ::= add32s@1(add32s1i1(31..0), add32s1i2(20..0)); 	/* line# computer.cpp:51,55,60,78,262,266,282,286,299,313 */
+    add28s_271ot(26..0) ::= add28s_27@1(add28s_271i1(25..0), add28s_271i2(25..0)); 	/* line# computer.cpp:174 */
+    add24s1ot(24..0) ::= add24s@1(add24s1i1(23..0), add24s1i2(23..0)); 	/* line# computer.cpp:174 */
+    computer_ret(0..0) ::= computer_ret_r(0..0); 	/* line# computer.cpp:228 */
+    regs_d03(31..0) ::= (unsigned ter(0:32))(decoder(regs_ad03(4..0))); 	/* line# computer.cpp:19 */
+    regs_rd00(31..0) ::= dmux (RG_rs1(4..0)) { 	/* line# computer.cpp:19 */
+        case 0 :  regs_rg00(31..0);
+        case 1 :  regs_rg01(31..0);
+        case 2 :  regs_rg02(31..0);
+        case 3 :  regs_rg03(31..0);
+        case 4 :  regs_rg04(31..0);
+        case 5 :  regs_rg05(31..0);
+        case 6 :  regs_rg06(31..0);
+        case 7 :  regs_rg07(31..0);
+        case 8 :  regs_rg08(31..0);
+        case 9 :  regs_rg09(31..0);
+        case 10 :  regs_rg10(31..0);
+        case 11 :  regs_rg11(31..0);
+        case 12 :  regs_rg12(31..0);
+        case 13 :  regs_rg13(31..0);
+        case 14 :  regs_rg14(31..0);
+        case 15 :  regs_rg15(31..0);
+        case 16 :  regs_rg16(31..0);
+        case 17 :  regs_rg17(31..0);
+        case 18 :  regs_rg18(31..0);
+        case 19 :  regs_rg19(31..0);
+        case 20 :  regs_rg20(31..0);
+        case 21 :  regs_rg21(31..0);
+        case 22 :  regs_rg22(31..0);
+        case 23 :  regs_rg23(31..0);
+        case 24 :  regs_rg24(31..0);
+        case 25 :  regs_rg25(31..0);
+        case 26 :  regs_rg26(31..0);
+        case 27 :  regs_rg27(31..0);
+        case 28 :  regs_rg28(31..0);
+        case 29 :  regs_rg29(31..0);
+        case 30 :  regs_rg30(31..0);
+        case 31 :  regs_rg31(31..0);
+    };
+    regs_rd01(31..0) ::= dmux (regs_ad01(4..0)) { 	/* line# computer.cpp:19 */
+        case 0 :  regs_rg00(31..0);
+        case 1 :  regs_rg01(31..0);
+        case 2 :  regs_rg02(31..0);
+        case 3 :  regs_rg03(31..0);
+        case 4 :  regs_rg04(31..0);
+        case 5 :  regs_rg05(31..0);
+        case 6 :  regs_rg06(31..0);
+        case 7 :  regs_rg07(31..0);
+        case 8 :  regs_rg08(31..0);
+        case 9 :  regs_rg09(31..0);
+        case 10 :  regs_rg10(31..0);
+        case 11 :  regs_rg11(31..0);
+        case 12 :  regs_rg12(31..0);
+        case 13 :  regs_rg13(31..0);
+        case 14 :  regs_rg14(31..0);
+        case 15 :  regs_rg15(31..0);
+        case 16 :  regs_rg16(31..0);
+        case 17 :  regs_rg17(31..0);
+        case 18 :  regs_rg18(31..0);
+        case 19 :  regs_rg19(31..0);
+        case 20 :  regs_rg20(31..0);
+        case 21 :  regs_rg21(31..0);
+        case 22 :  regs_rg22(31..0);
+        case 23 :  regs_rg23(31..0);
+        case 24 :  regs_rg24(31..0);
+        case 25 :  regs_rg25(31..0);
+        case 26 :  regs_rg26(31..0);
+        case 27 :  regs_rg27(31..0);
+        case 28 :  regs_rg28(31..0);
+        case 29 :  regs_rg29(31..0);
+        case 30 :  regs_rg30(31..0);
+        case 31 :  regs_rg31(31..0);
+    };
+    regs_rd02(31..0) ::= dmux (regs_ad02(4..0)) { 	/* line# computer.cpp:19 */
+        case 0 :  regs_rg00(31..0);
+        case 1 :  regs_rg01(31..0);
+        case 2 :  regs_rg02(31..0);
+        case 3 :  regs_rg03(31..0);
+        case 4 :  regs_rg04(31..0);
+        case 5 :  regs_rg05(31..0);
+        case 6 :  regs_rg06(31..0);
+        case 7 :  regs_rg07(31..0);
+        case 8 :  regs_rg08(31..0);
+        case 9 :  regs_rg09(31..0);
+        case 10 :  regs_rg10(31..0);
+        case 11 :  regs_rg11(31..0);
+        case 12 :  regs_rg12(31..0);
+        case 13 :  regs_rg13(31..0);
+        case 14 :  regs_rg14(31..0);
+        case 15 :  regs_rg15(31..0);
+        case 16 :  regs_rg16(31..0);
+        case 17 :  regs_rg17(31..0);
+        case 18 :  regs_rg18(31..0);
+        case 19 :  regs_rg19(31..0);
+        case 20 :  regs_rg20(31..0);
+        case 21 :  regs_rg21(31..0);
+        case 22 :  regs_rg22(31..0);
+        case 23 :  regs_rg23(31..0);
+        case 24 :  regs_rg24(31..0);
+        case 25 :  regs_rg25(31..0);
+        case 26 :  regs_rg26(31..0);
+        case 27 :  regs_rg27(31..0);
+        case 28 :  regs_rg28(31..0);
+        case 29 :  regs_rg29(31..0);
+        case 30 :  regs_rg30(31..0);
+        case 31 :  regs_rg31(31..0);
+    };
+    regs_rg00(31..0) ::= nmux { 	/* line# computer.cpp:19 */
+        when ((unsigned ter(0:1))(regs_we03(0..0) & regs_d03(31..31))) :  regs_wd03(31..0);
+        default :  regs_rg00(31..0);
+    };
+    regs_rg01(31..0) ::= nmux { 	/* line# computer.cpp:19 */
+        when ((unsigned ter(0:1))(regs_we03(0..0) & regs_d03(30..30))) :  regs_wd03(31..0);
+        default :  regs_rg01(31..0);
+    };
+    regs_rg02(31..0) ::= nmux { 	/* line# computer.cpp:19 */
+        when ((unsigned ter(0:1))(regs_we03(0..0) & regs_d03(29..29))) :  regs_wd03(31..0);
+        default :  regs_rg02(31..0);
+    };
+    regs_rg03(31..0) ::= nmux { 	/* line# computer.cpp:19 */
+        when ((unsigned ter(0:1))(regs_we03(0..0) & regs_d03(28..28))) :  regs_wd03(31..0);
+        default :  regs_rg03(31..0);
+    };
+    regs_rg04(31..0) ::= nmux { 	/* line# computer.cpp:19 */
+        when ((unsigned ter(0:1))(regs_we03(0..0) & regs_d03(27..27))) :  regs_wd03(31..0);
+        default :  regs_rg04(31..0);
+    };
+    regs_rg05(31..0) ::= nmux { 	/* line# computer.cpp:19 */
+        when ((unsigned ter(0:1))(regs_we03(0..0) & regs_d03(26..26))) :  regs_wd03(31..0);
+        default :  regs_rg05(31..0);
+    };
+    regs_rg06(31..0) ::= nmux { 	/* line# computer.cpp:19 */
+        when ((unsigned ter(0:1))(regs_we03(0..0) & regs_d03(25..25))) :  regs_wd03(31..0);
+        default :  regs_rg06(31..0);
+    };
+    regs_rg07(31..0) ::= nmux { 	/* line# computer.cpp:19 */
+        when ((unsigned ter(0:1))(regs_we03(0..0) & regs_d03(24..24))) :  regs_wd03(31..0);
+        default :  regs_rg07(31..0);
+    };
+    regs_rg08(31..0) ::= nmux { 	/* line# computer.cpp:19 */
+        when ((unsigned ter(0:1))(regs_we03(0..0) & regs_d03(23..23))) :  regs_wd03(31..0);
+        default :  regs_rg08(31..0);
+    };
+    regs_rg09(31..0) ::= nmux { 	/* line# computer.cpp:19 */
+        when ((unsigned ter(0:1))(regs_we03(0..0) & regs_d03(22..22))) :  regs_wd03(31..0);
+        default :  regs_rg09(31..0);
+    };
+    regs_rg10(31..0) ::= nmux { 	/* line# computer.cpp:19 */
+        when ((unsigned ter(0:1))(regs_we03(0..0) & regs_d03(21..21))) :  regs_wd03(31..0);
+        default :  regs_rg10(31..0);
+    };
+    regs_rg11(31..0) ::= nmux { 	/* line# computer.cpp:19 */
+        when ((unsigned ter(0:1))(regs_we03(0..0) & regs_d03(20..20))) :  regs_wd03(31..0);
+        default :  regs_rg11(31..0);
+    };
+    regs_rg12(31..0) ::= nmux { 	/* line# computer.cpp:19 */
+        when ((unsigned ter(0:1))(regs_we03(0..0) & regs_d03(19..19))) :  regs_wd03(31..0);
+        default :  regs_rg12(31..0);
+    };
+    regs_rg13(31..0) ::= nmux { 	/* line# computer.cpp:19 */
+        when ((unsigned ter(0:1))(regs_we03(0..0) & regs_d03(18..18))) :  regs_wd03(31..0);
+        default :  regs_rg13(31..0);
+    };
+    regs_rg14(31..0) ::= nmux { 	/* line# computer.cpp:19 */
+        when ((unsigned ter(0:1))(regs_we03(0..0) & regs_d03(17..17))) :  regs_wd03(31..0);
+        default :  regs_rg14(31..0);
+    };
+    regs_rg15(31..0) ::= nmux { 	/* line# computer.cpp:19 */
+        when ((unsigned ter(0:1))(regs_we03(0..0) & regs_d03(16..16))) :  regs_wd03(31..0);
+        default :  regs_rg15(31..0);
+    };
+    regs_rg16(31..0) ::= nmux { 	/* line# computer.cpp:19 */
+        when ((unsigned ter(0:1))(regs_we03(0..0) & regs_d03(15..15))) :  regs_wd03(31..0);
+        default :  regs_rg16(31..0);
+    };
+    regs_rg17(31..0) ::= nmux { 	/* line# computer.cpp:19 */
+        when ((unsigned ter(0:1))(regs_we03(0..0) & regs_d03(14..14))) :  regs_wd03(31..0);
+        default :  regs_rg17(31..0);
+    };
+    regs_rg18(31..0) ::= nmux { 	/* line# computer.cpp:19 */
+        when ((unsigned ter(0:1))(regs_we03(0..0) & regs_d03(13..13))) :  regs_wd03(31..0);
+        default :  regs_rg18(31..0);
+    };
+    regs_rg19(31..0) ::= nmux { 	/* line# computer.cpp:19 */
+        when ((unsigned ter(0:1))(regs_we03(0..0) & regs_d03(12..12))) :  regs_wd03(31..0);
+        default :  regs_rg19(31..0);
+    };
+    regs_rg20(31..0) ::= nmux { 	/* line# computer.cpp:19 */
+        when ((unsigned ter(0:1))(regs_we03(0..0) & regs_d03(11..11))) :  regs_wd03(31..0);
+        default :  regs_rg20(31..0);
+    };
+    regs_rg21(31..0) ::= nmux { 	/* line# computer.cpp:19 */
+        when ((unsigned ter(0:1))(regs_we03(0..0) & regs_d03(10..10))) :  regs_wd03(31..0);
+        default :  regs_rg21(31..0);
+    };
+    regs_rg22(31..0) ::= nmux { 	/* line# computer.cpp:19 */
+        when ((unsigned ter(0:1))(regs_we03(0..0) & regs_d03(9..9))) :  regs_wd03(31..0);
+        default :  regs_rg22(31..0);
+    };
+    regs_rg23(31..0) ::= nmux { 	/* line# computer.cpp:19 */
+        when ((unsigned ter(0:1))(regs_we03(0..0) & regs_d03(8..8))) :  regs_wd03(31..0);
+        default :  regs_rg23(31..0);
+    };
+    regs_rg24(31..0) ::= nmux { 	/* line# computer.cpp:19 */
+        when ((unsigned ter(0:1))(regs_we03(0..0) & regs_d03(7..7))) :  regs_wd03(31..0);
+        default :  regs_rg24(31..0);
+    };
+    regs_rg25(31..0) ::= nmux { 	/* line# computer.cpp:19 */
+        when ((unsigned ter(0:1))(regs_we03(0..0) & regs_d03(6..6))) :  regs_wd03(31..0);
+        default :  regs_rg25(31..0);
+    };
+    regs_rg26(31..0) ::= nmux { 	/* line# computer.cpp:19 */
+        when ((unsigned ter(0:1))(regs_we03(0..0) & regs_d03(5..5))) :  regs_wd03(31..0);
+        default :  regs_rg26(31..0);
+    };
+    regs_rg27(31..0) ::= nmux { 	/* line# computer.cpp:19 */
+        when ((unsigned ter(0:1))(regs_we03(0..0) & regs_d03(4..4))) :  regs_wd03(31..0);
+        default :  regs_rg27(31..0);
+    };
+    regs_rg28(31..0) ::= nmux { 	/* line# computer.cpp:19 */
+        when ((unsigned ter(0:1))(regs_we03(0..0) & regs_d03(3..3))) :  regs_wd03(31..0);
+        default :  regs_rg28(31..0);
+    };
+    regs_rg29(31..0) ::= nmux { 	/* line# computer.cpp:19 */
+        when ((unsigned ter(0:1))(regs_we03(0..0) & regs_d03(2..2))) :  regs_wd03(31..0);
+        default :  regs_rg29(31..0);
+    };
+    regs_rg30(31..0) ::= nmux { 	/* line# computer.cpp:19 */
+        when ((unsigned ter(0:1))(regs_we03(0..0) & regs_d03(1..1))) :  regs_wd03(31..0);
+        default :  regs_rg30(31..0);
+    };
+    regs_rg31(31..0) ::= nmux { 	/* line# computer.cpp:19 */
+        when ((unsigned ter(0:1))(regs_we03(0..0) & regs_d03(0..0))) :  regs_wd03(31..0);
+        default :  regs_rg31(31..0);
+    };
+    CT_01(0..0) ::= ~FF_halt(0..0) & ~|>RG_PC(31..18); 	/* line# computer.cpp:235 */
+    CT_03(0..0) ::= |>imem_arg_MEMB32W65536_RD1(11..7); 	/* line# computer.cpp:236,244,261,366 */
+    CT_04(0..0) ::= ~|>imem_arg_MEMB32W65536_RD1(14..12); 	/* line# computer.cpp:236,363 */
+    TR_24(0..0) ::= dmux (FF_take_1(0..0)) { 	/* line# computer.cpp:314 */
+        case 1 :  1(0..0);
+        case 0 :  0(0..0);
+    };
+    CT_19(0..0) ::= |>RG_byte_offset_rd(4..0); 	/* line# computer.cpp:253,257,267,295,325,344 */
+    take_t1(0..0) ::= dmux ((unsigned ter(0:32))(RL_addr_next_pc_op1_result(31..0))) { 	/* line# computer.cpp:274 */
+        case 0 :  FF_take(0..0); 	/* line# computer.cpp:275 */
+        case 1 :  FF_take_1(0..0); 	/* line# computer.cpp:276 */
+        case 4 :  FF_take_1(0..0); 	/* line# computer.cpp:277 */
+        case 5 :  FF_take_1(0..0); 	/* line# computer.cpp:278 */
+        case 6 :  FF_take_1(0..0); 	/* line# computer.cpp:279 */
+        case 7 :  FF_take_1(0..0); 	/* line# computer.cpp:280 */
+        default :  0(0..0); 	/* line# computer.cpp:273 */
+    };
+    val2_t4(31..0) ::= dmux (RG_PC(31..0)) { 	/* line# computer.cpp:288 */
+        case 0 :  RL_addr_next_pc_op1_result(7..7) :: RL_addr_next_pc_op1_result(7..7) :: RL_addr_next_pc_op1_result(7..7) :: RL_addr_next_pc_op1_result(7..7) :: RL_addr_next_pc_op1_result(7..7) :: RL_addr_next_pc_op1_result(7..7) :: RL_addr_next_pc_op1_result(7..7) :: RL_addr_next_pc_op1_result(7..7) :: RL_addr_next_pc_op1_result(7..7) :: RL_addr_next_pc_op1_result(7..7) :: RL_addr_next_pc_op1_result(7..7) :: RL_addr_next_pc_op1_result(7..7) :: RL_addr_next_pc_op1_result(7..7) :: RL_addr_next_pc_op1_result(7..7) :: RL_addr_next_pc_op1_result(7..7) :: RL_addr_next_pc_op1_result(7..7) :: RL_addr_next_pc_op1_result(7..7) :: RL_addr_next_pc_op1_result(7..7) :: RL_addr_next_pc_op1_result(7..7) :: RL_addr_next_pc_op1_result(7..7) :: RL_addr_next_pc_op1_result(7..7) :: RL_addr_next_pc_op1_result(7..7) :: RL_addr_next_pc_op1_result(7..7) :: RL_addr_next_pc_op1_result(7..7) :: RL_addr_next_pc_op1_result(7..0); 	/* line# computer.cpp:51,289 */
+        case 1 :  rsft32u1ot(15..15) :: rsft32u1ot(15..15) :: rsft32u1ot(15..15) :: rsft32u1ot(15..15) :: rsft32u1ot(15..15) :: rsft32u1ot(15..15) :: rsft32u1ot(15..15) :: rsft32u1ot(15..15) :: rsft32u1ot(15..15) :: rsft32u1ot(15..15) :: rsft32u1ot(15..15) :: rsft32u1ot(15..15) :: rsft32u1ot(15..15) :: rsft32u1ot(15..15) :: rsft32u1ot(15..15) :: rsft32u1ot(15..15) :: rsft32u1ot(15..0); 	/* line# computer.cpp:51,105,106,290 */
+        case 2 :  dmem_arg_MEMB32W65536_RD1(31..0); 	/* line# computer.cpp:115,291 */
+        case 4 :  0(23..0) :: rsft32u1ot(7..0); 	/* line# computer.cpp:94,95,292 */
+        case 5 :  0(15..0) :: rsft32u1ot(15..0); 	/* line# computer.cpp:105,106,293 */
+        default :  0(31..0); 	/* line# computer.cpp:287 */
+    };
+    add28s_271i1(25..0) ::= RL_addr_next_pc_op1_result(25..0); 	/* line# computer.cpp:174 */
+    add28s_271i2(25..0) ::= add28s_27_261ot(25..0); 	/* line# computer.cpp:174 */
+    lsft32u2i1(31..0) ::= regs_rd01(31..0); 	/* line# computer.cpp:319 */
+    lsft32u2i2(4..0) ::= imem_arg_MEMB32W65536_RD1(24..20); 	/* line# computer.cpp:236,247,319 */
+    gop28u_11i1(25..0) ::= add28s_271ot(25..0); 	/* line# computer.cpp:174,178 */
+    gop28u_11i2(17..0) ::= 261120(17..0); 	/* line# computer.cpp:178 */
+    comp32u_12i1(31..0) ::= regs_rd01(31..0); 	/* line# computer.cpp:315 */
+    comp32u_12i2(31..0) ::= imem_arg_MEMB32W65536_RD1(31..31) :: imem_arg_MEMB32W65536_RD1(31..31) :: imem_arg_MEMB32W65536_RD1(31..31) :: imem_arg_MEMB32W65536_RD1(31..31) :: imem_arg_MEMB32W65536_RD1(31..31) :: imem_arg_MEMB32W65536_RD1(31..31) :: imem_arg_MEMB32W65536_RD1(31..31) :: imem_arg_MEMB32W65536_RD1(31..31) :: imem_arg_MEMB32W65536_RD1(31..31) :: imem_arg_MEMB32W65536_RD1(31..31) :: imem_arg_MEMB32W65536_RD1(31..31) :: imem_arg_MEMB32W65536_RD1(31..31) :: imem_arg_MEMB32W65536_RD1(31..31) :: imem_arg_MEMB32W65536_RD1(31..31) :: imem_arg_MEMB32W65536_RD1(31..31) :: imem_arg_MEMB32W65536_RD1(31..31) :: imem_arg_MEMB32W65536_RD1(31..31) :: imem_arg_MEMB32W65536_RD1(31..31) :: imem_arg_MEMB32W65536_RD1(31..31) :: imem_arg_MEMB32W65536_RD1(31..31) :: imem_arg_MEMB32W65536_RD1(31..20); 	/* line# computer.cpp:51,55,236,309,315 */
+    comp32u_13i1(31..0) ::= regs_rd02(31..0); 	/* line# computer.cpp:329,335 */
+    comp32u_13i2(31..0) ::= regs_rd01(31..0); 	/* line# computer.cpp:329,335 */
+    comp32s_11i1(31..0) ::= regs_rd02(31..0); 	/* line# computer.cpp:329,334 */
+    comp32s_11i2(31..0) ::= regs_rd01(31..0); 	/* line# computer.cpp:329,334 */
+    comp32s_1_11i1(31..0) ::= regs_rd01(31..0); 	/* line# computer.cpp:314 */
+    comp32s_1_11i2(11..0) ::= imem_arg_MEMB32W65536_RD1(31..20); 	/* line# computer.cpp:236,314 */
+    imem_arg_MEMB32W65536_RA1(15..0) ::= RG_PC(17..2); 	/* line# computer.cpp:236 */
+    U_01(0..0) ::= (unsigned ter(0:1))(ST1_02d(0..0) & CT_01(0..0)); 	/* line# computer.cpp:235 */
+    U_07(0..0) ::= (unsigned ter(0:1))(ST1_03d(0..0) & M_232(0..0)); 	/* line# computer.cpp:236,243,251 */
+    U_09(0..0) ::= (unsigned ter(0:1))(ST1_03d(0..0) & M_236(0..0)); 	/* line# computer.cpp:236,243,251 */
+    U_10(0..0) ::= (unsigned ter(0:1))(ST1_03d(0..0) & M_219(0..0)); 	/* line# computer.cpp:236,243,251 */
+    U_11(0..0) ::= (unsigned ter(0:1))(ST1_03d(0..0) & M_238(0..0)); 	/* line# computer.cpp:236,243,251 */
+    U_12(0..0) ::= (unsigned ter(0:1))(ST1_03d(0..0) & M_223(0..0)); 	/* line# computer.cpp:236,243,251 */
+    U_13(0..0) ::= (unsigned ter(0:1))(ST1_03d(0..0) & M_240(0..0)); 	/* line# computer.cpp:236,243,251 */
+    U_16(0..0) ::= (unsigned ter(0:1))(ST1_03d(0..0) & M_214(0..0)); 	/* line# computer.cpp:236,243,251 */
+    M_214(0..0) ::= ~|>(0(24..0) :: imem_arg_MEMB32W65536_RD1(6..0) ^ 11(31..0)); 	/* line# computer.cpp:236,243,251,312,363,366 */
+    M_219(0..0) ::= ~|>(0(24..0) :: imem_arg_MEMB32W65536_RD1(6..0) ^ 3(31..0)); 	/* line# computer.cpp:236,243,251,363,366 */
+    M_223(0..0) ::= ~|>(0(24..0) :: imem_arg_MEMB32W65536_RD1(6..0) ^ 19(31..0)); 	/* line# computer.cpp:236,243,251,312,363,366 */
+    M_227(0..0) ::= ~|>(0(24..0) :: imem_arg_MEMB32W65536_RD1(6..0) ^ 23(31..0)); 	/* line# computer.cpp:236,243,251,363,366 */
+    M_229(0..0) ::= ~|>(0(24..0) :: imem_arg_MEMB32W65536_RD1(6..0) ^ 55(31..0)); 	/* line# computer.cpp:236,243,251,363,366 */
+    M_232(0..0) ::= ~|>(0(24..0) :: imem_arg_MEMB32W65536_RD1(6..0) ^ 111(31..0)); 	/* line# computer.cpp:236,243,251,363,366 */
+    M_234(0..0) ::= ~|>(0(24..0) :: imem_arg_MEMB32W65536_RD1(6..0) ^ 103(31..0)); 	/* line# computer.cpp:236,243,251,363,366 */
+    M_236(0..0) ::= ~|>(0(24..0) :: imem_arg_MEMB32W65536_RD1(6..0) ^ 99(31..0)); 	/* line# computer.cpp:236,243,251,312,363,366 */
+    M_238(0..0) ::= ~|>(0(24..0) :: imem_arg_MEMB32W65536_RD1(6..0) ^ 35(31..0)); 	/* line# computer.cpp:236,243,251,312,363,366 */
+    M_240(0..0) ::= ~|>(0(24..0) :: imem_arg_MEMB32W65536_RD1(6..0) ^ 51(31..0)); 	/* line# computer.cpp:236,243,251,312,363,366 */
+    U_18(0..0) ::= (unsigned ter(0:1))(U_07(0..0) & CT_03(0..0)); 	/* line# computer.cpp:236,244,261 */
+    M_197(0..0) ::= ~|>(0(28..0) :: imem_arg_MEMB32W65536_RD1(14..12)); 	/* line# computer.cpp:236,274,312,331 */
+    M_203(0..0) ::= ~|>(0(28..0) :: imem_arg_MEMB32W65536_RD1(14..12) ^ 7(31..0)); 	/* line# computer.cpp:236,274,312,331 */
+    M_207(0..0) ::= ~|>(0(28..0) :: imem_arg_MEMB32W65536_RD1(14..12) ^ 4(31..0)); 	/* line# computer.cpp:236,274,312,331 */
+    M_210(0..0) ::= ~|>(0(28..0) :: imem_arg_MEMB32W65536_RD1(14..12) ^ 1(31..0)); 	/* line# computer.cpp:236,274,312,331 */
+    M_216(0..0) ::= ~|>(0(28..0) :: imem_arg_MEMB32W65536_RD1(14..12) ^ 5(31..0)); 	/* line# computer.cpp:236,274,312,331 */
+    M_225(0..0) ::= ~|>(0(28..0) :: imem_arg_MEMB32W65536_RD1(14..12) ^ 6(31..0)); 	/* line# computer.cpp:236,274,312,331 */
+    U_35(0..0) ::= (unsigned ter(0:1))(U_13(0..0) & M_210(0..0)); 	/* line# computer.cpp:236,331 */
+    M_200(0..0) ::= ~|>(0(28..0) :: imem_arg_MEMB32W65536_RD1(14..12) ^ 2(31..0)); 	/* line# computer.cpp:236,312,331 */
+    M_220(0..0) ::= ~|>(0(28..0) :: imem_arg_MEMB32W65536_RD1(14..12) ^ 3(31..0)); 	/* line# computer.cpp:236,312,331 */
+    U_39(0..0) ::= (unsigned ter(0:1))(U_13(0..0) & M_216(0..0)); 	/* line# computer.cpp:236,331 */
+    U_42(0..0) ::= (unsigned ter(0:1))(U_39(0..0) & imem_arg_MEMB32W65536_RD1(30..30)); 	/* line# computer.cpp:236,338 */
+    U_43(0..0) ::= (unsigned ter(0:1))(U_39(0..0) & ~imem_arg_MEMB32W65536_RD1(30..30)); 	/* line# computer.cpp:236,338 */
+    U_44(0..0) ::= (unsigned ter(0:1))(U_16(0..0) & CT_04(0..0)); 	/* line# computer.cpp:363 */
+    U_46(0..0) ::= (unsigned ter(0:1))(U_44(0..0) & CT_03(0..0)); 	/* line# computer.cpp:366 */
+    U_67(0..0) ::= (unsigned ter(0:1))(ST1_04d(0..0) & M_224(0..0)); 	/* line# computer.cpp:251 */
+    U_71(0..0) ::= (unsigned ter(0:1))(ST1_04d(0..0) & M_215(0..0)); 	/* line# computer.cpp:251 */
+    M_206(0..0) ::= ~|>(RG_07(31..0) ^ 15(31..0)); 	/* line# computer.cpp:251,253,257 */
+    M_215(0..0) ::= ~|>(RG_07(31..0) ^ 11(31..0)); 	/* line# computer.cpp:251,253,257 */
+    M_221(0..0) ::= ~|>(RG_07(31..0) ^ 3(31..0)); 	/* line# computer.cpp:251,253,257 */
+    M_224(0..0) ::= ~|>(RG_07(31..0) ^ 19(31..0)); 	/* line# computer.cpp:251,253,257 */
+    M_228(0..0) ::= ~|>(RG_07(31..0) ^ 23(31..0)); 	/* line# computer.cpp:251,253,257 */
+    M_230(0..0) ::= ~|>(RG_07(31..0) ^ 55(31..0)); 	/* line# computer.cpp:251,253,257 */
+    M_233(0..0) ::= ~|>(RG_07(31..0) ^ 111(31..0)); 	/* line# computer.cpp:251,253,257 */
+    M_235(0..0) ::= ~|>(RG_07(31..0) ^ 103(31..0)); 	/* line# computer.cpp:251,253,257 */
+    M_237(0..0) ::= ~|>(RG_07(31..0) ^ 99(31..0)); 	/* line# computer.cpp:251,253,257 */
+    M_239(0..0) ::= ~|>(RG_07(31..0) ^ 35(31..0)); 	/* line# computer.cpp:251,253,257 */
+    M_241(0..0) ::= ~|>(RG_07(31..0) ^ 51(31..0)); 	/* line# computer.cpp:251,253,257 */
+    M_243(0..0) ::= ~|>(RG_07(31..0) ^ 115(31..0)); 	/* line# computer.cpp:251,253,257 */
+    U_73(0..0) ::= (unsigned ter(0:1))(U_67(0..0) & ~RG_base_addr_imm1_instr(23..23)); 	/* line# computer.cpp:321 */
+    U_81(0..0) ::= (unsigned ter(0:1))(ST1_05d(0..0) & M_224(0..0)); 	/* line# computer.cpp:251 */
+    U_85(0..0) ::= (unsigned ter(0:1))(ST1_05d(0..0) & M_215(0..0)); 	/* line# computer.cpp:251 */
+    U_89(0..0) ::= (unsigned ter(0:1))(U_81(0..0) & M_199(0..0)); 	/* line# computer.cpp:312 */
+    U_96(0..0) ::= (unsigned ter(0:1))(U_81(0..0) & M_218(0..0)); 	/* line# computer.cpp:312 */
+    U_97(0..0) ::= (unsigned ter(0:1))(U_96(0..0) & FF_take_1(0..0)); 	/* line# computer.cpp:321 */
+    U_99(0..0) ::= (unsigned ter(0:1))(U_81(0..0) & CT_19(0..0)); 	/* line# computer.cpp:325 */
+    U_103(0..0) ::= (unsigned ter(0:1))(ST1_06d(0..0) & M_228(0..0)); 	/* line# computer.cpp:251 */
+    U_107(0..0) ::= (unsigned ter(0:1))(ST1_06d(0..0) & M_221(0..0)); 	/* line# computer.cpp:251 */
+    U_108(0..0) ::= (unsigned ter(0:1))(ST1_06d(0..0) & M_239(0..0)); 	/* line# computer.cpp:251 */
+    U_110(0..0) ::= (unsigned ter(0:1))(ST1_06d(0..0) & M_241(0..0)); 	/* line# computer.cpp:251 */
+    U_113(0..0) ::= (unsigned ter(0:1))(ST1_06d(0..0) & M_215(0..0)); 	/* line# computer.cpp:251 */
+    M_295(0..0) ::= ~(M_306(0..0) | M_239(0..0) | M_224(0..0) | M_241(0..0) | M_206(0..0) | M_243(0..0) | M_215(0..0)); 	/* line# computer.cpp:251,253,257 */
+    U_117(0..0) ::= (unsigned ter(0:1))(U_107(0..0) & M_198(0..0)); 	/* line# computer.cpp:288 */
+    M_198(0..0) ::= ~|>(0(28..0) :: RG_funct3_rs2_word_addr(2..0)); 	/* line# computer.cpp:288,301 */
+    M_201(0..0) ::= ~|>(0(28..0) :: RG_funct3_rs2_word_addr(2..0) ^ 2(31..0)); 	/* line# computer.cpp:288,301 */
+    M_212(0..0) ::= ~|>(0(28..0) :: RG_funct3_rs2_word_addr(2..0) ^ 1(31..0)); 	/* line# computer.cpp:288,301 */
+    U_123(0..0) ::= (unsigned ter(0:1))(U_108(0..0) & M_198(0..0)); 	/* line# computer.cpp:301 */
+    U_124(0..0) ::= (unsigned ter(0:1))(U_108(0..0) & M_212(0..0)); 	/* line# computer.cpp:301 */
+    U_125(0..0) ::= (unsigned ter(0:1))(U_108(0..0) & M_201(0..0)); 	/* line# computer.cpp:301 */
+    U_135(0..0) ::= (unsigned ter(0:1))(ST1_07d(0..0) & M_230(0..0)); 	/* line# computer.cpp:251 */
+    U_137(0..0) ::= (unsigned ter(0:1))(ST1_07d(0..0) & M_233(0..0)); 	/* line# computer.cpp:251 */
+    U_138(0..0) ::= (unsigned ter(0:1))(ST1_07d(0..0) & M_235(0..0)); 	/* line# computer.cpp:251 */
+    U_140(0..0) ::= (unsigned ter(0:1))(ST1_07d(0..0) & M_221(0..0)); 	/* line# computer.cpp:251 */
+    U_146(0..0) ::= (unsigned ter(0:1))(ST1_07d(0..0) & M_215(0..0)); 	/* line# computer.cpp:251 */
+    U_148(0..0) ::= (unsigned ter(0:1))(U_138(0..0) & CT_19(0..0)); 	/* line# computer.cpp:267 */
+    M_199(0..0) ::= ~|>RG_PC(31..0); 	/* line# computer.cpp:288,301,312,331 */
+    U_149(0..0) ::= (unsigned ter(0:1))(U_140(0..0) & M_199(0..0)); 	/* line# computer.cpp:288 */
+    U_152(0..0) ::= (unsigned ter(0:1))(U_140(0..0) & M_209(0..0)); 	/* line# computer.cpp:288 */
+    M_218(0..0) ::= ~|>(RG_PC(31..0) ^ 5(31..0)); 	/* line# computer.cpp:288,312 */
+    M_202(0..0) ::= ~|>(RG_PC(31..0) ^ 2(31..0)); 	/* line# computer.cpp:288,301 */
+    M_209(0..0) ::= ~|>(RG_PC(31..0) ^ 4(31..0)); 	/* line# computer.cpp:288 */
+    M_213(0..0) ::= ~|>(RG_PC(31..0) ^ 1(31..0)); 	/* line# computer.cpp:288,301 */
+    U_164(0..0) ::= (unsigned ter(0:1))(ST1_08d(0..0) & M_221(0..0)); 	/* line# computer.cpp:251 */
+    U_165(0..0) ::= (unsigned ter(0:1))(ST1_08d(0..0) & M_239(0..0)); 	/* line# computer.cpp:251 */
+    U_167(0..0) ::= (unsigned ter(0:1))(ST1_08d(0..0) & M_241(0..0)); 	/* line# computer.cpp:251 */
+    U_170(0..0) ::= (unsigned ter(0:1))(ST1_08d(0..0) & M_215(0..0)); 	/* line# computer.cpp:251 */
+    U_172(0..0) ::= (unsigned ter(0:1))(U_164(0..0) & M_199(0..0)); 	/* line# computer.cpp:288 */
+    U_175(0..0) ::= (unsigned ter(0:1))(U_164(0..0) & M_209(0..0)); 	/* line# computer.cpp:288 */
+    U_176(0..0) ::= (unsigned ter(0:1))(U_164(0..0) & M_218(0..0)); 	/* line# computer.cpp:288 */
+    U_178(0..0) ::= (unsigned ter(0:1))(U_167(0..0) & M_199(0..0)); 	/* line# computer.cpp:331 */
+    U_186(0..0) ::= (unsigned ter(0:1))(U_167(0..0) & CT_19(0..0)); 	/* line# computer.cpp:344 */
+    U_196(0..0) ::= (unsigned ter(0:1))(ST1_09d(0..0) & M_221(0..0)); 	/* line# computer.cpp:251 */
+    U_197(0..0) ::= (unsigned ter(0:1))(ST1_09d(0..0) & M_239(0..0)); 	/* line# computer.cpp:251 */
+    U_202(0..0) ::= (unsigned ter(0:1))(ST1_09d(0..0) & M_215(0..0)); 	/* line# computer.cpp:251 */
+    U_205(0..0) ::= (unsigned ter(0:1))(U_196(0..0) & M_213(0..0)); 	/* line# computer.cpp:288 */
+    U_206(0..0) ::= (unsigned ter(0:1))(U_196(0..0) & M_202(0..0)); 	/* line# computer.cpp:288 */
+    U_210(0..0) ::= (unsigned ter(0:1))(U_197(0..0) & M_199(0..0)); 	/* line# computer.cpp:301 */
+    U_211(0..0) ::= (unsigned ter(0:1))(U_197(0..0) & M_213(0..0)); 	/* line# computer.cpp:301 */
+    U_218(0..0) ::= (unsigned ter(0:1))(ST1_10d(0..0) & M_237(0..0)); 	/* line# computer.cpp:251 */
+    U_219(0..0) ::= (unsigned ter(0:1))(ST1_10d(0..0) & M_221(0..0)); 	/* line# computer.cpp:251 */
+    U_220(0..0) ::= (unsigned ter(0:1))(ST1_10d(0..0) & M_239(0..0)); 	/* line# computer.cpp:251 */
+    U_225(0..0) ::= (unsigned ter(0:1))(ST1_10d(0..0) & M_215(0..0)); 	/* line# computer.cpp:251 */
+    U_227(0..0) ::= (unsigned ter(0:1))(U_218(0..0) & take_t1(0..0)); 	/* line# computer.cpp:282 */
+    U_229(0..0) ::= (unsigned ter(0:1))(U_219(0..0) & M_213(0..0)); 	/* line# computer.cpp:288 */
+    U_231(0..0) ::= (unsigned ter(0:1))(U_219(0..0) & M_209(0..0)); 	/* line# computer.cpp:288 */
+    U_232(0..0) ::= (unsigned ter(0:1))(U_219(0..0) & M_218(0..0)); 	/* line# computer.cpp:288 */
+    U_234(0..0) ::= (unsigned ter(0:1))(U_219(0..0) & CT_19(0..0)); 	/* line# computer.cpp:295 */
+    U_236(0..0) ::= (unsigned ter(0:1))(U_220(0..0) & M_213(0..0)); 	/* line# computer.cpp:301 */
+    U_242(0..0) ::= (unsigned ter(0:1))(ST1_11d(0..0) & M_235(0..0)); 	/* line# computer.cpp:251 */
+    U_249(0..0) ::= (unsigned ter(0:1))(ST1_11d(0..0) & M_243(0..0)); 	/* line# computer.cpp:251 */
+    U_250(0..0) ::= (unsigned ter(0:1))(ST1_11d(0..0) & M_215(0..0)); 	/* line# computer.cpp:251 */
+    U_251(0..0) ::= (unsigned ter(0:1))(ST1_11d(0..0) & M_295(0..0)); 	/* line# computer.cpp:251 */
+    U_256(0..0) ::= (unsigned ter(0:1))((unsigned ter(0:1))(U_250(0..0) & FF_take_1(0..0)) & FF_take(0..0)); 	/* line# computer.cpp:363,366 */
+    TR_19(2..0) ::= nmux {
+        when (M_270(0..0)) :  imem_arg_MEMB32W65536_RD1(14..12); 	/* line# computer.cpp:236,312,331 */
+        when (M_276(0..0)) :  RG_funct3_rs2_word_addr(2..0); 	/* line# computer.cpp:288,301 */
+    };
+    M_270(0..0) ::= (unsigned ter(0:1))(U_12(0..0) | U_13(0..0));
+    M_276(0..0) ::= (unsigned ter(0:1))(U_107(0..0) | U_108(0..0));
+    TR_01(15..0) ::= nmux {
+        when ((unsigned ter(0:1))(M_270(0..0) | M_276(0..0))) :  (unsigned ter(0:16))(0(12..0) :: TR_19(2..0)); 	/* line# computer.cpp:236,288,301,312,331 */
+        when (U_71(0..0)) :  addsub20s_181ot(17..2); 	/* line# computer.cpp:110,115,171 */
+    };
+    RG_PC(31..0) ::= nmux { 	/* line# computer.cpp:251 */
+        when ((unsigned ter(0:1))((unsigned ter(0:1))(M_270(0..0) | U_71(0..0)) | M_276(0..0))) :  (unsigned ter(0:32))(0(15..0) :: TR_01(15..0)); 	/* line# computer.cpp:110,115,171,236,288,301,312,331 */
+        when ((unsigned ter(0:1))(ST1_11d(0..0) & ((unsigned ter(0:1))(ST1_11d(0..0) & M_230(0..0)) | (unsigned ter(0:1))(ST1_11d(0..0) & M_228(0..0)) | (unsigned ter(0:1))(ST1_11d(0..0) & M_221(0..0)) | (unsigned ter(0:1))(ST1_11d(0..0) & M_239(0..0)) | (unsigned ter(0:1))(ST1_11d(0..0) & M_224(0..0)) | (unsigned ter(0:1))(ST1_11d(0..0) & M_241(0..0)) | U_249(0..0) | U_250(0..0) | U_251(0..0) | (unsigned ter(0:1))(ST1_11d(0..0) & M_206(0..0))))) :  RG_03(31..0); 	/* line# computer.cpp:249 */
+        when ((unsigned ter(0:1))(ST1_11d(0..0) & (unsigned ter(0:1))((ST1_11d(0..0) & M_233(0..0))))) :  (unsigned ter(0:32))(RL_addr_next_pc_op1_result(31..0)); 	/* line# computer.cpp:51,78,262 */
+        when ((unsigned ter(0:1))(ST1_11d(0..0) & U_242(0..0))) :  add32s1ot(31..1) :: 0(0..0); 	/* line# computer.cpp:51,55,266,268 */
+        when ((unsigned ter(0:1))(ST1_11d(0..0) & (unsigned ter(0:1))((ST1_11d(0..0) & M_237(0..0))))) :  M_139_t(30..0) :: RG_PC(0..0);
+        default :  RG_PC(31..0);
+    };
+    FF_halt(0..0) ::= nmux { 	/* line# computer.cpp:363 */
+        when (ST1_01d(0..0)) :  0(0..0); 	/* line# computer.cpp:233 */
+        when (U_249(0..0) | (unsigned ter(0:1))(U_250(0..0) & ~FF_take_1(0..0)) | U_251(0..0)) :  1(0..0); 	/* line# computer.cpp:351,369,379 */
+        default :  FF_halt(0..0);
+    };
+    TR_02(15..0) ::= nmux {
+        when (ST1_04d(0..0)) :  addsub20s_182ot(17..2); 	/* line# computer.cpp:110,115,171 */
+        when (ST1_05d(0..0)) :  addsub20s_183ot(17..2); 	/* line# computer.cpp:110,115,171 */
+    };
+    RG_mask_op2(31..0) ::= nmux { 	/* line# computer.cpp:288 */
+        when (ST1_03d(0..0)) :  regs_rd01(31..0); 	/* line# computer.cpp:329 */
+        when ((unsigned ter(0:1))(U_71(0..0) | U_85(0..0))) :  (unsigned ter(0:32))(0(15..0) :: TR_02(15..0)); 	/* line# computer.cpp:110,115,171 */
+        when ((unsigned ter(0:1))(U_108(0..0) | U_165(0..0))) :  ~lsft32u1ot(31..0); 	/* line# computer.cpp:126,139 */
+        when (M_277(0..0)) :  mul16s1ot(23..23) :: mul16s1ot(23..23) :: mul16s1ot(23..23) :: mul16s1ot(23..23) :: mul16s1ot(23..23) :: mul16s1ot(23..23) :: mul16s1ot(23..23) :: mul16s1ot(23..23) :: mul16s1ot(23..0); 	/* line# computer.cpp:174 */
+        when ((unsigned ter(0:1))(U_196(0..0) & M_209(0..0)) | (unsigned ter(0:1))(U_196(0..0) & M_218(0..0))) :  dmem_arg_MEMB32W65536_RD1(31..0); 	/* line# computer.cpp:95,106,292,293 */
+        when (U_202(0..0)) :  add24s1ot(24..24) :: add24s1ot(24..24) :: add24s1ot(24..24) :: add24s1ot(24..24) :: add24s1ot(24..24) :: add24s1ot(24..24) :: add24s1ot(24..24) :: add24s1ot(24..0); 	/* line# computer.cpp:174 */
+        default :  (unsigned)(RG_mask_op2(31..0));
+    };
+    RG_03(31..0) ::= nmux {
+        when (ST1_02d(0..0)) :  addsub32u1ot(31..0); 	/* line# computer.cpp:249 */
+        default :  RG_03(31..0);
+    };
+    TR_03(30..0) ::= nmux {
+        when (U_09(0..0)) :  (unsigned ter(0:31))(0(27..0) :: imem_arg_MEMB32W65536_RD1(14..12)); 	/* line# computer.cpp:236,274 */
+        when (U_218(0..0)) :  add32s1ot(31..1); 	/* line# computer.cpp:282 */
+    };
+    M_271(0..0) ::= (unsigned ter(0:1))(U_67(0..0) | U_110(0..0));
+    TR_04(23..0) ::= nmux {
+        when (M_271(0..0)) :  rsft32u1ot(31..8); 	/* line# computer.cpp:322,339 */
+        when (U_172(0..0)) :  (unsigned ter(0:24))((unsigned ter(0:23))((unsigned ter(0:22))((unsigned ter(0:21))((unsigned ter(0:20))((unsigned ter(0:19))((unsigned ter(0:18))((unsigned ter(0:17))((unsigned ter(0:16))((unsigned ter(0:15))((unsigned ter(0:14))((unsigned ter(0:13))((unsigned ter(0:12))((unsigned ter(0:11))((unsigned ter(0:10))((unsigned ter(0:9))((unsigned ter(0:8))((unsigned ter(0:7))((unsigned ter(0:6))((unsigned ter(0:5))((unsigned ter(0:4))((unsigned ter(0:3))((unsigned ter(0:2))(rsft32u1ot(7..7) :: rsft32u1ot(7..7)) :: rsft32u1ot(7..7)) :: rsft32u1ot(7..7)) :: rsft32u1ot(7..7)) :: rsft32u1ot(7..7)) :: rsft32u1ot(7..7)) :: rsft32u1ot(7..7)) :: rsft32u1ot(7..7)) :: rsft32u1ot(7..7)) :: rsft32u1ot(7..7)) :: rsft32u1ot(7..7)) :: rsft32u1ot(7..7)) :: rsft32u1ot(7..7)) :: rsft32u1ot(7..7)) :: rsft32u1ot(7..7)) :: rsft32u1ot(7..7)) :: rsft32u1ot(7..7)) :: rsft32u1ot(7..7)) :: rsft32u1ot(7..7)) :: rsft32u1ot(7..7)) :: rsft32u1ot(7..7)) :: rsft32u1ot(7..7)) :: rsft32u1ot(7..7)); 	/* line# computer.cpp:51,94,95,289 */
+    };
+    RL_addr_next_pc_op1_result(31..0) ::= nmux { 	/* line# computer.cpp:236,331 */
+        when ((unsigned ter(0:1))(U_13(0..0) & M_197(0..0)) | (unsigned ter(0:1))(U_13(0..0) & M_207(0..0)) | U_43(0..0) | (unsigned ter(0:1))(U_13(0..0) & M_225(0..0)) | (unsigned ter(0:1))(U_13(0..0) & M_203(0..0))) :  regs_rd02(31..0); 	/* line# computer.cpp:329 */
+        when ((unsigned ter(0:1))(U_09(0..0) | U_218(0..0))) :  (unsigned ter(0:32))(0(0..0) :: TR_03(30..0)); 	/* line# computer.cpp:236,274,282 */
+        when (U_11(0..0)) :  regs_rd01(31..0); 	/* line# computer.cpp:300 */
+        when (U_12(0..0)) :  lsft32u2ot(31..0); 	/* line# computer.cpp:319 */
+        when (U_35(0..0) | U_210(0..0)) :  lsft32u1ot(31..0); 	/* line# computer.cpp:127,128,302,333 */
+        when (U_42(0..0)) :  rsft32s1ot(31..0); 	/* line# computer.cpp:338 */
+        when ((unsigned ter(0:1))(M_271(0..0) | U_172(0..0))) :  (unsigned ter(0:32))(TR_04(23..0) :: rsft32u1ot(7..0)); 	/* line# computer.cpp:51,94,95,289,322,339 */
+        when (U_71(0..0)) :  mul16s1ot(23..23) :: mul16s1ot(23..23) :: mul16s1ot(23..23) :: mul16s1ot(23..23) :: mul16s1ot(23..23) :: mul16s1ot(23..23) :: mul16s1ot(23..23) :: mul16s1ot(23..23) :: mul16s1ot(23..0); 	/* line# computer.cpp:174 */
+        when (U_85(0..0)) :  add24s1ot(24..24) :: add24s1ot(24..24) :: add24s1ot(24..24) :: add24s1ot(24..24) :: add24s1ot(24..24) :: add24s1ot(24..24) :: add24s1ot(24..24) :: add24s1ot(24..0); 	/* line# computer.cpp:174 */
+        when ((unsigned ter(0:1))(U_107(0..0) | U_137(0..0))) :  add32s1ot(31..0); 	/* line# computer.cpp:51,55,78,262,286 */
+        when (U_138(0..0)) :  regs_rd00(31..0); 	/* line# computer.cpp:51,55,266 */
+        when (U_146(0..0)) :  add28s_27_261ot(25..25) :: add28s_27_261ot(25..25) :: add28s_27_261ot(25..25) :: add28s_27_261ot(25..25) :: add28s_27_261ot(25..25) :: add28s_27_261ot(25..25) :: add28s_27_261ot(25..0); 	/* line# computer.cpp:174 */
+        default :  (unsigned)(RL_addr_next_pc_op1_result(31..0));
+    };
+    M_264(31..0) ::= regs_rd01(31..0) ^ regs_rd02(31..0); 	/* line# computer.cpp:275,276 */
+    FF_take(0..0) ::= nmux {
+        when (U_09(0..0)) :  ~|>M_264(31..0); 	/* line# computer.cpp:275 */
+        when (U_16(0..0)) :  CT_03(0..0); 	/* line# computer.cpp:366 */
+        when (U_13(0..0)) :  imem_arg_MEMB32W65536_RD1(30..30); 	/* line# computer.cpp:236,338 */
+        default :  FF_take(0..0);
+    };
+    RG_07(31..0) ::= nmux {
+        when (ST1_03d(0..0)) :  0(24..0) :: imem_arg_MEMB32W65536_RD1(6..0); 	/* line# computer.cpp:236,243,251 */
+        default :  RG_07(31..0);
+    };
+    TR_05(23..0) ::= nmux {
+        when (M_223(0..0) & M_197(0..0) | M_223(0..0) & M_207(0..0) | M_223(0..0) & M_225(0..0) | M_223(0..0) & M_203(0..0)) :  (unsigned ter(0:24))((unsigned ter(0:12))((unsigned ter(0:11))((unsigned ter(0:10))((unsigned ter(0:9))((unsigned ter(0:8))((unsigned ter(0:7))((unsigned ter(0:6))((unsigned ter(0:5))((unsigned ter(0:4))((unsigned ter(0:3))((unsigned ter(0:2))(imem_arg_MEMB32W65536_RD1(31..31) :: imem_arg_MEMB32W65536_RD1(31..31)) :: imem_arg_MEMB32W65536_RD1(31..31)) :: imem_arg_MEMB32W65536_RD1(31..31)) :: imem_arg_MEMB32W65536_RD1(31..31)) :: imem_arg_MEMB32W65536_RD1(31..31)) :: imem_arg_MEMB32W65536_RD1(31..31)) :: imem_arg_MEMB32W65536_RD1(31..31)) :: imem_arg_MEMB32W65536_RD1(31..31)) :: imem_arg_MEMB32W65536_RD1(31..31)) :: imem_arg_MEMB32W65536_RD1(31..31)) :: imem_arg_MEMB32W65536_RD1(31..31)) :: imem_arg_MEMB32W65536_RD1(31..20)); 	/* line# computer.cpp:51,55,236,309 */
+        when (M_223(0..0) & M_216(0..0) | M_240(0..0) | M_229(0..0) | M_227(0..0) | M_232(0..0) | M_234(0..0) | M_236(0..0) | M_219(0..0) | M_238(0..0)) :  imem_arg_MEMB32W65536_RD1(30..7); 	/* line# computer.cpp:236 */
+    };
+    RG_base_addr_imm1_instr(24..0) ::= nmux { 	/* line# computer.cpp:236,243,251,312 */
+        when ((unsigned ter(0:1))((unsigned ter(0:1))(U_12(0..0) & M_197(0..0)) | (unsigned ter(0:1))(U_12(0..0) & M_207(0..0)) | (unsigned ter(0:1))(U_12(0..0) & M_225(0..0)) | (unsigned ter(0:1))(U_12(0..0) & M_203(0..0)) | ((unsigned ter(0:1))(U_12(0..0) & M_216(0..0)) | U_13(0..0) | (unsigned ter(0:1))(ST1_03d(0..0) & M_229(0..0)) | (unsigned ter(0:1))(ST1_03d(0..0) & M_227(0..0)) | U_07(0..0) | (unsigned ter(0:1))(ST1_03d(0..0) & M_234(0..0)) | U_09(0..0) | U_10(0..0) | U_11(0..0)))) :  (unsigned ter(0:25))(imem_arg_MEMB32W65536_RD1(31..31) :: TR_05(23..0)); 	/* line# computer.cpp:51,55,236,309 */
+        when (U_16(0..0)) :  0(6..0) :: addsub20s_181ot(17..0); 	/* line# computer.cpp:365 */
+        when (U_225(0..0)) :  mul16s1ot(23..23) :: mul16s1ot(23..0); 	/* line# computer.cpp:174 */
+        default :  (unsigned)(RG_base_addr_imm1_instr(24..0));
+    };
+    RG_rs1(4..0) ::= nmux {
+        when (ST1_03d(0..0)) :  imem_arg_MEMB32W65536_RD1(19..15); 	/* line# computer.cpp:236,246 */
+        default :  RG_rs1(4..0);
+    };
+    M_315(1..0) ::= nmux {
+        when (M_266(0..0)) :  add32s1ot(1..0); 	/* line# computer.cpp:51,60,138,139,299 */
+        when (ST1_08d(0..0)) :  RG_byte_offset_rd(1..0); 	/* line# computer.cpp:126 */
+    };
+    RG_byte_offset_rd(4..0) ::= nmux {
+        when (ST1_03d(0..0)) :  imem_arg_MEMB32W65536_RD1(11..7); 	/* line# computer.cpp:236,244 */
+        when (U_123(0..0)) :  0(2..0) :: add32s1ot(1..0); 	/* line# computer.cpp:51,60,125,299 */
+        when (M_281(0..0)) :  (unsigned ter(0:5))(M_315(1..0) :: 0(2..0)); 	/* line# computer.cpp:51,60,126,138,139,299 */
+        default :  RG_byte_offset_rd(4..0);
+    };
+    TR_07(4..0) ::= nmux {
+        when (M_219(0..0) | M_238(0..0)) :  (unsigned ter(0:5))(0(1..0) :: imem_arg_MEMB32W65536_RD1(14..12)); 	/* line# computer.cpp:236,245 */
+        when (M_223(0..0)) :  imem_arg_MEMB32W65536_RD1(24..20); 	/* line# computer.cpp:236,247 */
+    };
+    RG_funct3_rs2_word_addr(15..0) ::= nmux {
+        when ((unsigned ter(0:1))(U_10(0..0) | U_11(0..0) | U_12(0..0))) :  (unsigned ter(0:16))(0(10..0) :: TR_07(4..0)); 	/* line# computer.cpp:236,245,247 */
+        when (U_85(0..0)) :  addsub20s_182ot(17..2); 	/* line# computer.cpp:110,115,171 */
+        when ((unsigned ter(0:1))((unsigned ter(0:1))(U_107(0..0) | M_280(0..0)) | U_140(0..0))) :  addsub32u1ot(17..2); 	/* line# computer.cpp:88,93,119,124,132,137 */
+        when (U_113(0..0)) :  RG_mask_op2(15..0); 	/* line# computer.cpp:115,171 */
+        default :  RG_funct3_rs2_word_addr(15..0);
+    };
+    FF_take_1(0..0) ::= nmux { 	/* line# computer.cpp:236,251,274,312,331 */
+        when ((unsigned ter(0:1))(U_09(0..0) & M_210(0..0))) :  |>M_264(31..0); 	/* line# computer.cpp:276 */
+        when ((unsigned ter(0:1))(U_09(0..0) & M_207(0..0))) :  comp32s_12ot(3..3); 	/* line# computer.cpp:277 */
+        when ((unsigned ter(0:1))(U_09(0..0) & M_216(0..0))) :  comp32s_12ot(0..0); 	/* line# computer.cpp:278 */
+        when ((unsigned ter(0:1))(U_09(0..0) & M_225(0..0))) :  comp32u_11ot(3..3); 	/* line# computer.cpp:279 */
+        when ((unsigned ter(0:1))(U_09(0..0) & M_203(0..0))) :  comp32u_11ot(0..0); 	/* line# computer.cpp:280 */
+        when ((unsigned ter(0:1))(U_12(0..0) & M_200(0..0))) :  comp32s_1_11ot(3..3); 	/* line# computer.cpp:314 */
+        when ((unsigned ter(0:1))(U_12(0..0) & M_220(0..0))) :  comp32u_12ot(3..3); 	/* line# computer.cpp:315 */
+        when ((unsigned ter(0:1))(U_13(0..0) & M_200(0..0))) :  comp32s_11ot(3..3); 	/* line# computer.cpp:334 */
+        when ((unsigned ter(0:1))(U_13(0..0) & M_220(0..0))) :  comp32u_13ot(3..3); 	/* line# computer.cpp:335 */
+        when (U_16(0..0)) :  CT_04(0..0); 	/* line# computer.cpp:363 */
+        when (U_67(0..0)) :  RG_base_addr_imm1_instr(23..23); 	/* line# computer.cpp:321 */
+        when ((unsigned ter(0:1))(ST1_05d(0..0) & M_228(0..0))) :  CT_19(0..0); 	/* line# computer.cpp:257 */
+        when ((unsigned ter(0:1))(ST1_06d(0..0) & M_230(0..0))) :  CT_19(0..0); 	/* line# computer.cpp:253 */
+        when (U_218(0..0)) :  take_t1(0..0); 	/* line# computer.cpp:282 */
+        default :  FF_take_1(0..0);
+    };
+    M_246(0..0) ::= M_214(0..0) & CT_04(0..0); 	/* line# computer.cpp:236,312,363,366 */
+    JF_04(0..0) ::= M_227(0..0) | M_223(0..0);
+    JF_07(0..0) ::= M_232(0..0) | M_234(0..0);
+    JF_10(0..0) ::= M_228(0..0) & CT_19(0..0) | M_215(0..0); 	/* line# computer.cpp:251,257 */
+    JF_13(0..0) ::= nmux {
+        when (M_241(0..0)) :  1(0..0);
+        when (M_306(0..0) | M_224(0..0) | M_206(0..0) | M_243(0..0) | M_215(0..0) | M_295(0..0)) :  0(0..0);
+        when (M_239(0..0)) :  (unsigned ter(0:1))(RG_funct3_rs2_word_addr(2..0) == 0(2..0)); 	/* line# computer.cpp:301 */
+    };
+    M_306(0..0) ::= M_230(0..0) | M_228(0..0) | M_233(0..0) | M_235(0..0) | M_237(0..0) | M_221(0..0); 	/* line# computer.cpp:251,253,257 */
+    sum11_t(7..0) ::= nmux { 	/* line# computer.cpp:174,176 */
+        when (~add28s_271ot(26..26) & ~gop28u_11ot(0..0)) :  add28s_271ot(17..10); 	/* line# computer.cpp:174,178 */
+        when (~add28s_271ot(26..26) & gop28u_11ot(0..0)) :  255(7..0); 	/* line# computer.cpp:178,179 */
+        when (add28s_271ot(26..26)) :  0(7..0); 	/* line# computer.cpp:177 */
+    };
+    M_139_t(30..0) ::= nmux { 	/* line# computer.cpp:282 */
+        when (FF_take_1(0..0)) :  RL_addr_next_pc_op1_result(30..0);
+        when (~FF_take_1(0..0)) :  RG_03(31..2) :: RG_PC(1..1);
+    };
+    computer_ret_r(0..0) ::= nmux { 	/* line# computer.cpp:235 */
+        when ((unsigned ter(0:1))(ST1_02d(0..0) & ~CT_01(0..0))) :  FF_halt(0..0); 	/* line# computer.cpp:386 */
+        default :  computer_ret_r(0..0);
+    };
+    add24s1i1(23..0) ::= nmux {
+        when (ST1_05d(0..0)) :  RL_addr_next_pc_op1_result(23..0); 	/* line# computer.cpp:174 */
+        when (ST1_09d(0..0) | ST1_07d(0..0)) :  RG_mask_op2(23..0); 	/* line# computer.cpp:174 */
+        when (M_245(0..0)) :  RG_base_addr_imm1_instr(23..0); 	/* line# computer.cpp:174 */
+    };
+    add24s1i2(23..0) ::= mul16s1ot(23..0); 	/* line# computer.cpp:174 */
+    add32s1i1(31..0) ::= nmux {
+        when ((unsigned ter(0:1))(M_275(0..0) | M_278(0..0))) :  regs_rd00(31..0); 	/* line# computer.cpp:51,55,60,286,299,313 */
+        when (U_137(0..0) | U_227(0..0)) :  RG_PC(31..0); 	/* line# computer.cpp:51,78,262,282 */
+        when (U_242(0..0)) :  (signed ter(0:32))(RL_addr_next_pc_op1_result(31..0)); 	/* line# computer.cpp:51,55,266 */
+    };
+    M_280(0..0) ::= (unsigned ter(0:1))(U_123(0..0) | U_124(0..0));
+    TR_08(15..0) ::= nmux {
+        when (U_89(0..0)) :  (unsigned ter(0:16))((unsigned ter(0:9))((unsigned ter(0:8))((unsigned ter(0:7))((unsigned ter(0:6))((unsigned ter(0:5))((unsigned ter(0:4))((unsigned ter(0:3))((unsigned ter(0:2))((unsigned)(RG_base_addr_imm1_instr(11..11)) :: (unsigned)(RG_base_addr_imm1_instr(11..11))) :: (unsigned)(RG_base_addr_imm1_instr(11..11))) :: (unsigned)(RG_base_addr_imm1_instr(11..11))) :: (unsigned)(RG_base_addr_imm1_instr(11..11))) :: (unsigned)(RG_base_addr_imm1_instr(11..11))) :: (unsigned)(RG_base_addr_imm1_instr(11..11))) :: (unsigned)(RG_base_addr_imm1_instr(11..11))) :: (unsigned)(RG_base_addr_imm1_instr(11..11))) :: (unsigned)(RG_base_addr_imm1_instr(11..5))); 	/* line# computer.cpp:313 */
+        when (M_282(0..0)) :  (unsigned ter(0:16))((unsigned ter(0:9))((unsigned ter(0:8))((unsigned ter(0:7))((unsigned ter(0:6))((unsigned ter(0:5))((unsigned ter(0:4))((unsigned ter(0:3))((unsigned ter(0:2))((unsigned)(RG_base_addr_imm1_instr(24..24)) :: (unsigned)(RG_base_addr_imm1_instr(24..24))) :: (unsigned)(RG_base_addr_imm1_instr(24..24))) :: (unsigned)(RG_base_addr_imm1_instr(24..24))) :: (unsigned)(RG_base_addr_imm1_instr(24..24))) :: (unsigned)(RG_base_addr_imm1_instr(24..24))) :: (unsigned)(RG_base_addr_imm1_instr(24..24))) :: (unsigned)(RG_base_addr_imm1_instr(24..24))) :: (unsigned)(RG_base_addr_imm1_instr(24..24))) :: (unsigned)(RG_base_addr_imm1_instr(24..18))); 	/* line# computer.cpp:51,60,299 */
+    };
+    M_320(5..0) ::= nmux {
+        when (M_287(0..0)) :  (unsigned ter(0:6))((unsigned)(RG_base_addr_imm1_instr(24..24)) :: (unsigned)(RG_base_addr_imm1_instr(17..13))); 	/* line# computer.cpp:51,55,247,266,286 */
+        when (U_227(0..0)) :  (unsigned ter(0:6))((unsigned ter(0:5))((unsigned)(RG_base_addr_imm1_instr(0..0)) :: (unsigned)(RG_base_addr_imm1_instr(4..1))) :: 0(0..0)); 	/* line# computer.cpp:51,64,65,66,67,68,248,272,282 */
+    };
+    M_287(0..0) ::= M_278(0..0) | U_242(0..0);
+    M_322(13..0) ::= nmux {
+        when ((unsigned ter(0:1))(M_287(0..0) | U_227(0..0))) :  (unsigned ter(0:14))((unsigned ter(0:8))((unsigned ter(0:7))((unsigned ter(0:6))((unsigned ter(0:5))((unsigned ter(0:4))((unsigned ter(0:3))((unsigned ter(0:2))((unsigned)(RG_base_addr_imm1_instr(24..24)) :: (unsigned)(RG_base_addr_imm1_instr(24..24))) :: (unsigned)(RG_base_addr_imm1_instr(24..24))) :: (unsigned)(RG_base_addr_imm1_instr(24..24))) :: (unsigned)(RG_base_addr_imm1_instr(24..24))) :: (unsigned)(RG_base_addr_imm1_instr(24..24))) :: (unsigned)(RG_base_addr_imm1_instr(24..24))) :: (unsigned)(RG_base_addr_imm1_instr(24..24))) :: M_320(5..0)); 	/* line# computer.cpp:51,55,64,65,66,67,68,247,248,266,272,282,286 */
+        when (U_137(0..0)) :  (unsigned ter(0:14))((unsigned ter(0:13))((unsigned ter(0:9))((unsigned)(RG_base_addr_imm1_instr(12..5)) :: (unsigned)(RG_base_addr_imm1_instr(13..13))) :: (unsigned)(RG_base_addr_imm1_instr(17..14))) :: 0(0..0)); 	/* line# computer.cpp:51,74,75,76,77,78,245,247,262 */
+    };
+    M_282(0..0) ::= (unsigned ter(0:1))(M_280(0..0) | U_125(0..0));
+    M_275(0..0) ::= (unsigned ter(0:1))(U_89(0..0) | M_282(0..0));
+    M_278(0..0) ::= U_117(0..0) | (unsigned ter(0:1))(U_107(0..0) & M_212(0..0)) | (unsigned ter(0:1))(U_107(0..0) & M_201(0..0)) | (unsigned ter(0:1))(U_107(0..0) & ~|>(0(28..0) :: RG_funct3_rs2_word_addr(2..0) ^ 4(31..0))) | (unsigned ter(0:1))(U_107(0..0) & ~|>(0(28..0) :: RG_funct3_rs2_word_addr(2..0) ^ 5(31..0))); 	/* line# computer.cpp:288 */
+    add32s1i2(20..0) ::= nmux {
+        when (M_275(0..0)) :  (unsigned ter(0:21))(TR_08(15..0) :: (unsigned)(RG_base_addr_imm1_instr(4..0))); 	/* line# computer.cpp:51,60,299,313 */
+        when ((unsigned ter(0:1))((unsigned ter(0:1))(M_287(0..0) | U_137(0..0)) | U_227(0..0))) :  (unsigned ter(0:21))((unsigned)(RG_base_addr_imm1_instr(24..24)) :: (unsigned ter(0:20))(((unsigned ter(0:15))(M_322(13..5) :: (unsigned)(RG_base_addr_imm1_instr(23..18))) :: M_322(4..0)))); 	/* line# computer.cpp:51,55,64,65,66,67,68,74,75,76,77,78,245,247,248,262,266,272,282,286 */
+    };
+    mul16s1i1(8..0) ::= 0(0..0) :: dmem_arg_MEMB32W65536_RD1(23..16); 	/* line# computer.cpp:115,171,172,174 */
+    mul16s1i2(15..0) ::= dmem_arg_MEMB32W65536_RD1(15..0); 	/* line# computer.cpp:51,115,171,173,174 */
+    TR_21(7..0) ::= nmux {
+        when (M_266(0..0)) :  255(7..0); 	/* line# computer.cpp:139 */
+        when (ST1_08d(0..0)) :  0(7..0); 	/* line# computer.cpp:126 */
+    };
+    TR_22(7..0) ::= nmux {
+        when (ST1_09d(0..0) & M_199(0..0)) :  0(7..0); 	/* line# computer.cpp:127,128,302 */
+        when (M_267(0..0)) :  (unsigned)(RL_addr_next_pc_op1_result(15..8)); 	/* line# computer.cpp:140,141,303 */
+    };
+    M_281(0..0) ::= (unsigned ter(0:1))(U_124(0..0) | U_165(0..0));
+    lsft32u1i1(31..0) ::= nmux {
+        when (U_35(0..0)) :  regs_rd02(31..0); 	/* line# computer.cpp:329,333 */
+        when (M_281(0..0)) :  (unsigned ter(0:32))((unsigned ter(0:24))(0(15..0) :: TR_21(7..0)) :: 255(7..0)); 	/* line# computer.cpp:126,139 */
+        when (M_286(0..0)) :  (unsigned ter(0:32))((unsigned ter(0:24))(0(15..0) :: TR_22(7..0)) :: (unsigned)(RL_addr_next_pc_op1_result(7..0))); 	/* line# computer.cpp:127,128,140,141,302,303 */
+    };
+    M_266(0..0) ::= ST1_06d(0..0) & M_212(0..0);
+    M_286(0..0) ::= U_210(0..0) | U_236(0..0);
+    lsft32u1i2(4..0) ::= nmux {
+        when (U_35(0..0)) :  regs_rd01(4..0); 	/* line# computer.cpp:329,333 */
+        when (M_281(0..0)) :  (unsigned ter(0:5))(M_315(1..0) :: 0(2..0)); 	/* line# computer.cpp:51,60,126,138,139,299 */
+        when (M_286(0..0)) :  RG_byte_offset_rd(4..0); 	/* line# computer.cpp:127,128,140,141,302,303 */
+    };
+    rsft32u1i1(31..0) ::= nmux {
+        when (U_110(0..0)) :  (unsigned ter(0:32))(RL_addr_next_pc_op1_result(31..0)); 	/* line# computer.cpp:339 */
+        when (U_172(0..0) | U_229(0..0)) :  dmem_arg_MEMB32W65536_RD1(31..0); 	/* line# computer.cpp:94,95,105,106,289,290 */
+        when (U_232(0..0) | U_231(0..0)) :  (unsigned ter(0:32))(RG_mask_op2(31..0)); 	/* line# computer.cpp:94,95,105,106,292,293 */
+        when (U_73(0..0)) :  regs_rd00(31..0); 	/* line# computer.cpp:322 */
+    };
+    rsft32u1i2(4..0) ::= nmux {
+        when (U_110(0..0)) :  RG_mask_op2(4..0); 	/* line# computer.cpp:339 */
+        when (U_172(0..0) | U_232(0..0) | U_231(0..0) | U_229(0..0)) :  RL_addr_next_pc_op1_result(1..0) :: 0(2..0); 	/* line# computer.cpp:94,95,105,106,289,290,292,293 */
+        when (U_73(0..0)) :  RG_funct3_rs2_word_addr(4..0); 	/* line# computer.cpp:322 */
+    };
+    rsft32s1i1(31..0) ::= nmux {
+        when (U_42(0..0)) :  regs_rd02(31..0); 	/* line# computer.cpp:329,338 */
+        when (U_97(0..0)) :  regs_rd00(31..0); 	/* line# computer.cpp:321 */
+    };
+    rsft32s1i2(4..0) ::= nmux {
+        when (U_42(0..0)) :  regs_rd01(4..0); 	/* line# computer.cpp:329,338 */
+        when (U_97(0..0)) :  RG_funct3_rs2_word_addr(4..0); 	/* line# computer.cpp:321 */
+    };
+    addsub20s_181i1(17..0) ::= nmux {
+        when (U_44(0..0)) :  regs_rd01(17..0); 	/* line# computer.cpp:365 */
+        when (U_71(0..0)) :  RG_base_addr_imm1_instr(17..0); 	/* line# computer.cpp:110,171 */
+    };
+    addsub20s_181i2(17..0) ::= nmux {
+        when (U_44(0..0)) :  imem_arg_MEMB32W65536_RD1(31..31) :: imem_arg_MEMB32W65536_RD1(31..31) :: imem_arg_MEMB32W65536_RD1(31..31) :: imem_arg_MEMB32W65536_RD1(31..31) :: imem_arg_MEMB32W65536_RD1(31..31) :: imem_arg_MEMB32W65536_RD1(31..31) :: imem_arg_MEMB32W65536_RD1(31..20); 	/* line# computer.cpp:51,55,236,247,364,365 */
+        when (U_71(0..0)) :  -16(17..0); 	/* line# computer.cpp:110,171 */
+    };
+    addsub20s_181_f(1..0) ::= nmux {
+        when (U_44(0..0)) :  1(1..0);
+        when (U_71(0..0)) :  2(1..0);
+    };
+    addsub20s_182i1(17..0) ::= RG_base_addr_imm1_instr(17..0); 	/* line# computer.cpp:110,171 */
+    M_319(1..0) ::= nmux {
+        when (ST1_04d(0..0)) :  -2(1..0); 	/* line# computer.cpp:110,171 */
+        when (ST1_05d(0..0)) :  (signed)(1(1..0)); 	/* line# computer.cpp:110,171 */
+    };
+    addsub20s_182i2(17..0) ::= (unsigned ter(0:18))((unsigned ter(0:16))(-1(13..0) :: M_319(1..0)) :: (signed)(0(1..0)));
+    addsub20s_182_f(1..0) ::= 2(1..0);
+    addsub20s_183i1(17..0) ::= RG_base_addr_imm1_instr(17..0); 	/* line# computer.cpp:110,171 */
+    M_318(2..0) ::= nmux {
+        when (ST1_04d(0..0)) :  -1(2..0); 	/* line# computer.cpp:110,171 */
+        when (ST1_05d(0..0)) :  (signed)(3(2..0)); 	/* line# computer.cpp:110,171 */
+        when (ST1_09d(0..0)) :  (signed)(2(2..0)); 	/* line# computer.cpp:110,171 */
+        when (ST1_10d(0..0)) :  (signed)(1(2..0)); 	/* line# computer.cpp:110,171 */
+    };
+    addsub20s_183i2(17..0) ::= (unsigned ter(0:18))((unsigned ter(0:16))(-1(12..0) :: M_318(2..0)) :: (signed)(0(1..0)));
+    addsub20s_183_f(1..0) ::= 2(1..0);
+    addsub32u1i1(31..0) ::= nmux {
+        when (M_269(0..0)) :  RG_PC(31..0); 	/* line# computer.cpp:71,249,257 */
+        when (M_279(0..0)) :  add32s1ot(31..0); 	/* line# computer.cpp:51,55,60,88,119,132,286,299 */
+        when (U_152(0..0) | U_178(0..0) | U_176(0..0) | U_205(0..0)) :  (unsigned ter(0:32))(RL_addr_next_pc_op1_result(31..0)); 	/* line# computer.cpp:88,99,332 */
+    };
+    TR_23(19..0) ::= nmux {
+        when (U_103(0..0)) :  (unsigned)(RG_base_addr_imm1_instr(24..5)); 	/* line# computer.cpp:71,257 */
+        when (M_283(0..0)) :  64(19..0); 	/* line# computer.cpp:88,99,119,132 */
+    };
+    M_323(20..0) ::= nmux {
+        when ((unsigned ter(0:1))(U_103(0..0) | M_283(0..0))) :  (unsigned ter(0:21))(TR_23(19..0) :: 0(0..0)); 	/* line# computer.cpp:71,88,99,119,132,257 */
+        when (U_01(0..0)) :  (unsigned ter(0:21))(1(20..0)); 	/* line# computer.cpp:249 */
+    };
+    M_269(0..0) ::= (unsigned ter(0:1))(U_103(0..0) | U_01(0..0));
+    M_279(0..0) ::= U_124(0..0) | U_123(0..0) | U_117(0..0);
+    addsub32u1i2(31..0) ::= nmux {
+        when ((unsigned ter(0:1))(M_269(0..0) | M_283(0..0))) :  (unsigned ter(0:32))((unsigned ter(0:30))((unsigned ter(0:29))(M_323(20..1) :: 0(8..0)) :: M_323(0..0)) :: 0(1..0)); 	/* line# computer.cpp:71,88,99,119,132,249,257 */
+        when (U_178(0..0)) :  (unsigned ter(0:32))(RG_mask_op2(31..0)); 	/* line# computer.cpp:332 */
+    };
+    M_283(0..0) ::= M_279(0..0) | U_152(0..0) | U_176(0..0) | U_205(0..0);
+    addsub32u1_f(1..0) ::= nmux {
+        when (M_269(0..0)) :  1(1..0);
+        when (M_283(0..0)) :  2(1..0);
+        when (U_178(0..0)) : 
+            dmux (RG_base_addr_imm1_instr(23..23)) { 	/* line# computer.cpp:332 */
+                case 1 :  2(1..0);
+                case 0 :  1(1..0);
+            };
+    };
+    comp32u_11i1(31..0) ::= regs_rd01(31..0); 	/* line# computer.cpp:279,280 */
+    comp32u_11i2(31..0) ::= regs_rd02(31..0); 	/* line# computer.cpp:279,280 */
+    comp32s_12i1(31..0) ::= regs_rd01(31..0); 	/* line# computer.cpp:277,278 */
+    comp32s_12i2(31..0) ::= regs_rd02(31..0); 	/* line# computer.cpp:277,278 */
+    M_245(0..0) ::= ST1_11d(0..0) & FF_take_1(0..0) & FF_take(0..0);
+    add28s_27_261i1(24..0) ::= nmux {
+        when (ST1_07d(0..0)) :  RL_addr_next_pc_op1_result(24..0); 	/* line# computer.cpp:174 */
+        when (M_245(0..0)) :  RG_mask_op2(24..0); 	/* line# computer.cpp:174 */
+    };
+    add28s_27_261i2(24..0) ::= add24s1ot(24..0); 	/* line# computer.cpp:174 */
+    M_244(31..0) ::= dmem_arg_MEMB32W65536_RD1(31..0) & (unsigned ter(0:32))(RG_mask_op2(31..0)); 	/* line# computer.cpp:127,128,140,141,303 */
+    dmem_arg_MEMB32W65536_WD2(31..0) ::= nmux {
+        when (M_265(0..0)) :  (unsigned ter(0:32))(RL_addr_next_pc_op1_result(31..0)); 	/* line# computer.cpp:150 */
+        when (M_268(0..0)) :  M_244(31..0) | (unsigned ter(0:32))(RL_addr_next_pc_op1_result(31..0)); 	/* line# computer.cpp:127,128 */
+        when (M_267(0..0)) :  M_244(31..0) | lsft32u1ot(31..0); 	/* line# computer.cpp:140,141,303 */
+    };
+    M_277(0..0) ::= U_113(0..0) | U_170(0..0); 	/* line# computer.cpp:288 */
+    dmem_arg_MEMB32W65536_RA1(15..0) ::= nmux {
+        when (U_206(0..0)) :  (unsigned)(RL_addr_next_pc_op1_result(17..2)); 	/* line# computer.cpp:110,115,291 */
+        when (U_46(0..0)) :  addsub20s_181ot(17..2); 	/* line# computer.cpp:110,115,171,365 */
+        when (U_71(0..0) | U_202(0..0) | U_225(0..0)) :  addsub20s_183ot(17..2); 	/* line# computer.cpp:110,115,171 */
+        when (U_85(0..0)) :  RG_mask_op2(15..0); 	/* line# computer.cpp:115,171 */
+        when (M_277(0..0) | U_149(0..0) | U_175(0..0) | U_210(0..0) | U_211(0..0)) :  RG_funct3_rs2_word_addr(15..0); 	/* line# computer.cpp:95,115,127,128,140,141,171,289,292 */
+        when (U_146(0..0)) :  RG_PC(15..0); 	/* line# computer.cpp:115,171 */
+        when (U_205(0..0) | U_176(0..0)) :  addsub32u1ot(17..2); 	/* line# computer.cpp:99,104,106,290,293 */
+    };
+    M_265(0..0) ::= ST1_06d(0..0) & M_201(0..0);
+    M_267(0..0) ::= ST1_10d(0..0) & M_213(0..0);
+    M_268(0..0) ::= ST1_10d(0..0) & M_199(0..0);
+    dmem_arg_MEMB32W65536_WA2(15..0) ::= nmux {
+        when (M_265(0..0)) :  add32s1ot(17..2); 	/* line# computer.cpp:145,150 */
+        when (M_268(0..0) | M_267(0..0)) :  RG_funct3_rs2_word_addr(15..0); 	/* line# computer.cpp:127,128,140,141 */
+    };
+    dmem_arg_MEMB32W65536_RE1(0..0) ::= U_206(0..0) | U_46(0..0) | U_71(0..0) | U_85(0..0) | U_113(0..0) | U_146(0..0) | U_170(0..0) | U_202(0..0) | U_225(0..0) | U_149(0..0) | U_205(0..0) | U_175(0..0) | U_176(0..0) | U_210(0..0) | U_211(0..0); 	/* line# computer.cpp:95,106,115,127,128,140,141,171,289,290,291,292,293 */
+    dmem_arg_MEMB32W65536_WE2(0..0) ::= U_125(0..0) | (unsigned ter(0:1))(U_220(0..0) & M_199(0..0)) | U_236(0..0); 	/* line# computer.cpp:127,128,140,141,150,301 */
+    imem_arg_MEMB32W65536_RE1(0..0) ::= U_01(0..0); 	/* line# computer.cpp:236 */
+    regs_ad01(4..0) ::= nmux { 	/* line# computer.cpp:236,312 */
+        when (M_246(0..0) | M_223(0..0) & M_210(0..0) | M_223(0..0) & M_220(0..0) | M_223(0..0) & M_200(0..0) | M_292(0..0) | M_308(0..0) | M_304(0..0) | M_299(0..0) | M_300(0..0) | M_288(0..0)) :  imem_arg_MEMB32W65536_RD1(19..15); 	/* line# computer.cpp:236,246 */
+        when (M_240(0..0) | M_238(0..0)) :  imem_arg_MEMB32W65536_RD1(24..20); 	/* line# computer.cpp:236 */
+    };
+    M_288(0..0) ::= M_236(0..0) & M_197(0..0); 	/* line# computer.cpp:236,312 */
+    M_292(0..0) ::= M_236(0..0) & M_203(0..0); 	/* line# computer.cpp:236,312 */
+    M_299(0..0) ::= M_236(0..0) & M_207(0..0); 	/* line# computer.cpp:236,312 */
+    M_300(0..0) ::= M_236(0..0) & M_210(0..0); 	/* line# computer.cpp:236,312 */
+    M_304(0..0) ::= M_236(0..0) & M_216(0..0); 	/* line# computer.cpp:236,312 */
+    M_308(0..0) ::= M_236(0..0) & M_225(0..0); 	/* line# computer.cpp:236,312 */
+    regs_ad02(4..0) ::= nmux {
+        when (M_240(0..0)) :  imem_arg_MEMB32W65536_RD1(19..15); 	/* line# computer.cpp:236,246 */
+        when (M_292(0..0) | M_308(0..0) | M_304(0..0) | M_299(0..0) | M_300(0..0) | M_288(0..0)) :  imem_arg_MEMB32W65536_RD1(24..20); 	/* line# computer.cpp:236 */
+    };
+    regs_ad03(4..0) ::= nmux {
+        when (U_18(0..0)) :  imem_arg_MEMB32W65536_RD1(11..7); 	/* line# computer.cpp:236,244,261 */
+        when (U_99(0..0) | U_103(0..0) | U_148(0..0) | U_135(0..0) | U_186(0..0) | U_234(0..0) | U_256(0..0)) :  RG_byte_offset_rd(4..0); 	/* line# computer.cpp:71,180,253,257,267,295,325,344,367 */
+    };
+    M_272(0..0) ::= (unsigned ter(0:1))((unsigned ter(0:1))((unsigned ter(0:1))((unsigned ter(0:1))(U_99(0..0) & (unsigned ter(0:1))((U_81(0..0) & M_202(0..0)))) | (unsigned ter(0:1))(U_99(0..0) & (unsigned ter(0:1))((U_81(0..0) & M_222(0..0))))) | (unsigned ter(0:1))(U_186(0..0) & (unsigned ter(0:1))((U_167(0..0) & M_202(0..0))))) | (unsigned ter(0:1))(U_186(0..0) & (unsigned ter(0:1))((U_167(0..0) & M_222(0..0)))));
+    TR_15(7..0) ::= nmux {
+        when (M_272(0..0)) :  (unsigned ter(0:8))(0(6..0) :: TR_24(0..0));
+        when (U_256(0..0)) :  sum11_t(7..0); 	/* line# computer.cpp:180,367 */
+    };
+    M_204(0..0) ::= ~|>(RG_PC(31..0) ^ 7(31..0));
+    M_222(0..0) ::= ~|>(RG_PC(31..0) ^ 3(31..0));
+    M_226(0..0) ::= ~|>(RG_PC(31..0) ^ 6(31..0));
+    regs_wd03(31..0) ::= nmux {
+        when (U_18(0..0) | U_148(0..0)) :  RG_03(31..0); 	/* line# computer.cpp:261,267 */
+        when ((unsigned ter(0:1))(U_99(0..0) & U_89(0..0))) :  add32s1ot(31..0); 	/* line# computer.cpp:313 */
+        when ((unsigned ter(0:1))(M_272(0..0) | U_256(0..0))) :  (unsigned ter(0:32))(0(23..0) :: TR_15(7..0)); 	/* line# computer.cpp:180,367 */
+        when ((unsigned ter(0:1))(U_99(0..0) & (unsigned ter(0:1))((U_81(0..0) & M_209(0..0))))) :  regs_rd00(31..0) ^ RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: (signed ter(0:12))(RG_base_addr_imm1_instr(11..0)); 	/* line# computer.cpp:316 */
+        when ((unsigned ter(0:1))(U_99(0..0) & (unsigned ter(0:1))((U_81(0..0) & M_226(0..0))))) :  regs_rd00(31..0) | RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: (signed ter(0:12))(RG_base_addr_imm1_instr(11..0)); 	/* line# computer.cpp:317 */
+        when ((unsigned ter(0:1))(U_99(0..0) & (unsigned ter(0:1))((U_81(0..0) & M_204(0..0))))) :  regs_rd00(31..0) & RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: RG_base_addr_imm1_instr(11..11) :: (signed ter(0:12))(RG_base_addr_imm1_instr(11..0)); 	/* line# computer.cpp:318 */
+        when ((unsigned ter(0:1))((unsigned ter(0:1))(U_99(0..0) & ((unsigned ter(0:1))(U_81(0..0) & M_213(0..0)) | (unsigned ter(0:1))(U_96(0..0) & ~FF_take_1(0..0)))) | (unsigned ter(0:1))(U_186(0..0) & ((unsigned ter(0:1))(U_167(0..0) & M_213(0..0)) | (unsigned ter(0:1))(U_167(0..0) & M_218(0..0)))))) :  (unsigned ter(0:32))(RL_addr_next_pc_op1_result(31..0)); 	/* line# computer.cpp:319,322,333 */
+        when ((unsigned ter(0:1))(U_99(0..0) & U_97(0..0))) :  rsft32s1ot(31..0); 	/* line# computer.cpp:321 */
+        when ((unsigned ter(0:1))(U_103(0..0) | (unsigned ter(0:1))(U_186(0..0) & U_178(0..0)))) :  addsub32u1ot(31..0); 	/* line# computer.cpp:71,257,332 */
+        when (U_135(0..0)) :  RG_base_addr_imm1_instr(24..5) :: 0(11..0); 	/* line# computer.cpp:71,253 */
+        when ((unsigned ter(0:1))(U_186(0..0) & (unsigned ter(0:1))((U_167(0..0) & M_209(0..0))))) :  (unsigned ter(0:32))(RL_addr_next_pc_op1_result(31..0)) ^ (unsigned ter(0:32))(RG_mask_op2(31..0)); 	/* line# computer.cpp:336 */
+        when ((unsigned ter(0:1))(U_186(0..0) & (unsigned ter(0:1))((U_167(0..0) & M_226(0..0))))) :  (unsigned ter(0:32))(RL_addr_next_pc_op1_result(31..0)) | (unsigned ter(0:32))(RG_mask_op2(31..0)); 	/* line# computer.cpp:341 */
+        when ((unsigned ter(0:1))(U_186(0..0) & (unsigned ter(0:1))((U_167(0..0) & M_204(0..0))))) :  (unsigned ter(0:32))(RL_addr_next_pc_op1_result(31..0)) & (unsigned ter(0:32))(RG_mask_op2(31..0)); 	/* line# computer.cpp:342 */
+        when (U_234(0..0)) :  val2_t4(31..0); 	/* line# computer.cpp:295 */
+    };
+    regs_we03(0..0) ::= U_18(0..0) | U_99(0..0) | U_103(0..0) | U_148(0..0) | U_135(0..0) | U_186(0..0) | U_234(0..0) | U_256(0..0); 	/* line# computer.cpp:71,180,253,257,261,267,295,325,344,367 */
+    ST1_01d(0..0) ::= (unsigned ter(0:1))(~|>B01_streg(3..0));
+    ST1_02d(0..0) ::= (unsigned ter(0:1))(~|>(B01_streg(3..0) ^ ST1_02(3..0)));
+    ST1_03d(0..0) ::= (unsigned ter(0:1))(~|>(B01_streg(3..0) ^ ST1_03(3..0)));
+    ST1_04d(0..0) ::= (unsigned ter(0:1))(~|>(B01_streg(3..0) ^ ST1_04(3..0)));
+    ST1_05d(0..0) ::= (unsigned ter(0:1))(~|>(B01_streg(3..0) ^ ST1_05(3..0)));
+    ST1_06d(0..0) ::= (unsigned ter(0:1))(~|>(B01_streg(3..0) ^ ST1_06(3..0)));
+    ST1_07d(0..0) ::= (unsigned ter(0:1))(~|>(B01_streg(3..0) ^ ST1_07(3..0)));
+    ST1_08d(0..0) ::= (unsigned ter(0:1))(~|>(B01_streg(3..0) ^ ST1_08(3..0)));
+    ST1_09d(0..0) ::= (unsigned ter(0:1))(~|>(B01_streg(3..0) ^ ST1_09(3..0)));
+    ST1_10d(0..0) ::= (unsigned ter(0:1))(~|>(B01_streg(3..0) ^ ST1_10(3..0)));
+    ST1_11d(0..0) ::= (unsigned ter(0:1))(~|>(B01_streg(3..0) ^ ST1_11(3..0)));
+    M_317(1..0) ::= nmux {
+        when (ST1_04d(0..0)) :  (unsigned ter(0:2))(2(1..0));
+        default :  (unsigned ter(0:2))(0(0..0) :: (unsigned ter(0:1))((ST1_01d(0..0) | ST1_11d(0..0))));
+    };
+    TR_18(1..0) ::= nmux {
+        when (ST1_09d(0..0)) :  1(1..0);
+        when (ST1_10d(0..0)) :  2(1..0);
+    };
+    M_248(0..0) ::= M_246(0..0) & CT_03(0..0) | U_12(0..0) & (unsigned ter(0:1))(imem_arg_MEMB32W65536_RD1(14..12) == 5(2..0)); 	/* line# computer.cpp:236,312,363,366 */
+    M_249(0..0) ::= (unsigned ter(0:1))(M_248(0..0) | JF_04(0..0));
+    M_251(0..0) ::= M_229(0..0) | M_219(0..0) | M_238(0..0) | U_43(0..0);
+    M_312(0..0) ::= (unsigned ter(0:1))(M_249(0..0) | M_251(0..0));
+    M_252(0..0) ::= (unsigned ter(0:1))(M_312(0..0) | JF_07(0..0));
+    M_254(0..0) ::= M_230(0..0) & CT_19(0..0) | M_215(0..0) | U_107(0..0) & ((unsigned ter(0:1))(RG_funct3_rs2_word_addr(2..0) == 0(2..0)) | (unsigned ter(0:1))(RG_funct3_rs2_word_addr(2..0) == 4(2..0))); 	/* line# computer.cpp:253,288 */
+    M_256(0..0) ::= JF_13(0..0) | U_107(0..0) & (unsigned ter(0:1))(RG_funct3_rs2_word_addr(2..0) == 5(2..0)); 	/* line# computer.cpp:288 */
+    M_258(0..0) ::= U_107(0..0) & ((unsigned ter(0:1))(RG_funct3_rs2_word_addr(2..0) == 1(2..0)) | (unsigned ter(0:1))(RG_funct3_rs2_word_addr(2..0) == 2(2..0))) | M_239(0..0) & (unsigned ter(0:1))(RG_funct3_rs2_word_addr(2..0) == 1(2..0)); 	/* line# computer.cpp:288,301 */
+    M_260(0..0) ::= M_215(0..0) | U_140(0..0) & ((unsigned ter(0:1))(RG_PC(31..0) == 0(31..0)) | (unsigned ter(0:1))(RG_PC(31..0) == 4(31..0))); 	/* line# computer.cpp:288 */
+    M_263(0..0) ::= M_239(0..0) | M_215(0..0) | U_164(0..0) & ((unsigned ter(0:1))(RG_PC(31..0) == 4(31..0)) | (unsigned ter(0:1))(RG_PC(31..0) == 5(31..0))); 	/* line# computer.cpp:288 */
+    M_313(0..0) ::= (unsigned ter(0:1))(M_254(0..0) | M_256(0..0));
+    B01_streg(3..0) ::= nmux {
+        when (ST1_02d(0..0)) : 
+            nmux {
+                when (!(~CT_01(0..0))) :  ST1_03(3..0);
+                default :  ST1_01(3..0);
+            };
+        when (ST1_03d(0..0)) : 
+            nmux {
+                when (M_248(0..0)) :  ST1_04(3..0);
+                when ((unsigned ter(0:1))(!M_248(0..0) & JF_04(0..0))) :  ST1_05(3..0);
+                when ((unsigned ter(0:1))(!M_249(0..0) & M_251(0..0))) :  ST1_06(3..0);
+                when ((unsigned ter(0:1))(!M_312(0..0) & JF_07(0..0))) :  ST1_07(3..0);
+                when ((unsigned ter(0:1))(!M_252(0..0) & M_240(0..0))) :  ST1_08(3..0);
+                when ((unsigned ter(0:1))(!(unsigned ter(0:1))((M_252(0..0) | M_240(0..0))) & M_236(0..0))) :  ST1_10(3..0);
+                when (!(unsigned ter(0:1))(((unsigned ter(0:1))((unsigned ter(0:1))((unsigned ter(0:1))((unsigned ter(0:1))(M_236(0..0) | M_240(0..0)) | JF_07(0..0)) | M_251(0..0)) | JF_04(0..0)) | M_248(0..0)))) :  ST1_11(3..0);
+                default :  ST1_01(3..0);
+            };
+        when (ST1_05d(0..0)) : 
+            nmux {
+                when (JF_10(0..0)) :  ST1_06(3..0);
+                when (!JF_10(0..0)) :  ST1_11(3..0);
+                default :  ST1_01(3..0);
+            };
+        when (ST1_06d(0..0)) : 
+            nmux {
+                when (M_254(0..0)) :  ST1_07(3..0);
+                when ((unsigned ter(0:1))(!M_254(0..0) & M_256(0..0))) :  ST1_08(3..0);
+                when ((unsigned ter(0:1))(!M_313(0..0) & M_258(0..0))) :  ST1_09(3..0);
+                when ((unsigned ter(0:1))(!(unsigned ter(0:1))((M_313(0..0) | M_258(0..0))) & M_221(0..0))) :  ST1_10(3..0);
+                when (!(unsigned ter(0:1))(((unsigned ter(0:1))((unsigned ter(0:1))(M_221(0..0) | M_258(0..0)) | M_256(0..0)) | M_254(0..0)))) :  ST1_11(3..0);
+                default :  ST1_01(3..0);
+            };
+        when (ST1_07d(0..0)) : 
+            nmux {
+                when (M_260(0..0)) :  ST1_08(3..0);
+                when ((unsigned ter(0:1))(!M_260(0..0) & M_221(0..0))) :  ST1_10(3..0);
+                when (!(unsigned ter(0:1))((M_221(0..0) | M_260(0..0)))) :  ST1_11(3..0);
+                default :  ST1_01(3..0);
+            };
+        when (ST1_08d(0..0)) : 
+            nmux {
+                when (M_263(0..0)) :  ST1_09(3..0);
+                when ((unsigned ter(0:1))(!M_263(0..0) & M_221(0..0))) :  ST1_10(3..0);
+                when (!(unsigned ter(0:1))((M_221(0..0) | M_263(0..0)))) :  ST1_11(3..0);
+                default :  ST1_01(3..0);
+            };
+        when ((unsigned ter(0:1))(ST1_09d(0..0) | ST1_10d(0..0))) :  (unsigned ter(0:4))(2(1..0) :: TR_18(1..0));
+        default :  (unsigned ter(0:4))(0(0..0) :: (unsigned ter(0:3))(((unsigned ter(0:2))(M_317(1..1) :: 0(0..0)) :: M_317(0..0))));
+    };
+    goto ST1_01;
+}
+
+/*
+#@FLIB /proj/cad/cwb-6.1/packages/asic_45.FLIB
+#@LMT %AUTO%.LMT
+##@CLK  100000
+##@UNIT 1/10ps
+##IDX NAME     LMT  KIND              BITW   DELAY  AREA
+#  1  add24s     1  (s)+              24,25  8200    155
+#  2  add28s_27    1  (s)+              26,27  9600    181
+#  3  add32s     1  (s)+              32,32  10600   208
+#  4  mul16s     1  (s)*              16,24  25900  1097
+#  5  lsft32u    2  (u)<<             32,32  6600    321
+#  6  rsft32u    1  (u)>>             32,32  7100    318
+#  7  rsft32s    1  (s)>>             32,32  6100    306
+#  8  gop28u_1    1  (u)>              26,1   5050     94
+#  9  addsub20s_18    3  (s)+,-            18,18  11100   163
+# 10  addsub32u    1  (u)+,-            32,32  15900   263
+# 11  comp32u_1    3  (u)<,>,<=,>=      32,1   4800    156
+# 12  comp32s_1    2  (s)<,>,<=,>=      32,1   4800    156
+# 13  delay_funit_1    1  @delay_funit_1    (32),32  1         0
+# 14  delay_funit_2    1  @delay_funit_2    (32),32  1         0
+# 15  delay_funit_3    1  @delay_funit_3    (32),32  1         0
+# 16  delay_funit_4    1  @delay_funit_4    (32),32  1         0
+# 17  delay_funit_5    1  @delay_funit_5    (32),32  1         0
+# 18  delay_funit_6    1  @delay_funit_6    (32),32  1         0
+# 19  delay_funit_7    1  @delay_funit_7    (32),32  1         0
+# 20  delay_funit_8    1  @delay_funit_8    (32),32  1         0
+# 21  delay_funit_9    1  @delay_funit_9    (32),32  1         0
+# 22  delay_funit_10    1  @delay_funit_10   (32),32  1         0
+# 23  delay_funit_11    1  @delay_funit_11   (32),32  1         0
+# 24  delay_funit_12    1  @delay_funit_12   (32),32  1         0
+# 25  delay_funit_13    1  @delay_funit_13   (32),32  1         0
+# 26  delay_funit_14    1  @delay_funit_14   (32),32  1         0
+# 27  delay_funit_15    1  @delay_funit_15   (32),32  1         0
+# 28  delay_funit_16    1  @delay_funit_16   (32),32  1         0
+# 29  add28s_27_26    1  (s)+              25,26  9600    181
+# 30  comp32s_1_1    1  (s)<,>,<=,>=      32,1   4800    156
+#@END
+
+#@MLIB %AUTO%.MLIB
+##@VERSION { 3.00 }
+##@LIB { computer }
+##@UNIT  1/10ps 
+#@MLIB {
+#    NAME	MEMB32W65536
+#    KIND	R1,W1
+#    BITWIDTH	32
+#    DELAY	x2
+#    WORD	65536
+#    WRITE_SYNC	YES
+#    DEFMOD {
+#        in             ter (15..0)    RA1              /* ra:1 */;
+#        out            ter (31..0)    RD1              /* rd:1 */;
+#        in             ter (0..0)     RE1              /* re:1 */;
+#        in             ter (0..0)     RCLK1            /* rclk:1 */;
+#        in             ter (15..0)    WA2              /* wa:2 */;
+#        in             ter (31..0)    WD2              /* wd:2 */;
+#        in             ter (0..0)     WE2              /* we:2 */;
+#        in             ter (0..0)     WCLK2            /* wclk:2 */;
+#    }
+#}
+##@END { computer }
+
+#@MCNT %AUTO%.MCNT
+##@VERSION { 3.00 }
+##@CNT { computer }
+#@MCNT {
+#    NAME	MEMB32W65536
+#    LIMIT	2
+#}
+#@MCNT {
+#    NAME	regs[]
+#    LIMIT	1
+#    KIND	R3,W1
+#    BITWIDTH	32
+#    DELAY	0
+#}
+##@END { computer }
+
+#@MLMT %AUTO%.MLMT
+##@UNIT 1/10ps
+##IDX NAME     LMT  KIND      BITW[xWORD]  DELAY  ARRAY_DIV_NAME
+#  1  MEMB32W65536    2  R1,W1        32x65536   1x2                 	
+#  2  regs[]     1  R3,W1           32x32     0                 	
+#@END
+
+#@BLIB /proj/cad/cwb-6.1/packages/asic_45.BLIB
+##@VERSION{2.00}
+##@LIB{CWBSTDBLIB}
+##@UNIT 1/10ps
+#@BLIB {
+#    NAME	nmux2_1
+#    KIND	nmux
+#    WAY	2
+#    BITWIDTH	1
+#    DELAY	700
+#    AREA	1
+#    NET	6
+#    PIN_PAIR	6
+#    LSTAGE	2
+#}
+#@BLIB {
+#    NAME	nmux2_2
+#    KIND	nmux
+#    WAY	2
+#    BITWIDTH	2
+#    DELAY	900
+#    AREA	3
+#    NET	10
+#    PIN_PAIR	12
+#    LSTAGE	2
+#}
+#@BLIB {
+#    NAME	nmux2_4
+#    KIND	nmux
+#    WAY	2
+#    BITWIDTH	4
+#    DELAY	1100
+#    AREA	9
+#    NET	20
+#    PIN_PAIR	26
+#    LSTAGE	3
+#}
+#@BLIB {
+#    NAME	nmux2_8
+#    KIND	nmux
+#    WAY	2
+#    BITWIDTH	8
+#    DELAY	1400
+#    AREA	16
+#    NET	36
+#    PIN_PAIR	50
+#    LSTAGE	3
+#}
+#@BLIB {
+#    NAME	nmux2_16
+#    KIND	nmux
+#    WAY	2
+#    BITWIDTH	16
+#    DELAY	1600
+#    AREA	32
+#    NET	70
+#    PIN_PAIR	100
+#    LSTAGE	3
+#}
+#@BLIB {
+#    NAME	nmux2_32
+#    KIND	nmux
+#    WAY	2
+#    BITWIDTH	32
+#    DELAY	1700
+#    AREA	64
+#    NET	140
+#    PIN_PAIR	202
+#    LSTAGE	4
+#}
+#@BLIB {
+#    NAME	nmux2_64
+#    KIND	nmux
+#    WAY	2
+#    BITWIDTH	64
+#    DELAY	1500
+#    AREA	128
+#    NET	275
+#    PIN_PAIR	401
+#    LSTAGE	4
+#}
+#@BLIB {
+#    NAME	nmux4_1
+#    KIND	nmux
+#    WAY	4
+#    BITWIDTH	1
+#    DELAY	800
+#    AREA	3
+#    NET	11
+#    PIN_PAIR	11
+#    LSTAGE	2
+#}
+#@BLIB {
+#    NAME	nmux4_2
+#    KIND	nmux
+#    WAY	4
+#    BITWIDTH	2
+#    DELAY	1000
+#    AREA	6
+#    NET	18
+#    PIN_PAIR	22
+#    LSTAGE	2
+#}
+#@BLIB {
+#    NAME	nmux4_4
+#    KIND	nmux
+#    WAY	4
+#    BITWIDTH	4
+#    DELAY	1200
+#    AREA	17
+#    NET	36
+#    PIN_PAIR	48
+#    LSTAGE	3
+#}
+#@BLIB {
+#    NAME	nmux4_8
+#    KIND	nmux
+#    WAY	4
+#    BITWIDTH	8
+#    DELAY	1500
+#    AREA	30
+#    NET	64
+#    PIN_PAIR	92
+#    LSTAGE	3
+#}
+#@BLIB {
+#    NAME	nmux4_16
+#    KIND	nmux
+#    WAY	4
+#    BITWIDTH	16
+#    DELAY	1700
+#    AREA	61
+#    NET	124
+#    PIN_PAIR	184
+#    LSTAGE	3
+#}
+#@BLIB {
+#    NAME	nmux4_32
+#    KIND	nmux
+#    WAY	4
+#    BITWIDTH	32
+#    DELAY	1900
+#    AREA	121
+#    NET	248
+#    PIN_PAIR	372
+#    LSTAGE	3
+#}
+#@BLIB {
+#    NAME	nmux4_64
+#    KIND	nmux
+#    WAY	4
+#    BITWIDTH	64
+#    DELAY	1600
+#    AREA	242
+#    NET	490
+#    PIN_PAIR	742
+#    LSTAGE	3
+#}
+#@BLIB {
+#    NAME	nmux8_1
+#    KIND	nmux
+#    WAY	8
+#    BITWIDTH	1
+#    DELAY	1000
+#    AREA	6
+#    NET	21
+#    PIN_PAIR	21
+#    LSTAGE	2
+#}
+#@BLIB {
+#    NAME	nmux8_2
+#    KIND	nmux
+#    WAY	8
+#    BITWIDTH	2
+#    DELAY	1300
+#    AREA	13
+#    NET	34
+#    PIN_PAIR	42
+#    LSTAGE	2
+#}
+#@BLIB {
+#    NAME	nmux8_4
+#    KIND	nmux
+#    WAY	8
+#    BITWIDTH	4
+#    DELAY	1600
+#    AREA	31
+#    NET	66
+#    PIN_PAIR	90
+#    LSTAGE	2
+#}
+#@BLIB {
+#    NAME	nmux8_8
+#    KIND	nmux
+#    WAY	8
+#    BITWIDTH	8
+#    DELAY	1700
+#    AREA	59
+#    NET	120
+#    PIN_PAIR	176
+#    LSTAGE	3
+#}
+#@BLIB {
+#    NAME	nmux8_16
+#    KIND	nmux
+#    WAY	8
+#    BITWIDTH	16
+#    DELAY	2000
+#    AREA	119
+#    NET	232
+#    PIN_PAIR	352
+#    LSTAGE	3
+#}
+#@BLIB {
+#    NAME	nmux8_32
+#    KIND	nmux
+#    WAY	8
+#    BITWIDTH	32
+#    DELAY	2200
+#    AREA	233
+#    NET	463
+#    PIN_PAIR	711
+#    LSTAGE	4
+#}
+#@BLIB {
+#    NAME	nmux8_64
+#    KIND	nmux
+#    WAY	8
+#    BITWIDTH	64
+#    DELAY	1800
+#    AREA	460
+#    NET	906
+#    PIN_PAIR	1410
+#    LSTAGE	4
+#}
+#@BLIB {
+#    NAME	nmux16_1
+#    KIND	nmux
+#    WAY	16
+#    BITWIDTH	1
+#    DELAY	1500
+#    AREA	14
+#    NET	43
+#    PIN_PAIR	43
+#    LSTAGE	3
+#}
+#@BLIB {
+#    NAME	nmux16_2
+#    KIND	nmux
+#    WAY	16
+#    BITWIDTH	2
+#    DELAY	1700
+#    AREA	33
+#    NET	80
+#    PIN_PAIR	96
+#    LSTAGE	4
+#}
+#@BLIB {
+#    NAME	nmux16_4
+#    KIND	nmux
+#    WAY	16
+#    BITWIDTH	4
+#    DELAY	1900
+#    AREA	76
+#    NET	155
+#    PIN_PAIR	203
+#    LSTAGE	4
+#}
+#@BLIB {
+#    NAME	nmux16_8
+#    KIND	nmux
+#    WAY	16
+#    BITWIDTH	8
+#    DELAY	2200
+#    AREA	127
+#    NET	248
+#    PIN_PAIR	360
+#    LSTAGE	4
+#}
+#@BLIB {
+#    NAME	nmux16_16
+#    KIND	nmux
+#    WAY	16
+#    BITWIDTH	16
+#    DELAY	2400
+#    AREA	255
+#    NET	480
+#    PIN_PAIR	720
+#    LSTAGE	4
+#}
+#@BLIB {
+#    NAME	nmux16_32
+#    KIND	nmux
+#    WAY	16
+#    BITWIDTH	32
+#    DELAY	2700
+#    AREA	506
+#    NET	967
+#    PIN_PAIR	1463
+#    LSTAGE	5
+#}
+#@BLIB {
+#    NAME	nmux16_64
+#    KIND	nmux
+#    WAY	16
+#    BITWIDTH	64
+#    DELAY	2300
+#    AREA	995
+#    NET	1878
+#    PIN_PAIR	2886
+#    LSTAGE	5
+#}
+#@BLIB {
+#    NAME	nmux32_1
+#    KIND	nmux
+#    WAY	32
+#    BITWIDTH	1
+#    DELAY	1700
+#    AREA	28
+#    NET	85
+#    PIN_PAIR	85
+#    LSTAGE	3
+#}
+#@BLIB {
+#    NAME	nmux32_2
+#    KIND	nmux
+#    WAY	32
+#    BITWIDTH	2
+#    DELAY	1900
+#    AREA	56
+#    NET	138
+#    PIN_PAIR	170
+#    LSTAGE	3
+#}
+#@BLIB {
+#    NAME	nmux32_4
+#    KIND	nmux
+#    WAY	32
+#    BITWIDTH	4
+#    DELAY	2300
+#    AREA	115
+#    NET	248
+#    PIN_PAIR	344
+#    LSTAGE	3
+#}
+#@BLIB {
+#    NAME	nmux32_8
+#    KIND	nmux
+#    WAY	32
+#    BITWIDTH	8
+#    DELAY	2400
+#    AREA	251
+#    NET	488
+#    PIN_PAIR	712
+#    LSTAGE	4
+#}
+#@BLIB {
+#    NAME	nmux32_16
+#    KIND	nmux
+#    WAY	32
+#    BITWIDTH	16
+#    DELAY	2600
+#    AREA	502
+#    NET	944
+#    PIN_PAIR	1424
+#    LSTAGE	4
+#}
+#@BLIB {
+#    NAME	nmux32_32
+#    KIND	nmux
+#    WAY	32
+#    BITWIDTH	32
+#    DELAY	2900
+#    AREA	982
+#    NET	1877
+#    PIN_PAIR	2869
+#    LSTAGE	5
+#}
+#@BLIB {
+#    NAME	nmux32_64
+#    KIND	nmux
+#    WAY	32
+#    BITWIDTH	64
+#    DELAY	2700
+#    AREA	1946
+#    NET	3660
+#    PIN_PAIR	5676
+#    LSTAGE	5
+#}
+#@BLIB {
+#    NAME	nmux64_1
+#    KIND	nmux
+#    WAY	64
+#    BITWIDTH	1
+#    DELAY	1800
+#    AREA	56
+#    NET	171
+#    PIN_PAIR	171
+#    LSTAGE	4
+#}
+#@BLIB {
+#    NAME	nmux64_2
+#    KIND	nmux
+#    WAY	64
+#    BITWIDTH	2
+#    DELAY	2000
+#    AREA	113
+#    NET	278
+#    PIN_PAIR	342
+#    LSTAGE	4
+#}
+#@BLIB {
+#    NAME	nmux64_4
+#    KIND	nmux
+#    WAY	64
+#    BITWIDTH	4
+#    DELAY	2500
+#    AREA	228
+#    NET	494
+#    PIN_PAIR	686
+#    LSTAGE	4
+#}
+#@BLIB {
+#    NAME	nmux64_8
+#    KIND	nmux
+#    WAY	64
+#    BITWIDTH	8
+#    DELAY	2500
+#    AREA	504
+#    NET	984
+#    PIN_PAIR	1432
+#    LSTAGE	5
+#}
+#@BLIB {
+#    NAME	nmux64_16
+#    KIND	nmux
+#    WAY	64
+#    BITWIDTH	16
+#    DELAY	2600
+#    AREA	1008
+#    NET	1904
+#    PIN_PAIR	2864
+#    LSTAGE	5
+#}
+#@BLIB {
+#    NAME	nmux64_32
+#    KIND	nmux
+#    WAY	64
+#    BITWIDTH	32
+#    DELAY	3100
+#    AREA	1955
+#    NET	3755
+#    PIN_PAIR	5739
+#    LSTAGE	6
+#}
+#@BLIB {
+#    NAME	nmux64_64
+#    KIND	nmux
+#    WAY	64
+#    BITWIDTH	64
+#    DELAY	2800
+#    AREA	3917
+#    NET	7434
+#    PIN_PAIR	11466
+#    LSTAGE	6
+#}
+#@BLIB {
+#    NAME	reg1
+#    KIND	reg
+#    BITWIDTH	1
+#    AREA	6
+#    NET	5
+#    PIN_PAIR	5
+#}
+#@BLIB {
+#    NAME	reg4
+#    KIND	reg
+#    BITWIDTH	4
+#    AREA	24
+#    NET	14
+#    PIN_PAIR	20
+#}
+#@BLIB {
+#    NAME	reg8
+#    KIND	reg
+#    BITWIDTH	8
+#    AREA	48
+#    NET	26
+#    PIN_PAIR	40
+#}
+#@BLIB {
+#    NAME	dec2
+#    KIND	dec
+#    BITWIDTH	2
+#    DELAY	200
+#    AREA	1
+#    NET	2
+#    PIN_PAIR	3
+#}
+#@BLIB {
+#    NAME	dec4
+#    KIND	dec
+#    BITWIDTH	4
+#    DELAY	900
+#    AREA	5
+#    NET	10
+#    PIN_PAIR	16
+#    LSTAGE	2
+#}
+#@BLIB {
+#    NAME	dec8
+#    KIND	dec
+#    BITWIDTH	8
+#    DELAY	1300
+#    AREA	14
+#    NET	18
+#    PIN_PAIR	39
+#    LSTAGE	3
+#}
+#@BLIB {
+#    NAME	dec16
+#    KIND	dec
+#    BITWIDTH	16
+#    DELAY	1300
+#    AREA	25
+#    NET	37
+#    PIN_PAIR	74
+#    LSTAGE	2
+#}
+#@BLIB {
+#    NAME	dec32
+#    KIND	dec
+#    BITWIDTH	32
+#    DELAY	1800
+#    AREA	42
+#    NET	58
+#    PIN_PAIR	138
+#    LSTAGE	2
+#}
+#@BLIB {
+#    NAME	dec64
+#    KIND	dec
+#    BITWIDTH	64
+#    DELAY	2000
+#    AREA	78
+#    NET	100
+#    PIN_PAIR	258
+#    LSTAGE	3
+#}
+#@BLIB {
+#    NAME	dec128
+#    KIND	dec
+#    BITWIDTH	128
+#    DELAY	2500
+#    AREA	149
+#    NET	194
+#    PIN_PAIR	483
+#    LSTAGE	5
+#}
+#@BLIB {
+#    NAME	dmux2_1
+#    KIND	dmux
+#    WAY	2
+#    BITWIDTH	1
+#    DELAY	700
+#    AREA	1
+#    NET	4
+#    PIN_PAIR	4
+#    LSTAGE	1
+#}
+#@BLIB {
+#    NAME	dmux2_16
+#    KIND	dmux
+#    WAY	2
+#    BITWIDTH	16
+#    DELAY	2000
+#    AREA	32
+#    NET	69
+#    PIN_PAIR	100
+#    LSTAGE	3
+#}
+#@BLIB {
+#    NAME	dmux4_1
+#    KIND	dmux
+#    WAY	4
+#    BITWIDTH	1
+#    DELAY	1700
+#    AREA	5
+#    NET	11
+#    PIN_PAIR	15
+#    LSTAGE	2
+#}
+#@BLIB {
+#    NAME	dmux4_16
+#    KIND	dmux
+#    WAY	4
+#    BITWIDTH	16
+#    DELAY	2500
+#    AREA	64
+#    NET	128
+#    PIN_PAIR	194
+#    LSTAGE	5
+#}
+#@BLIB {
+#    NAME	dmux8_1
+#    KIND	dmux
+#    WAY	8
+#    BITWIDTH	1
+#    DELAY	2800
+#    AREA	11
+#    NET	22
+#    PIN_PAIR	33
+#    LSTAGE	4
+#}
+#@BLIB {
+#    NAME	dmux8_16
+#    KIND	dmux
+#    WAY	8
+#    BITWIDTH	16
+#    DELAY	3400
+#    AREA	127
+#    NET	240
+#    PIN_PAIR	381
+#    LSTAGE	5
+#}
+#@BLIB {
+#    NAME	dmux16_1
+#    KIND	dmux
+#    WAY	16
+#    BITWIDTH	1
+#    DELAY	3000
+#    AREA	23
+#    NET	43
+#    PIN_PAIR	65
+#    LSTAGE	6
+#}
+#@BLIB {
+#    NAME	dmux16_16
+#    KIND	dmux
+#    WAY	16
+#    BITWIDTH	16
+#    DELAY	3800
+#    AREA	275
+#    NET	499
+#    PIN_PAIR	787
+#    LSTAGE	9
+#}
+#@BLIB {
+#    NAME	dmux64_1
+#    KIND	dmux
+#    WAY	64
+#    BITWIDTH	1
+#    DELAY	4300
+#    AREA	87
+#    NET	146
+#    PIN_PAIR	234
+#    LSTAGE	8
+#}
+#@BLIB {
+#    NAME	dmux64_16
+#    KIND	dmux
+#    WAY	64
+#    BITWIDTH	16
+#    DELAY	4800
+#    AREA	1075
+#    NET	1971
+#    PIN_PAIR	3081
+#    LSTAGE	9
+#}
+#@BLIB {
+#    NAME	dmux256_1
+#    KIND	dmux
+#    WAY	256
+#    BITWIDTH	1
+#    DELAY	5300
+#    AREA	286
+#    NET	519
+#    PIN_PAIR	819
+#    LSTAGE	11
+#}
+#@BLIB {
+#    NAME	dmux256_16
+#    KIND	dmux
+#    WAY	256
+#    BITWIDTH	16
+#    DELAY	5900
+#    AREA	4243
+#    NET	7774
+#    PIN_PAIR	12168
+#    LSTAGE	16
+#}
+#@BLIB {
+#    NAME	inv
+#    KIND	inv
+#    BITWIDTH	1
+#    DELAY	300
+#    AREA	1
+#    NET	2
+#    PIN_PAIR	2
+#    LSTAGE	1
+#}
+#@BLIB {
+#    NAME	and2
+#    KIND	and
+#    INPUTNUM	2
+#    BITWIDTH	1
+#    DELAY	500
+#    AREA	1
+#    NET	3
+#    PIN_PAIR	3
+#    LSTAGE	1
+#}
+#@BLIB {
+#    NAME	and4
+#    KIND	and
+#    INPUTNUM	4
+#    BITWIDTH	1
+#    DELAY	700
+#    AREA	1
+#    NET	5
+#    PIN_PAIR	5
+#    LSTAGE	1
+#}
+#@BLIB {
+#    NAME	and8
+#    KIND	and
+#    INPUTNUM	8
+#    BITWIDTH	1
+#    DELAY	900
+#    AREA	3
+#    NET	11
+#    PIN_PAIR	11
+#    LSTAGE	2
+#}
+#@BLIB {
+#    NAME	and16
+#    KIND	and
+#    INPUTNUM	16
+#    BITWIDTH	1
+#    DELAY	1300
+#    AREA	7
+#    NET	21
+#    PIN_PAIR	21
+#    LSTAGE	2
+#}
+#@BLIB {
+#    NAME	and32
+#    KIND	and
+#    INPUTNUM	32
+#    BITWIDTH	1
+#    DELAY	1400
+#    AREA	16
+#    NET	43
+#    PIN_PAIR	43
+#    LSTAGE	3
+#}
+#@BLIB {
+#    NAME	and64
+#    KIND	and
+#    INPUTNUM	64
+#    BITWIDTH	1
+#    DELAY	2000
+#    AREA	28
+#    NET	85
+#    PIN_PAIR	85
+#    LSTAGE	3
+#}
+#@BLIB {
+#    NAME	and256
+#    KIND	and
+#    INPUTNUM	256
+#    BITWIDTH	1
+#    DELAY	2700
+#    AREA	113
+#    NET	341
+#    PIN_PAIR	341
+#    LSTAGE	4
+#}
+#@BLIB {
+#    NAME	or2
+#    KIND	or
+#    INPUTNUM	2
+#    BITWIDTH	1
+#    DELAY	500
+#    AREA	1
+#    NET	3
+#    PIN_PAIR	3
+#    LSTAGE	1
+#}
+#@BLIB {
+#    NAME	or4
+#    KIND	or
+#    INPUTNUM	4
+#    BITWIDTH	1
+#    DELAY	700
+#    AREA	1
+#    NET	5
+#    PIN_PAIR	5
+#    LSTAGE	1
+#}
+#@BLIB {
+#    NAME	or8
+#    KIND	or
+#    INPUTNUM	8
+#    BITWIDTH	1
+#    DELAY	800
+#    AREA	3
+#    NET	11
+#    PIN_PAIR	11
+#    LSTAGE	2
+#}
+#@BLIB {
+#    NAME	or16
+#    KIND	or
+#    INPUTNUM	16
+#    BITWIDTH	1
+#    DELAY	1100
+#    AREA	6
+#    NET	21
+#    PIN_PAIR	21
+#    LSTAGE	2
+#}
+#@BLIB {
+#    NAME	or32
+#    KIND	or
+#    INPUTNUM	32
+#    BITWIDTH	1
+#    DELAY	1500
+#    AREA	14
+#    NET	43
+#    PIN_PAIR	43
+#    LSTAGE	3
+#}
+#@BLIB {
+#    NAME	or64
+#    KIND	or
+#    INPUTNUM	64
+#    BITWIDTH	1
+#    DELAY	1700
+#    AREA	28
+#    NET	85
+#    PIN_PAIR	85
+#    LSTAGE	3
+#}
+#@BLIB {
+#    NAME	or256
+#    KIND	or
+#    INPUTNUM	256
+#    BITWIDTH	1
+#    DELAY	2000
+#    AREA	113
+#    NET	341
+#    PIN_PAIR	341
+#    LSTAGE	4
+#}
+#@BLIB {
+#    NAME	xor2
+#    KIND	xor
+#    INPUTNUM	2
+#    BITWIDTH	1
+#    DELAY	800
+#    AREA	3
+#    NET	7
+#    PIN_PAIR	9
+#    LSTAGE	2
+#}
+#@BLIB {
+#    NAME	xor4
+#    KIND	xor
+#    INPUTNUM	4
+#    BITWIDTH	1
+#    DELAY	1600
+#    AREA	6
+#    NET	11
+#    PIN_PAIR	13
+#    LSTAGE	3
+#}
+#@BLIB {
+#    NAME	xor8
+#    KIND	xor
+#    INPUTNUM	8
+#    BITWIDTH	1
+#    DELAY	2400
+#    AREA	11
+#    NET	15
+#    PIN_PAIR	15
+#    LSTAGE	3
+#}
+#@BLIB {
+#    NAME	xor16
+#    KIND	xor
+#    INPUTNUM	16
+#    BITWIDTH	1
+#    DELAY	4800
+#    AREA	32
+#    NET	48
+#    PIN_PAIR	56
+#    LSTAGE	8
+#}
+#@BLIB {
+#    NAME	xor32
+#    KIND	xor
+#    INPUTNUM	32
+#    BITWIDTH	1
+#    DELAY	4500
+#    AREA	49
+#    NET	63
+#    PIN_PAIR	63
+#    LSTAGE	5
+#}
+#@BLIB {
+#    NAME	xor64
+#    KIND	xor
+#    INPUTNUM	64
+#    BITWIDTH	1
+#    DELAY	5400
+#    AREA	100
+#    NET	127
+#    PIN_PAIR	127
+#    LSTAGE	6
+#}
+#@BLIB {
+#    NAME	xor256
+#    KIND	xor
+#    INPUTNUM	256
+#    BITWIDTH	1
+#    DELAY	7200
+#    AREA	406
+#    NET	511
+#    PIN_PAIR	511
+#    LSTAGE	8
+#}
+#@BLIB {
+#    NAME	nand2
+#    KIND	nand
+#    INPUTNUM	2
+#    BITWIDTH	1
+#    DELAY	400
+#    AREA	1
+#    NET	3
+#    PIN_PAIR	3
+#    LSTAGE	1
+#}
+#@BLIB {
+#    NAME	nand4
+#    KIND	nand
+#    INPUTNUM	4
+#    BITWIDTH	1
+#    DELAY	600
+#    AREA	1
+#    NET	5
+#    PIN_PAIR	5
+#    LSTAGE	1
+#}
+#@BLIB {
+#    NAME	nand8
+#    KIND	nand
+#    INPUTNUM	8
+#    BITWIDTH	1
+#    DELAY	1100
+#    AREA	3
+#    NET	11
+#    PIN_PAIR	11
+#    LSTAGE	2
+#}
+#@BLIB {
+#    NAME	nand16
+#    KIND	nand
+#    INPUTNUM	16
+#    BITWIDTH	1
+#    DELAY	1700
+#    AREA	6
+#    NET	21
+#    PIN_PAIR	21
+#    LSTAGE	2
+#}
+#@BLIB {
+#    NAME	nand32
+#    KIND	nand
+#    INPUTNUM	32
+#    BITWIDTH	1
+#    DELAY	1600
+#    AREA	14
+#    NET	43
+#    PIN_PAIR	43
+#    LSTAGE	3
+#}
+#@BLIB {
+#    NAME	nand64
+#    KIND	nand
+#    INPUTNUM	64
+#    BITWIDTH	1
+#    DELAY	1800
+#    AREA	27
+#    NET	85
+#    PIN_PAIR	85
+#    LSTAGE	3
+#}
+#@BLIB {
+#    NAME	nand256
+#    KIND	nand
+#    INPUTNUM	256
+#    BITWIDTH	1
+#    DELAY	3000
+#    AREA	113
+#    NET	341
+#    PIN_PAIR	341
+#    LSTAGE	4
+#}
+#@BLIB {
+#    NAME	nor2
+#    KIND	nor
+#    INPUTNUM	2
+#    BITWIDTH	1
+#    DELAY	500
+#    AREA	1
+#    NET	3
+#    PIN_PAIR	3
+#    LSTAGE	1
+#}
+#@BLIB {
+#    NAME	nor4
+#    KIND	nor
+#    INPUTNUM	4
+#    BITWIDTH	1
+#    DELAY	1000
+#    AREA	1
+#    NET	5
+#    PIN_PAIR	5
+#    LSTAGE	1
+#}
+#@BLIB {
+#    NAME	nor8
+#    KIND	nor
+#    INPUTNUM	8
+#    BITWIDTH	1
+#    DELAY	1400
+#    AREA	3
+#    NET	11
+#    PIN_PAIR	11
+#    LSTAGE	2
+#}
+#@BLIB {
+#    NAME	nor16
+#    KIND	nor
+#    INPUTNUM	16
+#    BITWIDTH	1
+#    DELAY	1600
+#    AREA	6
+#    NET	21
+#    PIN_PAIR	21
+#    LSTAGE	2
+#}
+#@BLIB {
+#    NAME	nor32
+#    KIND	nor
+#    INPUTNUM	32
+#    BITWIDTH	1
+#    DELAY	1800
+#    AREA	14
+#    NET	43
+#    PIN_PAIR	43
+#    LSTAGE	3
+#}
+#@BLIB {
+#    NAME	nor64
+#    KIND	nor
+#    INPUTNUM	64
+#    BITWIDTH	1
+#    DELAY	2300
+#    AREA	27
+#    NET	85
+#    PIN_PAIR	85
+#    LSTAGE	3
+#}
+#@BLIB {
+#    NAME	nor256
+#    KIND	nor
+#    INPUTNUM	256
+#    BITWIDTH	1
+#    DELAY	2900
+#    AREA	113
+#    NET	341
+#    PIN_PAIR	341
+#    LSTAGE	4
+#}
+#@BLIB {
+#    NAME	xnor2
+#    KIND	xnor
+#    INPUTNUM	2
+#    BITWIDTH	1
+#    DELAY	800
+#    AREA	3
+#    NET	7
+#    PIN_PAIR	9
+#    LSTAGE	2
+#}
+#@BLIB {
+#    NAME	xnor4
+#    KIND	xnor
+#    INPUTNUM	4
+#    BITWIDTH	1
+#    DELAY	1600
+#    AREA	4
+#    NET	7
+#    PIN_PAIR	7
+#    LSTAGE	2
+#}
+#@BLIB {
+#    NAME	xnor8
+#    KIND	xnor
+#    INPUTNUM	8
+#    BITWIDTH	1
+#    DELAY	2600
+#    AREA	11
+#    NET	15
+#    PIN_PAIR	15
+#    LSTAGE	3
+#}
+#@BLIB {
+#    NAME	xnor16
+#    KIND	xnor
+#    INPUTNUM	16
+#    BITWIDTH	1
+#    DELAY	4200
+#    AREA	42
+#    NET	58
+#    PIN_PAIR	75
+#    LSTAGE	13
+#}
+#@BLIB {
+#    NAME	xnor32
+#    KIND	xnor
+#    INPUTNUM	32
+#    BITWIDTH	1
+#    DELAY	4500
+#    AREA	49
+#    NET	63
+#    PIN_PAIR	63
+#    LSTAGE	5
+#}
+#@BLIB {
+#    NAME	xnor64
+#    KIND	xnor
+#    INPUTNUM	64
+#    BITWIDTH	1
+#    DELAY	5400
+#    AREA	100
+#    NET	127
+#    PIN_PAIR	127
+#    LSTAGE	6
+#}
+#@BLIB {
+#    NAME	xnor256
+#    KIND	xnor
+#    INPUTNUM	256
+#    BITWIDTH	1
+#    DELAY	7200
+#    AREA	406
+#    NET	511
+#    PIN_PAIR	511
+#    LSTAGE	8
+#}
+#@BLIB {
+#    NAME	consttable2_8
+#    KIND	consttable
+#    SIZE	2
+#    BITWIDTH	8
+#    DELAY	200
+#    AREA	1
+#    NET	4
+#    PIN_PAIR	9
+#}
+#@BLIB {
+#    NAME	consttable2_32
+#    KIND	consttable
+#    SIZE	2
+#    BITWIDTH	32
+#    DELAY	600
+#    AREA	1
+#    NET	5
+#    PIN_PAIR	34
+#    LSTAGE	1
+#}
+#@BLIB {
+#    NAME	consttable16_8
+#    KIND	consttable
+#    SIZE	16
+#    BITWIDTH	8
+#    DELAY	3000
+#    AREA	50
+#    NET	53
+#    PIN_PAIR	122
+#    LSTAGE	6
+#}
+#@BLIB {
+#    NAME	consttable16_32
+#    KIND	consttable
+#    SIZE	16
+#    BITWIDTH	32
+#    DELAY	3400
+#    AREA	120
+#    NET	130
+#    PIN_PAIR	317
+#    LSTAGE	9
+#}
+#@BLIB {
+#    NAME	consttable64_8
+#    KIND	consttable
+#    SIZE	64
+#    BITWIDTH	8
+#    DELAY	4900
+#    AREA	146
+#    NET	162
+#    PIN_PAIR	387
+#    LSTAGE	9
+#}
+#@BLIB {
+#    NAME	consttable64_32
+#    KIND	consttable
+#    SIZE	64
+#    BITWIDTH	32
+#    DELAY	5000
+#    AREA	392
+#    NET	434
+#    PIN_PAIR	1020
+#    LSTAGE	13
+#}
+#@BLIB {
+#    NAME	consttable256_8
+#    KIND	consttable
+#    SIZE	256
+#    BITWIDTH	8
+#    DELAY	6100
+#    AREA	476
+#    NET	482
+#    PIN_PAIR	1203
+#    LSTAGE	14
+#}
+#@BLIB {
+#    NAME	consttable256_32
+#    KIND	consttable
+#    SIZE	256
+#    BITWIDTH	32
+#    DELAY	5800
+#    AREA	1350
+#    NET	1466
+#    PIN_PAIR	3523
+#    LSTAGE	12
+#}
+##@END{CWBSTDBLIB}
+#@END
+*/
