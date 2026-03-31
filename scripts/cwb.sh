@@ -4,8 +4,8 @@
 # Usage: ./cwb.sh <test/variant>
 #
 # Examples:
-#   ./cwb.sh avg8               -> synthesizes test/avg8/simulator.cpp (no accel)
-#   ./cwb.sh filter/accel_filt  -> synthesizes test/filter/simulator.cpp with
+#   ./cwb.sh avg8               -> synthesizes test/avg8/computer.cpp (no accel)
+#   ./cwb.sh filter/accel_filt  -> synthesizes test/filter/computer.cpp with
 #                                   ACCEL flags from test/filter/accel_filt/accel.conf
 #   ./cwb.sh filter/accel_filt_no_ci
 #
@@ -39,8 +39,8 @@ VARIANT_PATH="$1"                         # e.g. filter/accel_filt
 TEST_NAME="$(echo "$VARIANT_PATH" | cut -d'/' -f1)"  # e.g. filter
 VARIANT_DIR="${TEST_DIR}/${VARIANT_PATH}" # e.g. test/filter/accel_filt
 
-# Simulator source is always the test-level simulator.cpp
-SIM_SRC="${TEST_DIR}/${TEST_NAME}/simulator.cpp"
+# Simulator source is always the test-level computer.cpp
+SIM_SRC="${TEST_DIR}/${TEST_NAME}/computer.cpp"
 
 if [ ! -f "$SIM_SRC" ]; then
     echo "Error: simulator source not found: ${SIM_SRC}"

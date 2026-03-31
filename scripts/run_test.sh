@@ -145,13 +145,13 @@ echo "=== Step 1: Compiling ${TEST_NAME} ==="
 # ==========================================================================
 echo ""
 echo "=== Step 2: Building C Simulator ==="
-# Prefer test-local simulator.cpp if it exists (for custom instructions)
+# Prefer test-local computer.cpp if it exists (for custom instructions)
 TEST_SUBDIR="$(dirname "${TEST_NAME}")"
-if [ "${TEST_SUBDIR}" != "." ] && [ -f "${TEST_DIR}/${TEST_SUBDIR}/simulator.cpp" ]; then
-    SIM_SRC="${TEST_DIR}/${TEST_SUBDIR}/simulator.cpp"
+if [ "${TEST_SUBDIR}" != "." ] && [ -f "${TEST_DIR}/${TEST_SUBDIR}/computer.cpp" ]; then
+    SIM_SRC="${TEST_DIR}/${TEST_SUBDIR}/computer.cpp"
     echo "Using test-local simulator: ${SIM_SRC}"
 else
-    SIM_SRC="${ROOT_DIR}/sim/simulator.cpp"
+    SIM_SRC="${ROOT_DIR}/sim/computer.cpp"
     echo "Using baseline simulator: ${SIM_SRC}"
 fi
 
