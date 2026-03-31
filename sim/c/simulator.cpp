@@ -556,21 +556,24 @@ bool computer(uint32_t imem_arg[MEM_SIZE], uint32_t dmem_arg[MEM_SIZE]
 #ifdef C
 int main(int argc, char *argv[]) {
   if (argc < 2) {
-    cerr << "Usage: simulator <code.hex>" << endl;
+    cerr << "Usage: simulator <code.hex> [report.rpt]" << endl;
     return 1;
   }
 
   load_program(argv[1]);
 
-  ofstream rpt("sim_cpu.rpt");
+  string rpt_filename = "sim_cpu.rpt";
+  if (argc >= 3) {
+    rpt_filename = argv[2];
+  }
+  ofstream rpt(rpt_filename);
 
   bool halted = computer(imem, dmem, rpt);
 
   dump_regs(rpt);
   rpt.close();
 
-  cout << "Simulation finished (halt=" << halted << "). Report in sim_cpu.rpt"
-       << endl;
+  cout << "Simulation finished (halt=" << halted << "). Report in " << rpt_filename << endl;
   cout << "Final PC: 0x" << hex << setw(8) << setfill('0') << PC << endl;
 
   return 0;

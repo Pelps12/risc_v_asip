@@ -126,20 +126,16 @@ if [ "$RUN_RTL" -eq 1 ]; then
     # We need TEST_SUBDIR to find local RTL
     TEST_SUBDIR="$(dirname "${TEST_NAME}")"
     if [ "$RTL_VARIANT" == "baseline" ]; then
-        DUT_CORE="${RTL_COMMON_DIR}/rv32i_core_E.v"
-        DUT_SIM="${RTL_COMMON_DIR}/rv32i_core_E_SIM.v"
-        DUT_FILE="${DUT_CORE} ${DUT_SIM}"
+        DUT_FILE="${RTL_COMMON_DIR}/computer_E.v"
         echo "Using baseline RTL: ${DUT_FILE}"
     else
         # Look in test-specific RTL directory
         RTL_VARIANT_DIR="${TEST_DIR}/${TEST_SUBDIR}/${RTL_VARIANT}"
-        DUT_CORE="${RTL_VARIANT_DIR}/rtl/rv32i_core_E.v"
-        DUT_SIM="${RTL_COMMON_DIR}/rv32i_core_E_SIM.v"
-        DUT_FILE="${DUT_CORE} ${DUT_SIM}"
+        DUT_FILE="${RTL_VARIANT_DIR}/rtl/computer_E.v"
         ACCEL_CONF="${RTL_VARIANT_DIR}/accel.conf"
         
-        if [ ! -f "${DUT_CORE}" ]; then
-            echo "Error: RTL core file '${DUT_CORE}' not found."
+        if [ ! -f "${DUT_FILE}" ]; then
+            echo "Error: RTL core file '${DUT_FILE}' not found."
             exit 1
         fi
 
@@ -253,9 +249,9 @@ if [ "$RUN_RTL" -eq 1 ]; then
         *)        FST_FILE="${RTL_ARTIFACTS_DIR}/trace.fst" ;;
     esac
 
-    EXTRA_MAKE_ARGS=""
+    EXTRA_MAKE_ARGS="TB_SRC=${RTL_COMMON_DIR}/tb_computer_c.sv"
     if [ "$RTL_VARIANT" == "aes_sbox" ]; then
-        EXTRA_MAKE_ARGS="PC_SIG=RG_mask_op1_PC"
+        EXTRA_MAKE_ARGS="${EXTRA_MAKE_ARGS} PC_SIG=RG_mask_op1_PC"
     fi
 
     TRACE_ARG=""
