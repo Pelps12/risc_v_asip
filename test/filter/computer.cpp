@@ -162,7 +162,7 @@ inline void mem_write_word(uint32_t dmem_arg[], uint32_t addr, uint32_t val) {
 // Computes: sum = Σ data[i] * coeff[i]  for i in 0..7
 //           saturate to [0, 255<<10], then return (sum >> 10) & 0xFF
 // ============================================================================
-#ifdef ACCEL_FILT
+#if defined(ACCEL_FILT) || defined(ACCEL_FILT_HW)
 
 uint32_t compute_filt(uint32_t dmem_arg[], uint32_t base_addr) {
   int32_t sum = 0;
