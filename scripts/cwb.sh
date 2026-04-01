@@ -40,8 +40,8 @@ TEST_NAME="$(echo "$VARIANT_PATH" | cut -d'/' -f1)"     # e.g. filter
 VARIANT_NAME="$(echo "$VARIANT_PATH" | cut -d'/' -f2)"  # e.g. accel_filt
 VARIANT_DIR="${TEST_DIR}/${VARIANT_PATH}"                # e.g. test/filter/accel_filt
 
-# All RTL versions for a test live under test/<test>/rtl/<variant>/
-RTL_OUT="${TEST_DIR}/${TEST_NAME}/rtl/${VARIANT_NAME}"
+# RTL output lives inside the variant dir: test/<test>/<variant>/rtl/
+RTL_OUT="${VARIANT_DIR}/rtl"
 
 # Simulator source is always the test-level computer.cpp
 SIM_SRC="${TEST_DIR}/${TEST_NAME}/computer.cpp"
@@ -69,18 +69,16 @@ if [ -f "$ACCEL_CONF" ]; then
 fi
 
 # ============================================================================
-# Set up CWB working directory inside the variant folder
+# Set up CWB working directory (runs inside variant/rtl/ directly)
 # ============================================================================
-RUN_DIR="${VARIANT_DIR}/cwb_run"
-rm -rf "${RUN_DIR}"
-mkdir -p "${RUN_DIR}"
+mkdir -p "${RTL_OUT}"
 
-# Base filename for CWB (scpars uses this as the IFF base name)
+# Base filename for CWB (cpars uses this as the IFF base name)
 inFile="computer"
 
-cp "${SIM_SRC}" "${RUN_DIR}/${inFile}.cpp"
+cp "${SIM_SRC}" "${RTL_OUT}/${inFile}.cpp"
 
-cd "${RUN_DIR}"
+cd "${RTL_OUT}"
 
 # Clock period: 1000 = 10ns (unit: 1/100ns)
 freq=1000
@@ -128,15 +126,6 @@ ${CWB_PATH}/bdltran -EE \
 echo ""
 echo "--- Step 3: veriloggen ---"
 ${CWB_PATH}/veriloggen -EE ${inFile}_E.IFF -sim_mem
-
-# ============================================================================
-# Step 4: Copy outputs to test/<test>/rtl/<variant>/
-# ============================================================================
-echo ""
-echo "--- Step 4: Copying outputs to ${RTL_OUT}/ ---"
-for f in *.v *.QOR *.IFF *.BDL; do
-    [ -f "$f" ] && cp "$f" "${RTL_OUT}/"
-done
 
 end_time=$(date +%s.%N)
 elapsed=$(echo "$end_time - $start_time" | bc)

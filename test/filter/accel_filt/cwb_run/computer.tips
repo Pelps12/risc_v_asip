@@ -1,9 +1,0 @@
-H_BT9002: No "else" clause after "else if" clauses.
- [Tips] Removing the condition in the last clause may reduce area and cycles.
-        example)
-        if (x>0) else if (x<=0); 
-        -> if (x>0) else ...
-	[Source Lines]
-	178(computer.cpp):   else if (sum > (255 << 10))
-H_BT9003: "reg" variable is used in automatic scheduling mode.
- [Tips] Use "var" or logic type, if possible, which possibly can reduce the number of cycles.

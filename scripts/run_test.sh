@@ -76,12 +76,10 @@ if [ -z "$TEST_NAME" ]; then
     echo "Available RTL variants per test (synthesized by cwb.sh):"
     for test_dir in "${TEST_DIR}"/*/; do
         tname="$(basename "$test_dir")"
-        rtl_base="${test_dir}rtl"
-        [ -d "$rtl_base" ] || continue
-        for d in "${rtl_base}"/*/; do
-            [ -d "$d" ] || continue
+        for d in "${test_dir}"*/; do
+            [ -f "${d}rtl/computer_E.v" ] || continue
             vname="$(basename "$d")"
-            accel_conf="${test_dir}${vname}/accel.conf"
+            accel_conf="${d}accel.conf"
             if [ -f "$accel_conf" ]; then
                 flags="$(grep -v '^#' "$accel_conf" | xargs)"
                 echo "  ${tname}/<test> --rtl ${vname}  [${flags:-baseline}]"
@@ -187,7 +185,7 @@ fi
 # ==========================================================================
 if [ "$RUN_RTL" -eq 1 ]; then
     TEST_SUBDIR_FOR_RTL="$(echo "${TEST_NAME}" | cut -d'/' -f1)"
-    RTL_VARIANT_DIR="${TEST_DIR}/${TEST_SUBDIR_FOR_RTL}/rtl/${RTL_VARIANT}"
+    RTL_VARIANT_DIR="${TEST_DIR}/${TEST_SUBDIR_FOR_RTL}/${RTL_VARIANT}/rtl"
     DUT_FILE="${RTL_VARIANT_DIR}/computer_E.v"
 
     echo ""
@@ -197,8 +195,8 @@ if [ "$RUN_RTL" -eq 1 ]; then
         echo "Error: RTL file '${DUT_FILE}' not found."
         echo "       Run: bash scripts/cwb.sh ${TEST_SUBDIR_FOR_RTL}/${RTL_VARIANT}"
         echo "       Available variants:"
-        for d in "${TEST_DIR}/${TEST_SUBDIR_FOR_RTL}/rtl"/*/; do
-            [ -f "${d}computer_E.v" ] && echo "         $(basename "$d")"
+        for d in "${TEST_DIR}/${TEST_SUBDIR_FOR_RTL}"/*/; do
+            [ -f "${d}rtl/computer_E.v" ] && echo "         $(basename "$d")"
         done
         exit 1
     fi
