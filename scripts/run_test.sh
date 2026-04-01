@@ -3,11 +3,10 @@
 # Usage: ./run_test.sh <test_name> [--accel FLAG ...] [--rtl [variant]] [--trace]
 #
 # Examples:
-#   ./run_test.sh aes_fullcustom/aes                          # baseline (no ACCEL)
-#   ./run_test.sh aes_fullcustom/aes --accel ACCEL_SUBBYTES   # C sim with SubBytes accel
-#   ./run_test.sh aes_fullcustom/aes --accel ACCEL_SUBBYTES --accel ACCEL_MIXCOLS
-#   ./run_test.sh aes_fullcustom/aes --rtl aes_subbytes       # reads rtl/aes_subbytes/accel.conf
-#   ./run_test.sh aes_fullcustom/aes --rtl aes_mixcols --trace  # with FST waveform
+#   ./run_test.sh avg8/avg8                                   # ISS only (software)
+#   ./run_test.sh filter/filter --accel ACCEL_FILT            # ISS with accel instruction
+#   ./run_test.sh filter/filter --rtl accel_filt              # RTL sim (reads test/filter/accel_filt/accel.conf)
+#   ./run_test.sh filter/filter --rtl accel_filt --trace      # with FST waveform
 
 set -e
 
@@ -61,43 +60,49 @@ if [ -z "$TEST_NAME" ]; then
     echo "Options:"
     echo "  --accel FLAG     Enable an ACCEL flag (repeatable)"
     echo "                   e.g. --accel ACCEL_SUBBYTES --accel ACCEL_MIXCOLS"
-    echo "  --rtl [variant]  Run RTL simulation (default: baseline)"
-    echo "                   Reads rtl/<variant>/accel.conf for ACCEL flags"
+    echo "  --rtl [variant]  Run RTL sim + compare vs ISS (reads test/<test>/<variant>/accel.conf)"
     echo "  --trace          Enable FST waveform tracing (requires --rtl)"
     echo ""
     echo "Available tests:"
     # List flat tests
     (ls "${TEST_DIR}"/*.c "${TEST_DIR}"/*.cpp 2>/dev/null) | xargs -n 1 basename | sed 's/\.[^.]*$//' | sort | uniq
-    # List subdirectory tests (e.g. aes/aes)
+    # List subdirectory tests (e.g. filter/filter)
     for dir in "${TEST_DIR}"/*/; do
         [ -d "$dir" ] || continue
         local_name="$(basename "$dir")"
         (ls "$dir"/*.c "$dir"/*.cpp 2>/dev/null) | xargs -n 1 basename | sed 's/\.[^.]*$//' | sort | uniq | sed "s|^|${local_name}/|"
     done
     echo ""
-    echo "Available RTL variants (with accel.conf):"
-    for d in "${RTL_DIR}"/*/; do
-        [ -d "$d" ] || continue
-        vname="$(basename "$d")"
-        if [ -f "${d}accel.conf" ]; then
-            flags=$(cat "${d}accel.conf" | tr '\n' ' ')
-            echo "  ${vname}:  ${flags}"
-        elif [ -f "${d}computer_E.v" ]; then
-            echo "  ${vname}:  (no accel.conf - baseline)"
-        fi
+    echo "Available RTL variants per test (synthesized by cwb.sh):"
+    for test_dir in "${TEST_DIR}"/*/; do
+        tname="$(basename "$test_dir")"
+        rtl_base="${test_dir}rtl"
+        [ -d "$rtl_base" ] || continue
+        for d in "${rtl_base}"/*/; do
+            [ -d "$d" ] || continue
+            vname="$(basename "$d")"
+            accel_conf="${test_dir}${vname}/accel.conf"
+            if [ -f "$accel_conf" ]; then
+                flags="$(grep -v '^#' "$accel_conf" | xargs)"
+                echo "  ${tname}/<test> --rtl ${vname}  [${flags:-baseline}]"
+            else
+                echo "  ${tname}/<test> --rtl ${vname}"
+            fi
+        done
     done
     exit 1
 fi
 
 # ==========================================================================
-# Read accel.conf from RTL variant (if --rtl specified)
+# Read accel.conf from variant dir (if --rtl specified)
+# accel.conf lives at test/<test>/<variant>/accel.conf
 # ==========================================================================
 if [ "$RUN_RTL" -eq 1 ]; then
-    ACCEL_CONF="${RTL_DIR}/${RTL_VARIANT}/accel.conf"
+    TEST_SUBDIR_FOR_RTL="$(echo "${TEST_NAME}" | cut -d'/' -f1)"
+    ACCEL_CONF="${TEST_DIR}/${TEST_SUBDIR_FOR_RTL}/${RTL_VARIANT}/accel.conf"
     if [ -f "$ACCEL_CONF" ]; then
         echo "Reading ACCEL flags from ${ACCEL_CONF}"
         while IFS= read -r line || [ -n "$line" ]; do
-            # Skip empty lines and comments
             line="$(echo "$line" | sed 's/#.*//' | xargs)"
             [ -z "$line" ] && continue
             ACCEL_FLAGS+=("$line")
@@ -178,9 +183,11 @@ fi
 
 # ==========================================================================
 # Step 5 (optional): RTL Simulation via Verilator
+# RTL lives at test/<test>/rtl/<variant>/computer_E.v
 # ==========================================================================
 if [ "$RUN_RTL" -eq 1 ]; then
-    RTL_VARIANT_DIR="${RTL_DIR}/${RTL_VARIANT}"
+    TEST_SUBDIR_FOR_RTL="$(echo "${TEST_NAME}" | cut -d'/' -f1)"
+    RTL_VARIANT_DIR="${TEST_DIR}/${TEST_SUBDIR_FOR_RTL}/rtl/${RTL_VARIANT}"
     DUT_FILE="${RTL_VARIANT_DIR}/computer_E.v"
 
     echo ""
@@ -188,16 +195,12 @@ if [ "$RUN_RTL" -eq 1 ]; then
 
     if [ ! -f "${DUT_FILE}" ]; then
         echo "Error: RTL file '${DUT_FILE}' not found."
+        echo "       Run: bash scripts/cwb.sh ${TEST_SUBDIR_FOR_RTL}/${RTL_VARIANT}"
         echo "       Available variants:"
-        for d in "${RTL_DIR}"/*/; do
+        for d in "${TEST_DIR}/${TEST_SUBDIR_FOR_RTL}/rtl"/*/; do
             [ -f "${d}computer_E.v" ] && echo "         $(basename "$d")"
         done
         exit 1
-    fi
-
-    EXTRA_MAKE_ARGS=""
-    if [ "$RTL_VARIANT" == "aes_sbox" ]; then
-        EXTRA_MAKE_ARGS="PC_SIG=RG_mask_op1_PC"
     fi
 
     TRACE_ARG=""
@@ -209,18 +212,42 @@ if [ "$RUN_RTL" -eq 1 ]; then
         echo "  FST tracing enabled -> ${FST_FILE}"
     fi
 
-    make -B -C "${RTL_DIR}" build DUT_SRC="${DUT_FILE}" ${EXTRA_MAKE_ARGS} ${TRACE_ARG}
+    make -B -C "${RTL_DIR}" build DUT_SRC="${DUT_FILE}" ${TRACE_ARG}
 
-    # Determine report file path (in the RTL variant's folder)
+    # Report written into the RTL variant folder
     RTL_RPT_FILE="${RTL_VARIANT_DIR}/sim_rtl.rpt"
 
     echo ""
     echo "=== Step 6: Running RTL Simulation ==="
-    make -C "${RTL_DIR}" run DUT_SRC="${DUT_FILE}" HEX="$(cd "${SCRIPT_DIR}" && pwd)/${TEST_NAME}.hex" RPT_FILE="${RTL_RPT_FILE}" ${TRACE_ARG} ${FST_ARG}
+    make -C "${RTL_DIR}" run DUT_SRC="${DUT_FILE}" \
+        HEX="$(cd "${SCRIPT_DIR}" && pwd)/${TEST_NAME}.hex" \
+        RPT_FILE="${RTL_RPT_FILE}" ${TRACE_ARG} ${FST_ARG}
 
     if [ "$RUN_TRACE" -eq 1 ] && [ -f "${FST_FILE}" ]; then
         echo ""
         echo "=== Waveform trace saved: ${FST_FILE} ==="
         echo "  Open with: gtkwave ${FST_FILE}"
+    fi
+
+    # ==========================================================================
+    # Step 7: Compare ISS vs RTL (x10 = return value of main)
+    # ==========================================================================
+    echo ""
+    echo "=== Step 7: ISS vs RTL Comparison ==="
+    ISS_X10="$(grep 'x10:' sim_cpu.rpt | tail -1 | grep -oP 'x10: \K[0-9a-f]+')"
+    RTL_X10="$(grep 'x10:' "${RTL_RPT_FILE}" | tail -1 | grep -oP 'x10: \K[0-9a-f]+')"
+
+    echo "  ISS x10 = ${ISS_X10}"
+    echo "  RTL x10 = ${RTL_X10}"
+
+    if [ "${ISS_X10}" = "${RTL_X10}" ]; then
+        if [ "${ISS_X10}" = "00000000" ]; then
+            echo "  Result  = PASS (both return 0)"
+        else
+            echo "  Result  = BOTH FAIL (x10=${ISS_X10}, but ISS and RTL agree)"
+        fi
+    else
+        echo "  Result  = MISMATCH — ISS and RTL disagree!"
+        exit 1
     fi
 fi
