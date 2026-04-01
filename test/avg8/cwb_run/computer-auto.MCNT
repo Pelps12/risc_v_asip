@@ -1,8 +1,0 @@
-
-#@VERSION { 3.00 }
-#@CNT { computer }
-@MCNT {
-     NAME	MEMB32W65536
-     LIMIT	2
-}
-#@END { computer }

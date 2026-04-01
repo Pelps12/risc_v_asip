@@ -190,7 +190,7 @@ inline void mem_write_word(uint32_t dmem_arg[], uint32_t addr, uint32_t val) {
 //   rs1 <- new input word (32-bit)
 // Internal buffer (8 x 32-bit words) is private to the accelerator hardware.
 // ============================================================================
-#ifdef ACCEL_AVE
+#if defined(ACCEL_AVE) || defined(ACCEL_AVE_HW)
 uint32_t ave8_buffer[8] = {0, 0, 0, 0, 0, 0, 0, 0};
 
 uint32_t compute_ave8(uint32_t in0) {
