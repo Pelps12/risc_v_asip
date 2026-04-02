@@ -8,18 +8,18 @@ Cyber Synthesis Report
   Module Name         : rv32i_core
   Basic Library Name  : CWBSTDBLIB
 
-  Total Area          :     16,969
+  Total Area          :     16,972
     Sequential        :      6,990
-    Combinational     :      9,979
+    Combinational     :      9,982
 
   Latency Index       :          3
   Total States        :          3
 
-  Clock Period        :       10ns
+  Clock Period        :     1000ns
   Critical Path Delay :    3.815ns
 
-  Net                 :     14,455
-  Pin Pair            :     35,011
+  Net                 :     14,458
+  Pin Pair            :     35,021
 
   Port                :          3
     In                :          2
@@ -30,14 +30,14 @@ Cyber Synthesis Report
 ========
 
   Total :
-    Total           :     16,969
+    Total           :     16,972
       Sequential    : 
         REG         :      6,990 (41%)
-      Combinational :      9,979 (58%)
+      Combinational :      9,982 (58%)
         FU          :      4,133 (24%)
         MUX         :      4,479 (26%)
         DEC         :         42 ( <1%)
-        MISC        :      1,325 ( 7%)
+        MISC        :      1,328 ( 7%)
       Memory        :          -
 
 ===================
@@ -138,7 +138,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : ../../computer_systemc.cpp:89
+        Line          : computer_systemc.cpp:89
 
 =======
 ; FSM ;
@@ -153,7 +153,7 @@ Cyber Synthesis Report
 ; Delay ;
 =========
 
-  Clock Period        :       10ns
+  Clock Period        :     1000ns
   Critical Path Delay :    3.815ns
 
               Subtotal
@@ -174,20 +174,20 @@ Cyber Synthesis Report
       Name                 / Port [Signal              ]   (ns)   (ns)  Stage
       -----------------------------------------------------------------------
       RG_PC                / dout [                    ]      -    0.00     0
-      _XOR_9627            / o1   [                    ]   0.00    0.00     0
-      _RNOR_8899           / o1   [M_211               ]   0.18    0.18     3
-      _AND_9074            / o1   [M_223               ]   0.07    0.25     4
-      _AND_9065            / o1   [M_222               ]   0.00    0.25     4
-      _LOGIC_6125          / o1   [                    ]   0.12    0.37     6
-      _NMUX_2319           / o1   [regs_ad00           ]   0.07    0.45     8
-      _DMUX_1952           / o1   [regs_rd00           ]   0.48    0.93    17
-      _NMUX_2292           / o1   [addsub32u1i1        ]   0.07    1.00    19
+      _XOR_9711            / o1   [                    ]   0.00    0.00     0
+      _RNOR_8971           / o1   [M_211               ]   0.18    0.18     3
+      _AND_9148            / o1   [M_223               ]   0.07    0.25     4
+      _AND_9139            / o1   [M_222               ]   0.00    0.25     4
+      _LOGIC_6169          / o1   [                    ]   0.12    0.37     6
+      _NMUX_2336           / o1   [regs_ad00           ]   0.07    0.45     8
+      _DMUX_1968           / o1   [regs_rd00           ]   0.48    0.93    17
+      _NMUX_2309           / o1   [addsub32u1i1        ]   0.07    1.00    19
       addsub32u@1          / o1   [addsub32u1ot        ]   1.59    2.59    41
       addsub32u_32@1       / o1   [addsub32u_321ot     ]   0.47    3.06    47
       addsub32u_30@4       / o1   [addsub32u_304ot     ]   0.47    3.53    53
       _RNOR_2756           / o1   [CT_04               ]   0.16    3.69    55
-      _AND_7572            / o1   [                    ]   0.05    3.74    56
-      _NMUX_2312           / o1   [dmem.RA1            ]   0.07    3.82    59
+      _AND_7644            / o1   [                    ]   0.05    3.74    56
+      _NMUX_2329           / o1   [dmem.RA1            ]   0.07    3.82    59
       dmem                 / i1   [dmem.RA1            ]   0.00    3.82    59
 
   False Path                    :  Unchecked
@@ -199,14 +199,14 @@ Cyber Synthesis Report
 ; Wire ;
 ========
 
-  Total Net Count      :   14,455
-  Total Pin Pair Count :   35,011
+  Total Net Count      :   14,458
+  Total Pin Pair Count :   35,021
   Const Fanout         :    2,583
 
   Net Count :
          Bit       Net    Bit*Net
      ----------------------------
-           1       256        256
+           1       258        258
            2         6         12
            4         6         24
            5         9         45
@@ -223,7 +223,7 @@ Cyber Synthesis Report
           31         2         62
           32       141      4,512
      ----------------------------
-       Total                5,394
+       Total                5,396
 
   Pin Pair Count :
       Fanout    Bit    Count   Subtotal
@@ -257,11 +257,12 @@ Cyber Synthesis Report
            8      1       11         88
            7      9        1         63
            7      6        1         42
+           7      1        1          7
            6     21        1        126
            6      5        1         30
-           6      1       10         60
+           6      1       11         66
            5      7        2         70
-           5      1        8         40
+           5      1        7         35
            4     30        1        120
            4     11        2         88
            4     10        1         40
@@ -292,9 +293,9 @@ Cyber Synthesis Report
            1      5        7         35
            1      3        1          3
            1      2        7         14
-           1      1      129        129
+           1      1      130        130
     -----------------------------------
-       Total                     11,735
+       Total                     11,744
 
   Fanout for Consts:
       Value    Fanout
@@ -412,3 +413,4 @@ Cyber Synthesis Report
     Name               Type   Bitw
     ------------------------------
       halt_sig          out     1
+
