@@ -15,7 +15,7 @@ using namespace std;
 // Constants
 const int MEM_SIZE = 65536; // 64K words (256KB)
 uint32_t imem[MEM_SIZE];    // Cyber array=ROM
-uint32_t dmem[MEM_SIZE];    // Data memory (byte-addressable via word access)
+uint32_t dmem[MEM_SIZE];    // Cyber array=REG, rw_port=R4 */
 uint32_t regs[32] = {0};    // x0-x31 (x0 hardwired to 0)
 uint32_t PC = 0;
 
