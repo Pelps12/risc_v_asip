@@ -13,9 +13,9 @@ using namespace std;
 // ============================================================================
 
 // Constants
-const int MEM_SIZE = 65536; // 64K words (256KB)
-uint32_t imem[MEM_SIZE];    // Cyber array=ROM
-uint32_t dmem[MEM_SIZE];    // Cyber array=REG, rw_port=R4 */
+const int MEM_SIZE = 4096; // 64K words (256KB)
+uint32_t imem[MEM_SIZE];    // Instruction memory
+uint32_t dmem[MEM_SIZE];    // Data memory (byte-addressable via word access)
 uint32_t regs[32] = {0};    // x0-x31 (x0 hardwired to 0)
 uint32_t PC = 0;
 
@@ -255,7 +255,7 @@ void dump_regs(ofstream &rpt) {
 // ============================================================================
 
 // Cyber func=process
-bool computer(uint32_t imem_arg[MEM_SIZE], uint32_t dmem_arg[MEM_SIZE]
+bool computer(uint32_t imem_arg[MEM_SIZE]/* Cyber array=ROM */, uint32_t dmem_arg[MEM_SIZE]/*Cyber array=REG, rw_port=R2.W1 */
 #ifdef C
               ,
               ofstream &rpt
