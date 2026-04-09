@@ -6,6 +6,20 @@ set -e
 
 SCRIPT_DIR="$(dirname "$0")"
 
+# Auto-detect LLVM tool versions (try versioned, then unversioned)
+find_llvm_tool() {
+    local tool="$1"
+    for suffix in -18 -17 -16 -15 -14 ""; do
+        if command -v "${tool}${suffix}" &>/dev/null; then
+            echo "${tool}${suffix}"
+            return 0
+        fi
+    done
+    echo "$tool"  # fallback, will error if not found
+}
+OBJCOPY=$(find_llvm_tool llvm-objcopy)
+OBJDUMP=$(find_llvm_tool llvm-objdump)
+
 if [ $# -lt 1 ]; then
     echo "Usage: $0 <source.c> [output_prefix] [extra_cflags]"
     exit 1
@@ -56,7 +70,7 @@ fi
 
 # Generate binary
 echo "Generating binary..."
-llvm-objcopy-18 -O binary "${PREFIX}.elf" "${PREFIX}.bin"
+$OBJCOPY -O binary "${PREFIX}.elf" "${PREFIX}.bin"
 
 # Generate hex dump for simulator (one 32-bit word per line, little-endian)
 echo "Generating hex file..."
@@ -64,7 +78,7 @@ od -t x4 -An -w4 -v "${PREFIX}.bin" | awk '{print $1}' > "${PREFIX}.hex"
 
 # Also dump disassembly for debugging
 echo "Generating disassembly..."
-llvm-objdump-18 -d "${PREFIX}.elf" > "${PREFIX}.dis"
+$OBJDUMP -d "${PREFIX}.elf" > "${PREFIX}.dis"
 
 echo ""
 echo "Generated files:"
