@@ -39,13 +39,6 @@ VARIANT_PATH="$1"                                        # e.g. filter/accel_fil
 TEST_NAME="$(echo "$VARIANT_PATH" | cut -d'/' -f1)"     # e.g. filter
 VARIANT_NAME="$(echo "$VARIANT_PATH" | cut -d'/' -f2)"  # e.g. accel_filt
 
-# Check if VARIANT_NAME is empty and set default
-if [ -z "$VARIANT_NAME" ]; then
-    VARIANT_DIR="${TEST_DIR}/test/TEST_NAME/baseline"
-else
-    VARIANT_DIR="${TEST_DIR}/${VARIANT_PATH}"
-fi
-
 # RTL output lives inside the variant dir: test/<test>/<variant>/rtl/
 RTL_OUT="${VARIANT_DIR}/rtl"
 
