@@ -38,6 +38,7 @@ fi
 VARIANT_PATH="$1"                                        # e.g. filter/accel_filt
 TEST_NAME="$(echo "$VARIANT_PATH" | cut -d'/' -f1)"     # e.g. filter
 VARIANT_NAME="$(echo "$VARIANT_PATH" | cut -d'/' -f2)"  # e.g. accel_filt
+VARIANT_DIR="${TEST_DIR}/${VARIANT_PATH}"                # e.g. test/filter/accel_filt
 
 # RTL output lives inside the variant dir: test/<test>/<variant>/rtl/
 RTL_OUT="${VARIANT_DIR}/rtl"
