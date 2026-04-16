@@ -18,9 +18,11 @@ module tb_computer;
   // --------------------------------------------------------------------------
   // Parameters
   // --------------------------------------------------------------------------
-  parameter MEM_SIZE   = 65536;  // 64K words
+  parameter IMEM_SIZE   = 65536; // 64K words
+  parameter DMEM_SIZE   = 4096;  // 4K words
   parameter ADDR_BITS  = 16;
-  parameter CLK_PERIOD = 20;     // 20 ns -> 50 MHz (matches -c2000 = 20ns)
+  parameter DMEM_READ_PORTS = 2;
+  parameter CLK_PERIOD = 10;     // 10 ns -> 100 MHz (matches -c1000 = 10ns)
 
   // --------------------------------------------------------------------------
   // Signals
@@ -34,7 +36,7 @@ module tb_computer;
   reg  [31:0] imem_rdata;
 
   // DMEM interface (read + write)
-  wire        dmem_re;
+  wire [DMEM_READ_PORTS-1:0] dmem_re;
   wire [ADDR_BITS-1:0] dmem_raddr;
   reg  [31:0] dmem_rdata;
   wire [ADDR_BITS-1:0] dmem_waddr;
@@ -47,8 +49,8 @@ module tb_computer;
   // --------------------------------------------------------------------------
   // Memories
   // --------------------------------------------------------------------------
-  reg [31:0] imem [0:MEM_SIZE-1];
-  reg [31:0] dmem [0:MEM_SIZE-1];
+  reg [31:0] imem [0:IMEM_SIZE-1];
+  reg [31:0] dmem [0:DMEM_SIZE-1];
 
   // IMEM read (synchronous, 1-cycle latency)
   always @(posedge clk) begin
@@ -71,22 +73,47 @@ module tb_computer;
   // --------------------------------------------------------------------------
   // DUT Instantiation
   // --------------------------------------------------------------------------
-  computer dut (
-    .imem_arg_MEMB32W65536_RE1      (imem_re),
-    .imem_arg_MEMB32W65536_RA1      (imem_addr),
-    .imem_arg_MEMB32W65536_RD1      (imem_rdata),
+  `ifdef ACCEL_AVE
+    computer dut (
+      .imem_arg_MEMB32W4096_RE1      (imem_re),
+      .imem_arg_MEMB32W4096_RA1      (imem_addr),
+      .imem_arg_MEMB32W4096_RD1      (imem_rdata),
 
-    .dmem_arg_MEMB32W65536_RE1      (dmem_re),
-    .dmem_arg_MEMB32W65536_RA1      (dmem_raddr),
-    .dmem_arg_MEMB32W65536_RD1      (dmem_rdata),
-    .dmem_arg_MEMB32W65536_WA2      (dmem_waddr),
-    .dmem_arg_MEMB32W65536_WD2      (dmem_wdata),
-    .dmem_arg_MEMB32W65536_WE2      (dmem_we),
+      .computer_ret                    (halt),
+      .CLOCK                           (clk),
+      .RESET                           (rst)
+    );
+  `endif
+  `elsif ACCEL_AVE_HW
+    computer dut (
+      .imem_arg_MEMB32W4096_RE1      (imem_re),
+      .imem_arg_MEMB32W4096_RA1      (imem_addr),
+      .imem_arg_MEMB32W4096_RD1      (imem_rdata),
 
-    .computer_ret                    (halt),
-    .CLOCK                           (clk),
-    .RESET                           (rst)
-  );
+      .computer_ret                    (halt),
+      .CLOCK                           (clk),
+      .RESET                           (rst)
+    );
+  `endif
+  `else
+    computer dut (
+      .imem_arg_MEMB32W65536_RE1      (imem_re),
+      .imem_arg_MEMB32W65536_RA1      (imem_addr),
+      .imem_arg_MEMB32W65536_RD1      (imem_rdata),
+
+      .dmem_arg_MEMB32W65536_RE1      (dmem_re),
+      .dmem_arg_MEMB32W65536_RA1      (dmem_raddr),
+      .dmem_arg_MEMB32W65536_RD1      (dmem_rdata),
+      .dmem_arg_MEMB32W65536_WA2      (dmem_waddr),
+      .dmem_arg_MEMB32W65536_WD2      (dmem_wdata),
+      .dmem_arg_MEMB32W65536_WE2      (dmem_we),
+
+      .computer_ret                    (halt),
+      .CLOCK                           (clk),
+      .RESET                           (rst)
+    );
+  `endif
+
 
   // --------------------------------------------------------------------------
   // Debug Signals
@@ -142,7 +169,7 @@ module tb_computer;
   string  rpt_file;
 
   // Combined memory for loading hex (imem + dmem concatenated)
-  reg [31:0] full_mem [0:2*MEM_SIZE-1];
+  reg [31:0] full_mem [0:IMEM_SIZE+DMEM_SIZE-1];
 
   // Hex file path from plusarg
   string hex_file;
@@ -168,9 +195,11 @@ module tb_computer;
 
     // Load combined hex: first 65536 words = imem, rest = dmem
     $readmemh(hex_file, full_mem);
-    for (int i = 0; i < MEM_SIZE; i++) begin
+    for (int i = 0; i < IMEM_SIZE; i++) begin
       imem[i] = full_mem[i];
-      dmem[i] = full_mem[i + MEM_SIZE];
+    end
+    for (int i = 0; i < DMEM_SIZE; i++) begin
+      dmem[i] = full_mem[i + IMEM_SIZE];
     end
     $display("Loaded hex: %s", hex_file);
     $display("  First 6 imem words:");
