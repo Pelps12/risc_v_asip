@@ -5,12 +5,6 @@ I_BT6773: The BLIB and FLIB files are loaded.
 	/proj/cad/cwb-6.1/packages/asic_45.BLIB
 	/proj/cad/cwb-6.1/packages/asic_45.FLIB
 I_BT4146: All signals are synthesized as descending bit-order because all declared signals are of descending bit-order.
-I_BT4563: Synthesis of function(mem_read_byte) by inline expansion, because function have pointer argument.
-I_BT4563: Synthesis of function(mem_read_half) by inline expansion, because function have pointer argument.
-I_BT4563: Synthesis of function(mem_read_word) by inline expansion, because function have pointer argument.
-I_BT4563: Synthesis of function(mem_write_byte) by inline expansion, because function have pointer argument.
-I_BT4563: Synthesis of function(mem_write_half) by inline expansion, because function have pointer argument.
-I_BT4563: Synthesis of function(mem_write_word) by inline expansion, because function have pointer argument.
 I_BT4568: Function sign_extend is inline-expanded.
 I_BT4568: Function mem_write_word is inline-expanded.
 I_BT4568: Function mem_write_half is inline-expanded.
@@ -25,22 +19,22 @@ I_BT4568: Function decode_imm_u is inline-expanded.
 I_BT4568: Function decode_imm_i is inline-expanded.
 I_BT5514: 28 address decoders (R27,W1) to access to array signal 'regs'.
 	[Source Lines]
-	20(computer.cpp): uint32_t regs[32] = {0};    // x0-x31 (x0 hardwired to 0)
+	24(computer.cpp): uint32_t regs[32] = {0};    // x0-x31 (x0 hardwired to 0)
 I_BT8371: Height of operation tree has been reduced.
 	[Source Lines]
-	65(computer.cpp):   uint32_t imm = ((instr >> 31) << 12) |
-	66(computer.cpp):                  (((instr >> 7) & 0x1) << 11) |
-	67(computer.cpp):                  (((instr >> 25) & 0x3F) << 5) |
-	68(computer.cpp):                  (((instr >> 8) & 0xF) << 1);
-	249(computer.cpp):     uint32_t funct7 = (instr >> 25) & 0x7F;
+	69(computer.cpp):   uint32_t imm = ((instr >> 31) << 12) |
+	70(computer.cpp):                  (((instr >> 7) & 0x1) << 11) |
+	71(computer.cpp):                  (((instr >> 25) & 0x3F) << 5) |
+	72(computer.cpp):                  (((instr >> 8) & 0xF) << 1);
+	253(computer.cpp):     uint32_t funct7 = (instr >> 25) & 0x7F;
 I_BT8371: Height of operation tree has been reduced.
 	[Source Lines]
-	75(computer.cpp):   uint32_t imm = ((instr >> 31) << 20) |
-	76(computer.cpp):                  (((instr >> 12) & 0xFF) << 12) |
-	77(computer.cpp):                  (((instr >> 20) & 0x1) << 11) |
-	78(computer.cpp):                  (((instr >> 21) & 0x3FF) << 1);
-	246(computer.cpp):     uint32_t funct3 = (instr >> 12) & 0x7;
-	248(computer.cpp):     uint32_t rs2    = (instr >> 20) & 0x1F;
+	79(computer.cpp):   uint32_t imm = ((instr >> 31) << 20) |
+	80(computer.cpp):                  (((instr >> 12) & 0xFF) << 12) |
+	81(computer.cpp):                  (((instr >> 20) & 0x1) << 11) |
+	82(computer.cpp):                  (((instr >> 21) & 0x3FF) << 1);
+	250(computer.cpp):     uint32_t funct3 = (instr >> 12) & 0x7;
+	252(computer.cpp):     uint32_t rs2    = (instr >> 20) & 0x1F;
 I_BT4383: Generate memory library file / memory constraint file.
 	computer-auto.MLIB
 	computer-auto.MCNT
@@ -55,13 +49,19 @@ I_BT4382: Generate functional unit library files / functional unit constraint fi
 	computer-auto.FCNT
 	computer-amacro-auto.FLIB
 	computer-amacro-auto.FCNT
+W_BT6108: The number of port of reg arrays with decoder for an array becomes 17. (array 'regs')
+(The same number of decoders are used as the port number.)
+ [Action] Specify 'rw_port' attribute to the array, or set -Zrport_limit option if you like to reduce the port number.
+          (Reducing port number causes more latency.)
 I_BT4392: No arithmetic macro functional unit required.
-W_BT5521: Since the wiring of array(dmem_arg) implemented in register file become excessive, layout becomes difficult.
- [Action] Confirm the size of array (dmem_arg), location utilized, implementation method.
+W_BT5521: Since the wiring of array(dmem) implemented in register file become excessive, layout becomes difficult.
+ [Action] Confirm the size of array (dmem), location utilized, implementation method.
+W_BT5521: Since the wiring of array(regs) implemented in register file become excessive, layout becomes difficult.
+ [Action] Confirm the size of array (regs), location utilized, implementation method.
 W_BT2751: No information about memory area in MLIB file.
  [Action] Add area information to MLIB file using MLIBgen.
 I_BT1190: The following ERROR/WARNING/INFO/TIPS exist.
-	 2 warning      exist
-	33 information  exist
-	 3 tips         exist
+	 4 warning      exist
+	27 information  exist
+	 2 tips         exist
 	---> SEE computer.err FILE and computer.tips FILE for DETAILS

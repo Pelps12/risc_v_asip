@@ -19,7 +19,7 @@ scpars  -EE -DACCEL_FILT_HW -info_base_name computer computer.cpp
   <  :  7  (32bit:7)
   >> :  7  (32bit:7)
   &  : 35  (1bit:1, 32bit:24, 34bit:1, 39bit:1, 47bit:3, 63bit:3, 32769bit:2)
-  +  : 20  (32bit:20)
+  +  : 12  (32bit:12)
   << :  7  (32bit:7)
   |  : 11  (32bit:2, 39bit:1, 62bit:3, 78bit:3, 32769bit:2)
   -  :  8  (32bit:8)
@@ -29,11 +29,11 @@ scpars  -EE -DACCEL_FILT_HW -info_base_name computer computer.cpp
   ~  :  2  (32769bit:2)
   ^  :  2  (32bit:2)
   |> :  2  (1bit:2)
-  Data transfer : 372
+  Data transfer : 356
 
  === array / memory ===
-  read  : 36
-  write :  7
+  read  : 33
+  write : 10
 
 ********* After optimizing & expanding the behavior description *********
  === Operators ===
@@ -58,28 +58,28 @@ scpars  -EE -DACCEL_FILT_HW -info_base_name computer computer.cpp
   write : 42
 
 #########################  Synthesized Circuit  #########################
-[Performance index max/min/ave] 4 / 4 / 4.00
+[Performance index max/min/ave] 3 / 3 / 3.00
 
   Module Name         : computer
   Basic Library Name  : CWBSTDBLIB
 
-  Total Area          :    160,087
-    Sequential        :      7,374
-    Combinational     :    152,713
+  Total Area          :  1,354,099
+    Sequential        :    792,984
+    Combinational     :    561,115
 
-  Latency Index       :          4
-  Total States        :          4
+  Latency Index       :          3
+  Total States        :          3
 
   Clock Period        :       10ns
-  Critical Path Delay :     5.87ns
+  Critical Path Delay :      4.7ns
 
-  Net                 :    272,839
-  Pin Pair            :    574,456
+  Net                 :    907,318
+  Pin Pair            :  2,409,155
 
-  Port                :    266,292
-    In                :    131,106
-    Out               :    135,186
+  Port                :         52
+    In                :         34
+    Out               :         18
 
-TOTAL AREA 160,087 (FU: 2,798 + REG: 7,374 + MUX: 139,738 + DEC: 4,810 + MISC: 5,367) + pin pair 574,456(net 272,839) + 1FSM of 4state
+TOTAL AREA 1,354,099 (FU: 6,868 + REG: 792,984 + MUX: 544,455 + DEC: 4,810 + MISC: 4,982) + pin pair 2,409,155(net 907,318) + 1FSM of 3state
 ##### CyberII Normal finish (automatic scheduling mode) [computer] #####
 

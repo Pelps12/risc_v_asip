@@ -35,8 +35,8 @@ module tb_computer;
   reg  [31:0] imem_rdata;
 
   // DMEM interface (read + write)
-  wire dmem_re1, dmem_re2;
-  wire [ADDR_BITS-1:0] dmem_raddr1, dmem_raddr2;
+  wire dmem_re1, dmem_re2, dmem_re3, dmem_re4;
+  wire [ADDR_BITS-1:0] dmem_raddr1, dmem_raddr2, dmem_raddr3, dmem_addr4;
   reg  [31:0] dmem_rdata;
   wire [ADDR_BITS-1:0] dmem_waddr;
   wire [31:0] dmem_wdata;
@@ -62,6 +62,10 @@ module tb_computer;
     if (dmem_re1)
       dmem_rdata <= dmem[dmem_raddr1];
     if (dmem_re2)
+      dmem_rdata <= dmem[dmem_raddr2];
+    if (dmem_re3)
+      dmem_rdata <= dmem[dmem_raddr2];
+    if (dmem_re4)
       dmem_rdata <= dmem[dmem_raddr2];
   end
 

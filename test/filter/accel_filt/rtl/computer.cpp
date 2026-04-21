@@ -18,9 +18,9 @@ const int DMEM_SIZE = 4096;  // 4K words (16KB)   - DMEM size
 uint32_t imem[MEM_SIZE];     // Instruction memory
 uint32_t dmem[DMEM_SIZE]
 #if defined(ACCEL_FILT) || defined(ACCEL_FILT_NO_CI)
-  /* Cyber array=REG, rw_port=R2.W1 */
+  /* Cyber array=REG, rw_port=R4.W1 */
 #endif
-;    // Data memory (byte-addressable via word access)
+;                           // Data memory (byte-addressable via word access)
 uint32_t regs[32] = {0};    // x0-x31 (x0 hardwired to 0)
 uint32_t PC = 0;
 

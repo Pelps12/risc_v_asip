@@ -5,7 +5,7 @@
 #@SYN_TOOL{DC}
 @MLIB {
      NAME	MEMB32W65536
-     KIND	R1,W1
+     KIND	R1
      BITWIDTH	32
      DELAY	x2
      WORD	65536
@@ -15,10 +15,6 @@
          out            ter (31..0)    RD1              /* rd:1 */;
          in             ter (0..0)     RE1              /* re:1 */;
          in             ter (0..0)     RCLK1            /* rclk:1 */;
-         in             ter (15..0)    WA2              /* wa:2 */;
-         in             ter (31..0)    WD2              /* wd:2 */;
-         in             ter (0..0)     WE2              /* we:2 */;
-         in             ter (0..0)     WCLK2            /* wclk:2 */;
      }
 }
 #@END { computer }

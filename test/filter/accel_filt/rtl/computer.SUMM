@@ -64,28 +64,28 @@ scpars  -EE -DACCEL_FILT -info_base_name computer computer.cpp
   write : 43
 
 #########################  Synthesized Circuit  #########################
-[Performance index max/min/ave] 6 / 6 / 6.00
+[Performance index max/min/ave] 4 / 4 / 4.00
 
   Module Name         : computer
   Basic Library Name  : CWBSTDBLIB
 
-  Total Area          :  1,218,713
-    Sequential        :    793,668
-    Combinational     :    425,045
+  Total Area          :  1,494,098
+    Sequential        :    793,986
+    Combinational     :    700,112
 
-  Latency Index       :          6
-  Total States        :          6
+  Latency Index       :          4
+  Total States        :          4
 
   Clock Period        :       10ns
-  Critical Path Delay :   8.4347ns
+  Critical Path Delay :   8.3747ns
 
-  Net                 :    789,249
-  Pin Pair            :  2,020,810
+  Net                 :  1,029,395
+  Pin Pair            :  2,806,486
 
   Port                :         52
     In                :         34
     Out               :         18
 
-TOTAL AREA 1,218,713 (FU: 5,614 + REG: 793,668 + MUX: 409,152 + DEC: 4,810 + MISC: 5,469) + pin pair 2,020,810(net 789,249) + 1FSM of 6state
+TOTAL AREA 1,494,098 (FU: 8,603 + REG: 793,986 + MUX: 681,292 + DEC: 4,810 + MISC: 5,407) + pin pair 2,806,486(net 1,029,395) + 1FSM of 4state
 ##### CyberII Normal finish (automatic scheduling mode) [computer] #####
 
