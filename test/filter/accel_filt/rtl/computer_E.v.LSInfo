@@ -1,0 +1,21 @@
+LSInfo_version: 1.06
+
+iff_filename: "computer_E.IFF"
+rtl_filename: "computer_E.v"
+
+timestamp_0: 20260421154658_32941_31400
+timestamp_5: 20260421154703_32963_64188
+timestamp_9: 20260421154705_32963_94861
+timestamp_C: 20260421154704_32963_42114
+timestamp_E: 20260421154936_32963_92470
+timestamp_V: 20260421154952_33323_61081
+
+lang: verilog
+
+gated_clock_register: EXIST
+
+stall_register: NONE
+
+module_name: computer
+
+syn_tool: DC

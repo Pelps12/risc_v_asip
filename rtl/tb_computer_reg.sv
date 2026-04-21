@@ -1,6 +1,6 @@
 // ============================================================================
 // Testbench for HLS-generated RV32I computer module
-// Instantiates imem (ROM) and dmem (RAM) and connects to the computer.
+// Instantiates imem (ROM) and dmem (REG) and connects to the computer.
 // Loads a .hex file via +HEX_FILE plusarg and runs until halt.
 //
 // Usage (Verilator):
@@ -18,10 +18,9 @@ module tb_computer;
   // --------------------------------------------------------------------------
   // Parameters
   // --------------------------------------------------------------------------
-  parameter IMEM_SIZE   = 65536; // 64K words
-  parameter DMEM_SIZE   = 4096;  // 4K words
+  parameter IMEM_SIZE  = 65536; // 64K words
+  parameter DMEM_SIZE  = 4096;  // 4K words
   parameter ADDR_BITS  = 16;
-  parameter DMEM_READ_PORTS = 2;
   parameter CLK_PERIOD = 10;     // 10 ns -> 100 MHz (matches -c1000 = 10ns)
 
   // --------------------------------------------------------------------------
@@ -36,8 +35,8 @@ module tb_computer;
   reg  [31:0] imem_rdata;
 
   // DMEM interface (read + write)
-  wire [DMEM_READ_PORTS-1:0] dmem_re;
-  wire [ADDR_BITS-1:0] dmem_raddr;
+  wire dmem_re1, dmem_re2;
+  wire [ADDR_BITS-1:0] dmem_raddr1, dmem_raddr2;
   reg  [31:0] dmem_rdata;
   wire [ADDR_BITS-1:0] dmem_waddr;
   wire [31:0] dmem_wdata;
@@ -60,8 +59,10 @@ module tb_computer;
 
   // DMEM read (synchronous, 1-cycle latency)
   always @(posedge clk) begin
-    if (dmem_re)
-      dmem_rdata <= dmem[dmem_raddr];
+    if (dmem_re1)
+      dmem_rdata <= dmem[dmem_raddr1];
+    if (dmem_re2)
+      dmem_rdata <= dmem[dmem_raddr2];
   end
 
   // DMEM write (synchronous)
@@ -73,46 +74,15 @@ module tb_computer;
   // --------------------------------------------------------------------------
   // DUT Instantiation
   // --------------------------------------------------------------------------
-  `ifdef ACCEL_AVE
-    computer dut (
-      .imem_arg_MEMB32W4096_RE1      (imem_re),
-      .imem_arg_MEMB32W4096_RA1      (imem_addr),
-      .imem_arg_MEMB32W4096_RD1      (imem_rdata),
+  computer dut (
+    .imem_arg_MEMB32W65536_RE1      (imem_re),
+    .imem_arg_MEMB32W65536_RA1      (imem_addr),
+    .imem_arg_MEMB32W65536_RD1      (imem_rdata),
 
-      .computer_ret                    (halt),
-      .CLOCK                           (clk),
-      .RESET                           (rst)
-    );
-  `endif
-  `elsif ACCEL_AVE_HW
-    computer dut (
-      .imem_arg_MEMB32W4096_RE1      (imem_re),
-      .imem_arg_MEMB32W4096_RA1      (imem_addr),
-      .imem_arg_MEMB32W4096_RD1      (imem_rdata),
-
-      .computer_ret                    (halt),
-      .CLOCK                           (clk),
-      .RESET                           (rst)
-    );
-  `endif
-  `else
-    computer dut (
-      .imem_arg_MEMB32W65536_RE1      (imem_re),
-      .imem_arg_MEMB32W65536_RA1      (imem_addr),
-      .imem_arg_MEMB32W65536_RD1      (imem_rdata),
-
-      .dmem_arg_MEMB32W65536_RE1      (dmem_re),
-      .dmem_arg_MEMB32W65536_RA1      (dmem_raddr),
-      .dmem_arg_MEMB32W65536_RD1      (dmem_rdata),
-      .dmem_arg_MEMB32W65536_WA2      (dmem_waddr),
-      .dmem_arg_MEMB32W65536_WD2      (dmem_wdata),
-      .dmem_arg_MEMB32W65536_WE2      (dmem_we),
-
-      .computer_ret                    (halt),
-      .CLOCK                           (clk),
-      .RESET                           (rst)
-    );
-  `endif
+    .computer_ret                    (halt),
+    .CLOCK                           (clk),
+    .RESET                           (rst)
+  );
 
 
   // --------------------------------------------------------------------------
