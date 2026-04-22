@@ -233,6 +233,11 @@ if [ "$RUN_RTL" -eq 1 ]; then
         echo "  Open with: gtkwave ${FST_FILE}"
     fi
 
+    # Report CPI of RTL simulation
+    CYCLE_COUNT=$(grep "Total cycles" ${TEST_DIR}/${TEST_SUBDIR}/${RTL_VARIANT}/rtl/sim_rtl.rpt | grep -oP '\d+')
+    INSTRUCTION_COUNT=$(($(wc -l < ${ROOT_DIR}/sim_cpu.rpt) / 5))
+    echo "CPI = $(awk "BEGIN {printf \"%.1f\", $CYCLE_COUNT / $INSTRUCTION_COUNT}")"
+
     # ==========================================================================
     # Step 7: Compare ISS vs RTL (x10 = return value of main)
     # ==========================================================================
