@@ -1,0 +1,20 @@
+
+#@VERSION { 3.00 }
+#@LIB { computer }
+#@UNIT 1/10ps
+#@SYN_TOOL{DC}
+@MLIB {
+     NAME	MEMB32W65536
+     KIND	R1
+     BITWIDTH	32
+     DELAY	x2
+     WORD	65536
+     WRITE_SYNC	YES
+     DEFMOD {
+         in             ter (15..0)    RA1              /* ra:1 */;
+         out            ter (31..0)    RD1              /* rd:1 */;
+         in             ter (0..0)     RE1              /* re:1 */;
+         in             ter (0..0)     RCLK1            /* rclk:1 */;
+     }
+}
+#@END { computer }

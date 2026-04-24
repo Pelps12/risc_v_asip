@@ -95,6 +95,9 @@ fi
 # Read accel.conf from variant dir (if --rtl specified)
 # accel.conf lives at test/<test>/<variant>/accel.conf
 # ==========================================================================
+
+# Default: use single-port memory computer for RTL simulation
+RTL_MEM_OR_REG=0
 if [ "$RUN_RTL" -eq 1 ]; then
     TEST_SUBDIR_FOR_RTL="$(echo "${TEST_NAME}" | cut -d'/' -f1)"
     ACCEL_CONF="${TEST_DIR}/${TEST_SUBDIR_FOR_RTL}/${RTL_VARIANT}/accel.conf"
@@ -105,6 +108,9 @@ if [ "$RUN_RTL" -eq 1 ]; then
             [ -z "$line" ] && continue
             ACCEL_FLAGS+=("$line")
         done < "$ACCEL_CONF"
+        if [[ "${ACCEL_FLAGS[0]}" != *"MEM"* ]] && [[ "${ACCEL_FLAGS[0]}" == *"ACCEL_"* || "${ACCEL_FLAGS[0]}" == *"REG"* ]]; then
+            RTL_MEM_OR_REG=1
+        fi
     fi
 fi
 
@@ -210,7 +216,7 @@ if [ "$RUN_RTL" -eq 1 ]; then
         echo "  FST tracing enabled -> ${FST_FILE}"
     fi
 
-    make -B -C "${RTL_DIR}" build DUT_SRC="${DUT_FILE}" ${TRACE_ARG}
+    make -B -C "${RTL_DIR}" build DUT_SRC="${DUT_FILE}" ${TRACE_ARG} RTL_MEM_OR_REG="${RTL_MEM_OR_REG}" TEST_NAME="$(echo "${TEST_NAME}" | cut -d'/' -f1)"
 
     # Report written into the RTL variant folder
     RTL_RPT_FILE="${RTL_VARIANT_DIR}/sim_rtl.rpt"
@@ -219,13 +225,19 @@ if [ "$RUN_RTL" -eq 1 ]; then
     echo "=== Step 6: Running RTL Simulation ==="
     make -C "${RTL_DIR}" run DUT_SRC="${DUT_FILE}" \
         HEX="$(cd "${SCRIPT_DIR}" && pwd)/${TEST_NAME}.hex" \
-        RPT_FILE="${RTL_RPT_FILE}" ${TRACE_ARG} ${FST_ARG}
+        RPT_FILE="${RTL_RPT_FILE}" ${TRACE_ARG} ${FST_ARG} \
+        TEST_NAME="$(echo "${TEST_NAME}" | cut -d'/' -f1)"
 
     if [ "$RUN_TRACE" -eq 1 ] && [ -f "${FST_FILE}" ]; then
         echo ""
         echo "=== Waveform trace saved: ${FST_FILE} ==="
         echo "  Open with: gtkwave ${FST_FILE}"
     fi
+
+    # Report CPI of RTL simulation
+    CYCLE_COUNT=$(grep "Total cycles" ${TEST_DIR}/${TEST_SUBDIR}/${RTL_VARIANT}/rtl/sim_rtl.rpt | grep -oP '\d+')
+    INSTRUCTION_COUNT=$(($(wc -l < ${ROOT_DIR}/sim_cpu.rpt) / 5))
+    echo "CPI (accurate for baseline and custom instruction) = $(awk "BEGIN {printf \"%.1f\", $CYCLE_COUNT / $INSTRUCTION_COUNT}")"
 
     # ==========================================================================
     # Step 7: Compare ISS vs RTL (x10 = return value of main)
