@@ -17,9 +17,9 @@ SIM_BIN    := $(OBJ_DIR)/tb_computer_sim
 
 # RTL sources
 ifeq ($(RTL_MEM_OR_REG),0)
-	TB_SRC     := $(RTL_DIR)tb_computer_mem.sv
+	TB_SRC     := $(RTL_DIR)$(TEST_NAME)/tb_computer_mem.sv
 else
-	TB_SRC     := $(RTL_DIR)tb_computer_reg.sv
+	TB_SRC     := $(RTL_DIR)$(TEST_NAME)/tb_computer_reg.sv
 endif
 DUT_SRC    ?= $(RTL_DIR)baseline/computer_E.v
 SRCS       := $(TB_SRC) $(DUT_SRC)
