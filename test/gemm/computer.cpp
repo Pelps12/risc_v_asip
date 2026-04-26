@@ -16,7 +16,19 @@ const int MEM_SIZE  = 65536; // 64K words (256KB) - IMEM
 const int DMEM_SIZE = 4096;  // 4K words  (16KB)  - DMEM
 
 uint32_t imem[MEM_SIZE];    // Instruction memory
-uint32_t dmem[DMEM_SIZE];   // Data memory (no pragma)
+uint32_t dmem[DMEM_SIZE]
+#if (defined(ACCEL_MAC) || defined(ACCEL_MAC_HW)) && defined(ACCEL_MAC_P16)
+  /*Cyber array=REG, rw_port=R16.W1 */
+#elif (defined(ACCEL_MAC) || defined(ACCEL_MAC_HW)) && defined(ACCEL_MAC_P8)
+  /*Cyber array=REG, rw_port=R8.W1 */
+#elif (defined(ACCEL_MAC) || defined(ACCEL_MAC_HW)) && defined(ACCEL_MAC_P4)
+  /*Cyber array=REG, rw_port=R4.W1 */
+#elif (defined(ACCEL_MAC) || defined(ACCEL_MAC_HW)) && defined(ACCEL_MAC_P2)
+  /*Cyber array=REG, rw_port=R2.W1 */
+#else
+  /*Cyber array=REG, rw_port=R1.W1 */
+#endif
+;                           // Data memory
 uint32_t regs[32] = {0};    // x0-x31 (x0 hardwired to 0)
 uint32_t PC = 0;
 
@@ -81,35 +93,35 @@ inline int32_t decode_imm_j(uint32_t instr) {
 
 const uint32_t DMEM_BASE = 0x40000;
 
-inline uint8_t mem_read_byte(uint32_t dmem_arg[], uint32_t addr) {
+inline uint8_t mem_read_byte(uint32_t addr) {
   uint32_t offset_addr = addr - DMEM_BASE;
 #ifdef C
   if (addr < DMEM_BASE || offset_addr >= DMEM_SIZE * 4) return 0;
 #endif
   uint32_t word_addr = offset_addr >> 2;
   uint32_t byte_offset = offset_addr & 0x3;
-  return (dmem_arg[word_addr] >> (byte_offset * 8)) & 0xFF;
+  return (dmem[word_addr] >> (byte_offset * 8)) & 0xFF;
 }
 
-inline uint16_t mem_read_half(uint32_t dmem_arg[], uint32_t addr) {
+inline uint16_t mem_read_half(uint32_t addr) {
   uint32_t offset_addr = addr - DMEM_BASE;
 #ifdef C
   if (addr < DMEM_BASE || offset_addr >= DMEM_SIZE * 4) return 0;
 #endif
   uint32_t word_addr = offset_addr >> 2;
   uint32_t byte_offset = offset_addr & 0x3;
-  return (dmem_arg[word_addr] >> (byte_offset * 8)) & 0xFFFF;
+  return (dmem[word_addr] >> (byte_offset * 8)) & 0xFFFF;
 }
 
-inline uint32_t mem_read_word(uint32_t dmem_arg[], uint32_t addr) {
+inline uint32_t mem_read_word(uint32_t addr) {
   uint32_t offset_addr = addr - DMEM_BASE;
 #ifdef C
   if (addr < DMEM_BASE || offset_addr >= DMEM_SIZE * 4) return 0;
 #endif
-  return dmem_arg[offset_addr >> 2];
+  return dmem[offset_addr >> 2];
 }
 
-inline void mem_write_byte(uint32_t dmem_arg[], uint32_t addr, uint8_t val) {
+inline void mem_write_byte(uint32_t addr, uint8_t val) {
   uint32_t offset_addr = addr - DMEM_BASE;
 #ifdef C
   if (addr < DMEM_BASE || offset_addr >= DMEM_SIZE * 4) return;
@@ -117,10 +129,10 @@ inline void mem_write_byte(uint32_t dmem_arg[], uint32_t addr, uint8_t val) {
   uint32_t word_addr = offset_addr >> 2;
   uint32_t byte_offset = offset_addr & 0x3;
   uint32_t mask = ~(0xFF << (byte_offset * 8));
-  dmem_arg[word_addr] = (dmem_arg[word_addr] & mask) | ((uint32_t)val << (byte_offset * 8));
+  dmem[word_addr] = (dmem[word_addr] & mask) | ((uint32_t)val << (byte_offset * 8));
 }
 
-inline void mem_write_half(uint32_t dmem_arg[], uint32_t addr, uint16_t val) {
+inline void mem_write_half(uint32_t addr, uint16_t val) {
   uint32_t offset_addr = addr - DMEM_BASE;
 #ifdef C
   if (addr < DMEM_BASE || offset_addr >= DMEM_SIZE * 4) return;
@@ -128,15 +140,15 @@ inline void mem_write_half(uint32_t dmem_arg[], uint32_t addr, uint16_t val) {
   uint32_t word_addr = offset_addr >> 2;
   uint32_t byte_offset = offset_addr & 0x3;
   uint32_t mask = ~(0xFFFF << (byte_offset * 8));
-  dmem_arg[word_addr] = (dmem_arg[word_addr] & mask) | ((uint32_t)val << (byte_offset * 8));
+  dmem[word_addr] = (dmem[word_addr] & mask) | ((uint32_t)val << (byte_offset * 8));
 }
 
-inline void mem_write_word(uint32_t dmem_arg[], uint32_t addr, uint32_t val) {
+inline void mem_write_word(uint32_t addr, uint32_t val) {
   uint32_t offset_addr = addr - DMEM_BASE;
 #ifdef C
   if (addr < DMEM_BASE || offset_addr >= DMEM_SIZE * 4) return;
 #endif
-  dmem_arg[offset_addr >> 2] = val;
+  dmem[offset_addr >> 2] = val;
 }
 
 // ============================================================================
@@ -179,7 +191,7 @@ inline void mem_write_word(uint32_t dmem_arg[], uint32_t addr, uint32_t val) {
 // memory cycles, isolating the contribution of each knob independently.
 // ============================================================================
 #if defined(ACCEL_MAC) || defined(ACCEL_MAC_HW)
-uint32_t compute_mac(uint32_t dmem_arg[], uint32_t base_a, uint32_t base_bt) {
+uint32_t compute_mac(uint32_t base_a, uint32_t base_bt) {
   int32_t sum = 0;
   int k;
 #ifdef ACCEL_MAC_U8
@@ -193,8 +205,8 @@ uint32_t compute_mac(uint32_t dmem_arg[], uint32_t base_a, uint32_t base_bt) {
 #endif
 // (no ACCEL_MAC_U* flag → no pragma → CWB default behaviour)
   for (k = 0; k < 8; k++) {
-    int32_t a = (int32_t)mem_read_word(dmem_arg, base_a  + k * 4);
-    int32_t b = (int32_t)mem_read_word(dmem_arg, base_bt + k * 4);
+    int32_t a = (int32_t)mem_read_word(base_a  + k * 4);
+    int32_t b = (int32_t)mem_read_word(base_bt + k * 4);
     sum += a * b;
   }
   return (uint32_t)sum;
@@ -246,19 +258,6 @@ void dump_regs(ofstream &rpt) {
 
 // Cyber func=process
 bool computer(uint32_t imem_arg[MEM_SIZE]/* Cyber array=ROM */
-#if (defined(ACCEL_MAC) || defined(ACCEL_MAC_HW)) && defined(ACCEL_MAC_P16)
-  , uint32_t dmem_arg[DMEM_SIZE]/*Cyber array=REG, rw_port=R16.W1 */
-#elif (defined(ACCEL_MAC) || defined(ACCEL_MAC_HW)) && defined(ACCEL_MAC_P8)
-  , uint32_t dmem_arg[DMEM_SIZE]/*Cyber array=REG, rw_port=R8.W1 */
-#elif (defined(ACCEL_MAC) || defined(ACCEL_MAC_HW)) && defined(ACCEL_MAC_P4)
-  , uint32_t dmem_arg[DMEM_SIZE]/*Cyber array=REG, rw_port=R4.W1 */
-#elif (defined(ACCEL_MAC) || defined(ACCEL_MAC_HW)) && defined(ACCEL_MAC_P2)
-  , uint32_t dmem_arg[DMEM_SIZE]/*Cyber array=REG, rw_port=R2.W1 */
-#elif defined(ACCEL_MAC) || defined(ACCEL_MAC_HW)
-  , uint32_t dmem_arg[DMEM_SIZE]/*Cyber array=REG, rw_port=R1.W1 */
-#else
-  , uint32_t dmem_arg[DMEM_SIZE]
-#endif
 #ifdef C
   , ofstream &rpt
 #endif
@@ -319,11 +318,11 @@ bool computer(uint32_t imem_arg[MEM_SIZE]/* Cyber array=ROM */
       uint32_t addr = regs[rs1] + decode_imm_i(instr);
       uint32_t val = 0;
       switch (funct3) {
-      case LB:  val = sign_extend(mem_read_byte(dmem_arg, addr), 8);  break;
-      case LH:  val = sign_extend(mem_read_half(dmem_arg, addr), 16); break;
-      case LW:  val = mem_read_word(dmem_arg, addr);                  break;
-      case LBU: val = mem_read_byte(dmem_arg, addr);                  break;
-      case LHU: val = mem_read_half(dmem_arg, addr);                  break;
+      case LB:  val = sign_extend(mem_read_byte(addr), 8);  break;
+      case LH:  val = sign_extend(mem_read_half(addr), 16); break;
+      case LW:  val = mem_read_word(addr);                  break;
+      case LBU: val = mem_read_byte(addr);                  break;
+      case LHU: val = mem_read_half(addr);                  break;
       }
       if (rd != 0) regs[rd] = val;
       break;
@@ -332,9 +331,9 @@ bool computer(uint32_t imem_arg[MEM_SIZE]/* Cyber array=ROM */
       uint32_t addr = regs[rs1] + decode_imm_s(instr);
       uint32_t val  = regs[rs2];
       switch (funct3) {
-      case SB: mem_write_byte(dmem_arg, addr, val & 0xFF);   break;
-      case SH: mem_write_half(dmem_arg, addr, val & 0xFFFF); break;
-      case SW: mem_write_word(dmem_arg, addr, val);          break;
+      case SB: mem_write_byte(addr, val & 0xFF);   break;
+      case SH: mem_write_half(addr, val & 0xFFFF); break;
+      case SW: mem_write_word(addr, val);          break;
       }
       break;
     }
@@ -390,7 +389,7 @@ bool computer(uint32_t imem_arg[MEM_SIZE]/* Cyber array=ROM */
     case 0x0B: {
       if (funct3 == 1 && funct7 == 0) {
         if (rd != 0)
-          regs[rd] = compute_mac(dmem_arg, regs[rs1], regs[rs2]);
+          regs[rd] = compute_mac(regs[rs1], regs[rs2]);
       } else {
         halt = true;
       }
@@ -425,7 +424,7 @@ int main(int argc, char *argv[]) {
   load_program(argv[1]);
 
   ofstream rpt("sim_cpu.rpt");
-  bool halted = computer(imem, dmem, rpt);
+  bool halted = computer(imem, rpt);
   dump_regs(rpt);
   rpt.close();
 

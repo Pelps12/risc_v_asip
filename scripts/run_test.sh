@@ -97,7 +97,6 @@ fi
 # ==========================================================================
 
 # Default: use single-port memory computer for RTL simulation
-RTL_MEM_OR_REG=0
 if [ "$RUN_RTL" -eq 1 ]; then
     TEST_SUBDIR_FOR_RTL="$(echo "${TEST_NAME}" | cut -d'/' -f1)"
     ACCEL_CONF="${TEST_DIR}/${TEST_SUBDIR_FOR_RTL}/${RTL_VARIANT}/accel.conf"
@@ -108,9 +107,6 @@ if [ "$RUN_RTL" -eq 1 ]; then
             [ -z "$line" ] && continue
             ACCEL_FLAGS+=("$line")
         done < "$ACCEL_CONF"
-        if [[ "${ACCEL_FLAGS[0]}" != *"MEM"* ]] && [[ "${ACCEL_FLAGS[0]}" == *"ACCEL_"* || "${ACCEL_FLAGS[0]}" == *"REG"* ]]; then
-            RTL_MEM_OR_REG=1
-        fi
     fi
 fi
 
@@ -216,7 +212,7 @@ if [ "$RUN_RTL" -eq 1 ]; then
         echo "  FST tracing enabled -> ${FST_FILE}"
     fi
 
-    make -B -C "${RTL_DIR}" build DUT_SRC="${DUT_FILE}" ${TRACE_ARG} RTL_MEM_OR_REG="${RTL_MEM_OR_REG}" TEST_NAME="$(echo "${TEST_NAME}" | cut -d'/' -f1)"
+    make -B -C "${RTL_DIR}" build DUT_SRC="${DUT_FILE}" ${TRACE_ARG} TEST_NAME="$(echo "${TEST_NAME}" | cut -d'/' -f1)"
 
     # Report written into the RTL variant folder
     RTL_RPT_FILE="${RTL_VARIANT_DIR}/sim_rtl.rpt"
