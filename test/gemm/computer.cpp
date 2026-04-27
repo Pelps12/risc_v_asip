@@ -386,7 +386,7 @@ bool computer(uint32_t imem_arg[MEM_SIZE]/* Cyber array=ROM */
       break;
     }
 
-#ifdef ACCEL_MAC
+#if defined(ACCEL_MAC) || defined(ACCEL_MAC_HW)
     case 0x0B: {
       if (funct3 == 1 && funct7 == 0) {
         if (rd != 0)
