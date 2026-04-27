@@ -1,6 +1,6 @@
 // ============================================================================
 // Testbench for HLS-generated RV32I computer module
-// Instantiates imem (ROM) and dmem (REG) and connects to the computer.
+// Instantiates imem (ROM) and dmem (RAM) and connects to the computer.
 // Loads a .hex file via +HEX_FILE plusarg and runs until halt.
 //
 // Usage (Verilator):
@@ -34,6 +34,14 @@ module tb_computer;
   wire [ADDR_BITS-1:0] imem_addr;
   reg  [31:0] imem_rdata;
 
+  // DMEM interface (read + write)
+  wire        dmem_re;
+  wire [ADDR_BITS-1:0] dmem_raddr;
+  reg  [31:0] dmem_rdata;
+  wire [ADDR_BITS-1:0] dmem_waddr;
+  wire [31:0] dmem_wdata;
+  wire        dmem_we;
+
   // Halt output
   wire        halt;
 
@@ -49,6 +57,18 @@ module tb_computer;
       imem_rdata <= imem[imem_addr];
   end
 
+  // DMEM read (synchronous, 1-cycle latency)
+  always @(posedge clk) begin
+    if (dmem_re)
+      dmem_rdata <= dmem[dmem_raddr];
+  end
+
+  // DMEM write (synchronous)
+  always @(posedge clk) begin
+    if (dmem_we)
+      dmem[dmem_waddr] <= dmem_wdata;
+  end
+
   // --------------------------------------------------------------------------
   // DUT Instantiation
   // --------------------------------------------------------------------------
@@ -56,6 +76,13 @@ module tb_computer;
     .imem_arg_MEMB32W65536_RE1      (imem_re),
     .imem_arg_MEMB32W65536_RA1      (imem_addr),
     .imem_arg_MEMB32W65536_RD1      (imem_rdata),
+
+    .dmem_arg_MEMB32W4096_RE1      (dmem_re),
+    .dmem_arg_MEMB32W4096_RA1      (dmem_raddr),
+    .dmem_arg_MEMB32W4096_RD1      (dmem_rdata),
+    .dmem_arg_MEMB32W4096_WA2      (dmem_waddr),
+    .dmem_arg_MEMB32W4096_WD2      (dmem_wdata),
+    .dmem_arg_MEMB32W4096_WE2      (dmem_we),
 
     .computer_ret                    (halt),
     .CLOCK                           (clk),
@@ -157,6 +184,7 @@ module tb_computer;
     // Reset sequence
     rst = 1;
     imem_rdata = 32'h0;
+    dmem_rdata = 32'h0;
     repeat (5) @(posedge clk);
     rst = 0;
 
