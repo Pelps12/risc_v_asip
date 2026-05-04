@@ -120,12 +120,21 @@ ${CWB_PATH}/bdltran -EE \
     -lfl ${DB_PATH}/asic_45.FLIB \
     -o-P
 
+# Remove input IFF early to free space before veriloggen
+rm -f "${inFile}.IFF"
+
 # ============================================================================
 # Step 3: Verilog generation -> RTL
 # ============================================================================
 echo ""
 echo "--- Step 3: veriloggen ---"
 ${CWB_PATH}/veriloggen -EE ${inFile}_E.IFF -sim_mem
+
+# Keep only computer_E.v (RTL) and computer.QOR; delete everything else
+find . -maxdepth 1 -type f \
+    ! -name "${inFile}_E.v" \
+    ! -name "${inFile}.QOR" \
+    -delete
 
 end_time=$(date +%s.%N)
 elapsed=$(echo "$end_time - $start_time" | bc)

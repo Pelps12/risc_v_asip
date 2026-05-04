@@ -16,6 +16,8 @@ test/**/*.bin
 test/**/*.elf
 test/**/*.dis
 test/**/*.hex
-test/**/aes
 
+obj_dir
+web
+CLAUDE.md
 profiling/output/
