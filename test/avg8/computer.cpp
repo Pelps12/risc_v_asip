@@ -498,7 +498,7 @@ int main(int argc, char *argv[]) {
   string rpt_filename = (argc >= 3) ? argv[2] : "sim_cpu.rpt";
   ofstream rpt(rpt_filename);
 
-  bool halted = computer(imem, dmem, rpt);
+  bool halted = computer(imem, rpt);
 
   dump_regs(rpt);
   rpt.close();
