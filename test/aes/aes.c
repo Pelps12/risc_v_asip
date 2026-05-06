@@ -6,6 +6,12 @@
  * All lookup tables replaced with 'on the fly' calculations.
  *
  * main() verifies against the FIPS-197 AES-256 test vector.
+ *
+ * Custom instructions (opcode 0x0B, R-type, funct7=0):
+ *   funct3=2  ACCEL_MIX_COL    — GF(2^8) MixColumns on one packed column
+ *   funct3=3  ACCEL_SUB_BYTES  — SubWord: S-box on 4 packed bytes (reg→reg)
+ *   funct3=4  ACCEL_SHIFT_ROWS — ShiftRows: 16-byte permutation via dmem addr
+ *   funct3=6  ACCEL_ADD_RK     — AddRoundKey: 16-byte XOR via dmem addrs
  */
 
 #include "../lib.c"
@@ -107,57 +113,116 @@ uint8_t rj_xtime(uint8_t x)
 
 void aes_subBytes(uint8_t *buf)
 {
+/*
+ * ACCEL_SUB_BYTES custom instruction (funct3=3):
+ *   Assembly : .insn r 0x0B, 3, 0, rd, rs1, x0
+ *   rs1 — packed 4 bytes little-endian: bits[7:0]=buf[i], bits[15:8]=buf[i+1], ...
+ *   rd  — S-box applied independently to each byte (SubWord)
+ *   Called 4× per invocation (16 bytes / 4 per CI = 4 CI calls).
+ *   The same CI also accelerates the SubWord step in aes_expandEncKey.
+ *   Replaces 4 sequential rj_sbox table-lookup calls per CI invocation.
+ */
+#if defined(ACCEL_SUB_BYTES) && defined(__riscv)
+    register uint8_t i;
+    sub : for (i = 0; i < 16; i += 4) {
+        uint32_t word = (uint32_t)buf[i]
+                      | ((uint32_t)buf[i+1] <<  8)
+                      | ((uint32_t)buf[i+2] << 16)
+                      | ((uint32_t)buf[i+3] << 24);
+        uint32_t result;
+        asm volatile(
+            ".insn r 0x0B, 3, 0, %0, %1, x0\n"
+            : "=r"(result) : "r"(word)
+        );
+        buf[i]   = (uint8_t)(result);
+        buf[i+1] = (uint8_t)(result >>  8);
+        buf[i+2] = (uint8_t)(result >> 16);
+        buf[i+3] = (uint8_t)(result >> 24);
+    }
+#else
     register uint8_t i = 16;
     sub : while (i--) buf[i] = rj_sbox(buf[i]);
+#endif
 }
 
 void aes_addRoundKey(uint8_t *buf, uint8_t *key)
 {
+/*
+ * ACCEL_ADD_RK custom instruction (funct3=6):
+ *   Assembly : .insn r 0x0B, 6, 0, x0, rs1, rs2
+ *   rs1 — byte address of buf (16-byte state) in dmem
+ *   rs2 — byte address of key (16-byte round key) in dmem
+ *   rd  — unused (x0)
+ *   Accelerator reads 16 bytes from buf and key, XORs each pair, writes back to buf.
+ *   Called 14× per AES-256 encryption (13 rounds + 1 final AddRoundKey).
+ *   Memory access: 16 reads from buf + 16 reads from key + 16 writes to buf.
+ *   Port sweep (ACCEL_ADD_RK_P2/P4/P8/P16) parallelises the paired dmem reads.
+ */
+#if defined(ACCEL_ADD_RK) && defined(__riscv)
+    asm volatile(
+        ".insn r 0x0B, 6, 0, x0, %0, %1\n"
+        :: "r"(buf), "r"(key)
+    );
+#else
     register uint8_t i = 16;
     addkey : while (i--) buf[i] ^= key[i];
+#endif
 }
 
 void aes_addRoundKey_cpy(uint8_t *buf, uint8_t *key, uint8_t *cpk)
 {
+    /* Called once only — not accelerated. */
     register uint8_t i = 16;
     cpkey : while (i--)  buf[i] ^= (cpk[i] = key[i]), cpk[16+i] = key[16 + i];
 }
 
 void aes_shiftRows(uint8_t *buf)
 {
+/*
+ * ACCEL_SHIFT_ROWS custom instruction (funct3=4):
+ *   Assembly : .insn r 0x0B, 4, 0, x0, rs1, x0
+ *   rs1 — byte address of 16-byte state buffer in dmem
+ *   rd  — unused (x0)
+ *   Accelerator reads 16 bytes, applies FIPS-197 §5.1.2 ShiftRows permutation,
+ *   writes 16 permuted bytes back to the same address.
+ *   Called 14× per AES-256 encryption.
+ *   Permutation (column-major state, rows shifted left by row index):
+ *     row 0 [0,4, 8,12] → unchanged
+ *     row 1 [1,5, 9,13] → [5, 9,13, 1]
+ *     row 2 [2,6,10,14] → [10,14, 2, 6]
+ *     row 3 [3,7,11,15] → [15, 3, 7,11]
+ *   Port sweep (ACCEL_SHIFT_ROWS_P2/P4/P8/P16) parallelises the 16-byte read.
+ */
+#if defined(ACCEL_SHIFT_ROWS) && defined(__riscv)
+    asm volatile(
+        ".insn r 0x0B, 4, 0, x0, %0, x0\n"
+        :: "r"(buf)
+    );
+#else
     register uint8_t i, j;
     i = buf[1]; buf[1] = buf[5]; buf[5] = buf[9]; buf[9] = buf[13]; buf[13] = i;
     i = buf[10]; buf[10] = buf[2]; buf[2] = i;
     j = buf[3]; buf[3] = buf[15]; buf[15] = buf[11]; buf[11] = buf[7]; buf[7] = j;
     j = buf[14]; buf[14] = buf[6]; buf[6]  = j;
+#endif
 }
 
 void aes_mixColumns(uint8_t *buf)
 {
 /*
- * AES_MIXCOL custom instruction (ACCEL_MIX_COL):
+ * ACCEL_MIX_COL custom instruction (funct3=2):
  *   Assembly : .insn r 0x0B, 2, 0, rd, rs1, x0
- *   Encoding : R-type | opcode=0x0B | funct3=2 | funct7=0 | rs2=x0
- *
- *   rs1  — packed 4-byte AES column (little-endian byte order):
- *              bits[ 7: 0] = byte 0 (a)
- *              bits[15: 8] = byte 1 (b)
- *              bits[23:16] = byte 2 (c)
- *              bits[31:24] = byte 3 (d)
- *   rs2  — unused; must be x0
- *   rd   — MixColumns result for that column, same packing as rs1
- *
- *   Operation (FIPS-197 §5.1.3, GF(2^8) with irreducible poly 0x11b):
- *     e         = a ^ b ^ c ^ d
- *     xtime(x)  = (x & 0x80) ? ((x<<1) ^ 0x1b) : (x<<1)
- *     rd[ 7: 0] = a ^ e ^ xtime(a^b)
- *     rd[15: 8] = b ^ e ^ xtime(b^c)
- *     rd[23:16] = c ^ e ^ xtime(c^d)
- *     rd[31:24] = d ^ e ^ xtime(d^a)
- *
- *   Called 4x per aes_mixColumns invocation (once per column),
- *   13 rounds per AES-256 encryption = 52 total calls.
- *   Replaces ~20 instructions per column (4 rj_xtime + ~16 XOR/shift/load/store).
+ *   rs1 — packed 4-byte AES column (little-endian):
+ *            bits[ 7: 0]=a  bits[15: 8]=b  bits[23:16]=c  bits[31:24]=d
+ *   rd  — MixColumns result for that column, same packing
+ *   Operation (FIPS-197 §5.1.3, GF(2^8) poly 0x11b):
+ *     e = a^b^c^d;  xtime(x) = (x&0x80)?((x<<1)^0x1b):(x<<1)
+ *     rd[7:0]  = a^e^xtime(a^b)
+ *     rd[15:8] = b^e^xtime(b^c)
+ *     rd[23:16]= c^e^xtime(c^d)
+ *     rd[31:24]= d^e^xtime(d^a)
+ *   Called 4× per invocation (one CI per column), 13 rounds = 52 total CIs.
+ *   Register-bound: no dmem access; no port sweep.
  */
 #if defined(ACCEL_MIX_COL) && defined(__riscv)
     register uint8_t i;
@@ -192,18 +257,58 @@ void aes_mixColumns(uint8_t *buf)
 
 void aes_expandEncKey(uint8_t *k, uint8_t *rc)
 {
+/*
+ * ACCEL_SUB_BYTES also covers the two SubWord operations in key expansion:
+ *   SubWord 1: sbox applied to RotWord(k[28..31]) = bytes [k[29],k[30],k[31],k[28]]
+ *   SubWord 2: sbox applied to k[12..15] (standard SubWord, no rotation)
+ * Each is one CI call (4 bytes packed into rs1, result unpacked into k[]).
+ */
     register uint8_t i;
+#if defined(ACCEL_SUB_BYTES) && defined(__riscv)
+    /* SubWord on RotWord(k[28..31]): pack in rotated order [29,30,31,28]. */
+    uint32_t rot_word = (uint32_t)k[29]
+                      | ((uint32_t)k[30] << 8)
+                      | ((uint32_t)k[31] << 16)
+                      | ((uint32_t)k[28] << 24);
+    uint32_t sw0;
+    asm volatile(
+        ".insn r 0x0B, 3, 0, %0, %1, x0\n"
+        : "=r"(sw0) : "r"(rot_word)
+    );
+    k[0] ^= (uint8_t)(sw0)        ^ (*rc);
+    k[1] ^= (uint8_t)(sw0 >>  8);
+    k[2] ^= (uint8_t)(sw0 >> 16);
+    k[3] ^= (uint8_t)(sw0 >> 24);
+#else
     k[0] ^= rj_sbox(k[29]) ^ (*rc);
     k[1] ^= rj_sbox(k[30]);
     k[2] ^= rj_sbox(k[31]);
     k[3] ^= rj_sbox(k[28]);
+#endif
     *rc = F( *rc);
     exp1 : for(i = 4; i < 16; i += 4)  k[i] ^= k[i-4],   k[i+1] ^= k[i-3],
         k[i+2] ^= k[i-2], k[i+3] ^= k[i-1];
+#if defined(ACCEL_SUB_BYTES) && defined(__riscv)
+    /* SubWord on k[12..15] (no rotation). */
+    uint32_t word2 = (uint32_t)k[12]
+                   | ((uint32_t)k[13] <<  8)
+                   | ((uint32_t)k[14] << 16)
+                   | ((uint32_t)k[15] << 24);
+    uint32_t sw1;
+    asm volatile(
+        ".insn r 0x0B, 3, 0, %0, %1, x0\n"
+        : "=r"(sw1) : "r"(word2)
+    );
+    k[16] ^= (uint8_t)(sw1);
+    k[17] ^= (uint8_t)(sw1 >>  8);
+    k[18] ^= (uint8_t)(sw1 >> 16);
+    k[19] ^= (uint8_t)(sw1 >> 24);
+#else
     k[16] ^= rj_sbox(k[12]);
     k[17] ^= rj_sbox(k[13]);
     k[18] ^= rj_sbox(k[14]);
     k[19] ^= rj_sbox(k[15]);
+#endif
     exp2 : for(i = 20; i < 32; i += 4) k[i] ^= k[i-4],   k[i+1] ^= k[i-3],
         k[i+2] ^= k[i-2], k[i+3] ^= k[i-1];
 }

@@ -205,15 +205,7 @@ if [ "$RUN_RTL_ONLY" -eq 0 ]; then
 
     echo ""
     echo "=== Step 2: Building C Simulator ==="
-    # Prefer test-local simulator.cpp if it exists (for custom instructions)
-    TEST_SUBDIR="$(dirname "${TEST_NAME}")"
-    if [ "${TEST_SUBDIR}" != "." ] && [ -f "${TEST_DIR}/${TEST_SUBDIR}/simulator.cpp" ]; then
-        SIM_SRC="${TEST_DIR}/${TEST_SUBDIR}/simulator.cpp"
-        echo "Using test-local simulator: ${SIM_SRC}"
-    else
-        SIM_SRC="${ROOT_DIR}/sim/simulator.cpp"
-        echo "Using baseline simulator: ${SIM_SRC}"
-    fi
+    # SIM_SRC already set above (prefers test-local computer.cpp, falls back to sim/computer.cpp)
 
     # Build simulator with same ACCEL flags so it only handles enabled instructions
     SIM_ACCEL_DEFS=""
@@ -225,12 +217,14 @@ if [ "$RUN_RTL_ONLY" -eq 0 ]; then
     clang++ -O2 -DC ${SIM_ACCEL_DEFS} -Wall -std=c++17 -Wno-c++11-narrowing \
     -o "${SIM_EXEC}" "${SIM_SRC}"
     echo "Built: ${SIM_EXEC}"
-    
-    # Build SystemC simulator executable
-    clang++ -O2 -DC ${SIM_ACCEL_DEFS} -Wall -std=c++17 -Wno-c++11-narrowing \
-        -I$SYSTEMC_HOME/include -L$SYSTEMC_HOME/lib \
-        -o "${SIM_EXEC}" "${SIM_SRC}" -lsystemc
-    echo "Built: ${SIM_EXEC}"
+
+    # Build SystemC simulator executable (optional — skip if SYSTEMC_HOME not set)
+    if [ -n "${SYSTEMC_HOME:-}" ] && [ -d "${SYSTEMC_HOME}/include" ]; then
+        clang++ -O2 -DC ${SIM_ACCEL_DEFS} -Wall -std=c++17 -Wno-c++11-narrowing \
+            -I$SYSTEMC_HOME/include -L$SYSTEMC_HOME/lib \
+            -o "${SIM_EXEC}" "${SIM_SRC}" -lsystemc
+        echo "Built (SystemC): ${SIM_EXEC}"
+    fi
 
     echo ""
     echo "=== Step 3: Running C Simulation ==="
