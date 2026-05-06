@@ -1,0 +1,511 @@
+Copyright (C) 1988-2018 NEC Corporation. All rights reserved.
+
+  -Z* : Special use option
+
+   -Zmix_sign_share=ALL : Sharing different sign register, Assign operator to different sign functional unit. (default)
+   -Zmix_sign_share=REG : Sharing different sign register, Not assign operator to different sign functional unit.
+   -Zmix_sign_share=OPE : Not sharing different sign register, Assign operator to different sign functional unit.
+   -Zmix_sign_share=NO  : Not sharing different sign register, Not assign operator to different sign functional unit.
+
+   -Zmix_bitw_reg_share[=YES]         : Share register among different bitwidth variables. (ASIC: default)
+   -Zmix_bitw_reg_share=NO            : Do not share register among different bitwidth variables. (FPGA: default)
+   -Zmix_bitw_reg_share=0_EXPAND_ONLY : Share register except among signed variable and larger bitwidth variables.
+
+   -Zreg_share[=YES] : Enable register sharing (default)
+   -Zreg_share=NO    : Disable register sharing
+
+   -Zprefix=???    : Set sig name prefix for auto generate sig. [No]
+
+   -Zprefix_outside_fu[=YES] : Attached process name as prefix to port signal name for outside operator. (default)
+   -Zprefix_outside_fu=NO    : Not attached prefix to port signal name for outside operator.
+
+   -Zbit_order_force=up   : All signal bit change up order
+   -Zbit_order_force=down : All signal bit change down order
+   -Zbit_order_force=NO : Not change signal bit order. (default)
+
+   -Zsig_name1state : signal name auto generate each state [No]
+
+   -Zsync  : Generate synchronous reset
+   -Zasync : Generate asynchronous reset (default)
+
+   -Zfsm_st[=#] : Divide the state into # states and generate the FSM by multiple state register.
+   -Zfsm_st     : Generate an FSM by one-state register. (ASIC: default)
+   -Zfsm_st=NO  : Generate FSM in state transition format.(FPGA: default)
+
+   -Zone_hot   : Generate only for 1-hot encoding [binary]
+   -Zgray_code : Generate stat-bit by Gray code [No]
+
+   -Zinit=reset : Initialize declared signal in reset state (default)
+   -Zinit=st_1 : Initialize declared signal in first state
+
+   -Zinit_local_sig : Do auto initialize func's local var. [No]
+
+   -Zresource_fcnt=GENERATE : Generate functional unit constraints automatically. (default)
+   -Zresource_fcnt=USE      : Use only functional units listed in FCNT file specified with -lfc option.
+   -Zresource_fcnt=AUTO     : Same as '-Zresource_fcnt=GENERATE'. (default)
+   -Zresource_mcnt=GENERATE : Generate memory constraints automatically.
+   -Zresource_mcnt=USE      : Use only memories listed in MCNT file specified with -lmc option.
+   -Zresource_mcnt=AUTO     : Same as 'USE' when specified with -lmc option.
+                              Same as 'GENERATE' when specified without -lmc option. (default)
+   -Zresource_cnt=GENERATE  : Same as '-Zresource_fcnt=GENERATE' and '-Zresource_mcnt=GENERATE'.
+   -Zresource_cnt=USE       : Same as '-Zresource_fcnt=USE' and '-Zresource_mcnt=USE'.
+   -Zresource_cnt=AUTO      : Same as '-Zresource_fcnt=AUTO' and '-Zresource_mcnt=AUTO'. (default)
+
+   -Zfu_cnt_incr_rate=# : Increase/decrease FU (functional unit) constraints. [0] (-100~100)
+         Set increase/decrease rate (%) for FU constraint to control the ways of multiplexors to the FUs.
+        0: Set FU constraint by the number specified in FU constraint (FCNT) file.
+      100: Increase FU constraint up to the number no FU is shared (Maximum). No multiplexor is generated.
+     -100: Decrease FU constraint to 1 (Minimum). When decreasing FU constraint, the latency might be larger.
+
+   -Zflib_fcnt_out     : Generate a functional unit constraint (FCNT) file and a functional unit library (FLIB) file. (*-auto.FLIB,*-auto.FCNT) [No]
+   -Zflib_fcnt_out=??? : Generate FCNT,FLIB file with the specified name. [No]
+
+   -Zflib_out     : Generate FLIB file. (*-auto.FLIB) [No]
+   -Zflib_out=??? : Generate FLIB file with the specified name. [No]
+
+   -Zfcnt_out     : Generate FCNT file. (*-auto.FCNT) [No]
+   -Zfcnt_out=??? : Generate FCNT file with the specified name. [No]
+
+   -Zflib_out_sign=NONE  : Generate LMT,FLIB,FCNT file without signed,unsigned,mixture specification.
+   -Zflib_out_sign=EACH  : Generate LMT,FLIB,FCNT file with signed,unsigned specification. (FPGA: default)
+   -Zflib_out_sign=MIX   : Generate LMT,FLIB,FCNT file with signed,unsigned,mixture specification.  (ASIC: default)
+       (Only valid with -Zflib_out/-Zfcnt_out/-Zflib_fcnt_out option)
+
+   -Zflib_out_multi=NO  : Generate LMT,FLIB,FCNT file not used addsub/comparator (FPGA: default)
+   -Zflib_out_multi=YES : Generate LMT,FLIB,FCNT file used addsub/comparator (ASIC: default)
+       (Only valid with -Zflib_out/-Zfcnt_out/-Zflib_fcnt_out option)
+
+   -Zflib_out_limit=[L#][:M#][:S#] : Specify max limit number.
+     L# : The number maximum of limit of the operation of large area size It is made #. [1|5]
+     M# : The number maximum of limit of the operation of middle area size It is made #. [1|10]
+     S# : The number maximum of limit of the operation of small area size It is made #. [1|20]
+       (Only valid with -Zfcnt_out/-Zflib_fcnt_out option)
+       (default value: [for manual scheduling mode | automatic scheduling mode])
+
+   -Zflib_out_create=APPEND : Generate FLIB file containing all FU entries.
+   -Zflib_out_create=DIFF   : Generate FLIB file containing only additional FU entries. (default)
+   -Zflib_out_create=FIT    : Generate FLIB file without reading input FLIB file(s).
+       (Only valid with -Zflib_out/-Zflib_fcnt_out option)
+
+   -Zflib_out_estimate=YES : Estimate characteristics for generated FU entries.
+   -Zflib_out_estimate=NO  : Do not estimate characteristics for generated FU entries. (default)
+       (Only valid with -Zflib_out/-Zflib_fcnt_out option)
+
+   -Zflib_fcnt_arith_macro_out     : Generate a functional unit constraint (FCNT) file and a functional unit library (FLIB) file for arithmetic macro operators. (*-amacro-auto.FLIB, *-amacro-auto.FCNT) [No]
+   -Zflib_fcnt_arith_macro_out=??? : Generate FCNT, FLIB file for arithmetic macro operators with the specified name. [No]
+
+   -Zfcnt_arith_macro_out     : Generate FCNT file for arithmetic macro operators. (*-amacro-auto.FCNT) [No]
+   -Zfcnt_arith_macro_out=??? : Generate FCNT file for arithmetic macro operators with the specified name. [No]
+
+   -Zmlib_mcnt_out     : Generate a memory constraint (MCNT) file and a memory library (MLIB) file. (*-auto.MLIB,*-auto.MCNT) [No]
+   -Zmlib_mcnt_out=??? : Generate MLIB,MCNT file with the specified name. [No]
+
+   -Zmcnt_out     : Generate a memory constraint (MCNT) file. (*-auto.MCNT) [No]
+   -Zmcnt_out=??? : Generate MCNT file with the specified name. [No]
+
+   -Zmcnt_format=INSTANCE : Generate INSTANCE-type MCNT file for inside/outside (unshared) memories to specify synthesis parameters.
+   -Zmcnt_format=LIMIT    : Generate LIMIT-type MCNT file for inside/outside (unshared) memories to specify constraint numbers. (default)
+       (Only valid with -Zmlib_mcnt_out/-Zmcnt_out option)
+
+   -Zmem_kind=??? : Map memory with specified port number. [AUTO]
+     -Zmem_kind=R#    : Memory with specified number of read-only ports.
+     -Zmem_kind=W#    : Memory with specified number of write-only ports.
+     -Zmem_kind=RW#   : Memory with specified number of read-write ports.
+     -Zmem_kind=R#W#  : Memory with specified number of read-only ports and write-only ports.
+     -Zmem_kind=RW1R# : Memory with read-write port and specified number of read-only ports.
+     -Zmem_kind=AUTO  : Determine port number of memory to be mapped automatically.
+                        (R1W1 at MLIB generation. Otherwise, any memory can be mapped.)
+
+   -Zmem_bitw=# : Map memory with specified data bitwidth.
+
+   -Zrw1=1port : rd/wd sig. change to 1 inout-sig for RW# outside memory
+   -Zrw1=2port : rd/wd sig. change to another in & out-sig for RW# outside memory (default)
+
+   -Zrport_limit=# : Specify the upper limit value of the number of read ports for LUT memories or register arrays, generated from arrays in behavior. <1-999> [unlimit]
+
+   -Zstage_map : stage map attribute is available [ASIC: NO] [FPGA: YES(only CyberI mode)]
+
+   -Zsame_cycles : Adjust cycle num. for all condition branch path [No]
+
+   -Zpipe_fu_delay_incr_rate=# : Increase the stage delay of pipeline FU in FLIB by #% <0-100> [10]
+
+   -Zport_asitis        : Reserve unused port as it is
+   -Zport_optimize      : Optimize (Delete) unused port (default for user operators)
+   -Zport_optimize_auto : Optimize (Delete) only unused automatically generated ports (default for process functions)
+
+   -Zgen_stateno_out : State sig. `ST1out' output to port [No]
+
+   -Zgen_stateno_out=??? : output state sig specifying port name [No]
+
+   -Zmem_clocking=always : Generate clock terminal for synchronous memory, always supplied
+   -Zmem_clocking=enable : Generate clock terminal for synchronous memory, supplied only when memory is active
+   -Zmem_clocking=none : Not generate clock terminal for synchronous memory (default)
+
+   -Zwait_valid=NO : wait_valid signal is not generated.(default)
+   -Zwait_valid=INTERNAL : wait_valid signal is generated as an internal signal.
+   -Zwait_valid=OUT : wait_valid signal is output as a port.
+
+   -Zgated_clock     : Synthesize register with gated clock.
+   -Zgated_clock=YES : Synthesize register with gated clock.
+   -Zgated_clock=NO  : Synthesize register without gated clock. (default)
+   -Zgated_clock=#   : Synthesize register whose bitwidth is # or more than with gated clock.
+
+   -Zundisp_fname : Omit filename display in 1 file [No]
+
+   -Zno_aryinit  : Ignore array initialize [No]
+
+   -Zaddress_calc_mult=[io][:inside_mem][:shared_mem]
+                       [:outside_mem][:reg_file][:shared_reg][:all]
+              : Address calculation using multiplier when multi-dim array extend 1-dim
+   -Zaddress_calc_concat=[io][:inside_mem][:shared_mem]
+                         [:outside_mem][:reg_file][:shared_reg][:all]
+              : Address calculation using concatenation operator when multi-dim array extend 1-dim
+
+   -Zmem_read_speculation[=YES] : Allow speculative memory read
+   -Zmem_read_speculation=NO : Not allow speculative memory read (default)
+
+   -Zarray2multi_mem[=NO] : Divide multi-dimensional array to multi memory (default) [Not divide]
+
+   -Zcsv_list[=file] : Append summary info. file by csv format [No]
+
+   -Zdecoder_div : Divide decoder [Not]
+     -Zdecoder_div=no     : Don't divide decoder (default)
+     -Zdecoder_div[=ave]  : Divide decoder on average
+     -Zdecoder_div=pre    : Divide decoder to fill from the front
+     -Zdecoder_div_unit=# : Divide decoder by #bit [4]
+     -Zdecoder_div_over=# : Divide more #bit decoder [8]
+
+   -Zshare_nmux_cond : share same nmux condition [No (default)]
+
+   -Zopt_redundant_logic[=YES] : Merge redundant logic operations (default)
+   -Zopt_redundant_logic=NO : Not merge redundant logic operations
+
+   -Zsimplify_nmux_cond[=YES] : Simplify nmux condition logic (default)
+   -Zsimplify_nmux_cond=NO : Not simplify nmux condition logic
+
+   -Zopt_ter_rename[=NO] : Divide ter variable for each status and each condition (default) [Not divide]
+
+   -Zcdfgdraw[=YES] : Display CDFG and state transition diagram.
+   -Zcdfgdraw=NO    : Do not display CDFG and state transition diagram. (default)
+
+   -Zopt_same_cond_dfg[=NO] : optimize same condition CDFG node [No (default)]
+
+   -Zopt_loop_lvl=# : Set optimize loop level (A is max) [1]
+
+   -Zopt_loop_merge[=NO] : Merge same condition for loop on automatic scheduling (default) [No]
+
+   -Zstreg=add_dflt : add default for invalid state (default)
+   -Zstreg=no_dflt  : not add default for invalid state
+
+   -Zfsm_dec : Option for change control signal circuit for multi cycle operation/memory [slow]
+     -Zfsm_dec=fast : when fast mux select signal
+     -Zfsm_dec=slow : when slow mux select signal
+
+   -Zmulti_cycle_ope=??? : Option for multi cycle operation [reg]
+     -Zmulti_cycle_ope=latch : make select signal using latch
+     -Zmulti_cycle_ope=negFF : make select signal using negFF
+     -Zmulti_cycle_ope=reg   : input signal is only one register
+
+   -Zmulti_cycle_mem=??? : Option for multi cycle memory [reg]
+     -Zmulti_cycle_mem=latch : make select signal using latch
+     -Zmulti_cycle_mem=negFF : make select signal using negFF
+     -Zmulti_cycle_mem=reg   : input signal is only one register
+
+   -Zmem_re      : Allow only memories with read enables.
+                   (or read enables are generated when its ports definition isn't there in MLMT nor MLIB.)
+   -Zmem_re=NO   : Allow memories both with and without read enables. (default)
+                   (or read enables are not generated when its ports definition isn't there in MLMT nor MLIB.)
+
+   -Zmem_cs      : Allow only memories with chip selects.
+                   (or chip selects are generated when its ports definition isn't there in MLMT nor MLIB.)
+   -Zmem_cs=NO   : Allow memories both with and without chip selects. (default)
+                   (or chip selects are not generated when its ports definition isn't there in MLMT nor MLIB.)
+
+   -Zmem_be[=NO] : All arrays are assigned to memory with BE(byte enable) signals [No (default)]
+
+   -Zmem_reg=#     : Insert input and output register(s) to pipeline memory. [0]
+                     # : Number of input and output register(s)
+   -Zmem_reg=#1:#2 : Insert input and output register(s) to pipeline memory. 
+                     #1 : Number of input register(s)
+                     #2 : Number of output register(s)
+
+   -Zmem_reg_locate=inside  : Locate inserted register(s) inside of the synthesized module.
+   -Zmem_reg_locate=outside : Locate inserted register(s) outside of the synthesized module.
+
+   -Zreg_array=LUTRAM  : Map array(s) to LUT memory (distributed memory).
+   -Zreg_array=DECODER : Map array(s) to register array(s) with decoder.
+   -Zreg_array=AUTO    : Map array(s) to LUT memory or register array(s) automatically. (default)
+
+   -Zname_sensitive[=NO] : A capital letter/small letter is distinguished with the same name check of the signal name [No (default)]
+
+   -ZZlogicbist     : Logic bist circuit is generated(TEST) [No]
+   -ZZlogicbist=??? : Mux select signal name is specified and logic bist circuit is generated [No]
+
+   -Zlabel=???:"???" : Change (add/delete) attribute which specified by label
+
+   -Zdotty_out : Output FSM file in Graphviz format
+
+   -ZZfu_noshare_states : Don't share operator between specified states [Do]
+     -ZZfu_noshare_states[=all] : Don't share between all states
+     -ZZfu_noshare_states=#[,#] : Don't share between specified states
+
+   -Zcse_limit=# : Expand the upper limit of the size of redundant operator elimination [1 time]
+
+   -Zopt_redundant_ope=[ope_only|array_only] : limit eliminate common subexpression target
+
+   -ZZpipeline : Synthesize to pipeline circuit of DII=1 [No]
+
+   -ZZfolding : Apply 'loop folding'(DII=1) to process function [No]
+   -ZZfolding=# : Apply 'loop folding'(DII=#) to process function [No]
+
+   -Zarray_data_hazard=CHECK : Warn for memory access hazard(s) in automatic pipeline scheduling mode (default)
+   -Zarray_data_hazard=AVOID : Schedule without memory access hazard(s) in automatic pipeline scheduling mode
+   -Zarray_data_hazard=NO    : Do not check memory access hazard(s) in automatic pipeline scheduling mode
+
+   -Zfolding_sharing=intra_stage : Intra stage resource sharing
+        FSM in pipeline stages does state transition asynchronously. DII will be increased automatically to avoid data and structural hazard when unsatisfiable DII is specified. More resources will be used than "inter_stage".
+   -Zfolding_sharing=inter_stage : Inter-and-intra stages resource sharing (default)
+        FSM in pipeline stages does state transition synchronously by specified DII cycle. Less resources will be used than "intra_stage".
+
+   -Zport_hazard=[WARNING|ERROR|IGNORE] : Control how to report I/O port hazard of loop folding
+   -Zarray_hazard=[WARNING|ERROR|IGNORE] : Control how to report array hazard of loop folding
+   -Zreg_hazard=[WARNING|ERROR|IGNORE] : Control how to report register hazard of loop folding
+        WARNING : Report message as warning. Hazard is included in design. (default)
+        ERROR   : Report message as error. Synthesis is stopped.
+        IGNORE  : Do not report message. Hazard is included in design.
+
+   -Zhazard_avoid_sche=[ALL|NO|PORT:REG:REGARRAY:MEM] : Set timing constraints automatically to avoid access hazard(s) in loop folding
+
+        ALL       : Set timing constraints automatically to avoid access hazard(s) of all resources (same as PORT:REG:REGARRAY:MEM)
+        NO        : Not set timing constraint for access hazard at all
+
+        PORT,REG,REGARRAY,MEM --- multiple values can be specified with delimiter ':' (example) -Zhazard_avoid_sche=REGARRAY:MEM
+        PORT      : Set timing constraints automatically to avoid access hazard(s) of ports
+        REG       : Set timing constraints automatically to avoid access hazard(s) of registers, not including register arrays
+        REGARRAY  : Set timing constraints automatically to avoid access hazard(s) of register arrays
+        MEM       : Set timing constraints automatically to avoid access hazard(s) of memories
+
+        (default: -Zhazard_avoid_sche=REG:PORT)
+
+   -Zarray_order=AUTO   : Determine array access order automatically in loop folding (default)
+   -Zarray_order=IGNORE : Do not keep array access order in loop folding
+
+   -Zunnesting=AUTO : Determine unnesting automatically in loop folding. (default)
+   -Zunnesting=YES  : Unnesting in loop folding. If do not unnesting, raise error.
+   -Zunnesting=NO   : Do not unnesting in loop folding.
+
+   -Ztop=??? : Synthsize as a lower hierarchical module
+
+   -Zfunc_arg_other_DC=[YES|NO] : (default:YES)
+        Set don't care or 0 as default value for input signals of lower hierarchical modules
+
+   -Zfunc_stall=auto   : Generate stall signal automatically if required (default)
+   -Zfunc_stall=create : Generate stall siganal to functional unit
+   -Zfunc_stall=ignore : Not generate stall siganal to functional unit
+
+   -Zlower_module : Synthesize for lower module. (default)
+   -Ztop_module   : Synthesize for top module.
+
+   -Zshared_reg_reset=HERE : Initialize shared register in the current process.
+   -Zshared_reg_reset=UPPER : Don't initialize shared register in the current process. (default)
+
+   -Zshared_mem_re_gen : Create read enable for multiplexor(s) for address port of memory without read enable and chip select. (default)
+   -Zshared_mem_re_gen=NO : Not create read enable for multiplexor(s) for address port of memory without read enable and chip select.
+
+   -Zshared_reg_lutram_re_gen : Create read enable for multiplexor(s) for address port of shared register array(LUTRAM style).
+   -Zshared_reg_lutram_re_gen=NO : Not create read enable for multiplexor(s) for address port of shared register array(LUTRAM style). (default)
+
+   -Zset_lower_clock_reset=SHARED_ALL : Set the same clock/reset signal of shared registers/memories as that of lower module which does write operation. (default)
+   -Zset_lower_clock_reset=SHARED_REG : Set the same clock/reset signal of shared registers as that of lower module which does write operation.
+   -Zset_lower_clock_reset=SHARED_MEM : Set the same clock/reset signal of shared memories as that of lower module which does write operation.
+   -Zset_lower_clock_reset=NO         : Set current module of clock/reset signal as input of shared registers/memories.
+
+   -Zshared_mem_clock    : Generate memory clock port for shared memory to lower module.
+   -Zshared_mem_clock=NO : Not generate memory clock port for shared memory to lower module. (default)
+
+   -Zdup_reset[=YES] : Duplicate reset signal in each clock domain. (default when -Zlower_module option is specified)
+   -Zdup_reset=NO    : Don't duplicate reset signal in each clock domain. (default)
+
+   -Zsche_minimize_delay[=YES] : Schedule operations to minimize delay between registers. (default)
+   -Zsche_minimize_delay=NO    : Schedule operations to keep the delay within the effective clock period defined with "-c" and/or "-cd" option.
+
+   -Zsche_logic_delay[=YES] : Schedule logic operations using default algorithm. (default)
+   -Zsche_logic_delay=NO    : Schedule logic operations using earlier version algorithm (Cyber 5.1.1 or earlier).
+
+   -Zlogic_delay_rate=# : Compress the delay of logic operation from BLIB to #-percent [100] (0~100).
+
+   -Zassign=# : Change assign algorithm[-Zassign=2]
+     (-Zassign=0 : on manual scheduling, use assign algorithm 1)
+     (           : on auto scheduling, use assign algorithm 2)
+     (-Zassign=1 : use assign algorithm 1)
+     (-Zassign=2 : use assign algorithm 2)
+     (on auto pipeline scheduling, always use assign algorithm 2)
+     (on auto scheduling and auto pipeline scheduling, use only assign algorithm 2)
+
+   -Zreg_asitis : Reserve no reference register as it is.
+   -Zreg_optimize : Delete no reference register.(default)
+
+   -Zreg_orig_name=1  : When a register doesn't share, the original signal name is cause to the register name
+   -Zreg_orig_name=#  : When the number of share registers is less than #, the original signal name is cause to the register name
+   -Zreg_orig_name    : The original signal name is cause to the register name until the length limitation (default)
+   -Zreg_orig_name=NO : Take a resister name before Beta 3.4.x
+   -Zreg_name_len=#   : Set up the upper limit of the length of the shared register name [32]
+   -Zreg_name_func=YES: The function name is added to the shared register signal name
+   -Zreg_name_func=NO : The function name is not added to the shared register signal name (default)
+   -Zreg_head_len=ALL : All the signal (function) names of the cause are made to reflect (default)
+   -Zreg_head_len=#   : Only the head #-character of the signal name of the cause is made to reflect [all reflects]
+   -Zreg_head_len=#:# : Only the head #-character of the function and signal name of the cause is made to reflect [all reflects]
+
+   -Zreg_min_reset[=YES] : Do not reset registers without initialized value in declaration. (default)
+   -Zreg_min_reset=NO    : Also reset registers without initialized value in declaration.
+
+     -Zreg_reset_cone[=YES] : Although specify -Zreg_min_reset, reset registers connected to output signal.
+     -Zreg_reset_cone=NO    : When specify -Zreg_min_reset, apply to registers connected to output signal. (default)
+
+     -Zreg_reset_cone_valid_sig[=YES] : Although specify -Zreg_min_reset, reset registers connected to valid_sig signal.
+     -Zreg_reset_cone_valid_sig=NO    : When specify -Zreg_min_reset, apply to registers connected to valid_sig signal. (default)
+
+   -Zreset_enable_reg[=YES] : Reset register(s) for enable port(s).
+   -Zreset_enable_reg=NO    : Do not reset register(s) for enable port(s). (default)
+       Effective to register(s) inserted by the register insertion feature such as 'mem_reg'.
+
+   -Zuninit_global_sig=INIT    : Initialize uninitialized global signal(s). (other than SystemC) (default)
+   -Zuninit_global_sig=NO_INIT : Not initialize uninitialized global signal(s). (other than SystemC)
+
+    As for output signal(s) and global register array(s), refer to -Zuninit_out_sig/-Zuninit_reg_array options.
+
+   -Zuninit_out_sig=INIT    : Initialize uninitialized output signal(s). (other than SystemC) (default)
+   -Zuninit_out_sig=NO_INIT : Not initialize uninitialized output signal(s). (other than SystemC)
+
+   -Zuninit_reg_array=INIT    : Initialize uninitialized global register array(s). (other than SystemC) (default)
+   -Zuninit_reg_array=NO_INIT : Not initialize uninitialized global register array(s). (other than SystemC)
+
+   -Zreset_state=AUTO  : Reset state creation is decided automatically.
+   -Zreset_state=YES   : Force create reset state.
+   -Zreset_state=NO    : Do not create reset state. (default)
+
+   -Zdefault_reset=??? : Specify reset signal to be connected to module with only one reset port.
+   -Zdefault_reset     : Automatically determine reset signal to be connected to module with only one reset port. (default)
+
+   -Zreset_synchronizer   : Generate reset circuit which provides asynchronous assertion synchronous deassertion.
+   -Zreset_synchronizer=# : Generate reset circuit which provides asynchronous assertion synchronous deassertion.
+                            # is the number of registers inserted at reset input.
+
+   -ZlogN : Not output .LOG file for execute information log [Do]
+
+   -Ztimeout=# : Set timeout seconds [No timeout]
+
+   -Zpipemem1=1 : Enable the use of pipeline memory in the manual scheduling mode. [No]
+
+   -Zope_stall=create : Stall signal is inputted in pipeline operator. (default)
+   -Zope_stall=ignore : Compensation circuit is generated in pipeline operator.
+
+   -Zope_synth=AUTO         : Default operations synthesis mode. (default)
+   -Zope_synth=FU_IP        : Use pipelined functional unit(s).
+                              DesignWare for Synopsys (Design Compiler)
+                              CORE generator IP or inference for Xilinx (ISE)
+                              Megafunction or inference for Altera (Quartus II)
+   -Zope_synth=FU_COMB      : Synthesize operations as combinational logic.
+   -Zope_synth=FORCE_1CYCLE : Synthesize operations as combinational logic forcing 1 cycle latency.
+
+   -Zpointer_analyze_effort=# : Set pointer analyze level (1~10) [1]
+
+   -Zopt_copy_propagate[=NO] : Do copy propagation (default) [No]
+
+   -Zfalse_path_script : Output false-path script [No]
+
+   -Zstruct_name_length-# : Shorten variable name generated by expanding struct variable to # characters or less.
+
+   -Zmember_name_length=# : Apply the upper # characters of member variable name behind variable name generated by expanding struct variable.
+   -Zmember_name_length   : Apply member variable name behind variable name generated by expanding struct variable. (default)
+
+   -Zflatten_nmux=DP : Flatten multi-level multiplexor in datapath. (default)
+   -Zflatten_nmux=FSM : Flatten multi-level multiplexor in FSM.
+   -Zflatten_nmux=ALL : Flatten all multi-level multiplexor. (DP+FSM)
+   -Zflatten_nmux=NO : Not flatten multi-level multiplexor.
+
+   -Zfu_total_limit=# : Expand the upper limit of total size of function unit  [ASIC: 1 time] [FPGA: 10 time]
+
+   -Zport_valid_sig_gen[=YES] : Valid signal for each port is generated as an output port
+   -Zport_valid_sig_gen=NO    : Valid signal is not generated (default)
+
+   -Zinternal_valid_sig_gen[=YES] : Valid signal for each port is generated as an internal signal
+   -Zinternal_valid_sig_gen=NO    : Valid signal is not generated (default)
+
+   -Zinit_reg=asitis : The register only in initialization with substitution is reserved.
+   -Zinit_reg=optimize : The register only in initialization with substitution is optimized. (default)
+
+   -Zbitw_opt=ALL        : Optimize bitwidth of all variables (default)
+   -Zbitw_opt=LOGIC_TYPE : Optimize bitwidth of logic type (char, short, int, long, or long long) variables and internally generated variables
+   -Zbitw_opt=INTERNAL   : Optimize only bitwidth of internally generated variables
+   -Zbitw_opt=NO         : No bitwidth optimization performed, including internally generated variables
+
+   -Zmem_bitw_opt[=YES]  : Optimize bitwidth of array bound to memory (FPGA: default)
+   -Zmem_bitw_opt=NO     : Do not optimize bitwidth of array bound to memory (ASIC: default)
+
+   -Zdebugger_info[=NO] : Generate information for source code debugger (default) [No]
+
+   -Zscheduling_block=transparent : It is made parallel with other statements when there is no value of the scheduling_block attribute. (default)
+   -Zscheduling_block=non-transparent : It is not made parallel with other statements when there is no value of the scheduling_block attribute.
+
+   -Zarray_port_other_DC[=YES] :
+       Set don't care as default value for address and write data port of array. (default)
+   -Zarray_port_other_DC=NO    :
+       Set 0 as default value for address and write data port of array.
+
+   -Zsharedreg_port_other_DC[=YES] :
+       Set don't care as default value for write data port of shared register (not including arrays). (default)
+   -Zsharedreg_port_other_DC=NO    :
+       Set 0 as default value for write data port of shared register (not including arrays).
+
+   -Zopt_reg_feedback[=YES] :
+       Optimize register feedback loop to retain register value. (default)
+   -Zopt_reg_feedback=NO    :
+       Do not optimize register feedback loop to retain register value.
+
+   -Zsynchronizer=#1:#2 : Generate synchronizer for crossing clock domain.
+                          #1 is the number of registers for synchronizer at the source clock domain.
+                          #2 is the number of registers for synchronizer at the destination clock domain.
+   -Zsynchronizer       : Generate synchronizer for crossing clock domain.
+
+   -Zin_port_synchronizer=# : Generate synchronizer at input ports for different clock domain.
+                              # is the number of registers for synchronizer at each port. [0]
+
+   -Zin_port_reg_stage=# : Generate # stage registers at input ports. [0]
+   -Zout_port_reg_stage=# : Generate # stage registers at output ports. [0]
+
+   -Zcontrol_port=[start][:done][:ready][:continue] : Generate control port(s). (available only for ANSI-C description)
+
+   -Zarray_name_old=NO    : signal of array expanded is named by 'name_[index1]_[index2]' format.
+   -Zarray_name_old=YES   : signal of array expanded is named by 'name_a[expanded_index]]' format. (default)
+
+   -Zarray_name_zero_padding=YES : Pad 0 to digits in name of an array signal and a port signal. (default) 
+   -Zarray_name_zero_padding=NO  : Not pad 0 to digits in name of an array signal and a port signal.
+
+   -Zfloat_thr_unroll[=YES] : Enables optimizations for floating-point operations in unrolled loop(s). (default)
+   -Zfloat_thr_unroll=NO    : Disables optimizations for floating-point operations in unrolled loop(s) that are not value-safe.
+
+   -Zarray_logic_size=# : Specify the maximum size of read-only array which is implemented as a combinational circuit. [4096]
+
+   -Zauto_array_div=YES : Divide array based on the number of 'unroll_times'. (default)
+                          Target array has to be used at for loop that 'unroll_times' attribute is specified and its index has to be loop counter.
+   -Zauto_array_div=NO  : Array is not divided even if for loop is unrolled.
+   -Zauto_loop_unroll_from_array_div=YES : For loop is unrolled based on the number of 'array_div'. (default)
+   -Zauto_loop_unroll_from_array_div=NO  : For loop is not unrolled even if 'array_div' is specified.
+
+   -Zfifo_synth=[SHIFT_REG|MEM|MEM:BLOCK|MEM:LUT|IP|IP:BLOCK|IP:LUT|AUTO] : Specify the implementation of FIFOs. (Only C/C++ Synthesis)
+        (signal between modules in 'process_pipeline' process)
+        SHIFT_REG : Shift registers
+        MEM       : Memory (Block memory or LUTRAM)
+        MEM:BLOCK : Block memory
+        MEM:LUT   : LUTRAM
+        IP        : Vendor IP (Block memory or LUTRAM)
+        IP:BLOCK  : Vendor IP (Block memory)
+        IP:LUT    : Vendor IP (LUTRAM)
+        AUTO      : Automatically determined (default)
+
+Copyright (C) 1988-2018 NEC Corporation. All rights reserved.
+bdltran version : 6.10.04 (Linux 64-bit) Thu Mar 22 14:18:17 JST 2018
+         (BIF version : 3.41F)
+         (LICflex version : 1.53 cylmd)
+         make at Thu Mar 22 14:30:59 JST 2018

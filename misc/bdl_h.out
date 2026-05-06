@@ -1,0 +1,401 @@
+Copyright (C) 1988-2018 NEC Corporation. All rights reserved.
+bdltran version : 6.10.04 (Linux 64-bit) Thu Mar 22 14:18:17 JST 2018
+         (BIF version : 3.41F)
+         (LICflex version : 1.53 cylmd)
+         make at Thu Mar 22 14:30:59 JST 2018
+
+usage : bdltran [options] file
+
+  -a* : Array mapping [-a1024]
+    -am : Always to memory
+    -ar : Always to register
+    -a# : To memory if (bitwidth x array size) is larger than #,
+          otherwise to register
+  -au, -al : Maximum decoder number of register array in manual scheduling.
+    -au : Unlimited. (default)
+    -al : Limited.
+
+  -ae* : Decoder synthesis for register array accessed by constant index only.
+    -aeu : No decoder. (default)
+    -ae# : Synthesize with decoder if size of array is more than #.
+
+  -ap* : Option for change memory to outside [-apI]
+    -apI : Generate memory block inside process (default)
+    -apA : Generate memory block outside process
+    -ap# : Generate memory block outside process if number of elements is # or more
+    -apI:o, -apA:o, -ap#:o : Delete unused outside memory ports [No]
+
+  -A* : Data-Path assign option
+     on manual scheduling [ assign algorithm 1 ]
+     on auto scheduling   [ assign algorithm 2 ]
+         change option : -Zassign=#
+
+   Option for Data-Path assign algorithm 1
+      -AF : Not optimize for reg-asgn [Do]
+
+   Option for Data-Path assign algorithm 2
+      -A-t: Area driven
+      -At : Timing driven (default)
+      -Aa : Minimizing area by FU sharing
+      -Ad : Reduce multiplexor by suppressign FU sharing (default)
+            -Aa,-Ad must be specified exclusively
+      -Af : Avoid false loop by area driven Data-Path assignment
+      -A-f: Not avoid false loop by area driven Data-Path assignment(default)
+
+  -c# : Specify the clock period. (the unit is specified by '-cu#')
+        ex.) '-c1000' is 10ns. (when -cu1/100ns)
+  -cd#, -cdp#: Specify the clock uncertainty.
+               default: 10% of the clock period in the ASIC mode is set. (-cdp10)
+                        20% of the clock period in the FPGA mode is set. (-cdp20)
+    -cd# : Specify the clock uncertainty using the absolute value of delay. (the unit is specified by '-cu#')
+           ex.) '-cd100' is 1ns.
+    -cdp#: Specify the clock uncertainty using the percentage of the clock period. <0~100>
+           ex.) '-cdp10' is 10% of the clock period specified by '-c#' option.
+    -cdN : Cancel '-cd#' and '-cdp#' options.
+  -cu#[ns|ps]: Specify the unit for '-c#', '-cd#' and '-cdp#' options. [-cu1/100ns]
+               <10000ns-1/10000ns, 10000ps-1/10000ps>
+               ex.) -cu1ps
+
+  -C# : Set aid info. display level <0~1> [0]
+    -C0 : Not display information (default)
+    -C1 : Display information
+
+  -E# : Error message display (stderr out) <0~5> [1]
+    -E0 : Don't display message
+    -E1 : Display fatal error message
+    -E2 : Display fatal, warning error message
+    -E3 : Display fatal, warning error message
+    -E4 : Display fatal, warning error, info. message
+    -E5 : Display all message
+
+  -EF# : Error message file output <0~5> [5]
+    -EF0 : Don't output file
+    -EF1 : Output fatal error message
+    -EF2 : Output fatal, warning error message
+    -EF3 : Output fatal, warning error message
+    -EF4 : Output fatal, warning error, info. message
+    -EF5 : Output all message
+
+  -EW# : Change warning which can be controlled <0~2> [1]
+    -EW0 : Make warning which can be controlled warning
+    -EW1 : Not change warning which can be controlled
+    -EW2 : Make warning which can be controlled fatal error
+
+  -EJ : Error message output in Japanese
+  -EE : Error message output in English
+
+  -f* : Specify the synthesis method for functions [-fN -fs:8 -fc:1 -fx:32]
+    -fi  : Synthesize functions by inline expansion
+    -fg  : Synthesize functions by goto conversion
+    -fN  : Automatically decide the synthesis method for each function
+
+    -fs:#: Specify the maximum number of statements for inline expansion
+    -fc:#: Specify the maximum number of function calls for inline expansion
+    -fx:#: Specify the maximum value of (#statements) * (#function calls) for inline expansion
+
+  -F* : Generate reset/clock/stall port [-Fra:RESET+, -Fca:CLOCK+]
+    -Fr[a|f][:NAME][+|-]
+      -Fra      : Generate reset port if necessary (default)
+      -Frf      : Generate reset port
+      -Fr:NAME  : Generate reset port whose name is NAME [`RESET']
+      -Fr+      : Reset is High active (default)
+      -Fr-      : Reset is Low active
+    -Fc[a|f][:NAME][+|-]
+      -Fca      : Generate clock port if necessary (default)
+      -Fcf      : Generate clock port
+      -Fc:NAME  : Generate clock port whose name is NAME [`CLOCK']
+      -Fc+      : Register triggered at the positive edge of clock (default)
+      -Fc-      : Register triggered at the negative edge of clock
+    -Fs[:NAME][+|-]
+      -Fs:NAME  : Generate stall control port named `NAME' [`STALL']
+      -Fs+      : Set the polarity of the stall control signal to be active high
+      -Fs-      : Set the polarity of the stall control signal to be active low
+
+  -FcE[:NAME] : Generate clock signal dedicated for inversed-edge triggered registers. [Don't generate]
+
+  -l* : Specify library file or constraint file
+        (These options cancel previous same type file options.)
+
+    -lfl FILE : Functional unit library file (*.FLIB)
+    -lfc FILE : Functional unit count file (*.FCNT)
+    -lml FILE : Memory library file (*.MLIB)
+    -lmc FILE : Memory count file (*.MCNT)
+    -lf  FILE : Functional unit constraint file (*.LMT)
+    -lm  FILE : Memory constraint file (*.MLMT)
+
+  +l* : Specify additional library file or constraint file
+
+    +lfl FILE : Functional unit library file (*.FLIB)
+    +lfc FILE : Functional unit count file (*.FCNT)
+    +lml FILE : Memory library file (*.MLIB)
+    +lmc FILE : Memory count file (*.MCNT)
+    +lf  FILE : Functional unit constraint file (*.LMT)
+    +lm  FILE : Memory constraint file (*.MLMT)
+
+  Option for library name [ -libd $CYBER_PATH ]
+
+    -lib  LIBRARY_NAME : Specify `LIBRARY_NAME'
+                    ex.)
+                  -lib arria10-2SG : arria10-2SG.BLIB, arria10-2SG.FLIB and arria10-2SG-float.FLIB are specified.
+                  -lib virtex7-1   : virtex7-1.BLIB, virtex7-1.FLIB and virtex7-1-float.FLIB are specified.
+                  -ilb asic_45     : asic_45.BLIB and asic_45.FLIB are specified.
+
+    -libd DIRECTORY    : Specify directory that contains BLIB and FLIB files
+
+  Option for Lower module specification (LMSPEC) file [-lld .]
+
+    -ll  FILE : Specify LMSPEC file
+    +ll  FILE : Specify additional LMSPEC file
+        (Opiton '-ll' cancel previous +ll and -ll options.)
+
+    -lld  DIRECTORY : Specify serch directory for LMSPEC files
+    +lld  DIRECTORY : Specify additional serch directory for LMSPEC files
+    -lldr DIRECTORY : Specify recursively serch directory for LMSPEC files
+    +lldr DIRECTORY : Specify additional recursively serch directory for LMSPEC files
+    -lld-           : Cancel previous '-lld','+lld','-lldr' and '+lldr' options
+        (Opiton '-lld' and '-lldr' cancel previous '-lld','+lld','-lldr' and '+lldr' options.)
+
+  -lpA     : Auto insert port description into BDL (default)
+  -lp  FILE: Port constraint file name (*.PLMT)
+  -lpr FILE: Port relation file name (*.PREL)
+
+  -lt FILE : Time Constraint(Limit) File name (*.TLMT)
+
+  -lic_wait=# : wait for a license if the licensed number of users is reached, and exit if it is not available after # of minutes.[0]
+
+  -m* : Set memory scheduling position [-mrewe]
+    -m[rw]f : Memory always scheduled at beginning of control step
+    -m[rw]f0: Memory and preceding logic operations always scheduled at beginning of control step
+    -m[rw]l : Memory always scheduled at end of control step
+    -m[rw]l0: Memory and following logic operations always scheduled at end of control step
+    -mrewe  : Allocate to memory that is synchronous read access and synchronous write access (pipelined memory)
+    -mrawe  : Allocate to memory that is asynchronous read access and synchronous write access
+
+   -mc* : Set for memory chaining [-mc]
+     -mc  : All memory can chaining
+     -mcD : Different memory can chaining
+     -mcN : Can't memory chaining never
+
+  -M* : Set macro option [no]
+    -MS#  : Set priority level for exec. speed <1~5(fast)>
+    -MA#  : Set priority level for area <1~5(small)>
+       (For automatic scheduling mode only)
+    -MPL# : Set priority level for path length <1~3(short)>
+    -MPD# : Set priority level for performance delay <1~3(fast)>
+
+  -o? : Setting operator sharing [-ol]
+    -ol : Limited oper. limit
+    -ou : Unlimited oper. limit
+
+  -oA : Optimize continuous array (default)
+  -o-A: Not optimize continuous array
+  -oB : Optimize bitwidth for ope. expression (default)
+  -o-B: Not optimize bitwidth for ope. expression
+  -oE : Optimize expression (default)
+  -o-E: Not optimize expression
+  -oF : Optimize fanout num. from state decoder
+  -o-F: Not optimize fanout num. from state decoder (default)
+  -oL : Optimize loop
+  -o-L: Not optimize loop (default)
+  -oG : Propagate constant (default)
+  -o-G: Not propagate constant
+  -oH : Optimize operations in loop unrolled (default)
+  -o-H: Not optimize operations in loop unrolled
+  -oI : Reduce the height of operation tree (default)
+  -o-I: Not reduce the height of operation tree
+  -oK : eliminate common sub-expression (default)
+  -o-K: Not eliminate common sub-expression
+  -oM : Optimize constant multiplier (default)
+  -o-M: Not optimize constant multiplier
+  -oN : Optimize single minus operator (default)
+  -o-N: Not optimize single minus operator
+  -oP : Optimize add ope. to concatenation ope. (default)
+  -o-P: Not optimize add ope. to concatenation ope.
+  -oO : Optimize compare operator (default)
+  -o-O: Not optimize compare operator
+  -oS : Optimize same signal expression (default)
+  -o-S: Not optimize same signal expression
+  -oT : Optimize constant expression (default)
+  -o-T: Not optimize constant expression
+  -oU : Optimize multiple constant expression (default)
+  -o-U: Not optimize multiple constant expression
+  -oV : Optimize constant division  (default)
+  -o-V: Not optimize constant division
+  -oX : Optimize "==" and "!=" with XOR logic (default)
+  -o-X: Do not optimize "==" and "!=" with XOR logic
+  -oZ : Not optimize [Do]
+     (OK: -oACE, -oZCE, ...)
+
+  -O* : Output info. file [-OBTCGoteyw]
+    -OI : output .INF file for FU, REG, PORT Binding Information
+    -O-I: Not output .INF file for FU, REG, PORT Binding Information (default)
+    -OF : output .FUV file for Func. Used Vector
+    -O-F: Not output .FUV file for Func. Used Vector (default)
+    -OP : output .PUV file for Port Used Vector
+    -O-P: Not output .PUV file for Port Used Vector (default)
+    -OM : output .MUV file for Memory Used Vector
+    -O-M: Not output .MUV file for Memory Used Vector (default)
+    -OU : output .USE file for Func. Usage
+    -O-U: Not output .USE file for Func. Usage (default)
+    -OS : output .STP file for Scheduling
+    -O-S: Not output .STP file for Scheduling (default)
+    -OR : output .REG file for REG-assign
+    -O-R: Not output .REG file for REG-assign (default)
+    -OA : output .AID file for TEST-aid
+    -O-A: Not output .AID file for TEST-aid (default)
+    -OW : output .warn file for critical warning
+    -O-W: Not output .warn file for critical warning (default)
+    -OX : output all above-mentioned info. file
+    -O-X: Not output all above-mentioned info. file (default)
+
+    -OB : output .BDL file (default)
+    -O-B: Not output .BDL file
+    -OT : output .tips file for tips. (default)
+    -O-T: Not output .tips file for tips.
+
+    -OC : output summary info. file by csv format (default)
+    -O-C: Not output summary info. file by csv format
+    -OG : output summary info. file (*.VSG) by integrated format (default)
+    -O-G: Not output summary info. file by integrated format
+
+    -Ol : output line-no in .BDL file
+    -O-l: Not output line-no in .BDL file (default)
+    -Oo : output all line-no in .BDL file (default)
+    -O-o: Not output all line-no in .BDL file
+    -Oa : output line-no attribute in .BDL file
+    -O-a: Not output line-no attribute in .BDL file
+    -Ot : output attribute in .BDL file (default)
+    -O-t: Not output attribute in .BDL file
+    -Oe : output exp's bitwidth attr. in .BDL file (default)
+    -O-e: Not output exp's bitwidth attr. in .BDL file
+    -Oy : output exp's cast info. in .BDL file (default)
+    -O-y: Not output exp's cast info. in .BDL file
+    -On : output box-no in .BDL file
+    -O-n: Not output box-no in .BDL file (default)
+    -Ow : output sig/const bit-info. in .BDL file (default)
+    -O-w: Not output sig/const bit-info. in .BDL file
+    -O2 : output const-sig binary in .BDL file
+    -O-2: output const-sig decimal in .BDL file (default)
+       (OK: -OIFPM, -OBlnw, -OXn, ...)
+
+  -p[#|file] : Use Parameter file [bdltran.prm]
+    -p#      : Specify line # in bdltran.prm [1]
+    -pfile   : Specify parameter file instead of bdltran.prm
+    -p: file : Specify parameter file instead of bdltran.prm
+
+  -Q* : Print option for QOR file [-QDn25 -QRn10 -QTn1]
+    -QDt# : Output signal names with total fanout more than the specified value
+    -QDm# : Output signal names with max fanout more than the specified value
+    -QDn  : Output all records of "Routability report" in QOR file
+    -QDn# : Set the number of outputs for "Routability report" in QOR file
+    -QFn  : Output all records of false path reports
+    -QFn# : Specify the number of false path reports
+    -QMa  : Add memory area into total area
+    -QRi# : Output register names with fanout more than the specified value
+    -QRo# : Output register names with fanout more than the specified value
+    -QRn  : Output all records of "Register fanin/fanout report" in QOR file
+    -QRn# : Set the number of outputs for "Register fanin/fanout report" in QOR file
+    -QTn# : Set the number of outputs for "Timing report" in QOR file
+
+  -s* : Scheduling option [-sN]
+    -s  : Automatic Scheduling (= -sr) [No]
+    -sr : Node Re-assignment Scheduling [No]
+    -s-r: Not Node Re-assignment Scheduling [No]
+    -sN : No Automatic (Manual) Scheduling (default)
+
+  -S* : Scheduling detail option [-SRM2]
+    -SS : Scheduling without Speculative executions [No]
+    -SP : Scheduling without global Parallelism among IFs [No]
+    -SF : Scheduling without false loop [No]
+    -SR : Scheduling with being aware of registers (default)
+    -S-R: Scheduling without being aware of registers [No]
+    -SM : Scheduling with being aware of delay of basic libraries (default)
+    -S-M: Scheduling without being aware of delay of basic libraries [No]
+    -S0 : Scheduling that input() is ASAP, output() is ASAP [No]
+    -S1 : Scheduling that input() is ASAP, output() is ALAP [No]
+    -S2 : Scheduling that input() is ALAP, output() is ASAP (default)
+    -S3 : Scheduling that input() is ALAP, output() is ALAP [No]
+       (OK: -SSP, -SSPF, ...)
+
+  -td : Optimize by dividing parallel tree
+  -tdN: Not optimize by dividing parallel tree (default)
+
+  -tc?# : Set Tree-copy for optimize [-tc0 -tcioN]
+    -tc0  : Not tree-copy
+    -tc#  : tree-copy branch num. limit [32]
+    -tcb1 : from top-level ope & cond copy
+    -tcb2 : from 2nd-level ope & cond copy
+
+    -tcio : Do copy for in/out signal
+    -tcioN: Not copy for in/out signal (default)
+
+  -u? : Loop Unrolling level [-uA]
+   -uA : Loop Unrolling All level as possible (default)
+   -u0 : Not loop unrolling all level
+
+  -UB# : Loop Unrolling statement number upper limit [512]
+  -UN  : No upper limit for Loop Unrolling
+  -U#  : Loop Unrolling repeat upper limit
+  -UL# : Loop Unrolling repeat upper limit
+	Among -UB#, -UN, -U# and -UL#, only last specified option is valid.
+
+  -V  : Disp version & make date [No]
+
+  -wd : Set working directory [same as *.bdl]
+    -wd=??? : Set working directory ???
+
+  -W* : Option for warning output control
+   -Wattr=NO    : Do not check attribute validity
+   -Wattr       : Issue warning if invalid attribute found (default)
+   -Wattr=error : Issue error if invalid attribute found
+   (-Wattr/-Wattr=* option does not apply to some attributes)
+
+   -Wfalse_loop       : Warn when false loop/combinational loop detected. (default)
+   -Wfalse_loop=NO    : Do not detect false loop/combinational loop.
+   -Wfalse_loop_max=# : Specify maximum number of false loop/combinational loop to detect. [10]
+
+   -Wexit : if above-mentioned warning exist, then exit
+
+   -Was_C_lang=# : Check for BDL behavior different from C in Cyber I
+        	0: Fatal errors only. one message per line no. & err no.
+        	1: Fatal errors & warnings. one message per line no. & err no.
+        	2: All fatal errors & warnings.
+   -Was_C_lang : Just same as "-Was_C_lang=0" option. See -Was_C_lang=0.
+
+   -Wsuppress_warning=#[:#] : Suppress specified warning/info display/output
+
+   -Wxor_bitw : Check & exit for XOR ope. input bitwidth
+
+   -Wope_asgn_bitw : Check for assigned operator bitwidth
+
+   -Wmulti_asgn=ignore : Don't check doubtful multiple-assign [warning]
+   -Wmulti_asgn=careful: Make error doubtful multiple-assign [warning]
+
+   -Wandor_side_effect[=YES] : Print warning for side effects in right operand of &&, || operator side effects in right operand of '&&'.
+   -Wandor_side_effect=NO : Do not print warning for side effects in right operand of &&, || operator side effects in right operand of '&&'.(default)
+
+   -Wcritical_path : Output delay information of critical-paths [No]
+     -Wcritical_path[=#] : Specify threshold of path delay [clock period]
+
+  -Z* : Special use option
+		 -Hz in detail
+
+  -h  : Help message
+  -hj : Japanese help message
+  -H  : Help message in detail
+  -Hj : Japanese help message in detail
+  -HJ : Japanese help message in detail + alpha
+  -Ha : Valid 'Attribute' information
+  -Haj: Valid 'Attribute' information in Japanese
+  -Hz : Help message for -Z* option in detail
+  -Hzj: Japanese help message for -Z* option in detail
+  -HZj: Japanese help message for -Z* option in detail +alpha
+  -Hm : Detail information for macro option
+  -Hmj: Detail information for macro option in Japanese
+  -Hl : System's limit information
+  -Hlj: System's limit information in Japanese
+Copyright (C) 1988-2018 NEC Corporation. All rights reserved.
+bdltran version : 6.10.04 (Linux 64-bit) Thu Mar 22 14:18:17 JST 2018
+         (BIF version : 3.41F)
+         (LICflex version : 1.53 cylmd)
+         make at Thu Mar 22 14:30:59 JST 2018

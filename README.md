@@ -6,34 +6,29 @@ A custom RV32I processor with application-specific extensions for accelerating A
 
 ```
 risc_v_asip/
-├── sim/                        # C++ processor simulator
-│   ├── simulator.cpp           #   RV32I + custom instruction support
-│   └── Makefile
-├── rtl/                        # HLS-generated RTL
-│   ├── baseline/               #   Baseline RV32I (computer_E.v + computer.qor)
-│   ├── aes_gfmul/             #   RV32I + GFMUL
-│   ├── aes_sbox/               #   RV32I + S-Box lookup
-│   ├── aes_quadsbox/           #   RV32I + Quad S-Box
-│   ├── jpeg_idct/              #   RV32I + multiply-shift
-│   ├── tb_computer.sv          #   SystemVerilog testbench
-│   └── Makefile                #   Verilator build rules
+├── sim/                        # Simulators and RTL
+│   ├── systemc/                #   SystemC wrappers for the baseline simulator
+│   ├── verilog/                #   Baseline RV32I RTL and SystemVerilog testbenches
+│   └── simulator.cpp           #   RV32I simulator core logic
 ├── scripts/                    # Build & automation scripts
 │   ├── compile.sh              #   C → RV32I cross-compiler wrapper
 │   ├── run_test.sh             #   End-to-end: compile + sim + (optional) RTL
 │   ├── profile.sh              #   Native profiling via clang instrumentation
+│   ├── cwb.sh                  #   CyberWorkBench synthesis wrapper
 │   ├── crt0.S                  #   Bare-metal startup (stack init, BSS clear)
 │   ├── linker.ld               #   Memory layout (256K IMEM + 256K DMEM)
 │   └── hex2h.py                #   Hex-to-header conversion utility
-├── test/                       # Test programs
-│   ├── aes/                    #   AES baseline (pure RV32I)
-│   ├── aes_gfmul/             #   AES + GFMUL custom instruction
-│   ├── aes_sbox/               #   AES + hardware S-Box lookup
-│   ├── aes_quadsbox/           #   AES + packed 4-byte S-Box lookup
-│   ├── jpeg_idct/              #   JPEG IDCT + fixed-point multiply
-│   ├── simple.c, simple_2.c    #   Minimal test programs
+├── test/                       # Test programs and local simulator wrappers
+│   ├── avg32/                  #   AVE custom instruction test (average of 32)
+│   ├── filter/                 #   Filter benchmark
+│   ├── simple/                 #   Minimal test programs
+│   └── lib.c                   #   Common library testing helper functions
+├── misc/                       # Miscellaneous code
 │   └── msdap_bare.cpp          #   MSDAP signal processing benchmark
 ├── profiling/                  # Profiling output
 │   └── output/                 #   Generated profiling reports
+├── Dockerfile                  # Multi-stage build (tools + SystemC 3.0)
+├── .dockerignore
 └── README.md
 ```
 
@@ -44,21 +39,72 @@ risc_v_asip/
 - **clang** (with RISC-V target support)
 - **Verilator** (for RTL simulation, optional)
 
+Or use the **Docker image** which bundles everything (see below).
+
+## Docker
+
+A `Dockerfile` is provided that packages the entire toolchain into a reproducible container image based on Ubuntu 24.04.
+
+### Included Tools
+
+| Tool            | Version      | Purpose                                                 |
+| --------------- | ------------ | ------------------------------------------------------- |
+| Clang / LLVM    | 18           | Cross-compile C/C++ → RV32I, build simulator, profiling |
+| Verilator       | latest (APT) | RTL simulation                                          |
+| SystemC         | 3.0.0        | SystemC simulation library (`/opt/systemc`)             |
+| Python 3        | latest (APT) | Utility scripts (`hex2h.py`)                            |
+| GTKWave         | latest (APT) | Waveform viewer                                         |
+| Make, git, gawk | —            | Build essentials                                        |
+
+### Build the Image
+
+```bash
+docker build -t risc-v-asip .
+```
+
+### Run a Test
+
+```bash
+docker run --rm -v $(pwd):/workspace risc-v-asip bash scripts/run_test.sh simple/simple_2
+```
+
+### Interactive Shell
+
+```bash
+docker run --rm -it -v $(pwd):/workspace risc-v-asip
+```
+
+### Using SystemC
+
+Inside the container, SystemC is installed at `/opt/systemc`. The environment variables `SYSTEMC_HOME` and `LD_LIBRARY_PATH` are pre-configured. To compile against SystemC:
+
+```bash
+g++ -std=c++17 -I$SYSTEMC_HOME/include -L$SYSTEMC_HOME/lib -lsystemc my_module.cpp -o my_module
+```
+
+### Troubleshooting
+
+If you get **"permission denied while trying to connect to the Docker daemon"**, add your user to the `docker` group:
+
+```bash
+sudo usermod -aG docker $USER
+newgrp docker   # apply immediately (or log out and back in)
+```
+
 ### Run a Test Program
 
 ```bash
 # Compile and simulate on the C simulator
-bash scripts/run_test.sh simple_2
+bash scripts/run_test.sh simple/simple_2
 
 # Subdirectory tests
-bash scripts/run_test.sh aes/aes              # AES baseline
-bash scripts/run_test.sh aes_gfmul/aes_gfmul # AES with custom instructions
+bash scripts/run_test.sh filter/filter
 
 # Include RTL simulation (default: baseline variant)
-bash scripts/run_test.sh simple_2 --rtl
+bash scripts/run_test.sh simple/simple_2 --rtl
 
-# RTL simulation with a specific variant
-bash scripts/run_test.sh aes_gfmul/aes_gfmul --rtl aes_gfmul
+# RTL simulation with FST waveform tracing
+bash scripts/run_test.sh simple/simple_2 --rtl --trace
 ```
 
 **Success criteria:** simulation halts cleanly with `a0 = 0x00000000`.
@@ -88,26 +134,21 @@ Base: **RV32I** (integer only, no multiply/divide hardware).
 
 #### Custom Instructions
 
-Each accelerated variant adds its own custom instructions. See the per-folder READMEs for full encoding and operation details:
+All custom instructions use opcode `0x0B` (custom-0). AVE uses I-type while other potential extensions might use R-type. The `funct3` field selects the operation. Each can be individually enabled via `ACCEL_*` defines.
 
-| Variant        | Instruction(s)                                 | Opcode | Description                           |
-| -------------- | ---------------------------------------------- | ------ | ------------------------------------- |
-| `aes_gfmul`    | `GFMUL`                                        | `0x0B` | GF(2⁸) multiply for InverseMixColumns |
-| `aes_sbox`     | `SBOX`, `INVSBOX`                              | `0x2B` | Hardware S-Box lookup (1 byte)        |
-| `aes_quadsbox` | `SBOX`, `INVSBOX`, `QUAD_SBOX`, `QUAD_INVSBOX` | `0x2B` | Packed 4-byte S-Box lookup            |
-| `jpeg_idct`    | `FPMUL9`                                       | `0x0B` | Fixed-point multiply-shift for IDCT   |
+| funct3 | ACCEL Flag        | Instruction     | Encoding | Description                                  |
+| ------ | ----------------- | --------------- | -------- | -------------------------------------------- |
+| `5`    | `ACCEL_AVE`       | `AVE`           | I-type   | Average 32 words: `rd = sum(mem[rs1+imm..]) >> 5` |
+
+See `test/avg32/avg32.c` and `test/avg32/simulator_systemc.cpp` for the C and simulator implementations.
 
 ### RTL Variants
 
-| Variant        | Path                | Description                     |
-| -------------- | ------------------- | ------------------------------- |
-| `baseline`     | `rtl/baseline/`     | Standard RV32I (no extensions)  |
-| `aes_gfmul`    | `rtl/aes_gfmul/`    | RV32I + GFMUL hardware          |
-| `aes_sbox`     | `rtl/aes_sbox/`     | RV32I + S-Box lookup hardware   |
-| `aes_quadsbox` | `rtl/aes_quadsbox/` | RV32I + Quad S-Box hardware     |
-| `jpeg_idct`    | `rtl/jpeg_idct/`    | RV32I + multiply-shift hardware |
+| Variant                   | Path                           | ACCEL Flags      | Description                              |
+| ------------------------- | ------------------------------ | ---------------- | ---------------------------------------- |
+| `baseline`                | `sim/verilog/`                 | —                | Standard RV32I (no extensions)           |
 
-RTL is synthesized via CyberWorkBench. See each variant's `README.md` and `computer.qor` for synthesis results.
+RTL variants specific to custom instructions can be stored in `test/<name>/rtl/<variant>/` and synthesized via CyberWorkBench (using `scripts/cwb.sh`).
 
 ## Toolchain
 
@@ -124,7 +165,7 @@ bash scripts/compile.sh test/aes/aes.c output_prefix
 End-to-end automation: compile → build simulator → run simulation → report.
 
 ```
-Usage: run_test.sh <test_name> [--rtl [variant]]
+Usage: run_test.sh <test_name> [--accel FLAG ...] [--rtl [variant]] [--trace]
 ```
 
 ### `profile.sh`
@@ -145,7 +186,7 @@ The startup code (`crt0.S`) handles stack initialization, BSS clearing, calling 
 
 ## Adding a Custom Instruction
 
-1. **Simulator** — Add a case in `sim/simulator.cpp` under the appropriate opcode
+1. **Simulator** — Add a case in `test/<name>/simulator_systemc.cpp` under the appropriate opcode
 2. **C code** — Use inline assembly with `.insn` directives inside `#ifdef __riscv` guards
-3. **RTL** — Synthesize a new variant and place it in `rtl/<variant>/computer_E.v`
-4. **Test** — Run `bash scripts/run_test.sh <test> --rtl <variant>` to verify both C sim and RTL
+3. **RTL** — Synthesize a new variant and place it in `test/<name>/rtl/<variant>/rv32i_core_E.v`
+4. **Test** — Run `bash scripts/run_test.sh <name>/<name> --rtl <variant>` to verify both C sim and RTL

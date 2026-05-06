@@ -14,14 +14,16 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ROOT_DIR="${SCRIPT_DIR}/.."
 TEST_DIR="${ROOT_DIR}/test"
 SIM_EXEC="${ROOT_DIR}/sim/rv32i_sim"
-RTL_DIR="${ROOT_DIR}/rtl"
+RTL_COMMON_DIR="${ROOT_DIR}/sim/verilog"
 
 # Parse arguments
 RUN_RTL=0
+RUN_RTL_ONLY=0
 RTL_VARIANT="baseline"
 TEST_NAME=""
 ACCEL_FLAGS=()
 RUN_TRACE=0
+SIM_TOOL="verilator"
 
 while [ $# -gt 0 ]; do
     case "$1" in
@@ -31,6 +33,24 @@ while [ $# -gt 0 ]; do
             if [ $# -gt 1 ] && [[ "$2" != --* ]]; then
                 RTL_VARIANT="$2"
                 shift
+            fi
+            ;;
+        --rtl-only)
+            RUN_RTL=1
+            RUN_RTL_ONLY=1
+            # Next arg might be variant name (if not another flag)
+            if [ $# -gt 1 ] && [[ "$2" != --* ]]; then
+                RTL_VARIANT="$2"
+                shift
+            fi
+            ;;
+        --sim)
+            if [ $# -gt 1 ]; then
+                SIM_TOOL="$2"
+                shift
+            else
+                echo "Error: --sim requires a tool name (e.g. iverilog or verilator)"
+                exit 1
             fi
             ;;
         --accel)
@@ -119,7 +139,7 @@ if [ ${#ACCEL_FLAGS[@]} -gt 0 ]; then
 fi
 
 # Check for .c or .cpp file (supports flat and subdirectory tests)
-BASE_TEST="$(basename "$TEST_NAME")"
+BASE_TEST="$(basename "${TEST_NAME}")"
 if [ -f "${TEST_DIR}/${TEST_NAME}.c" ]; then
     SOURCE_FILE="${TEST_DIR}/${TEST_NAME}.c"
 elif [ -f "${TEST_DIR}/${TEST_NAME}.cpp" ]; then
@@ -158,25 +178,67 @@ else
     echo "Using baseline simulator: ${SIM_SRC}"
 fi
 
-# Build simulator with same ACCEL flags so it only handles enabled instructions
-SIM_ACCEL_DEFS=""
-for flag in "${ACCEL_FLAGS[@]}"; do
-    SIM_ACCEL_DEFS="${SIM_ACCEL_DEFS} -D${flag}"
-done
-clang++ -O2 -DC ${SIM_ACCEL_DEFS} -Wall -std=c++17 -Wno-c++11-narrowing \
+# Define output directories according to the new schema
+ISS_ARTIFACTS_DIR="${TEST_DIR}/${TEST_SUBDIR}/${RTL_VARIANT}/iss/artifacts"
+RTL_ARTIFACTS_DIR="${TEST_DIR}/${TEST_SUBDIR}/${RTL_VARIANT}/rtl/artifacts"
+
+mkdir -p "${ISS_ARTIFACTS_DIR}"
+mkdir -p "${RTL_ARTIFACTS_DIR}"
+
+# Point OUTPUT_PREFIX to the ISS artifacts directory so compile.sh outputs go there
+OUTPUT_PREFIX="${ISS_ARTIFACTS_DIR}/${BASE_TEST}"
+HEX_FILE="${OUTPUT_PREFIX}.hex"
+ISS_RPT_FILE="${OUTPUT_PREFIX}.iss.rpt"
+
+# ==========================================================================
+# C Compilation and Simulation (Skipped if --rtl-only)
+# ==========================================================================
+if [ "$RUN_RTL_ONLY" -eq 0 ]; then
+    echo "=== Step 1: Compiling ${TEST_NAME} ==="
+    "${SCRIPT_DIR}/compile.sh" "${SOURCE_FILE}" "${OUTPUT_PREFIX}" "${EXTRA_CFLAGS}"
+
+    echo ""
+    echo "=== Step 2: Building C Simulator ==="
+    # Prefer test-local simulator.cpp if it exists (for custom instructions)
+    TEST_SUBDIR="$(dirname "${TEST_NAME}")"
+    if [ "${TEST_SUBDIR}" != "." ] && [ -f "${TEST_DIR}/${TEST_SUBDIR}/simulator.cpp" ]; then
+        SIM_SRC="${TEST_DIR}/${TEST_SUBDIR}/simulator.cpp"
+        echo "Using test-local simulator: ${SIM_SRC}"
+    else
+        SIM_SRC="${ROOT_DIR}/sim/simulator.cpp"
+        echo "Using baseline simulator: ${SIM_SRC}"
+    fi
+
+    # Build simulator with same ACCEL flags so it only handles enabled instructions
+    SIM_ACCEL_DEFS=""
+    for flag in "${ACCEL_FLAGS[@]}"; do
+        SIM_ACCEL_DEFS="${SIM_ACCEL_DEFS} -D${flag}"
+    done
+
+    # Build C simulator executable
+    clang++ -O2 -DC ${SIM_ACCEL_DEFS} -Wall -std=c++17 -Wno-c++11-narrowing \
     -o "${SIM_EXEC}" "${SIM_SRC}"
-echo "Built: ${SIM_EXEC}"
+    echo "Built: ${SIM_EXEC}"
+    
+    # Build SystemC simulator executable
+    clang++ -O2 -DC ${SIM_ACCEL_DEFS} -Wall -std=c++17 -Wno-c++11-narrowing \
+        -I$SYSTEMC_HOME/include -L$SYSTEMC_HOME/lib \
+        -o "${SIM_EXEC}" "${SIM_SRC}" -lsystemc
+    echo "Built: ${SIM_EXEC}"
 
-echo ""
-echo "=== Step 3: Running C Simulation ==="
-"${SIM_EXEC}" "${HEX_FILE}"
+    echo ""
+    echo "=== Step 3: Running C Simulation ==="
+    "${SIM_EXEC}" "${HEX_FILE}" "${ISS_RPT_FILE}"
 
-echo ""
-echo "=== Step 4: Simulation Report (Last 10 lines) ==="
-if [ -f "sim_cpu.rpt" ]; then
-    tail -n 10 "sim_cpu.rpt"
+    echo ""
+    echo "=== Step 4: ISS Report (last 10 lines) — ${ISS_RPT_FILE} ==="
+    if [ -f "${ISS_RPT_FILE}" ]; then
+        tail -n 10 "${ISS_RPT_FILE}"
+    else
+        echo "Warning: No ISS report generated."
+    fi
 else
-    echo "Warning: No simulation report generated."
+    echo "=== Skipping Step 1-4 (C Compilation & Simulation) due to --rtl-only ==="
 fi
 
 # ==========================================================================
@@ -203,7 +265,7 @@ if [ "$RUN_RTL" -eq 1 ]; then
 
     TRACE_ARG=""
     FST_ARG=""
-    FST_FILE="${RTL_VARIANT_DIR}/trace.fst"
+    # FST_FILE is already set above
     if [ "$RUN_TRACE" -eq 1 ]; then
         TRACE_ARG="TRACE=1"
         FST_ARG="FST_FILE=${FST_FILE}"

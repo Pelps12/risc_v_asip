@@ -3,8 +3,15 @@
 // Instantiates imem (ROM) and dmem (RAM) and connects to the computer.
 // Loads a .hex file via +HEX_FILE plusarg and runs until halt.
 //
+// Report format matches the C simulator (sim_cpu.rpt):
+//   PC: XXXXXXXX | x00: XXXXXXXX x01: ... x07: XXXXXXXX
+//       x08: XXXXXXXX ... x15: XXXXXXXX
+//       ...
+//   Instr: XXXXXXXX
+//   (one entry per retired instruction, final entry after halt)
+//
 // Usage (Verilator):
-//   ./obj_dir/tb_computer_sim +HEX_FILE=/path/to/program.hex
+//   ./obj_dir/tb_computer_sim +HEX_FILE=/path/to/program.hex [+RPT_FILE=out.rpt]
 // ============================================================================
 
 `timescale 1ns / 1ps
@@ -125,6 +132,10 @@ module tb_computer;
   assign shadow_regs[30] = dut.INST_dat.regs_rg30;
   assign shadow_regs[31] = dut.INST_dat.regs_rg31;
 
+  // PC as a full 32-bit byte address (word_index << 2)
+  wire [31:0] shadow_pc;
+  assign shadow_pc = {14'b0, dut.INST_dat.`PC_SIG, 2'b00};
+
   // --------------------------------------------------------------------------
   // Clock Generation
   // --------------------------------------------------------------------------
@@ -132,10 +143,42 @@ module tb_computer;
   always #(CLK_PERIOD / 2) clk = ~clk;
 
   // --------------------------------------------------------------------------
+  // Task: write one "dump_regs + Instr" entry to a file descriptor.
+  //
+  // Mirrors the C simulator output format exactly:
+  //   PC: XXXXXXXX | x00: XXXXXXXX x01: XXXXXXXX ... x07: XXXXXXXX
+  //       x08: XXXXXXXX ... x15: XXXXXXXX
+  //       x16: XXXXXXXX ... x23: XXXXXXXX
+  //       x24: XXXXXXXX ... x31: XXXXXXXX
+  //   Instr: XXXXXXXX
+  // --------------------------------------------------------------------------
+  task automatic write_cycle_entry;
+    input integer fd;
+    input [31:0]  pc;
+    input [31:0]  instr;
+    integer k, j;
+    begin
+      // First line: PC | first 8 registers
+      $fwrite(fd, "PC: %08h | ", pc);
+      for (k = 0; k < 8; k = k + 1)
+        $fwrite(fd, "x%02d: %08h ", k, shadow_regs[k]);
+      $fwrite(fd, "\n");
+      // Continuation lines: x08-x31, 8 per line, indented 4 spaces
+      for (k = 8; k < 32; k = k + 8) begin
+        $fwrite(fd, "    ");
+        for (j = k; j < k + 8 && j < 32; j = j + 1)
+          $fwrite(fd, "x%02d: %08h ", j, shadow_regs[j]);
+        $fwrite(fd, "\n");
+      end
+      $fwrite(fd, "Instr: %08h\n", instr);
+    end
+  endtask
+
+  // --------------------------------------------------------------------------
   // Main Test Sequence
   // --------------------------------------------------------------------------
   integer cycle_count;
-  integer max_cycles = 50000;
+  integer max_cycles;
 
   // Report file handle (optional, via +RPT_FILE=...)
   integer rpt_fd;
@@ -144,49 +187,48 @@ module tb_computer;
   // Combined memory for loading hex (imem + dmem concatenated)
   reg [31:0] full_mem [0:2*MEM_SIZE-1];
 
-  // Hex file path from plusarg
+  // Hex file / FST file paths from plusargs
   string hex_file;
-
-  // FST trace file path (optional, via +FST_FILE=...)
   string fst_file;
 
+  // Snapshot of PC and instruction captured BEFORE each clock edge
+  // so we log the state the CPU sees at fetch time.
+  reg [31:0] snap_pc;
+  reg [31:0] snap_instr;
+
   initial begin
-    // Get hex file path from +HEX_FILE=... plusarg
+    max_cycles = 50000;
+
+    // ---- Plusarg: hex file (mandatory) ------------------------------------
     if (!$value$plusargs("HEX_FILE=%s", hex_file)) begin
       $display("ERROR: No hex file specified. Use +HEX_FILE=/path/to/file.hex");
       $finish;
     end
 
-    // Optional report file
+    // ---- Plusarg: report file (optional) ----------------------------------
     rpt_fd = 0;
     if ($value$plusargs("RPT_FILE=%s", rpt_file)) begin
       rpt_fd = $fopen(rpt_file, "w");
-      if (rpt_fd == 0) begin
+      if (rpt_fd == 0)
         $display("WARNING: Could not open report file: %s", rpt_file);
-      end
     end
 
-    // Load combined hex: first 65536 words = imem, rest = dmem
+    // ---- Load hex image ---------------------------------------------------
     $readmemh(hex_file, full_mem);
     for (int i = 0; i < MEM_SIZE; i++) begin
       imem[i] = full_mem[i];
       dmem[i] = full_mem[i + MEM_SIZE];
     end
     $display("Loaded hex: %s", hex_file);
-    $display("  First 6 imem words:");
-    for (int i = 0; i < 6; i++)
-      $display("    imem[%0d] = 0x%08h", i, imem[i]);
 
-    // Reset sequence
-    rst = 1;
+    // ---- Reset sequence ---------------------------------------------------
+    rst        = 1;
     imem_rdata = 32'h0;
     dmem_rdata = 32'h0;
     repeat (5) @(posedge clk);
     rst = 0;
 
-    $display("\n=== RTL Simulation Start ===");
-
-    // Optional FST tracing (enabled via make TRACE=1)
+    // ---- Optional FST tracing (make TRACE=1) ------------------------------
     `ifdef TRACE_EN
       if (!$value$plusargs("FST_FILE=%s", fst_file))
         fst_file = "trace.fst";
@@ -195,51 +237,55 @@ module tb_computer;
       $display("  FST tracing enabled -> %s", fst_file);
     `endif
 
-    // Run until halt
+    // -----------------------------------------------------------------------
+    // Run loop
+    //
+    // Strategy: sample (PC, instruction-at-PC) BEFORE the rising edge so the
+    // log entry captures the "before-execute" state, matching what dump_regs()
+    // prints at the top of each iteration in the C simulator.  After the edge
+    // the register file reflects the result of that instruction.
+    // -----------------------------------------------------------------------
     cycle_count = 0;
-    while (!halt) begin
+
+    while (!halt && cycle_count < max_cycles) begin
+      // Capture fetch-time state (combinational, before edge)
+      snap_pc    = shadow_pc;
+      snap_instr = imem[shadow_pc[17:2]];  // byte->word: PC >> 2, capped at 16-bit
+
       @(posedge clk);
-      cycle_count++;
+      cycle_count = cycle_count + 1;
 
-      //if (cycle_count % 10000 == 0)
-        //$display("  Cycle %0d: PC = 0x%08h", cycle_count, dut.INST_dat.`PC_SIG);
+      // Emit this cycle's entry to report file and stdout
+      if (rpt_fd != 0)
+        write_cycle_entry(rpt_fd, snap_pc, snap_instr);
+      write_cycle_entry(32'h1, snap_pc, snap_instr);  // fd 1 = stdout
     end
 
-    // Results
+    if (cycle_count >= max_cycles)
+      $display("WARNING: Hit max_cycles limit (%0d) without halting!", max_cycles);
+
+    // -----------------------------------------------------------------------
+    // Final / post-halt entry (mirrors trailing dump_regs() in C simulator main)
+    // -----------------------------------------------------------------------
+    snap_pc    = shadow_pc;
+    snap_instr = imem[shadow_pc[17:2]];
+    if (rpt_fd != 0)
+      write_cycle_entry(rpt_fd, snap_pc, snap_instr);
+    write_cycle_entry(32'h1, snap_pc, snap_instr);
+
+    // -----------------------------------------------------------------------
+    // Summary header (stdout only – kept out of .rpt for clean diffs)
+    // -----------------------------------------------------------------------
     $display("\n=== RTL Simulation Complete ===");
+    $display("  Hex file    : %s", hex_file);
     $display("  Total cycles: %0d", cycle_count);
-    $display("  Status: HALTED (computer_ret = 1)");
+    $display("  Status      : HALTED (computer_ret = 1)");
 
-    // Dump registers (matching sim_cpu.rpt format)
-    $display("\n=== Register Dump ===");
-    //$display("PC: %08h", dut.INST_dat.`PC_SIG);
-    for (int i = 0; i < 32; i += 8) begin
-      $write("  ");
-      for (int j = 0; j < 8 && (i+j) < 32; j++)
-        $write("x%02d: %08h ", i+j, shadow_regs[i+j]);
-      $display("");
-    end
-
-    // Dump first 8 dmem words
     $display("\n=== DMEM Dump (first 8 words) ===");
     for (int i = 0; i < 8; i++)
       $display("  dmem[%0d] = 0x%08h", i, dmem[i]);
 
-    // Write report file if requested
     if (rpt_fd != 0) begin
-      $fwrite(rpt_fd, "=== RTL Simulation Report ===\n");
-      $fwrite(rpt_fd, "Hex file: %s\n", hex_file);
-      $fwrite(rpt_fd, "Total cycles: %0d\n", cycle_count);
-      $fwrite(rpt_fd, "Status: HALTED\n");
-      $fwrite(rpt_fd, "\n=== Register Dump ===\n");
-      for (int i = 0; i < 32; i += 8) begin
-        for (int j = 0; j < 8 && (i+j) < 32; j++)
-          $fwrite(rpt_fd, "x%02d: %08h ", i+j, shadow_regs[i+j]);
-        $fwrite(rpt_fd, "\n");
-      end
-      $fwrite(rpt_fd, "\n=== DMEM Dump (first 8 words) ===\n");
-      for (int i = 0; i < 8; i++)
-        $fwrite(rpt_fd, "dmem[%0d] = 0x%08h\n", i, dmem[i]);
       $fclose(rpt_fd);
       $display("\nReport written to: %s", rpt_file);
     end
