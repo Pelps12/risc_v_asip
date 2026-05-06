@@ -1,0 +1,6 @@
+H_BT9003: "reg" variable is used in automatic scheduling mode.
+ [Tips] Use "var" or logic type, if possible, which possibly can reduce the number of cycles.
+H_BT9013: Large array(dmem) is bound to a register file.
+ [Tips] Bind to memory can reduce area while the number of cycles may increase, in stead.
+	[Source Lines]
+	18(computer.cpp): uint32_t dmem[MEM_SIZE]/*Cyber array=REG, rw_port=R2.W1 */;

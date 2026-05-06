@@ -1,43 +1,14 @@
 # RISC-V ASIP — Application-Specific Instruction-set Processor
 
-A custom RV32I processor with application-specific extensions for accelerating AES encryption/decryption. The project includes a cycle-accurate C simulator, HLS-synthesized RTL (targeting Intel Cyclone V), and an end-to-end toolchain for compiling, simulating, and profiling bare-metal C programs.
-
-## Project Structure
-
-```
-risc_v_asip/
-├── sim/                        # Simulators and RTL
-│   ├── systemc/                #   SystemC wrappers for the baseline simulator
-│   ├── verilog/                #   Baseline RV32I RTL and SystemVerilog testbenches
-│   └── simulator.cpp           #   RV32I simulator core logic
-├── scripts/                    # Build & automation scripts
-│   ├── compile.sh              #   C → RV32I cross-compiler wrapper
-│   ├── run_test.sh             #   End-to-end: compile + sim + (optional) RTL
-│   ├── profile.sh              #   Native profiling via clang instrumentation
-│   ├── cwb.sh                  #   CyberWorkBench synthesis wrapper
-│   ├── crt0.S                  #   Bare-metal startup (stack init, BSS clear)
-│   ├── linker.ld               #   Memory layout (256K IMEM + 256K DMEM)
-│   └── hex2h.py                #   Hex-to-header conversion utility
-├── test/                       # Test programs and local simulator wrappers
-│   ├── avg32/                  #   AVE custom instruction test (average of 32)
-│   ├── filter/                 #   Filter benchmark
-│   ├── simple/                 #   Minimal test programs
-│   └── lib.c                   #   Common library testing helper functions
-├── misc/                       # Miscellaneous code
-│   └── msdap_bare.cpp          #   MSDAP signal processing benchmark
-├── profiling/                  # Profiling output
-│   └── output/                 #   Generated profiling reports
-├── Dockerfile                  # Multi-stage build (tools + SystemC 3.0)
-├── .dockerignore
-└── README.md
-```
+A custom RV32I processor with application-specific extensions for accelerating compute kernels. The project includes a cycle-accurate C simulator, HLS-synthesized RTL (via CyberWorkBench targeting ASIC 45nm), and an end-to-end toolchain for compiling, simulating, and profiling bare-metal C programs.
 
 ## Quick Start
 
 ### Prerequisites
 
-- **clang** (with RISC-V target support)
-- **Verilator** (for RTL simulation, optional)
+- **clang** (with RISC-V target support, `llvm-objcopy-18`, `llvm-objdump-18`)
+- **Verilator** (for RTL simulation)
+- **CyberWorkBench 6.1** at `/proj/cad/cwb-6.1` (for HLS synthesis, server only)
 
 Or use the **Docker image** which bundles everything (see below).
 
@@ -94,28 +65,31 @@ newgrp docker   # apply immediately (or log out and back in)
 ### Run a Test Program
 
 ```bash
-# Compile and simulate on the C simulator
-bash scripts/run_test.sh simple/simple_2
-
-# Subdirectory tests
+# ISS only
+bash scripts/run_test.sh avg8/avg8
 bash scripts/run_test.sh filter/filter
 
-# Include RTL simulation (default: baseline variant)
-bash scripts/run_test.sh simple/simple_2 --rtl
-
-# RTL simulation with FST waveform tracing
-bash scripts/run_test.sh simple/simple_2 --rtl --trace
+# ISS + RTL simulation (reads accel.conf from variant dir)
+bash scripts/run_test.sh avg8/avg8 --rtl accel_ave
+bash scripts/run_test.sh filter/filter --rtl accel_filt --trace   # FST waveform
 ```
 
-**Success criteria:** simulation halts cleanly with `a0 = 0x00000000`.
+**Pass criterion:** simulation halts with `x10 = 0x00000000` and ISS/RTL register states match.
 
-### Profile a Test Program
+### Synthesize RTL
 
 ```bash
-bash scripts/profile.sh aes/aes
+bash scripts/cwb.sh avg8/accel_ave
+bash scripts/cwb.sh filter/accel_filt_no_ci
 ```
 
-Native profiling output is written to `profiling/output/`.
+### Profile Natively (x86)
+
+```bash
+bash scripts/profile.sh avg8/avg8
+```
+
+Output written to `profiling/output/`.
 
 ## Architecture
 
@@ -130,63 +104,59 @@ Stack grows downward from the top of DMEM (`0x00080000`).
 
 ### ISA
 
-Base: **RV32I** (integer only, no multiply/divide hardware).
+Base: **RV32I** (integer only, no multiply/divide hardware). Custom instructions are added per application via the `.insn` assembler directive (opcode `0x0B`).
 
-#### Custom Instructions
+### Variant System
 
-All custom instructions use opcode `0x0B` (custom-0). AVE uses I-type while other potential extensions might use R-type. The `funct3` field selects the operation. Each can be individually enabled via `ACCEL_*` defines.
+Each application under `test/<app>/` has multiple synthesized variants:
 
-| funct3 | ACCEL Flag        | Instruction     | Encoding | Description                                  |
-| ------ | ----------------- | --------------- | -------- | -------------------------------------------- |
-| `5`    | `ACCEL_AVE`       | `AVE`           | I-type   | Average 32 words: `rd = sum(mem[rs1+imm..]) >> 5` |
+| Variant | `accel.conf` | Meaning |
+|---|---|---|
+| `baseline` | (empty) | Plain RV32I, no accelerator HW |
+| `accel_<x>` | `ACCEL_<X>` | HW accelerator + custom instruction |
+| `accel_<x>_no_ci` | `ACCEL_<X>_HW` | HW present, instruction not used — isolates state machine cost |
 
-See `test/avg32/avg32.c` and `test/avg32/simulator_systemc.cpp` for the C and simulator implementations.
+### Applications
 
-### RTL Variants
-
-| Variant                   | Path                           | ACCEL Flags      | Description                              |
-| ------------------------- | ------------------------------ | ---------------- | ---------------------------------------- |
-| `baseline`                | `sim/verilog/`                 | —                | Standard RV32I (no extensions)           |
-
-RTL variants specific to custom instructions can be stored in `test/<name>/rtl/<variant>/` and synthesized via CyberWorkBench (using `scripts/cwb.sh`).
+| App | Kernel | Custom instruction |
+|---|---|---|
+| `avg8` | 8-sample running average | `AVE` (opcode `0x0B`, funct3=5) |
+| `filter` | FIR filter (8-tap) | `FILT` (opcode `0x0B`, funct3=0) |
 
 ## Toolchain
 
 ### `compile.sh`
 
-Cross-compiles C/C++ to RV32I bare-metal ELF using clang. Produces `.elf`, `.bin`, `.hex`, and `.dis` files. Custom instructions are supported via the `.insn` assembler directive.
+Cross-compiles C/C++ to RV32I bare-metal ELF. Produces `.elf`, `.bin`, `.hex`, `.dis`.
 
 ```bash
-bash scripts/compile.sh test/aes/aes.c output_prefix
+bash scripts/compile.sh test/<app>/<app>.c scripts/<app>/<app>
 ```
 
 ### `run_test.sh`
 
-End-to-end automation: compile → build simulator → run simulation → report.
+End-to-end: compile → ISS → (optional) RTL → compare.
 
 ```
 Usage: run_test.sh <test_name> [--accel FLAG ...] [--rtl [variant]] [--trace]
 ```
 
+### `cwb.sh`
+
+Runs CyberWorkBench HLS: `cpars` → `bdltran` → `veriloggen`. Reads `accel.conf` from the variant directory and writes RTL output to `test/<app>/<variant>/rtl/`.
+
 ### `profile.sh`
 
-Native (x86) profiling using clang's instrumentation-based PGO. Compiles with `-fprofile-instr-generate`, runs the binary, merges profile data, and generates annotated source reports.
+Native (x86) profiling via clang instrumentation PGO (`-fprofile-instr-generate`). Useful for identifying compute hotspots before selecting acceleration candidates.
 
 ```
 Usage: profile.sh <test_name>
 ```
 
-## Adding a New Test
+## Adding a New Application
 
-1. Create `test/<name>/<name>.c` (or `.cpp`)
-2. Implement a `main()` that returns `0` on success
-3. Run: `bash scripts/run_test.sh <name>/<name>`
-
-The startup code (`crt0.S`) handles stack initialization, BSS clearing, calling `main()`, and halting via `ecall`.
-
-## Adding a Custom Instruction
-
-1. **Simulator** — Add a case in `test/<name>/simulator_systemc.cpp` under the appropriate opcode
-2. **C code** — Use inline assembly with `.insn` directives inside `#ifdef __riscv` guards
-3. **RTL** — Synthesize a new variant and place it in `test/<name>/rtl/<variant>/rv32i_core_E.v`
-4. **Test** — Run `bash scripts/run_test.sh <name>/<name> --rtl <variant>` to verify both C sim and RTL
+1. Create `test/<app>/<app>.c` with a `main()` that returns 0 on pass
+2. Copy `sim/computer.cpp` → `test/<app>/computer.cpp`; add the accelerator kernel under `#if defined(ACCEL_<X>) || defined(ACCEL_<X>_HW)`
+3. Create `test/<app>/baseline/`, `accel_<x>/`, and `accel_<x>_no_ci/` each with an `accel.conf`
+4. Copy testbench files into `rtl/<app>/`
+5. Run: `bash scripts/run_test.sh <app>/<app> --rtl accel_<x>`

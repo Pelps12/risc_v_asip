@@ -1,0 +1,10 @@
+H_BT9003: "reg" variable is used in automatic scheduling mode.
+ [Tips] Use "var" or logic type, if possible, which possibly can reduce the number of cycles.
+H_BT9012: The cycle has been increased the number of decoders of the register array for array regs is limited.
+ [Tips] Increasing decoders can improve circuit performance.
+        example)
+        reg(0:8) ary[3]/* Cyber rw_port = RW2 */ "2" means decoder number.
+H_BT9013: Large array(dmem_arg) is bound to a register file.
+ [Tips] Bind to memory can reduce area while the number of cycles may increase, in stead.
+	[Source Lines]
+	258(computer.cpp): bool computer(uint32_t imem_arg[MEM_SIZE]/* Cyber array=ROM */, uint32_t dmem_arg[MEM_SIZE]/*Cyber array=REG, rw_port=R2.W1 */

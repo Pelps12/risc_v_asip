@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>GEMM MAC Accelerator — Area / Latency Pareto Front</title>
+  <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', sans-serif; background: #1a1a2e; color: #e0e0e0; padding: 24px; }
+    h1 { font-size: 1.25em; font-weight: 600; color: #f0f0f0; margin-bottom: 6px; }
+    .subtitle { font-size: 0.82em; color: #aaa; margin-bottom: 16px; line-height: 1.7; }
+    .subtitle b { color: #cce; }
+    #chart { width: 100%; height: 640px; border-radius: 8px; overflow: hidden; }
+    .controls { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .ctrl-row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .ctrl-row label { font-size: 0.78em; color: #999; min-width: 120px; }
+    .toggle-btn {
+      padding: 4px 11px; border-radius: 4px; border: 1px solid #555;
+      background: #2a2a4a; color: #ccc; cursor: pointer; font-size: 0.76em;
+      transition: all 0.15s;
+    }
+    .toggle-btn:hover { background: #3a3a6a; border-color: #88f; }
+    .toggle-btn.active { background: #4a4a9a; border-color: #aaf; color: #fff; }
+    .toggle-btn.noci.active { background: #3a3a2a; border-color: #aa8; color: #eec; }
+    .toggle-btn.noci:hover { background: #3a3a2a; border-color: #aa8; }
+    .divider { width: 1px; background: #333; height: 22px; margin: 0 4px; }
+    .legend-note { font-size: 0.75em; color: #888; margin-top: 10px; }
+  </style>
+</head>
+<body>
+
+<h1>GEMM MAC Accelerator — Area / Latency Pareto Front</h1>
+<p class="subtitle">
+  <b>X-axis (log):</b> RTL simulation cycle count — lower = faster &nbsp;·&nbsp;
+  <b>Y-axis (log):</b> Synthesis area — lower = less hardware &nbsp;·&nbsp;
+  <b>Orange staircase:</b> w/ CI Pareto frontier &nbsp;·&nbsp;
+  <b>★ Baseline:</b> plain RV32I &nbsp;·&nbsp;
+  <b>Hollow markers:</b> w/o CI (hardware present, scalar path — latency may differ from baseline due to FSM overhead)
+</p>
+
+<div class="controls">
+  <div class="ctrl-row">
+    <label>w/ CI — ports:</label>
+    <button class="toggle-btn active" onclick="toggleGroup('ci',1,this)">P1</button>
+    <button class="toggle-btn active" onclick="toggleGroup('ci',2,this)">P2</button>
+    <button class="toggle-btn active" onclick="toggleGroup('ci',4,this)">P4</button>
+    <button class="toggle-btn active" onclick="toggleGroup('ci',8,this)">P8</button>
+    <button class="toggle-btn active" onclick="toggleGroup('ci',16,this)">P16</button>
+  </div>
+  <div class="ctrl-row">
+    <label>w/o CI — ports:</label>
+    <button class="toggle-btn noci active" onclick="toggleGroup('noci',1,this)">P1</button>
+    <button class="toggle-btn noci active" onclick="toggleGroup('noci',2,this)">P2</button>
+    <button class="toggle-btn noci active" onclick="toggleGroup('noci',4,this)">P4</button>
+    <button class="toggle-btn noci active" onclick="toggleGroup('noci',8,this)">P8</button>
+    <button class="toggle-btn noci active" onclick="toggleGroup('noci',16,this)">P16</button>
+  </div>
+</div>
+
+<div id="chart"></div>
+<p class="legend-note">
+  Hover for full details. Pareto-optimal CI points are outlined in orange.
+  w/o CI points share the same area as their CI counterparts but run the scalar path —
+  most sit near the baseline-latency line; variants with no/U8 unroll may exceed baseline
+  due to FSM state-machine overhead.
+</p>
+
+<script>
+// ─── Data ─────────────────────────────────────────────────────────────────────
+const BASELINE = { cycles: 87896, area: 160149 };
+
+const CI_DATA = [
+  { ports:  1, unroll:  0, cycles: 36851, area:  168643 },
+  { ports:  1, unroll:  1, cycles: 22104, area:  304623 },
+  { ports:  1, unroll:  2, cycles: 22104, area:  304913 },
+  { ports:  1, unroll:  4, cycles: 22168, area:  169554 },
+  { ports:  1, unroll:  8, cycles: 36851, area:  168643 },
+  { ports:  2, unroll:  0, cycles: 23134, area:  309365 },
+  { ports:  2, unroll:  1, cycles: 21592, area:  304708 },
+  { ports:  2, unroll:  2, cycles: 21592, area:  304666 },
+  { ports:  2, unroll:  4, cycles: 21656, area:  582138 },
+  { ports:  2, unroll:  8, cycles: 23134, area:  309365 },
+  { ports:  4, unroll:  0, cycles: 31108, area:  862160 },
+  { ports:  4, unroll:  1, cycles: 21592, area:  304708 },
+  { ports:  4, unroll:  2, cycles: 21592, area:  304666 },
+  { ports:  4, unroll:  4, cycles: 21400, area:  997640 },
+  { ports:  4, unroll:  8, cycles: 31108, area:  862160 },
+  { ports:  8, unroll:  0, cycles: 30980, area: 1694599 },
+  { ports:  8, unroll:  1, cycles: 21592, area:  304708 },
+  { ports:  8, unroll:  2, cycles: 21592, area:  577915 },
+  { ports:  8, unroll:  4, cycles: 21336, area: 1135200 },
+  { ports:  8, unroll:  8, cycles: 30980, area: 1694599 },
+  { ports: 16, unroll:  0, cycles: 30980, area: 1422675 },
+  { ports: 16, unroll:  1, cycles: 21592, area:  304708 },
+  { ports: 16, unroll:  2, cycles: 21592, area:  577915 },
+  { ports: 16, unroll:  4, cycles: 21336, area: 1135200 },
+  { ports: 16, unroll:  8, cycles: 30980, area: 1422675 },
+];
+
+// No-CI: same hardware synthesized, scalar path.
+// cycles = RTL sim result (FSM overhead causes some variants to exceed baseline).
+// Area matches CI counterpart (same CWB synthesis, same pragma).
+const NOCI_DATA = [
+  { ports:  1, unroll:  0, cycles: 152435, area:  168643 },
+  { ports:  1, unroll:  1, cycles:  87896, area:  304623 },
+  { ports:  1, unroll:  2, cycles:  87896, area:  304913 },
+  { ports:  1, unroll:  4, cycles:  87896, area:  169554 },
+  { ports:  1, unroll:  8, cycles: 152435, area:  168643 },
+  { ports:  2, unroll:  0, cycles:  93022, area:  304708 },
+  { ports:  2, unroll:  1, cycles:  87896, area:  309365 },
+  { ports:  2, unroll:  2, cycles:  87896, area:  304666 },
+  { ports:  2, unroll:  4, cycles:  87896, area:  582138 },
+  { ports:  2, unroll:  8, cycles:  93022, area:  309365 },
+  { ports:  4, unroll:  0, cycles: 125700, area:  862160 },
+  { ports:  4, unroll:  1, cycles:  87896, area:  304708 },
+  { ports:  4, unroll:  2, cycles:  87896, area:  304666 },
+  { ports:  4, unroll:  4, cycles:  87896, area:  997640 },
+  { ports:  4, unroll:  8, cycles: 125700, area:  862160 },
+  { ports:  8, unroll:  0, cycles: 125700, area: 1694599 },
+  { ports:  8, unroll:  1, cycles:  87896, area:  304708 },
+  { ports:  8, unroll:  2, cycles:  87896, area:  577915 },
+  { ports:  8, unroll:  4, cycles:  87896, area: 1135200 },
+  { ports:  8, unroll:  8, cycles: 125700, area: 1694599 },
+  { ports: 16, unroll:  0, cycles: 125700, area: 1422675 },
+  { ports: 16, unroll:  1, cycles:  87896, area:  304708 },
+  { ports: 16, unroll:  2, cycles:  87896, area:  577915 },
+  { ports: 16, unroll:  4, cycles:  87896, area: 1135200 },
+  { ports: 16, unroll:  8, cycles: 125700, area: 1422675 },
+];
+
+// ─── Helpers ──────────────────────────────────────────────────────────────────
+const unrollLabel = u => u === 0 ? 'none' : `U${u}`;
+const pctSaved    = cycles => (((BASELINE.cycles - cycles) / BASELINE.cycles) * 100).toFixed(1);
+const areaOverhead = area  => (((area - BASELINE.area) / BASELINE.area) * 100).toFixed(1);
+
+// ─── Pareto (minimize cycles AND area) ───────────────────────────────────────
+function computePareto(ciPoints) {
+  const all = [{ ...BASELINE, isBaseline: true }, ...ciPoints.map(p => ({ ...p, isBaseline: false }))];
+  return all.filter(a =>
+    !all.some(b =>
+      b !== a &&
+      b.area <= a.area && b.cycles <= a.cycles &&
+      (b.area < a.area || b.cycles < a.cycles)
+    )
+  );
+}
+const paretoSet = computePareto(CI_DATA);
+const isParetoCI = d =>
+  paretoSet.some(p => !p.isBaseline &&
+    p.ports === d.ports && p.unroll === d.unroll &&
+    p.cycles === d.cycles && p.area === d.area);
+
+// ─── Visual maps ──────────────────────────────────────────────────────────────
+const PORT_COLORS = { 1: '#4fc3f7', 2: '#81c784', 4: '#ffb74d', 8: '#ce93d8', 16: '#f06292' };
+const UNROLL_SYMBOLS = { 0: 'circle', 1: 'square', 2: 'diamond', 4: 'triangle-up', 8: 'cross' };
+const UNROLL_SYMBOLS_OPEN = { 0: 'circle-open', 1: 'square-open', 2: 'diamond-open', 4: 'triangle-up-open', 8: 'x-open' };
+
+// ─── Build traces ─────────────────────────────────────────────────────────────
+const traces = [];
+
+// w/ CI — one trace per port
+[1, 2, 4, 8, 16].forEach(p => {
+  const pts = CI_DATA.filter(d => d.ports === p);
+  traces.push({
+    name: `CI · P${p}`,
+    legendgroup: `ci_p${p}`,
+    type: 'scatter', mode: 'markers',
+    x: pts.map(d => d.cycles),
+    y: pts.map(d => d.area),
+    text: pts.map(d =>
+      `<b>w/ CI &nbsp; P${d.ports} / Unroll: ${unrollLabel(d.unroll)}</b><br>` +
+      `Cycles: ${d.cycles.toLocaleString()}<br>` +
+      `Area: ${d.area.toLocaleString()}<br>` +
+      `Latency reduction: ${pctSaved(d.cycles)}%<br>` +
+      `Area overhead vs baseline: +${areaOverhead(d.area)}%` +
+      (isParetoCI(d) ? '<br><b style="color:#ff9800">★ Pareto optimal</b>' : '')
+    ),
+    hovertemplate: '%{text}<extra></extra>',
+    marker: {
+      symbol: pts.map(d => UNROLL_SYMBOLS[d.unroll]),
+      size:   pts.map(d => isParetoCI(d) ? 14 : 9),
+      color:  PORT_COLORS[p],
+      line: {
+        width: pts.map(d => isParetoCI(d) ? 2.5 : 0),
+        color: pts.map(d => isParetoCI(d) ? '#ff9800' : 'rgba(0,0,0,0)'),
+      },
+      opacity: 0.9,
+    },
+  });
+});
+
+// w/o CI — one trace per port, hollow markers at actual RTL sim cycle counts
+[1, 2, 4, 8, 16].forEach(p => {
+  const pts = NOCI_DATA.filter(d => d.ports === p);
+  traces.push({
+    name: `No-CI · P${p}`,
+    legendgroup: `noci_p${p}`,
+    type: 'scatter', mode: 'markers',
+    x: pts.map(d => d.cycles),
+    y: pts.map(d => d.area),
+    text: pts.map(d =>
+      `<b>w/o CI &nbsp; P${d.ports} / Unroll: ${unrollLabel(d.unroll)}</b><br>` +
+      `Cycles: ${d.cycles.toLocaleString()}` +
+      (d.cycles === BASELINE.cycles ? ' (= baseline)' : ` (+${(((d.cycles - BASELINE.cycles) / BASELINE.cycles) * 100).toFixed(1)}% FSM overhead)`) +
+      `<br>Area: ${d.area.toLocaleString()}<br>` +
+      `Area overhead vs baseline: +${areaOverhead(d.area)}%<br>` +
+      `<i>Hardware present but custom instruction unused</i>`
+    ),
+    hovertemplate: '%{text}<extra></extra>',
+    marker: {
+      symbol: pts.map(d => UNROLL_SYMBOLS_OPEN[d.unroll]),
+      size: 11,
+      color: PORT_COLORS[p],
+      line: { width: 2, color: PORT_COLORS[p] },
+      opacity: 0.7,
+    },
+  });
+});
+
+// Pareto staircase for CI
+const byCycles = [...paretoSet].sort((a, b) => a.cycles - b.cycles);
+const px = [], py = [];
+byCycles.forEach((pt, i) => {
+  px.push(pt.cycles);
+  py.push(pt.area);
+  if (i < byCycles.length - 1) {
+    px.push(byCycles[i + 1].cycles);
+    py.push(pt.area);
+  }
+});
+px.push(px[px.length - 1] * 1.18);
+py.push(py[py.length - 1]);
+
+traces.push({
+  name: 'CI Pareto frontier',
+  type: 'scatter', mode: 'lines',
+  x: px, y: py,
+  line: { color: '#ff9800', width: 2 },
+  hoverinfo: 'skip',
+});
+
+// Baseline latency reference line (vertical dashed line at x = BASELINE.cycles)
+traces.push({
+  name: 'Baseline latency',
+  type: 'scatter', mode: 'lines',
+  x: [BASELINE.cycles, BASELINE.cycles],
+  y: [1e5, 2e6],
+  line: { color: '#ef5350', width: 1.5, dash: 'dot' },
+  hoverinfo: 'skip',
+});
+
+// Baseline star
+traces.push({
+  name: 'Baseline (RV32I)',
+  type: 'scatter', mode: 'markers+text',
+  x: [BASELINE.cycles],
+  y: [BASELINE.area],
+  text: ['  Baseline'],
+  textposition: 'middle right',
+  textfont: { color: '#ef5350', size: 11 },
+  hovertemplate:
+    `<b>Baseline — plain RV32I</b><br>` +
+    `Cycles: ${BASELINE.cycles.toLocaleString()}<br>` +
+    `Area: ${BASELINE.area.toLocaleString()}<extra></extra>`,
+  marker: { symbol: 'star', size: 18, color: '#ef5350', line: { width: 1.5, color: '#fff' } },
+});
+
+// Unroll shape legend entries
+[0, 1, 2, 4, 8].forEach(u => {
+  traces.push({
+    name: `Unroll: ${unrollLabel(u)}`,
+    type: 'scatter', mode: 'markers',
+    x: [null], y: [null],
+    marker: { symbol: UNROLL_SYMBOLS[u], size: 10, color: '#888', line: { width: 1, color: '#aaa' } },
+    hoverinfo: 'skip',
+    legendgrouptitle: u === 0 ? { text: 'Unroll factor' } : undefined,
+  });
+});
+
+// ─── Layout ───────────────────────────────────────────────────────────────────
+Plotly.newPlot('chart', traces, {
+  paper_bgcolor: '#1a1a2e',
+  plot_bgcolor:  '#12122a',
+  font: { color: '#ccc', family: 'Segoe UI, sans-serif', size: 12 },
+  xaxis: {
+    title: { text: 'Latency (RTL sim cycles, log scale)', font: { size: 13 } },
+    type: 'log',
+    gridcolor: '#252545',
+    minor: { gridcolor: '#1e1e3a', showgrid: true },
+    zeroline: false,
+    tickformat: ',.0f',
+    exponentformat: 'none',
+  },
+  yaxis: {
+    title: { text: 'Area (synthesis gate count, log scale)', font: { size: 13 } },
+    type: 'log',
+    gridcolor: '#252545',
+    minor: { gridcolor: '#1e1e3a', showgrid: true },
+    zeroline: false,
+    tickformat: ',.0f',
+    exponentformat: 'none',
+  },
+  legend: {
+    bgcolor: '#1e1e3a', bordercolor: '#444', borderwidth: 1,
+    font: { size: 10.5 }, tracegroupgap: 2,
+  },
+  hovermode: 'closest',
+  hoverlabel: { bgcolor: '#1e1e3a', bordercolor: '#555', font: { size: 12, color: '#eee' } },
+  margin: { t: 20, r: 20, b: 65, l: 90 },
+  annotations: [
+    {
+      x: 0.98, y: 0.98, xref: 'paper', yref: 'paper',
+      text: '← lower latency &nbsp; ↓ less area',
+      showarrow: false, font: { size: 10, color: '#666' }, align: 'right',
+    },
+    {
+      // Label on the baseline reference line
+      x: Math.log10(BASELINE.cycles) + 0.02, y: Math.log10(1.45e6),
+      xref: 'x', yref: 'y',
+      text: 'baseline<br>latency',
+      showarrow: false,
+      font: { size: 9, color: '#ef5350' },
+      align: 'left',
+    },
+  ],
+}, {
+  responsive: true,
+  displayModeBar: true,
+  modeBarButtonsToRemove: ['lasso2d', 'select2d'],
+  toImageButtonOptions: { format: 'png', filename: 'gemm_mac_pa_curve', scale: 2 },
+});
+
+// ─── Toggle helpers ───────────────────────────────────────────────────────────
+// Map trace name prefix → indices (computed once after plot)
+function indicesFor(namePrefix) {
+  return document.getElementById('chart').data
+    .map((t, i) => ({ name: t.name, i }))
+    .filter(t => t.name.startsWith(namePrefix))
+    .map(t => t.i);
+}
+
+function toggleGroup(type, port, btn) {
+  btn.classList.toggle('active');
+  const prefix = type === 'ci' ? `CI · P${port}` : `No-CI · P${port}`;
+  const idx = indicesFor(prefix);
+  const hidden = document.getElementById('chart').data[idx[0]]?.visible === false;
+  Plotly.restyle('chart', { visible: hidden ? true : false }, idx);
+}
+</script>
+</body>
+</html>

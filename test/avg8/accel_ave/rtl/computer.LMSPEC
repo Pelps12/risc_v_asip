@@ -1,0 +1,38 @@
+#@VERSION{3.00}
+#@CNT{computer}
+#@KIND{BASIC_OPERATOR}
+#@CLK 100000
+#@UNIT 1/10ps
+@PROCESS{
+	NAME	computer
+#	KIND
+#	LIMIT
+#	BITWIDTH
+#	DELAY
+	AREA	1222554
+	AREA_REG	795864
+	AREA_COMB	426690
+	AREA_FU	8338
+	AREA_MUX	408522
+	AREA_DEC	4810
+	AREA_MISC	5020
+	NET	790753
+	PIN_PAIR	2023846
+#	SPECULATION
+#	COMMENT
+	DEFMOD {
+		out   unsigned ter(11..0) imem_arg_MEMB32W4096_RA1 /* glo, imem_arg[#], ra:1 */;
+		in    unsigned ter(31..0) imem_arg_MEMB32W4096_RD1 /* glo, imem_arg[#], rd:1, clock_sig = CLOCK */;
+		out   unsigned ter(0..0) imem_arg_MEMB32W4096_RE1 /* glo, imem_arg[#], re:1 */;
+		out   unsigned ter(0..0) computer_ret     /* glo, computer_ret, org_sig_phyty_reg = YES, ansi_func_return = YES */;
+		clock                    CLOCK            /* c, CLOCK, @clock_period = 10ns, @auto_gen_sig = YES, clock_edge = \pos */;
+		reset                    RESET            /* r, RESET, @auto_gen_sig = YES, reset_mode = sync, reset_active = high */;
+	}
+	ARRAY {
+		NAME	imem_arg[]
+		KIND	R1
+		RESOURCE	MEM
+	}
+}
+#@HASH{44f92e29823a67ef61cc1a35e92f1d34}
+#@END{computer}

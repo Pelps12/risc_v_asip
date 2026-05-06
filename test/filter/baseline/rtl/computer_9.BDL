@@ -18,69 +18,66 @@
 /* Cyber func = process, default_bit_order = down */
 process
 computer(
-    out  unsigned ter(0:16)  imem_arg_MEMB32W65536_RA1/* Cyber mem_id = MEMB32W65536@2, other = DC */,
-    in   unsigned ter(0:32)  imem_arg_MEMB32W65536_RD1/* Cyber mem_id = MEMB32W65536@2 */,
-    out  unsigned ter(0:1)  imem_arg_MEMB32W65536_RE1/* Cyber mem_id = MEMB32W65536@2 */,
-    out  unsigned ter(0:1)  imem_arg_MEMB32W65536_RCLK1/* Cyber clock_edge = pos, mem_id = MEMB32W65536@2 */ /* line# computer.cpp:228 */,
-    out  unsigned ter(0:16)  imem_arg_MEMB32W65536_WA2/* Cyber mem_id = MEMB32W65536@2, other = DC */,
-    out  unsigned ter(0:32)  imem_arg_MEMB32W65536_WD2/* Cyber mem_id = MEMB32W65536@2, other = DC */,
-    out  unsigned ter(0:1)  imem_arg_MEMB32W65536_WE2/* Cyber mem_id = MEMB32W65536@2 */,
-    out  unsigned ter(0:16)  dmem_arg_MEMB32W65536_RA1/* Cyber mem_id = MEMB32W65536@1, other = DC */,
-    in   unsigned ter(0:32)  dmem_arg_MEMB32W65536_RD1/* Cyber mem_id = MEMB32W65536@1 */,
-    out  unsigned ter(0:1)  dmem_arg_MEMB32W65536_RE1/* Cyber mem_id = MEMB32W65536@1 */,
-    out  unsigned ter(0:1)  dmem_arg_MEMB32W65536_RCLK1/* Cyber clock_edge = pos, mem_id = MEMB32W65536@1 */ /* line# computer.cpp:228 */,
-    out  unsigned ter(0:16)  dmem_arg_MEMB32W65536_WA2/* Cyber mem_id = MEMB32W65536@1, other = DC */,
-    out  unsigned ter(0:32)  dmem_arg_MEMB32W65536_WD2/* Cyber mem_id = MEMB32W65536@1, other = DC */,
-    out  unsigned ter(0:1)  dmem_arg_MEMB32W65536_WE2/* Cyber mem_id = MEMB32W65536@1 */,
-    out  unsigned ter(0:1)  dmem_arg_MEMB32W65536_WCLK2/* Cyber clock_edge = pos, mem_id = MEMB32W65536@1 */ /* line# computer.cpp:228 */,
-    out  unsigned ter(0:1)  computer_ret/* Cyber bit_order = down, sche = reg */ /* line# computer.cpp:228 */,
+    out  unsigned ter(0:16)  imem_arg_MEMB32W65536_RA1/* Cyber mem_id = MEMB32W65536@1, other = DC */,
+    in   unsigned ter(0:32)  imem_arg_MEMB32W65536_RD1/* Cyber mem_id = MEMB32W65536@1 */,
+    out  unsigned ter(0:1)  imem_arg_MEMB32W65536_RE1/* Cyber mem_id = MEMB32W65536@1 */,
+    out  unsigned ter(0:1)  imem_arg_MEMB32W65536_RCLK1/* Cyber clock_edge = pos, mem_id = MEMB32W65536@1 */ /* line# computer.cpp:229 */,
+    out  unsigned ter(0:12)  dmem_arg_MEMB32W4096_RA1/* Cyber mem_id = MEMB32W4096@1, other = DC */,
+    in   unsigned ter(0:32)  dmem_arg_MEMB32W4096_RD1/* Cyber mem_id = MEMB32W4096@1 */,
+    out  unsigned ter(0:1)  dmem_arg_MEMB32W4096_RE1/* Cyber mem_id = MEMB32W4096@1 */,
+    out  unsigned ter(0:1)  dmem_arg_MEMB32W4096_RCLK1/* Cyber clock_edge = pos, mem_id = MEMB32W4096@1 */ /* line# computer.cpp:229 */,
+    out  unsigned ter(0:12)  dmem_arg_MEMB32W4096_WA2/* Cyber mem_id = MEMB32W4096@1, other = DC */,
+    out  unsigned ter(0:32)  dmem_arg_MEMB32W4096_WD2/* Cyber mem_id = MEMB32W4096@1, other = DC */,
+    out  unsigned ter(0:1)  dmem_arg_MEMB32W4096_WE2/* Cyber mem_id = MEMB32W4096@1 */,
+    out  unsigned ter(0:1)  dmem_arg_MEMB32W4096_WCLK2/* Cyber clock_edge = pos, mem_id = MEMB32W4096@1 */ /* line# computer.cpp:229 */,
+    out  unsigned ter(0:1)  computer_ret/* Cyber bit_order = down, sche = reg */ /* line# computer.cpp:229 */,
     clock         CLOCK/* Cyber clock_edge = pos */,
     reset         RESET/* Cyber reset_mode = sync, reset_active = high */
     )
 {
     signed   ter(0:13)  M_133/* Cyber other = DC */;
     signed   ter(0:12)  M_132/* Cyber other = DC */;
-    unsigned ter(0:1)  regs_we01 /* line# computer.cpp:19 */;
-    unsigned ter(0:1)  regs_we00 /* line# computer.cpp:19 */;
-    unsigned ter(0:32)  regs_wd01/* Cyber other = DC */ /* line# computer.cpp:19 */;
-    unsigned ter(0:32)  regs_wd00/* Cyber other = DC */ /* line# computer.cpp:19 */;
-    unsigned ter(0:32)  regs_rd01/* Cyber other = DC */ /* line# computer.cpp:19 */;
-    unsigned ter(0:32)  regs_rd00/* Cyber other = DC */ /* line# computer.cpp:19 */;
-    unsigned ter(0:32)  regs_d01 /* line# computer.cpp:19 */;
-    unsigned ter(0:5)  regs_ad01/* Cyber other = DC */ /* line# computer.cpp:19 */;
-    unsigned ter(0:5)  regs_ad00/* Cyber other = DC */ /* line# computer.cpp:19 */;
-    unsigned reg(0:32)  regs_rg31/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:19 */;
-    unsigned reg(0:32)  regs_rg30/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:19 */;
-    unsigned reg(0:32)  regs_rg29/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:19 */;
-    unsigned reg(0:32)  regs_rg28/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:19 */;
-    unsigned reg(0:32)  regs_rg27/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:19 */;
-    unsigned reg(0:32)  regs_rg26/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:19 */;
-    unsigned reg(0:32)  regs_rg25/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:19 */;
-    unsigned reg(0:32)  regs_rg24/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:19 */;
-    unsigned reg(0:32)  regs_rg23/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:19 */;
-    unsigned reg(0:32)  regs_rg22/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:19 */;
-    unsigned reg(0:32)  regs_rg21/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:19 */;
-    unsigned reg(0:32)  regs_rg20/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:19 */;
-    unsigned reg(0:32)  regs_rg19/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:19 */;
-    unsigned reg(0:32)  regs_rg18/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:19 */;
-    unsigned reg(0:32)  regs_rg17/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:19 */;
-    unsigned reg(0:32)  regs_rg16/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:19 */;
-    unsigned reg(0:32)  regs_rg15/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:19 */;
-    unsigned reg(0:32)  regs_rg14/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:19 */;
-    unsigned reg(0:32)  regs_rg13/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:19 */;
-    unsigned reg(0:32)  regs_rg12/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:19 */;
-    unsigned reg(0:32)  regs_rg11/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:19 */;
-    unsigned reg(0:32)  regs_rg10/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:19 */;
-    unsigned reg(0:32)  regs_rg09/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:19 */;
-    unsigned reg(0:32)  regs_rg08/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:19 */;
-    unsigned reg(0:32)  regs_rg07/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:19 */;
-    unsigned reg(0:32)  regs_rg06/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:19 */;
-    unsigned reg(0:32)  regs_rg05/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:19 */;
-    unsigned reg(0:32)  regs_rg04/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:19 */;
-    unsigned reg(0:32)  regs_rg03/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:19 */;
-    unsigned reg(0:32)  regs_rg02/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:19 */;
-    unsigned reg(0:32)  regs_rg01/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:19 */;
-    unsigned reg(0:32)  regs_rg00/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:19 */;
+    unsigned ter(0:1)  regs_we01 /* line# computer.cpp:20 */;
+    unsigned ter(0:1)  regs_we00 /* line# computer.cpp:20 */;
+    unsigned ter(0:32)  regs_wd01/* Cyber other = DC */ /* line# computer.cpp:20 */;
+    unsigned ter(0:32)  regs_wd00/* Cyber other = DC */ /* line# computer.cpp:20 */;
+    unsigned ter(0:32)  regs_rd01/* Cyber other = DC */ /* line# computer.cpp:20 */;
+    unsigned ter(0:32)  regs_rd00/* Cyber other = DC */ /* line# computer.cpp:20 */;
+    unsigned ter(0:32)  regs_d01 /* line# computer.cpp:20 */;
+    unsigned ter(0:5)  regs_ad01/* Cyber other = DC */ /* line# computer.cpp:20 */;
+    unsigned ter(0:5)  regs_ad00/* Cyber other = DC */ /* line# computer.cpp:20 */;
+    unsigned reg(0:32)  regs_rg31/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:20 */;
+    unsigned reg(0:32)  regs_rg30/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:20 */;
+    unsigned reg(0:32)  regs_rg29/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:20 */;
+    unsigned reg(0:32)  regs_rg28/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:20 */;
+    unsigned reg(0:32)  regs_rg27/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:20 */;
+    unsigned reg(0:32)  regs_rg26/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:20 */;
+    unsigned reg(0:32)  regs_rg25/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:20 */;
+    unsigned reg(0:32)  regs_rg24/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:20 */;
+    unsigned reg(0:32)  regs_rg23/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:20 */;
+    unsigned reg(0:32)  regs_rg22/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:20 */;
+    unsigned reg(0:32)  regs_rg21/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:20 */;
+    unsigned reg(0:32)  regs_rg20/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:20 */;
+    unsigned reg(0:32)  regs_rg19/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:20 */;
+    unsigned reg(0:32)  regs_rg18/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:20 */;
+    unsigned reg(0:32)  regs_rg17/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:20 */;
+    unsigned reg(0:32)  regs_rg16/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:20 */;
+    unsigned reg(0:32)  regs_rg15/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:20 */;
+    unsigned reg(0:32)  regs_rg14/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:20 */;
+    unsigned reg(0:32)  regs_rg13/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:20 */;
+    unsigned reg(0:32)  regs_rg12/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:20 */;
+    unsigned reg(0:32)  regs_rg11/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:20 */;
+    unsigned reg(0:32)  regs_rg10/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:20 */;
+    unsigned reg(0:32)  regs_rg09/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:20 */;
+    unsigned reg(0:32)  regs_rg08/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:20 */;
+    unsigned reg(0:32)  regs_rg07/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:20 */;
+    unsigned reg(0:32)  regs_rg06/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:20 */;
+    unsigned reg(0:32)  regs_rg05/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:20 */;
+    unsigned reg(0:32)  regs_rg04/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:20 */;
+    unsigned reg(0:32)  regs_rg03/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:20 */;
+    unsigned reg(0:32)  regs_rg02/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:20 */;
+    unsigned reg(0:32)  regs_rg01/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:20 */;
+    unsigned reg(0:32)  regs_rg00/* Cyber reg_init_val = 0, org_type = u_int, bit_order = down */ /* line# computer.cpp:20 */;
     signed   ter(0:12)  comp32s_1_11i2/* Cyber other = DC */;
     signed   ter(0:32)  comp32s_1_11i1/* Cyber other = DC */;
     unsigned ter(0:4)  comp32s_1_11ot;
@@ -213,8 +210,8 @@ computer(
     unsigned ter(0:32)  result2_t/* Cyber bit_order = down, other = DC */;
     signed   ter(0:32)  M_61_t/* Cyber bit_order = down, other = DC */;
     unsigned ter(0:32)  BF_11_t/* Cyber bit_order = down, other = DC */;
-    unsigned ter(0:16)  M_03_t/* Cyber bit_order = down, other = DC */;
-    unsigned ter(0:18)  offset_addr1_t/* Cyber bit_order = down, other = DC */;
+    unsigned ter(0:12)  M_03_t/* Cyber bit_order = down, other = DC */;
+    unsigned ter(0:14)  offset_addr1_t/* Cyber bit_order = down, other = DC */;
     unsigned ter(0:32)  M_58_t/* Cyber bit_order = down, other = DC */;
     unsigned ter(0:32)  M_56_t/* Cyber bit_order = down, other = DC */;
     unsigned ter(0:5)  M_711_t/* Cyber bit_order = down, other = DC */;
@@ -274,9 +271,9 @@ computer(
     unsigned ter(0:32)  M_104_t/* Cyber bit_order = down, other = DC */;
     signed   ter(0:12)  imm11_t/* Cyber bit_order = down, other = DC */;
     unsigned ter(0:12)  val_111_t/* Cyber bit_order = down, other = DC */;
-    unsigned ter(0:16)  word_addr1_t/* Cyber bit_order = down, other = DC */;
+    unsigned ter(0:12)  word_addr1_t/* Cyber bit_order = down, other = DC */;
     unsigned ter(0:32)  offset_addr_1_t/* Cyber bit_order = down, other = DC */;
-    unsigned ter(0:16)  word_addr_11_t/* Cyber bit_order = down, other = DC */;
+    unsigned ter(0:12)  word_addr_11_t/* Cyber bit_order = down, other = DC */;
     unsigned ter(0:32)  offset_addr_2_t/* Cyber bit_order = down, other = DC */;
     unsigned ter(0:32)  M_105_t/* Cyber bit_order = down, other = DC */;
     unsigned ter(0:32)  addr1_t/* Cyber bit_order = down, other = DC */;
@@ -284,15 +281,15 @@ computer(
     unsigned ter(0:32)  BF_13_t/* Cyber bit_order = down, other = DC */;
     signed   ter(0:12)  M_511_t/* Cyber bit_order = down, other = DC */;
     unsigned ter(0:12)  imm_11_t/* Cyber bit_order = down, other = DC */;
-    unsigned ter(0:16)  word_addr_21_t/* Cyber bit_order = down, other = DC */;
+    unsigned ter(0:12)  word_addr_21_t/* Cyber bit_order = down, other = DC */;
     unsigned ter(0:32)  offset_addr_4_t/* Cyber bit_order = down, other = DC */;
-    unsigned ter(0:16)  word_addr_41_t/* Cyber bit_order = down, other = DC */;
+    unsigned ter(0:12)  word_addr_41_t/* Cyber bit_order = down, other = DC */;
     unsigned ter(0:32)  offset_addr_6_t/* Cyber bit_order = down, other = DC */;
-    unsigned ter(0:16)  M_02_t/* Cyber bit_order = down, other = DC */;
-    unsigned ter(0:18)  offset_addr_31_t/* Cyber bit_order = down, other = DC */;
-    unsigned ter(0:16)  word_addr_31_t/* Cyber bit_order = down, other = DC */;
+    unsigned ter(0:12)  M_02_t/* Cyber bit_order = down, other = DC */;
+    unsigned ter(0:14)  offset_addr_31_t/* Cyber bit_order = down, other = DC */;
+    unsigned ter(0:12)  word_addr_31_t/* Cyber bit_order = down, other = DC */;
     unsigned ter(0:32)  offset_addr_5_t/* Cyber bit_order = down, other = DC */;
-    unsigned ter(0:16)  word_addr_51_t/* Cyber bit_order = down, other = DC */;
+    unsigned ter(0:12)  word_addr_51_t/* Cyber bit_order = down, other = DC */;
     unsigned ter(0:32)  offset_addr_7_t/* Cyber bit_order = down, other = DC */;
     unsigned ter(0:32)  M_106_t/* Cyber bit_order = down, other = DC */;
     unsigned ter(0:32)  addr_t/* Cyber bit_order = down, other = DC */;
@@ -319,7 +316,7 @@ computer(
     unsigned ter(0:1)  M_112_t/* Cyber bit_order = down, other = DC */;
     unsigned var(0:25)  instr1/* Cyber bit_order = down, org_type = u_int */;
     unsigned var(0:2)  addr2/* Cyber bit_order = down, org_type = u_int */;
-    unsigned var(0:18)  addr11/* Cyber bit_order = down, org_type = u_int */;
+    unsigned var(0:14)  addr11/* Cyber bit_order = down, org_type = u_int */;
     unsigned var(0:1)  M_112/* Cyber bit_order = down */;
     unsigned var(0:32)  M_111/* Cyber bit_order = down */;
     unsigned var(0:1)  M_110/* Cyber bit_order = down */;
@@ -369,12 +366,12 @@ computer(
     unsigned var(0:21)  M_931/* Cyber bit_order = down */;
     unsigned var(0:11)  M_921/* Cyber bit_order = down */;
     unsigned var(0:13)  M_911/* Cyber bit_order = down */;
-    unsigned var(0:16)  M_861/* Cyber bit_order = down */;
-    unsigned var(0:16)  M_851/* Cyber bit_order = down */;
-    unsigned var(0:16)  M_841/* Cyber bit_order = down */;
-    unsigned var(0:16)  M_831/* Cyber bit_order = down */;
-    unsigned var(0:16)  M_821/* Cyber bit_order = down */;
-    unsigned var(0:16)  M_811/* Cyber bit_order = down */;
+    unsigned var(0:12)  M_861/* Cyber bit_order = down */;
+    unsigned var(0:12)  M_851/* Cyber bit_order = down */;
+    unsigned var(0:12)  M_841/* Cyber bit_order = down */;
+    unsigned var(0:12)  M_831/* Cyber bit_order = down */;
+    unsigned var(0:12)  M_821/* Cyber bit_order = down */;
+    unsigned var(0:12)  M_811/* Cyber bit_order = down */;
     unsigned var(0:5)  M_711/* Cyber bit_order = down */;
     unsigned var(0:5)  M_701/* Cyber bit_order = down */;
     signed   var(0:12)  M_511/* Cyber bit_order = down */;
@@ -385,40 +382,40 @@ computer(
     signed   var(0:21)  M_151/* Cyber bit_order = down */;
     unsigned var(0:11)  M_131/* Cyber bit_order = down */;
     unsigned var(0:5)  M_071/* Cyber bit_order = down */;
-    unsigned var(0:12)  val_111/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:49 */;
-    unsigned var(0:12)  val_101/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:49 */;
-    unsigned var(0:12)  val_91/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:49 */;
-    unsigned var(0:21)  imm_31/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:74 */;
-    unsigned var(0:13)  imm_21/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:64 */;
-    unsigned var(0:2)  byte_offset_51/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:94 */;
-    unsigned var(0:16)  word_addr_51/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:93 */;
-    unsigned var(0:2)  byte_offset_41/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:94 */;
-    unsigned var(0:16)  word_addr_41/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:93 */;
-    unsigned var(0:2)  byte_offset_31/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:105 */;
-    unsigned var(0:16)  word_addr_31/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:104 */;
-    unsigned var(0:2)  byte_offset_21/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:105 */;
-    unsigned var(0:16)  word_addr_21/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:104 */;
-    unsigned var(0:18)  offset_addr_31/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:110 */;
-    unsigned var(0:12)  imm_11/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:59 */;
-    unsigned var(0:2)  byte_offset_11/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:125 */;
-    unsigned var(0:16)  word_addr_11/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:124 */;
-    unsigned var(0:2)  byte_offset1/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:138 */;
-    unsigned var(0:16)  word_addr1/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:137 */;
-    unsigned var(0:18)  offset_addr1/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:145 */;
-    unsigned var(0:1)  result12/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:330 */;
-    unsigned var(0:32)  result11/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:330 */;
-    unsigned var(0:1)  result3/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:311 */;
-    unsigned var(0:32)  result2/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:311 */;
-    signed   var(0:12)  imm11/* Cyber bit_order = down, org_type = int */ /* line# computer.cpp:309 */;
-    unsigned var(0:1)  val3/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:287 */;
-    unsigned var(0:32)  val2/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:287 */;
-    signed   var(0:13)  imm2/* Cyber bit_order = down, org_type = int */ /* line# computer.cpp:272 */;
-    unsigned var(0:7)  funct71/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:248 */;
-    unsigned var(0:5)  rs21/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:247 */;
-    unsigned var(0:5)  rs11/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:246 */;
-    unsigned var(0:3)  funct31/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:245 */;
-    unsigned var(0:5)  rd1/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:244 */;
-    unsigned var(0:7)  opcode1/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:243 */;
+    unsigned var(0:12)  val_111/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:50 */;
+    unsigned var(0:12)  val_101/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:50 */;
+    unsigned var(0:12)  val_91/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:50 */;
+    unsigned var(0:21)  imm_31/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:75 */;
+    unsigned var(0:13)  imm_21/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:65 */;
+    unsigned var(0:2)  byte_offset_51/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:95 */;
+    unsigned var(0:12)  word_addr_51/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:94 */;
+    unsigned var(0:2)  byte_offset_41/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:95 */;
+    unsigned var(0:12)  word_addr_41/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:94 */;
+    unsigned var(0:2)  byte_offset_31/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:106 */;
+    unsigned var(0:12)  word_addr_31/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:105 */;
+    unsigned var(0:2)  byte_offset_21/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:106 */;
+    unsigned var(0:12)  word_addr_21/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:105 */;
+    unsigned var(0:14)  offset_addr_31/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:111 */;
+    unsigned var(0:12)  imm_11/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:60 */;
+    unsigned var(0:2)  byte_offset_11/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:126 */;
+    unsigned var(0:12)  word_addr_11/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:125 */;
+    unsigned var(0:2)  byte_offset1/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:139 */;
+    unsigned var(0:12)  word_addr1/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:138 */;
+    unsigned var(0:14)  offset_addr1/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:146 */;
+    unsigned var(0:1)  result12/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:331 */;
+    unsigned var(0:32)  result11/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:331 */;
+    unsigned var(0:1)  result3/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:312 */;
+    unsigned var(0:32)  result2/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:312 */;
+    signed   var(0:12)  imm11/* Cyber bit_order = down, org_type = int */ /* line# computer.cpp:310 */;
+    unsigned var(0:1)  val3/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:288 */;
+    unsigned var(0:32)  val2/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:288 */;
+    signed   var(0:13)  imm2/* Cyber bit_order = down, org_type = int */ /* line# computer.cpp:273 */;
+    unsigned var(0:7)  funct71/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:249 */;
+    unsigned var(0:5)  rs21/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:248 */;
+    unsigned var(0:5)  rs11/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:247 */;
+    unsigned var(0:3)  funct31/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:246 */;
+    unsigned var(0:5)  rd1/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:245 */;
+    unsigned var(0:7)  opcode1/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:244 */;
     unsigned var(0:32)  M_94/* Cyber bit_order = down */;
     unsigned var(0:32)  M_93/* Cyber bit_order = down */;
     unsigned var(0:32)  M_92/* Cyber bit_order = down */;
@@ -510,78 +507,78 @@ computer(
     unsigned var(0:32)  M_06/* Cyber bit_order = down */;
     unsigned var(0:32)  M_05/* Cyber bit_order = down */;
     unsigned var(0:1)  M_04/* Cyber bit_order = down */;
-    unsigned var(0:16)  M_03/* Cyber bit_order = down */;
-    unsigned var(0:16)  M_02/* Cyber bit_order = down */;
+    unsigned var(0:12)  M_03/* Cyber bit_order = down */;
+    unsigned var(0:12)  M_02/* Cyber bit_order = down */;
     unsigned var(0:16)  M_01/* Cyber bit_order = down */;
-    unsigned var(0:32)  val_11/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:49 */;
-    signed   var(0:32)  shift_11/* Cyber bit_order = down, org_type = int */ /* line# computer.cpp:50 */;
-    unsigned var(0:32)  instr_8/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:54 */;
-    unsigned var(0:32)  val_10/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:49 */;
-    signed   var(0:32)  shift_10/* Cyber bit_order = down, org_type = int */ /* line# computer.cpp:50 */;
-    unsigned var(0:32)  instr_7/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:54 */;
-    unsigned var(0:32)  val_9/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:49 */;
-    signed   var(0:32)  shift_9/* Cyber bit_order = down, org_type = int */ /* line# computer.cpp:50 */;
-    unsigned var(0:32)  instr_6/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:54 */;
-    unsigned var(0:32)  instr_5/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:71 */;
-    unsigned var(0:32)  instr_4/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:71 */;
-    unsigned var(0:32)  imm_3/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:74 */;
-    unsigned var(0:32)  val_8/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:49 */;
-    signed   var(0:32)  shift_8/* Cyber bit_order = down, org_type = int */ /* line# computer.cpp:50 */;
-    unsigned var(0:32)  instr_3/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:73 */;
-    unsigned var(0:32)  imm_2/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:64 */;
-    unsigned var(0:32)  val_7/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:49 */;
-    signed   var(0:32)  shift_7/* Cyber bit_order = down, org_type = int */ /* line# computer.cpp:50 */;
-    unsigned var(0:32)  instr_2/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:63 */;
-    unsigned var(0:32)  byte_offset_5/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:94 */;
-    unsigned var(0:32)  word_addr_5/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:93 */;
-    unsigned var(0:32)  offset_addr_7/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:88 */;
-    unsigned var(0:32)  addr_8/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:87 */;
-    unsigned var(0:32)  *dmem_arg_8/* Cyber bit_order = down, org_type = u_int, first_index_size = 0 */ /* line# computer.cpp:87 */;
-    unsigned var(0:32)  byte_offset_4/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:94 */;
-    unsigned var(0:32)  word_addr_4/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:93 */;
-    unsigned var(0:32)  offset_addr_6/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:88 */;
-    unsigned var(0:32)  addr_7/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:87 */;
-    unsigned var(0:32)  *dmem_arg_7/* Cyber bit_order = down, org_type = u_int, first_index_size = 0 */ /* line# computer.cpp:87 */;
-    unsigned var(0:32)  byte_offset_3/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:105 */;
-    unsigned var(0:32)  word_addr_3/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:104 */;
-    unsigned var(0:32)  offset_addr_5/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:99 */;
-    unsigned var(0:32)  addr_6/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:98 */;
-    unsigned var(0:32)  *dmem_arg_6/* Cyber bit_order = down, org_type = u_int, first_index_size = 0 */ /* line# computer.cpp:98 */;
-    unsigned var(0:32)  byte_offset_2/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:105 */;
-    unsigned var(0:32)  word_addr_2/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:104 */;
-    unsigned var(0:32)  offset_addr_4/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:99 */;
-    unsigned var(0:32)  addr_5/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:98 */;
-    unsigned var(0:32)  *dmem_arg_5/* Cyber bit_order = down, org_type = u_int, first_index_size = 0 */ /* line# computer.cpp:98 */;
-    unsigned var(0:32)  offset_addr_3/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:110 */;
-    unsigned var(0:32)  addr_4/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:109 */;
-    unsigned var(0:32)  *dmem_arg_4/* Cyber bit_order = down, org_type = u_int, first_index_size = 0 */ /* line# computer.cpp:109 */;
-    unsigned var(0:32)  imm_1/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:59 */;
-    unsigned var(0:32)  val_6/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:49 */;
-    signed   var(0:32)  shift_6/* Cyber bit_order = down, org_type = int */ /* line# computer.cpp:50 */;
-    unsigned var(0:32)  instr_1/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:58 */;
-    unsigned var(0:32)  mask_1/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:126 */;
-    unsigned var(0:32)  byte_offset_1/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:125 */;
-    unsigned var(0:32)  word_addr_1/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:124 */;
-    unsigned var(0:32)  offset_addr_2/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:119 */;
-    unsigned var(0:8)  val_5/* Cyber bit_order = down, org_type = u_char */ /* line# computer.cpp:118 */;
-    unsigned var(0:32)  addr_3/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:118 */;
-    unsigned var(0:32)  *dmem_arg_3/* Cyber bit_order = down, org_type = u_int, first_index_size = 0 */ /* line# computer.cpp:118 */;
-    unsigned var(0:32)  mask/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:139 */;
-    unsigned var(0:32)  byte_offset/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:138 */;
-    unsigned var(0:32)  word_addr/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:137 */;
-    unsigned var(0:32)  offset_addr_1/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:132 */;
-    unsigned var(0:16)  val_2/* Cyber bit_order = down, org_type = u_short */ /* line# computer.cpp:131 */;
-    unsigned var(0:32)  addr_2/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:131 */;
-    unsigned var(0:32)  *dmem_arg_2/* Cyber bit_order = down, org_type = u_int, first_index_size = 0 */ /* line# computer.cpp:131 */;
-    unsigned var(0:32)  offset_addr/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:145 */;
-    unsigned var(0:32)  val_1/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:144 */;
-    unsigned var(0:32)  addr_1/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:144 */;
-    unsigned var(0:32)  *dmem_arg_1/* Cyber bit_order = down, org_type = u_int, first_index_size = 0 */ /* line# computer.cpp:144 */;
-    signed   var(0:32)  shift_4/* Cyber bit_order = down, org_type = int */ /* line# computer.cpp:50 */;
-    unsigned var(0:32)  val_4/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:49 */;
-    signed   var(0:32)  shift_3/* Cyber bit_order = down, org_type = int */ /* line# computer.cpp:50 */;
-    unsigned var(0:32)  val_3/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:49 */;
-    unsigned var(0:1)  computer_ret_1/* Cyber bit_order = down */ /* line# computer.cpp:228 */;
+    unsigned var(0:32)  val_11/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:50 */;
+    signed   var(0:32)  shift_11/* Cyber bit_order = down, org_type = int */ /* line# computer.cpp:51 */;
+    unsigned var(0:32)  instr_8/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:55 */;
+    unsigned var(0:32)  val_10/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:50 */;
+    signed   var(0:32)  shift_10/* Cyber bit_order = down, org_type = int */ /* line# computer.cpp:51 */;
+    unsigned var(0:32)  instr_7/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:55 */;
+    unsigned var(0:32)  val_9/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:50 */;
+    signed   var(0:32)  shift_9/* Cyber bit_order = down, org_type = int */ /* line# computer.cpp:51 */;
+    unsigned var(0:32)  instr_6/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:55 */;
+    unsigned var(0:32)  instr_5/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:72 */;
+    unsigned var(0:32)  instr_4/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:72 */;
+    unsigned var(0:32)  imm_3/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:75 */;
+    unsigned var(0:32)  val_8/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:50 */;
+    signed   var(0:32)  shift_8/* Cyber bit_order = down, org_type = int */ /* line# computer.cpp:51 */;
+    unsigned var(0:32)  instr_3/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:74 */;
+    unsigned var(0:32)  imm_2/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:65 */;
+    unsigned var(0:32)  val_7/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:50 */;
+    signed   var(0:32)  shift_7/* Cyber bit_order = down, org_type = int */ /* line# computer.cpp:51 */;
+    unsigned var(0:32)  instr_2/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:64 */;
+    unsigned var(0:32)  byte_offset_5/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:95 */;
+    unsigned var(0:32)  word_addr_5/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:94 */;
+    unsigned var(0:32)  offset_addr_7/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:89 */;
+    unsigned var(0:32)  addr_8/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:88 */;
+    unsigned var(0:32)  *dmem_arg_8/* Cyber bit_order = down, org_type = u_int, first_index_size = 0 */ /* line# computer.cpp:88 */;
+    unsigned var(0:32)  byte_offset_4/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:95 */;
+    unsigned var(0:32)  word_addr_4/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:94 */;
+    unsigned var(0:32)  offset_addr_6/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:89 */;
+    unsigned var(0:32)  addr_7/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:88 */;
+    unsigned var(0:32)  *dmem_arg_7/* Cyber bit_order = down, org_type = u_int, first_index_size = 0 */ /* line# computer.cpp:88 */;
+    unsigned var(0:32)  byte_offset_3/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:106 */;
+    unsigned var(0:32)  word_addr_3/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:105 */;
+    unsigned var(0:32)  offset_addr_5/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:100 */;
+    unsigned var(0:32)  addr_6/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:99 */;
+    unsigned var(0:32)  *dmem_arg_6/* Cyber bit_order = down, org_type = u_int, first_index_size = 0 */ /* line# computer.cpp:99 */;
+    unsigned var(0:32)  byte_offset_2/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:106 */;
+    unsigned var(0:32)  word_addr_2/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:105 */;
+    unsigned var(0:32)  offset_addr_4/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:100 */;
+    unsigned var(0:32)  addr_5/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:99 */;
+    unsigned var(0:32)  *dmem_arg_5/* Cyber bit_order = down, org_type = u_int, first_index_size = 0 */ /* line# computer.cpp:99 */;
+    unsigned var(0:32)  offset_addr_3/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:111 */;
+    unsigned var(0:32)  addr_4/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:110 */;
+    unsigned var(0:32)  *dmem_arg_4/* Cyber bit_order = down, org_type = u_int, first_index_size = 0 */ /* line# computer.cpp:110 */;
+    unsigned var(0:32)  imm_1/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:60 */;
+    unsigned var(0:32)  val_6/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:50 */;
+    signed   var(0:32)  shift_6/* Cyber bit_order = down, org_type = int */ /* line# computer.cpp:51 */;
+    unsigned var(0:32)  instr_1/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:59 */;
+    unsigned var(0:32)  mask_1/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:127 */;
+    unsigned var(0:32)  byte_offset_1/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:126 */;
+    unsigned var(0:32)  word_addr_1/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:125 */;
+    unsigned var(0:32)  offset_addr_2/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:120 */;
+    unsigned var(0:8)  val_5/* Cyber bit_order = down, org_type = u_char */ /* line# computer.cpp:119 */;
+    unsigned var(0:32)  addr_3/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:119 */;
+    unsigned var(0:32)  *dmem_arg_3/* Cyber bit_order = down, org_type = u_int, first_index_size = 0 */ /* line# computer.cpp:119 */;
+    unsigned var(0:32)  mask/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:140 */;
+    unsigned var(0:32)  byte_offset/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:139 */;
+    unsigned var(0:32)  word_addr/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:138 */;
+    unsigned var(0:32)  offset_addr_1/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:133 */;
+    unsigned var(0:16)  val_2/* Cyber bit_order = down, org_type = u_short */ /* line# computer.cpp:132 */;
+    unsigned var(0:32)  addr_2/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:132 */;
+    unsigned var(0:32)  *dmem_arg_2/* Cyber bit_order = down, org_type = u_int, first_index_size = 0 */ /* line# computer.cpp:132 */;
+    unsigned var(0:32)  offset_addr/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:146 */;
+    unsigned var(0:32)  val_1/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:145 */;
+    unsigned var(0:32)  addr_1/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:145 */;
+    unsigned var(0:32)  *dmem_arg_1/* Cyber bit_order = down, org_type = u_int, first_index_size = 0 */ /* line# computer.cpp:145 */;
+    signed   var(0:32)  shift_4/* Cyber bit_order = down, org_type = int */ /* line# computer.cpp:51 */;
+    unsigned var(0:32)  val_4/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:50 */;
+    signed   var(0:32)  shift_3/* Cyber bit_order = down, org_type = int */ /* line# computer.cpp:51 */;
+    unsigned var(0:32)  val_3/* Cyber bit_order = down, org_type = u_int */ /* line# computer.cpp:50 */;
+    unsigned var(0:1)  computer_ret_1/* Cyber bit_order = down */ /* line# computer.cpp:229 */;
     unsigned var(0:32)  imem_arg_pio0/* Cyber bit_order = down, sig2reg_ex_force = imem_arg_pio, pipemem_io */;
     unsigned var(0:32)  dmem_arg_pio0/* Cyber bit_order = down, sig2reg_ex_force = dmem_arg_pio, pipemem_io */;
     unsigned var(0:32)  dmem_arg_pio10/* Cyber bit_order = down, sig2reg_ex_force = dmem_arg_pio1, pipemem_io */;
@@ -598,39 +595,39 @@ computer(
     unsigned reg(0:32)  dmem_arg_pio1/* Cyber bit_order = down, reset_sig = void, other = DC, pipemem_io, sig2reg_ex_force = dmem_arg_pio1 */;
     unsigned reg(0:32)  dmem_arg_pio/* Cyber bit_order = down, reset_sig = void, other = DC, pipemem_io, sig2reg_ex_force = dmem_arg_pio */;
     unsigned reg(0:32)  imem_arg_pio/* Cyber bit_order = down, reset_sig = void, other = DC, pipemem_io, sig2reg_ex_force = imem_arg_pio */;
-    unsigned reg(0:32)  RG_addr_addr1_PC/* Cyber reg_init_val = 0, bit_order = down */ /* line# computer.cpp:20 */;
-    unsigned reg(0:1)  FF_halt/* Cyber bit_order = down, reset_sig = void */ /* line# computer.cpp:233 */;
+    unsigned reg(0:32)  RG_addr_addr1_PC/* Cyber reg_init_val = 0, bit_order = down */ /* line# computer.cpp:21 */;
+    unsigned reg(0:1)  FF_halt/* Cyber bit_order = down, reset_sig = void */ /* line# computer.cpp:234 */;
     unsigned reg(0:1)  RG_02/* Cyber bit_order = down, reset_sig = void, other = DC */;
     unsigned reg(0:32)  RG_03/* Cyber bit_order = down, reset_sig = void */;
     unsigned reg(0:1)  RG_04/* Cyber bit_order = down, reset_sig = void */;
-    unsigned reg(0:5)  RG_rd/* Cyber bit_order = down, reset_sig = void, other = DC */ /* line# computer.cpp:244 */;
-    unsigned reg(0:5)  RG_rs2/* Cyber bit_order = down, reset_sig = void, other = DC */ /* line# computer.cpp:247 */;
+    unsigned reg(0:5)  RG_rd/* Cyber bit_order = down, reset_sig = void, other = DC */ /* line# computer.cpp:245 */;
+    unsigned reg(0:5)  RG_rs2/* Cyber bit_order = down, reset_sig = void, other = DC */ /* line# computer.cpp:248 */;
     unsigned reg(0:32)  RG_07/* Cyber bit_order = down, reset_sig = void, other = DC */;
     unsigned reg(0:32)  RG_08/* Cyber bit_order = down, reset_sig = void, other = DC */;
-    unsigned /* mixed */ reg(0:32)  RG_op1/* Cyber bit_order = down, reset_sig = void, other = DC */ /* line# computer.cpp:329 */;
-    unsigned /* mixed */ reg(0:25)  RG_imm1_instr_word_addr/* Cyber bit_order = down, reset_sig = void, other = DC */ /* line# computer.cpp:124,137,309 */;
-    unsigned reg(0:5)  RG_funct3_rs1/* Cyber bit_order = down, reset_sig = void, other = DC */ /* line# computer.cpp:245,246 */;
-    unsigned reg(0:1)  computer_ret_r/* Cyber bit_order = down */ /* line# computer.cpp:228 */;
+    unsigned /* mixed */ reg(0:32)  RG_op1/* Cyber bit_order = down, reset_sig = void, other = DC */ /* line# computer.cpp:330 */;
+    unsigned /* mixed */ reg(0:25)  RG_imm1_instr_word_addr/* Cyber bit_order = down, reset_sig = void, other = DC */ /* line# computer.cpp:125,138,310 */;
+    unsigned reg(0:5)  RG_funct3_rs1/* Cyber bit_order = down, reset_sig = void, other = DC */ /* line# computer.cpp:246,247 */;
+    unsigned reg(0:1)  computer_ret_r/* Cyber bit_order = down */ /* line# computer.cpp:229 */;
 
 ST1_01 :
-    comp32s_1_11ot(0:4) ::= comp32s_1_1@1(comp32s_1_11i1(0:32), comp32s_1_11i2(0:12)); 	/* line# computer.cpp:314 */
-    comp32s_11ot(0:4) ::= comp32s_1@1(comp32s_11i1(0:32), comp32s_11i2(0:32)); 	/* line# computer.cpp:334 */
-    comp32s_12ot(0:4) ::= comp32s_1@2(comp32s_12i1(0:32), comp32s_12i2(0:32)); 	/* line# computer.cpp:277,278 */
-    comp32u_11ot(0:4) ::= comp32u_1@1(comp32u_11i1(0:32), comp32u_11i2(0:32)); 	/* line# computer.cpp:279,280 */
-    comp32u_12ot(0:4) ::= comp32u_1@2(comp32u_12i1(0:32), comp32u_12i2(0:32)); 	/* line# computer.cpp:335 */
-    comp32u_13ot(0:4) ::= comp32u_1@3(comp32u_13i1(0:32), comp32u_13i2(0:32)); 	/* line# computer.cpp:315 */
-    addsub32u1ot(0:32) ::= addsub32u@1(addsub32u1i1(0:32), addsub32u1i2(0:32), addsub32u1_f(0:2)); 	/* line# computer.cpp:71,88,99,119,132,249,257,332 */
-    rsft32s1ot(0:32) ::= rsft32s@1(rsft32s1i1(0:32), rsft32s1i2(0:5)); 	/* line# computer.cpp:321,338 */
-    rsft32u1ot(0:32) ::= rsft32u@1(rsft32u1i1(0:32), rsft32u1i2(0:5)); 	/* line# computer.cpp:94,95,105,106,289,290,292,293,322,339 */
-    lsft32u1ot(0:32) ::= lsft32u@1(lsft32u1i1(0:32), lsft32u1i2(0:5)); 	/* line# computer.cpp:127,128,140,141,302,303,319 */
-    lsft32u2ot(0:32) ::= lsft32u@2(lsft32u2i1(0:32), lsft32u2i2(0:5)); 	/* line# computer.cpp:126,139,333 */
-    add32s1ot(0:32) ::= add32s@1(add32s1i1(0:32), add32s1i2(0:21)); 	/* line# computer.cpp:51,55,60,78,262,266,282,286,299,313 */
-    computer_ret(0:1) ::= computer_ret_r(0:1); 	/* line# computer.cpp:228 */
+    comp32s_1_11ot(0:4) ::= comp32s_1_1@1(comp32s_1_11i1(0:32), comp32s_1_11i2(0:12)); 	/* line# computer.cpp:315 */
+    comp32s_11ot(0:4) ::= comp32s_1@1(comp32s_11i1(0:32), comp32s_11i2(0:32)); 	/* line# computer.cpp:335 */
+    comp32s_12ot(0:4) ::= comp32s_1@2(comp32s_12i1(0:32), comp32s_12i2(0:32)); 	/* line# computer.cpp:278,279 */
+    comp32u_11ot(0:4) ::= comp32u_1@1(comp32u_11i1(0:32), comp32u_11i2(0:32)); 	/* line# computer.cpp:280,281 */
+    comp32u_12ot(0:4) ::= comp32u_1@2(comp32u_12i1(0:32), comp32u_12i2(0:32)); 	/* line# computer.cpp:336 */
+    comp32u_13ot(0:4) ::= comp32u_1@3(comp32u_13i1(0:32), comp32u_13i2(0:32)); 	/* line# computer.cpp:316 */
+    addsub32u1ot(0:32) ::= addsub32u@1(addsub32u1i1(0:32), addsub32u1i2(0:32), addsub32u1_f(0:2)); 	/* line# computer.cpp:72,89,100,120,133,250,258,333 */
+    rsft32s1ot(0:32) ::= rsft32s@1(rsft32s1i1(0:32), rsft32s1i2(0:5)); 	/* line# computer.cpp:322,339 */
+    rsft32u1ot(0:32) ::= rsft32u@1(rsft32u1i1(0:32), rsft32u1i2(0:5)); 	/* line# computer.cpp:95,96,106,107,290,291,293,294,323,340 */
+    lsft32u1ot(0:32) ::= lsft32u@1(lsft32u1i1(0:32), lsft32u1i2(0:5)); 	/* line# computer.cpp:128,129,141,142,303,304,320 */
+    lsft32u2ot(0:32) ::= lsft32u@2(lsft32u2i1(0:32), lsft32u2i2(0:5)); 	/* line# computer.cpp:127,140,334 */
+    add32s1ot(0:32) ::= add32s@1(add32s1i1(0:32), add32s1i2(0:21)); 	/* line# computer.cpp:52,56,61,79,263,267,283,287,300,314 */
+    computer_ret(0:1) ::= computer_ret_r(0:1); 	/* line# computer.cpp:229 */
     imem_arg_MEMB32W65536_RCLK1(0:1) ::= 0(0:1);
-    dmem_arg_MEMB32W65536_RCLK1(0:1) ::= 0(0:1);
-    dmem_arg_MEMB32W65536_WCLK2(0:1) ::= 0(0:1);
-    regs_d01(0:32) ::= (unsigned ter(0:32))(decoder(regs_ad01(0:5))); 	/* line# computer.cpp:19 */
-    regs_rd00(0:32) ::= dmux (regs_ad00(0:5)) { 	/* line# computer.cpp:19 */
+    dmem_arg_MEMB32W4096_RCLK1(0:1) ::= 0(0:1);
+    dmem_arg_MEMB32W4096_WCLK2(0:1) ::= 0(0:1);
+    regs_d01(0:32) ::= (unsigned ter(0:32))(decoder(regs_ad01(0:5))); 	/* line# computer.cpp:20 */
+    regs_rd00(0:32) ::= dmux (regs_ad00(0:5)) { 	/* line# computer.cpp:20 */
         case 0 :  regs_rg00(0:32);
         case 1 :  regs_rg01(0:32);
         case 2 :  regs_rg02(0:32);
@@ -665,187 +662,187 @@ ST1_01 :
         case 31 :  regs_rg31(0:32);
     };
     /* Cyber nmux_multi_asgn = ignore */
-    regs_rg00(0:32) ::= nmux { 	/* line# computer.cpp:19 */
+    regs_rg00(0:32) ::= nmux { 	/* line# computer.cpp:20 */
         when ((unsigned ter(0:1))(regs_we01(0:1) & regs_d01(0:1))) :  regs_wd01(0:32);
         default :  regs_rg00(0:32);
     };
     /* Cyber nmux_multi_asgn = ignore */
-    regs_rg01(0:32) ::= nmux { 	/* line# computer.cpp:19 */
+    regs_rg01(0:32) ::= nmux { 	/* line# computer.cpp:20 */
         when ((unsigned ter(0:1))(regs_we01(0:1) & regs_d01(1:1))) :  regs_wd01(0:32);
         default :  regs_rg01(0:32);
     };
     /* Cyber nmux_multi_asgn = ignore */
-    regs_rg02(0:32) ::= nmux { 	/* line# computer.cpp:19 */
+    regs_rg02(0:32) ::= nmux { 	/* line# computer.cpp:20 */
         when ((unsigned ter(0:1))(regs_we01(0:1) & regs_d01(2:1))) :  regs_wd01(0:32);
         default :  regs_rg02(0:32);
     };
     /* Cyber nmux_multi_asgn = ignore */
-    regs_rg03(0:32) ::= nmux { 	/* line# computer.cpp:19 */
+    regs_rg03(0:32) ::= nmux { 	/* line# computer.cpp:20 */
         when ((unsigned ter(0:1))(regs_we01(0:1) & regs_d01(3:1))) :  regs_wd01(0:32);
         default :  regs_rg03(0:32);
     };
     /* Cyber nmux_multi_asgn = ignore */
-    regs_rg04(0:32) ::= nmux { 	/* line# computer.cpp:19 */
+    regs_rg04(0:32) ::= nmux { 	/* line# computer.cpp:20 */
         when ((unsigned ter(0:1))(regs_we01(0:1) & regs_d01(4:1))) :  regs_wd01(0:32);
         default :  regs_rg04(0:32);
     };
     /* Cyber nmux_multi_asgn = ignore */
-    regs_rg05(0:32) ::= nmux { 	/* line# computer.cpp:19 */
+    regs_rg05(0:32) ::= nmux { 	/* line# computer.cpp:20 */
         when ((unsigned ter(0:1))(regs_we01(0:1) & regs_d01(5:1))) :  regs_wd01(0:32);
         default :  regs_rg05(0:32);
     };
     /* Cyber nmux_multi_asgn = ignore */
-    regs_rg06(0:32) ::= nmux { 	/* line# computer.cpp:19 */
+    regs_rg06(0:32) ::= nmux { 	/* line# computer.cpp:20 */
         when ((unsigned ter(0:1))(regs_we01(0:1) & regs_d01(6:1))) :  regs_wd01(0:32);
         default :  regs_rg06(0:32);
     };
     /* Cyber nmux_multi_asgn = ignore */
-    regs_rg07(0:32) ::= nmux { 	/* line# computer.cpp:19 */
+    regs_rg07(0:32) ::= nmux { 	/* line# computer.cpp:20 */
         when ((unsigned ter(0:1))(regs_we01(0:1) & regs_d01(7:1))) :  regs_wd01(0:32);
         default :  regs_rg07(0:32);
     };
     /* Cyber nmux_multi_asgn = ignore */
-    regs_rg08(0:32) ::= nmux { 	/* line# computer.cpp:19 */
+    regs_rg08(0:32) ::= nmux { 	/* line# computer.cpp:20 */
         when ((unsigned ter(0:1))(regs_we01(0:1) & regs_d01(8:1))) :  regs_wd01(0:32);
         default :  regs_rg08(0:32);
     };
     /* Cyber nmux_multi_asgn = ignore */
-    regs_rg09(0:32) ::= nmux { 	/* line# computer.cpp:19 */
+    regs_rg09(0:32) ::= nmux { 	/* line# computer.cpp:20 */
         when ((unsigned ter(0:1))(regs_we01(0:1) & regs_d01(9:1))) :  regs_wd01(0:32);
         default :  regs_rg09(0:32);
     };
     /* Cyber nmux_multi_asgn = ignore */
-    regs_rg10(0:32) ::= nmux { 	/* line# computer.cpp:19 */
+    regs_rg10(0:32) ::= nmux { 	/* line# computer.cpp:20 */
         when ((unsigned ter(0:1))(regs_we01(0:1) & regs_d01(10:1))) :  regs_wd01(0:32);
         default :  regs_rg10(0:32);
     };
     /* Cyber nmux_multi_asgn = ignore */
-    regs_rg11(0:32) ::= nmux { 	/* line# computer.cpp:19 */
+    regs_rg11(0:32) ::= nmux { 	/* line# computer.cpp:20 */
         when ((unsigned ter(0:1))(regs_we01(0:1) & regs_d01(11:1))) :  regs_wd01(0:32);
         default :  regs_rg11(0:32);
     };
     /* Cyber nmux_multi_asgn = ignore */
-    regs_rg12(0:32) ::= nmux { 	/* line# computer.cpp:19 */
+    regs_rg12(0:32) ::= nmux { 	/* line# computer.cpp:20 */
         when ((unsigned ter(0:1))(regs_we01(0:1) & regs_d01(12:1))) :  regs_wd01(0:32);
         default :  regs_rg12(0:32);
     };
     /* Cyber nmux_multi_asgn = ignore */
-    regs_rg13(0:32) ::= nmux { 	/* line# computer.cpp:19 */
+    regs_rg13(0:32) ::= nmux { 	/* line# computer.cpp:20 */
         when ((unsigned ter(0:1))(regs_we01(0:1) & regs_d01(13:1))) :  regs_wd01(0:32);
         default :  regs_rg13(0:32);
     };
     /* Cyber nmux_multi_asgn = ignore */
-    regs_rg14(0:32) ::= nmux { 	/* line# computer.cpp:19 */
+    regs_rg14(0:32) ::= nmux { 	/* line# computer.cpp:20 */
         when ((unsigned ter(0:1))(regs_we01(0:1) & regs_d01(14:1))) :  regs_wd01(0:32);
         default :  regs_rg14(0:32);
     };
     /* Cyber nmux_multi_asgn = ignore */
-    regs_rg15(0:32) ::= nmux { 	/* line# computer.cpp:19 */
+    regs_rg15(0:32) ::= nmux { 	/* line# computer.cpp:20 */
         when ((unsigned ter(0:1))(regs_we01(0:1) & regs_d01(15:1))) :  regs_wd01(0:32);
         default :  regs_rg15(0:32);
     };
     /* Cyber nmux_multi_asgn = ignore */
-    regs_rg16(0:32) ::= nmux { 	/* line# computer.cpp:19 */
+    regs_rg16(0:32) ::= nmux { 	/* line# computer.cpp:20 */
         when ((unsigned ter(0:1))(regs_we01(0:1) & regs_d01(16:1))) :  regs_wd01(0:32);
         default :  regs_rg16(0:32);
     };
     /* Cyber nmux_multi_asgn = ignore */
-    regs_rg17(0:32) ::= nmux { 	/* line# computer.cpp:19 */
+    regs_rg17(0:32) ::= nmux { 	/* line# computer.cpp:20 */
         when ((unsigned ter(0:1))(regs_we01(0:1) & regs_d01(17:1))) :  regs_wd01(0:32);
         default :  regs_rg17(0:32);
     };
     /* Cyber nmux_multi_asgn = ignore */
-    regs_rg18(0:32) ::= nmux { 	/* line# computer.cpp:19 */
+    regs_rg18(0:32) ::= nmux { 	/* line# computer.cpp:20 */
         when ((unsigned ter(0:1))(regs_we01(0:1) & regs_d01(18:1))) :  regs_wd01(0:32);
         default :  regs_rg18(0:32);
     };
     /* Cyber nmux_multi_asgn = ignore */
-    regs_rg19(0:32) ::= nmux { 	/* line# computer.cpp:19 */
+    regs_rg19(0:32) ::= nmux { 	/* line# computer.cpp:20 */
         when ((unsigned ter(0:1))(regs_we01(0:1) & regs_d01(19:1))) :  regs_wd01(0:32);
         default :  regs_rg19(0:32);
     };
     /* Cyber nmux_multi_asgn = ignore */
-    regs_rg20(0:32) ::= nmux { 	/* line# computer.cpp:19 */
+    regs_rg20(0:32) ::= nmux { 	/* line# computer.cpp:20 */
         when ((unsigned ter(0:1))(regs_we01(0:1) & regs_d01(20:1))) :  regs_wd01(0:32);
         default :  regs_rg20(0:32);
     };
     /* Cyber nmux_multi_asgn = ignore */
-    regs_rg21(0:32) ::= nmux { 	/* line# computer.cpp:19 */
+    regs_rg21(0:32) ::= nmux { 	/* line# computer.cpp:20 */
         when ((unsigned ter(0:1))(regs_we01(0:1) & regs_d01(21:1))) :  regs_wd01(0:32);
         default :  regs_rg21(0:32);
     };
     /* Cyber nmux_multi_asgn = ignore */
-    regs_rg22(0:32) ::= nmux { 	/* line# computer.cpp:19 */
+    regs_rg22(0:32) ::= nmux { 	/* line# computer.cpp:20 */
         when ((unsigned ter(0:1))(regs_we01(0:1) & regs_d01(22:1))) :  regs_wd01(0:32);
         default :  regs_rg22(0:32);
     };
     /* Cyber nmux_multi_asgn = ignore */
-    regs_rg23(0:32) ::= nmux { 	/* line# computer.cpp:19 */
+    regs_rg23(0:32) ::= nmux { 	/* line# computer.cpp:20 */
         when ((unsigned ter(0:1))(regs_we01(0:1) & regs_d01(23:1))) :  regs_wd01(0:32);
         default :  regs_rg23(0:32);
     };
     /* Cyber nmux_multi_asgn = ignore */
-    regs_rg24(0:32) ::= nmux { 	/* line# computer.cpp:19 */
+    regs_rg24(0:32) ::= nmux { 	/* line# computer.cpp:20 */
         when ((unsigned ter(0:1))(regs_we01(0:1) & regs_d01(24:1))) :  regs_wd01(0:32);
         default :  regs_rg24(0:32);
     };
     /* Cyber nmux_multi_asgn = ignore */
-    regs_rg25(0:32) ::= nmux { 	/* line# computer.cpp:19 */
+    regs_rg25(0:32) ::= nmux { 	/* line# computer.cpp:20 */
         when ((unsigned ter(0:1))(regs_we01(0:1) & regs_d01(25:1))) :  regs_wd01(0:32);
         default :  regs_rg25(0:32);
     };
     /* Cyber nmux_multi_asgn = ignore */
-    regs_rg26(0:32) ::= nmux { 	/* line# computer.cpp:19 */
+    regs_rg26(0:32) ::= nmux { 	/* line# computer.cpp:20 */
         when ((unsigned ter(0:1))(regs_we01(0:1) & regs_d01(26:1))) :  regs_wd01(0:32);
         default :  regs_rg26(0:32);
     };
     /* Cyber nmux_multi_asgn = ignore */
-    regs_rg27(0:32) ::= nmux { 	/* line# computer.cpp:19 */
+    regs_rg27(0:32) ::= nmux { 	/* line# computer.cpp:20 */
         when ((unsigned ter(0:1))(regs_we01(0:1) & regs_d01(27:1))) :  regs_wd01(0:32);
         default :  regs_rg27(0:32);
     };
     /* Cyber nmux_multi_asgn = ignore */
-    regs_rg28(0:32) ::= nmux { 	/* line# computer.cpp:19 */
+    regs_rg28(0:32) ::= nmux { 	/* line# computer.cpp:20 */
         when ((unsigned ter(0:1))(regs_we01(0:1) & regs_d01(28:1))) :  regs_wd01(0:32);
         default :  regs_rg28(0:32);
     };
     /* Cyber nmux_multi_asgn = ignore */
-    regs_rg29(0:32) ::= nmux { 	/* line# computer.cpp:19 */
+    regs_rg29(0:32) ::= nmux { 	/* line# computer.cpp:20 */
         when ((unsigned ter(0:1))(regs_we01(0:1) & regs_d01(29:1))) :  regs_wd01(0:32);
         default :  regs_rg29(0:32);
     };
     /* Cyber nmux_multi_asgn = ignore */
-    regs_rg30(0:32) ::= nmux { 	/* line# computer.cpp:19 */
+    regs_rg30(0:32) ::= nmux { 	/* line# computer.cpp:20 */
         when ((unsigned ter(0:1))(regs_we01(0:1) & regs_d01(30:1))) :  regs_wd01(0:32);
         default :  regs_rg30(0:32);
     };
     /* Cyber nmux_multi_asgn = ignore */
-    regs_rg31(0:32) ::= nmux { 	/* line# computer.cpp:19 */
+    regs_rg31(0:32) ::= nmux { 	/* line# computer.cpp:20 */
         when ((unsigned ter(0:1))(regs_we01(0:1) & regs_d01(31:1))) :  regs_wd01(0:32);
         default :  regs_rg31(0:32);
     };
-    FF_halt(0:1) = 0(0:1); 	/* line# computer.cpp:233 */
+    FF_halt(0:1) = 0(0:1); 	/* line# computer.cpp:234 */
     goto ST1_02;
     $
 
 ST1_02 :
-    imem_arg_pio(0:32) = 0(0:32); 	/* line# computer.cpp:236 */
-    RG_03(0:32) = M_121(0:32); 	/* line# computer.cpp:249 */
-    if (CT_01(0:1)) { 	/* line# computer.cpp:235 */
+    imem_arg_pio(0:32) = 0(0:32); 	/* line# computer.cpp:237 */
+    RG_03(0:32) = M_121(0:32); 	/* line# computer.cpp:250 */
+    if (CT_01(0:1)) { 	/* line# computer.cpp:236 */
         JF_01(0:1) = 0(0:1);
-        addsub32u1i1(0:32) = RG_addr_addr1_PC(0:32); 	/* line# computer.cpp:249 */
-        addsub32u1i2(0:32) = 4(0:32); 	/* line# computer.cpp:249 */
+        addsub32u1i1(0:32) = RG_addr_addr1_PC(0:32); 	/* line# computer.cpp:250 */
+        addsub32u1i2(0:32) = 4(0:32); 	/* line# computer.cpp:250 */
         addsub32u1_f(0:2) = 1(0:2);
-        M_121(0:32) = addsub32u1ot(0:32); 	/* line# computer.cpp:249 */
-        imem_arg_MEMB32W65536_RA1(0:16) = RG_addr_addr1_PC(14:16); 	/* line# computer.cpp:236 */
-        imem_arg_MEMB32W65536_RE1(0:1) = 1(0:1); 	/* line# computer.cpp:236 */
+        M_121(0:32) = addsub32u1ot(0:32); 	/* line# computer.cpp:250 */
+        imem_arg_MEMB32W65536_RA1(0:16) = RG_addr_addr1_PC(14:16); 	/* line# computer.cpp:237 */
+        imem_arg_MEMB32W65536_RE1(0:1) = 1(0:1); 	/* line# computer.cpp:237 */
     }
     else {
         JF_01(0:1) = 1(0:1);
-        computer_ret_r(0:1) = FF_halt(0:1); 	/* line# computer.cpp:386 */
+        computer_ret_r(0:1) = FF_halt(0:1); 	/* line# computer.cpp:387 */
     }
-    CT_01(0:1) = ~FF_halt(0:1) & ~|>RG_addr_addr1_PC(0:14); 	/* line# computer.cpp:235 */
-    RG_04(0:1) = CT_01(0:1); 	/* line# computer.cpp:235 */
+    CT_01(0:1) = ~FF_halt(0:1) & ~|>RG_addr_addr1_PC(0:14); 	/* line# computer.cpp:236 */
+    RG_04(0:1) = CT_01(0:1); 	/* line# computer.cpp:236 */
     /* Cyber sfdl_jump = exclusive */
     if (JF_01(0:1)) {
         goto ST1_01;
@@ -856,151 +853,151 @@ ST1_02 :
     $
 
 ST1_03 :
-    dmem_arg_pio6(0:32) = 0(0:32); 	/* line# computer.cpp:115,291 */
-    dmem_arg_pio5(0:32) = 0(0:32); 	/* line# computer.cpp:95,289 */
-    dmem_arg_pio4(0:32) = 0(0:32); 	/* line# computer.cpp:106,290 */
-    dmem_arg_pio3(0:32) = 0(0:32); 	/* line# computer.cpp:95,292 */
-    dmem_arg_pio2(0:32) = 0(0:32); 	/* line# computer.cpp:106,293 */
-    dmem_arg_pio1(0:32) = 0(0:32); 	/* line# computer.cpp:127,128 */
-    dmem_arg_pio(0:32) = 0(0:32); 	/* line# computer.cpp:140,141 */
-    RG_rd(0:5) = rd1_t(0:5); 	/* line# computer.cpp:244 */
-    RG_rs2(0:5) = rs21_t(0:5); 	/* line# computer.cpp:247 */
-    switch (CT_06(0:32)) {	/* CAB */ 	/* line# computer.cpp:251 */
+    dmem_arg_pio6(0:32) = 0(0:32); 	/* line# computer.cpp:116,292 */
+    dmem_arg_pio5(0:32) = 0(0:32); 	/* line# computer.cpp:96,290 */
+    dmem_arg_pio4(0:32) = 0(0:32); 	/* line# computer.cpp:107,291 */
+    dmem_arg_pio3(0:32) = 0(0:32); 	/* line# computer.cpp:96,293 */
+    dmem_arg_pio2(0:32) = 0(0:32); 	/* line# computer.cpp:107,294 */
+    dmem_arg_pio1(0:32) = 0(0:32); 	/* line# computer.cpp:128,129 */
+    dmem_arg_pio(0:32) = 0(0:32); 	/* line# computer.cpp:141,142 */
+    RG_rd(0:5) = rd1_t(0:5); 	/* line# computer.cpp:245 */
+    RG_rs2(0:5) = rs21_t(0:5); 	/* line# computer.cpp:248 */
+    switch (CT_06(0:32)) {	/* CAB */ 	/* line# computer.cpp:252 */
     case 55 : 
-        RG_imm1_instr_word_addr(0:25) = instr_t(0:25); 	/* line# computer.cpp:236 */
-        if (CT_07(0:1)) { 	/* line# computer.cpp:253 */
+        RG_imm1_instr_word_addr(0:25) = instr_t(0:25); 	/* line# computer.cpp:237 */
+        if (CT_07(0:1)) { 	/* line# computer.cpp:254 */
         }
-        CT_07(0:1) = |>rd1_t(0:5); 	/* line# computer.cpp:253 */
-        RG_02(0:1) = CT_07(0:1); 	/* line# computer.cpp:253 */
-        rd1_t(0:5) = instr_t(20:5); 	/* line# computer.cpp:244 */
+        CT_07(0:1) = |>rd1_t(0:5); 	/* line# computer.cpp:254 */
+        RG_02(0:1) = CT_07(0:1); 	/* line# computer.cpp:254 */
+        rd1_t(0:5) = instr_t(20:5); 	/* line# computer.cpp:245 */
         break;
     case 23 : 
-        RG_imm1_instr_word_addr(0:25) = instr_t(0:25); 	/* line# computer.cpp:236 */
-        if (CT_08(0:1)) { 	/* line# computer.cpp:257 */
+        RG_imm1_instr_word_addr(0:25) = instr_t(0:25); 	/* line# computer.cpp:237 */
+        if (CT_08(0:1)) { 	/* line# computer.cpp:258 */
         }
-        CT_08(0:1) = |>rd1_t(0:5); 	/* line# computer.cpp:257 */
-        RG_02(0:1) = CT_08(0:1); 	/* line# computer.cpp:257 */
-        rd1_t(0:5) = instr_t(20:5); 	/* line# computer.cpp:244 */
+        CT_08(0:1) = |>rd1_t(0:5); 	/* line# computer.cpp:258 */
+        RG_02(0:1) = CT_08(0:1); 	/* line# computer.cpp:258 */
+        rd1_t(0:5) = instr_t(20:5); 	/* line# computer.cpp:245 */
         break;
     case 111 : 
-        if (CT_09(0:1)) { 	/* line# computer.cpp:261 */
+        if (CT_09(0:1)) { 	/* line# computer.cpp:262 */
         }
-        CT_09(0:1) = |>rd1_t(0:5); 	/* line# computer.cpp:261 */
-        RG_02(0:1) = CT_09(0:1); 	/* line# computer.cpp:261 */
-        RG_imm1_instr_word_addr(0:25) = instr_t(0:25); 	/* line# computer.cpp:236 */
-        rd1_t(0:5) = instr_t(20:5); 	/* line# computer.cpp:244 */
+        CT_09(0:1) = |>rd1_t(0:5); 	/* line# computer.cpp:262 */
+        RG_02(0:1) = CT_09(0:1); 	/* line# computer.cpp:262 */
+        RG_imm1_instr_word_addr(0:25) = instr_t(0:25); 	/* line# computer.cpp:237 */
+        rd1_t(0:5) = instr_t(20:5); 	/* line# computer.cpp:245 */
         break;
     case 103 : 
-        RG_imm1_instr_word_addr(0:25) = instr_t(0:25); 	/* line# computer.cpp:236 */
-        RG_funct3_rs1(0:5) = instr_t(12:5); 	/* line# computer.cpp:246 */
-        rd1_t(0:5) = instr_t(20:5); 	/* line# computer.cpp:244 */
+        RG_imm1_instr_word_addr(0:25) = instr_t(0:25); 	/* line# computer.cpp:237 */
+        RG_funct3_rs1(0:5) = instr_t(12:5); 	/* line# computer.cpp:247 */
+        rd1_t(0:5) = instr_t(20:5); 	/* line# computer.cpp:245 */
         break;
     case 99 : 
-        RG_funct3_rs1(0:5) = instr_t(12:5); 	/* line# computer.cpp:246 */
-        switch (CT_05(0:32)) {	/* CAB */ 	/* line# computer.cpp:274 */
+        RG_funct3_rs1(0:5) = instr_t(12:5); 	/* line# computer.cpp:247 */
+        switch (CT_05(0:32)) {	/* CAB */ 	/* line# computer.cpp:275 */
         case 0 : 
             regs_ad00(0:5) = rs21_t(0:5);
-            RG_op1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:275 */
-            rs21_t(0:5) = instr_t(7:5); 	/* line# computer.cpp:247 */
+            RG_op1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:276 */
+            rs21_t(0:5) = instr_t(7:5); 	/* line# computer.cpp:248 */
             break;
         case 1 : 
             regs_ad00(0:5) = rs21_t(0:5);
-            RG_op1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:276 */
-            rs21_t(0:5) = instr_t(7:5); 	/* line# computer.cpp:247 */
+            RG_op1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:277 */
+            rs21_t(0:5) = instr_t(7:5); 	/* line# computer.cpp:248 */
             break;
         case 4 : 
             regs_ad00(0:5) = rs21_t(0:5);
-            RG_op1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:277 */
-            rs21_t(0:5) = instr_t(7:5); 	/* line# computer.cpp:247 */
+            RG_op1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:278 */
+            rs21_t(0:5) = instr_t(7:5); 	/* line# computer.cpp:248 */
             break;
         case 5 : 
             regs_ad00(0:5) = rs21_t(0:5);
-            RG_op1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:278 */
-            rs21_t(0:5) = instr_t(7:5); 	/* line# computer.cpp:247 */
+            RG_op1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:279 */
+            rs21_t(0:5) = instr_t(7:5); 	/* line# computer.cpp:248 */
             break;
         case 6 : 
             regs_ad00(0:5) = rs21_t(0:5);
-            RG_op1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:279 */
-            rs21_t(0:5) = instr_t(7:5); 	/* line# computer.cpp:247 */
+            RG_op1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:280 */
+            rs21_t(0:5) = instr_t(7:5); 	/* line# computer.cpp:248 */
             break;
         case 7 : 
             regs_ad00(0:5) = rs21_t(0:5);
-            RG_op1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:280 */
-            rs21_t(0:5) = instr_t(7:5); 	/* line# computer.cpp:247 */
+            RG_op1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:281 */
+            rs21_t(0:5) = instr_t(7:5); 	/* line# computer.cpp:248 */
             break;
         default : 
             break;
         }
-        RG_08(0:32) = CT_05(0:32); 	/* line# computer.cpp:274 */
-        RG_imm1_instr_word_addr(0:25) = instr_t(0:25); 	/* line# computer.cpp:236 */
-        CT_05(0:32) = 0(0:29) :: instr_t(17:3); 	/* line# computer.cpp:274 */
+        RG_08(0:32) = CT_05(0:32); 	/* line# computer.cpp:275 */
+        RG_imm1_instr_word_addr(0:25) = instr_t(0:25); 	/* line# computer.cpp:237 */
+        CT_05(0:32) = 0(0:29) :: instr_t(17:3); 	/* line# computer.cpp:275 */
         break;
     case 3 : 
-        RG_addr_addr1_PC(0:32) = 0(0:30) :: addr_t(30:2); 	/* line# computer.cpp:51,55,286 */
-        switch (CT_04(0:32)) {	/* CAB */ 	/* line# computer.cpp:288 */
+        RG_addr_addr1_PC(0:32) = 0(0:30) :: addr_t(30:2); 	/* line# computer.cpp:52,56,287 */
+        switch (CT_04(0:32)) {	/* CAB */ 	/* line# computer.cpp:289 */
         case 0 : 
-            dmem_arg_MEMB32W65536_RA1(0:16) = addsub32u1ot(14:16); 	/* line# computer.cpp:88,93,95,289 */
-            dmem_arg_MEMB32W65536_RE1(0:1) = 1(0:1); 	/* line# computer.cpp:95,289 */
-            addsub32u1i1(0:32) = addr_t(0:32); 	/* line# computer.cpp:88 */
-            addsub32u1i2(0:32) = 262144(0:32); 	/* line# computer.cpp:88 */
+            dmem_arg_MEMB32W4096_RA1(0:12) = addsub32u1ot(18:12); 	/* line# computer.cpp:89,94,96,290 */
+            dmem_arg_MEMB32W4096_RE1(0:1) = 1(0:1); 	/* line# computer.cpp:96,290 */
+            addsub32u1i1(0:32) = addr_t(0:32); 	/* line# computer.cpp:89 */
+            addsub32u1i2(0:32) = 262144(0:32); 	/* line# computer.cpp:89 */
             addsub32u1_f(0:2) = 2(0:2);
             break;
         case 1 : 
-            dmem_arg_MEMB32W65536_RA1(0:16) = addsub32u1ot(14:16); 	/* line# computer.cpp:99,104,106,290 */
-            dmem_arg_MEMB32W65536_RE1(0:1) = 1(0:1); 	/* line# computer.cpp:106,290 */
-            addsub32u1i1(0:32) = addr_t(0:32); 	/* line# computer.cpp:99 */
-            addsub32u1i2(0:32) = 262144(0:32); 	/* line# computer.cpp:99 */
+            dmem_arg_MEMB32W4096_RA1(0:12) = addsub32u1ot(18:12); 	/* line# computer.cpp:100,105,107,291 */
+            dmem_arg_MEMB32W4096_RE1(0:1) = 1(0:1); 	/* line# computer.cpp:107,291 */
+            addsub32u1i1(0:32) = addr_t(0:32); 	/* line# computer.cpp:100 */
+            addsub32u1i2(0:32) = 262144(0:32); 	/* line# computer.cpp:100 */
             addsub32u1_f(0:2) = 2(0:2);
             break;
         case 2 : 
-            dmem_arg_MEMB32W65536_RA1(0:16) = offset_addr_31_t(0:16); 	/* line# computer.cpp:115,291 */
-            dmem_arg_MEMB32W65536_RE1(0:1) = 1(0:1); 	/* line# computer.cpp:115,291 */
-            offset_addr_31_t(0:18) = addr_t(14:16) :: 0(0:2); 	/* line# computer.cpp:110 */
+            dmem_arg_MEMB32W4096_RA1(0:12) = offset_addr_31_t(0:12); 	/* line# computer.cpp:116,292 */
+            dmem_arg_MEMB32W4096_RE1(0:1) = 1(0:1); 	/* line# computer.cpp:116,292 */
+            offset_addr_31_t(0:14) = addr_t(18:12) :: 0(0:2); 	/* line# computer.cpp:111 */
             break;
         case 4 : 
-            dmem_arg_MEMB32W65536_RA1(0:16) = addsub32u1ot(14:16); 	/* line# computer.cpp:88,93,95,292 */
-            dmem_arg_MEMB32W65536_RE1(0:1) = 1(0:1); 	/* line# computer.cpp:95,292 */
-            addsub32u1i1(0:32) = addr_t(0:32); 	/* line# computer.cpp:88 */
-            addsub32u1i2(0:32) = 262144(0:32); 	/* line# computer.cpp:88 */
+            dmem_arg_MEMB32W4096_RA1(0:12) = addsub32u1ot(18:12); 	/* line# computer.cpp:89,94,96,293 */
+            dmem_arg_MEMB32W4096_RE1(0:1) = 1(0:1); 	/* line# computer.cpp:96,293 */
+            addsub32u1i1(0:32) = addr_t(0:32); 	/* line# computer.cpp:89 */
+            addsub32u1i2(0:32) = 262144(0:32); 	/* line# computer.cpp:89 */
             addsub32u1_f(0:2) = 2(0:2);
             break;
         case 5 : 
-            dmem_arg_MEMB32W65536_RA1(0:16) = addsub32u1ot(14:16); 	/* line# computer.cpp:99,104,106,293 */
-            dmem_arg_MEMB32W65536_RE1(0:1) = 1(0:1); 	/* line# computer.cpp:106,293 */
-            addsub32u1i1(0:32) = addr_t(0:32); 	/* line# computer.cpp:99 */
-            addsub32u1i2(0:32) = 262144(0:32); 	/* line# computer.cpp:99 */
+            dmem_arg_MEMB32W4096_RA1(0:12) = addsub32u1ot(18:12); 	/* line# computer.cpp:100,105,107,294 */
+            dmem_arg_MEMB32W4096_RE1(0:1) = 1(0:1); 	/* line# computer.cpp:107,294 */
+            addsub32u1i1(0:32) = addr_t(0:32); 	/* line# computer.cpp:100 */
+            addsub32u1i2(0:32) = 262144(0:32); 	/* line# computer.cpp:100 */
             addsub32u1_f(0:2) = 2(0:2);
             break;
         default : 
             break;
         }
-        RG_08(0:32) = CT_04(0:32); 	/* line# computer.cpp:288 */
-        rd1_t(0:5) = instr_t(20:5); 	/* line# computer.cpp:244 */
+        RG_08(0:32) = CT_04(0:32); 	/* line# computer.cpp:289 */
+        rd1_t(0:5) = instr_t(20:5); 	/* line# computer.cpp:245 */
         regs_ad00(0:5) = instr_t(12:5);
-        add32s1i1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:51,55,286 */
-        add32s1i2(0:21) = instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:12); 	/* line# computer.cpp:51,55,247,286 */
-        addr_t(0:32) = add32s1ot(0:32); 	/* line# computer.cpp:51,55,286 */
-        CT_04(0:32) = 0(0:29) :: instr_t(17:3); 	/* line# computer.cpp:288 */
+        add32s1i1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:52,56,287 */
+        add32s1i2(0:21) = instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:12); 	/* line# computer.cpp:52,56,248,287 */
+        addr_t(0:32) = add32s1ot(0:32); 	/* line# computer.cpp:52,56,287 */
+        CT_04(0:32) = 0(0:29) :: instr_t(17:3); 	/* line# computer.cpp:289 */
         break;
     case 35 : 
-        RG_addr_addr1_PC(0:32) = 0(0:14) :: addr1_t(14:18); 	/* line# computer.cpp:51,60,299 */
-        switch (CT_03(0:32)) {	/* CAB */ 	/* line# computer.cpp:301 */
+        RG_addr_addr1_PC(0:32) = 0(0:18) :: addr1_t(18:14); 	/* line# computer.cpp:52,61,300 */
+        switch (CT_03(0:32)) {	/* CAB */ 	/* line# computer.cpp:302 */
         case 0 : 
-            word_addr_11_t(0:16) = addsub32u1ot(14:16); 	/* line# computer.cpp:119,124 */
-            dmem_arg_MEMB32W65536_RA1(0:16) = word_addr_11_t(0:16); 	/* line# computer.cpp:127,128 */
-            dmem_arg_MEMB32W65536_RE1(0:1) = 1(0:1); 	/* line# computer.cpp:127,128 */
-            RG_imm1_instr_word_addr(0:25) = 0(0:9) :: word_addr_11_t(0:16); 	/* line# computer.cpp:124 */
-            addsub32u1i1(0:32) = addr1_t(0:32); 	/* line# computer.cpp:119 */
-            addsub32u1i2(0:32) = 262144(0:32); 	/* line# computer.cpp:119 */
+            word_addr_11_t(0:12) = addsub32u1ot(18:12); 	/* line# computer.cpp:120,125 */
+            dmem_arg_MEMB32W4096_RA1(0:12) = word_addr_11_t(0:12); 	/* line# computer.cpp:128,129 */
+            dmem_arg_MEMB32W4096_RE1(0:1) = 1(0:1); 	/* line# computer.cpp:128,129 */
+            RG_imm1_instr_word_addr(0:25) = 0(0:13) :: word_addr_11_t(0:12); 	/* line# computer.cpp:125 */
+            addsub32u1i1(0:32) = addr1_t(0:32); 	/* line# computer.cpp:120 */
+            addsub32u1i2(0:32) = 262144(0:32); 	/* line# computer.cpp:120 */
             addsub32u1_f(0:2) = 2(0:2);
             break;
         case 1 : 
-            word_addr1_t(0:16) = addsub32u1ot(14:16); 	/* line# computer.cpp:132,137 */
-            dmem_arg_MEMB32W65536_RA1(0:16) = word_addr1_t(0:16); 	/* line# computer.cpp:140,141 */
-            dmem_arg_MEMB32W65536_RE1(0:1) = 1(0:1); 	/* line# computer.cpp:140,141 */
-            RG_imm1_instr_word_addr(0:25) = 0(0:9) :: word_addr1_t(0:16); 	/* line# computer.cpp:137 */
-            addsub32u1i1(0:32) = addr1_t(0:32); 	/* line# computer.cpp:132 */
-            addsub32u1i2(0:32) = 262144(0:32); 	/* line# computer.cpp:132 */
+            word_addr1_t(0:12) = addsub32u1ot(18:12); 	/* line# computer.cpp:133,138 */
+            dmem_arg_MEMB32W4096_RA1(0:12) = word_addr1_t(0:12); 	/* line# computer.cpp:141,142 */
+            dmem_arg_MEMB32W4096_RE1(0:1) = 1(0:1); 	/* line# computer.cpp:141,142 */
+            RG_imm1_instr_word_addr(0:25) = 0(0:13) :: word_addr1_t(0:12); 	/* line# computer.cpp:138 */
+            addsub32u1i1(0:32) = addr1_t(0:32); 	/* line# computer.cpp:133 */
+            addsub32u1i2(0:32) = 262144(0:32); 	/* line# computer.cpp:133 */
             addsub32u1_f(0:2) = 2(0:2);
             break;
         case 2 : 
@@ -1008,62 +1005,62 @@ ST1_03 :
         default : 
             break;
         }
-        RG_08(0:32) = CT_03(0:32); 	/* line# computer.cpp:301 */
-        rs21_t(0:5) = instr_t(7:5); 	/* line# computer.cpp:247 */
+        RG_08(0:32) = CT_03(0:32); 	/* line# computer.cpp:302 */
+        rs21_t(0:5) = instr_t(7:5); 	/* line# computer.cpp:248 */
         regs_ad00(0:5) = instr_t(12:5);
-        add32s1i1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:51,60,299 */
-        M_132(0:12) = (signed ter(0:12))(instr_t(0:7) :: instr_t(20:5)); 	/* line# computer.cpp:51,59,60,244,248,299 */
-        add32s1i2(0:21) = M_132(0:1) :: M_132(0:1) :: M_132(0:1) :: M_132(0:1) :: M_132(0:1) :: M_132(0:1) :: M_132(0:1) :: M_132(0:1) :: M_132(0:1) :: M_132(0:12); 	/* line# computer.cpp:51,59,60,244,248,299 */
-        addr1_t(0:32) = add32s1ot(0:32); 	/* line# computer.cpp:51,60,299 */
-        CT_03(0:32) = 0(0:29) :: instr_t(17:3); 	/* line# computer.cpp:301 */
+        add32s1i1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:52,61,300 */
+        M_132(0:12) = (signed ter(0:12))(instr_t(0:7) :: instr_t(20:5)); 	/* line# computer.cpp:52,60,61,245,249,300 */
+        add32s1i2(0:21) = M_132(0:1) :: M_132(0:1) :: M_132(0:1) :: M_132(0:1) :: M_132(0:1) :: M_132(0:1) :: M_132(0:1) :: M_132(0:1) :: M_132(0:1) :: M_132(0:12); 	/* line# computer.cpp:52,60,61,245,249,300 */
+        addr1_t(0:32) = add32s1ot(0:32); 	/* line# computer.cpp:52,61,300 */
+        CT_03(0:32) = 0(0:29) :: instr_t(17:3); 	/* line# computer.cpp:302 */
         break;
     case 19 : 
-        RG_funct3_rs1(0:5) = rs11_t_2(0:5); 	/* line# computer.cpp:246 */
-        switch (CT_02(0:32)) {	/* CAB */ 	/* line# computer.cpp:312 */
+        RG_funct3_rs1(0:5) = rs11_t_2(0:5); 	/* line# computer.cpp:247 */
+        switch (CT_02(0:32)) {	/* CAB */ 	/* line# computer.cpp:313 */
         case 0 : 
-            RG_imm1_instr_word_addr(0:25) = instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:12); 	/* line# computer.cpp:51,55,309 */
+            RG_imm1_instr_word_addr(0:25) = instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:12); 	/* line# computer.cpp:52,56,310 */
             break;
         case 2 : 
-            comp32s_1_11i1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:314 */
-            comp32s_1_11i2(0:12) = instr_t(0:12); 	/* line# computer.cpp:314 */
-            RG_02(0:1) = comp32s_1_11ot(0:1); 	/* line# computer.cpp:314 */
+            comp32s_1_11i1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:315 */
+            comp32s_1_11i2(0:12) = instr_t(0:12); 	/* line# computer.cpp:315 */
+            RG_02(0:1) = comp32s_1_11ot(0:1); 	/* line# computer.cpp:315 */
             regs_ad00(0:5) = rs11_t_2(0:5);
             break;
         case 3 : 
-            comp32u_13i1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:315 */
-            comp32u_13i2(0:32) = imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: (unsigned var(0:12))(imm11_t_4(0:12)); 	/* line# computer.cpp:315 */
-            RG_02(0:1) = comp32u_13ot(0:1); 	/* line# computer.cpp:315 */
-            imm11_t_4(0:12) = instr_t(0:12); 	/* line# computer.cpp:51,55,309 */
+            comp32u_13i1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:316 */
+            comp32u_13i2(0:32) = imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: imm11_t_4(0:1) :: (unsigned var(0:12))(imm11_t_4(0:12)); 	/* line# computer.cpp:316 */
+            RG_02(0:1) = comp32u_13ot(0:1); 	/* line# computer.cpp:316 */
+            imm11_t_4(0:12) = instr_t(0:12); 	/* line# computer.cpp:52,56,310 */
             regs_ad00(0:5) = rs11_t_2(0:5);
             break;
         case 4 : 
-            RG_imm1_instr_word_addr(0:25) = instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:12); 	/* line# computer.cpp:51,55,309 */
+            RG_imm1_instr_word_addr(0:25) = instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:12); 	/* line# computer.cpp:52,56,310 */
             break;
         case 6 : 
-            RG_imm1_instr_word_addr(0:25) = instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:12); 	/* line# computer.cpp:51,55,309 */
+            RG_imm1_instr_word_addr(0:25) = instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:12); 	/* line# computer.cpp:52,56,310 */
             break;
         case 7 : 
-            RG_imm1_instr_word_addr(0:25) = instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:12); 	/* line# computer.cpp:51,55,309 */
+            RG_imm1_instr_word_addr(0:25) = instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:1) :: instr_t(0:12); 	/* line# computer.cpp:52,56,310 */
             break;
         case 1 : 
-            rs21_t(0:5) = instr_t(7:5); 	/* line# computer.cpp:247 */
+            rs21_t(0:5) = instr_t(7:5); 	/* line# computer.cpp:248 */
             break;
         case 5 : 
-            RG_imm1_instr_word_addr(0:25) = instr_t(0:25); 	/* line# computer.cpp:236 */
-            rs21_t(0:5) = instr_t(7:5); 	/* line# computer.cpp:247 */
+            RG_imm1_instr_word_addr(0:25) = instr_t(0:25); 	/* line# computer.cpp:237 */
+            rs21_t(0:5) = instr_t(7:5); 	/* line# computer.cpp:248 */
             break;
         }
-        RG_08(0:32) = CT_02(0:32); 	/* line# computer.cpp:312 */
-        rd1_t(0:5) = instr_t(20:5); 	/* line# computer.cpp:244 */
-        rs11_t_2(0:5) = instr_t(12:5); 	/* line# computer.cpp:246 */
-        CT_02(0:32) = 0(0:29) :: instr_t(17:3); 	/* line# computer.cpp:312 */
+        RG_08(0:32) = CT_02(0:32); 	/* line# computer.cpp:313 */
+        rd1_t(0:5) = instr_t(20:5); 	/* line# computer.cpp:245 */
+        rs11_t_2(0:5) = instr_t(12:5); 	/* line# computer.cpp:247 */
+        CT_02(0:32) = 0(0:29) :: instr_t(17:3); 	/* line# computer.cpp:313 */
         break;
     case 51 : 
-        RG_op1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:329 */
-        RG_funct3_rs1(0:5) = 0(0:2) :: instr_t(17:3); 	/* line# computer.cpp:245 */
-        RG_imm1_instr_word_addr(0:25) = instr_t(0:25); 	/* line# computer.cpp:236 */
-        rd1_t(0:5) = instr_t(20:5); 	/* line# computer.cpp:244 */
-        rs21_t(0:5) = instr_t(7:5); 	/* line# computer.cpp:247 */
+        RG_op1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:330 */
+        RG_funct3_rs1(0:5) = 0(0:2) :: instr_t(17:3); 	/* line# computer.cpp:246 */
+        RG_imm1_instr_word_addr(0:25) = instr_t(0:25); 	/* line# computer.cpp:237 */
+        rd1_t(0:5) = instr_t(20:5); 	/* line# computer.cpp:245 */
+        rs21_t(0:5) = instr_t(7:5); 	/* line# computer.cpp:248 */
         regs_ad00(0:5) = instr_t(12:5);
         break;
     case 15 : 
@@ -1073,65 +1070,65 @@ ST1_03 :
     default : 
         break;
     }
-    RG_07(0:32) = CT_06(0:32); 	/* line# computer.cpp:251 */
-    instr_t(0:32) = imem_arg_MEMB32W65536_RD1(0:32); 	/* line# computer.cpp:236 */
-    CT_06(0:32) = 0(0:25) :: instr_t(25:7); 	/* line# computer.cpp:243,251 */
+    RG_07(0:32) = CT_06(0:32); 	/* line# computer.cpp:252 */
+    instr_t(0:32) = imem_arg_MEMB32W65536_RD1(0:32); 	/* line# computer.cpp:237 */
+    CT_06(0:32) = 0(0:25) :: instr_t(25:7); 	/* line# computer.cpp:244,252 */
     goto ST1_04;
     $
 
 ST1_04 :
-    switch (RG_07(0:32)) {	/* CAB */ 	/* line# computer.cpp:251 */
+    switch (RG_07(0:32)) {	/* CAB */ 	/* line# computer.cpp:252 */
     case 55 : 
-        if (RG_02(0:1)) { 	/* line# computer.cpp:253 */
-            regs_ad01(0:5) = RG_rd(0:5); 	/* line# computer.cpp:71,253 */
-            regs_wd01(0:32) = RG_imm1_instr_word_addr(0:20) :: 0(0:12); 	/* line# computer.cpp:71,253 */
-            regs_we01(0:1) = 1(0:1); 	/* line# computer.cpp:71,253 */
+        if (RG_02(0:1)) { 	/* line# computer.cpp:254 */
+            regs_ad01(0:5) = RG_rd(0:5); 	/* line# computer.cpp:72,254 */
+            regs_wd01(0:32) = RG_imm1_instr_word_addr(0:20) :: 0(0:12); 	/* line# computer.cpp:72,254 */
+            regs_we01(0:1) = 1(0:1); 	/* line# computer.cpp:72,254 */
         }
-        next_pc_t3(0:32) = RG_03(0:32); 	/* line# computer.cpp:249 */
+        next_pc_t3(0:32) = RG_03(0:32); 	/* line# computer.cpp:250 */
         break;
     case 23 : 
-        if (RG_02(0:1)) { 	/* line# computer.cpp:257 */
-            addsub32u1i1(0:32) = RG_addr_addr1_PC(0:32); 	/* line# computer.cpp:71,257 */
-            addsub32u1i2(0:32) = RG_imm1_instr_word_addr(0:20) :: 0(0:12); 	/* line# computer.cpp:71,257 */
+        if (RG_02(0:1)) { 	/* line# computer.cpp:258 */
+            addsub32u1i1(0:32) = RG_addr_addr1_PC(0:32); 	/* line# computer.cpp:72,258 */
+            addsub32u1i2(0:32) = RG_imm1_instr_word_addr(0:20) :: 0(0:12); 	/* line# computer.cpp:72,258 */
             addsub32u1_f(0:2) = 1(0:2);
-            regs_ad01(0:5) = RG_rd(0:5); 	/* line# computer.cpp:71,257 */
-            regs_wd01(0:32) = addsub32u1ot(0:32); 	/* line# computer.cpp:71,257 */
-            regs_we01(0:1) = 1(0:1); 	/* line# computer.cpp:71,257 */
+            regs_ad01(0:5) = RG_rd(0:5); 	/* line# computer.cpp:72,258 */
+            regs_wd01(0:32) = addsub32u1ot(0:32); 	/* line# computer.cpp:72,258 */
+            regs_we01(0:1) = 1(0:1); 	/* line# computer.cpp:72,258 */
         }
-        next_pc_t3(0:32) = RG_03(0:32); 	/* line# computer.cpp:249 */
+        next_pc_t3(0:32) = RG_03(0:32); 	/* line# computer.cpp:250 */
         break;
     case 111 : 
-        if (RG_02(0:1)) { 	/* line# computer.cpp:261 */
-            regs_ad01(0:5) = RG_rd(0:5); 	/* line# computer.cpp:261 */
-            regs_wd01(0:32) = RG_03(0:32); 	/* line# computer.cpp:261 */
-            regs_we01(0:1) = 1(0:1); 	/* line# computer.cpp:261 */
+        if (RG_02(0:1)) { 	/* line# computer.cpp:262 */
+            regs_ad01(0:5) = RG_rd(0:5); 	/* line# computer.cpp:262 */
+            regs_wd01(0:32) = RG_03(0:32); 	/* line# computer.cpp:262 */
+            regs_we01(0:1) = 1(0:1); 	/* line# computer.cpp:262 */
         }
-        add32s1i1(0:32) = RG_addr_addr1_PC(0:32); 	/* line# computer.cpp:51,78,262 */
-        add32s1i2(0:21) = RG_imm1_instr_word_addr(0:1) :: (RG_imm1_instr_word_addr(12:8) :: RG_imm1_instr_word_addr(11:1) :: (RG_imm1_instr_word_addr(1:10) :: 0(0:1))); 	/* line# computer.cpp:51,74,75,76,77,78,245,247,262 */
-        next_pc_t3(0:32) = add32s1ot(0:32); 	/* line# computer.cpp:51,78,262 */
+        add32s1i1(0:32) = RG_addr_addr1_PC(0:32); 	/* line# computer.cpp:52,79,263 */
+        add32s1i2(0:21) = RG_imm1_instr_word_addr(0:1) :: (RG_imm1_instr_word_addr(12:8) :: RG_imm1_instr_word_addr(11:1) :: (RG_imm1_instr_word_addr(1:10) :: 0(0:1))); 	/* line# computer.cpp:52,75,76,77,78,79,246,248,263 */
+        next_pc_t3(0:32) = add32s1ot(0:32); 	/* line# computer.cpp:52,79,263 */
         break;
     case 103 : 
-        if (|>RG_rd(0:5)) { 	/* line# computer.cpp:267 */
-            regs_ad01(0:5) = RG_rd(0:5); 	/* line# computer.cpp:267 */
-            regs_wd01(0:32) = RG_03(0:32); 	/* line# computer.cpp:267 */
-            regs_we01(0:1) = 1(0:1); 	/* line# computer.cpp:267 */
+        if (|>RG_rd(0:5)) { 	/* line# computer.cpp:268 */
+            regs_ad01(0:5) = RG_rd(0:5); 	/* line# computer.cpp:268 */
+            regs_wd01(0:32) = RG_03(0:32); 	/* line# computer.cpp:268 */
+            regs_we01(0:1) = 1(0:1); 	/* line# computer.cpp:268 */
         }
         regs_ad00(0:5) = RG_funct3_rs1(0:5);
-        add32s1i1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:51,55,266 */
-        add32s1i2(0:21) = (unsigned)(RG_imm1_instr_word_addr(0:1)) :: (unsigned)(RG_imm1_instr_word_addr(0:1)) :: (unsigned)(RG_imm1_instr_word_addr(0:1)) :: (unsigned)(RG_imm1_instr_word_addr(0:1)) :: (unsigned)(RG_imm1_instr_word_addr(0:1)) :: (unsigned)(RG_imm1_instr_word_addr(0:1)) :: (unsigned)(RG_imm1_instr_word_addr(0:1)) :: (unsigned)(RG_imm1_instr_word_addr(0:1)) :: (unsigned)(RG_imm1_instr_word_addr(0:1)) :: RG_imm1_instr_word_addr(0:12); 	/* line# computer.cpp:51,55,247,266 */
-        next_pc_t3(0:32) = add32s1ot(0:31) :: 0(0:1); 	/* line# computer.cpp:51,55,266,268 */
+        add32s1i1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:52,56,267 */
+        add32s1i2(0:21) = (unsigned)(RG_imm1_instr_word_addr(0:1)) :: (unsigned)(RG_imm1_instr_word_addr(0:1)) :: (unsigned)(RG_imm1_instr_word_addr(0:1)) :: (unsigned)(RG_imm1_instr_word_addr(0:1)) :: (unsigned)(RG_imm1_instr_word_addr(0:1)) :: (unsigned)(RG_imm1_instr_word_addr(0:1)) :: (unsigned)(RG_imm1_instr_word_addr(0:1)) :: (unsigned)(RG_imm1_instr_word_addr(0:1)) :: (unsigned)(RG_imm1_instr_word_addr(0:1)) :: RG_imm1_instr_word_addr(0:12); 	/* line# computer.cpp:52,56,248,267 */
+        next_pc_t3(0:32) = add32s1ot(0:31) :: 0(0:1); 	/* line# computer.cpp:52,56,267,269 */
         break;
     case 99 : 
-        take_t3(0:1) = dmux (RG_08(0:32)) { 	/* line# computer.cpp:274 */
-            case 0 :  ~|>(regs_rd00(0:32) ^ (unsigned ter(0:32))(RG_op1(0:32))); 	/* line# computer.cpp:275 */
-            case 1 :  |>(regs_rd00(0:32) ^ (unsigned ter(0:32))(RG_op1(0:32))); 	/* line# computer.cpp:276 */
-            case 4 :  comp32s_12ot(0:1); 	/* line# computer.cpp:277 */
-            case 5 :  comp32s_12ot(3:1); 	/* line# computer.cpp:278 */
-            case 6 :  comp32u_11ot(0:1); 	/* line# computer.cpp:279 */
-            case 7 :  comp32u_11ot(3:1); 	/* line# computer.cpp:280 */
-            default :  0(0:1); 	/* line# computer.cpp:273 */
+        take_t3(0:1) = dmux (RG_08(0:32)) { 	/* line# computer.cpp:275 */
+            case 0 :  ~|>(regs_rd00(0:32) ^ (unsigned ter(0:32))(RG_op1(0:32))); 	/* line# computer.cpp:276 */
+            case 1 :  |>(regs_rd00(0:32) ^ (unsigned ter(0:32))(RG_op1(0:32))); 	/* line# computer.cpp:277 */
+            case 4 :  comp32s_12ot(0:1); 	/* line# computer.cpp:278 */
+            case 5 :  comp32s_12ot(3:1); 	/* line# computer.cpp:279 */
+            case 6 :  comp32u_11ot(0:1); 	/* line# computer.cpp:280 */
+            case 7 :  comp32u_11ot(3:1); 	/* line# computer.cpp:281 */
+            default :  0(0:1); 	/* line# computer.cpp:274 */
         };
-        switch (RG_08(0:32)) {	/* CAB */ 	/* line# computer.cpp:274 */
+        switch (RG_08(0:32)) {	/* CAB */ 	/* line# computer.cpp:275 */
         case 0 : 
             regs_ad00(0:5) = RG_funct3_rs1(0:5);
             break;
@@ -1140,256 +1137,256 @@ ST1_04 :
             break;
         case 4 : 
             regs_ad00(0:5) = RG_funct3_rs1(0:5);
-            comp32s_12i1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:277 */
-            comp32s_12i2(0:32) = (signed ter(0:32))(RG_op1(0:32)); 	/* line# computer.cpp:277 */
-            break;
-        case 5 : 
-            regs_ad00(0:5) = RG_funct3_rs1(0:5);
             comp32s_12i1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:278 */
             comp32s_12i2(0:32) = (signed ter(0:32))(RG_op1(0:32)); 	/* line# computer.cpp:278 */
             break;
+        case 5 : 
+            regs_ad00(0:5) = RG_funct3_rs1(0:5);
+            comp32s_12i1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:279 */
+            comp32s_12i2(0:32) = (signed ter(0:32))(RG_op1(0:32)); 	/* line# computer.cpp:279 */
+            break;
         case 6 : 
-            comp32u_11i1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:279 */
-            comp32u_11i2(0:32) = (unsigned ter(0:32))(RG_op1(0:32)); 	/* line# computer.cpp:279 */
+            comp32u_11i1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:280 */
+            comp32u_11i2(0:32) = (unsigned ter(0:32))(RG_op1(0:32)); 	/* line# computer.cpp:280 */
             regs_ad00(0:5) = RG_funct3_rs1(0:5);
             break;
         case 7 : 
-            comp32u_11i1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:280 */
-            comp32u_11i2(0:32) = (unsigned ter(0:32))(RG_op1(0:32)); 	/* line# computer.cpp:280 */
+            comp32u_11i1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:281 */
+            comp32u_11i2(0:32) = (unsigned ter(0:32))(RG_op1(0:32)); 	/* line# computer.cpp:281 */
             regs_ad00(0:5) = RG_funct3_rs1(0:5);
             break;
         default : 
             break;
         }
         next_pc_t3(0:32) = M_97_t(0:31) :: RG_addr_addr1_PC(31:1);
-        if (take_t3(0:1)) { 	/* line# computer.cpp:282 */
-            M_97_t(0:31) = add32s1ot(0:31); 	/* line# computer.cpp:282 */
-            add32s1i1(0:32) = RG_addr_addr1_PC(0:32); 	/* line# computer.cpp:282 */
-            M_133(0:13) = (signed ter(0:13))(RG_imm1_instr_word_addr(0:1) :: (RG_imm1_instr_word_addr(24:1) :: RG_imm1_instr_word_addr(1:6) :: (RG_imm1_instr_word_addr(20:4) :: 0(0:1)))); 	/* line# computer.cpp:51,64,65,66,67,68,248,272,282 */
-            add32s1i2(0:21) = M_133(0:1) :: M_133(0:1) :: M_133(0:1) :: M_133(0:1) :: M_133(0:1) :: M_133(0:1) :: M_133(0:1) :: M_133(0:1) :: M_133(0:13); 	/* line# computer.cpp:51,64,65,66,67,68,248,272,282 */
+        if (take_t3(0:1)) { 	/* line# computer.cpp:283 */
+            M_97_t(0:31) = add32s1ot(0:31); 	/* line# computer.cpp:283 */
+            add32s1i1(0:32) = RG_addr_addr1_PC(0:32); 	/* line# computer.cpp:283 */
+            M_133(0:13) = (signed ter(0:13))(RG_imm1_instr_word_addr(0:1) :: (RG_imm1_instr_word_addr(24:1) :: RG_imm1_instr_word_addr(1:6) :: (RG_imm1_instr_word_addr(20:4) :: 0(0:1)))); 	/* line# computer.cpp:52,65,66,67,68,69,249,273,283 */
+            add32s1i2(0:21) = M_133(0:1) :: M_133(0:1) :: M_133(0:1) :: M_133(0:1) :: M_133(0:1) :: M_133(0:1) :: M_133(0:1) :: M_133(0:1) :: M_133(0:13); 	/* line# computer.cpp:52,65,66,67,68,69,249,273,283 */
         }
         else {
             M_97_t(0:31) = RG_03(0:30) :: RG_addr_addr1_PC(30:1);
         }
         break;
     case 3 : 
-        val2_t4(0:32) = dmux (RG_08(0:32)) { 	/* line# computer.cpp:288 */
-            case 0 :  M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: (unsigned ter(0:8))(M_95_t(0:8)); 	/* line# computer.cpp:51,289 */
-            case 1 :  M_96_t(0:1) :: M_96_t(0:1) :: M_96_t(0:1) :: M_96_t(0:1) :: M_96_t(0:1) :: M_96_t(0:1) :: M_96_t(0:1) :: M_96_t(0:1) :: M_96_t(0:1) :: M_96_t(0:1) :: M_96_t(0:1) :: M_96_t(0:1) :: M_96_t(0:1) :: M_96_t(0:1) :: M_96_t(0:1) :: M_96_t(0:1) :: (unsigned ter(0:16))(M_96_t(0:16)); 	/* line# computer.cpp:51,290 */
-            case 2 :  dmem_arg_MEMB32W65536_RD1(0:32); 	/* line# computer.cpp:115,291 */
-            case 4 :  0(0:24) :: rsft32u1ot(24:8); 	/* line# computer.cpp:94,95,292 */
-            case 5 :  0(0:16) :: rsft32u1ot(16:16); 	/* line# computer.cpp:105,106,293 */
-            default :  0(0:32); 	/* line# computer.cpp:287 */
+        val2_t4(0:32) = dmux (RG_08(0:32)) { 	/* line# computer.cpp:289 */
+            case 0 :  M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: M_95_t(0:1) :: (unsigned ter(0:8))(M_95_t(0:8)); 	/* line# computer.cpp:52,290 */
+            case 1 :  M_96_t(0:1) :: M_96_t(0:1) :: M_96_t(0:1) :: M_96_t(0:1) :: M_96_t(0:1) :: M_96_t(0:1) :: M_96_t(0:1) :: M_96_t(0:1) :: M_96_t(0:1) :: M_96_t(0:1) :: M_96_t(0:1) :: M_96_t(0:1) :: M_96_t(0:1) :: M_96_t(0:1) :: M_96_t(0:1) :: M_96_t(0:1) :: (unsigned ter(0:16))(M_96_t(0:16)); 	/* line# computer.cpp:52,291 */
+            case 2 :  dmem_arg_MEMB32W4096_RD1(0:32); 	/* line# computer.cpp:116,292 */
+            case 4 :  0(0:24) :: rsft32u1ot(24:8); 	/* line# computer.cpp:95,96,293 */
+            case 5 :  0(0:16) :: rsft32u1ot(16:16); 	/* line# computer.cpp:106,107,294 */
+            default :  0(0:32); 	/* line# computer.cpp:288 */
         };
-        switch (RG_08(0:32)) {	/* CAB */ 	/* line# computer.cpp:288 */
+        switch (RG_08(0:32)) {	/* CAB */ 	/* line# computer.cpp:289 */
         case 0 : 
-            M_95_t(0:8) = rsft32u1ot(24:8); 	/* line# computer.cpp:51,94,95,289 */
-            rsft32u1i1(0:32) = dmem_arg_MEMB32W65536_RD1(0:32); 	/* line# computer.cpp:94,95,289 */
-            rsft32u1i2(0:5) = RG_addr_addr1_PC(30:2) :: 0(0:3); 	/* line# computer.cpp:94,95,289 */
+            M_95_t(0:8) = rsft32u1ot(24:8); 	/* line# computer.cpp:52,95,96,290 */
+            rsft32u1i1(0:32) = dmem_arg_MEMB32W4096_RD1(0:32); 	/* line# computer.cpp:95,96,290 */
+            rsft32u1i2(0:5) = RG_addr_addr1_PC(30:2) :: 0(0:3); 	/* line# computer.cpp:95,96,290 */
             break;
         case 1 : 
-            M_96_t(0:16) = rsft32u1ot(16:16); 	/* line# computer.cpp:51,105,106,290 */
-            rsft32u1i1(0:32) = dmem_arg_MEMB32W65536_RD1(0:32); 	/* line# computer.cpp:105,106,290 */
-            rsft32u1i2(0:5) = RG_addr_addr1_PC(30:2) :: 0(0:3); 	/* line# computer.cpp:105,106,290 */
+            M_96_t(0:16) = rsft32u1ot(16:16); 	/* line# computer.cpp:52,106,107,291 */
+            rsft32u1i1(0:32) = dmem_arg_MEMB32W4096_RD1(0:32); 	/* line# computer.cpp:106,107,291 */
+            rsft32u1i2(0:5) = RG_addr_addr1_PC(30:2) :: 0(0:3); 	/* line# computer.cpp:106,107,291 */
             break;
         case 2 : 
             break;
         case 4 : 
-            rsft32u1i1(0:32) = dmem_arg_MEMB32W65536_RD1(0:32); 	/* line# computer.cpp:94,95,292 */
-            rsft32u1i2(0:5) = RG_addr_addr1_PC(30:2) :: 0(0:3); 	/* line# computer.cpp:94,95,292 */
+            rsft32u1i1(0:32) = dmem_arg_MEMB32W4096_RD1(0:32); 	/* line# computer.cpp:95,96,293 */
+            rsft32u1i2(0:5) = RG_addr_addr1_PC(30:2) :: 0(0:3); 	/* line# computer.cpp:95,96,293 */
             break;
         case 5 : 
-            rsft32u1i1(0:32) = dmem_arg_MEMB32W65536_RD1(0:32); 	/* line# computer.cpp:105,106,293 */
-            rsft32u1i2(0:5) = RG_addr_addr1_PC(30:2) :: 0(0:3); 	/* line# computer.cpp:105,106,293 */
+            rsft32u1i1(0:32) = dmem_arg_MEMB32W4096_RD1(0:32); 	/* line# computer.cpp:106,107,294 */
+            rsft32u1i2(0:5) = RG_addr_addr1_PC(30:2) :: 0(0:3); 	/* line# computer.cpp:106,107,294 */
             break;
         default : 
             break;
         }
-        next_pc_t3(0:32) = RG_03(0:32); 	/* line# computer.cpp:249 */
-        if (|>RG_rd(0:5)) { 	/* line# computer.cpp:295 */
-            regs_ad01(0:5) = RG_rd(0:5); 	/* line# computer.cpp:295 */
-            regs_wd01(0:32) = val2_t4(0:32); 	/* line# computer.cpp:295 */
-            regs_we01(0:1) = 1(0:1); 	/* line# computer.cpp:295 */
+        next_pc_t3(0:32) = RG_03(0:32); 	/* line# computer.cpp:250 */
+        if (|>RG_rd(0:5)) { 	/* line# computer.cpp:296 */
+            regs_ad01(0:5) = RG_rd(0:5); 	/* line# computer.cpp:296 */
+            regs_wd01(0:32) = val2_t4(0:32); 	/* line# computer.cpp:296 */
+            regs_we01(0:1) = 1(0:1); 	/* line# computer.cpp:296 */
         }
         break;
     case 35 : 
-        switch (RG_08(0:32)) {	/* CAB */ 	/* line# computer.cpp:301 */
+        switch (RG_08(0:32)) {	/* CAB */ 	/* line# computer.cpp:302 */
         case 0 : 
-            lsft32u1i1(0:32) = 0(0:24) :: BF_12_t(24:8); 	/* line# computer.cpp:127,128,302 */
-            lsft32u1i2(0:5) = M_701_t(0:5); 	/* line# computer.cpp:127,128,302 */
-            dmem_arg_MEMB32W65536_WD2(0:32) = dmem_arg_MEMB32W65536_RD1(0:32) & ~lsft32u2ot(0:32) | lsft32u1ot(0:32); 	/* line# computer.cpp:126,127,128,302 */
-            dmem_arg_MEMB32W65536_WA2(0:16) = RG_imm1_instr_word_addr(9:16); 	/* line# computer.cpp:126,127,128 */
-            dmem_arg_MEMB32W65536_WE2(0:1) = 1(0:1); 	/* line# computer.cpp:126,127,128 */
-            M_701_t(0:5) = RG_addr_addr1_PC(30:2) :: 0(0:3); 	/* line# computer.cpp:125,126 */
-            lsft32u2i1(0:32) = 255(0:32); 	/* line# computer.cpp:126 */
-            lsft32u2i2(0:5) = M_701_t(0:5); 	/* line# computer.cpp:126 */
+            lsft32u1i1(0:32) = 0(0:24) :: BF_12_t(24:8); 	/* line# computer.cpp:128,129,303 */
+            lsft32u1i2(0:5) = M_701_t(0:5); 	/* line# computer.cpp:128,129,303 */
+            dmem_arg_MEMB32W4096_WD2(0:32) = dmem_arg_MEMB32W4096_RD1(0:32) & ~lsft32u2ot(0:32) | lsft32u1ot(0:32); 	/* line# computer.cpp:127,128,129,303 */
+            dmem_arg_MEMB32W4096_WA2(0:12) = RG_imm1_instr_word_addr(13:12); 	/* line# computer.cpp:127,128,129 */
+            dmem_arg_MEMB32W4096_WE2(0:1) = 1(0:1); 	/* line# computer.cpp:127,128,129 */
+            M_701_t(0:5) = RG_addr_addr1_PC(30:2) :: 0(0:3); 	/* line# computer.cpp:126,127 */
+            lsft32u2i1(0:32) = 255(0:32); 	/* line# computer.cpp:127 */
+            lsft32u2i2(0:5) = M_701_t(0:5); 	/* line# computer.cpp:127 */
             break;
         case 1 : 
-            lsft32u1i1(0:32) = 0(0:16) :: BF_12_t(16:16); 	/* line# computer.cpp:140,141,303 */
-            lsft32u1i2(0:5) = M_711_t(0:5); 	/* line# computer.cpp:140,141,303 */
-            dmem_arg_MEMB32W65536_WD2(0:32) = dmem_arg_MEMB32W65536_RD1(0:32) & ~lsft32u2ot(0:32) | lsft32u1ot(0:32); 	/* line# computer.cpp:139,140,141,303 */
-            dmem_arg_MEMB32W65536_WA2(0:16) = RG_imm1_instr_word_addr(9:16); 	/* line# computer.cpp:139,140,141 */
-            dmem_arg_MEMB32W65536_WE2(0:1) = 1(0:1); 	/* line# computer.cpp:139,140,141 */
-            M_711_t(0:5) = RG_addr_addr1_PC(30:2) :: 0(0:3); 	/* line# computer.cpp:138,139 */
-            lsft32u2i1(0:32) = 65535(0:32); 	/* line# computer.cpp:139 */
-            lsft32u2i2(0:5) = M_711_t(0:5); 	/* line# computer.cpp:139 */
+            lsft32u1i1(0:32) = 0(0:16) :: BF_12_t(16:16); 	/* line# computer.cpp:141,142,304 */
+            lsft32u1i2(0:5) = M_711_t(0:5); 	/* line# computer.cpp:141,142,304 */
+            dmem_arg_MEMB32W4096_WD2(0:32) = dmem_arg_MEMB32W4096_RD1(0:32) & ~lsft32u2ot(0:32) | lsft32u1ot(0:32); 	/* line# computer.cpp:140,141,142,304 */
+            dmem_arg_MEMB32W4096_WA2(0:12) = RG_imm1_instr_word_addr(13:12); 	/* line# computer.cpp:140,141,142 */
+            dmem_arg_MEMB32W4096_WE2(0:1) = 1(0:1); 	/* line# computer.cpp:140,141,142 */
+            M_711_t(0:5) = RG_addr_addr1_PC(30:2) :: 0(0:3); 	/* line# computer.cpp:139,140 */
+            lsft32u2i1(0:32) = 65535(0:32); 	/* line# computer.cpp:140 */
+            lsft32u2i2(0:5) = M_711_t(0:5); 	/* line# computer.cpp:140 */
             break;
         case 2 : 
-            dmem_arg_MEMB32W65536_WD2(0:32) = BF_12_t(0:32); 	/* line# computer.cpp:150 */
-            dmem_arg_MEMB32W65536_WA2(0:16) = offset_addr1_t(0:16); 	/* line# computer.cpp:150 */
-            dmem_arg_MEMB32W65536_WE2(0:1) = 1(0:1); 	/* line# computer.cpp:150 */
-            offset_addr1_t(0:18) = RG_addr_addr1_PC(14:16) :: 0(0:2); 	/* line# computer.cpp:145 */
+            dmem_arg_MEMB32W4096_WD2(0:32) = BF_12_t(0:32); 	/* line# computer.cpp:151 */
+            dmem_arg_MEMB32W4096_WA2(0:12) = offset_addr1_t(0:12); 	/* line# computer.cpp:151 */
+            dmem_arg_MEMB32W4096_WE2(0:1) = 1(0:1); 	/* line# computer.cpp:151 */
+            offset_addr1_t(0:14) = RG_addr_addr1_PC(18:12) :: 0(0:2); 	/* line# computer.cpp:146 */
             break;
         default : 
             break;
         }
         regs_ad00(0:5) = RG_rs2(0:5);
         BF_12_t(0:32) = regs_rd00(0:32);
-        next_pc_t3(0:32) = RG_03(0:32); 	/* line# computer.cpp:249 */
+        next_pc_t3(0:32) = RG_03(0:32); 	/* line# computer.cpp:250 */
         break;
     case 19 : 
-        switch (RG_08(0:32)) {	/* CAB */ 	/* line# computer.cpp:312 */
+        switch (RG_08(0:32)) {	/* CAB */ 	/* line# computer.cpp:313 */
         case 0 : 
-            result2_t4(0:32) = add32s1ot(0:32); 	/* line# computer.cpp:313 */
+            result2_t4(0:32) = add32s1ot(0:32); 	/* line# computer.cpp:314 */
             regs_ad00(0:5) = RG_funct3_rs1(0:5);
-            add32s1i1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:313 */
-            add32s1i2(0:21) = (unsigned)(RG_imm1_instr_word_addr(13:1)) :: (unsigned)(RG_imm1_instr_word_addr(13:1)) :: (unsigned)(RG_imm1_instr_word_addr(13:1)) :: (unsigned)(RG_imm1_instr_word_addr(13:1)) :: (unsigned)(RG_imm1_instr_word_addr(13:1)) :: (unsigned)(RG_imm1_instr_word_addr(13:1)) :: (unsigned)(RG_imm1_instr_word_addr(13:1)) :: (unsigned)(RG_imm1_instr_word_addr(13:1)) :: (unsigned)(RG_imm1_instr_word_addr(13:1)) :: RG_imm1_instr_word_addr(13:12); 	/* line# computer.cpp:313 */
+            add32s1i1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:314 */
+            add32s1i2(0:21) = (unsigned)(RG_imm1_instr_word_addr(13:1)) :: (unsigned)(RG_imm1_instr_word_addr(13:1)) :: (unsigned)(RG_imm1_instr_word_addr(13:1)) :: (unsigned)(RG_imm1_instr_word_addr(13:1)) :: (unsigned)(RG_imm1_instr_word_addr(13:1)) :: (unsigned)(RG_imm1_instr_word_addr(13:1)) :: (unsigned)(RG_imm1_instr_word_addr(13:1)) :: (unsigned)(RG_imm1_instr_word_addr(13:1)) :: (unsigned)(RG_imm1_instr_word_addr(13:1)) :: RG_imm1_instr_word_addr(13:12); 	/* line# computer.cpp:314 */
             break;
         case 2 : 
-            M_101_t(0:1) = dmux (RG_02(0:1)) { 	/* line# computer.cpp:314 */
+            M_101_t(0:1) = dmux (RG_02(0:1)) { 	/* line# computer.cpp:315 */
                 case 1 :  1(0:1);
                 case 0 :  0(0:1);
             };
             result2_t4(0:32) = 0(0:31) :: M_101_t(0:1);
             break;
         case 3 : 
-            M_100_t(0:1) = dmux (RG_02(0:1)) { 	/* line# computer.cpp:315 */
+            M_100_t(0:1) = dmux (RG_02(0:1)) { 	/* line# computer.cpp:316 */
                 case 1 :  1(0:1);
                 case 0 :  0(0:1);
             };
             result2_t4(0:32) = 0(0:31) :: M_100_t(0:1);
             break;
         case 4 : 
-            M_122(0:12) = RG_imm1_instr_word_addr(13:12); 	/* line# computer.cpp:316 */
-            result2_t4(0:32) = regs_rd00(0:32) ^ M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:12); 	/* line# computer.cpp:316 */
+            M_122(0:12) = RG_imm1_instr_word_addr(13:12); 	/* line# computer.cpp:317 */
+            result2_t4(0:32) = regs_rd00(0:32) ^ M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:1) :: M_122(0:12); 	/* line# computer.cpp:317 */
             regs_ad00(0:5) = RG_funct3_rs1(0:5);
             break;
         case 6 : 
-            M_123(0:12) = RG_imm1_instr_word_addr(13:12); 	/* line# computer.cpp:317 */
-            result2_t4(0:32) = regs_rd00(0:32) | M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:12); 	/* line# computer.cpp:317 */
+            M_123(0:12) = RG_imm1_instr_word_addr(13:12); 	/* line# computer.cpp:318 */
+            result2_t4(0:32) = regs_rd00(0:32) | M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:1) :: M_123(0:12); 	/* line# computer.cpp:318 */
             regs_ad00(0:5) = RG_funct3_rs1(0:5);
             break;
         case 7 : 
-            M_124(0:12) = RG_imm1_instr_word_addr(13:12); 	/* line# computer.cpp:318 */
-            result2_t4(0:32) = regs_rd00(0:32) & M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:12); 	/* line# computer.cpp:318 */
+            M_124(0:12) = RG_imm1_instr_word_addr(13:12); 	/* line# computer.cpp:319 */
+            result2_t4(0:32) = regs_rd00(0:32) & M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:1) :: M_124(0:12); 	/* line# computer.cpp:319 */
             regs_ad00(0:5) = RG_funct3_rs1(0:5);
             break;
         case 1 : 
-            result2_t4(0:32) = lsft32u1ot(0:32); 	/* line# computer.cpp:319 */
+            result2_t4(0:32) = lsft32u1ot(0:32); 	/* line# computer.cpp:320 */
             regs_ad00(0:5) = RG_funct3_rs1(0:5);
-            lsft32u1i1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:319 */
-            lsft32u1i2(0:5) = RG_rs2(0:5); 	/* line# computer.cpp:319 */
+            lsft32u1i1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:320 */
+            lsft32u1i2(0:5) = RG_rs2(0:5); 	/* line# computer.cpp:320 */
             break;
         case 5 : 
-            if (RG_imm1_instr_word_addr(1:1)) { 	/* line# computer.cpp:321 */
-                result2_t4(0:32) = rsft32s1ot(0:32); 	/* line# computer.cpp:321 */
+            if (RG_imm1_instr_word_addr(1:1)) { 	/* line# computer.cpp:322 */
+                result2_t4(0:32) = rsft32s1ot(0:32); 	/* line# computer.cpp:322 */
                 regs_ad00(0:5) = RG_funct3_rs1(0:5);
-                rsft32s1i1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:321 */
-                rsft32s1i2(0:5) = RG_rs2(0:5); 	/* line# computer.cpp:321 */
+                rsft32s1i1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:322 */
+                rsft32s1i2(0:5) = RG_rs2(0:5); 	/* line# computer.cpp:322 */
             }
             else {
-                result2_t4(0:32) = rsft32u1ot(0:32); 	/* line# computer.cpp:322 */
+                result2_t4(0:32) = rsft32u1ot(0:32); 	/* line# computer.cpp:323 */
                 regs_ad00(0:5) = RG_funct3_rs1(0:5);
-                rsft32u1i1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:322 */
-                rsft32u1i2(0:5) = RG_rs2(0:5); 	/* line# computer.cpp:322 */
+                rsft32u1i1(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:323 */
+                rsft32u1i2(0:5) = RG_rs2(0:5); 	/* line# computer.cpp:323 */
             }
             break;
         }
-        next_pc_t3(0:32) = RG_03(0:32); 	/* line# computer.cpp:249 */
-        if (|>RG_rd(0:5)) { 	/* line# computer.cpp:325 */
-            regs_ad01(0:5) = RG_rd(0:5); 	/* line# computer.cpp:325 */
-            regs_wd01(0:32) = result2_t4(0:32); 	/* line# computer.cpp:325 */
-            regs_we01(0:1) = 1(0:1); 	/* line# computer.cpp:325 */
+        next_pc_t3(0:32) = RG_03(0:32); 	/* line# computer.cpp:250 */
+        if (|>RG_rd(0:5)) { 	/* line# computer.cpp:326 */
+            regs_ad01(0:5) = RG_rd(0:5); 	/* line# computer.cpp:326 */
+            regs_wd01(0:32) = result2_t4(0:32); 	/* line# computer.cpp:326 */
+            regs_we01(0:1) = 1(0:1); 	/* line# computer.cpp:326 */
         }
         break;
     case 51 : 
-        switch (0(0:29) :: RG_funct3_rs1(2:3)) {	/* CAB */ 	/* line# computer.cpp:331 */
+        switch (0(0:29) :: RG_funct3_rs1(2:3)) {	/* CAB */ 	/* line# computer.cpp:332 */
         case 0 : 
-            result11_t5(0:32) = addsub32u1ot(0:32); 	/* line# computer.cpp:332 */
-            addsub32u1i1(0:32) = (unsigned ter(0:32))(RG_op1(0:32)); 	/* line# computer.cpp:332 */
-            addsub32u1i2(0:32) = op2_t(0:32); 	/* line# computer.cpp:332 */
-            addsub32u1_f(0:2) = dmux (RG_imm1_instr_word_addr(1:1)) { 	/* line# computer.cpp:332 */
+            result11_t5(0:32) = addsub32u1ot(0:32); 	/* line# computer.cpp:333 */
+            addsub32u1i1(0:32) = (unsigned ter(0:32))(RG_op1(0:32)); 	/* line# computer.cpp:333 */
+            addsub32u1i2(0:32) = op2_t(0:32); 	/* line# computer.cpp:333 */
+            addsub32u1_f(0:2) = dmux (RG_imm1_instr_word_addr(1:1)) { 	/* line# computer.cpp:333 */
                 case 1 :  2(0:2);
                 case 0 :  1(0:2);
             };
             break;
         case 1 : 
-            result11_t5(0:32) = lsft32u2ot(0:32); 	/* line# computer.cpp:333 */
-            lsft32u2i1(0:32) = (unsigned ter(0:32))(RG_op1(0:32)); 	/* line# computer.cpp:333 */
-            lsft32u2i2(0:5) = op2_t(27:5); 	/* line# computer.cpp:333 */
+            result11_t5(0:32) = lsft32u2ot(0:32); 	/* line# computer.cpp:334 */
+            lsft32u2i1(0:32) = (unsigned ter(0:32))(RG_op1(0:32)); 	/* line# computer.cpp:334 */
+            lsft32u2i2(0:5) = op2_t(27:5); 	/* line# computer.cpp:334 */
             break;
         case 2 : 
-            M_99_t(0:1) = dmux (comp32s_11ot(0:1)) { 	/* line# computer.cpp:334 */
+            M_99_t(0:1) = dmux (comp32s_11ot(0:1)) { 	/* line# computer.cpp:335 */
                 case 1 :  1(0:1);
                 case 0 :  0(0:1);
             };
-            comp32s_11i1(0:32) = (signed var(0:32))(RG_op1(0:32)); 	/* line# computer.cpp:334 */
-            comp32s_11i2(0:32) = op2_t(0:32); 	/* line# computer.cpp:334 */
+            comp32s_11i1(0:32) = (signed var(0:32))(RG_op1(0:32)); 	/* line# computer.cpp:335 */
+            comp32s_11i2(0:32) = op2_t(0:32); 	/* line# computer.cpp:335 */
             result11_t5(0:32) = 0(0:31) :: M_99_t(0:1);
             break;
         case 3 : 
-            M_98_t(0:1) = dmux (comp32u_12ot(0:1)) { 	/* line# computer.cpp:335 */
+            M_98_t(0:1) = dmux (comp32u_12ot(0:1)) { 	/* line# computer.cpp:336 */
                 case 1 :  1(0:1);
                 case 0 :  0(0:1);
             };
-            comp32u_12i1(0:32) = (unsigned ter(0:32))(RG_op1(0:32)); 	/* line# computer.cpp:335 */
-            comp32u_12i2(0:32) = op2_t(0:32); 	/* line# computer.cpp:335 */
+            comp32u_12i1(0:32) = (unsigned ter(0:32))(RG_op1(0:32)); 	/* line# computer.cpp:336 */
+            comp32u_12i2(0:32) = op2_t(0:32); 	/* line# computer.cpp:336 */
             result11_t5(0:32) = 0(0:31) :: M_98_t(0:1);
             break;
         case 4 : 
-            result11_t5(0:32) = (unsigned ter(0:32))(RG_op1(0:32)) ^ op2_t(0:32); 	/* line# computer.cpp:336 */
+            result11_t5(0:32) = (unsigned ter(0:32))(RG_op1(0:32)) ^ op2_t(0:32); 	/* line# computer.cpp:337 */
             break;
         case 5 : 
-            if (RG_imm1_instr_word_addr(1:1)) { 	/* line# computer.cpp:338 */
-                result11_t5(0:32) = rsft32s1ot(0:32); 	/* line# computer.cpp:338 */
-                rsft32s1i1(0:32) = (signed var(0:32))(RG_op1(0:32)); 	/* line# computer.cpp:338 */
-                rsft32s1i2(0:5) = op2_t(27:5); 	/* line# computer.cpp:338 */
+            if (RG_imm1_instr_word_addr(1:1)) { 	/* line# computer.cpp:339 */
+                result11_t5(0:32) = rsft32s1ot(0:32); 	/* line# computer.cpp:339 */
+                rsft32s1i1(0:32) = (signed var(0:32))(RG_op1(0:32)); 	/* line# computer.cpp:339 */
+                rsft32s1i2(0:5) = op2_t(27:5); 	/* line# computer.cpp:339 */
             }
             else {
-                result11_t5(0:32) = rsft32u1ot(0:32); 	/* line# computer.cpp:339 */
-                rsft32u1i1(0:32) = (unsigned ter(0:32))(RG_op1(0:32)); 	/* line# computer.cpp:339 */
-                rsft32u1i2(0:5) = op2_t(27:5); 	/* line# computer.cpp:339 */
+                result11_t5(0:32) = rsft32u1ot(0:32); 	/* line# computer.cpp:340 */
+                rsft32u1i1(0:32) = (unsigned ter(0:32))(RG_op1(0:32)); 	/* line# computer.cpp:340 */
+                rsft32u1i2(0:5) = op2_t(27:5); 	/* line# computer.cpp:340 */
             }
             break;
         case 6 : 
-            result11_t5(0:32) = (unsigned ter(0:32))(RG_op1(0:32)) | op2_t(0:32); 	/* line# computer.cpp:341 */
+            result11_t5(0:32) = (unsigned ter(0:32))(RG_op1(0:32)) | op2_t(0:32); 	/* line# computer.cpp:342 */
             break;
         case 7 : 
-            result11_t5(0:32) = (unsigned ter(0:32))(RG_op1(0:32)) & op2_t(0:32); 	/* line# computer.cpp:342 */
+            result11_t5(0:32) = (unsigned ter(0:32))(RG_op1(0:32)) & op2_t(0:32); 	/* line# computer.cpp:343 */
             break;
         }
         regs_ad00(0:5) = RG_rs2(0:5);
-        op2_t(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:329 */
-        next_pc_t3(0:32) = RG_03(0:32); 	/* line# computer.cpp:249 */
-        if (|>RG_rd(0:5)) { 	/* line# computer.cpp:344 */
-            regs_ad01(0:5) = RG_rd(0:5); 	/* line# computer.cpp:344 */
-            regs_wd01(0:32) = result11_t5(0:32); 	/* line# computer.cpp:344 */
-            regs_we01(0:1) = 1(0:1); 	/* line# computer.cpp:344 */
+        op2_t(0:32) = regs_rd00(0:32); 	/* line# computer.cpp:330 */
+        next_pc_t3(0:32) = RG_03(0:32); 	/* line# computer.cpp:250 */
+        if (|>RG_rd(0:5)) { 	/* line# computer.cpp:345 */
+            regs_ad01(0:5) = RG_rd(0:5); 	/* line# computer.cpp:345 */
+            regs_wd01(0:32) = result11_t5(0:32); 	/* line# computer.cpp:345 */
+            regs_we01(0:1) = 1(0:1); 	/* line# computer.cpp:345 */
         }
         break;
     case 15 : 
-        next_pc_t3(0:32) = RG_03(0:32); 	/* line# computer.cpp:249 */
+        next_pc_t3(0:32) = RG_03(0:32); 	/* line# computer.cpp:250 */
         break;
     case 115 : 
-        next_pc_t3(0:32) = RG_03(0:32); 	/* line# computer.cpp:249 */
-        FF_halt(0:1) = 1(0:1); 	/* line# computer.cpp:351 */
+        next_pc_t3(0:32) = RG_03(0:32); 	/* line# computer.cpp:250 */
+        FF_halt(0:1) = 1(0:1); 	/* line# computer.cpp:352 */
         break;
     default : 
-        next_pc_t3(0:32) = RG_03(0:32); 	/* line# computer.cpp:249 */
-        FF_halt(0:1) = 1(0:1); 	/* line# computer.cpp:379 */
+        next_pc_t3(0:32) = RG_03(0:32); 	/* line# computer.cpp:250 */
+        FF_halt(0:1) = 1(0:1); 	/* line# computer.cpp:380 */
         break;
     }
-    RG_addr_addr1_PC(0:32) = next_pc_t3(0:32); 	/* line# computer.cpp:383 */
+    RG_addr_addr1_PC(0:32) = next_pc_t3(0:32); 	/* line# computer.cpp:384 */
     goto ST1_02;
 }
 
@@ -1423,7 +1420,7 @@ ST1_04 :
 ##@UNIT  1/10ps 
 #@MLIB {
 #    NAME	MEMB32W65536
-#    KIND	R1,W1
+#    KIND	R1
 #    BITWIDTH	32
 #    DELAY	x2
 #    WORD	65536
@@ -1433,7 +1430,21 @@ ST1_04 :
 #        out            ter (31..0)    RD1              /* rd:1 */;
 #        in             ter (0..0)     RE1              /* re:1 */;
 #        in             ter (0..0)     RCLK1            /* rclk:1 */;
-#        in             ter (15..0)    WA2              /* wa:2 */;
+#    }
+#}
+#@MLIB {
+#    NAME	MEMB32W4096
+#    KIND	R1,W1
+#    BITWIDTH	32
+#    DELAY	x2
+#    WORD	4096
+#    WRITE_SYNC	YES
+#    DEFMOD {
+#        in             ter (11..0)    RA1              /* ra:1 */;
+#        out            ter (31..0)    RD1              /* rd:1 */;
+#        in             ter (0..0)     RE1              /* re:1 */;
+#        in             ter (0..0)     RCLK1            /* rclk:1 */;
+#        in             ter (11..0)    WA2              /* wa:2 */;
 #        in             ter (31..0)    WD2              /* wd:2 */;
 #        in             ter (0..0)     WE2              /* we:2 */;
 #        in             ter (0..0)     WCLK2            /* wclk:2 */;
@@ -1446,7 +1457,11 @@ ST1_04 :
 ##@CNT { computer }
 #@MCNT {
 #    NAME	MEMB32W65536
-#    LIMIT	2
+#    LIMIT	1
+#}
+#@MCNT {
+#    NAME	MEMB32W4096
+#    LIMIT	1
 #}
 #@MCNT {
 #    NAME	regs[]
@@ -1460,8 +1475,9 @@ ST1_04 :
 #@MLMT %AUTO%.MLMT
 ##@UNIT 1/10ps
 ##IDX NAME     LMT  KIND      BITW[xWORD]  DELAY  ARRAY_DIV_NAME
-#  1  MEMB32W65536    2  R1,W1        32x65536   1x2                 	
-#  2  regs[]     1  R1,W1           32x32     0                 	
+#  1  MEMB32W65536    1  R1           32x65536   1x2                 	
+#  2  MEMB32W4096    1  R1,W1         32x4096   1x2                 	
+#  3  regs[]     1  R1,W1           32x32     0                 	
 #@END
 
 #@BLIB /proj/cad/cwb-6.1/packages/asic_45.BLIB
