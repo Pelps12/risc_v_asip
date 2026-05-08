@@ -1,0 +1,3 @@
+variant	status	elapsed_s	QOR_available
+accel_full	OK	194	yes
+accel_full_no_ci	OK	2	yes
