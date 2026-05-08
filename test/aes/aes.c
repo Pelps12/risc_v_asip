@@ -12,6 +12,7 @@
  *   funct3=3  ACCEL_SUB_BYTES  — SubWord: S-box on 4 packed bytes (reg→reg)
  *   funct3=4  ACCEL_SHIFT_ROWS — ShiftRows: 16-byte permutation via dmem addr
  *   funct3=6  ACCEL_ADD_RK     — AddRoundKey: 16-byte XOR via dmem addrs
+ *   funct3=7  ACCEL_FULL       — Full AES-256 encrypt; reads/writes a0–a3 implicitly
  */
 
 #include "../lib.c"
@@ -315,6 +316,28 @@ void aes_expandEncKey(uint8_t *k, uint8_t *rc)
 
 void aes256_encrypt_ecb(aes256_context *ctx, uint8_t k[32], uint8_t buf[16])
 {
+/*
+ * ACCEL_FULL custom instruction (funct3=7):
+ *   Assembly : .insn r 0x0B, 7, 0, zero, zero, zero
+ *   Implicit inputs  — a0–a3: 4 × 32-bit words of plaintext (little-endian bytes)
+ *   Implicit outputs — a0–a3: 4 × 32-bit words of ciphertext
+ *   Key is hardcoded in the accelerator as a ROM constant (FIPS-197 test vector).
+ *   Caller: 4 lw before CI, 4 sw after CI.  No dmem access inside the accelerator.
+ */
+#if defined(ACCEL_FULL) && defined(__riscv)
+    register uint32_t w0 asm("a0") = *(uint32_t *)(buf +  0);
+    register uint32_t w1 asm("a1") = *(uint32_t *)(buf +  4);
+    register uint32_t w2 asm("a2") = *(uint32_t *)(buf +  8);
+    register uint32_t w3 asm("a3") = *(uint32_t *)(buf + 12);
+    asm volatile(
+        ".insn r 0x0B, 7, 0, zero, zero, zero"
+        : "+r"(w0), "+r"(w1), "+r"(w2), "+r"(w3)
+    );
+    *(uint32_t *)(buf +  0) = w0;
+    *(uint32_t *)(buf +  4) = w1;
+    *(uint32_t *)(buf +  8) = w2;
+    *(uint32_t *)(buf + 12) = w3;
+#else
     uint8_t rcon = 1;
     uint8_t i;
     ecb1 : for (i = 0; i < sizeof(ctx->key); i++){
@@ -336,6 +359,7 @@ void aes256_encrypt_ecb(aes256_context *ctx, uint8_t k[32], uint8_t buf[16])
     aes_shiftRows(buf);
     aes_expandEncKey(ctx->key, &rcon);
     aes_addRoundKey(buf, ctx->key);
+#endif
 }
 
 /* -------------------------------------------------------------------------- */
