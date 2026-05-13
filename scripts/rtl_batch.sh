@@ -29,7 +29,6 @@ JOBS=1
 FILTER=""
 SKIP_DONE=0
 DRY_RUN=0
-RTL_ONLY=0
 TRACE=0
 
 # ── Argument parsing ──────────────────────────────────────────────────────────
@@ -40,7 +39,6 @@ while [[ $# -gt 0 ]]; do
         --filter) FILTER="$2"; shift ;;
         --skip-done) SKIP_DONE=1 ;;
         --dry-run) DRY_RUN=1 ;;
-        --rtl-only) RTL_ONLY=1 ;;
         --trace) TRACE=1 ;;
         -*) echo "Unknown option: $1" >&2; exit 1 ;;
         *) APP="$1" ;;
@@ -49,7 +47,7 @@ while [[ $# -gt 0 ]]; do
 done
 
 if [[ -z "$APP" ]]; then
-    echo "Usage: $0 <app> [-j<N>] [--filter PATTERN] [--skip-done] [--rtl-only] [--trace] [--dry-run]"
+    echo "Usage: $0 <app> [-j<N>] [--filter PATTERN] [--skip-done] [--trace] [--dry-run]"
     exit 1
 fi
 
@@ -88,6 +86,27 @@ if [[ "$DRY_RUN" -eq 1 ]]; then
     exit 0
 fi
 
+# ── Phase 1: serial ISS pass — build hex for any variant that needs it ────────
+# All variants share the same sim/rv32i_sim binary; building it in parallel
+# causes "Text file busy" errors.  Run ISS once per missing hex, serially.
+echo "=== Phase 1: ISS (serial) ==="
+for v in "${VARIANTS[@]}"; do
+    hex="${APP_DIR}/${v}/iss/artifacts/${APP}.hex"
+    if [[ -f "$hex" ]]; then
+        echo "  [hex ok] ${v}"
+        continue
+    fi
+    echo "  [iss   ] ${v}"
+    mkdir -p "${APP_DIR}/${v}/rtl"
+    if ! bash "$RUN_TEST_SH" "${APP}/${APP}" --rtl "${v}" \
+            > "${APP_DIR}/${v}/rtl/rtl_batch_iss.log" 2>&1; then
+        echo "  [WARN] ISS failed for ${v} — will skip RTL sim (see rtl_batch_iss.log)"
+        # Remove from VARIANTS so Phase 2 skips it
+        VARIANTS=("${VARIANTS[@]/$v}")
+    fi
+done
+echo ""
+
 # ── Initialise summary TSV ────────────────────────────────────────────────────
 echo -e "variant\tstatus\tcycles\tarea\tcpi" > "$SUMMARY"
 
@@ -116,13 +135,10 @@ run_variant() {
     mkdir -p "${APP_DIR}/${variant}/rtl"
     t_start=$(date +%s)
 
-    rtl_flag="--rtl"
-    if [[ "$RTL_ONLY" -eq 1 ]]; then
-        rtl_flag="--rtl-only"
-    fi
     [[ "$TRACE" -eq 1 ]] && trace_flag="--trace"
 
-    if bash "$RUN_TEST_SH" "${APP}/${APP}" ${rtl_flag} "${variant}" ${trace_flag} \
+    # Phase 2 always uses --rtl-only: hex guaranteed to exist from Phase 1
+    if bash "$RUN_TEST_SH" "${APP}/${APP}" --rtl-only "${variant}" ${trace_flag} \
             > "$log_file" 2>&1; then
         status="OK"
     else
