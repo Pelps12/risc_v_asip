@@ -1,21 +1,17 @@
 #!/usr/bin/env bash
-# rtl_batch.sh — Run Verilator RTL simulation for every synthesized variant of a test app.
+# rtl_batch.sh — Run ISS + RTL simulation for every synthesized variant of a test app.
+#
+# Delegates each variant to run_test.sh, which handles:
+#   compilation, ISS, Verilator build, RTL sim, ISS vs RTL comparison
 #
 # Usage:
 #   bash scripts/rtl_batch.sh aes                       # all variants with computer_E.v
 #   bash scripts/rtl_batch.sh aes -j4                   # 4 parallel jobs
 #   bash scripts/rtl_batch.sh aes --filter "accel_full" # variants matching grep pattern
 #   bash scripts/rtl_batch.sh aes --skip-done            # skip if sim_rtl.rpt exists
+#   bash scripts/rtl_batch.sh aes --rtl-only             # skip ISS, use existing hex
 #   bash scripts/rtl_batch.sh aes --dry-run              # print what would run
-#
-# For each variant the script:
-#   1. Locates the hex file in <variant>/iss/artifacts/<app>.hex
-#      (falls back to accel_full/iss/artifacts/<app>.hex for accel_full_* variants,
-#       then to baseline/iss/artifacts/<app>.hex, then errors)
-#   2. Builds a Verilator binary from <variant>/rtl/computer_E.v + rtl/<app>/tb_computer_mem.sv
-#   3. Runs simulation, writes <variant>/rtl/sim_rtl.rpt and sim_rtl.log
-#   4. Extracts "Total cycles:" and area from computer.QOR
-#   5. Appends to test/<app>/rtl_batch_summary.tsv
+#   bash scripts/rtl_batch.sh aes --trace                # enable FST waveform per variant
 #
 # Logs per variant: test/<app>/<variant>/rtl/rtl_batch.log
 # Summary:          test/<app>/rtl_batch_summary.tsv
@@ -25,6 +21,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ROOT_DIR="${SCRIPT_DIR}/.."
 TEST_DIR="${ROOT_DIR}/test"
+RUN_TEST_SH="${SCRIPT_DIR}/run_test.sh"
 
 # ── Defaults ──────────────────────────────────────────────────────────────────
 APP=""
@@ -32,56 +29,32 @@ JOBS=1
 FILTER=""
 SKIP_DONE=0
 DRY_RUN=0
+RTL_ONLY=0
+TRACE=0
 
 # ── Argument parsing ──────────────────────────────────────────────────────────
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        -j*)
-            JOBS="${1#-j}"
-            ;;
-        --jobs)
-            JOBS="$2"; shift
-            ;;
-        --filter)
-            FILTER="$2"; shift
-            ;;
-        --skip-done)
-            SKIP_DONE=1
-            ;;
-        --dry-run)
-            DRY_RUN=1
-            ;;
-        -*)
-            echo "Unknown option: $1" >&2; exit 1
-            ;;
-        *)
-            APP="$1"
-            ;;
+        -j*)  JOBS="${1#-j}" ;;
+        --jobs) JOBS="$2"; shift ;;
+        --filter) FILTER="$2"; shift ;;
+        --skip-done) SKIP_DONE=1 ;;
+        --dry-run) DRY_RUN=1 ;;
+        --rtl-only) RTL_ONLY=1 ;;
+        --trace) TRACE=1 ;;
+        -*) echo "Unknown option: $1" >&2; exit 1 ;;
+        *) APP="$1" ;;
     esac
     shift
 done
 
 if [[ -z "$APP" ]]; then
-    echo "Usage: $0 <app> [-j<N>] [--filter PATTERN] [--skip-done] [--dry-run]"
-    echo ""
-    echo "  -j<N>            Parallel Verilator jobs (default: 1)"
-    echo "  --filter PATTERN Only process variants whose name matches PATTERN (grep -E)"
-    echo "  --skip-done      Skip variants that already have sim_rtl.rpt"
-    echo "  --dry-run        Print variant list without running simulation"
+    echo "Usage: $0 <app> [-j<N>] [--filter PATTERN] [--skip-done] [--rtl-only] [--trace] [--dry-run]"
     exit 1
 fi
 
 APP_DIR="${TEST_DIR}/${APP}"
-if [[ ! -d "$APP_DIR" ]]; then
-    echo "Error: ${APP_DIR} does not exist" >&2
-    exit 1
-fi
-
-TB_FILE="${ROOT_DIR}/rtl/${APP}/tb_computer_mem.sv"
-if [[ ! -f "$TB_FILE" ]]; then
-    echo "Error: testbench not found: ${TB_FILE}" >&2
-    exit 1
-fi
+[[ -d "$APP_DIR" ]] || { echo "Error: ${APP_DIR} does not exist" >&2; exit 1; }
 
 SUMMARY="${APP_DIR}/rtl_batch_summary.tsv"
 
@@ -105,133 +78,85 @@ done
 
 TOTAL="${#VARIANTS[@]}"
 echo "=== rtl_batch: ${APP} | ${TOTAL} variants | jobs=${JOBS} ==="
-[[ "$DRY_RUN" -eq 1 ]] && echo "(dry-run — no simulation will be run)"
+[[ "$DRY_RUN" -eq 1 ]] && echo "(dry-run — nothing will run)"
 echo ""
 
 if [[ "$DRY_RUN" -eq 1 ]]; then
     for v in "${VARIANTS[@]}"; do
-        echo "  would run: rtl_batch ${APP}/${v}"
+        echo "  would run: run_test.sh ${APP}/${APP} --rtl ${v}"
     done
     exit 0
 fi
 
 # ── Initialise summary TSV ────────────────────────────────────────────────────
-echo -e "variant\tstatus\tcycles\tarea_gates\thex_used" > "$SUMMARY"
+echo -e "variant\tstatus\tcycles\tarea\tcpi" > "$SUMMARY"
 
-# ── Helper: find hex file for a variant ───────────────────────────────────────
-find_hex() {
-    local variant="$1"
-    # 1. Own ISS artifacts
-    local own="${APP_DIR}/${variant}/iss/artifacts/${APP}.hex"
-    [[ -f "$own" ]] && echo "$own" && return
-    # 2. Fallback: accel_full (all accel_full_* variants share the same program)
-    local af="${APP_DIR}/accel_full/iss/artifacts/${APP}.hex"
-    [[ -f "$af" ]] && echo "$af" && return
-    # 3. Fallback: baseline
-    local bl="${APP_DIR}/baseline/iss/artifacts/${APP}.hex"
-    [[ -f "$bl" ]] && echo "$bl" && return
-    echo ""
-}
-
-# ── Helper: extract area from QOR ─────────────────────────────────────────────
 parse_area() {
-    local qor="$1"
+    local qor="${APP_DIR}/$1/rtl/computer.QOR"
     [[ -f "$qor" ]] || { echo "N/A"; return; }
-    grep -i "total cell count" "$qor" | grep -oP '\d+' | tail -1 || echo "N/A"
+    grep "Total Area" "$qor" | grep -oP '[\d,]+' | tr -d ',' || echo "N/A"
 }
 
-# ── Worker function ───────────────────────────────────────────────────────────
+append_summary() {
+    local variant="$1" status="$2" cycles="$3" area="$4" cpi="$5"
+    if command -v flock &>/dev/null; then
+        (flock 200; echo -e "${variant}\t${status}\t${cycles}\t${area}\t${cpi}") \
+            200>>"${SUMMARY}.lock" >> "$SUMMARY"
+    else
+        echo -e "${variant}\t${status}\t${cycles}\t${area}\t${cpi}" >> "$SUMMARY"
+    fi
+}
+
+# ── Worker ───────────────────────────────────────────────────────────────────
 run_variant() {
     local variant="$1"
-    local rtl_dir="${APP_DIR}/${variant}/rtl"
-    local dut_file="${rtl_dir}/computer_E.v"
-    local obj_dir="${rtl_dir}/obj_dir"
-    local sim_bin="${rtl_dir}/sim"
-    local rpt_file="${rtl_dir}/sim_rtl.rpt"
-    local log_file="${rtl_dir}/rtl_batch.log"
-    local qor_file="${rtl_dir}/computer.QOR"
+    local log_file="${APP_DIR}/${variant}/rtl/rtl_batch.log"
+    local t_start t_end elapsed status cycles area cpi rtl_flag trace_flag=""
 
-    local hex_file status cycles area t_start t_end elapsed
+    mkdir -p "${APP_DIR}/${variant}/rtl"
     t_start=$(date +%s)
 
-    hex_file=$(find_hex "$variant")
-    if [[ -z "$hex_file" ]]; then
-        echo "  [SKIP] ${APP}/${variant}  — no hex file found" | tee -a "$log_file"
-        t_end=$(date +%s); elapsed=$(( t_end - t_start ))
-        append_summary "$variant" "NO_HEX" "N/A" "N/A" "none"
-        return
+    rtl_flag="--rtl"
+    if [[ "$RTL_ONLY" -eq 1 ]]; then
+        rtl_flag="--rtl-only"
+    fi
+    [[ "$TRACE" -eq 1 ]] && trace_flag="--trace"
+
+    if bash "$RUN_TEST_SH" "${APP}/${APP}" ${rtl_flag} "${variant}" ${trace_flag} \
+            > "$log_file" 2>&1; then
+        status="OK"
+    else
+        status="FAIL"
     fi
 
-    {
-        echo "=== rtl_batch: ${APP}/${variant} ==="
-        echo "  DUT : ${dut_file}"
-        echo "  TB  : ${TB_FILE}"
-        echo "  HEX : ${hex_file}"
-        echo ""
-
-        # Build Verilator binary
-        verilator --binary --cc --exe \
-            --Wno-UNUSEDSIGNAL --Wno-UNDRIVEN --Wno-WIDTHTRUNC --Wno-WIDTHEXPAND \
-            -I "${rtl_dir}" \
-            "${dut_file}" \
-            "${TB_FILE}" \
-            --top-module tb_computer \
-            -o "${sim_bin}" \
-            --Mdir "${obj_dir}"
-
-        echo ""
-        echo "=== Running simulation ==="
-        "${sim_bin}" "+HEX_FILE=${hex_file}" "+RPT_FILE=${rpt_file}"
-
-    } > "$log_file" 2>&1
-
-    local exit_code=$?
     t_end=$(date +%s)
     elapsed=$(( t_end - t_start ))
 
-    if [[ $exit_code -eq 0 ]]; then
-        status="OK"
-        cycles=$(grep "Total cycles" "$log_file" | grep -oP '\d+' | tail -1 || echo "N/A")
-    else
-        status="FAIL"
-        cycles="N/A"
-    fi
+    cycles=$(grep "Total cycles" "$log_file" | grep -oP '\d+' | tail -1 || echo "N/A")
+    area=$(parse_area "$variant")
+    cpi=$(grep "^CPI" "$log_file" | grep -oP '[\d.]+' | tail -1 || echo "N/A")
 
-    area=$(parse_area "$qor_file")
-
-    append_summary "$variant" "$status" "$cycles" "$area" "$hex_file"
+    append_summary "$variant" "$status" "$cycles" "$area" "$cpi"
 
     if [[ "$status" = "OK" ]]; then
-        printf "  [OK  %4ds] %s/%s  cycles=%s  area=%s gates\n" \
-            "$elapsed" "$APP" "$variant" "$cycles" "$area"
+        printf "  [OK  %4ds] %s/%s  cycles=%s  area=%s  CPI=%s\n" \
+            "$elapsed" "$APP" "$variant" "$cycles" "$area" "$cpi"
     else
         printf "  [FAIL %3ds] %s/%s  (see %s)\n" "$elapsed" "$APP" "$variant" "$log_file"
     fi
 }
 
-append_summary() {
-    local variant="$1" status="$2" cycles="$3" area="$4" hex="$5"
-    if command -v flock &>/dev/null; then
-        (flock 200; echo -e "${variant}\t${status}\t${cycles}\t${area}\t${hex}") \
-            200>>"${SUMMARY}.lock" >> "$SUMMARY"
-    else
-        echo -e "${variant}\t${status}\t${cycles}\t${area}\t${hex}" >> "$SUMMARY"
-    fi
-}
-
-export -f run_variant append_summary find_hex parse_area
-export APP APP_DIR TB_FILE SUMMARY
+export -f run_variant parse_area append_summary
+export APP APP_DIR RUN_TEST_SH SUMMARY RTL_ONLY TRACE
 
 # ── Run with optional parallelism ─────────────────────────────────────────────
 overall_start=$(date +%s)
 
 if [[ "$JOBS" -gt 1 ]]; then
     if command -v parallel &>/dev/null; then
-        printf '%s\n' "${VARIANTS[@]}" \
-            | parallel -j"$JOBS" run_variant {}
+        printf '%s\n' "${VARIANTS[@]}" | parallel -j"$JOBS" run_variant {}
     else
-        printf '%s\n' "${VARIANTS[@]}" \
-            | xargs -P"$JOBS" -I{} bash -c 'run_variant "$@"' _ {}
+        printf '%s\n' "${VARIANTS[@]}" | xargs -P"$JOBS" -I{} bash -c 'run_variant "$@"' _ {}
     fi
 else
     for v in "${VARIANTS[@]}"; do
@@ -242,7 +167,6 @@ fi
 overall_end=$(date +%s)
 overall_elapsed=$(( overall_end - overall_start ))
 
-# ── Final tally ───────────────────────────────────────────────────────────────
 PASS=$(grep -c $'\tOK\t' "$SUMMARY" 2>/dev/null || true)
 FAIL=$(grep -c $'\tFAIL\t' "$SUMMARY" 2>/dev/null || true)
 

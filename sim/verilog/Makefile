@@ -12,11 +12,11 @@
 # ==============================================================================
 
 RTL_DIR    := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
-OBJ_DIR    := $(RTL_DIR)obj_dir
+OBJ_DIR    ?= $(RTL_DIR)obj_dir
 SIM_BIN    := $(OBJ_DIR)/tb_computer_sim
 
 # RTL sources
-TB_SRC     := $(RTL_DIR)tb_computer.sv
+TB_SRC     ?= $(RTL_DIR)tb_computer.sv
 DUT_SRC    ?= $(RTL_DIR)rv32i_core_E.v $(RTL_DIR)rv32i_core_E_SIM.v
 SRCS       := $(TB_SRC) $(DUT_SRC)
 

@@ -264,25 +264,37 @@ if [ "$RUN_RTL" -eq 1 ]; then
     fi
 
     TRACE_ARG=""
+    FST_FILE="${RTL_VARIANT_DIR}/trace.fst"
     FST_ARG=""
-    # FST_FILE is already set above
     if [ "$RUN_TRACE" -eq 1 ]; then
         TRACE_ARG="TRACE=1"
         FST_ARG="FST_FILE=${FST_FILE}"
         echo "  FST tracing enabled -> ${FST_FILE}"
     fi
 
-    make -B -C "${RTL_DIR}" build DUT_SRC="${DUT_FILE}" ${TRACE_ARG} RTL_MEM_OR_REG=1 TEST_NAME="$(echo "${TEST_NAME}" | cut -d'/' -f1)"
+    # Select testbench: REG interface if synthesized RTL has rg*_rd ports, else MEM
+    TB_SRC="${ROOT_DIR}/rtl/${TEST_SUBDIR_FOR_RTL}/tb_computer_mem.sv"
+    if grep -q "dmem_arg_rg00_rd" "${DUT_FILE}" 2>/dev/null; then
+        TB_SRC="${ROOT_DIR}/rtl/${TEST_SUBDIR_FOR_RTL}/tb_computer_reg.sv"
+    fi
+
+    make -B -C "${RTL_COMMON_DIR}" build \
+        DUT_SRC="${DUT_FILE}" \
+        TB_SRC="${TB_SRC}" \
+        OBJ_DIR="${RTL_VARIANT_DIR}/obj_dir" \
+        ${TRACE_ARG}
 
     # Report written into the RTL variant folder
     RTL_RPT_FILE="${RTL_VARIANT_DIR}/sim_rtl.rpt"
 
     echo ""
     echo "=== Step 6: Running RTL Simulation ==="
-    make -C "${RTL_DIR}" run DUT_SRC="${DUT_FILE}" \
-        HEX="$(cd "${SCRIPT_DIR}" && pwd)/${TEST_NAME}.hex" \
-        RPT_FILE="${RTL_RPT_FILE}" ${TRACE_ARG} ${FST_ARG} \
-        TEST_NAME="$(echo "${TEST_NAME}" | cut -d'/' -f1)"
+    make -C "${RTL_COMMON_DIR}" run \
+        DUT_SRC="${DUT_FILE}" \
+        TB_SRC="${TB_SRC}" \
+        OBJ_DIR="${RTL_VARIANT_DIR}/obj_dir" \
+        HEX="${HEX_FILE}" \
+        RPT_FILE="${RTL_RPT_FILE}" ${TRACE_ARG} ${FST_ARG}
 
     if [ "$RUN_TRACE" -eq 1 ] && [ -f "${FST_FILE}" ]; then
         echo ""
@@ -291,8 +303,8 @@ if [ "$RUN_RTL" -eq 1 ]; then
     fi
 
     # Report CPI of RTL simulation
-    CYCLE_COUNT=$(grep "Total cycles" ${TEST_DIR}/${TEST_SUBDIR}/${RTL_VARIANT}/rtl/sim_rtl.rpt | grep -oP '\d+')
-    INSTRUCTION_COUNT=$(($(wc -l < ${ROOT_DIR}/sim_cpu.rpt) / 5))
+    CYCLE_COUNT=$(grep "Total cycles" "${RTL_RPT_FILE}" | grep -oP '\d+')
+    INSTRUCTION_COUNT=$(($(wc -l < "${ISS_RPT_FILE}") / 5))
     echo "CPI = $(awk "BEGIN {printf \"%.1f\", $CYCLE_COUNT / $INSTRUCTION_COUNT}")"
 
     # ==========================================================================
@@ -300,7 +312,7 @@ if [ "$RUN_RTL" -eq 1 ]; then
     # ==========================================================================
     echo ""
     echo "=== Step 7: ISS vs RTL Comparison ==="
-    ISS_X10="$(grep 'x10:' sim_cpu.rpt | tail -1 | grep -oP 'x10: \K[0-9a-f]+')"
+    ISS_X10="$(grep 'x10:' "${ISS_RPT_FILE}" | tail -1 | grep -oP 'x10: \K[0-9a-f]+')"
     RTL_X10="$(grep 'x10:' "${RTL_RPT_FILE}" | tail -1 | grep -oP 'x10: \K[0-9a-f]+')"
 
     echo "  ISS x10 = ${ISS_X10}"
