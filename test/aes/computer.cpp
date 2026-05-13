@@ -334,7 +334,11 @@ inline void compute_add_rk(uint32_t dmem_arg[], uint32_t buf_addr, uint32_t key_
 // local temporaries (registers / flip-flops in the synthesised FSM).
 // Register-bound: no dmem access, no port sweep, no unroll knobs.
 // ============================================================================
-#if defined(ACCEL_FULL) || defined(ACCEL_FULL_HW)
+#if defined(ACCEL_FULL) || defined(ACCEL_FULL_HW) || \
+    defined(ACCEL_FULL_R_U1) || defined(ACCEL_FULL_R_U2) || \
+    defined(ACCEL_FULL_R_U4) || defined(ACCEL_FULL_R_U13) || \
+    defined(ACCEL_FULL_SB_U4) || defined(ACCEL_FULL_SB_U16) || \
+    defined(ACCEL_FULL_MC_U2) || defined(ACCEL_FULL_MC_U4)
 static const uint8_t full_aes_key[32] = {
     0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,
     0x08,0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f,
@@ -381,6 +385,11 @@ static const uint8_t full_sbox[256] = {
 #define FULL_XTIME(x) (((x)&0x80)?(((x)<<1)^0x1b):((x)<<1))
 
 inline void full_sub_bytes(uint8_t *b) {
+#ifdef ACCEL_FULL_SB_U16
+// Cyber unroll_times=16
+#elif defined(ACCEL_FULL_SB_U4)
+// Cyber unroll_times=4
+#endif
     for (int i = 0; i < 16; i++) b[i] = full_sbox[b[i]];
 }
 
@@ -394,6 +403,11 @@ inline void full_shift_rows(uint8_t *b) {
 
 inline void full_mix_columns(uint8_t *b) {
     uint8_t a, c, d, e, x;
+#ifdef ACCEL_FULL_MC_U4
+// Cyber unroll_times=4
+#elif defined(ACCEL_FULL_MC_U2)
+// Cyber unroll_times=2
+#endif
     for (int i = 0; i < 16; i += 4) {
         a=b[i]; c=b[i+1]; d=b[i+2]; e=b[i+3]; x=a^c^d^e;
         b[i]  ^= x^FULL_XTIME(a^c);
@@ -428,6 +442,15 @@ inline void aes_full_hw(uint32_t &w0, uint32_t &w1, uint32_t &w2, uint32_t &w3) 
     for (int i = 0; i < 16; i++) { buf[i] ^= (cpk[i] = k[i]); cpk[16+i] = k[16+i]; }
 
     uint8_t rcon = 1;
+#ifdef ACCEL_FULL_R_U13
+// Cyber unroll_times=13
+#elif defined(ACCEL_FULL_R_U4)
+// Cyber unroll_times=4
+#elif defined(ACCEL_FULL_R_U2)
+// Cyber unroll_times=2
+#elif defined(ACCEL_FULL_R_U1)
+// Cyber unroll_times=1
+#endif
     for (int r = 1; r < 14; r++) {
         full_sub_bytes(buf);
         full_shift_rows(buf);
@@ -511,7 +534,7 @@ bool computer(uint32_t imem_arg[MEM_SIZE]/* Cyber array=ROM */
 #elif defined(AES_P1)
   , uint32_t dmem_arg[DMEM_SIZE]/*Cyber array=REG, rw_port=R1.W1 */
 #else
-  , uint32_t dmem_arg[DMEM_SIZE]
+  , uint32_t dmem_arg[DMEM_SIZE]/*Cyber array=REG, rw_port=R1.W1 */
 #endif
 #ifdef C
   , ofstream &rpt
@@ -640,7 +663,12 @@ bool computer(uint32_t imem_arg[MEM_SIZE]/* Cyber array=ROM */
       break;
     }
 
-#if defined(ACCEL_MIX_COL) || defined(ACCEL_SUB_BYTES) || defined(ACCEL_SHIFT_ROWS) || defined(ACCEL_ADD_RK) || defined(ACCEL_FULL)
+#if defined(ACCEL_MIX_COL) || defined(ACCEL_SUB_BYTES) || defined(ACCEL_SHIFT_ROWS) || defined(ACCEL_ADD_RK) || \
+    defined(ACCEL_FULL) || \
+    defined(ACCEL_FULL_R_U1) || defined(ACCEL_FULL_R_U2) || \
+    defined(ACCEL_FULL_R_U4) || defined(ACCEL_FULL_R_U13) || \
+    defined(ACCEL_FULL_SB_U4) || defined(ACCEL_FULL_SB_U16) || \
+    defined(ACCEL_FULL_MC_U2) || defined(ACCEL_FULL_MC_U4)
     case 0x0B: {
       switch (funct3) {
 #ifdef ACCEL_MIX_COL
@@ -667,7 +695,11 @@ bool computer(uint32_t imem_arg[MEM_SIZE]/* Cyber array=ROM */
         else halt = true;
         break;
 #endif
-#ifdef ACCEL_FULL
+#if defined(ACCEL_FULL) || \
+    defined(ACCEL_FULL_R_U1) || defined(ACCEL_FULL_R_U2) || \
+    defined(ACCEL_FULL_R_U4) || defined(ACCEL_FULL_R_U13) || \
+    defined(ACCEL_FULL_SB_U4) || defined(ACCEL_FULL_SB_U16) || \
+    defined(ACCEL_FULL_MC_U2) || defined(ACCEL_FULL_MC_U4)
       case 7:
         if (funct7 == 0) aes_full_hw(regs[10], regs[11], regs[12], regs[13]);
         else halt = true;
