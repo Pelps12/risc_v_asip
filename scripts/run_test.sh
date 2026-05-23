@@ -304,8 +304,12 @@ if [ "$RUN_RTL" -eq 1 ]; then
 
     # Report CPI of RTL simulation
     CYCLE_COUNT=$(grep "Total cycles" "${RTL_RPT_FILE}" | grep -oP '\d+')
-    INSTRUCTION_COUNT=$(($(wc -l < "${ISS_RPT_FILE}") / 5))
-    echo "CPI = $(awk "BEGIN {printf \"%.1f\", $CYCLE_COUNT / $INSTRUCTION_COUNT}")"
+    if [[ -f "${ISS_RPT_FILE}" ]]; then
+        INSTRUCTION_COUNT=$(($(wc -l < "${ISS_RPT_FILE}") / 5))
+        echo "CPI = $(awk "BEGIN {printf \"%.1f\", $CYCLE_COUNT / $INSTRUCTION_COUNT}")"
+    else
+        echo "CPI = N/A (no ISS report)"
+    fi
 
     # ==========================================================================
     # Step 7: Compare ISS vs RTL (x10 = return value of main)

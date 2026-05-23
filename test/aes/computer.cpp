@@ -338,7 +338,7 @@ inline void compute_add_rk(uint32_t dmem_arg[], uint32_t buf_addr, uint32_t key_
     defined(ACCEL_FULL_R_U1) || defined(ACCEL_FULL_R_U2) || \
     defined(ACCEL_FULL_R_U4) || defined(ACCEL_FULL_R_U13) || \
     defined(ACCEL_FULL_SB_U4) || defined(ACCEL_FULL_SB_U16) || \
-    defined(ACCEL_FULL_MC_U2) || defined(ACCEL_FULL_MC_U4)
+    defined(ACCEL_FULL_MC_U1) || defined(ACCEL_FULL_MC_U2) || defined(ACCEL_FULL_MC_U4)
 static const uint8_t full_aes_key[32] = {
     0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,
     0x08,0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f,
@@ -407,6 +407,8 @@ inline void full_mix_columns(uint8_t *b) {
 // Cyber unroll_times=4
 #elif defined(ACCEL_FULL_MC_U2)
 // Cyber unroll_times=2
+#elif defined(ACCEL_FULL_MC_U1)
+// Cyber unroll_times=1
 #endif
     for (int i = 0; i < 16; i += 4) {
         a=b[i]; c=b[i+1]; d=b[i+2]; e=b[i+3]; x=a^c^d^e;
@@ -668,7 +670,7 @@ bool computer(uint32_t imem_arg[MEM_SIZE]/* Cyber array=ROM */
     defined(ACCEL_FULL_R_U1) || defined(ACCEL_FULL_R_U2) || \
     defined(ACCEL_FULL_R_U4) || defined(ACCEL_FULL_R_U13) || \
     defined(ACCEL_FULL_SB_U4) || defined(ACCEL_FULL_SB_U16) || \
-    defined(ACCEL_FULL_MC_U2) || defined(ACCEL_FULL_MC_U4)
+    defined(ACCEL_FULL_MC_U1) || defined(ACCEL_FULL_MC_U2) || defined(ACCEL_FULL_MC_U4)
     case 0x0B: {
       switch (funct3) {
 #ifdef ACCEL_MIX_COL
@@ -699,7 +701,7 @@ bool computer(uint32_t imem_arg[MEM_SIZE]/* Cyber array=ROM */
     defined(ACCEL_FULL_R_U1) || defined(ACCEL_FULL_R_U2) || \
     defined(ACCEL_FULL_R_U4) || defined(ACCEL_FULL_R_U13) || \
     defined(ACCEL_FULL_SB_U4) || defined(ACCEL_FULL_SB_U16) || \
-    defined(ACCEL_FULL_MC_U2) || defined(ACCEL_FULL_MC_U4)
+    defined(ACCEL_FULL_MC_U1) || defined(ACCEL_FULL_MC_U2) || defined(ACCEL_FULL_MC_U4)
       case 7:
         if (funct7 == 0) aes_full_hw(regs[10], regs[11], regs[12], regs[13]);
         else halt = true;

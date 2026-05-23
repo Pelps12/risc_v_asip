@@ -328,7 +328,7 @@ void aes256_encrypt_ecb(aes256_context *ctx, uint8_t k[32], uint8_t buf[16])
      defined(ACCEL_FULL_R_U1) || defined(ACCEL_FULL_R_U2) || \
      defined(ACCEL_FULL_R_U4) || defined(ACCEL_FULL_R_U13) || \
      defined(ACCEL_FULL_SB_U4) || defined(ACCEL_FULL_SB_U16) || \
-     defined(ACCEL_FULL_MC_U2) || defined(ACCEL_FULL_MC_U4)) && defined(__riscv)
+     defined(ACCEL_FULL_MC_U1) || defined(ACCEL_FULL_MC_U2) || defined(ACCEL_FULL_MC_U4)) && defined(__riscv)
     register uint32_t w0 asm("a0") = *(uint32_t *)(buf +  0);
     register uint32_t w1 asm("a1") = *(uint32_t *)(buf +  4);
     register uint32_t w2 asm("a2") = *(uint32_t *)(buf +  8);

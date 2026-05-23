@@ -92,7 +92,8 @@ fi
 echo "=== Phase 1: ISS (serial) ==="
 for v in "${VARIANTS[@]}"; do
     hex="${APP_DIR}/${v}/iss/artifacts/${APP}.hex"
-    if [[ -f "$hex" ]]; then
+    iss_rpt="${APP_DIR}/${v}/iss/artifacts/${APP}.iss.rpt"
+    if [[ -f "$hex" ]] && [[ -f "$iss_rpt" ]]; then
         echo "  [hex ok] ${v}"
         continue
     fi
