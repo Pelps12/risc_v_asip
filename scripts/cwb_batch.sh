@@ -81,6 +81,12 @@ mapfile -t ALL_VARIANTS < <(
 
 VARIANTS=()
 for v in "${ALL_VARIANTS[@]}"; do
+    # _no_ci variants are always populated by copying from their CI counterpart
+    # after synthesis — never synthesized directly (CWB dead-code-eliminates them)
+    if [[ "$v" == *_no_ci ]]; then
+        echo "[no_ci] ${APP}/${v}  (will be copied from CI variant after synthesis)"
+        continue
+    fi
     [[ -n "$FILTER" ]] && ! echo "$v" | grep -qE "$FILTER" && continue
     if [[ "$SKIP_DONE" -eq 1 ]] && [[ -f "${APP_DIR}/${v}/rtl/computer_E.v" ]]; then
         echo "[skip] ${APP}/${v}  (computer_E.v exists)"
@@ -139,6 +145,13 @@ run_variant() {
 
     if [[ "$status" = "OK" ]]; then
         printf "  [OK  %4ds] %s/%s\n" "$elapsed" "$APP" "$variant"
+        # Propagate RTL to _no_ci counterpart to prevent CWB dead-code elimination
+        local noci_dir="${APP_DIR}/${variant}_no_ci"
+        if [[ -d "$noci_dir" ]]; then
+            mkdir -p "${noci_dir}/rtl"
+            cp -r "${log_dir}/." "${noci_dir}/rtl/"
+            printf "  [copy      ] -> %s/%s_no_ci/rtl/\n" "$APP" "$variant"
+        fi
     else
         printf "  [FAIL %3ds] %s/%s  (see %s)\n" "$elapsed" "$APP" "$variant" "$log_file"
     fi
