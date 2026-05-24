@@ -519,8 +519,9 @@ void dump_regs(ofstream &rpt) {
 
 // ============================================================================
 // Main Processor Loop
-// AES_MIXCOL is register-bound: no dmem_arg pragma needed (no dmem access
-// inside the kernel); dmem_arg stays a plain parameter for load/store ops.
+// dmem_arg uses REG pragma (R1.W1) on the #else branch so that even baseline
+// and ACCEL_FULL_* variants expose an external dmem port for RTL simulation.
+// Partial-algorithmic variants (AES_P*) sweep port width independently.
 // ============================================================================
 
 // Cyber func=process
