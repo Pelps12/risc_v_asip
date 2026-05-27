@@ -1,0 +1,10 @@
+"computer.cpp", line 314: warning: label "add_rk" was declared but never referenced
+    add_rk : for (int i = 0; i < 16; i++) {
+    ^
+
+Warning: Static variables will be initialized every time when reset is triggered.
+
+Create: computer.IFF
+Token count: 1272
+The total token count is 1272. 
+cpars finished successfully.
