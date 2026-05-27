@@ -19,18 +19,19 @@ scpars  -EE -DACCEL_MIX_COL -DACCEL_SUB_BYTES -DACCEL_ADD_RK -DAES_P2 -info_base
   <  :  8  (32bit:8)
   >> :  7  (32bit:7)
   &  : 49  (1bit:3, 8bit:4, 32bit:32, 34bit:1, 39bit:1, 47bit:3, 63bit:3, 32769bit:2)
-  +  : 23  (32bit:23)
+  +  : 24  (32bit:22, 34bit:2)
   << :  7  (32bit:7)
   |  : 17  (32bit:2, 39bit:1, 62bit:3, 63bit:6, 78bit:3, 32769bit:2)
-  -  :  8  (32bit:8)
+  -  : 10  (32bit:10)
   == :  4  (32bit:4)
   >= :  2  (32bit:2)
   *  :  6  (32bit:6)
   ~  :  2  (32769bit:2)
-  ^  : 30  (8bit:8, 9bit:12, 10bit:8, 32bit:2)
+  ^  : 29  (8bit:7, 9bit:12, 10bit:8, 32bit:2)
   ++ :  1  (32bit:1)
+  ^= :  1  (32bit:1)
   |> :  6  (1bit:6)
-  Data transfer : 549
+  Data transfer : 557
 
  === array / memory ===
   read  : 45

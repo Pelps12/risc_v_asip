@@ -1,19 +1,7 @@
 Input: computer.CPINFO
-"computer.cpp", line 265: warning: label "sr_read" was declared but never referenced
-    sr_read : for (int i = 0; i < 16; i++) s[i] = mem_read_byte(dmem_arg, buf_addr + i);
+"computer.cpp", line 297: warning: label "add_rk" was declared but never referenced
+    add_rk : for (int i = 0; i < 4; i++) {
     ^
 
-"computer.cpp", line 287: warning: label "sr_write" was declared but never referenced
-    sr_write : for (int i = 0; i < 16; i++) mem_write_byte(dmem_arg, buf_addr + i, t[i]);
-    ^
 
-"computer.cpp", line 314: warning: label "add_rk" was declared but never referenced
-    add_rk : for (int i = 0; i < 16; i++) {
-    ^
-
-Warning: Static variables will be initialized every time when reset is triggered.
-
-Skip: computer.IFF
-Token count: 1619
-The total token count is 1619. 
-cpars finished successfully.
+cpars aborted due to errors. See the generated error file computer.cperr.
