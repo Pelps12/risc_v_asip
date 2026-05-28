@@ -252,39 +252,19 @@ inline uint32_t compute_sub_bytes(uint32_t word) {
 // ============================================================================
 #if defined(ACCEL_SHIFT_ROWS) || defined(ACCEL_SHIFT_ROWS_HW)
 inline void compute_shift_rows(uint32_t dmem_arg[], uint32_t buf_addr) {
-  uint8_t s[16];
-#ifdef ACCEL_SHIFT_ROWS_U16
-// Cyber unroll_times=16
-#elif defined(ACCEL_SHIFT_ROWS_U8)
-// Cyber unroll_times=8
-#elif defined(ACCEL_SHIFT_ROWS_U4)
-// Cyber unroll_times=4
-#elif defined(ACCEL_SHIFT_ROWS_U1)
-// Cyber unroll_times=1
-#endif
-  sr_read : for (int i = 0; i < 16; i++) s[i] = mem_read_byte(dmem_arg, buf_addr + i);
-
-  /* FIPS-197 §5.1.2 ShiftRows permutation (column-major state):
-   *   row 0 [0,4, 8,12] unchanged
-   *   row 1 [1,5, 9,13] → [5, 9,13, 1]
-   *   row 2 [2,6,10,14] → [10,14, 2, 6]
-   *   row 3 [3,7,11,15] → [15, 3, 7,11]  */
-  uint8_t t[16];
-  t[ 0]=s[ 0]; t[ 1]=s[ 5]; t[ 2]=s[10]; t[ 3]=s[15];
-  t[ 4]=s[ 4]; t[ 5]=s[ 9]; t[ 6]=s[14]; t[ 7]=s[ 3];
-  t[ 8]=s[ 8]; t[ 9]=s[13]; t[10]=s[ 2]; t[11]=s[ 7];
-  t[12]=s[12]; t[13]=s[ 1]; t[14]=s[ 6]; t[15]=s[11];
-
-#ifdef ACCEL_SHIFT_ROWS_U16
-// Cyber unroll_times=16
-#elif defined(ACCEL_SHIFT_ROWS_U8)
-// Cyber unroll_times=8
-#elif defined(ACCEL_SHIFT_ROWS_U4)
-// Cyber unroll_times=4
-#elif defined(ACCEL_SHIFT_ROWS_U1)
-// Cyber unroll_times=1
-#endif
-  sr_write : for (int i = 0; i < 16; i++) mem_write_byte(dmem_arg, buf_addr + i, t[i]);
+  uint32_t bw = (buf_addr - DMEM_BASE) >> 2;
+  uint32_t w0 = dmem_arg[bw + 0];
+  uint32_t w1 = dmem_arg[bw + 1];
+  uint32_t w2 = dmem_arg[bw + 2];
+  uint32_t w3 = dmem_arg[bw + 3];
+  /* FIPS-197 §5.1.2 ShiftRows (column-major, little-endian words).
+   * Each result word takes one byte-lane from each source word:
+   *   new_wC[byteB] = old_w[(C+B)%4][byteB]
+   * Expressed as byte-lane masks on the four input words: */
+  dmem_arg[bw + 0] = (w0&0x000000FF)|(w1&0x0000FF00)|(w2&0x00FF0000)|(w3&0xFF000000);
+  dmem_arg[bw + 1] = (w1&0x000000FF)|(w2&0x0000FF00)|(w3&0x00FF0000)|(w0&0xFF000000);
+  dmem_arg[bw + 2] = (w2&0x000000FF)|(w3&0x0000FF00)|(w0&0x00FF0000)|(w1&0xFF000000);
+  dmem_arg[bw + 3] = (w3&0x000000FF)|(w0&0x0000FF00)|(w1&0x00FF0000)|(w2&0xFF000000);
 }
 #endif
 
@@ -302,8 +282,11 @@ inline void compute_shift_rows(uint32_t dmem_arg[], uint32_t buf_addr) {
 // ============================================================================
 #if defined(ACCEL_ADD_RK) || defined(ACCEL_ADD_RK_HW)
 inline void compute_add_rk(uint32_t dmem_arg[], uint32_t buf_addr, uint32_t key_addr) {
+  uint32_t bw = (buf_addr - DMEM_BASE) >> 2;
+  uint32_t kw = (key_addr - DMEM_BASE) >> 2;
+  /* XOR 16 bytes as 4 words; bitwise-identical to byte-by-byte XOR in any endianness. */
 #ifdef ACCEL_ADD_RK_U8
-// Cyber unroll_times=8
+// Cyber unroll_times=4
 #elif defined(ACCEL_ADD_RK_U4)
 // Cyber unroll_times=4
 #elif defined(ACCEL_ADD_RK_U2)
@@ -311,10 +294,8 @@ inline void compute_add_rk(uint32_t dmem_arg[], uint32_t buf_addr, uint32_t key_
 #elif defined(ACCEL_ADD_RK_U1)
 // Cyber unroll_times=1
 #endif
-  add_rk : for (int i = 0; i < 16; i++) {
-    uint8_t b = mem_read_byte(dmem_arg, buf_addr  + i);
-    uint8_t k = mem_read_byte(dmem_arg, key_addr  + i);
-    mem_write_byte(dmem_arg, buf_addr + i, b ^ k);
+  add_rk : for (int i = 0; i < 4; i++) {
+    dmem_arg[bw + i] ^= dmem_arg[kw + i];
   }
 }
 #endif

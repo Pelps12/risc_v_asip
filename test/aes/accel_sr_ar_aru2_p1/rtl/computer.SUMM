@@ -16,25 +16,26 @@ scpars  -EE -DACCEL_SHIFT_ROWS -DACCEL_ADD_RK -DACCEL_ADD_RK_U2 -DAES_P1 -info_b
  === Operators ===
   != : 13  (1bit:2, 32bit:11)
   !  :  1  (1bit:1)
-  <  : 10  (32bit:10)
+  <  :  8  (32bit:8)
   >> :  7  (32bit:7)
-  &  : 35  (1bit:1, 32bit:24, 34bit:1, 39bit:1, 47bit:3, 63bit:3, 32769bit:2)
-  +  : 25  (32bit:25)
+  &  : 51  (1bit:1, 32bit:40, 34bit:1, 39bit:1, 47bit:3, 63bit:3, 32769bit:2)
+  +  : 40  (32bit:30, 33bit:8, 34bit:2)
   << :  7  (32bit:7)
-  |  : 11  (32bit:2, 39bit:1, 62bit:3, 78bit:3, 32769bit:2)
-  -  :  8  (32bit:8)
+  |  : 23  (32bit:14, 39bit:1, 62bit:3, 78bit:3, 32769bit:2)
+  -  : 11  (32bit:11)
   == :  3  (32bit:3)
   >= :  2  (32bit:2)
   *  :  6  (32bit:6)
   ~  :  2  (32769bit:2)
-  ^  :  3  (8bit:1, 32bit:2)
-  ++ :  3  (32bit:3)
+  ^  :  2  (32bit:2)
+  ++ :  1  (32bit:1)
+  ^= :  1  (32bit:1)
   |> :  2  (1bit:2)
-  Data transfer : 431
+  Data transfer : 506
 
  === array / memory ===
-  read  : 58
-  write : 24
+  read  : 41
+  write :  7
 
 !!!!!!!!  CyberII ABNORMAL finish [computer] (pos=17506)  !!!!!!!!
 

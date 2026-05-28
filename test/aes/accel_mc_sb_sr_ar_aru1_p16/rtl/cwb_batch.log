@@ -19,7 +19,7 @@ cpars version : 7.1.1 (Linux 64-bit) Mar 15 2018 15:30:09
 Warning: Static variables will be initialized every time when reset is triggered.
 
 Input: computer.CPINFO
-Create: computer.IFF
+Skip: computer.IFF
 cpars finished successfully.
 
 --- Step 2: bdltran ---

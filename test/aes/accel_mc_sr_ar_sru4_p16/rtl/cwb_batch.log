@@ -12,18 +12,11 @@ cpars version : 7.1.1 (Linux 64-bit) Mar 15 2018 15:30:09
          (BIF version : 3.41A)
          (LICflex version : 1.53 cylmd)
          (PARSE COMMON version : 2.91)
-"computer.cpp", line 265: warning: label "sr_read" was declared but never referenced
-    sr_read : for (int i = 0; i < 16; i++) s[i] = mem_read_byte(dmem_arg, buf_addr + i);
+"computer.cpp", line 297: warning: label "add_rk" was declared but never referenced
+    add_rk : for (int i = 0; i < 4; i++) {
     ^
 
-"computer.cpp", line 287: warning: label "sr_write" was declared but never referenced
-    sr_write : for (int i = 0; i < 16; i++) mem_write_byte(dmem_arg, buf_addr + i, t[i]);
-    ^
-
-"computer.cpp", line 314: warning: label "add_rk" was declared but never referenced
-    add_rk : for (int i = 0; i < 16; i++) {
-    ^
-
+Input: computer.CPINFO
 Create: computer.IFF
 cpars finished successfully.
 
@@ -42,25 +35,26 @@ I_BT6773: The BLIB and FLIB files are loaded.
  === Operators ===
   != : 18  (1bit:2, 8bit:4, 32bit:12)
   !  :  1  (1bit:1)
-  <  : 10  (32bit:10)
+  <  :  8  (32bit:8)
   >> :  7  (32bit:7)
-  &  : 44  (1bit:2, 8bit:4, 32bit:28, 34bit:1, 39bit:1, 47bit:3, 63bit:3, 32769bit:2)
-  +  : 25  (32bit:25)
+  &  : 60  (1bit:2, 8bit:4, 32bit:44, 34bit:1, 39bit:1, 47bit:3, 63bit:3, 32769bit:2)
+  +  : 40  (32bit:30, 33bit:8, 34bit:2)
   << :  7  (32bit:7)
-  |  : 14  (32bit:2, 39bit:1, 62bit:3, 63bit:3, 78bit:3, 32769bit:2)
-  -  :  8  (32bit:8)
+  |  : 26  (32bit:14, 39bit:1, 62bit:3, 63bit:3, 78bit:3, 32769bit:2)
+  -  : 11  (32bit:11)
   == :  4  (32bit:4)
   >= :  2  (32bit:2)
   *  :  6  (32bit:6)
   ~  :  2  (32769bit:2)
-  ^  : 30  (8bit:8, 9bit:12, 10bit:8, 32bit:2)
-  ++ :  3  (32bit:3)
+  ^  : 29  (8bit:7, 9bit:12, 10bit:8, 32bit:2)
+  ++ :  1  (32bit:1)
+  ^= :  1  (32bit:1)
   |> :  4  (1bit:4)
-  Data transfer : 556
+  Data transfer : 631
 
  === array / memory ===
-  read  : 59
-  write : 25
+  read  : 42
+  write :  8
 F_BT3107: Reference expression is empty.
  [Action] Rewrite the normal description that have reference expression.
 Copyright (C) 1988-2018 NEC Corporation. All rights reserved.
