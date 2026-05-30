@@ -140,49 +140,53 @@ inline void mem_write_word(uint32_t dmem_arg[], uint32_t addr, uint32_t val) {
 }
 
 // ============================================================================
-// AES_MIXCOL Accelerator
+// ACCEL_MIX_COL — MixColumns on all 4 AES columns (register-bound)
 //
-// Encoding : .insn r 0x0B, 2, 0, rd, rs1, x0
-//   opcode = 0x0B  funct3 = 2  funct7 = 0  rs2 = x0 (unused)
+// Encoding : .insn r 0x0B, 2, 0, zero, zero, zero
+//   opcode = 0x0B  funct3 = 2  funct7 = 0  rd/rs1/rs2 = x0 (unused)
 //
-// rs1 — packed 4-byte AES column (little-endian):
-//          bits[ 7: 0] = byte 0 (a)
-//          bits[15: 8] = byte 1 (b)
-//          bits[23:16] = byte 2 (c)
-//          bits[31:24] = byte 3 (d)
-// rd  — MixColumns result for that column, same packing as rs1
+// Implicitly reads and writes a0–a3 (regs[10]–regs[13]):
+//   a0 — column 0 packed little-endian (bits[7:0]=byte0 … bits[31:24]=byte3)
+//   a1 — column 1
+//   a2 — column 2
+//   a3 — column 3
 //
-// Operation (FIPS-197 §5.1.3, GF(2^8) with irreducible poly 0x11b):
-//   e         = a ^ b ^ c ^ d
-//   xtime(x)  = (x & 0x80) ? ((x<<1) ^ 0x1b) : (x<<1)
-//   rd[ 7: 0] = a ^ e ^ xtime(a^b)
-//   rd[15: 8] = b ^ e ^ xtime(b^c)
-//   rd[23:16] = c ^ e ^ xtime(c^d)
-//   rd[31:24] = d ^ e ^ xtime(d^a)
+// Each column is transformed in-place per FIPS-197 §5.1.3 GF(2⁸):
+//   e = a^b^c^d; xtime(x) = (x&0x80)?((x<<1)^0x1b):(x<<1)
+//   out[7:0]  = a^e^xtime(a^b)   out[15:8]  = b^e^xtime(b^c)
+//   out[23:16]= c^e^xtime(c^d)   out[31:24] = d^e^xtime(d^a)
 //
-// This is a pure register-to-register operation; no dmem access.
-// Called 4× per aes_mixColumns invocation, 13 rounds per AES-256 = 52 total.
-// Replaces ~20 instructions per column (4 rj_xtime calls + shift/XOR/load/store).
+// Pure register-to-register; no dmem access. One CI replaces the 4-column loop
+// (previously 4 separate CI calls, 52 total per AES-256 → now 13 total).
 // ============================================================================
 #if defined(ACCEL_MIX_COL) || defined(ACCEL_MIX_COL_HW)
-inline uint32_t compute_mix_col(uint32_t col) {
+static inline uint32_t mix_col_word(uint32_t col) {
   uint8_t a = (uint8_t)(col        & 0xFF);
   uint8_t b = (uint8_t)((col >> 8) & 0xFF);
   uint8_t c = (uint8_t)((col >>16) & 0xFF);
   uint8_t d = (uint8_t)((col >>24) & 0xFF);
-
   uint8_t e = a ^ b ^ c ^ d;
-
 #define XTIME(x) (((x) & 0x80) ? (((x) << 1) ^ 0x1b) : ((x) << 1))
-
   uint8_t r0 = (uint8_t)(a ^ e ^ XTIME(a ^ b));
   uint8_t r1 = (uint8_t)(b ^ e ^ XTIME(b ^ c));
   uint8_t r2 = (uint8_t)(c ^ e ^ XTIME(c ^ d));
   uint8_t r3 = (uint8_t)(d ^ e ^ XTIME(d ^ a));
-
 #undef XTIME
-
   return (uint32_t)r0 | ((uint32_t)r1 << 8) | ((uint32_t)r2 << 16) | ((uint32_t)r3 << 24);
+}
+
+inline void compute_mix_col(uint32_t &c0, uint32_t &c1, uint32_t &c2, uint32_t &c3) {
+  uint32_t cols[4] = {c0, c1, c2, c3};
+#ifdef ACCEL_MIX_COL_U4
+// Cyber unroll_times=4
+#elif defined(ACCEL_MIX_COL_U2)
+// Cyber unroll_times=2
+#elif defined(ACCEL_MIX_COL_U1)
+// Cyber unroll_times=1
+#endif
+  for (int i = 0; i < 4; i++)
+    cols[i] = mix_col_word(cols[i]);
+  c0 = cols[0]; c1 = cols[1]; c2 = cols[2]; c3 = cols[3];
 }
 #endif
 
@@ -232,11 +236,25 @@ static const uint8_t accel_sbox[256] = {
     0x8c, 0xa1, 0x89, 0x0d, 0xbf, 0xe6, 0x42, 0x68,
     0x41, 0x99, 0x2d, 0x0f, 0xb0, 0x54, 0xbb, 0x16
 };
-inline uint32_t compute_sub_bytes(uint32_t word) {
+static inline uint32_t sub_bytes_word(uint32_t word) {
   return (uint32_t)accel_sbox[ word        & 0xFF]
        | ((uint32_t)accel_sbox[(word >>  8) & 0xFF] <<  8)
        | ((uint32_t)accel_sbox[(word >> 16) & 0xFF] << 16)
        | ((uint32_t)accel_sbox[(word >> 24) & 0xFF] << 24);
+}
+
+inline void compute_sub_bytes(uint32_t &c0, uint32_t &c1, uint32_t &c2, uint32_t &c3) {
+  uint32_t cols[4] = {c0, c1, c2, c3};
+#ifdef ACCEL_SUB_BYTES_U4
+// Cyber unroll_times=4
+#elif defined(ACCEL_SUB_BYTES_U2)
+// Cyber unroll_times=2
+#elif defined(ACCEL_SUB_BYTES_U1)
+// Cyber unroll_times=1
+#endif
+  for (int i = 0; i < 4; i++)
+    cols[i] = sub_bytes_word(cols[i]);
+  c0 = cols[0]; c1 = cols[1]; c2 = cols[2]; c3 = cols[3];
 }
 #endif
 
@@ -657,13 +675,13 @@ bool computer(uint32_t imem_arg[MEM_SIZE]/* Cyber array=ROM */
       switch (funct3) {
 #ifdef ACCEL_MIX_COL
       case 2:
-        if (funct7 == 0 && rd != 0) regs[rd] = compute_mix_col(regs[rs1]);
+        if (funct7 == 0) compute_mix_col(regs[10], regs[11], regs[12], regs[13]);
         else halt = true;
         break;
 #endif
 #ifdef ACCEL_SUB_BYTES
       case 3:
-        if (funct7 == 0 && rd != 0) regs[rd] = compute_sub_bytes(regs[rs1]);
+        if (funct7 == 0) compute_sub_bytes(regs[10], regs[11], regs[12], regs[13]);
         else halt = true;
         break;
 #endif

@@ -116,30 +116,26 @@ void aes_subBytes(uint8_t *buf)
 {
 /*
  * ACCEL_SUB_BYTES custom instruction (funct3=3):
- *   Assembly : .insn r 0x0B, 3, 0, rd, rs1, x0
- *   rs1 — packed 4 bytes little-endian: bits[7:0]=buf[i], bits[15:8]=buf[i+1], ...
- *   rd  — S-box applied independently to each byte (SubWord)
- *   Called 4× per invocation (16 bytes / 4 per CI = 4 CI calls).
- *   The same CI also accelerates the SubWord step in aes_expandEncKey.
- *   Replaces 4 sequential rj_sbox table-lookup calls per CI invocation.
+ *   Assembly : .insn r 0x0B, 3, 0, zero, zero, zero
+ *   Implicitly reads/writes a0–a3 (all 4 words of the 16-byte state):
+ *     a0=buf[0..3], a1=buf[4..7], a2=buf[8..11], a3=buf[12..15] (little-endian)
+ *   S-box applied independently to each byte across all 4 words.
+ *   One CI per invocation (13 total per AES-256), register-bound.
+ *   Key expansion SubWord calls revert to scalar (only 1 word at a time there).
  */
 #if defined(ACCEL_SUB_BYTES) && defined(__riscv)
-    register uint8_t i;
-    sub : for (i = 0; i < 16; i += 4) {
-        uint32_t word = (uint32_t)buf[i]
-                      | ((uint32_t)buf[i+1] <<  8)
-                      | ((uint32_t)buf[i+2] << 16)
-                      | ((uint32_t)buf[i+3] << 24);
-        uint32_t result;
-        asm volatile(
-            ".insn r 0x0B, 3, 0, %0, %1, x0\n"
-            : "=r"(result) : "r"(word)
-        );
-        buf[i]   = (uint8_t)(result);
-        buf[i+1] = (uint8_t)(result >>  8);
-        buf[i+2] = (uint8_t)(result >> 16);
-        buf[i+3] = (uint8_t)(result >> 24);
-    }
+    register uint32_t w0 asm("a0") = *(uint32_t *)(buf +  0);
+    register uint32_t w1 asm("a1") = *(uint32_t *)(buf +  4);
+    register uint32_t w2 asm("a2") = *(uint32_t *)(buf +  8);
+    register uint32_t w3 asm("a3") = *(uint32_t *)(buf + 12);
+    asm volatile(
+        ".insn r 0x0B, 3, 0, zero, zero, zero"
+        : "+r"(w0), "+r"(w1), "+r"(w2), "+r"(w3)
+    );
+    *(uint32_t *)(buf +  0) = w0;
+    *(uint32_t *)(buf +  4) = w1;
+    *(uint32_t *)(buf +  8) = w2;
+    *(uint32_t *)(buf + 12) = w3;
 #else
     register uint8_t i = 16;
     sub : while (i--) buf[i] = rj_sbox(buf[i]);
@@ -212,38 +208,28 @@ void aes_mixColumns(uint8_t *buf)
 {
 /*
  * ACCEL_MIX_COL custom instruction (funct3=2):
- *   Assembly : .insn r 0x0B, 2, 0, rd, rs1, x0
- *   rs1 — packed 4-byte AES column (little-endian):
- *            bits[ 7: 0]=a  bits[15: 8]=b  bits[23:16]=c  bits[31:24]=d
- *   rd  — MixColumns result for that column, same packing
- *   Operation (FIPS-197 §5.1.3, GF(2^8) poly 0x11b):
+ *   Assembly : .insn r 0x0B, 2, 0, zero, zero, zero
+ *   Implicitly reads/writes a0–a3 (all 4 columns in one CI call):
+ *     a0 = col0, a1 = col1, a2 = col2, a3 = col3 (little-endian packed)
+ *   Each column transformed per FIPS-197 §5.1.3 GF(2^8) poly 0x11b:
  *     e = a^b^c^d;  xtime(x) = (x&0x80)?((x<<1)^0x1b):(x<<1)
- *     rd[7:0]  = a^e^xtime(a^b)
- *     rd[15:8] = b^e^xtime(b^c)
- *     rd[23:16]= c^e^xtime(c^d)
- *     rd[31:24]= d^e^xtime(d^a)
- *   Called 4× per invocation (one CI per column), 13 rounds = 52 total CIs.
- *   Register-bound: no dmem access; no port sweep.
+ *     out[7:0]=a^e^xtime(a^b)  out[15:8]=b^e^xtime(b^c)
+ *     out[23:16]=c^e^xtime(c^d)  out[31:24]=d^e^xtime(d^a)
+ *   One CI per invocation (13 total per AES-256), register-bound.
  */
 #if defined(ACCEL_MIX_COL) && defined(__riscv)
-    register uint8_t i;
-    mix : for (i = 0; i < 16; i += 4)
-    {
-        uint32_t col = (uint32_t)buf[i]
-                     | ((uint32_t)buf[i+1] <<  8)
-                     | ((uint32_t)buf[i+2] << 16)
-                     | ((uint32_t)buf[i+3] << 24);
-        uint32_t result;
-        asm volatile(
-            ".insn r 0x0B, 2, 0, %0, %1, x0\n"
-            : "=r"(result)
-            : "r"(col)
-        );
-        buf[i]   = (uint8_t)(result);
-        buf[i+1] = (uint8_t)(result >>  8);
-        buf[i+2] = (uint8_t)(result >> 16);
-        buf[i+3] = (uint8_t)(result >> 24);
-    }
+    register uint32_t w0 asm("a0") = *(uint32_t *)(buf +  0);
+    register uint32_t w1 asm("a1") = *(uint32_t *)(buf +  4);
+    register uint32_t w2 asm("a2") = *(uint32_t *)(buf +  8);
+    register uint32_t w3 asm("a3") = *(uint32_t *)(buf + 12);
+    asm volatile(
+        ".insn r 0x0B, 2, 0, zero, zero, zero"
+        : "+r"(w0), "+r"(w1), "+r"(w2), "+r"(w3)
+    );
+    *(uint32_t *)(buf +  0) = w0;
+    *(uint32_t *)(buf +  4) = w1;
+    *(uint32_t *)(buf +  8) = w2;
+    *(uint32_t *)(buf + 12) = w3;
 #else
     register uint8_t i, a, b, c, d, e;
     mix : for (i = 0; i < 16; i += 4)
@@ -265,51 +251,17 @@ void aes_expandEncKey(uint8_t *k, uint8_t *rc)
  * Each is one CI call (4 bytes packed into rs1, result unpacked into k[]).
  */
     register uint8_t i;
-#if defined(ACCEL_SUB_BYTES) && defined(__riscv)
-    /* SubWord on RotWord(k[28..31]): pack in rotated order [29,30,31,28]. */
-    uint32_t rot_word = (uint32_t)k[29]
-                      | ((uint32_t)k[30] << 8)
-                      | ((uint32_t)k[31] << 16)
-                      | ((uint32_t)k[28] << 24);
-    uint32_t sw0;
-    asm volatile(
-        ".insn r 0x0B, 3, 0, %0, %1, x0\n"
-        : "=r"(sw0) : "r"(rot_word)
-    );
-    k[0] ^= (uint8_t)(sw0)        ^ (*rc);
-    k[1] ^= (uint8_t)(sw0 >>  8);
-    k[2] ^= (uint8_t)(sw0 >> 16);
-    k[3] ^= (uint8_t)(sw0 >> 24);
-#else
     k[0] ^= rj_sbox(k[29]) ^ (*rc);
     k[1] ^= rj_sbox(k[30]);
     k[2] ^= rj_sbox(k[31]);
     k[3] ^= rj_sbox(k[28]);
-#endif
     *rc = F( *rc);
     exp1 : for(i = 4; i < 16; i += 4)  k[i] ^= k[i-4],   k[i+1] ^= k[i-3],
         k[i+2] ^= k[i-2], k[i+3] ^= k[i-1];
-#if defined(ACCEL_SUB_BYTES) && defined(__riscv)
-    /* SubWord on k[12..15] (no rotation). */
-    uint32_t word2 = (uint32_t)k[12]
-                   | ((uint32_t)k[13] <<  8)
-                   | ((uint32_t)k[14] << 16)
-                   | ((uint32_t)k[15] << 24);
-    uint32_t sw1;
-    asm volatile(
-        ".insn r 0x0B, 3, 0, %0, %1, x0\n"
-        : "=r"(sw1) : "r"(word2)
-    );
-    k[16] ^= (uint8_t)(sw1);
-    k[17] ^= (uint8_t)(sw1 >>  8);
-    k[18] ^= (uint8_t)(sw1 >> 16);
-    k[19] ^= (uint8_t)(sw1 >> 24);
-#else
     k[16] ^= rj_sbox(k[12]);
     k[17] ^= rj_sbox(k[13]);
     k[18] ^= rj_sbox(k[14]);
     k[19] ^= rj_sbox(k[15]);
-#endif
     exp2 : for(i = 20; i < 32; i += 4) k[i] ^= k[i-4],   k[i+1] ^= k[i-3],
         k[i+2] ^= k[i-2], k[i+3] ^= k[i-1];
 }

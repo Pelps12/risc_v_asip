@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AES Pareto Front</title>
+<style>
+  body { font-family: sans-serif; margin: 20px; background: #fafafa; }
+  h2   { margin-bottom: 4px; }
+  #controls { display:flex; gap:16px; align-items:center; margin-bottom:10px; flex-wrap:wrap; }
+  #controls label { font-size:13px; }
+  #tooltip {
+    position:absolute; background:rgba(20,20,20,0.88); color:#fff;
+    padding:8px 12px; border-radius:6px; font-size:12px; pointer-events:none;
+    display:none; max-width:260px; line-height:1.6;
+  }
+  canvas { border:1px solid #ddd; background:#fff; cursor:crosshair; }
+  #legend { display:flex; gap:18px; flex-wrap:wrap; margin-top:8px; font-size:12px; }
+  .leg-item { display:flex; align-items:center; gap:5px; }
+  .leg-dot  { width:12px; height:12px; border-radius:50%; display:inline-block; }
+</style>
+</head>
+<body>
+<h2>AES Accelerator — Area vs Cycles (Interactive)</h2>
+<div id="controls">
+  <label><input type="checkbox" id="logY" checked> Log Y-axis</label>
+  <label><input type="checkbox" id="showPareto" checked> Highlight Pareto front</label>
+  <label><input type="checkbox" id="showAll" checked> Show all points</label>
+  <label>Filter:
+    <select id="filterCat">
+      <option value="all">All categories</option>
+      <option value="Baseline">Baseline</option>
+      <option value="Partial CI (MC/SB)">Partial CI (MC/SB)</option>
+      <option value="Partial CI (SR)">Partial CI (SR)</option>
+      <option value="Full-algorithm CI">Full-algorithm CI</option>
+    </select>
+  </label>
+</div>
+<canvas id="chart" width="960" height="560"></canvas>
+<div id="legend">
+  <div class="leg-item"><span class="leg-dot" style="background:#555"></span>Baseline</div>
+  <div class="leg-item"><span class="leg-dot" style="background:#2ca02c"></span>Partial CI (MC/SB)</div>
+  <div class="leg-item"><span class="leg-dot" style="background:#d62728"></span>Partial CI (SR)</div>
+  <div class="leg-item"><span class="leg-dot" style="background:#1f77b4"></span>Full-algorithm CI</div>
+  <div class="leg-item"><span class="leg-dot" style="background:#000;border:2px solid #000"></span>Pareto-optimal</div>
+</div>
+<div id="tooltip"></div>
+<script>
+const POINTS = [{"variant": "baseline", "cycles": 75929, "area": 160149, "speedup": "1.000", "area_pct": "0.0", "cpi": "3.0", "cpi_no_ci": "N/A", "no_ci_overhead": "N/A", "category": "Baseline", "pareto": true}, {"variant": "accel_mc_sb", "cycles": 54233, "area": 163613, "speedup": "1.400", "area_pct": "2.2", "cpi": "3.0", "cpi_no_ci": "3.0", "no_ci_overhead": "1.000", "category": "Partial CI (MC/SB)", "pareto": true}, {"variant": "accel_mc", "cycles": 55955, "area": 161823, "speedup": "1.357", "area_pct": "1.0", "cpi": "3.0", "cpi_no_ci": "3.0", "no_ci_overhead": "1.000", "category": "Partial CI (MC/SB)", "pareto": true}, {"variant": "accel_mc_sb_sr_p2", "cycles": 73292, "area": 299891, "speedup": "1.036", "area_pct": "87.3", "cpi": "4.2", "cpi_no_ci": "4.2", "no_ci_overhead": "1.406", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sb_sr_u16_p2", "cycles": 73292, "area": 299891, "speedup": "1.036", "area_pct": "87.3", "cpi": "4.2", "cpi_no_ci": "4.2", "no_ci_overhead": "1.406", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sb_sr_u1_p2", "cycles": 73292, "area": 299891, "speedup": "1.036", "area_pct": "87.3", "cpi": "4.2", "cpi_no_ci": "4.2", "no_ci_overhead": "1.406", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sb_sr_u4_p2", "cycles": 73292, "area": 299891, "speedup": "1.036", "area_pct": "87.3", "cpi": "4.2", "cpi_no_ci": "4.2", "no_ci_overhead": "1.406", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sb_sr_u8_p2", "cycles": 73292, "area": 299891, "speedup": "1.036", "area_pct": "87.3", "cpi": "4.2", "cpi_no_ci": "4.2", "no_ci_overhead": "1.406", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sb", "cycles": 74207, "area": 163156, "speedup": "1.023", "area_pct": "1.9", "cpi": "3.0", "cpi_no_ci": "3.0", "no_ci_overhead": "1.000", "category": "Partial CI (MC/SB)", "pareto": false}, {"variant": "accel_mc_sb_sr_p8", "cycles": 74555, "area": 436433, "speedup": "1.018", "area_pct": "172.5", "cpi": "4.3", "cpi_no_ci": "4.3", "no_ci_overhead": "1.417", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sb_sr_u16_p8", "cycles": 74555, "area": 436433, "speedup": "1.018", "area_pct": "172.5", "cpi": "4.3", "cpi_no_ci": "4.3", "no_ci_overhead": "1.417", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sb_sr_u1_p8", "cycles": 74555, "area": 436433, "speedup": "1.018", "area_pct": "172.5", "cpi": "4.3", "cpi_no_ci": "4.3", "no_ci_overhead": "1.417", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sb_sr_u4_p8", "cycles": 74555, "area": 436433, "speedup": "1.018", "area_pct": "172.5", "cpi": "4.3", "cpi_no_ci": "4.3", "no_ci_overhead": "1.417", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sb_sr_u8_p8", "cycles": 74555, "area": 436433, "speedup": "1.018", "area_pct": "172.5", "cpi": "4.3", "cpi_no_ci": "4.3", "no_ci_overhead": "1.417", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sr_p16", "cycles": 75049, "area": 435611, "speedup": "1.012", "area_pct": "172.0", "cpi": "4.2", "cpi_no_ci": "4.2", "no_ci_overhead": "1.408", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sr_u16_p16", "cycles": 75049, "area": 435611, "speedup": "1.012", "area_pct": "172.0", "cpi": "4.2", "cpi_no_ci": "4.2", "no_ci_overhead": "1.408", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sr_u1_p16", "cycles": 75049, "area": 435611, "speedup": "1.012", "area_pct": "172.0", "cpi": "4.2", "cpi_no_ci": "4.2", "no_ci_overhead": "1.408", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sr_u4_p16", "cycles": 75049, "area": 435611, "speedup": "1.012", "area_pct": "172.0", "cpi": "4.2", "cpi_no_ci": "4.2", "no_ci_overhead": "1.408", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sr_u8_p16", "cycles": 75049, "area": 435611, "speedup": "1.012", "area_pct": "172.0", "cpi": "4.2", "cpi_no_ci": "4.2", "no_ci_overhead": "1.408", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sb_sr_p16", "cycles": 77347, "area": 437779, "speedup": "0.982", "area_pct": "173.4", "cpi": "4.4", "cpi_no_ci": "4.4", "no_ci_overhead": "1.481", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sb_sr_u16_p16", "cycles": 77347, "area": 437779, "speedup": "0.982", "area_pct": "173.4", "cpi": "4.4", "cpi_no_ci": "4.4", "no_ci_overhead": "1.481", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sb_sr_u1_p16", "cycles": 77347, "area": 437779, "speedup": "0.982", "area_pct": "173.4", "cpi": "4.4", "cpi_no_ci": "4.4", "no_ci_overhead": "1.481", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sb_sr_u4_p16", "cycles": 77347, "area": 437779, "speedup": "0.982", "area_pct": "173.4", "cpi": "4.4", "cpi_no_ci": "4.4", "no_ci_overhead": "1.481", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sb_sr_u8_p16", "cycles": 77347, "area": 437779, "speedup": "0.982", "area_pct": "173.4", "cpi": "4.4", "cpi_no_ci": "4.4", "no_ci_overhead": "1.481", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sb_sr_p4", "cycles": 77737, "area": 437652, "speedup": "0.977", "area_pct": "173.3", "cpi": "4.5", "cpi_no_ci": "4.5", "no_ci_overhead": "1.490", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sb_sr_u16_p4", "cycles": 77737, "area": 437652, "speedup": "0.977", "area_pct": "173.3", "cpi": "4.5", "cpi_no_ci": "4.5", "no_ci_overhead": "1.490", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sb_sr_u1_p4", "cycles": 77737, "area": 437652, "speedup": "0.977", "area_pct": "173.3", "cpi": "4.5", "cpi_no_ci": "4.5", "no_ci_overhead": "1.490", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sb_sr_u4_p4", "cycles": 77737, "area": 437652, "speedup": "0.977", "area_pct": "173.3", "cpi": "4.5", "cpi_no_ci": "4.5", "no_ci_overhead": "1.490", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sb_sr_u8_p4", "cycles": 77737, "area": 437652, "speedup": "0.977", "area_pct": "173.3", "cpi": "4.5", "cpi_no_ci": "4.5", "no_ci_overhead": "1.490", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sr_p2", "cycles": 78042, "area": 298926, "speedup": "0.973", "area_pct": "86.7", "cpi": "4.3", "cpi_no_ci": "4.3", "no_ci_overhead": "1.438", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sr_u16_p2", "cycles": 78042, "area": 298926, "speedup": "0.973", "area_pct": "86.7", "cpi": "4.3", "cpi_no_ci": "4.3", "no_ci_overhead": "1.438", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sr_u1_p2", "cycles": 78042, "area": 298926, "speedup": "0.973", "area_pct": "86.7", "cpi": "4.3", "cpi_no_ci": "4.3", "no_ci_overhead": "1.438", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sr_u4_p2", "cycles": 78042, "area": 298926, "speedup": "0.973", "area_pct": "86.7", "cpi": "4.3", "cpi_no_ci": "4.3", "no_ci_overhead": "1.438", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sr_u8_p2", "cycles": 78042, "area": 298926, "speedup": "0.973", "area_pct": "86.7", "cpi": "4.3", "cpi_no_ci": "4.3", "no_ci_overhead": "1.438", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sr_p4", "cycles": 79975, "area": 435764, "speedup": "0.949", "area_pct": "172.1", "cpi": "4.4", "cpi_no_ci": "4.4", "no_ci_overhead": "1.479", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sr_u16_p4", "cycles": 79975, "area": 435764, "speedup": "0.949", "area_pct": "172.1", "cpi": "4.4", "cpi_no_ci": "4.4", "no_ci_overhead": "1.479", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sr_u1_p4", "cycles": 79975, "area": 435764, "speedup": "0.949", "area_pct": "172.1", "cpi": "4.4", "cpi_no_ci": "4.4", "no_ci_overhead": "1.479", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sr_u4_p4", "cycles": 79975, "area": 435764, "speedup": "0.949", "area_pct": "172.1", "cpi": "4.4", "cpi_no_ci": "4.4", "no_ci_overhead": "1.479", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sr_u8_p4", "cycles": 79975, "area": 435764, "speedup": "0.949", "area_pct": "172.1", "cpi": "4.4", "cpi_no_ci": "4.4", "no_ci_overhead": "1.479", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sr_p8", "cycles": 80199, "area": 435481, "speedup": "0.947", "area_pct": "171.9", "cpi": "4.5", "cpi_no_ci": "4.4", "no_ci_overhead": "1.475", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sr_u16_p8", "cycles": 80199, "area": 435481, "speedup": "0.947", "area_pct": "171.9", "cpi": "4.5", "cpi_no_ci": "4.4", "no_ci_overhead": "1.475", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sr_u1_p8", "cycles": 80199, "area": 435481, "speedup": "0.947", "area_pct": "171.9", "cpi": "4.5", "cpi_no_ci": "4.4", "no_ci_overhead": "1.475", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sr_u4_p8", "cycles": 80199, "area": 435481, "speedup": "0.947", "area_pct": "171.9", "cpi": "4.5", "cpi_no_ci": "4.4", "no_ci_overhead": "1.475", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sr_u8_p8", "cycles": 80199, "area": 435481, "speedup": "0.947", "area_pct": "171.9", "cpi": "4.5", "cpi_no_ci": "4.4", "no_ci_overhead": "1.475", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sb_sr_p1", "cycles": 83910, "area": 163104, "speedup": "0.905", "area_pct": "1.8", "cpi": "4.8", "cpi_no_ci": "4.8", "no_ci_overhead": "1.587", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sb_sr_u16_p1", "cycles": 83910, "area": 163104, "speedup": "0.905", "area_pct": "1.8", "cpi": "4.8", "cpi_no_ci": "4.8", "no_ci_overhead": "1.587", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sb_sr_u1_p1", "cycles": 83910, "area": 163104, "speedup": "0.905", "area_pct": "1.8", "cpi": "4.8", "cpi_no_ci": "4.8", "no_ci_overhead": "1.587", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sb_sr_u4_p1", "cycles": 83910, "area": 163104, "speedup": "0.905", "area_pct": "1.8", "cpi": "4.8", "cpi_no_ci": "4.8", "no_ci_overhead": "1.587", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sb_sr_u8_p1", "cycles": 83910, "area": 163104, "speedup": "0.905", "area_pct": "1.8", "cpi": "4.8", "cpi_no_ci": "4.8", "no_ci_overhead": "1.587", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sr_p1", "cycles": 87102, "area": 162635, "speedup": "0.872", "area_pct": "1.6", "cpi": "4.8", "cpi_no_ci": "4.8", "no_ci_overhead": "1.609", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sr_u16_p1", "cycles": 87102, "area": 162635, "speedup": "0.872", "area_pct": "1.6", "cpi": "4.8", "cpi_no_ci": "4.8", "no_ci_overhead": "1.609", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sr_u1_p1", "cycles": 87102, "area": 162635, "speedup": "0.872", "area_pct": "1.6", "cpi": "4.8", "cpi_no_ci": "4.8", "no_ci_overhead": "1.609", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sr_u4_p1", "cycles": 87102, "area": 162635, "speedup": "0.872", "area_pct": "1.6", "cpi": "4.8", "cpi_no_ci": "4.8", "no_ci_overhead": "1.609", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_mc_sr_u8_p1", "cycles": 87102, "area": 162635, "speedup": "0.872", "area_pct": "1.6", "cpi": "4.8", "cpi_no_ci": "4.8", "no_ci_overhead": "1.609", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sb_sr_p2", "cycles": 101276, "area": 299501, "speedup": "0.750", "area_pct": "87.0", "cpi": "4.2", "cpi_no_ci": "4.2", "no_ci_overhead": "1.406", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sb_sr_u16_p2", "cycles": 101276, "area": 299501, "speedup": "0.750", "area_pct": "87.0", "cpi": "4.2", "cpi_no_ci": "4.2", "no_ci_overhead": "1.406", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sb_sr_u1_p2", "cycles": 101276, "area": 299501, "speedup": "0.750", "area_pct": "87.0", "cpi": "4.2", "cpi_no_ci": "4.2", "no_ci_overhead": "1.406", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sb_sr_u4_p2", "cycles": 101276, "area": 299501, "speedup": "0.750", "area_pct": "87.0", "cpi": "4.2", "cpi_no_ci": "4.2", "no_ci_overhead": "1.406", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sb_sr_u8_p2", "cycles": 101276, "area": 299501, "speedup": "0.750", "area_pct": "87.0", "cpi": "4.2", "cpi_no_ci": "4.2", "no_ci_overhead": "1.406", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sb_sr_p8", "cycles": 102017, "area": 435985, "speedup": "0.744", "area_pct": "172.2", "cpi": "4.2", "cpi_no_ci": "4.3", "no_ci_overhead": "1.417", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sb_sr_u16_p8", "cycles": 102017, "area": 435985, "speedup": "0.744", "area_pct": "172.2", "cpi": "4.2", "cpi_no_ci": "4.3", "no_ci_overhead": "1.417", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sb_sr_u1_p8", "cycles": 102017, "area": 435985, "speedup": "0.744", "area_pct": "172.2", "cpi": "4.2", "cpi_no_ci": "4.3", "no_ci_overhead": "1.417", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sb_sr_u4_p8", "cycles": 102017, "area": 435985, "speedup": "0.744", "area_pct": "172.2", "cpi": "4.2", "cpi_no_ci": "4.3", "no_ci_overhead": "1.417", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sb_sr_u8_p8", "cycles": 102017, "area": 435985, "speedup": "0.744", "area_pct": "172.2", "cpi": "4.2", "cpi_no_ci": "4.3", "no_ci_overhead": "1.417", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sr_p2", "cycles": 104158, "area": 298593, "speedup": "0.729", "area_pct": "86.4", "cpi": "4.2", "cpi_no_ci": "4.2", "no_ci_overhead": "1.411", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sr_u16_p2", "cycles": 104158, "area": 298593, "speedup": "0.729", "area_pct": "86.4", "cpi": "4.2", "cpi_no_ci": "4.2", "no_ci_overhead": "1.411", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sr_u1_p2", "cycles": 104158, "area": 298593, "speedup": "0.729", "area_pct": "86.4", "cpi": "4.2", "cpi_no_ci": "4.2", "no_ci_overhead": "1.411", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sr_u4_p2", "cycles": 104158, "area": 298593, "speedup": "0.729", "area_pct": "86.4", "cpi": "4.2", "cpi_no_ci": "4.2", "no_ci_overhead": "1.411", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sr_u8_p2", "cycles": 104158, "area": 298593, "speedup": "0.729", "area_pct": "86.4", "cpi": "4.2", "cpi_no_ci": "4.2", "no_ci_overhead": "1.411", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sr_p16", "cycles": 105322, "area": 435500, "speedup": "0.721", "area_pct": "171.9", "cpi": "4.3", "cpi_no_ci": "4.3", "no_ci_overhead": "1.427", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sr_u16_p16", "cycles": 105322, "area": 435500, "speedup": "0.721", "area_pct": "171.9", "cpi": "4.3", "cpi_no_ci": "4.3", "no_ci_overhead": "1.427", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sr_u1_p16", "cycles": 105322, "area": 435500, "speedup": "0.721", "area_pct": "171.9", "cpi": "4.3", "cpi_no_ci": "4.3", "no_ci_overhead": "1.427", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sr_u4_p16", "cycles": 105322, "area": 435500, "speedup": "0.721", "area_pct": "171.9", "cpi": "4.3", "cpi_no_ci": "4.3", "no_ci_overhead": "1.427", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sr_u8_p16", "cycles": 105322, "area": 435500, "speedup": "0.721", "area_pct": "171.9", "cpi": "4.3", "cpi_no_ci": "4.3", "no_ci_overhead": "1.427", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sr_p4", "cycles": 107079, "area": 435391, "speedup": "0.709", "area_pct": "171.9", "cpi": "4.3", "cpi_no_ci": "4.4", "no_ci_overhead": "1.453", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sr_u16_p4", "cycles": 107079, "area": 435391, "speedup": "0.709", "area_pct": "171.9", "cpi": "4.3", "cpi_no_ci": "4.4", "no_ci_overhead": "1.453", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sr_u1_p4", "cycles": 107079, "area": 435391, "speedup": "0.709", "area_pct": "171.9", "cpi": "4.3", "cpi_no_ci": "4.4", "no_ci_overhead": "1.453", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sr_u4_p4", "cycles": 107079, "area": 435391, "speedup": "0.709", "area_pct": "171.9", "cpi": "4.3", "cpi_no_ci": "4.4", "no_ci_overhead": "1.453", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sr_u8_p4", "cycles": 107079, "area": 435391, "speedup": "0.709", "area_pct": "171.9", "cpi": "4.3", "cpi_no_ci": "4.4", "no_ci_overhead": "1.453", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sb_sr_p16", "cycles": 107151, "area": 437271, "speedup": "0.709", "area_pct": "173.0", "cpi": "4.4", "cpi_no_ci": "4.4", "no_ci_overhead": "1.481", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sb_sr_u16_p16", "cycles": 107151, "area": 437271, "speedup": "0.709", "area_pct": "173.0", "cpi": "4.4", "cpi_no_ci": "4.4", "no_ci_overhead": "1.481", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sb_sr_u1_p16", "cycles": 107151, "area": 437271, "speedup": "0.709", "area_pct": "173.0", "cpi": "4.4", "cpi_no_ci": "4.4", "no_ci_overhead": "1.481", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sb_sr_u4_p16", "cycles": 107151, "area": 437271, "speedup": "0.709", "area_pct": "173.0", "cpi": "4.4", "cpi_no_ci": "4.4", "no_ci_overhead": "1.481", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sb_sr_u8_p16", "cycles": 107151, "area": 437271, "speedup": "0.709", "area_pct": "173.0", "cpi": "4.4", "cpi_no_ci": "4.4", "no_ci_overhead": "1.481", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sb_sr_p4", "cycles": 107333, "area": 437346, "speedup": "0.707", "area_pct": "173.1", "cpi": "4.5", "cpi_no_ci": "4.5", "no_ci_overhead": "1.490", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sb_sr_u16_p4", "cycles": 107333, "area": 437346, "speedup": "0.707", "area_pct": "173.1", "cpi": "4.5", "cpi_no_ci": "4.5", "no_ci_overhead": "1.490", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sb_sr_u1_p4", "cycles": 107333, "area": 437346, "speedup": "0.707", "area_pct": "173.1", "cpi": "4.5", "cpi_no_ci": "4.5", "no_ci_overhead": "1.490", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sb_sr_u4_p4", "cycles": 107333, "area": 437346, "speedup": "0.707", "area_pct": "173.1", "cpi": "4.5", "cpi_no_ci": "4.5", "no_ci_overhead": "1.490", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sb_sr_u8_p4", "cycles": 107333, "area": 437346, "speedup": "0.707", "area_pct": "173.1", "cpi": "4.5", "cpi_no_ci": "4.5", "no_ci_overhead": "1.490", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sb_sr_p1", "cycles": 112128, "area": 162746, "speedup": "0.677", "area_pct": "1.6", "cpi": "4.7", "cpi_no_ci": "4.6", "no_ci_overhead": "1.549", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sb_sr_u16_p1", "cycles": 112128, "area": 162746, "speedup": "0.677", "area_pct": "1.6", "cpi": "4.7", "cpi_no_ci": "4.6", "no_ci_overhead": "1.549", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sb_sr_u1_p1", "cycles": 112128, "area": 162746, "speedup": "0.677", "area_pct": "1.6", "cpi": "4.7", "cpi_no_ci": "4.6", "no_ci_overhead": "1.549", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sb_sr_u4_p1", "cycles": 112128, "area": 162746, "speedup": "0.677", "area_pct": "1.6", "cpi": "4.7", "cpi_no_ci": "4.6", "no_ci_overhead": "1.549", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sb_sr_u8_p1", "cycles": 112128, "area": 162746, "speedup": "0.677", "area_pct": "1.6", "cpi": "4.7", "cpi_no_ci": "4.6", "no_ci_overhead": "1.549", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sr_p1", "cycles": 119652, "area": 162277, "speedup": "0.635", "area_pct": "1.3", "cpi": "4.9", "cpi_no_ci": "4.9", "no_ci_overhead": "1.624", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sr_u16_p1", "cycles": 119652, "area": 162277, "speedup": "0.635", "area_pct": "1.3", "cpi": "4.9", "cpi_no_ci": "4.9", "no_ci_overhead": "1.624", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sr_u1_p1", "cycles": 119652, "area": 162277, "speedup": "0.635", "area_pct": "1.3", "cpi": "4.9", "cpi_no_ci": "4.9", "no_ci_overhead": "1.624", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sr_u4_p1", "cycles": 119652, "area": 162277, "speedup": "0.635", "area_pct": "1.3", "cpi": "4.9", "cpi_no_ci": "4.9", "no_ci_overhead": "1.624", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sr_u8_p1", "cycles": 119652, "area": 162277, "speedup": "0.635", "area_pct": "1.3", "cpi": "4.9", "cpi_no_ci": "4.9", "no_ci_overhead": "1.624", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sr_p8", "cycles": 122024, "area": 435104, "speedup": "0.622", "area_pct": "171.7", "cpi": "4.9", "cpi_no_ci": "5.0", "no_ci_overhead": "1.652", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sr_u16_p8", "cycles": 122024, "area": 435104, "speedup": "0.622", "area_pct": "171.7", "cpi": "4.9", "cpi_no_ci": "5.0", "no_ci_overhead": "1.652", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sr_u1_p8", "cycles": 122024, "area": 435104, "speedup": "0.622", "area_pct": "171.7", "cpi": "4.9", "cpi_no_ci": "5.0", "no_ci_overhead": "1.652", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sr_u4_p8", "cycles": 122024, "area": 435104, "speedup": "0.622", "area_pct": "171.7", "cpi": "4.9", "cpi_no_ci": "5.0", "no_ci_overhead": "1.652", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_sr_u8_p8", "cycles": 122024, "area": 435104, "speedup": "0.622", "area_pct": "171.7", "cpi": "4.9", "cpi_no_ci": "5.0", "no_ci_overhead": "1.652", "category": "Partial CI (SR)", "pareto": false}, {"variant": "accel_full_sb_u4_mc_u1", "cycles": 1701, "area": 172020, "speedup": "44.638", "area_pct": "7.4", "cpi": "4.119", "cpi_no_ci": "N/A", "no_ci_overhead": "N/A", "category": "Full-algorithm CI", "pareto": true}, {"variant": "accel_full_r_u1_sb_u4_mc_u1", "cycles": 1701, "area": 174084, "speedup": "44.638", "area_pct": "8.7", "cpi": "4.119", "cpi_no_ci": "N/A", "no_ci_overhead": "N/A", "category": "Full-algorithm CI", "pareto": false}, {"variant": "accel_full_r_u1_sb_u4", "cycles": 1506, "area": 174912, "speedup": "50.418", "area_pct": "9.2", "cpi": "3.646", "cpi_no_ci": "N/A", "no_ci_overhead": "N/A", "category": "Full-algorithm CI", "pareto": true}, {"variant": "accel_full_r_u1_sb_u4_mc_u2", "cycles": 1701, "area": 175308, "speedup": "44.638", "area_pct": "9.5", "cpi": "4.119", "cpi_no_ci": "N/A", "no_ci_overhead": "N/A", "category": "Full-algorithm CI", "pareto": false}, {"variant": "accel_full_sb_u4_mc_u2", "cycles": 1701, "area": 175761, "speedup": "44.638", "area_pct": "9.7", "cpi": "4.119", "cpi_no_ci": "N/A", "no_ci_overhead": "N/A", "category": "Full-algorithm CI", "pareto": false}, {"variant": "accel_full_r_u2_sb_u4_mc_u1", "cycles": 1701, "area": 176508, "speedup": "44.638", "area_pct": "10.2", "cpi": "4.119", "cpi_no_ci": "N/A", "no_ci_overhead": "N/A", "category": "Full-algorithm CI", "pareto": false}, {"variant": "accel_full_mc_u1", "cycles": 1868, "area": 178129, "speedup": "40.647", "area_pct": "11.2", "cpi": "4.523", "cpi_no_ci": "N/A", "no_ci_overhead": "N/A", "category": "Full-algorithm CI", "pareto": false}, {"variant": "accel_full_r_u2_sb_u4_mc_u2", "cycles": 1701, "area": 178143, "speedup": "44.638", "area_pct": "11.2", "cpi": "4.119", "cpi_no_ci": "N/A", "no_ci_overhead": "N/A", "category": "Full-algorithm CI", "pareto": false}, {"variant": "accel_full_r_u2_sb_u4", "cycles": 1506, "area": 178734, "speedup": "50.418", "area_pct": "11.6", "cpi": "3.646", "cpi_no_ci": "N/A", "no_ci_overhead": "N/A", "category": "Full-algorithm CI", "pareto": false}, {"variant": "accel_full_r_u4_sb_u4_mc_u1", "cycles": 1701, "area": 179424, "speedup": "44.638", "area_pct": "12.0", "cpi": "4.119", "cpi_no_ci": "N/A", "no_ci_overhead": "N/A", "category": "Full-algorithm CI", "pareto": false}, {"variant": "accel_full_r_u1_mc_u1", "cycles": 2071, "area": 179499, "speedup": "36.663", "area_pct": "12.1", "cpi": "5.015", "cpi_no_ci": "N/A", "no_ci_overhead": "N/A", "category": "Full-algorithm CI", "pareto": false}, {"variant": "accel_full_sb_u4", "cycles": 1506, "area": 179816, "speedup": "50.418", "area_pct": "12.3", "cpi": "3.646", "cpi_no_ci": "3.000", "no_ci_overhead": "1.000", "category": "Full-algorithm CI", "pareto": false}, {"variant": "accel_full_r_u1_mc_u2", "cycles": 2071, "area": 180902, "speedup": "36.663", "area_pct": "13.0", "cpi": "5.015", "cpi_no_ci": "N/A", "no_ci_overhead": "N/A", "category": "Full-algorithm CI", "pareto": false}, {"variant": "accel_full_r_u4_sb_u4_mc_u2", "cycles": 1701, "area": 181712, "speedup": "44.638", "area_pct": "13.5", "cpi": "4.119", "cpi_no_ci": "N/A", "no_ci_overhead": "N/A", "category": "Full-algorithm CI", "pareto": false}, {"variant": "accel_full_mc_u2", "cycles": 1868, "area": 181890, "speedup": "40.647", "area_pct": "13.6", "cpi": "4.523", "cpi_no_ci": "4.061", "no_ci_overhead": "1.354", "category": "Full-algorithm CI", "pareto": false}, {"variant": "accel_full_r_u2_mc_u1", "cycles": 2071, "area": 182588, "speedup": "36.663", "area_pct": "14.0", "cpi": "5.015", "cpi_no_ci": "N/A", "no_ci_overhead": "N/A", "category": "Full-algorithm CI", "pareto": false}, {"variant": "accel_full_r_u4_sb_u4", "cycles": 1506, "area": 182843, "speedup": "50.418", "area_pct": "14.2", "cpi": "3.646", "cpi_no_ci": "N/A", "no_ci_overhead": "N/A", "category": "Full-algorithm CI", "pareto": false}, {"variant": "accel_full_r_u2_mc_u2", "cycles": 2071, "area": 184187, "speedup": "36.663", "area_pct": "15.0", "cpi": "5.015", "cpi_no_ci": "N/A", "no_ci_overhead": "N/A", "category": "Full-algorithm CI", "pareto": false}, {"variant": "accel_full_r_u4_mc_u1", "cycles": 2071, "area": 185714, "speedup": "36.663", "area_pct": "16.0", "cpi": "5.015", "cpi_no_ci": "N/A", "no_ci_overhead": "N/A", "category": "Full-algorithm CI", "pareto": false}, {"variant": "accel_full_r_u4_mc_u2", "cycles": 2071, "area": 187395, "speedup": "36.663", "area_pct": "17.0", "cpi": "5.015", "cpi_no_ci": "N/A", "no_ci_overhead": "N/A", "category": "Full-algorithm CI", "pareto": false}, {"variant": "accel_full_r_u1", "cycles": 1254, "area": 195436, "speedup": "60.549", "area_pct": "22.0", "cpi": "3.036", "cpi_no_ci": "3.000", "no_ci_overhead": "1.000", "category": "Full-algorithm CI", "pareto": true}, {"variant": "accel_full_r_u2", "cycles": 1247, "area": 219634, "speedup": "60.889", "area_pct": "37.1", "cpi": "3.019", "cpi_no_ci": "3.000", "no_ci_overhead": "1.000", "category": "Full-algorithm CI", "pareto": true}, {"variant": "accel_full_r_u4", "cycles": 1244, "area": 250649, "speedup": "61.036", "area_pct": "56.5", "cpi": "3.012", "cpi_no_ci": "3.000", "no_ci_overhead": "1.000", "category": "Full-algorithm CI", "pareto": true}, {"variant": "accel_full", "cycles": 1241, "area": 264517, "speedup": "61.184", "area_pct": "65.2", "cpi": "3.005", "cpi_no_ci": "3.000", "no_ci_overhead": "1.000", "category": "Full-algorithm CI", "pareto": true}, {"variant": "accel_full_mc_u4", "cycles": 1241, "area": 264517, "speedup": "61.184", "area_pct": "65.2", "cpi": "3.005", "cpi_no_ci": "3.000", "no_ci_overhead": "1.000", "category": "Full-algorithm CI", "pareto": false}, {"variant": "accel_full_r_u13", "cycles": 1241, "area": 264517, "speedup": "61.184", "area_pct": "65.2", "cpi": "3.005", "cpi_no_ci": "3.000", "no_ci_overhead": "1.000", "category": "Full-algorithm CI", "pareto": false}, {"variant": "accel_full_sb_u16", "cycles": 1241, "area": 264517, "speedup": "61.184", "area_pct": "65.2", "cpi": "3.005", "cpi_no_ci": "3.000", "no_ci_overhead": "1.000", "category": "Full-algorithm CI", "pareto": false}];
+const PARETO = [{"variant": "baseline", "cycles": 75929, "area": 160149, "speedup": "1.000", "area_pct": "0.0", "cpi": "3.0", "cpi_no_ci": "N/A", "no_ci_overhead": "N/A", "category": "Baseline", "pareto": true}, {"variant": "accel_mc", "cycles": 55955, "area": 161823, "speedup": "1.357", "area_pct": "1.0", "cpi": "3.0", "cpi_no_ci": "3.0", "no_ci_overhead": "1.000", "category": "Partial CI (MC/SB)", "pareto": true}, {"variant": "accel_mc_sb", "cycles": 54233, "area": 163613, "speedup": "1.400", "area_pct": "2.2", "cpi": "3.0", "cpi_no_ci": "3.0", "no_ci_overhead": "1.000", "category": "Partial CI (MC/SB)", "pareto": true}, {"variant": "accel_full_sb_u4_mc_u1", "cycles": 1701, "area": 172020, "speedup": "44.638", "area_pct": "7.4", "cpi": "4.119", "cpi_no_ci": "N/A", "no_ci_overhead": "N/A", "category": "Full-algorithm CI", "pareto": true}, {"variant": "accel_full_r_u1_sb_u4", "cycles": 1506, "area": 174912, "speedup": "50.418", "area_pct": "9.2", "cpi": "3.646", "cpi_no_ci": "N/A", "no_ci_overhead": "N/A", "category": "Full-algorithm CI", "pareto": true}, {"variant": "accel_full_r_u1", "cycles": 1254, "area": 195436, "speedup": "60.549", "area_pct": "22.0", "cpi": "3.036", "cpi_no_ci": "3.000", "no_ci_overhead": "1.000", "category": "Full-algorithm CI", "pareto": true}, {"variant": "accel_full_r_u2", "cycles": 1247, "area": 219634, "speedup": "60.889", "area_pct": "37.1", "cpi": "3.019", "cpi_no_ci": "3.000", "no_ci_overhead": "1.000", "category": "Full-algorithm CI", "pareto": true}, {"variant": "accel_full_r_u4", "cycles": 1244, "area": 250649, "speedup": "61.036", "area_pct": "56.5", "cpi": "3.012", "cpi_no_ci": "3.000", "no_ci_overhead": "1.000", "category": "Full-algorithm CI", "pareto": true}, {"variant": "accel_full", "cycles": 1241, "area": 264517, "speedup": "61.184", "area_pct": "65.2", "cpi": "3.005", "cpi_no_ci": "3.000", "no_ci_overhead": "1.000", "category": "Full-algorithm CI", "pareto": true}];
+
+const CAT_COLOR = {
+  "Baseline":           "#555555",
+  "Partial CI (MC/SB)": "#2ca02c",
+  "Partial CI (SR)":    "#d62728",
+  "Full-algorithm CI":  "#1f77b4",
+};
+
+const canvas  = document.getElementById("chart");
+const ctx     = canvas.getContext("2d");
+const tooltip = document.getElementById("tooltip");
+
+const PAD = { top:30, right:30, bottom:55, left:75 };
+const W   = canvas.width  - PAD.left - PAD.right;
+const H   = canvas.height - PAD.top  - PAD.bottom;
+
+function getOpts() {
+  return {
+    logY:       document.getElementById("logY").checked,
+    showPareto: document.getElementById("showPareto").checked,
+    showAll:    document.getElementById("showAll").checked,
+    filter:     document.getElementById("filterCat").value,
+  };
+}
+
+function visiblePoints(opts) {
+  return POINTS.filter(p =>
+    opts.showAll &&
+    (opts.filter === "all" || p.category === opts.filter)
+  );
+}
+
+function makeScales(pts, opts) {
+  const areas  = pts.map(p => p.area);
+  const cycles = pts.map(p => p.cycles);
+  const xMin = Math.min(...areas)  * 0.97;
+  const xMax = Math.max(...areas)  * 1.03;
+  const yMin = opts.logY ? Math.min(...cycles) * 0.7 : Math.min(...cycles) * 0.95;
+  const yMax = opts.logY ? Math.max(...cycles) * 1.4 : Math.max(...cycles) * 1.05;
+
+  function xPx(v)  { return PAD.left + (v - xMin) / (xMax - xMin) * W; }
+  function yPxLin(v){ return PAD.top  + H - (v - yMin) / (yMax - yMin) * H; }
+  function yPxLog(v){ return PAD.top  + H - (Math.log10(v) - Math.log10(yMin))
+                                            / (Math.log10(yMax) - Math.log10(yMin)) * H; }
+  const yPx = opts.logY ? yPxLog : yPxLin;
+  return { xMin, xMax, yMin, yMax, xPx, yPx };
+}
+
+function drawAxes(sc, opts) {
+  ctx.save();
+  ctx.strokeStyle = "#aaa";
+  ctx.lineWidth   = 1;
+  ctx.fillStyle   = "#333";
+  ctx.font        = "11px sans-serif";
+
+  // X axis
+  ctx.beginPath();
+  ctx.moveTo(PAD.left, PAD.top + H);
+  ctx.lineTo(PAD.left + W, PAD.top + H);
+  ctx.stroke();
+
+  // Y axis
+  ctx.beginPath();
+  ctx.moveTo(PAD.left, PAD.top);
+  ctx.lineTo(PAD.left, PAD.top + H);
+  ctx.stroke();
+
+  // X ticks
+  const xTicks = 6;
+  for (let i = 0; i <= xTicks; i++) {
+    const v = sc.xMin + (sc.xMax - sc.xMin) * i / xTicks;
+    const x = sc.xPx(v);
+    ctx.beginPath(); ctx.moveTo(x, PAD.top+H); ctx.lineTo(x, PAD.top+H+5); ctx.stroke();
+    ctx.textAlign = "center";
+    ctx.fillText(Math.round(v/1000)+"k", x, PAD.top+H+18);
+  }
+  ctx.textAlign = "center";
+  ctx.font = "13px sans-serif";
+  ctx.fillText("Area (gates)", PAD.left + W/2, PAD.top + H + 44);
+
+  // Y ticks
+  ctx.font = "11px sans-serif";
+  ctx.textAlign = "right";
+  const yTicks = opts.logY
+    ? [1000,2000,5000,10000,20000,50000,100000]
+    : Array.from({length:7}, (_,i) => Math.round(sc.yMin + (sc.yMax-sc.yMin)*i/6));
+  for (const v of yTicks) {
+    if (v < sc.yMin || v > sc.yMax) continue;
+    const y = sc.yPx(v);
+    ctx.beginPath(); ctx.moveTo(PAD.left-5, y); ctx.lineTo(PAD.left, y); ctx.stroke();
+    ctx.fillText(v >= 1000 ? (v/1000).toFixed(v<10000?1:0)+"k" : v, PAD.left-8, y+4);
+  }
+  ctx.save();
+  ctx.translate(14, PAD.top + H/2);
+  ctx.rotate(-Math.PI/2);
+  ctx.textAlign = "center";
+  ctx.font = "13px sans-serif";
+  ctx.fillText("Cycles", 0, 0);
+  ctx.restore();
+
+  ctx.restore();
+}
+
+function drawPareto(sc) {
+  const sorted = [...PARETO].sort((a,b) => a.area - b.area);
+  if (sorted.length < 2) return;
+  ctx.save();
+  ctx.strokeStyle = "#000";
+  ctx.lineWidth   = 1.8;
+  ctx.setLineDash([6, 4]);
+  ctx.beginPath();
+  for (let i = 0; i < sorted.length; i++) {
+    const x = sc.xPx(sorted[i].area);
+    const y = sc.yPx(sorted[i].cycles);
+    if (i === 0) { ctx.moveTo(x, y); }
+    else {
+      // step: go to same y as previous, then to new x
+      ctx.lineTo(sc.xPx(sorted[i].area), sc.yPx(sorted[i-1].cycles));
+      ctx.lineTo(sc.xPx(sorted[i].area), y);
+    }
+  }
+  ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.restore();
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  const opts = getOpts();
+  const vis  = visiblePoints(opts);
+  if (!vis.length) { drawAxes(makeScales(POINTS, opts), opts); return; }
+  const sc   = makeScales(POINTS, opts);
+  drawAxes(sc, opts);
+  if (opts.showPareto) drawPareto(sc);
+
+  for (const p of vis) {
+    const x = sc.xPx(p.area);
+    const y = sc.yPx(p.cycles);
+    const r = p.pareto && opts.showPareto ? 7 : 5;
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI*2);
+    ctx.fillStyle = CAT_COLOR[p.category] + (p.pareto && opts.showPareto ? "ff" : "55");
+    ctx.fill();
+    if (p.pareto && opts.showPareto) {
+      ctx.strokeStyle = "#000";
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+    }
+  }
+}
+
+// Tooltip on mousemove
+canvas.addEventListener("mousemove", e => {
+  const rect = canvas.getBoundingClientRect();
+  const mx   = e.clientX - rect.left;
+  const my   = e.clientY - rect.top;
+  const opts = getOpts();
+  const vis  = visiblePoints(opts);
+  const sc   = makeScales(POINTS, opts);
+
+  let best = null, bestDist = 12;
+  for (const p of vis) {
+    const dx = sc.xPx(p.area) - mx;
+    const dy = sc.yPx(p.cycles) - my;
+    const d  = Math.sqrt(dx*dx + dy*dy);
+    if (d < bestDist) { bestDist = d; best = p; }
+  }
+
+  if (best) {
+    tooltip.style.display = "block";
+    tooltip.style.left    = (e.clientX + 14) + "px";
+    tooltip.style.top     = (e.clientY - 10) + "px";
+    tooltip.innerHTML =
+      `<b>${best.variant}</b><br>` +
+      `Category: ${best.category}<br>` +
+      `Cycles: ${best.cycles.toLocaleString()}<br>` +
+      `Area: ${best.area.toLocaleString()} gates<br>` +
+      `Speedup: ${best.speedup}×<br>` +
+      `Area overhead: ${best.area_pct}%<br>` +
+      `CPI: ${best.cpi}<br>` +
+      `CPI (no-CI): ${best.cpi_no_ci}<br>` +
+      `No-CI overhead: ${best.no_ci_overhead}<br>` +
+      (best.pareto ? `<span style="color:#8f8">★ Pareto-optimal</span>` : "");
+  } else {
+    tooltip.style.display = "none";
+  }
+});
+canvas.addEventListener("mouseleave", () => { tooltip.style.display = "none"; });
+
+["logY","showPareto","showAll","filterCat"].forEach(id =>
+  document.getElementById(id).addEventListener("change", draw));
+
+draw();
+</script>
+</body>
+</html>

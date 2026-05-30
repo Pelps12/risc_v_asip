@@ -66,6 +66,10 @@ mapfile -t ALL_VARIANTS < <(
 
 VARIANTS=()
 for v in "${ALL_VARIANTS[@]}"; do
+    if [[ "$v" == *_ar* ]] || [[ "$v" == *_ar ]]; then
+        echo "[ar   ] ${APP}/${v}  (AR kernel excluded — F_BT3107 pending fix)"
+        continue
+    fi
     [[ -n "$FILTER" ]] && ! echo "$v" | grep -qE "$FILTER" && continue
     if [[ "$SKIP_DONE" -eq 1 ]] && [[ -f "${APP_DIR}/${v}/rtl/sim_rtl.rpt" ]]; then
         echo "[skip] ${APP}/${v}  (sim_rtl.rpt exists)"
@@ -154,6 +158,9 @@ run_variant() {
     cpi=$(grep "^CPI" "$log_file" | grep -oP '[\d.]+' | tail -1 || echo "N/A")
 
     append_summary "$variant" "$status" "$cycles" "$area" "$cpi"
+
+    # Remove obj_dir to reclaim disk space (binary not needed after sim)
+    rm -rf "${APP_DIR}/${variant}/rtl/obj_dir"
 
     if [[ "$status" = "OK" ]]; then
         printf "  [OK  %4ds] %s/%s  cycles=%s  area=%s  CPI=%s\n" \
