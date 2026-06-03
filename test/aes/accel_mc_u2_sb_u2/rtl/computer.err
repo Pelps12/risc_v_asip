@@ -1,0 +1,125 @@
+I_BT1173: LOG file is generated. (computer.LOG.gz)
+I_BT1921: License has been successfully obtained by FLEXlm.
+I_BT2619: Synthesize in ASIC mode.
+I_BT6773: The BLIB and FLIB files are loaded.
+	/proj/cad/cwb-6.1/packages/asic_45.BLIB
+	/proj/cad/cwb-6.1/packages/asic_45.FLIB
+I_BT4146: All signals are synthesized as descending bit-order because all declared signals are of descending bit-order.
+I_BT4563: Synthesis of function(mem_read_byte) by inline expansion, because function have pointer argument.
+I_BT4563: Synthesis of function(mem_read_half) by inline expansion, because function have pointer argument.
+I_BT4563: Synthesis of function(mem_read_word) by inline expansion, because function have pointer argument.
+I_BT4563: Synthesis of function(mem_write_byte) by inline expansion, because function have pointer argument.
+I_BT4563: Synthesis of function(mem_write_half) by inline expansion, because function have pointer argument.
+I_BT4563: Synthesis of function(mem_write_word) by inline expansion, because function have pointer argument.
+I_BT4563: Synthesis of function(compute_mix_col) by inline expansion, because function have pointer argument.
+I_BT4563: Synthesis of function(compute_sub_bytes) by inline expansion, because function have pointer argument.
+I_BT4568: Function sign_extend is inline-expanded.
+I_BT4568: Function compute_sub_bytes is inline-expanded.
+I_BT4568: Function compute_mix_col is inline-expanded.
+I_BT4568: Function mem_write_word is inline-expanded.
+I_BT4568: Function mem_write_half is inline-expanded.
+I_BT4568: Function mem_write_byte is inline-expanded.
+I_BT4568: Function decode_imm_s is inline-expanded.
+I_BT4568: Function mem_read_word is inline-expanded.
+I_BT4568: Function mem_read_half is inline-expanded.
+I_BT4568: Function mem_read_byte is inline-expanded.
+I_BT4568: Function decode_imm_b is inline-expanded.
+I_BT4568: Function decode_imm_j is inline-expanded.
+I_BT4568: Function decode_imm_u is inline-expanded.
+I_BT4874: for loop is unrolled at every 2 iterations
+	[Source Lines]
+	187(computer.cpp):   for (int i = 0; i < 4; i++)
+I_BT4874: for loop is unrolled at every 2 iterations
+	[Source Lines]
+	255(computer.cpp):   for (int i = 0; i < 4; i++)
+I_BT4568: Function sub_bytes_word is inline-expanded.
+I_BT4568: Function decode_imm_i is inline-expanded.
+I_BT4542: Function mix_col_word is converted using goto conversion.
+I_BT4121: Array accel_sbox is synthesized as a combinational circuit.
+I_BT5514: 36 address decoders (R35,W1) to access to array signal 'regs'.
+	[Source Lines]
+	20(computer.cpp): uint32_t regs[32] = {0};    // x0-x31 (x0 hardwired to 0)
+I_BT5514: 4 address decoders (R3,W1) to access to array signal 'cols_0'.
+	[Source Lines]
+	247(computer.cpp):   uint32_t cols[4] = {c0, c1, c2, c3};
+I_BT5514: 4 address decoders (R3,W1) to access to array signal 'cols_1'.
+	[Source Lines]
+	247(computer.cpp):   uint32_t cols[4] = {c0, c1, c2, c3};
+I_BT5514: 5 address decoders (R4,W1) to access to array signal 'cols_1_0_0'.
+	[Source Lines]
+	179(computer.cpp):   uint32_t cols[4] = {c0, c1, c2, c3};
+I_BT5514: 4 address decoders (R3,W1) to access to array signal 'cols_1_0_1'.
+	[Source Lines]
+	179(computer.cpp):   uint32_t cols[4] = {c0, c1, c2, c3};
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	65(computer.cpp):   uint32_t imm = ((instr >> 31) << 12) | (((instr >> 7) & 0x1) << 11) |
+	66(computer.cpp):                  (((instr >> 25) & 0x3F) << 5) | (((instr >> 8) & 0xF) << 1);
+	560(computer.cpp):     uint32_t funct7  = (instr >> 25) & 0x7F;
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	73(computer.cpp):   uint32_t imm = ((instr >> 31) << 20) | (((instr >> 12) & 0xFF) << 12) |
+	74(computer.cpp):                  (((instr >> 20) & 0x1) << 11) | (((instr >> 21) & 0x3FF) << 1);
+	557(computer.cpp):     uint32_t funct3  = (instr >> 12) & 0x7;
+	559(computer.cpp):     uint32_t rs2     = (instr >> 20) & 0x1F;
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	240(computer.cpp):   return (uint32_t)accel_sbox[ word        & 0xFF]
+	241(computer.cpp):        | ((uint32_t)accel_sbox[(word >>  8) & 0xFF] <<  8)
+	242(computer.cpp):        | ((uint32_t)accel_sbox[(word >> 16) & 0xFF] << 16)
+	243(computer.cpp):        | ((uint32_t)accel_sbox[(word >> 24) & 0xFF] << 24);
+	256(computer.cpp):     cols[i] = sub_bytes_word(cols[i]);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	240(computer.cpp):   return (uint32_t)accel_sbox[ word        & 0xFF]
+	241(computer.cpp):        | ((uint32_t)accel_sbox[(word >>  8) & 0xFF] <<  8)
+	242(computer.cpp):        | ((uint32_t)accel_sbox[(word >> 16) & 0xFF] << 16)
+	243(computer.cpp):        | ((uint32_t)accel_sbox[(word >> 24) & 0xFF] << 24);
+	256(computer.cpp):     cols[i] = sub_bytes_word(cols[i]);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	173(computer.cpp):   uint8_t r3 = (uint8_t)(d ^ e ^ XTIME(d ^ a));
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	172(computer.cpp):   uint8_t r2 = (uint8_t)(c ^ e ^ XTIME(c ^ d));
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	164(computer.cpp):   uint8_t a = (uint8_t)(col        & 0xFF);
+	168(computer.cpp):   uint8_t e = a ^ b ^ c ^ d;
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	171(computer.cpp):   uint8_t r1 = (uint8_t)(b ^ e ^ XTIME(b ^ c));
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	164(computer.cpp):   uint8_t a = (uint8_t)(col        & 0xFF);
+	170(computer.cpp):   uint8_t r0 = (uint8_t)(a ^ e ^ XTIME(a ^ b));
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	175(computer.cpp):   return (uint32_t)r0 | ((uint32_t)r1 << 8) | ((uint32_t)r2 << 16) | ((uint32_t)r3 << 24);
+I_BT4383: Generate memory library file / memory constraint file.
+	computer-auto.MLIB
+	computer-auto.MCNT
+I_BT4395: 1 functional units template is generated.
+I_BT4392: No arithmetic macro functional unit required.
+I_BT4319: Empty FLIB file (computer-amacro-auto.FLIB) generated. No functional units required.
+ [Action] If required, confirm the description.
+I_BT4318: Empty FCNT file (computer-amacro-auto.FCNT) generated. No functional units required.
+ [Action] If required, confirm the description.
+I_BT4382: Generate functional unit library files / functional unit constraint files.
+	computer-auto.FLIB
+	computer-auto.FCNT
+	computer-amacro-auto.FLIB
+	computer-amacro-auto.FCNT
+W_BT8105: Possible reference to signal 'i_11' before assignment.
+ [Action] Initialize signal 'i_11'.
+	[Source Lines]
+	187(computer.cpp):   for (int i = 0; i < 4; i++)
+W_BT8105: Possible reference to signal 'i1' before assignment.
+ [Action] Initialize signal 'i1'.
+	[Source Lines]
+	255(computer.cpp):   for (int i = 0; i < 4; i++)
+I_BT1190: The following ERROR/WARNING/INFO/TIPS exist.
+	 2 warning      exist
+	53 information  exist
+	 1 tips         exist
+	---> SEE computer.err FILE and computer.tips FILE for DETAILS
