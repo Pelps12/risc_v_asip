@@ -1,0 +1,11 @@
+Input: computer.CPINFO
+"computer.cpp", line 242: warning: function "accel_sbox_word" was declared but never referenced
+  static inline uint32_t accel_sbox_word(uint32_t word) {
+                         ^
+
+Warning: Static variables will be initialized every time when reset is triggered.
+
+Skip: computer.IFF
+Token count: 1579
+The total token count is 1579. 
+cpars finished successfully.

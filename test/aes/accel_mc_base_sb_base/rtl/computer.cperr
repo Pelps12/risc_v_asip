@@ -1,0 +1,7 @@
+Input: computer.CPINFO
+Warning: Static variables will be initialized every time when reset is triggered.
+
+Skip: computer.IFF
+Token count: 1590
+The total token count is 1590. 
+cpars finished successfully.

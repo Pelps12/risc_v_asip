@@ -1,0 +1,39 @@
+Reading ACCEL flags from /home/013/o/om/oma190007/cad/fpga/risc_v_asip/scripts/../test/aes/accel_mc_base_sbox_base/accel.conf
+  Flags: -DACCEL_MIX_COL -DACCEL_SBOX_WORD
+=== CWB HLS: aes/accel_mc_base_sbox_base ===
+Source : /home/013/o/om/oma190007/cad/fpga/risc_v_asip/scripts/../test/aes/computer.cpp
+Variant: /home/013/o/om/oma190007/cad/fpga/risc_v_asip/scripts/../test/aes/accel_mc_base_sbox_base
+RTL out: /home/013/o/om/oma190007/cad/fpga/risc_v_asip/scripts/../test/aes/accel_mc_base_sbox_base/rtl
+Clock  : 1000 (10ns)
+
+--- Step 1: cpars ---
+Copyright (C) 1988-2018 NEC Corporation. All rights reserved.
+cpars version : 7.1.1 (Linux 64-bit) Mar 15 2018 15:30:09
+         (BIF version : 3.41A)
+         (LICflex version : 1.53 cylmd)
+         (PARSE COMMON version : 2.91)
+"computer.cpp", line 242: warning: function "accel_sbox_word" was declared but never referenced
+  static inline uint32_t accel_sbox_word(uint32_t word) {
+                         ^
+
+Warning: Static variables will be initialized every time when reset is triggered.
+
+Input: computer.CPINFO
+Skip: computer.IFF
+cpars finished successfully.
+
+--- Step 2: bdltran ---
+F_BT2301: IFF file (computer.IFF) cannot be read.
+ [Action] Specify the correct IFF file name.
+Copyright (C) 1988-2018 NEC Corporation. All rights reserved.
+bdltran version : 6.10.04 (Linux 64-bit) Thu Mar 22 14:18:17 JST 2018
+         (BIF version : 3.41F)
+         (LICflex version : 1.53 cylmd)
+         make at Thu Mar 22 14:30:59 JST 2018
+
+I_BT1190: The following ERROR/WARNING/INFO/TIPS exist.
+	 1 fatal error  exist
+	---> SEE computer.err FILE for DETAILS
+
+!!!!!!!!  CyberI ABNORMAL finish [computer] (pos=0)  !!!!!!!!
+

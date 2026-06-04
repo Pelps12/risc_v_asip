@@ -1,0 +1,72 @@
+#@VERSION{3.00}
+#@CNT{computer}
+#@KIND{BASIC_OPERATOR}
+#@CLK 100000
+#@UNIT 1/10ps
+@FCNT{
+	NAME	add32s
+	LIMIT	1  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	sub4u
+	LIMIT	1  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	sub8u
+	LIMIT	1  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	lsft32u
+	LIMIT	2  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	rsft32s
+	LIMIT	1  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	rsft32u
+	LIMIT	1  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	incr3s
+	LIMIT	1  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	incr3u
+	LIMIT	1  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	decr3s
+	LIMIT	1  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	accel_sbox
+	LIMIT	4  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	addsub32u
+	LIMIT	2  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	comp32s
+	LIMIT	3  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	comp32u
+	LIMIT	3  AUTO
+#	COMMENT
+}
+#@HASH{342b4593b184526da971cb05dc2c1c2a}
+#@END{computer}
