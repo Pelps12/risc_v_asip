@@ -1,7 +1,0 @@
-<hierarchy>
-[SC_MODULE:computer]
-  module_kind	single_process	module
-  process	FUNC	combinational	computer	computer.IFF
-
-<hash>
-  f5228a6b741c4f599a4e0290792c5344	computer.IFF

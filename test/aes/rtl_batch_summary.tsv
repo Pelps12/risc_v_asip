@@ -1,244 +1,96 @@
 variant	status	cycles	area	cpi
-accel_full_mc_u1	OK	1868	178129	4.5
-accel_full	OK	1241	264517	3.0
-accel_full_mc_u2	OK	1868	181890	4.5
-accel_full_mc_u2_no_ci	OK	102782	181890	4.1
-accel_full_r_u1	OK	1254	195436	3.0
-accel_full_mc_u4	OK	1241	264517	3.0
-accel_full_mc_u4_no_ci	OK	75929	264517	3.0
-accel_full_no_ci	OK	75929	264517	3.0
-accel_full_r_u13	OK	1241	264517	3.0
-accel_full_r_u1_mc_u1	OK	2071	179499	5.0
-accel_full_r_u1_mc_u2	OK	2071	180902	5.0
-accel_full_r_u13_no_ci	OK	75929	264517	3.0
-accel_full_r_u1_no_ci	OK	75929	195436	3.0
-accel_full_r_u1_sb_u4_mc_u1	OK	1701	174084	4.1
-accel_full_r_u1_sb_u4	OK	1506	174912	3.6
-accel_full_r_u1_sb_u4_mc_u2	OK	1701	175308	4.1
-accel_full_r_u2	OK	1247	219634	3.0
-accel_full_r_u2_no_ci	OK	75929	219634	3.0
-accel_full_r_u2_mc_u2	OK	2071	184187	5.0
-accel_full_r_u2_mc_u1	OK	2071	182588	5.0
-accel_full_r_u2_sb_u4	OK	1506	178734	3.6
-accel_full_r_u2_sb_u4_mc_u2	OK	1701	178143	4.1
-accel_full_r_u2_sb_u4_mc_u1	OK	1701	176508	4.1
-accel_full_r_u4	OK	1244	250649	3.0
-accel_full_r_u4_mc_u1	OK	2071	185714	5.0
-accel_full_r_u4_no_ci	OK	75929	250649	3.0
-accel_full_r_u4_sb_u4	OK	1506	182843	3.6
-accel_full_r_u4_mc_u2	OK	2071	187395	5.0
-accel_full_r_u4_sb_u4_mc_u1	OK	1701	179424	4.1
-accel_full_r_u4_sb_u4_mc_u2	OK	1701	181712	4.1
-accel_full_sb_u16	OK	1241	264517	3.0
-accel_full_sb_u16_no_ci	OK	75929	264517	3.0
-accel_full_sb_u4	OK	1506	179816	3.6
-accel_full_sb_u4_mc_u2	OK	1701	175761	4.1
-accel_full_sb_u4_mc_u1	OK	1701	172020	4.1
-accel_full_sb_u4_no_ci	OK	75929	179816	3.0
-accel_mc	OK	55955	161823	3.0
-accel_mc_no_ci	OK	75929	161823	3.0
-accel_mc_sb	OK	54233	163613	3.0
-accel_mc_sb_no_ci	OK	75929	163613	3.0
-accel_mc_sb_sr_p1	OK	83910	163104	4.8
-accel_mc_sb_sr_p1_no_ci	OK	120530	163104	4.8
-accel_mc_sb_sr_p16	OK	77347	437779	4.4
-accel_mc_sb_sr_p16_no_ci	OK	112457	437779	4.4
-accel_mc_sb_sr_p2	OK	73292	299891	4.2
-accel_mc_sb_sr_p2_no_ci	OK	106778	299891	4.2
-accel_mc_sb_sr_p4	OK	77737	437652	4.5
-accel_mc_sb_sr_p4_no_ci	OK	113101	437652	4.5
-accel_mc_sb_sr_p8	OK	74555	436433	4.3
-accel_mc_sb_sr_p8_no_ci	OK	107603	436433	4.3
-accel_mc_sb_sr_u16_p1	OK	83910	163104	4.8
-accel_mc_sb_sr_u16_p16	OK	77347	437779	4.4
-accel_mc_sb_sr_u16_p1_no_ci	OK	120530	163104	4.8
-accel_mc_sb_sr_u16_p16_no_ci	OK	112457	437779	4.4
-accel_mc_sb_sr_u16_p2	OK	73292	299891	4.2
-accel_mc_sb_sr_u16_p2_no_ci	OK	106778	299891	4.2
-accel_mc_sb_sr_u16_p4	OK	77737	437652	4.5
-accel_mc_sb_sr_u16_p4_no_ci	OK	113101	437652	4.5
-accel_mc_sb_sr_u16_p8	OK	74555	436433	4.3
-accel_mc_sb_sr_u16_p8_no_ci	OK	107603	436433	4.3
-accel_mc_sb_sr_u1_p1	OK	83910	163104	4.8
-accel_mc_sb_sr_u1_p1_no_ci	OK	120530	163104	4.8
-accel_mc_sb_sr_u1_p16	OK	77347	437779	4.4
-accel_mc_sb_sr_u1_p16_no_ci	OK	112457	437779	4.4
-accel_mc_sb_sr_u1_p2	OK	73292	299891	4.2
-accel_mc_sb_sr_u1_p2_no_ci	OK	106778	299891	4.2
-accel_mc_sb_sr_u1_p4	OK	77737	437652	4.5
-accel_mc_sb_sr_u1_p4_no_ci	OK	113101	437652	4.5
-accel_mc_sb_sr_u1_p8	OK	74555	436433	4.3
-accel_mc_sb_sr_u4_p1	OK	83910	163104	4.8
-accel_mc_sb_sr_u1_p8_no_ci	OK	107603	436433	4.3
-accel_mc_sb_sr_u4_p16	OK	77347	437779	4.4
-accel_mc_sb_sr_u4_p16_no_ci	OK	112457	437779	4.4
-accel_mc_sb_sr_u4_p1_no_ci	OK	120530	163104	4.8
-accel_mc_sb_sr_u4_p2	OK	73292	299891	4.2
-accel_mc_sb_sr_u4_p2_no_ci	OK	106778	299891	4.2
-accel_mc_sb_sr_u4_p4	OK	77737	437652	4.5
-accel_mc_sb_sr_u4_p4_no_ci	OK	113101	437652	4.5
-accel_mc_sb_sr_u4_p8	OK	74555	436433	4.3
-accel_mc_sb_sr_u4_p8_no_ci	OK	107603	436433	4.3
-accel_mc_sb_sr_u8_p1	OK	83910	163104	4.8
-accel_mc_sb_sr_u8_p16	OK	77347	437779	4.4
-accel_mc_sb_sr_u8_p16_no_ci	OK	112457	437779	4.4
-accel_mc_sb_sr_u8_p1_no_ci	OK	120530	163104	4.8
-accel_mc_sb_sr_u8_p2	OK	73292	299891	4.2
-accel_mc_sb_sr_u8_p2_no_ci	OK	106778	299891	4.2
-accel_mc_sb_sr_u8_p4	OK	77737	437652	4.5
-accel_mc_sb_sr_u8_p4_no_ci	OK	113101	437652	4.5
-accel_mc_sb_sr_u8_p8	OK	74555	436433	4.3
-accel_mc_sr_p1	OK	87102	162635	4.8
-accel_mc_sb_sr_u8_p8_no_ci	OK	107603	436433	4.3
-accel_mc_sr_p16	OK	75049	435611	4.2
-accel_mc_sr_p16_no_ci	OK	106913	435611	4.2
-accel_mc_sr_p1_no_ci	OK	122144	162635	4.8
-accel_mc_sr_p2	OK	78042	298926	4.3
-accel_mc_sr_p2_no_ci	OK	109178	298926	4.3
-accel_mc_sr_p4	OK	79975	435764	4.4
-accel_mc_sr_p4_no_ci	OK	112323	435764	4.4
-accel_mc_sr_p8	OK	80199	435481	4.5
-accel_mc_sr_p8_no_ci	OK	111959	435481	4.4
-accel_mc_sr_u16_p1	OK	87102	162635	4.8
-accel_mc_sr_u16_p16	OK	75049	435611	4.2
-accel_mc_sr_u16_p16_no_ci	OK	106913	435611	4.2
-accel_mc_sr_u16_p1_no_ci	OK	122144	162635	4.8
-accel_mc_sr_u16_p2	OK	78042	298926	4.3
-accel_mc_sr_u16_p2_no_ci	OK	109178	298926	4.3
-accel_mc_sr_u16_p4	OK	79975	435764	4.4
-accel_mc_sr_u16_p4_no_ci	OK	112323	435764	4.4
-accel_mc_sr_u16_p8	OK	80199	435481	4.5
-accel_mc_sr_u16_p8_no_ci	OK	111959	435481	4.4
-accel_mc_sr_u1_p1	OK	87102	162635	4.8
-accel_mc_sr_u1_p16	OK	75049	435611	4.2
-accel_mc_sr_u1_p16_no_ci	OK	106913	435611	4.2
-accel_mc_sr_u1_p1_no_ci	OK	122144	162635	4.8
-accel_mc_sr_u1_p2	OK	78042	298926	4.3
-accel_mc_sr_u1_p2_no_ci	OK	109178	298926	4.3
-accel_mc_sr_u1_p4	OK	79975	435764	4.4
-accel_mc_sr_u1_p4_no_ci	OK	112323	435764	4.4
-accel_mc_sr_u1_p8	OK	80199	435481	4.5
-accel_mc_sr_u1_p8_no_ci	OK	111959	435481	4.4
-accel_mc_sr_u4_p1	OK	87102	162635	4.8
-accel_mc_sr_u4_p16	OK	75049	435611	4.2
-accel_mc_sr_u4_p16_no_ci	OK	106913	435611	4.2
-accel_mc_sr_u4_p1_no_ci	OK	122144	162635	4.8
-accel_mc_sr_u4_p2	OK	78042	298926	4.3
-accel_mc_sr_u4_p2_no_ci	OK	109178	298926	4.3
-accel_mc_sr_u4_p4	OK	79975	435764	4.4
-accel_mc_sr_u4_p4_no_ci	OK	112323	435764	4.4
-accel_mc_sr_u4_p8	OK	80199	435481	4.5
-accel_mc_sr_u8_p1	OK	87102	162635	4.8
-accel_mc_sr_u4_p8_no_ci	OK	111959	435481	4.4
-accel_mc_sr_u8_p16	OK	75049	435611	4.2
-accel_mc_sr_u8_p16_no_ci	OK	106913	435611	4.2
-accel_mc_sr_u8_p1_no_ci	OK	122144	162635	4.8
-accel_mc_sr_u8_p2	OK	78042	298926	4.3
-accel_mc_sr_u8_p2_no_ci	OK	109178	298926	4.3
-accel_mc_sr_u8_p4	OK	79975	435764	4.4
-accel_mc_sr_u8_p4_no_ci	OK	112323	435764	4.4
-accel_mc_sr_u8_p8	OK	80199	435481	4.5
-accel_mc_sr_u8_p8_no_ci	OK	111959	435481	4.4
-accel_sb	OK	74207	163156	3.0
-accel_sb_no_ci	OK	75929	163156	3.0
-accel_sb_sr_p1	OK	112128	162746	4.7
-accel_sb_sr_p16	OK	107151	437271	4.4
-accel_sb_sr_p1_no_ci	OK	117616	162746	4.6
-accel_sb_sr_p2	OK	101276	299501	4.2
-accel_sb_sr_p16_no_ci	OK	112457	437271	4.4
-accel_sb_sr_p2_no_ci	OK	106778	299501	4.2
-accel_sb_sr_p4	OK	107333	437346	4.5
-accel_sb_sr_p8	OK	102017	435985	4.2
-accel_sb_sr_p4_no_ci	OK	113101	437346	4.5
-accel_sb_sr_p8_no_ci	OK	107603	435985	4.3
-accel_sb_sr_u16_p1	OK	112128	162746	4.7
-accel_sb_sr_u16_p16	OK	107151	437271	4.4
-accel_sb_sr_u16_p16_no_ci	OK	112457	437271	4.4
-accel_sb_sr_u16_p1_no_ci	OK	117616	162746	4.6
-accel_sb_sr_u16_p2	OK	101276	299501	4.2
-accel_sb_sr_u16_p2_no_ci	OK	106778	299501	4.2
-accel_sb_sr_u16_p4	OK	107333	437346	4.5
-accel_sb_sr_u16_p4_no_ci	OK	113101	437346	4.5
-accel_sb_sr_u16_p8	OK	102017	435985	4.2
-accel_sb_sr_u16_p8_no_ci	OK	107603	435985	4.3
-accel_sb_sr_u1_p1	OK	112128	162746	4.7
-accel_sb_sr_u1_p16	OK	107151	437271	4.4
-accel_sb_sr_u1_p16_no_ci	OK	112457	437271	4.4
-accel_sb_sr_u1_p1_no_ci	OK	117616	162746	4.6
-accel_sb_sr_u1_p2	OK	101276	299501	4.2
-accel_sb_sr_u1_p2_no_ci	OK	106778	299501	4.2
-accel_sb_sr_u1_p4	OK	107333	437346	4.5
-accel_sb_sr_u1_p4_no_ci	OK	113101	437346	4.5
-accel_sb_sr_u1_p8	OK	102017	435985	4.2
-accel_sb_sr_u1_p8_no_ci	OK	107603	435985	4.3
-accel_sb_sr_u4_p1	OK	112128	162746	4.7
-accel_sb_sr_u4_p16	OK	107151	437271	4.4
-accel_sb_sr_u4_p16_no_ci	OK	112457	437271	4.4
-accel_sb_sr_u4_p1_no_ci	OK	117616	162746	4.6
-accel_sb_sr_u4_p2	OK	101276	299501	4.2
-accel_sb_sr_u4_p2_no_ci	OK	106778	299501	4.2
-accel_sb_sr_u4_p4	OK	107333	437346	4.5
-accel_sb_sr_u4_p4_no_ci	OK	113101	437346	4.5
-accel_sb_sr_u4_p8	OK	102017	435985	4.2
-accel_sb_sr_u4_p8_no_ci	OK	107603	435985	4.3
-accel_sb_sr_u8_p1	OK	112128	162746	4.7
-accel_sb_sr_u8_p16	OK	107151	437271	4.4
-accel_sb_sr_u8_p16_no_ci	OK	112457	437271	4.4
-accel_sb_sr_u8_p1_no_ci	OK	117616	162746	4.6
-accel_sb_sr_u8_p2	OK	101276	299501	4.2
-accel_sb_sr_u8_p2_no_ci	OK	106778	299501	4.2
-accel_sb_sr_u8_p4	OK	107333	437346	4.5
-accel_sb_sr_u8_p4_no_ci	OK	113101	437346	4.5
-accel_sb_sr_u8_p8	OK	102017	435985	4.2
-accel_sb_sr_u8_p8_no_ci	OK	107603	435985	4.3
-accel_sr_p1	OK	119652	162277	4.9
-accel_sr_p16	OK	105322	435500	4.3
-accel_sr_p16_no_ci	OK	108318	435500	4.3
-accel_sr_p1_no_ci	OK	123278	162277	4.9
-accel_sr_p2	OK	104158	298593	4.2
-accel_sr_p2_no_ci	OK	107154	298593	4.2
-accel_sr_p4	OK	107079	435391	4.3
-accel_sr_p4_no_ci	OK	110299	435391	4.4
-accel_sr_p8	OK	122024	435104	4.9
-accel_sr_p8_no_ci	OK	125454	435104	5.0
-accel_sr_u16_p1	OK	119652	162277	4.9
-accel_sr_u16_p16	OK	105322	435500	4.3
-accel_sr_u16_p16_no_ci	OK	108318	435500	4.3
-accel_sr_u16_p1_no_ci	OK	123278	162277	4.9
-accel_sr_u16_p2	OK	104158	298593	4.2
-accel_sr_u16_p2_no_ci	OK	107154	298593	4.2
-accel_sr_u16_p4	OK	107079	435391	4.3
-accel_sr_u16_p4_no_ci	OK	110299	435391	4.4
-accel_sr_u16_p8	OK	122024	435104	4.9
-accel_sr_u16_p8_no_ci	OK	125454	435104	5.0
-accel_sr_u1_p1	OK	119652	162277	4.9
-accel_sr_u1_p16	OK	105322	435500	4.3
-accel_sr_u1_p16_no_ci	OK	108318	435500	4.3
-accel_sr_u1_p1_no_ci	OK	123278	162277	4.9
-accel_sr_u1_p2	OK	104158	298593	4.2
-accel_sr_u1_p2_no_ci	OK	107154	298593	4.2
-accel_sr_u1_p4	OK	107079	435391	4.3
-accel_sr_u1_p4_no_ci	OK	110299	435391	4.4
-accel_sr_u1_p8	OK	122024	435104	4.9
-accel_sr_u1_p8_no_ci	OK	125454	435104	5.0
-accel_sr_u4_p1	OK	119652	162277	4.9
-accel_sr_u4_p16	OK	105322	435500	4.3
-accel_sr_u4_p16_no_ci	OK	108318	435500	4.3
-accel_sr_u4_p1_no_ci	OK	123278	162277	4.9
-accel_sr_u4_p2	OK	104158	298593	4.2
-accel_sr_u4_p2_no_ci	OK	107154	298593	4.2
-accel_sr_u4_p4	OK	107079	435391	4.3
-accel_sr_u4_p4_no_ci	OK	110299	435391	4.4
-accel_sr_u4_p8	OK	122024	435104	4.9
-accel_sr_u4_p8_no_ci	OK	125454	435104	5.0
-accel_sr_u8_p1	OK	119652	162277	4.9
-accel_sr_u8_p16	OK	105322	435500	4.3
-accel_sr_u8_p16_no_ci	OK	108318	435500	4.3
-accel_sr_u8_p1_no_ci	OK	123278	162277	4.9
-accel_sr_u8_p2	OK	104158	298593	4.2
-accel_sr_u8_p2_no_ci	OK	107154	298593	4.2
-accel_sr_u8_p4	OK	107079	435391	4.3
-accel_sr_u8_p4_no_ci	OK	110299	435391	4.4
-accel_sr_u8_p8	OK	122024	435104	4.9
-accel_sr_u8_p8_no_ci	OK	125454	435104	5.0
-baseline	OK	75929	160149	3.0
+accel_mc_sb_u2_sr_p4_no_ci	FAIL		445743	
+accel_mc_sb_u2_sr_p8	FAIL		445636	
+accel_mc_sb_u2_sr_p8_no_ci	FAIL		445636	
+accel_mc_sb_u2_sr_p1_no_ci	FAIL		173009	
+accel_mc_sb_sr_p4_no_ci	FAIL		443521	
+accel_mc_sb_u2_sr_u16_p1	OK	60503	173009	4.7
+accel_mc_sb_u2_sr_u16_p1_no_ci	OK	119807	173009	4.7
+accel_mc_sb_u2_sr_u16_p2	OK	53749	309338	4.2
+accel_mc_sb_u2_sr_p2	OK	53749	309338	4.2
+accel_mc_sb_u2_sr_p2_no_ci	OK	106181	309338	4.2
+accel_mc_sb_u2_sr_p4	OK	55909	445743	4.3
+accel_mc_sb_u2_sr_u16_p16	OK	56724	445636	4.4
+accel_mc_sb_u2_sr_u16_p16_no_ci	OK	112121	445636	4.4
+accel_mc_sb_u2_sr_u16_p2_no_ci	OK	106181	309338	4.2
+accel_mc_sb_u2_sr_u1_p1	OK	60503	173009	4.7
+accel_mc_sb_u2_sr_u16_p4	OK	55909	445743	4.3
+accel_mc_sb_u2_sr_u16_p4_no_ci	OK	110798	445743	4.4
+accel_mc_sb_u2_sr_u16_p8	OK	56724	445636	4.4
+accel_mc_sb_u2_sr_u16_p8_no_ci	OK	112121	445636	4.4
+accel_mc_sb_u2_sr_u1_p16_no_ci	OK	112121	445636	4.4
+accel_mc_sb_u2_sr_u1_p16	OK	56724	445636	4.4
+accel_mc_sb_u2_sr_u1_p1_no_ci	OK	119807	173009	4.7
+accel_mc_sb_u2_sr_u1_p2	OK	53749	309338	4.2
+accel_mc_sb_u2_sr_u1_p2_no_ci	OK	106181	309338	4.2
+accel_mc_sb_u2_sr_u4_p1	OK	60503	173009	4.7
+accel_mc_sb_u2_sr_u1_p4	OK	55909	445743	4.3
+accel_mc_sb_u2_sr_u1_p4_no_ci	OK	110798	445743	4.4
+accel_mc_sb_u2_sr_u1_p8	OK	56724	445636	4.4
+accel_mc_sb_u2_sr_u1_p8_no_ci	OK	112121	445636	4.4
+accel_mc_sb_u2_sr_u4_p1_no_ci	OK	119807	173009	4.7
+accel_mc_sb_u2_sr_u4_p16	OK	56724	445636	4.4
+accel_mc_sb_u2_sr_u4_p16_no_ci	OK	112121	445636	4.4
+accel_mc_sb_u2_sr_u4_p2	OK	53749	309338	4.2
+accel_mc_sb_u2_sr_u4_p2_no_ci	OK	106181	309338	4.2
+accel_mc_sb_u2_sr_u4_p4	OK	55909	445743	4.3
+accel_mc_sb_u2_sr_u4_p4_no_ci	OK	110798	445743	4.4
+accel_mc_sb_u2_sr_u8_p1	OK	60503	173009	4.7
+accel_mc_sb_u2_sr_u4_p8	OK	56724	445636	4.4
+accel_mc_sb_u2_sr_u4_p8_no_ci	OK	112121	445636	4.4
+accel_mc_sb_u2_sr_u8_p1_no_ci	OK	119807	173009	4.7
+accel_mc_sb_u2_sr_u8_p16	OK	56724	445636	4.4
+accel_mc_sb_u2_sr_u8_p16_no_ci	OK	112121	445636	4.4
+accel_mc_sb_u2_sr_u8_p2	OK	53749	309338	4.2
+accel_mc_sb_u2_sr_u8_p2_no_ci	OK	106181	309338	4.2
+accel_mc_sb_u2_sr_u8_p4	OK	55909	445743	4.3
+accel_mc_sb_u2_sr_u8_p4_no_ci	OK	110798	445743	4.4
+accel_mc_sb_u4	OK	40578	171398	3.0
+accel_mc_sb_u4_no_ci	OK	75929	171398	3.0
+accel_mc_sb_u2_sr_u8_p8	OK	56724	445636	4.4
+accel_mc_sb_u4_sr_p1	OK	62841	169935	4.9
+accel_mc_sb_u2_sr_u8_p8_no_ci	OK	112121	445636	4.4
+accel_mc_sb_u4_sr_p16	OK	55747	442980	4.3
+accel_mc_sb_u4_sr_p1_no_ci	OK	123278	169935	4.9
+accel_mc_sb_u4_sr_u16_p1	FAIL		169935	
+accel_mc_sb_u4_sr_u16_p16	FAIL		442980	
+accel_mc_sb_u4_sr_u16_p16_no_ci	FAIL		442980	
+accel_mc_sb_u4_sr_u16_p1_no_ci	FAIL		169935	
+accel_mc_sb_u4_sr_u16_p2	FAIL		307250	
+accel_mc_sb_u4_sr_u16_p2_no_ci	FAIL		307250	
+accel_mc_sb_u4_sr_u16_p4	FAIL		443521	
+accel_mc_sb_u4_sr_u16_p4_no_ci	FAIL		443521	
+accel_mc_sb_u4_sr_u16_p8	FAIL		443521	
+accel_mc_sb_u4_sr_u16_p8_no_ci	FAIL		443521	
+accel_mc_sb_u4_sr_u1_p1	FAIL		169935	
+accel_mc_sb_u4_sr_u1_p16	FAIL		442980	
+accel_mc_sb_u4_sr_u1_p16_no_ci	FAIL		442980	
+accel_mc_sb_u4_sr_u1_p1_no_ci	FAIL		169935	
+accel_mc_sb_u4_sr_u1_p2	FAIL		307250	
+accel_mc_sb_u4_sr_u1_p2_no_ci	FAIL		307250	
+accel_mc_sb_u4_sr_u1_p4	FAIL		443521	
+accel_mc_sb_u4_sr_u1_p4_no_ci	FAIL		443521	
+accel_mc_sb_u4_sr_u1_p8	FAIL		443521	
+accel_mc_sb_u4_sr_u1_p8_no_ci	FAIL		443521	
+accel_mc_sb_u4_sr_u4_p1	FAIL		169935	
+accel_mc_sb_u4_sr_u4_p16	FAIL		442980	
+accel_mc_sb_u4_sr_u4_p16_no_ci	FAIL		442980	
+accel_mc_sb_u4_sr_u4_p1_no_ci	FAIL		169935	
+accel_mc_sb_u4_sr_u4_p2	FAIL		307250	
+accel_mc_sb_u4_sr_u4_p2_no_ci	FAIL		307250	
+accel_mc_sb_u4_sr_u4_p4	FAIL		443521	
+accel_mc_sb_u4_sr_u4_p4_no_ci	FAIL		443521	
+accel_mc_sb_u4_sr_u4_p8	FAIL		443521	
+accel_mc_sb_u4_sr_u4_p8_no_ci	FAIL		443521	
+accel_mc_sb_u4_sr_u8_p1	FAIL		169935	
+accel_mc_sb_u4_sr_u8_p16	FAIL		442980	
+accel_mc_sb_u4_sr_u8_p16_no_ci	FAIL		442980	
+accel_mc_sb_u4_sr_u8_p1_no_ci	FAIL		169935	
+accel_mc_sb_u4_sr_u8_p2	FAIL		307250	
+accel_mc_sb_u4_sr_p16_no_ci	OK	109634	442980	4.3
+accel_mc_sb_u4_sr_p2	OK	54996	307250	4.3
+accel_mc_sb_u4_sr_p2_no_ci	OK	107846	307250	4.3
+accel_mc_sb_u4_sr_p8	FAIL		N/A	
+accel_mc_sb_u4_sr_p4	FAIL		N/A	
+accel_mc_sb_u4_sr_p4_no_ci	FAIL		N/A	
+accel_mc_sb_u4_sr_p8_no_ci	FAIL		N/A	
