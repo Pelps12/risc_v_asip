@@ -106,8 +106,13 @@ for v in "${VARIANTS[@]}"; do
     if ! bash "$RUN_TEST_SH" "${APP}/${APP}" --rtl "${v}" \
             > "${APP_DIR}/${v}/rtl/rtl_batch_iss.log" 2>&1; then
         echo "  [WARN] ISS failed for ${v} — will skip RTL sim (see rtl_batch_iss.log)"
-        # Remove from VARIANTS so Phase 2 skips it
-        VARIANTS=("${VARIANTS[@]/$v}")
+        # Rebuild the list instead of using string substitution, which can
+        # corrupt other variant names that merely contain $v as a substring.
+        filtered_variants=()
+        for keep in "${VARIANTS[@]}"; do
+            [[ "$keep" == "$v" ]] || filtered_variants+=("$keep")
+        done
+        VARIANTS=("${filtered_variants[@]}")
     fi
 done
 echo ""

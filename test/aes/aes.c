@@ -8,9 +8,11 @@
  * main() verifies against the FIPS-197 AES-256 test vector.
  *
  * Custom instructions (opcode 0x0B, R-type, funct7=0):
+ *   funct3=1  ACCEL_SBOX_WORD  — S-box on one packed 32-bit word
  *   funct3=2  ACCEL_MIX_COL    — GF(2^8) MixColumns on one packed column
  *   funct3=3  ACCEL_SUB_BYTES  — SubWord: S-box on 4 packed bytes (reg→reg)
  *   funct3=4  ACCEL_SHIFT_ROWS — ShiftRows: 16-byte permutation via dmem addr
+ *   funct3=5  ACCEL_EXPAND_ENC_KEY — one AES-256 key-schedule step
  *   funct3=6  ACCEL_ADD_RK     — AddRoundKey: 16-byte XOR via dmem addrs
  *   funct3=7  ACCEL_FULL       — Full AES-256 encrypt; reads/writes a0–a3 implicitly
  */
@@ -112,6 +114,28 @@ uint8_t rj_xtime(uint8_t x)
     return (x & 0x80) ? ((x << 1) ^ 0x1b) : (x << 1);
 }
 
+static inline uint32_t sbox_word_scalar(uint32_t word)
+{
+    return (uint32_t)rj_sbox(word & 0xFF)
+         | ((uint32_t)rj_sbox((word >> 8) & 0xFF) << 8)
+         | ((uint32_t)rj_sbox((word >> 16) & 0xFF) << 16)
+         | ((uint32_t)rj_sbox((word >> 24) & 0xFF) << 24);
+}
+
+static inline uint32_t accel_sbox_word(uint32_t word)
+{
+#if defined(ACCEL_SBOX_WORD) && defined(__riscv)
+    register uint32_t packed asm("a0") = word;
+    asm volatile(
+        ".insn r 0x0B, 1, 0, %0, %0, x0"
+        : "+r"(packed)
+    );
+    return packed;
+#else
+    return sbox_word_scalar(word);
+#endif
+}
+
 void aes_subBytes(uint8_t *buf)
 {
 /*
@@ -121,7 +145,6 @@ void aes_subBytes(uint8_t *buf)
  *     a0=buf[0..3], a1=buf[4..7], a2=buf[8..11], a3=buf[12..15] (little-endian)
  *   S-box applied independently to each byte across all 4 words.
  *   One CI per invocation (13 total per AES-256), register-bound.
- *   Key expansion SubWord calls revert to scalar (only 1 word at a time there).
  */
 #if defined(ACCEL_SUB_BYTES) && defined(__riscv)
     register uint32_t w0 asm("a0") = *(uint32_t *)(buf +  0);
@@ -136,6 +159,10 @@ void aes_subBytes(uint8_t *buf)
     *(uint32_t *)(buf +  4) = w1;
     *(uint32_t *)(buf +  8) = w2;
     *(uint32_t *)(buf + 12) = w3;
+#elif defined(ACCEL_SBOX_WORD) && defined(__riscv)
+    register uint8_t i;
+    sboxw_sub : for (i = 0; i < 16; i += 4)
+        *(uint32_t *)(buf + i) = accel_sbox_word(*(uint32_t *)(buf + i));
 #else
     register uint8_t i = 16;
     sub : while (i--) buf[i] = rj_sbox(buf[i]);
@@ -245,25 +272,77 @@ void aes_mixColumns(uint8_t *buf)
 void aes_expandEncKey(uint8_t *k, uint8_t *rc)
 {
 /*
- * ACCEL_SUB_BYTES also covers the two SubWord operations in key expansion:
- *   SubWord 1: sbox applied to RotWord(k[28..31]) = bytes [k[29],k[30],k[31],k[28]]
- *   SubWord 2: sbox applied to k[12..15] (standard SubWord, no rotation)
- * Each is one CI call (4 bytes packed into rs1, result unpacked into k[]).
+ * ACCEL_EXPAND_ENC_KEY custom instruction (funct3=5):
+ *   Assembly : .insn r 0x0B, 5, 0, zero, zero, zero
+ *   Implicitly reads/writes a0-a7 as the 32-byte key state (8 packed words).
+ *   Implicitly reads/writes t0 as the current rcon byte.
+ *
+ * If ACCEL_EXPAND_ENC_KEY is disabled but ACCEL_SBOX_WORD is enabled, the two
+ * SubWord sites still route through the packed S-box CI and the XOR chain
+ * remains scalar.
  */
+#if defined(ACCEL_EXPAND_ENC_KEY) && defined(__riscv)
+    register uint32_t w0 asm("a0") = *(uint32_t *)(k +  0);
+    register uint32_t w1 asm("a1") = *(uint32_t *)(k +  4);
+    register uint32_t w2 asm("a2") = *(uint32_t *)(k +  8);
+    register uint32_t w3 asm("a3") = *(uint32_t *)(k + 12);
+    register uint32_t w4 asm("a4") = *(uint32_t *)(k + 16);
+    register uint32_t w5 asm("a5") = *(uint32_t *)(k + 20);
+    register uint32_t w6 asm("a6") = *(uint32_t *)(k + 24);
+    register uint32_t w7 asm("a7") = *(uint32_t *)(k + 28);
+    register uint32_t rc_word asm("t0") = *rc;
+    asm volatile(
+        ".insn r 0x0B, 5, 0, zero, zero, zero"
+        : "+r"(w0), "+r"(w1), "+r"(w2), "+r"(w3),
+          "+r"(w4), "+r"(w5), "+r"(w6), "+r"(w7),
+          "+r"(rc_word)
+    );
+    *(uint32_t *)(k +  0) = w0;
+    *(uint32_t *)(k +  4) = w1;
+    *(uint32_t *)(k +  8) = w2;
+    *(uint32_t *)(k + 12) = w3;
+    *(uint32_t *)(k + 16) = w4;
+    *(uint32_t *)(k + 20) = w5;
+    *(uint32_t *)(k + 24) = w6;
+    *(uint32_t *)(k + 28) = w7;
+    *rc = (uint8_t)rc_word;
+#else
     register uint8_t i;
+#if defined(ACCEL_SBOX_WORD) && defined(__riscv)
+    uint32_t sub_word;
+
+    sub_word = accel_sbox_word(((uint32_t)k[29])
+                             | ((uint32_t)k[30] << 8)
+                             | ((uint32_t)k[31] << 16)
+                             | ((uint32_t)k[28] << 24));
+    k[0] ^= (uint8_t)(sub_word & 0xFF) ^ (*rc);
+    k[1] ^= (uint8_t)((sub_word >> 8) & 0xFF);
+    k[2] ^= (uint8_t)((sub_word >> 16) & 0xFF);
+    k[3] ^= (uint8_t)((sub_word >> 24) & 0xFF);
+#else
     k[0] ^= rj_sbox(k[29]) ^ (*rc);
     k[1] ^= rj_sbox(k[30]);
     k[2] ^= rj_sbox(k[31]);
     k[3] ^= rj_sbox(k[28]);
-    *rc = F( *rc);
+#endif
+    *rc = F(*rc);
     exp1 : for(i = 4; i < 16; i += 4)  k[i] ^= k[i-4],   k[i+1] ^= k[i-3],
         k[i+2] ^= k[i-2], k[i+3] ^= k[i-1];
+#if defined(ACCEL_SBOX_WORD) && defined(__riscv)
+    sub_word = accel_sbox_word(*(uint32_t *)(k + 12));
+    k[16] ^= (uint8_t)(sub_word & 0xFF);
+    k[17] ^= (uint8_t)((sub_word >> 8) & 0xFF);
+    k[18] ^= (uint8_t)((sub_word >> 16) & 0xFF);
+    k[19] ^= (uint8_t)((sub_word >> 24) & 0xFF);
+#else
     k[16] ^= rj_sbox(k[12]);
     k[17] ^= rj_sbox(k[13]);
     k[18] ^= rj_sbox(k[14]);
     k[19] ^= rj_sbox(k[15]);
+#endif
     exp2 : for(i = 20; i < 32; i += 4) k[i] ^= k[i-4],   k[i+1] ^= k[i-3],
         k[i+2] ^= k[i-2], k[i+3] ^= k[i-1];
+#endif
 }
 
 void aes256_encrypt_ecb(aes256_context *ctx, uint8_t k[32], uint8_t buf[16])

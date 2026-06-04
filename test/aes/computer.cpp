@@ -201,7 +201,9 @@ inline void compute_mix_col(uint32_t &c0, uint32_t &c1, uint32_t &c2, uint32_t &
 // accelerator. Called 4× per aes_subBytes (16 bytes / 4 per CI) and 2× per
 // aes_expandEncKey (two SubWord operations in the key schedule).
 // ============================================================================
-#if defined(ACCEL_SUB_BYTES) || defined(ACCEL_SUB_BYTES_HW)
+#if defined(ACCEL_SUB_BYTES) || defined(ACCEL_SUB_BYTES_HW) || \
+    defined(ACCEL_SBOX_WORD) || defined(ACCEL_SBOX_WORD_HW) || \
+    defined(ACCEL_EXPAND_ENC_KEY) || defined(ACCEL_EXPAND_ENC_KEY_HW)
 static const uint8_t accel_sbox[256] = {
     0x63, 0x7c, 0x77, 0x7b, 0xf2, 0x6b, 0x6f, 0xc5,
     0x30, 0x01, 0x67, 0x2b, 0xfe, 0xd7, 0xab, 0x76,
@@ -236,13 +238,16 @@ static const uint8_t accel_sbox[256] = {
     0x8c, 0xa1, 0x89, 0x0d, 0xbf, 0xe6, 0x42, 0x68,
     0x41, 0x99, 0x2d, 0x0f, 0xb0, 0x54, 0xbb, 0x16
 };
-static inline uint32_t sub_bytes_word(uint32_t word) {
+
+static inline uint32_t accel_sbox_word(uint32_t word) {
   return (uint32_t)accel_sbox[ word        & 0xFF]
        | ((uint32_t)accel_sbox[(word >>  8) & 0xFF] <<  8)
        | ((uint32_t)accel_sbox[(word >> 16) & 0xFF] << 16)
        | ((uint32_t)accel_sbox[(word >> 24) & 0xFF] << 24);
 }
+#endif
 
+#if defined(ACCEL_SUB_BYTES) || defined(ACCEL_SUB_BYTES_HW)
 inline void compute_sub_bytes(uint32_t &c0, uint32_t &c1, uint32_t &c2, uint32_t &c3) {
   uint32_t cols[4] = {c0, c1, c2, c3};
 #ifdef ACCEL_SUB_BYTES_U4
@@ -253,8 +258,84 @@ inline void compute_sub_bytes(uint32_t &c0, uint32_t &c1, uint32_t &c2, uint32_t
 // Cyber unroll_times=1
 #endif
   for (int i = 0; i < 4; i++)
-    cols[i] = sub_bytes_word(cols[i]);
+    cols[i] = accel_sbox_word(cols[i]);
   c0 = cols[0]; c1 = cols[1]; c2 = cols[2]; c3 = cols[3];
+}
+#endif
+
+// ============================================================================
+// ACCEL_SBOX_WORD — packed 32-bit S-box primitive (register-bound)
+//
+// Encoding : .insn r 0x0B, 1, 0, rd, rs1, x0
+//   rs1/rd — one packed 32-bit word, little-endian bytes
+//
+// Used directly by aes_subBytes() when the stage-level SB kernel is disabled,
+// and reused inside aes_expandEncKey() when EXPAND is disabled.
+// ============================================================================
+#if defined(ACCEL_SBOX_WORD) || defined(ACCEL_SBOX_WORD_HW)
+inline void compute_sbox_word(uint32_t &word) {
+  uint8_t bytes[4] = {
+    (uint8_t)(word & 0xFF),
+    (uint8_t)((word >> 8) & 0xFF),
+    (uint8_t)((word >> 16) & 0xFF),
+    (uint8_t)((word >> 24) & 0xFF),
+  };
+#ifdef ACCEL_SBOX_WORD_U4
+// Cyber unroll_times=4
+#elif defined(ACCEL_SBOX_WORD_U2)
+// Cyber unroll_times=2
+#elif defined(ACCEL_SBOX_WORD_U1)
+// Cyber unroll_times=1
+#endif
+  for (int i = 0; i < 4; i++)
+    bytes[i] = accel_sbox[bytes[i]];
+  word = (uint32_t)bytes[0]
+       | ((uint32_t)bytes[1] << 8)
+       | ((uint32_t)bytes[2] << 16)
+       | ((uint32_t)bytes[3] << 24);
+}
+#endif
+
+// ============================================================================
+// ACCEL_EXPAND_ENC_KEY — one AES-256 key-schedule step (register-bound)
+//
+// Encoding : .insn r 0x0B, 5, 0, zero, zero, zero
+//   a0-a7 — 8 packed 32-bit words for the current 32-byte key state
+//   t0    — current rcon byte in bits[7:0]
+//
+// The two word-propagation chains are the loop-variability surface.
+// ============================================================================
+#if defined(ACCEL_EXPAND_ENC_KEY) || defined(ACCEL_EXPAND_ENC_KEY_HW)
+inline void compute_expand_enc_key(uint32_t &w0, uint32_t &w1, uint32_t &w2, uint32_t &w3,
+                                   uint32_t &w4, uint32_t &w5, uint32_t &w6, uint32_t &w7,
+                                   uint32_t &rc_word) {
+  uint32_t words[8] = {w0, w1, w2, w3, w4, w5, w6, w7};
+  uint8_t rc = (uint8_t)(rc_word & 0xFF);
+  uint32_t sub_word = accel_sbox_word((words[7] >> 8) | (words[7] << 24));
+  words[0] ^= sub_word ^ rc;
+  rc = (uint8_t)(((uint32_t)rc << 1) ^ (((rc >> 7) & 1U) * 0x1bU));
+#ifdef ACCEL_EXPAND_ENC_KEY_U4
+// Cyber unroll_times=4
+#elif defined(ACCEL_EXPAND_ENC_KEY_U2)
+// Cyber unroll_times=2
+#elif defined(ACCEL_EXPAND_ENC_KEY_U1)
+// Cyber unroll_times=1
+#endif
+  for (int i = 1; i < 4; i++)
+    words[i] ^= words[i - 1];
+  words[4] ^= accel_sbox_word(words[3]);
+#ifdef ACCEL_EXPAND_ENC_KEY_U4
+// Cyber unroll_times=4
+#elif defined(ACCEL_EXPAND_ENC_KEY_U2)
+// Cyber unroll_times=2
+#elif defined(ACCEL_EXPAND_ENC_KEY_U1)
+// Cyber unroll_times=1
+#endif
+  for (int i = 5; i < 8; i++)
+    words[i] ^= words[i - 1];
+  w0 = words[0]; w1 = words[1]; w2 = words[2]; w3 = words[3];
+  w4 = words[4]; w5 = words[5]; w6 = words[6]; w7 = words[7];
+  rc_word = rc;
 }
 #endif
 
@@ -665,7 +746,8 @@ bool computer(uint32_t imem_arg[MEM_SIZE]/* Cyber array=ROM */
       break;
     }
 
-#if defined(ACCEL_MIX_COL) || defined(ACCEL_SUB_BYTES) || defined(ACCEL_SHIFT_ROWS) || defined(ACCEL_ADD_RK) || \
+#if defined(ACCEL_SBOX_WORD) || defined(ACCEL_MIX_COL) || defined(ACCEL_SUB_BYTES) || \
+    defined(ACCEL_EXPAND_ENC_KEY) || defined(ACCEL_SHIFT_ROWS) || defined(ACCEL_ADD_RK) || \
     defined(ACCEL_FULL) || \
     defined(ACCEL_FULL_R_U1) || defined(ACCEL_FULL_R_U2) || \
     defined(ACCEL_FULL_R_U4) || defined(ACCEL_FULL_R_U13) || \
@@ -673,6 +755,14 @@ bool computer(uint32_t imem_arg[MEM_SIZE]/* Cyber array=ROM */
     defined(ACCEL_FULL_MC_U1) || defined(ACCEL_FULL_MC_U2) || defined(ACCEL_FULL_MC_U4)
     case 0x0B: {
       switch (funct3) {
+#ifdef ACCEL_SBOX_WORD
+      case 1:
+        if (funct7 == 0) {
+          regs[rd] = regs[rs1];
+          compute_sbox_word(regs[rd]);
+        } else halt = true;
+        break;
+#endif
 #ifdef ACCEL_MIX_COL
       case 2:
         if (funct7 == 0) compute_mix_col(regs[10], regs[11], regs[12], regs[13]);
@@ -689,6 +779,15 @@ bool computer(uint32_t imem_arg[MEM_SIZE]/* Cyber array=ROM */
       case 4:
         if (funct7 == 0) compute_shift_rows(dmem_arg, regs[rs1]);
         else halt = true;
+        break;
+#endif
+#ifdef ACCEL_EXPAND_ENC_KEY
+      case 5:
+        if (funct7 == 0) {
+          compute_expand_enc_key(regs[10], regs[11], regs[12], regs[13],
+                                 regs[14], regs[15], regs[16], regs[17],
+                                 regs[5]);
+        } else halt = true;
         break;
 #endif
 #ifdef ACCEL_ADD_RK
