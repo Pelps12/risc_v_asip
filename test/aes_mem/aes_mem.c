@@ -1,0 +1,431 @@
+/*
+ * Ported from MachSuite for bare-metal RV32I.
+ * Source: https://github.com/breagen/MachSuite/blob/master/aes/aes/aes.c
+ *
+ * Byte-oriented AES-256 implementation.
+ * All lookup tables replaced with 'on the fly' calculations.
+ *
+ * main() verifies against the FIPS-197 AES-256 test vector.
+ *
+ * Custom instructions (opcode 0x0B, R-type, funct7=0):
+ *   funct3=1  ACCEL_SBOX_WORD  — S-box on one packed 32-bit word
+ *   funct3=2  ACCEL_MIX_COL    — GF(2^8) MixColumns on one packed column
+ *   funct3=3  ACCEL_SUB_BYTES  — SubWord: S-box on 4 packed bytes (reg→reg)
+ *   funct3=4  ACCEL_SHIFT_ROWS — ShiftRows: 16-byte permutation via dmem addr
+ *   funct3=5  ACCEL_EXPAND_ENC_KEY — one AES-256 key-schedule step
+ *   funct3=6  ACCEL_ADD_RK     — AddRoundKey: 16-byte XOR via dmem addrs
+ *   funct3=7  ACCEL_FULL       — Full AES-256 encrypt; reads/writes a0–a3 implicitly
+ */
+
+#include "../lib.c"
+
+/* -------------------------------------------------------------------------- */
+/* aes256_context (from MachSuite aes.h)                                      */
+/* -------------------------------------------------------------------------- */
+typedef struct {
+    uint8_t key[32];
+    uint8_t enckey[32];
+    uint8_t deckey[32];
+} aes256_context;
+
+/* -------------------------------------------------------------------------- */
+/* MachSuite aes.c — verbatim                                                 */
+/* -------------------------------------------------------------------------- */
+
+#define F(x)   (((x)<<1) ^ ((((x)>>7) & 1) * 0x1b))
+#define FD(x)  (((x) >> 1) ^ (((x) & 1) ? 0x8d : 0))
+
+#define BACK_TO_TABLES
+#ifdef BACK_TO_TABLES
+
+const uint8_t sbox[256] = {
+    0x63, 0x7c, 0x77, 0x7b, 0xf2, 0x6b, 0x6f, 0xc5,
+    0x30, 0x01, 0x67, 0x2b, 0xfe, 0xd7, 0xab, 0x76,
+    0xca, 0x82, 0xc9, 0x7d, 0xfa, 0x59, 0x47, 0xf0,
+    0xad, 0xd4, 0xa2, 0xaf, 0x9c, 0xa4, 0x72, 0xc0,
+    0xb7, 0xfd, 0x93, 0x26, 0x36, 0x3f, 0xf7, 0xcc,
+    0x34, 0xa5, 0xe5, 0xf1, 0x71, 0xd8, 0x31, 0x15,
+    0x04, 0xc7, 0x23, 0xc3, 0x18, 0x96, 0x05, 0x9a,
+    0x07, 0x12, 0x80, 0xe2, 0xeb, 0x27, 0xb2, 0x75,
+    0x09, 0x83, 0x2c, 0x1a, 0x1b, 0x6e, 0x5a, 0xa0,
+    0x52, 0x3b, 0xd6, 0xb3, 0x29, 0xe3, 0x2f, 0x84,
+    0x53, 0xd1, 0x00, 0xed, 0x20, 0xfc, 0xb1, 0x5b,
+    0x6a, 0xcb, 0xbe, 0x39, 0x4a, 0x4c, 0x58, 0xcf,
+    0xd0, 0xef, 0xaa, 0xfb, 0x43, 0x4d, 0x33, 0x85,
+    0x45, 0xf9, 0x02, 0x7f, 0x50, 0x3c, 0x9f, 0xa8,
+    0x51, 0xa3, 0x40, 0x8f, 0x92, 0x9d, 0x38, 0xf5,
+    0xbc, 0xb6, 0xda, 0x21, 0x10, 0xff, 0xf3, 0xd2,
+    0xcd, 0x0c, 0x13, 0xec, 0x5f, 0x97, 0x44, 0x17,
+    0xc4, 0xa7, 0x7e, 0x3d, 0x64, 0x5d, 0x19, 0x73,
+    0x60, 0x81, 0x4f, 0xdc, 0x22, 0x2a, 0x90, 0x88,
+    0x46, 0xee, 0xb8, 0x14, 0xde, 0x5e, 0x0b, 0xdb,
+    0xe0, 0x32, 0x3a, 0x0a, 0x49, 0x06, 0x24, 0x5c,
+    0xc2, 0xd3, 0xac, 0x62, 0x91, 0x95, 0xe4, 0x79,
+    0xe7, 0xc8, 0x37, 0x6d, 0x8d, 0xd5, 0x4e, 0xa9,
+    0x6c, 0x56, 0xf4, 0xea, 0x65, 0x7a, 0xae, 0x08,
+    0xba, 0x78, 0x25, 0x2e, 0x1c, 0xa6, 0xb4, 0xc6,
+    0xe8, 0xdd, 0x74, 0x1f, 0x4b, 0xbd, 0x8b, 0x8a,
+    0x70, 0x3e, 0xb5, 0x66, 0x48, 0x03, 0xf6, 0x0e,
+    0x61, 0x35, 0x57, 0xb9, 0x86, 0xc1, 0x1d, 0x9e,
+    0xe1, 0xf8, 0x98, 0x11, 0x69, 0xd9, 0x8e, 0x94,
+    0x9b, 0x1e, 0x87, 0xe9, 0xce, 0x55, 0x28, 0xdf,
+    0x8c, 0xa1, 0x89, 0x0d, 0xbf, 0xe6, 0x42, 0x68,
+    0x41, 0x99, 0x2d, 0x0f, 0xb0, 0x54, 0xbb, 0x16
+};
+
+#define rj_sbox(x)     sbox[(x)]
+
+#else /* tableless subroutines */
+
+uint8_t gf_alog(uint8_t x)
+{
+    uint8_t atb = 1, z;
+    alog : while (x--) {z = atb; atb <<= 1; if (z & 0x80) atb^= 0x1b; atb ^= z;}
+    return atb;
+}
+
+uint8_t gf_log(uint8_t x)
+{
+    uint8_t atb = 1, i = 0, z;
+    glog : do {
+        if (atb == x) break;
+        z = atb; atb <<= 1; if (z & 0x80) atb^= 0x1b; atb ^= z;
+    } while (++i > 0);
+    return i;
+}
+
+uint8_t gf_mulinv(uint8_t x)
+{
+    return (x) ? gf_alog(255 - gf_log(x)) : 0;
+}
+
+uint8_t rj_sbox(uint8_t x)
+{
+    uint8_t y, sb;
+    sb = y = gf_mulinv(x);
+    y = (y<<1)|(y>>7); sb ^= y;  y = (y<<1)|(y>>7); sb ^= y;
+    y = (y<<1)|(y>>7); sb ^= y;  y = (y<<1)|(y>>7); sb ^= y;
+    return (sb ^ 0x63);
+}
+#endif
+
+uint8_t rj_xtime(uint8_t x)
+{
+    return (x & 0x80) ? ((x << 1) ^ 0x1b) : (x << 1);
+}
+
+static inline uint32_t sbox_word_scalar(uint32_t word)
+{
+    return (uint32_t)rj_sbox(word & 0xFF)
+         | ((uint32_t)rj_sbox((word >> 8) & 0xFF) << 8)
+         | ((uint32_t)rj_sbox((word >> 16) & 0xFF) << 16)
+         | ((uint32_t)rj_sbox((word >> 24) & 0xFF) << 24);
+}
+
+static inline uint32_t accel_sbox_word(uint32_t word)
+{
+#if defined(ACCEL_SBOX_WORD) && defined(__riscv)
+    register uint32_t packed asm("a0") = word;
+    asm volatile(
+        ".insn r 0x0B, 1, 0, %0, %0, x0"
+        : "+r"(packed)
+    );
+    return packed;
+#else
+    return sbox_word_scalar(word);
+#endif
+}
+
+void aes_subBytes(uint8_t *buf)
+{
+/*
+ * ACCEL_SUB_BYTES custom instruction (funct3=3):
+ *   Assembly : .insn r 0x0B, 3, 0, zero, zero, zero
+ *   Implicitly reads/writes a0–a3 (all 4 words of the 16-byte state):
+ *     a0=buf[0..3], a1=buf[4..7], a2=buf[8..11], a3=buf[12..15] (little-endian)
+ *   S-box applied independently to each byte across all 4 words.
+ *   One CI per invocation (13 total per AES-256), register-bound.
+ */
+#if defined(ACCEL_SUB_BYTES) && defined(__riscv)
+    register uint32_t w0 asm("a0") = *(uint32_t *)(buf +  0);
+    register uint32_t w1 asm("a1") = *(uint32_t *)(buf +  4);
+    register uint32_t w2 asm("a2") = *(uint32_t *)(buf +  8);
+    register uint32_t w3 asm("a3") = *(uint32_t *)(buf + 12);
+    asm volatile(
+        ".insn r 0x0B, 3, 0, zero, zero, zero"
+        : "+r"(w0), "+r"(w1), "+r"(w2), "+r"(w3)
+    );
+    *(uint32_t *)(buf +  0) = w0;
+    *(uint32_t *)(buf +  4) = w1;
+    *(uint32_t *)(buf +  8) = w2;
+    *(uint32_t *)(buf + 12) = w3;
+#elif defined(ACCEL_SBOX_WORD) && defined(__riscv)
+    register uint8_t i;
+    sboxw_sub : for (i = 0; i < 16; i += 4)
+        *(uint32_t *)(buf + i) = accel_sbox_word(*(uint32_t *)(buf + i));
+#else
+    register uint8_t i = 16;
+    sub : while (i--) buf[i] = rj_sbox(buf[i]);
+#endif
+}
+
+void aes_addRoundKey(uint8_t *buf, uint8_t *key)
+{
+/*
+ * ACCEL_ADD_RK custom instruction (funct3=6):
+ *   Assembly : .insn r 0x0B, 6, 0, x0, rs1, rs2
+ *   rs1 — byte address of buf (16-byte state) in dmem
+ *   rs2 — byte address of key (16-byte round key) in dmem
+ *   rd  — unused (x0)
+ *   Accelerator reads 16 bytes from buf and key, XORs each pair, writes back to buf.
+ *   Called 14× per AES-256 encryption (13 rounds + 1 final AddRoundKey).
+ *   Memory access: 16 reads from buf + 16 reads from key + 16 writes to buf.
+ *   Port sweep (ACCEL_ADD_RK_P2/P4/P8/P16) parallelises the paired dmem reads.
+ */
+#if defined(ACCEL_ADD_RK) && defined(__riscv)
+    asm volatile(
+        ".insn r 0x0B, 6, 0, x0, %0, %1\n"
+        :: "r"(buf), "r"(key)
+    );
+#else
+    register uint8_t i = 16;
+    addkey : while (i--) buf[i] ^= key[i];
+#endif
+}
+
+void aes_addRoundKey_cpy(uint8_t *buf, uint8_t *key, uint8_t *cpk)
+{
+    /* Called once only — not accelerated. */
+    register uint8_t i = 16;
+    cpkey : while (i--)  buf[i] ^= (cpk[i] = key[i]), cpk[16+i] = key[16 + i];
+}
+
+void aes_shiftRows(uint8_t *buf)
+{
+/*
+ * ACCEL_SHIFT_ROWS custom instruction (funct3=4):
+ *   Assembly : .insn r 0x0B, 4, 0, x0, rs1, x0
+ *   rs1 — byte address of 16-byte state buffer in dmem
+ *   rd  — unused (x0)
+ *   Accelerator reads 16 bytes, applies FIPS-197 §5.1.2 ShiftRows permutation,
+ *   writes 16 permuted bytes back to the same address.
+ *   Called 14× per AES-256 encryption.
+ *   Permutation (column-major state, rows shifted left by row index):
+ *     row 0 [0,4, 8,12] → unchanged
+ *     row 1 [1,5, 9,13] → [5, 9,13, 1]
+ *     row 2 [2,6,10,14] → [10,14, 2, 6]
+ *     row 3 [3,7,11,15] → [15, 3, 7,11]
+ *   Port sweep (ACCEL_SHIFT_ROWS_P2/P4/P8/P16) parallelises the 16-byte read.
+ */
+#if defined(ACCEL_SHIFT_ROWS) && defined(__riscv)
+    asm volatile(
+        ".insn r 0x0B, 4, 0, x0, %0, x0\n"
+        :: "r"(buf)
+    );
+#else
+    register uint8_t i, j;
+    i = buf[1]; buf[1] = buf[5]; buf[5] = buf[9]; buf[9] = buf[13]; buf[13] = i;
+    i = buf[10]; buf[10] = buf[2]; buf[2] = i;
+    j = buf[3]; buf[3] = buf[15]; buf[15] = buf[11]; buf[11] = buf[7]; buf[7] = j;
+    j = buf[14]; buf[14] = buf[6]; buf[6]  = j;
+#endif
+}
+
+void aes_mixColumns(uint8_t *buf)
+{
+/*
+ * ACCEL_MIX_COL custom instruction (funct3=2):
+ *   Assembly : .insn r 0x0B, 2, 0, zero, zero, zero
+ *   Implicitly reads/writes a0–a3 (all 4 columns in one CI call):
+ *     a0 = col0, a1 = col1, a2 = col2, a3 = col3 (little-endian packed)
+ *   Each column transformed per FIPS-197 §5.1.3 GF(2^8) poly 0x11b:
+ *     e = a^b^c^d;  xtime(x) = (x&0x80)?((x<<1)^0x1b):(x<<1)
+ *     out[7:0]=a^e^xtime(a^b)  out[15:8]=b^e^xtime(b^c)
+ *     out[23:16]=c^e^xtime(c^d)  out[31:24]=d^e^xtime(d^a)
+ *   One CI per invocation (13 total per AES-256), register-bound.
+ */
+#if defined(ACCEL_MIX_COL) && defined(__riscv)
+    register uint32_t w0 asm("a0") = *(uint32_t *)(buf +  0);
+    register uint32_t w1 asm("a1") = *(uint32_t *)(buf +  4);
+    register uint32_t w2 asm("a2") = *(uint32_t *)(buf +  8);
+    register uint32_t w3 asm("a3") = *(uint32_t *)(buf + 12);
+    asm volatile(
+        ".insn r 0x0B, 2, 0, zero, zero, zero"
+        : "+r"(w0), "+r"(w1), "+r"(w2), "+r"(w3)
+    );
+    *(uint32_t *)(buf +  0) = w0;
+    *(uint32_t *)(buf +  4) = w1;
+    *(uint32_t *)(buf +  8) = w2;
+    *(uint32_t *)(buf + 12) = w3;
+#else
+    register uint8_t i, a, b, c, d, e;
+    mix : for (i = 0; i < 16; i += 4)
+    {
+        a = buf[i]; b = buf[i + 1]; c = buf[i + 2]; d = buf[i + 3];
+        e = a ^ b ^ c ^ d;
+        buf[i]   ^= e ^ rj_xtime(a^b);   buf[i+1] ^= e ^ rj_xtime(b^c);
+        buf[i+2] ^= e ^ rj_xtime(c^d);   buf[i+3] ^= e ^ rj_xtime(d^a);
+    }
+#endif
+}
+
+void aes_expandEncKey(uint8_t *k, uint8_t *rc)
+{
+/*
+ * ACCEL_EXPAND_ENC_KEY custom instruction (funct3=5):
+ *   Assembly : .insn r 0x0B, 5, 0, zero, zero, zero
+ *   Implicitly reads/writes a0-a7 as the 32-byte key state (8 packed words).
+ *   Implicitly reads/writes t0 as the current rcon byte.
+ *
+ * If ACCEL_EXPAND_ENC_KEY is disabled but ACCEL_SBOX_WORD is enabled, the two
+ * SubWord sites still route through the packed S-box CI and the XOR chain
+ * remains scalar.
+ */
+#if defined(ACCEL_EXPAND_ENC_KEY) && defined(__riscv)
+    register uint32_t w0 asm("a0") = *(uint32_t *)(k +  0);
+    register uint32_t w1 asm("a1") = *(uint32_t *)(k +  4);
+    register uint32_t w2 asm("a2") = *(uint32_t *)(k +  8);
+    register uint32_t w3 asm("a3") = *(uint32_t *)(k + 12);
+    register uint32_t w4 asm("a4") = *(uint32_t *)(k + 16);
+    register uint32_t w5 asm("a5") = *(uint32_t *)(k + 20);
+    register uint32_t w6 asm("a6") = *(uint32_t *)(k + 24);
+    register uint32_t w7 asm("a7") = *(uint32_t *)(k + 28);
+    register uint32_t rc_word asm("t0") = *rc;
+    asm volatile(
+        ".insn r 0x0B, 5, 0, zero, zero, zero"
+        : "+r"(w0), "+r"(w1), "+r"(w2), "+r"(w3),
+          "+r"(w4), "+r"(w5), "+r"(w6), "+r"(w7),
+          "+r"(rc_word)
+    );
+    *(uint32_t *)(k +  0) = w0;
+    *(uint32_t *)(k +  4) = w1;
+    *(uint32_t *)(k +  8) = w2;
+    *(uint32_t *)(k + 12) = w3;
+    *(uint32_t *)(k + 16) = w4;
+    *(uint32_t *)(k + 20) = w5;
+    *(uint32_t *)(k + 24) = w6;
+    *(uint32_t *)(k + 28) = w7;
+    *rc = (uint8_t)rc_word;
+#else
+    register uint8_t i;
+#if defined(ACCEL_SBOX_WORD) && defined(__riscv)
+    uint32_t sub_word;
+
+    sub_word = accel_sbox_word(((uint32_t)k[29])
+                             | ((uint32_t)k[30] << 8)
+                             | ((uint32_t)k[31] << 16)
+                             | ((uint32_t)k[28] << 24));
+    k[0] ^= (uint8_t)(sub_word & 0xFF) ^ (*rc);
+    k[1] ^= (uint8_t)((sub_word >> 8) & 0xFF);
+    k[2] ^= (uint8_t)((sub_word >> 16) & 0xFF);
+    k[3] ^= (uint8_t)((sub_word >> 24) & 0xFF);
+#else
+    k[0] ^= rj_sbox(k[29]) ^ (*rc);
+    k[1] ^= rj_sbox(k[30]);
+    k[2] ^= rj_sbox(k[31]);
+    k[3] ^= rj_sbox(k[28]);
+#endif
+    *rc = F(*rc);
+    exp1 : for(i = 4; i < 16; i += 4)  k[i] ^= k[i-4],   k[i+1] ^= k[i-3],
+        k[i+2] ^= k[i-2], k[i+3] ^= k[i-1];
+#if defined(ACCEL_SBOX_WORD) && defined(__riscv)
+    sub_word = accel_sbox_word(*(uint32_t *)(k + 12));
+    k[16] ^= (uint8_t)(sub_word & 0xFF);
+    k[17] ^= (uint8_t)((sub_word >> 8) & 0xFF);
+    k[18] ^= (uint8_t)((sub_word >> 16) & 0xFF);
+    k[19] ^= (uint8_t)((sub_word >> 24) & 0xFF);
+#else
+    k[16] ^= rj_sbox(k[12]);
+    k[17] ^= rj_sbox(k[13]);
+    k[18] ^= rj_sbox(k[14]);
+    k[19] ^= rj_sbox(k[15]);
+#endif
+    exp2 : for(i = 20; i < 32; i += 4) k[i] ^= k[i-4],   k[i+1] ^= k[i-3],
+        k[i+2] ^= k[i-2], k[i+3] ^= k[i-1];
+#endif
+}
+
+void aes256_encrypt_ecb(aes256_context *ctx, uint8_t k[32], uint8_t buf[16])
+{
+/*
+ * ACCEL_FULL custom instruction (funct3=7):
+ *   Assembly : .insn r 0x0B, 7, 0, zero, zero, zero
+ *   Implicit inputs  — a0–a3: 4 × 32-bit words of plaintext (little-endian bytes)
+ *   Implicit outputs — a0–a3: 4 × 32-bit words of ciphertext
+ *   Key is hardcoded in the accelerator as a ROM constant (FIPS-197 test vector).
+ *   Caller: 4 lw before CI, 4 sw after CI.  No dmem access inside the accelerator.
+ */
+#if (defined(ACCEL_FULL) || \
+     defined(ACCEL_FULL_R_U1) || defined(ACCEL_FULL_R_U2) || \
+     defined(ACCEL_FULL_R_U4) || defined(ACCEL_FULL_R_U13) || \
+     defined(ACCEL_FULL_SB_U4) || defined(ACCEL_FULL_SB_U16) || \
+     defined(ACCEL_FULL_MC_U1) || defined(ACCEL_FULL_MC_U2) || defined(ACCEL_FULL_MC_U4)) && defined(__riscv)
+    register uint32_t w0 asm("a0") = *(uint32_t *)(buf +  0);
+    register uint32_t w1 asm("a1") = *(uint32_t *)(buf +  4);
+    register uint32_t w2 asm("a2") = *(uint32_t *)(buf +  8);
+    register uint32_t w3 asm("a3") = *(uint32_t *)(buf + 12);
+    asm volatile(
+        ".insn r 0x0B, 7, 0, zero, zero, zero"
+        : "+r"(w0), "+r"(w1), "+r"(w2), "+r"(w3)
+    );
+    *(uint32_t *)(buf +  0) = w0;
+    *(uint32_t *)(buf +  4) = w1;
+    *(uint32_t *)(buf +  8) = w2;
+    *(uint32_t *)(buf + 12) = w3;
+#else
+    uint8_t rcon = 1;
+    uint8_t i;
+    ecb1 : for (i = 0; i < sizeof(ctx->key); i++){
+        ctx->enckey[i] = ctx->deckey[i] = k[i];
+    }
+    ecb2 : for (i = 8;--i;){
+        aes_expandEncKey(ctx->deckey, &rcon);
+    }
+    aes_addRoundKey_cpy(buf, ctx->enckey, ctx->key);
+    ecb3 : for(i = 1, rcon = 1; i < 14; ++i)
+    {
+        aes_subBytes(buf);
+        aes_shiftRows(buf);
+        aes_mixColumns(buf);
+        if( i & 1 ) aes_addRoundKey( buf, &ctx->key[16]);
+        else aes_expandEncKey(ctx->key, &rcon), aes_addRoundKey(buf, ctx->key);
+    }
+    aes_subBytes(buf);
+    aes_shiftRows(buf);
+    aes_expandEncKey(ctx->key, &rcon);
+    aes_addRoundKey(buf, ctx->key);
+#endif
+}
+
+/* -------------------------------------------------------------------------- */
+/* Test harness — FIPS-197 AES-256 test vector                                */
+/* Key:       000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f */
+/* Plaintext: 00112233445566778899aabbccddeeff                                 */
+/* Expected:  8ea2b7ca516745bfeafc49904b496089                                 */
+/* -------------------------------------------------------------------------- */
+int main(void) {
+    aes256_context ctx;
+    uint8_t k[32] = {
+        0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x07,
+        0x08,0x09,0x0a,0x0b,0x0c,0x0d,0x0e,0x0f,
+        0x10,0x11,0x12,0x13,0x14,0x15,0x16,0x17,
+        0x18,0x19,0x1a,0x1b,0x1c,0x1d,0x1e,0x1f
+    };
+    uint8_t buf[16] = {
+        0x00,0x11,0x22,0x33,0x44,0x55,0x66,0x77,
+        0x88,0x99,0xaa,0xbb,0xcc,0xdd,0xee,0xff
+    };
+    const uint8_t expected[16] = {
+        0x8e,0xa2,0xb7,0xca,0x51,0x67,0x45,0xbf,
+        0xea,0xfc,0x49,0x90,0x4b,0x49,0x60,0x89
+    };
+    int i;
+
+    aes256_encrypt_ecb(&ctx, k, buf);
+
+    for (i = 0; i < 16; i++) {
+        if (buf[i] != expected[i])
+            return 1;  /* FAIL */
+    }
+    return 0;  /* PASS */
+}
