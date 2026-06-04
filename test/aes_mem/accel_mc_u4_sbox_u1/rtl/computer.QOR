@@ -1,0 +1,466 @@
+
+Cyber Synthesis Report
+
+===========
+; Summary ;
+===========
+
+  Module Name         : computer
+  Basic Library Name  : CWBSTDBLIB
+
+  Total Area          :     21,737
+    Sequential        :      8,832
+    Combinational     :     12,905
+
+  Latency Index       :         13
+  Total States        :          7
+
+  Clock Period        :       10ns
+  Critical Path Delay :   3.0612ns
+
+  Net                 :     18,255
+  Pin Pair            :     45,548
+
+  Port                :        142
+    In                :         66
+    Out               :         76
+
+========
+; Area ;
+========
+
+  Total :
+    Total           :     21,737
+      Sequential    : 
+        REG         :      8,832 (40%)
+      Combinational :     12,905 (59%)
+        FU          :      2,679 (12%)
+        MUX         :      8,570 (39%)
+        DEC         :         47 ( <1%)
+        MISC        :      1,609 ( 7%)
+      Memory        :          -
+
+===================
+; Functional Unit ;
+===================
+
+    FU Name                Area    Reg  Delay  Pipeline  Count
+                                         (ns)    Stage
+    ----------------------------------------------------------
+    add32s                  208      0   1.06         -      1
+    addsub32u               263      0   1.59         -      1
+    comp32s_1               156      0   0.48         -      2
+    comp32s_1_1             156      0   0.48         -      1
+    comp32u_1               156      0   0.48         -      3
+    incr3s                    6      0   0.12         -      1
+    lsft32u                 321      0   0.66         -      1
+    lsft32u_32              321      0   0.66         -      1
+    rsft32s                 306      0   0.61         -      1
+    rsft32u                 318      0   0.71         -      1
+
+  Unused Functional Units :
+    ---------------------------------------------------
+    None
+
+============
+; Register ;
+============
+
+     Used      Declared                 Used
+      Bit           Bit      Count       Bit  * Count
+    -------------------------------------------------
+        1             1          4                  4
+    -------------------------------------------------
+        2             2          1                  2
+    -------------------------------------------------
+        3             3          2                  6
+    -------------------------------------------------
+        5             5          4                 20
+    -------------------------------------------------
+        8             8          4                 32
+    -------------------------------------------------
+       32            32         44              1,408
+    -------------------------------------------------
+    Total                                       1,472
+
+===============
+; Multiplexer ;
+===============
+
+   1 bit: (1way: 1),  2way: 3 ,  3way: 1 ,  6way: 1 , 13way: 1 
+   2 bit:  2way: 1 ,  3way: 1 ,  4way: 1 
+   3 bit:  2way: 1 ,  9way: 1 
+   4 bit:  2way: 4 
+   5 bit:  2way: 6 ,  3way: 2 
+   6 bit:  2way: 1 
+   8 bit: (1way: 2),  3way: 4 ,  4way: 1 , 255way: 1 
+  12 bit: (1way: 1),  2way: 2 
+  14 bit:  2way: 1 
+  20 bit:  2way: 1 
+  21 bit:  2way: 1 ,  3way: 1 
+  30 bit:  2way: 1 
+  31 bit:  2way: 1 
+  32 bit:  2way: 6 ,  3way:35 ,  4way: 8 ,  5way: 1 ,  6way: 2 ,  8way: 1 ,
+	 18way: 1 , 32way: 4 
+   Total : 12,964 (# of Fanins)
+
+===========
+; Decoder ;
+===========
+
+    2to4: 1
+    5to32: 1
+
+==========
+; Memory ;
+==========
+
+                                                                  (shared/
+                                                                   outside)
+    Name                   Type   Kind     Bit  Word  Area  Count  Count
+    ------------------------------------------------------------------------
+    MEMB32W65536           -      R1        32 65,536     -      0      1
+    MEMB32W4096            -      R1,W1     32 4,096     -      0      1
+
+===========
+; Latency ;
+===========
+
+    Total:
+        Type          : S
+        Latency       : 1 + L1
+        Latency Index : 13
+        State No.     : 1, 2, 3, 4, 5, 6, 7
+        Folding Loop  : -
+        Folding Stages: - , Total Folding States: - , Hazard: -
+        User Operator : -
+        Sub Loops     : L1
+        Line          : -
+    L1:
+        Type          : S
+        Latency       : (3 + {{0, L3}, L2 + 1}) * N1 + {1, 3 + L3}
+        Latency Index : 12
+        State No.     : 2, 3, 4, 5, 6, 7
+        Folding Loop  : -
+        Folding Stages: - , Total Folding States: - , Hazard: -
+        User Operator : -
+        Sub Loops     : L2, L3
+        Line          : computer.cpp:615
+    L2:
+        Type          : S
+        Latency       : 1 * 4
+        Latency Index : 4
+        State No.     : 5
+        Folding Loop  : -
+        Folding Stages: - , Total Folding States: - , Hazard: -
+        User Operator : -
+        Sub Loops     : -
+        Line          : computer.cpp:290
+    L3:
+        Type          : S
+        Latency       : 1 * N3    [N3 >= 1]
+        Latency Index : 1
+        State No.     : 7
+        Folding Loop  : -
+        Folding Stages: - , Total Folding States: - , Hazard: -
+        User Operator : -
+        Sub Loops     : -
+        Line          : -
+
+=======
+; FSM ;
+=======
+
+  Total States      :          7
+  #FSM              :          1
+  States/FSM        :          7
+  FSM Decoder Delay :     0.13ns
+
+=========
+; Delay ;
+=========
+
+  Clock Period        :       10ns
+  Critical Path Delay :   3.0612ns
+
+              Subtotal
+      Class       (ns)    Ratio
+      -------------------------
+      IN           0.00      0%
+      FU           1.79     58%
+      MUX          0.92     30%
+      DEC          0.00      0%
+      MISC         0.35     11%
+      MEM          0.00      0%
+      -------------------------
+      Total        3.06
+
+    Path: #1
+                                                                Arrival
+                                                          Delay    Time Logic
+      Name                 / Port [Signal              ]   (ns)   (ns)  Stage
+      -----------------------------------------------------------------------
+      imem_arg_MEMB32W65536_RD1 / o1   [                    ]      -    0.00     0
+      _XOR_11395           / o1   [                    ]   0.00    0.00     0
+      _RNOR_10490          / o1   [M_210               ]   0.18    0.18     3
+      _AND_10981           / o1   [M_264               ]   0.05    0.23     4
+      _LOGIC_8643          / o1   [                    ]   0.12    0.35     6
+      _NMUX_3290           / o1   [regs_ad00           ]   0.07    0.42     8
+      _DMUX_2492           / o1   [regs_rd00           ]   0.48    0.90    17
+      _NMUX_3256           / o1   [add32s1i1           ]   0.07    0.98    19
+      add32s@1             / o1   [add32s1ot           ]   1.06    2.04    36
+      _NMUX_3264           / o1   [addsub32u1i1        ]   0.07    2.11    38
+      addsub32u@1          / o1   [addsub32u1ot        ]   0.73    2.84    48
+      _NMUX_3294           / o1   [regs_wd04           ]   0.15    2.99    51
+      _NMUX_2624           / o1   [regs_rg00           ]   0.07    3.06    53
+      regs_rg00            / din  [                    ]      -    3.06    53
+
+  False Path                    :  Unchecked
+  Multi Cycle Path              :  Unchecked
+  False Loop/Combinational Loop :          0
+  Latch (bit)                   :          0
+
+========
+; Wire ;
+========
+
+  Total Net Count      :   18,255
+  Total Pin Pair Count :   45,548
+  Const Fanout         :    4,231
+
+  Net Count :
+         Bit       Net    Bit*Net
+     ----------------------------
+           1       269        269
+           2        13         26
+           3        16         48
+           4        11         44
+           5        12         60
+           6         1          6
+           7         4         28
+           8        25        200
+          12         3         36
+          14         1         14
+          20         1         20
+          21         2         42
+          30         1         30
+          31         1         31
+          32       161      5,152
+     ----------------------------
+       Total                6,006
+
+  Pin Pair Count :
+      Fanout    Bit    Count   Subtotal
+    -----------------------------------
+          81      1        1         81
+          59      1        1         59
+          55      1        1         55
+          42      1        1         42
+          32     32        1      1,024
+          32      1        1         32
+          29      1        1         29
+          23      1        1         23
+          19      1        1         19
+          17      1        1         17
+          16      1        2         32
+          14     32        1        448
+          13      7        1         91
+          12     32        1        384
+          12      6        1         72
+          12      2        1         24
+          11     10        1        110
+          11      2        1         22
+          11      1        1         11
+          10     20        1        200
+          10      5        1         50
+          10      4        1         40
+          10      3        1         30
+          10      1        5         50
+           9     32        1        288
+           9     27        1        243
+           9      1        6         54
+           8      5        3        120
+           8      1        3         24
+           7     32        2        448
+           7     28        1        196
+           7     12        1         84
+           7      5        1         35
+           7      3        1         21
+           7      2        1         14
+           7      1        7         49
+           6     32        3        576
+           6     27        1        162
+           6      6        1         36
+           6      1        4         24
+           5     32       28      4,480
+           5     19        1         95
+           5      8        4        160
+           5      7        1         35
+           5      4        1         20
+           5      1        7         35
+           4     32        2        256
+           4     30        1        120
+           4     12        1         48
+           4     10        1         40
+           4      8        2         64
+           4      7        1         28
+           4      5        1         20
+           4      2        1          8
+           4      1       19         76
+           3     32        4        384
+           3      8        4         96
+           3      7        1         21
+           3      5        1         15
+           3      2        1          6
+           3      1       26         78
+           2     32        3        192
+           2     20        1         40
+           2     16        1         32
+           2      5        1         10
+           2      3        4         24
+           2      1       70        140
+           1     32      104      3,328
+           1     31        1         31
+           1     30        1         30
+           1     21        2         42
+           1     20        1         20
+           1     16        2         32
+           1     14        1         14
+           1     12        3         36
+           1      8       11         88
+           1      7        2         14
+           1      6        1          6
+           1      5        9         45
+           1      4        9         36
+           1      3       13         39
+           1      2       15         30
+           1      1      127        127
+    -----------------------------------
+       Total                     15,760
+
+  Fanout for Consts:
+      Value    Fanout
+          0     3,228
+          1     1,003
+    ------------------
+      Total     4,231
+
+  Clock Fanout:
+      Name                         Count
+      ----------------------------------
+      CLOCK(0..0)                     59
+
+  Reset Fanout:
+      Name                         Count
+      ----------------------------------
+      RESET(0..0)                     42
+
+  Register Fanin/Fanout Cone Size:
+
+    Fanin: (Top 10 Registers)
+      Register Name                              Cone Size
+      ----------------------------------------------------
+      regs_rg10(31..0)                                  55
+      regs_rg11(31..0)                                  55
+      regs_rg12(31..0)                                  55
+      regs_rg13(31..0)                                  55
+      regs_rg00(31..0)                                  53
+      regs_rg01(31..0)                                  53
+      regs_rg02(31..0)                                  53
+      regs_rg03(31..0)                                  53
+      regs_rg04(31..0)                                  53
+      regs_rg05(31..0)                                  53
+
+    Fanout: (Top 10 Registers)
+      Register Name                              Cone Size
+      ----------------------------------------------------
+      B01_streg(2..0)                                   61
+      RG_cols(31..0)                                    51
+      RG_cols_1(31..0)                                  50
+      regs_rg10(31..0)                                  46
+      FF_take_1(0..0)                                   46
+      regs_rg11(31..0)                                  45
+      regs_rg12(31..0)                                  45
+      regs_rg13(31..0)                                  45
+      regs_rg00(31..0)                                  44
+      regs_rg01(31..0)                                  44
+
+  Routability:
+
+    Top 25 Nets
+    sorted by "Total" (Total Pin Pair)
+      Net Name                                    Total      Max
+      -----------------------------------------------------------------
+      regs_wd04(31..0)                            1,024       32 (32bit)
+      RG_cols_1(31..0)                              448       14 (32bit)
+      RG_cols(31..0)                                384       12 (32bit)
+      RL_addr_addr1_imm1_instr_next_pc(31..0)       343       81 ( 1bit)
+      RG_cols_op1_PC_result1_word_addr(31..0)       334       12 ( 2bit)
+      regs_rd00(31..0)                              293       10 ( 5bit)
+      imem_arg_MEMB32W65536_RD1(31..0)              292       55 ( 1bit)
+      regs_rd02(31..0)                              288        9 (32bit)
+      regs_rg10(31..0)                              224        7 (32bit)
+      regs_rd01(31..0)                              224        7 (32bit)
+      RG_col_1(31..0)                               216        7 (28bit)
+      RG_cols_op2(31..0)                            202        8 ( 5bit)
+      regs_rg11(31..0)                              192        6 (32bit)
+      regs_rg12(31..0)                              192        6 (32bit)
+      regs_rg13(31..0)                              192        6 (32bit)
+      add32s1ot(31..0)                              182        7 (12bit)
+      regs_rg00(31..0)                              160        5 (32bit)
+      regs_rg01(31..0)                              160        5 (32bit)
+      regs_rg02(31..0)                              160        5 (32bit)
+      regs_rg03(31..0)                              160        5 (32bit)
+      regs_rg04(31..0)                              160        5 (32bit)
+      regs_rg05(31..0)                              160        5 (32bit)
+      regs_rg06(31..0)                              160        5 (32bit)
+      regs_rg07(31..0)                              160        5 (32bit)
+      regs_rg08(31..0)                              160        5 (32bit)
+
+    Top 25 Nets
+    sorted by "Max" (Maximum Fanout)
+      Net Name                                    Total      Max
+      -----------------------------------------------------------------
+      RL_addr_addr1_imm1_instr_next_pc(31..0)       343       81 ( 1bit)
+      CLOCK(0..0)                                    59       59 ( 1bit)
+      imem_arg_MEMB32W65536_RD1(31..0)              292       55 ( 1bit)
+      RESET(0..0)                                    42       42 ( 1bit)
+      regs_wd04(31..0)                            1,024       32 (32bit)
+      regs_we04(0..0)                                32       32 ( 1bit)
+      rsft32u1ot(31..0)                             120       29 ( 1bit)
+      ST1_04d(0..0)                                  23       23 ( 1bit)
+      FF_take_1(0..0)                                17       17 ( 1bit)
+      ST1_03d(0..0)                                  16       16 ( 1bit)
+      RG_cols_1(31..0)                              448       14 (32bit)
+      RG_cols(31..0)                                384       12 (32bit)
+      RG_cols_op1_PC_result1_word_addr(31..0)       334       12 ( 2bit)
+      U_13(0..0)                                     11       11 ( 1bit)
+      regs_rd00(31..0)                              293       10 ( 5bit)
+      U_09(0..0)                                     10       10 ( 1bit)
+      U_62(0..0)                                     10       10 ( 1bit)
+      U_63(0..0)                                     10       10 ( 1bit)
+      M_199(0..0)                                    10       10 ( 1bit)
+      M_233(0..0)                                    10       10 ( 1bit)
+      regs_rd02(31..0)                              288        9 (32bit)
+      ST1_02d(0..0)                                   9        9 ( 1bit)
+      U_12(0..0)                                      9        9 ( 1bit)
+      U_95(0..0)                                      9        9 ( 1bit)
+      U_106(0..0)                                     9        9 ( 1bit)
+
+================
+; Primary Port ;
+================
+
+    Name               Type   Bitw
+    ------------------------------
+      computer_ret      out     1
+      imem_arg_MEMB32W65536_RD1  in     32
+      imem_arg_MEMB32W65536_RA1  out    16
+      imem_arg_MEMB32W65536_RE1  out     1
+      dmem_arg_MEMB32W4096_RD1  in     32
+      dmem_arg_MEMB32W4096_WD2  out    32
+      dmem_arg_MEMB32W4096_RA1  out    12
+      dmem_arg_MEMB32W4096_WA2  out    12
+      dmem_arg_MEMB32W4096_RE1  out     1
+      dmem_arg_MEMB32W4096_WE2  out     1
+
