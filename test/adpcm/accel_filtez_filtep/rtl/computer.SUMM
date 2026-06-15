@@ -1,0 +1,67 @@
+Copyright (C) 1988-2018 NEC Corporation. All rights reserved.
+bdltran version : 6.10.04 (Linux 64-bit) Thu Mar 22 14:18:17 JST 2018
+         (BIF version : 3.41F)
+         (LICflex version : 1.53 cylmd)
+         make at Thu Mar 22 14:30:59 JST 2018
+ Option  -EE computer.IFF -c1000 -s -Zresource_fcnt=GENERATE -Zresource_mcnt=GENERATE -Zsync -Zdup_reset=YES -Zfolding_sharing=inter_stage -lb /proj/cad/cwb-6.1/packages/asic_45.BLIB -lfl /proj/cad/cwb-6.1/packages/asic_45.FLIB -o-P 
+
+scpars  -EE -DACCEL_ADPCM_FILTEZ -DACCEL_ADPCM_FILTEP -info_base_name computer computer.cpp
+
+############## CyberII started (automatic scheduling mode) ##############
+[Clock period]    100,000 (1/10ps) [define]
+[Datapath delay]   90,000 (1/10ps)
+[Clock uncertainty] 10,000 (1/10ps)
+
+******* Initial # of operations in the input behavior description *******
+ === Operators ===
+  != : 15  (1bit:2, 32bit:13)
+  !  :  1  (1bit:1)
+  <  :  8  (32bit:8)
+  >> :  7  (32bit:7)
+  &  : 42  (1bit:8, 32bit:24, 34bit:1, 39bit:1, 47bit:3, 63bit:3, 32769bit:2)
+  +  : 22  (32bit:22)
+  << :  7  (32bit:7)
+  |  : 11  (32bit:2, 39bit:1, 62bit:3, 78bit:3, 32769bit:2)
+  -  :  8  (32bit:8)
+  == : 15  (32bit:15)
+  >= :  2  (32bit:2)
+  *  : 11  (32bit:8, 64bit:3)
+  ~  :  2  (32769bit:2)
+  ^  :  2  (32bit:2)
+  ++ :  1  (32bit:1)
+  += :  2  (99bit:1, 128bit:1)
+  |> : 16  (1bit:16)
+  Data transfer : 472
+
+ === array / memory ===
+  read  : 43
+  write :  9
+
+********* After optimizing & expanding the behavior description *********
+ === Operators ===
+  != : 13  (1bit:3, 5bit:9, 32bit:1)
+  <  :  6  (32bit:6)
+  >> :  8  (32bit:8)
+  &  : 12  (1bit:8, 32bit:4)
+  +  : 15  (32bit:9, 46bit:6)
+  << :  6  (8bit:2, 16bit:2, 32bit:2)
+  |  :  7  (1bit:3, 32bit:4)
+  -  : 17  (18bit:10, 32bit:7)
+  == : 15  (3bit:7, 7bit:7, 32bit:1)
+  >= :  2  (32bit:2)
+  *  :  8  (32bit:8)
+  ~  :  3  (1bit:1, 32bit:2)
+  ^  :  2  (32bit:2)
+  |> :  1  (1bit:1)
+  ~|>:  1  (14bit:1)
+  Data transfer : 488
+
+ === array / memory ===
+  read  : 53
+  write : 44
+
+#########################  Synthesized Circuit  #########################
+[Performance index max/min/ave] 15 / 15 / 15.00
+
+!!!!!!!!  CyberII ABNORMAL finish [computer] (pos=75)  !!!!!!!!
+
