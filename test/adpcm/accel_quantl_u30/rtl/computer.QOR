@@ -166,7 +166,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : L1
-        Line          : computer.cpp:796
+        Line          : computer.cpp:754
     L1:
         Type          : S
         Latency       : 4 * N1 + {1, 4}
@@ -176,7 +176,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:799
+        Line          : computer.cpp:757
 
 =======
 ; FSM ;
