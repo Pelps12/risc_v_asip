@@ -387,7 +387,9 @@ static inline int32_t accel_adpcm_quantl(int32_t el, int32_t detl) {
 //   decode : .insn r 0x0B, 2, 0, rd, rs1, rs2
 //     rs1 = packed ADPCM code, rs2 = current CHStone il, rd = xout2:xout1
 //   reset  : .insn r 0x0B, 3, 0, zero, zero, zero
-//     clears accelerator-owned ADPCM histories to CHStone reset values
+//     intentionally treated as a no-op in HLS. The state is initialized by
+//     hardware reset; explicitly clearing every state array in one CI branch
+//     causes CWB bdltran to segfault.
 //
 // The accelerator owns predictor/filter histories. Decode keeps rs2 because the
 // CHStone decoder intentionally references global il rather than only input&0x3f.
@@ -472,43 +474,6 @@ static int dec_plt1_hw = 0, dec_plt2_hw = 0, dec_rlt1_hw = 0, dec_rlt2_hw = 0;
 static int dec_nbh_hw = 0, dec_ah1_hw = 0, dec_ah2_hw = 0;
 static int dec_ph1_hw = 0, dec_ph2_hw = 0, dec_rh1_hw = 0, dec_rh2_hw = 0;
 #endif
-
-static inline void accel_adpcm_reset() {
-#if defined(ACCEL_ADPCM_ENCODE) || defined(ACCEL_ADPCM_ENCODE_HW)
-  enc_detl = 32;
-  enc_deth = 8;
-  enc_nbl = enc_al1 = enc_al2 = enc_plt1 = enc_plt2 = 0;
-  enc_rlt1 = enc_rlt2 = 0;
-  enc_nbh = enc_ah1 = enc_ah2 = enc_ph1 = enc_ph2 = 0;
-  enc_rh1 = enc_rh2 = 0;
-  for (int i = 0; i < 6; i++) {
-    enc_delay_bpl[i] = 0;
-    enc_delay_dltx[i] = 0;
-    enc_delay_bph[i] = 0;
-    enc_delay_dhx[i] = 0;
-  }
-  for (int i = 0; i < 24; i++)
-    enc_tqmf[i] = 0;
-#endif
-#if defined(ACCEL_ADPCM_DECODE) || defined(ACCEL_ADPCM_DECODE_HW)
-  dec_detl_hw = 32;
-  dec_deth_hw = 8;
-  dec_nbl_hw = dec_al1_hw = dec_al2_hw = 0;
-  dec_plt1_hw = dec_plt2_hw = dec_rlt1_hw = dec_rlt2_hw = 0;
-  dec_nbh_hw = dec_ah1_hw = dec_ah2_hw = 0;
-  dec_ph1_hw = dec_ph2_hw = dec_rh1_hw = dec_rh2_hw = 0;
-  for (int i = 0; i < 6; i++) {
-    dec_del_bpl[i] = 0;
-    dec_del_dltx[i] = 0;
-    dec_del_bph[i] = 0;
-    dec_del_dhx[i] = 0;
-  }
-  for (int i = 0; i < 11; i++) {
-    dec_accumc[i] = 0;
-    dec_accumd[i] = 0;
-  }
-#endif
-}
 
 #if defined(ACCEL_ADPCM_ENCODE) || defined(ACCEL_ADPCM_ENCODE_HW)
 static inline int adpcm_abs(int n) { return (n >= 0) ? n : -n; }
@@ -780,15 +745,8 @@ void dump_regs(ofstream &rpt) {
 // ============================================================================
 
 // Cyber func=process
-bool computer(uint32_t imem_arg[MEM_SIZE]
-#if defined(ACCEL_ADPCM_FILTEZ) || defined(ACCEL_ADPCM_FILTEZ_HW) ||           \
-    defined(ACCEL_ADPCM_UPZERO) || defined(ACCEL_ADPCM_UPZERO_HW)
-              ,
-              uint32_t dmem_arg[MEM_SIZE] /*Cyber array=REG, rw_port=R1.W1 */
-#else
-              ,
-              uint32_t dmem_arg[MEM_SIZE]
-#endif
+bool computer(uint32_t imem_arg[MEM_SIZE],
+              uint32_t dmem_arg[MEM_SIZE] /*Cyber array=RAM */
 #ifdef C
               ,
               ofstream &rpt
@@ -1072,10 +1030,7 @@ bool computer(uint32_t imem_arg[MEM_SIZE]
 #endif
 #endif
       } else if (funct3 == 3 && funct7 == 0) {
-#if defined(ACCEL_ADPCM_ENCODE) || defined(ACCEL_ADPCM_ENCODE_HW) ||           \
-    defined(ACCEL_ADPCM_DECODE) || defined(ACCEL_ADPCM_DECODE_HW)
-        accel_adpcm_reset();
-#endif
+        // Reset CI is intentionally a no-op; hardware reset initializes state.
       } else if (funct3 == 4 && funct7 == 0) {
 #if defined(ACCEL_ADPCM_FILTEP) || defined(ACCEL_ADPCM_FILTEP_HW)
         uint32_t accel_result =
