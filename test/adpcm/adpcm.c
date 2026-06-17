@@ -247,7 +247,7 @@ abs (int n)
 int
 encode (int xin1, int xin2)
 {
-#if defined(ACCEL_ADPCM_ENCODE) && defined(__riscv)
+#if defined(ACCEL_ADPCM_FULL_ENCODE) && defined(__riscv)
   int result;
   asm volatile (
       ".insn r 0x0B, 1, 0, %0, %1, %2\n"
@@ -411,7 +411,7 @@ encode (int xin1, int xin2)
 void
 decode (int input)
 {
-#if defined(ACCEL_ADPCM_DECODE) && defined(__riscv)
+#if defined(ACCEL_ADPCM_FULL_DECODE) && defined(__riscv)
   int packed;
   asm volatile (
       ".insn r 0x0B, 2, 0, %0, %1, %2\n"
@@ -563,7 +563,7 @@ reset ()
 {
   int i;
 
-#if (defined(ACCEL_ADPCM_ENCODE) || defined(ACCEL_ADPCM_DECODE)) && defined(__riscv)
+#if (defined(ACCEL_ADPCM_FULL_ENCODE) || defined(ACCEL_ADPCM_FULL_DECODE)) && defined(__riscv)
   asm volatile (".insn r 0x0B, 3, 0, zero, zero, zero\n");
 #endif
 

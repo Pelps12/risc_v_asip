@@ -379,80 +379,255 @@ static inline int32_t accel_adpcm_quantl(int32_t el, int32_t detl) {
 #endif
 
 // ============================================================================
-// ACCEL_ADPCM_ENCODE / ACCEL_ADPCM_DECODE - stateful CHStone ADPCM stages
+// ACCEL_ADPCM_FULL_ENCODE / ACCEL_ADPCM_FULL_DECODE
 //
-// Encoding:
-//   encode : .insn r 0x0B, 1, 0, rd, rs1, rs2
-//     rs1 = xin1, rs2 = xin2, rd = packed ADPCM code
-//   decode : .insn r 0x0B, 2, 0, rd, rs1, rs2
-//     rs1 = packed ADPCM code, rs2 = current CHStone il, rd = xout2:xout1
-//   reset  : .insn r 0x0B, 3, 0, zero, zero, zero
-//     intentionally treated as a no-op in HLS. The state is initialized by
-//     hardware reset; explicitly clearing every state array in one CI branch
-//     causes CWB bdltran to segfault.
-//
-// The accelerator owns predictor/filter histories. Decode keeps rs2 because the
-// CHStone decoder intentionally references global il rather than only input&0x3f.
+// Self-contained full-function accelerators. These intentionally do not call the
+// partial-kernel CI helpers above; they own separate state and expose internal
+// pragma knobs the way AES_FULL exposes R/SB/MC knobs.
 // ============================================================================
-#if defined(ACCEL_ADPCM_ENCODE) || defined(ACCEL_ADPCM_ENCODE_HW) ||             \
-    defined(ACCEL_ADPCM_DECODE) || defined(ACCEL_ADPCM_DECODE_HW)
-static const int adpcm_h[24] = {
+#if defined(ACCEL_ADPCM_FULL_ENCODE) || defined(ACCEL_ADPCM_FULL_ENCODE_HW) ||   \
+    defined(ACCEL_ADPCM_FULL_DECODE) || defined(ACCEL_ADPCM_FULL_DECODE_HW)
+static const int full_h[24] = {
     12, -44, -44, 212, 48, -624, 128, 1448,
     -840, -3220, 3804, 15504, 15504, 3804, -3220, -840,
     1448, 128, -624, 48, 212, -44, -44, 12
 };
-static const int adpcm_qq4_code4_table[16] = {
+static const int full_qq4_code4_table[16] = {
     0, -20456, -12896, -8968, -6288, -4240, -2584, -1200,
     20456, 12896, 8968, 6288, 4240, 2584, 1200, 0
 };
-static const int adpcm_wl_code_table[16] = {
+static const int full_wl_code_table[16] = {
     -60, 3042, 1198, 538, 334, 172, 58, -30,
     3042, 1198, 538, 334, 172, 58, -30, -60
 };
-static const int adpcm_ilb_table[32] = {
+static const int full_ilb_table[32] = {
     2048, 2093, 2139, 2186, 2233, 2282, 2332, 2383,
     2435, 2489, 2543, 2599, 2656, 2714, 2774, 2834,
     2896, 2960, 3025, 3091, 3158, 3228, 3298, 3371,
     3444, 3520, 3597, 3676, 3756, 3838, 3922, 4008
 };
-#if defined(ACCEL_ADPCM_ENCODE) || defined(ACCEL_ADPCM_ENCODE_HW)
-static const int adpcm_decis_levl[30] = {
+static const int full_qq2_code2_table[4] = {-7408, -1616, 7408, 1616};
+static const int full_wh_code_table[4] = {798, -214, 798, -214};
+
+static inline int full_abs(int n) { return (n >= 0) ? n : -n; }
+
+static inline int full_filtep(int rlt1, int al1, int rlt2, int al2) {
+  long int pl = (long int)al1 * (2 * rlt1);
+  pl += (long int)al2 * (2 * rlt2);
+  return (int)(pl >> 15);
+}
+
+static inline int full_logscl(int il, int nbl) {
+  long int wd = ((long int)nbl * 127L) >> 7L;
+  nbl = (int)wd + full_wl_code_table[il >> 2];
+  if (nbl < 0) nbl = 0;
+  if (nbl > 18432) nbl = 18432;
+  return nbl;
+}
+
+static inline int full_scalel(int nbl, int shift_constant) {
+  int wd1 = (nbl >> 6) & 31;
+  int wd2 = nbl >> 11;
+  int wd3 = full_ilb_table[wd1] >> (shift_constant + 1 - wd2);
+  return wd3 << 3;
+}
+
+static inline int full_uppol2(int al1, int al2, int plt, int plt1, int plt2) {
+  long int wd2 = 4L * (long int)al1;
+  if ((long int)plt * plt1 >= 0L) wd2 = -wd2;
+  wd2 = wd2 >> 7;
+  long int wd4 = ((long int)plt * plt2 >= 0L) ? wd2 + 128 : wd2 - 128;
+  int apl2 = (int)(wd4 + ((127L * (long int)al2) >> 7L));
+  if (apl2 > 12288) apl2 = 12288;
+  if (apl2 < -12288) apl2 = -12288;
+  return apl2;
+}
+
+static inline int full_uppol1(int al1, int apl2, int plt, int plt1) {
+  long int wd2 = ((long int)al1 * 255L) >> 8L;
+  int apl1 = ((long int)plt * plt1 >= 0L) ? (int)wd2 + 192 : (int)wd2 - 192;
+  int wd3 = 15360 - apl2;
+  if (apl1 > wd3) apl1 = wd3;
+  if (apl1 < -wd3) apl1 = -wd3;
+  return apl1;
+}
+
+static inline int full_logsch(int ih, int nbh) {
+  int wd = ((long int)nbh * 127L) >> 7L;
+  nbh = wd + full_wh_code_table[ih];
+  if (nbh < 0) nbh = 0;
+  if (nbh > 22528) nbh = 22528;
+  return nbh;
+}
+
+#if defined(ACCEL_ADPCM_FULL_ENCODE) || defined(ACCEL_ADPCM_FULL_ENCODE_HW)
+static const int full_decis_levl[30] = {
     280, 576, 880, 1200, 1520, 1864, 2208, 2584,
     2960, 3376, 3784, 4240, 4696, 5200, 5712, 6288,
     6864, 7520, 8184, 8968, 9752, 10712, 11664, 12896,
     14120, 15840, 17560, 20456, 23352, 32767
 };
-static const int adpcm_quant26bt_pos[31] = {
+static const int full_quant_pos[31] = {
     61, 60, 59, 58, 57, 56, 55, 54,
     53, 52, 51, 50, 49, 48, 47, 46,
     45, 44, 43, 42, 41, 40, 39, 38,
     37, 36, 35, 34, 33, 32, 32
 };
-static const int adpcm_quant26bt_neg[31] = {
+static const int full_quant_neg[31] = {
     63, 62, 31, 30, 29, 28, 27, 26,
     25, 24, 23, 22, 21, 20, 19, 18,
     17, 16, 15, 14, 13, 12, 11, 10,
     9, 8, 7, 6, 5, 4, 4
 };
-#endif
-static const int adpcm_qq2_code2_table[4] = {-7408, -1616, 7408, 1616};
-static const int adpcm_wh_code_table[4] = {798, -214, 798, -214};
+static int full_enc_tqmf[24] = {0};
+static int full_enc_delay_bpl[6] = {0}, full_enc_delay_dltx[6] = {0};
+static int full_enc_delay_dhx[6] = {0}, full_enc_delay_bph[6] = {0};
+static int full_enc_detl = 32, full_enc_deth = 8;
+static int full_enc_nbl = 0, full_enc_al1 = 0, full_enc_al2 = 0;
+static int full_enc_plt1 = 0, full_enc_plt2 = 0, full_enc_rlt1 = 0, full_enc_rlt2 = 0;
+static int full_enc_nbh = 0, full_enc_ah1 = 0, full_enc_ah2 = 0;
+static int full_enc_ph1 = 0, full_enc_ph2 = 0, full_enc_rh1 = 0, full_enc_rh2 = 0;
 
-#if defined(ACCEL_ADPCM_ENCODE) || defined(ACCEL_ADPCM_ENCODE_HW)
-static int enc_tqmf[24] = {0};
-static int enc_delay_bpl[6] = {0};
-static int enc_delay_dltx[6] = {0};
-static int enc_delay_dhx[6] = {0};
-static int enc_delay_bph[6] = {0};
-static int enc_detl = 32, enc_deth = 8;
-static int enc_nbl = 0, enc_al1 = 0, enc_al2 = 0, enc_plt1 = 0, enc_plt2 = 0;
-static int enc_rlt1 = 0, enc_rlt2 = 0;
-static int enc_nbh = 0, enc_ah1 = 0, enc_ah2 = 0, enc_ph1 = 0, enc_ph2 = 0;
-static int enc_rh1 = 0, enc_rh2 = 0;
+static inline int full_enc_filtez(int *bpl, int *dlt) {
+  long int zl = (long int)bpl[0] * dlt[0];
+#ifdef ACCEL_ADPCM_FULL_ENCODE_FZ_U6
+// Cyber unroll_times=6
+#elif defined(ACCEL_ADPCM_FULL_ENCODE_FZ_U3)
+// Cyber unroll_times=3
+#elif defined(ACCEL_ADPCM_FULL_ENCODE_FZ_U2)
+// Cyber unroll_times=2
+#elif defined(ACCEL_ADPCM_FULL_ENCODE_FZ_U1)
+// Cyber unroll_times=1
+#endif
+  for (int i = 1; i < 6; i++) zl += (long int)bpl[i] * dlt[i];
+  return (int)(zl >> 14);
+}
+
+static inline int full_enc_quantl(int el, int detl) {
+  int mil;
+  long int wd = full_abs(el);
+#ifdef ACCEL_ADPCM_FULL_ENCODE_QT_U30
+// Cyber unroll_times=30
+#elif defined(ACCEL_ADPCM_FULL_ENCODE_QT_U10)
+// Cyber unroll_times=10
+#elif defined(ACCEL_ADPCM_FULL_ENCODE_QT_U5)
+// Cyber unroll_times=5
+#elif defined(ACCEL_ADPCM_FULL_ENCODE_QT_U2)
+// Cyber unroll_times=2
+#elif defined(ACCEL_ADPCM_FULL_ENCODE_QT_U1)
+// Cyber unroll_times=1
+#endif
+  for (mil = 0; mil < 30; mil++) {
+    long int decis = (full_decis_levl[mil] * (long int)detl) >> 15L;
+    if (wd <= decis) break;
+  }
+  return (el >= 0) ? full_quant_pos[mil] : full_quant_neg[mil];
+}
+
+static inline void full_enc_upzero(int dlt, int *dlti, int *bli) {
+  int wd2, wd3;
+  if (dlt == 0) {
+#ifdef ACCEL_ADPCM_FULL_ENCODE_UZ_U6
+// Cyber unroll_times=6
+#elif defined(ACCEL_ADPCM_FULL_ENCODE_UZ_U3)
+// Cyber unroll_times=3
+#elif defined(ACCEL_ADPCM_FULL_ENCODE_UZ_U2)
+// Cyber unroll_times=2
+#elif defined(ACCEL_ADPCM_FULL_ENCODE_UZ_U1)
+// Cyber unroll_times=1
+#endif
+    for (int i = 0; i < 6; i++) bli[i] = (int)((255L * bli[i]) >> 8L);
+  } else {
+#ifdef ACCEL_ADPCM_FULL_ENCODE_UZ_U6
+// Cyber unroll_times=6
+#elif defined(ACCEL_ADPCM_FULL_ENCODE_UZ_U3)
+// Cyber unroll_times=3
+#elif defined(ACCEL_ADPCM_FULL_ENCODE_UZ_U2)
+// Cyber unroll_times=2
+#elif defined(ACCEL_ADPCM_FULL_ENCODE_UZ_U1)
+// Cyber unroll_times=1
+#endif
+    for (int i = 0; i < 6; i++) {
+      wd2 = ((long int)dlt * dlti[i] >= 0) ? 128 : -128;
+      wd3 = (int)((255L * bli[i]) >> 8L);
+      bli[i] = wd2 + wd3;
+    }
+  }
+  dlti[5] = dlti[4]; dlti[4] = dlti[3]; dlti[3] = dlti[2];
+  dlti[2] = dlti[1]; dlti[1] = dlti[0]; dlti[0] = dlt;
+}
+
+static inline int32_t adpcm_full_encode(int32_t xin1, int32_t xin2) {
+  long int xa = (long int)full_enc_tqmf[0] * full_h[0];
+  long int xb = (long int)full_enc_tqmf[1] * full_h[1];
+#ifdef ACCEL_ADPCM_FULL_ENCODE_QMF_U10
+// Cyber unroll_times=10
+#elif defined(ACCEL_ADPCM_FULL_ENCODE_QMF_U5)
+// Cyber unroll_times=5
+#elif defined(ACCEL_ADPCM_FULL_ENCODE_QMF_U2)
+// Cyber unroll_times=2
+#elif defined(ACCEL_ADPCM_FULL_ENCODE_QMF_U1)
+// Cyber unroll_times=1
+#endif
+  for (int i = 0; i < 10; i++) {
+    xa += (long int)full_enc_tqmf[2 + (2 * i)] * full_h[2 + (2 * i)];
+    xb += (long int)full_enc_tqmf[3 + (2 * i)] * full_h[3 + (2 * i)];
+  }
+  xa += (long int)full_enc_tqmf[22] * full_h[22];
+  xb += (long int)full_enc_tqmf[23] * full_h[23];
+#ifdef ACCEL_ADPCM_FULL_ENCODE_SHIFT_U22
+// Cyber unroll_times=22
+#elif defined(ACCEL_ADPCM_FULL_ENCODE_SHIFT_U11)
+// Cyber unroll_times=11
+#elif defined(ACCEL_ADPCM_FULL_ENCODE_SHIFT_U2)
+// Cyber unroll_times=2
+#elif defined(ACCEL_ADPCM_FULL_ENCODE_SHIFT_U1)
+// Cyber unroll_times=1
+#endif
+  for (int i = 23; i >= 2; i--) full_enc_tqmf[i] = full_enc_tqmf[i - 2];
+  full_enc_tqmf[1] = xin1;
+  full_enc_tqmf[0] = xin2;
+
+  int xl_hw = (xa + xb) >> 15;
+  int xh_hw = (xa - xb) >> 15;
+  int szl = full_enc_filtez(full_enc_delay_bpl, full_enc_delay_dltx);
+  int spl = full_filtep(full_enc_rlt1, full_enc_al1, full_enc_rlt2, full_enc_al2);
+  int sl = szl + spl;
+  int il_hw = full_enc_quantl(xl_hw - sl, full_enc_detl);
+  int dlt = ((long int)full_enc_detl * full_qq4_code4_table[il_hw >> 2]) >> 15;
+  full_enc_nbl = full_logscl(il_hw, full_enc_nbl);
+  full_enc_detl = full_scalel(full_enc_nbl, 8);
+  int plt = dlt + szl;
+  full_enc_upzero(dlt, full_enc_delay_dltx, full_enc_delay_bpl);
+  full_enc_al2 = full_uppol2(full_enc_al1, full_enc_al2, plt, full_enc_plt1, full_enc_plt2);
+  full_enc_al1 = full_uppol1(full_enc_al1, full_enc_al2, plt, full_enc_plt1);
+  int rlt = sl + dlt;
+  full_enc_rlt2 = full_enc_rlt1; full_enc_rlt1 = rlt;
+  full_enc_plt2 = full_enc_plt1; full_enc_plt1 = plt;
+
+  int szh = full_enc_filtez(full_enc_delay_bph, full_enc_delay_dhx);
+  int sph = full_filtep(full_enc_rh1, full_enc_ah1, full_enc_rh2, full_enc_ah2);
+  int sh = sph + szh;
+  int eh = xh_hw - sh;
+  int ih_hw = (eh >= 0) ? 3 : 1;
+  int decis = (564L * (long int)full_enc_deth) >> 12L;
+  if (full_abs(eh) > decis) ih_hw--;
+  int dh = ((long int)full_enc_deth * full_qq2_code2_table[ih_hw]) >> 15L;
+  full_enc_nbh = full_logsch(ih_hw, full_enc_nbh);
+  full_enc_deth = full_scalel(full_enc_nbh, 10);
+  int ph = dh + szh;
+  full_enc_upzero(dh, full_enc_delay_dhx, full_enc_delay_bph);
+  full_enc_ah2 = full_uppol2(full_enc_ah1, full_enc_ah2, ph, full_enc_ph1, full_enc_ph2);
+  full_enc_ah1 = full_uppol1(full_enc_ah1, full_enc_ah2, ph, full_enc_ph1);
+  int yh = sh + dh;
+  full_enc_rh2 = full_enc_rh1; full_enc_rh1 = yh;
+  full_enc_ph2 = full_enc_ph1; full_enc_ph1 = ph;
+  return il_hw | (ih_hw << 6);
+}
 #endif
 
-#if defined(ACCEL_ADPCM_DECODE) || defined(ACCEL_ADPCM_DECODE_HW)
-static const int adpcm_qq6_code6_table[64] = {
+#if defined(ACCEL_ADPCM_FULL_DECODE) || defined(ACCEL_ADPCM_FULL_DECODE_HW)
+static const int full_qq6_code6_table[64] = {
     -136, -136, -136, -136, -24808, -21904, -19008, -16704,
     -14984, -13512, -12280, -11192, -10232, -9360, -8576, -7856,
     -7192, -6576, -6000, -5456, -4944, -4464, -4008, -3576,
@@ -462,235 +637,132 @@ static const int adpcm_qq6_code6_table[64] = {
     4944, 4464, 4008, 3576, 3168, 2776, 2400, 2032,
     1688, 1360, 1040, 728, 432, 136, -432, -136
 };
-static int dec_accumc[11] = {0};
-static int dec_accumd[11] = {0};
-static int dec_del_bpl[6] = {0};
-static int dec_del_dltx[6] = {0};
-static int dec_del_bph[6] = {0};
-static int dec_del_dhx[6] = {0};
-static int dec_detl_hw = 32, dec_deth_hw = 8;
-static int dec_nbl_hw = 0, dec_al1_hw = 0, dec_al2_hw = 0;
-static int dec_plt1_hw = 0, dec_plt2_hw = 0, dec_rlt1_hw = 0, dec_rlt2_hw = 0;
-static int dec_nbh_hw = 0, dec_ah1_hw = 0, dec_ah2_hw = 0;
-static int dec_ph1_hw = 0, dec_ph2_hw = 0, dec_rh1_hw = 0, dec_rh2_hw = 0;
-#endif
+static int full_dec_accumc[11] = {0}, full_dec_accumd[11] = {0};
+static int full_dec_del_bpl[6] = {0}, full_dec_del_dltx[6] = {0};
+static int full_dec_del_bph[6] = {0}, full_dec_del_dhx[6] = {0};
+static int full_dec_detl = 32, full_dec_deth = 8;
+static int full_dec_nbl = 0, full_dec_al1 = 0, full_dec_al2 = 0;
+static int full_dec_plt1 = 0, full_dec_plt2 = 0, full_dec_rlt1 = 0, full_dec_rlt2 = 0;
+static int full_dec_nbh = 0, full_dec_ah1 = 0, full_dec_ah2 = 0;
+static int full_dec_ph1 = 0, full_dec_ph2 = 0, full_dec_rh1 = 0, full_dec_rh2 = 0;
 
-#if defined(ACCEL_ADPCM_ENCODE) || defined(ACCEL_ADPCM_ENCODE_HW)
-static inline int adpcm_abs(int n) { return (n >= 0) ? n : -n; }
-#endif
-
-static inline int adpcm_filtez_arr(int *bpl, int *dlt) {
+static inline int full_dec_filtez(int *bpl, int *dlt) {
   long int zl = (long int)bpl[0] * dlt[0];
-  for (int i = 1; i < 6; i++)
-    zl += (long int)bpl[i] * dlt[i];
+#ifdef ACCEL_ADPCM_FULL_DECODE_FZ_U6
+// Cyber unroll_times=6
+#elif defined(ACCEL_ADPCM_FULL_DECODE_FZ_U3)
+// Cyber unroll_times=3
+#elif defined(ACCEL_ADPCM_FULL_DECODE_FZ_U2)
+// Cyber unroll_times=2
+#elif defined(ACCEL_ADPCM_FULL_DECODE_FZ_U1)
+// Cyber unroll_times=1
+#endif
+  for (int i = 1; i < 6; i++) zl += (long int)bpl[i] * dlt[i];
   return (int)(zl >> 14);
 }
 
-static inline int adpcm_filtep(int rlt1, int al1, int rlt2, int al2) {
-  long int pl = (long int)al1 * (2 * rlt1);
-  pl += (long int)al2 * (2 * rlt2);
-  return (int)(pl >> 15);
-}
-
-#if defined(ACCEL_ADPCM_ENCODE) || defined(ACCEL_ADPCM_ENCODE_HW)
-static inline int adpcm_quantl(int el, int detl) {
-  int mil;
-  long int wd = adpcm_abs(el);
-  for (mil = 0; mil < 30; mil++) {
-    long int decis = (adpcm_decis_levl[mil] * (long int)detl) >> 15L;
-    if (wd <= decis)
-      break;
-  }
-  return (el >= 0) ? adpcm_quant26bt_pos[mil] : adpcm_quant26bt_neg[mil];
-}
-#endif
-
-static inline int adpcm_logscl(int il, int nbl) {
-  long int wd = ((long int)nbl * 127L) >> 7L;
-  nbl = (int)wd + adpcm_wl_code_table[il >> 2];
-  if (nbl < 0)
-    nbl = 0;
-  if (nbl > 18432)
-    nbl = 18432;
-  return nbl;
-}
-
-static inline int adpcm_scalel(int nbl, int shift_constant) {
-  int wd1 = (nbl >> 6) & 31;
-  int wd2 = nbl >> 11;
-  int wd3 = adpcm_ilb_table[wd1] >> (shift_constant + 1 - wd2);
-  return wd3 << 3;
-}
-
-static inline void adpcm_upzero(int dlt, int *dlti, int *bli) {
+static inline void full_dec_upzero(int dlt, int *dlti, int *bli) {
   int wd2, wd3;
   if (dlt == 0) {
-    for (int i = 0; i < 6; i++)
-      bli[i] = (int)((255L * bli[i]) >> 8L);
+#ifdef ACCEL_ADPCM_FULL_DECODE_UZ_U6
+// Cyber unroll_times=6
+#elif defined(ACCEL_ADPCM_FULL_DECODE_UZ_U3)
+// Cyber unroll_times=3
+#elif defined(ACCEL_ADPCM_FULL_DECODE_UZ_U2)
+// Cyber unroll_times=2
+#elif defined(ACCEL_ADPCM_FULL_DECODE_UZ_U1)
+// Cyber unroll_times=1
+#endif
+    for (int i = 0; i < 6; i++) bli[i] = (int)((255L * bli[i]) >> 8L);
   } else {
+#ifdef ACCEL_ADPCM_FULL_DECODE_UZ_U6
+// Cyber unroll_times=6
+#elif defined(ACCEL_ADPCM_FULL_DECODE_UZ_U3)
+// Cyber unroll_times=3
+#elif defined(ACCEL_ADPCM_FULL_DECODE_UZ_U2)
+// Cyber unroll_times=2
+#elif defined(ACCEL_ADPCM_FULL_DECODE_UZ_U1)
+// Cyber unroll_times=1
+#endif
     for (int i = 0; i < 6; i++) {
       wd2 = ((long int)dlt * dlti[i] >= 0) ? 128 : -128;
       wd3 = (int)((255L * bli[i]) >> 8L);
       bli[i] = wd2 + wd3;
     }
   }
-  dlti[5] = dlti[4];
-  dlti[4] = dlti[3];
-  dlti[3] = dlti[2];
-  dlti[2] = dlti[1];
-  dlti[1] = dlti[0];
-  dlti[0] = dlt;
+  dlti[5] = dlti[4]; dlti[4] = dlti[3]; dlti[3] = dlti[2];
+  dlti[2] = dlti[1]; dlti[1] = dlti[0]; dlti[0] = dlt;
 }
 
-static inline int adpcm_uppol2(int al1, int al2, int plt, int plt1, int plt2) {
-  long int wd2 = 4L * (long int)al1;
-  if ((long int)plt * plt1 >= 0L)
-    wd2 = -wd2;
-  wd2 = wd2 >> 7;
-  long int wd4 = ((long int)plt * plt2 >= 0L) ? wd2 + 128 : wd2 - 128;
-  int apl2 = (int)(wd4 + ((127L * (long int)al2) >> 7L));
-  if (apl2 > 12288)
-    apl2 = 12288;
-  if (apl2 < -12288)
-    apl2 = -12288;
-  return apl2;
-}
-
-static inline int adpcm_uppol1(int al1, int apl2, int plt, int plt1) {
-  long int wd2 = ((long int)al1 * 255L) >> 8L;
-  int apl1 = ((long int)plt * plt1 >= 0L) ? (int)wd2 + 192 : (int)wd2 - 192;
-  int wd3 = 15360 - apl2;
-  if (apl1 > wd3)
-    apl1 = wd3;
-  if (apl1 < -wd3)
-    apl1 = -wd3;
-  return apl1;
-}
-
-static inline int adpcm_logsch(int ih, int nbh) {
-  int wd = ((long int)nbh * 127L) >> 7L;
-  nbh = wd + adpcm_wh_code_table[ih];
-  if (nbh < 0)
-    nbh = 0;
-  if (nbh > 22528)
-    nbh = 22528;
-  return nbh;
-}
-
-#if defined(ACCEL_ADPCM_ENCODE) || defined(ACCEL_ADPCM_ENCODE_HW)
-static inline int32_t accel_adpcm_encode(int32_t xin1, int32_t xin2) {
-  long int xa = (long int)enc_tqmf[0] * adpcm_h[0];
-  long int xb = (long int)enc_tqmf[1] * adpcm_h[1];
-  for (int i = 0; i < 10; i++) {
-    xa += (long int)enc_tqmf[2 + (2 * i)] * adpcm_h[2 + (2 * i)];
-    xb += (long int)enc_tqmf[3 + (2 * i)] * adpcm_h[3 + (2 * i)];
-  }
-  xa += (long int)enc_tqmf[22] * adpcm_h[22];
-  xb += (long int)enc_tqmf[23] * adpcm_h[23];
-  for (int i = 23; i >= 2; i--)
-    enc_tqmf[i] = enc_tqmf[i - 2];
-  enc_tqmf[1] = xin1;
-  enc_tqmf[0] = xin2;
-
-  int xl_hw = (xa + xb) >> 15;
-  int xh_hw = (xa - xb) >> 15;
-  int szl = adpcm_filtez_arr(enc_delay_bpl, enc_delay_dltx);
-  int spl = adpcm_filtep(enc_rlt1, enc_al1, enc_rlt2, enc_al2);
-  int sl = szl + spl;
-  int il_hw = adpcm_quantl(xl_hw - sl, enc_detl);
-  int dlt = ((long int)enc_detl * adpcm_qq4_code4_table[il_hw >> 2]) >> 15;
-  enc_nbl = adpcm_logscl(il_hw, enc_nbl);
-  enc_detl = adpcm_scalel(enc_nbl, 8);
-  int plt = dlt + szl;
-  adpcm_upzero(dlt, enc_delay_dltx, enc_delay_bpl);
-  enc_al2 = adpcm_uppol2(enc_al1, enc_al2, plt, enc_plt1, enc_plt2);
-  enc_al1 = adpcm_uppol1(enc_al1, enc_al2, plt, enc_plt1);
-  int rlt = sl + dlt;
-  enc_rlt2 = enc_rlt1;
-  enc_rlt1 = rlt;
-  enc_plt2 = enc_plt1;
-  enc_plt1 = plt;
-
-  int szh = adpcm_filtez_arr(enc_delay_bph, enc_delay_dhx);
-  int sph = adpcm_filtep(enc_rh1, enc_ah1, enc_rh2, enc_ah2);
-  int sh = sph + szh;
-  int eh = xh_hw - sh;
-  int ih_hw = (eh >= 0) ? 3 : 1;
-  int decis = (564L * (long int)enc_deth) >> 12L;
-  if (adpcm_abs(eh) > decis)
-    ih_hw--;
-  int dh = ((long int)enc_deth * adpcm_qq2_code2_table[ih_hw]) >> 15L;
-  enc_nbh = adpcm_logsch(ih_hw, enc_nbh);
-  enc_deth = adpcm_scalel(enc_nbh, 10);
-  int ph = dh + szh;
-  adpcm_upzero(dh, enc_delay_dhx, enc_delay_bph);
-  enc_ah2 = adpcm_uppol2(enc_ah1, enc_ah2, ph, enc_ph1, enc_ph2);
-  enc_ah1 = adpcm_uppol1(enc_ah1, enc_ah2, ph, enc_ph1);
-  int yh = sh + dh;
-  enc_rh2 = enc_rh1;
-  enc_rh1 = yh;
-  enc_ph2 = enc_ph1;
-  enc_ph1 = ph;
-  return il_hw | (ih_hw << 6);
-}
-#endif
-
-#if defined(ACCEL_ADPCM_DECODE) || defined(ACCEL_ADPCM_DECODE_HW)
-static inline uint32_t accel_adpcm_decode(int32_t input, int32_t current_il) {
+static inline uint32_t adpcm_full_decode(int32_t input, int32_t current_il) {
   int ilr = input & 0x3f;
   int ih = input >> 6;
-  int dec_szl = adpcm_filtez_arr(dec_del_bpl, dec_del_dltx);
-  int dec_spl = adpcm_filtep(dec_rlt1_hw, dec_al1_hw, dec_rlt2_hw, dec_al2_hw);
+  int dec_szl = full_dec_filtez(full_dec_del_bpl, full_dec_del_dltx);
+  int dec_spl = full_filtep(full_dec_rlt1, full_dec_al1, full_dec_rlt2, full_dec_al2);
   int dec_sl = dec_spl + dec_szl;
-  int dec_dlt = ((long int)dec_detl_hw * adpcm_qq4_code4_table[ilr >> 2]) >> 15;
-  int dl = ((long int)dec_detl_hw * adpcm_qq6_code6_table[current_il]) >> 15;
+  int dec_dlt = ((long int)full_dec_detl * full_qq4_code4_table[ilr >> 2]) >> 15;
+  int dl = ((long int)full_dec_detl * full_qq6_code6_table[current_il]) >> 15;
   int rl = dl + dec_sl;
-  dec_nbl_hw = adpcm_logscl(ilr, dec_nbl_hw);
-  dec_detl_hw = adpcm_scalel(dec_nbl_hw, 8);
+  full_dec_nbl = full_logscl(ilr, full_dec_nbl);
+  full_dec_detl = full_scalel(full_dec_nbl, 8);
   int dec_plt = dec_dlt + dec_szl;
-  adpcm_upzero(dec_dlt, dec_del_dltx, dec_del_bpl);
-  dec_al2_hw = adpcm_uppol2(dec_al1_hw, dec_al2_hw, dec_plt, dec_plt1_hw, dec_plt2_hw);
-  dec_al1_hw = adpcm_uppol1(dec_al1_hw, dec_al2_hw, dec_plt, dec_plt1_hw);
+  full_dec_upzero(dec_dlt, full_dec_del_dltx, full_dec_del_bpl);
+  full_dec_al2 = full_uppol2(full_dec_al1, full_dec_al2, dec_plt, full_dec_plt1, full_dec_plt2);
+  full_dec_al1 = full_uppol1(full_dec_al1, full_dec_al2, dec_plt, full_dec_plt1);
   int dec_rlt = dec_sl + dec_dlt;
-  dec_rlt2_hw = dec_rlt1_hw;
-  dec_rlt1_hw = dec_rlt;
-  dec_plt2_hw = dec_plt1_hw;
-  dec_plt1_hw = dec_plt;
+  full_dec_rlt2 = full_dec_rlt1; full_dec_rlt1 = dec_rlt;
+  full_dec_plt2 = full_dec_plt1; full_dec_plt1 = dec_plt;
 
-  int dec_szh = adpcm_filtez_arr(dec_del_bph, dec_del_dhx);
-  int dec_sph = adpcm_filtep(dec_rh1_hw, dec_ah1_hw, dec_rh2_hw, dec_ah2_hw);
+  int dec_szh = full_dec_filtez(full_dec_del_bph, full_dec_del_dhx);
+  int dec_sph = full_filtep(full_dec_rh1, full_dec_ah1, full_dec_rh2, full_dec_ah2);
   int dec_sh = dec_sph + dec_szh;
-  int dec_dh = ((long int)dec_deth_hw * adpcm_qq2_code2_table[ih]) >> 15L;
-  dec_nbh_hw = adpcm_logsch(ih, dec_nbh_hw);
-  dec_deth_hw = adpcm_scalel(dec_nbh_hw, 10);
+  int dec_dh = ((long int)full_dec_deth * full_qq2_code2_table[ih]) >> 15L;
+  full_dec_nbh = full_logsch(ih, full_dec_nbh);
+  full_dec_deth = full_scalel(full_dec_nbh, 10);
   int dec_ph = dec_dh + dec_szh;
-  adpcm_upzero(dec_dh, dec_del_dhx, dec_del_bph);
-  dec_ah2_hw = adpcm_uppol2(dec_ah1_hw, dec_ah2_hw, dec_ph, dec_ph1_hw, dec_ph2_hw);
-  dec_ah1_hw = adpcm_uppol1(dec_ah1_hw, dec_ah2_hw, dec_ph, dec_ph1_hw);
+  full_dec_upzero(dec_dh, full_dec_del_dhx, full_dec_del_bph);
+  full_dec_ah2 = full_uppol2(full_dec_ah1, full_dec_ah2, dec_ph, full_dec_ph1, full_dec_ph2);
+  full_dec_ah1 = full_uppol1(full_dec_ah1, full_dec_ah2, dec_ph, full_dec_ph1);
   int rh = dec_sh + dec_dh;
-  dec_rh2_hw = dec_rh1_hw;
-  dec_rh1_hw = rh;
-  dec_ph2_hw = dec_ph1_hw;
-  dec_ph1_hw = dec_ph;
+  full_dec_rh2 = full_dec_rh1; full_dec_rh1 = rh;
+  full_dec_ph2 = full_dec_ph1; full_dec_ph1 = dec_ph;
 
   int xd = rl - rh;
   int xs = rl + rh;
-  long int xa1 = (long int)xd * adpcm_h[0];
-  long int xa2 = (long int)xs * adpcm_h[1];
+  long int xa1 = (long int)xd * full_h[0];
+  long int xa2 = (long int)xs * full_h[1];
+#ifdef ACCEL_ADPCM_FULL_DECODE_QMF_U10
+// Cyber unroll_times=10
+#elif defined(ACCEL_ADPCM_FULL_DECODE_QMF_U5)
+// Cyber unroll_times=5
+#elif defined(ACCEL_ADPCM_FULL_DECODE_QMF_U2)
+// Cyber unroll_times=2
+#elif defined(ACCEL_ADPCM_FULL_DECODE_QMF_U1)
+// Cyber unroll_times=1
+#endif
   for (int i = 0; i < 10; i++) {
-    xa1 += (long int)dec_accumc[i] * adpcm_h[2 + (2 * i)];
-    xa2 += (long int)dec_accumd[i] * adpcm_h[3 + (2 * i)];
+    xa1 += (long int)full_dec_accumc[i] * full_h[2 + (2 * i)];
+    xa2 += (long int)full_dec_accumd[i] * full_h[3 + (2 * i)];
   }
-  xa1 += (long int)dec_accumc[10] * adpcm_h[22];
-  xa2 += (long int)dec_accumd[10] * adpcm_h[23];
+  xa1 += (long int)full_dec_accumc[10] * full_h[22];
+  xa2 += (long int)full_dec_accumd[10] * full_h[23];
   int xout1 = xa1 >> 14;
   int xout2 = xa2 >> 14;
+#ifdef ACCEL_ADPCM_FULL_DECODE_SHIFT_U10
+// Cyber unroll_times=10
+#elif defined(ACCEL_ADPCM_FULL_DECODE_SHIFT_U5)
+// Cyber unroll_times=5
+#elif defined(ACCEL_ADPCM_FULL_DECODE_SHIFT_U2)
+// Cyber unroll_times=2
+#elif defined(ACCEL_ADPCM_FULL_DECODE_SHIFT_U1)
+// Cyber unroll_times=1
+#endif
   for (int i = 10; i >= 1; i--) {
-    dec_accumc[i] = dec_accumc[i - 1];
-    dec_accumd[i] = dec_accumd[i - 1];
+    full_dec_accumc[i] = full_dec_accumc[i - 1];
+    full_dec_accumd[i] = full_dec_accumd[i - 1];
   }
-  dec_accumc[0] = xd;
-  dec_accumd[0] = xs;
+  full_dec_accumc[0] = xd;
+  full_dec_accumd[0] = xs;
   return ((uint32_t)xout2 << 16) | ((uint32_t)xout1 & 0xffffu);
 }
 #endif
@@ -996,8 +1068,8 @@ bool computer(uint32_t imem_arg[MEM_SIZE],
     defined(ACCEL_ADPCM_FILTEP) || defined(ACCEL_ADPCM_FILTEP_HW) ||           \
     defined(ACCEL_ADPCM_UPZERO) || defined(ACCEL_ADPCM_UPZERO_HW) ||           \
     defined(ACCEL_ADPCM_QUANTL) || defined(ACCEL_ADPCM_QUANTL_HW) ||           \
-    defined(ACCEL_ADPCM_ENCODE) || defined(ACCEL_ADPCM_ENCODE_HW) ||           \
-    defined(ACCEL_ADPCM_DECODE) || defined(ACCEL_ADPCM_DECODE_HW)
+    defined(ACCEL_ADPCM_FULL_ENCODE) || defined(ACCEL_ADPCM_FULL_ENCODE_HW) || \
+    defined(ACCEL_ADPCM_FULL_DECODE) || defined(ACCEL_ADPCM_FULL_DECODE_HW)
     case 0x0B: {
       if (funct3 == 0 && funct7 == 0) {
 #if defined(ACCEL_ADPCM_FILTEZ) || defined(ACCEL_ADPCM_FILTEZ_HW)
@@ -1010,21 +1082,21 @@ bool computer(uint32_t imem_arg[MEM_SIZE],
 #endif
 #endif
       } else if (funct3 == 1 && funct7 == 0) {
-#if defined(ACCEL_ADPCM_ENCODE) || defined(ACCEL_ADPCM_ENCODE_HW)
-        uint32_t accel_result = (uint32_t)accel_adpcm_encode((int32_t)regs[rs1],
-                                                            (int32_t)regs[rs2]);
+#if defined(ACCEL_ADPCM_FULL_ENCODE) || defined(ACCEL_ADPCM_FULL_ENCODE_HW)
+        uint32_t accel_result = (uint32_t)adpcm_full_encode((int32_t)regs[rs1],
+                                                           (int32_t)regs[rs2]);
         (void)accel_result;
-#ifdef ACCEL_ADPCM_ENCODE
+#ifdef ACCEL_ADPCM_FULL_ENCODE
         if (rd != 0)
           regs[rd] = accel_result;
 #endif
 #endif
       } else if (funct3 == 2 && funct7 == 0) {
-#if defined(ACCEL_ADPCM_DECODE) || defined(ACCEL_ADPCM_DECODE_HW)
+#if defined(ACCEL_ADPCM_FULL_DECODE) || defined(ACCEL_ADPCM_FULL_DECODE_HW)
         uint32_t accel_result =
-            accel_adpcm_decode((int32_t)regs[rs1], (int32_t)regs[rs2]);
+            adpcm_full_decode((int32_t)regs[rs1], (int32_t)regs[rs2]);
         (void)accel_result;
-#ifdef ACCEL_ADPCM_DECODE
+#ifdef ACCEL_ADPCM_FULL_DECODE
         if (rd != 0)
           regs[rd] = accel_result;
 #endif
