@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ADPCM Pareto Front</title>
+<style>
+  body { font-family: sans-serif; margin: 20px; background: #fafafa; color:#222; }
+  h2 { margin-bottom: 4px; }
+  .sub { margin-top:0; color:#555; font-size:13px; }
+  #controls { display:flex; gap:16px; align-items:center; margin-bottom:10px; flex-wrap:wrap; }
+  #controls label { font-size:13px; }
+  #tooltip {
+    position:absolute; background:rgba(20,20,20,0.9); color:#fff;
+    padding:8px 12px; border-radius:6px; font-size:12px; pointer-events:none;
+    display:none; max-width:290px; line-height:1.6; z-index:5;
+  }
+  canvas { border:1px solid #ddd; background:#fff; cursor:crosshair; }
+  #legend { display:flex; gap:18px; flex-wrap:wrap; margin-top:8px; font-size:12px; }
+  .leg-item { display:flex; align-items:center; gap:5px; }
+  .leg-dot { width:12px; height:12px; border-radius:50%; display:inline-block; }
+</style>
+</head>
+<body>
+<h2>ADPCM Accelerator - Area vs Cycles</h2>
+<p class="sub">Generated from <code>test/adpcm/rtl_batch_summary.tsv</code>. Pareto minimizes both area and cycles.</p>
+<div id="controls">
+  <label><input type="checkbox" id="logX"> Log X-axis</label>
+  <label><input type="checkbox" id="logY" checked> Log Y-axis</label>
+  <label><input type="checkbox" id="showPareto" checked> Highlight Pareto front</label>
+  <label><input type="checkbox" id="showAll" checked> Show all points</label>
+  <label>Filter:
+    <select id="filterCat">
+      <option value="all">All categories</option>
+      <option value="Baseline">Baseline</option>
+      <option value="Partial ADPCM CI">Partial ADPCM CI</option>
+      <option value="Encode/Decode CI">Encode/Decode CI</option>
+      <option value="Encode+Decode CI">Encode+Decode CI</option>
+    </select>
+  </label>
+</div>
+<canvas id="chart" width="980" height="580"></canvas>
+<div id="legend">
+  <div class="leg-item"><span class="leg-dot" style="background:#555"></span>Baseline</div>
+  <div class="leg-item"><span class="leg-dot" style="background:#2ca02c"></span>Partial ADPCM CI</div>
+  <div class="leg-item"><span class="leg-dot" style="background:#ff7f0e"></span>Encode/Decode CI</div>
+  <div class="leg-item"><span class="leg-dot" style="background:#1f77b4"></span>Encode+Decode CI</div>
+  <div class="leg-item"><span class="leg-dot" style="background:#000;border:2px solid #000"></span>Pareto-optimal</div>
+</div>
+<div id="tooltip"></div>
+<script>
+const POINTS = [{"variant": "baseline", "cycles": 4656668, "area": 14747, "speedup": "1.000", "area_pct": "0.0", "cpi": "3.000", "cpi_no_ci": "N/A", "no_ci_overhead": "N/A", "category": "Baseline", "pareto": true}, {"variant": "accel_upzero", "cycles": 10219884, "area": 22156, "speedup": "0.456", "area_pct": "50.2", "cpi": "7.1", "cpi_no_ci": "7.100", "no_ci_overhead": "1.077", "category": "Partial ADPCM CI", "pareto": false}, {"variant": "accel_upzero_u6", "cycles": 10219884, "area": 22156, "speedup": "0.456", "area_pct": "50.2", "cpi": "7.1", "cpi_no_ci": "7.100", "no_ci_overhead": "1.077", "category": "Partial ADPCM CI", "pareto": false}, {"variant": "accel_filtep", "cycles": 4235018, "area": 22605, "speedup": "1.100", "area_pct": "53.3", "cpi": "3", "cpi_no_ci": "3.000", "no_ci_overhead": "1.100", "category": "Partial ADPCM CI", "pareto": true}, {"variant": "accel_filtep_upzero", "cycles": 9872275, "area": 22873, "speedup": "0.472", "area_pct": "55.1", "cpi": "7.6", "cpi_no_ci": "7.600", "no_ci_overhead": "1.193", "category": "Partial ADPCM CI", "pareto": false}, {"variant": "accel_filtez_u1", "cycles": 4311662, "area": 22948, "speedup": "1.080", "area_pct": "55.6", "cpi": "3", "cpi_no_ci": "3.000", "no_ci_overhead": "1.080", "category": "Partial ADPCM CI", "pareto": false}, {"variant": "accel_quantl_u1", "cycles": 4440872, "area": 22955, "speedup": "1.049", "area_pct": "55.7", "cpi": "3", "cpi_no_ci": "3.000", "no_ci_overhead": "1.049", "category": "Partial ADPCM CI", "pareto": false}, {"variant": "accel_filtez_u2", "cycles": 4311062, "area": 23469, "speedup": "1.080", "area_pct": "59.1", "cpi": "3", "cpi_no_ci": "3.000", "no_ci_overhead": "1.080", "category": "Partial ADPCM CI", "pareto": false}, {"variant": "accel_upzero_u1", "cycles": 4328334, "area": 24018, "speedup": "1.076", "area_pct": "62.9", "cpi": "3", "cpi_no_ci": "3.000", "no_ci_overhead": "1.076", "category": "Partial ADPCM CI", "pareto": false}, {"variant": "accel_filtez_u3", "cycles": 4310862, "area": 24083, "speedup": "1.080", "area_pct": "63.3", "cpi": "3", "cpi_no_ci": "3.000", "no_ci_overhead": "1.080", "category": "Partial ADPCM CI", "pareto": false}, {"variant": "accel_upzero_u2", "cycles": 4328334, "area": 24217, "speedup": "1.076", "area_pct": "64.2", "cpi": "3", "cpi_no_ci": "3.000", "no_ci_overhead": "1.076", "category": "Partial ADPCM CI", "pareto": false}, {"variant": "accel_upzero_u3", "cycles": 4328334, "area": 24275, "speedup": "1.076", "area_pct": "64.6", "cpi": "3", "cpi_no_ci": "3.000", "no_ci_overhead": "1.076", "category": "Partial ADPCM CI", "pareto": false}, {"variant": "accel_filtez", "cycles": 9779919, "area": 24710, "speedup": "0.476", "area_pct": "67.6", "cpi": "6.8", "cpi_no_ci": "6.800", "no_ci_overhead": "1.081", "category": "Partial ADPCM CI", "pareto": false}, {"variant": "accel_filtez_u6", "cycles": 9779919, "area": 24710, "speedup": "0.476", "area_pct": "67.6", "cpi": "6.8", "cpi_no_ci": "6.800", "no_ci_overhead": "1.081", "category": "Partial ADPCM CI", "pareto": false}, {"variant": "accel_filtez_upzero", "cycles": 10960525, "area": 25016, "speedup": "0.425", "area_pct": "69.6", "cpi": "8.3", "cpi_no_ci": "8.300", "no_ci_overhead": "1.171", "category": "Partial ADPCM CI", "pareto": false}, {"variant": "accel_quantl_u2", "cycles": 4440872, "area": 25092, "speedup": "1.049", "area_pct": "70.1", "cpi": "3", "cpi_no_ci": "3.000", "no_ci_overhead": "1.049", "category": "Partial ADPCM CI", "pareto": false}, {"variant": "accel_filtez_filtep", "cycles": 9878120, "area": 29308, "speedup": "0.471", "area_pct": "98.7", "cpi": "7.6", "cpi_no_ci": "7.600", "no_ci_overhead": "1.198", "category": "Partial ADPCM CI", "pareto": false}, {"variant": "accel_filtez_filtep_upzero", "cycles": 9109986, "area": 29616, "speedup": "0.511", "area_pct": "100.8", "cpi": "7.7", "cpi_no_ci": "7.700", "no_ci_overhead": "1.310", "category": "Partial ADPCM CI", "pareto": false}, {"variant": "accel_quantl", "cycles": 5920602, "area": 37813, "speedup": "0.787", "area_pct": "156.4", "cpi": "4", "cpi_no_ci": "4.000", "no_ci_overhead": "1.049", "category": "Partial ADPCM CI", "pareto": false}, {"variant": "accel_quantl_u30", "cycles": 5920602, "area": 37813, "speedup": "0.787", "area_pct": "156.4", "cpi": "4", "cpi_no_ci": "4.000", "no_ci_overhead": "1.049", "category": "Partial ADPCM CI", "pareto": false}, {"variant": "accel_quantl_u5", "cycles": 4440700, "area": 37958, "speedup": "1.049", "area_pct": "157.4", "cpi": "3", "cpi_no_ci": "3.000", "no_ci_overhead": "1.049", "category": "Partial ADPCM CI", "pareto": false}, {"variant": "accel_quantl_upzero", "cycles": 13043701, "area": 44145, "speedup": "0.357", "area_pct": "199.3", "cpi": "9.5", "cpi_no_ci": "9.500", "no_ci_overhead": "1.134", "category": "Partial ADPCM CI", "pareto": false}, {"variant": "accel_quantl_u10", "cycles": 4440622, "area": 65775, "speedup": "1.049", "area_pct": "346.0", "cpi": "3", "cpi_no_ci": "3.000", "no_ci_overhead": "1.049", "category": "Partial ADPCM CI", "pareto": false}, {"variant": "accel_filtez_decode", "cycles": 5701570, "area": 105789, "speedup": "0.817", "area_pct": "617.4", "cpi": "7.5", "cpi_no_ci": "7.500", "no_ci_overhead": "2.035", "category": "Encode/Decode CI", "pareto": false}, {"variant": "accel_decode", "cycles": 2462921, "area": 125048, "speedup": "1.891", "area_pct": "748.0", "cpi": "3", "cpi_no_ci": "3.000", "no_ci_overhead": "1.891", "category": "Encode/Decode CI", "pareto": true}, {"variant": "accel_encode", "cycles": 2966710, "area": 133804, "speedup": "1.570", "area_pct": "807.3", "cpi": "4", "cpi_no_ci": "4.000", "no_ci_overhead": "2.093", "category": "Encode/Decode CI", "pareto": false}, {"variant": "accel_filtez_encode", "cycles": 9100479, "area": 134988, "speedup": "0.512", "area_pct": "815.4", "cpi": "13.3", "cpi_no_ci": "13.300", "no_ci_overhead": "2.270", "category": "Encode/Decode CI", "pareto": false}, {"variant": "accel_encode_decode", "cycles": 31633, "area": 143823, "speedup": "147.209", "area_pct": "875.3", "cpi": "3", "cpi_no_ci": "3.000", "no_ci_overhead": "147.209", "category": "Encode+Decode CI", "pareto": true}, {"variant": "accel_filtez_encode_decode", "cycles": 75946, "area": 148970, "speedup": "61.316", "area_pct": "910.2", "cpi": "7.3", "cpi_no_ci": "7.300", "no_ci_overhead": "149.058", "category": "Encode+Decode CI", "pareto": false}];
+const PARETO = [{"variant": "baseline", "cycles": 4656668, "area": 14747, "speedup": "1.000", "area_pct": "0.0", "cpi": "3.000", "cpi_no_ci": "N/A", "no_ci_overhead": "N/A", "category": "Baseline", "pareto": true}, {"variant": "accel_filtep", "cycles": 4235018, "area": 22605, "speedup": "1.100", "area_pct": "53.3", "cpi": "3", "cpi_no_ci": "3.000", "no_ci_overhead": "1.100", "category": "Partial ADPCM CI", "pareto": true}, {"variant": "accel_decode", "cycles": 2462921, "area": 125048, "speedup": "1.891", "area_pct": "748.0", "cpi": "3", "cpi_no_ci": "3.000", "no_ci_overhead": "1.891", "category": "Encode/Decode CI", "pareto": true}, {"variant": "accel_encode_decode", "cycles": 31633, "area": 143823, "speedup": "147.209", "area_pct": "875.3", "cpi": "3", "cpi_no_ci": "3.000", "no_ci_overhead": "147.209", "category": "Encode+Decode CI", "pareto": true}];
+const CAT_COLOR = {
+  "Baseline": "#555555",
+  "Partial ADPCM CI": "#2ca02c",
+  "Encode/Decode CI": "#ff7f0e",
+  "Encode+Decode CI": "#1f77b4",
+  "Other CI": "#9467bd",
+};
+const canvas = document.getElementById("chart");
+const ctx = canvas.getContext("2d");
+const tooltip = document.getElementById("tooltip");
+const PAD = {top:30, right:30, bottom:58, left:78};
+const W = canvas.width - PAD.left - PAD.right;
+const H = canvas.height - PAD.top - PAD.bottom;
+let drawn = [];
+function opts() {
+  return {
+    logX: document.getElementById("logX").checked,
+    logY: document.getElementById("logY").checked,
+    showPareto: document.getElementById("showPareto").checked,
+    showAll: document.getElementById("showAll").checked,
+    filter: document.getElementById("filterCat").value,
+  };
+}
+function shown(o) { return POINTS.filter(p => o.showAll && (o.filter === "all" || p.category === o.filter)); }
+function tx(v, min, max, log) {
+  if (log) { const a = Math.log10(min), b = Math.log10(max); return (Math.log10(v) - a) / (b - a); }
+  return (v - min) / (max - min);
+}
+function fmt(v) { return Number(v).toLocaleString(); }
+function niceTicks(min, max, log) {
+  if (log) {
+    const out = [];
+    for (let p = Math.floor(Math.log10(min)); p <= Math.ceil(Math.log10(max)); p++) {
+      for (const m of [1,2,5]) { const v = m * Math.pow(10,p); if (v >= min && v <= max) out.push(v); }
+    }
+    return out;
+  }
+  const out = [], n = 6, step = (max - min) / n;
+  for (let i=0; i<=n; i++) out.push(min + i*step);
+  return out;
+}
+function draw() {
+  const o = opts();
+  const pts = shown(o);
+  const all = pts.length ? pts : POINTS;
+  let minA = Math.min(...all.map(p => p.area)), maxA = Math.max(...all.map(p => p.area));
+  let minC = Math.min(...all.map(p => p.cycles)), maxC = Math.max(...all.map(p => p.cycles));
+  minA *= 0.92; maxA *= 1.08; minC *= 0.82; maxC *= 1.18;
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.strokeStyle = "#222"; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(PAD.left, PAD.top); ctx.lineTo(PAD.left, PAD.top+H); ctx.lineTo(PAD.left+W, PAD.top+H); ctx.stroke();
+  ctx.fillStyle = "#333"; ctx.font = "12px sans-serif";
+  ctx.textAlign = "center"; ctx.fillText("Area", PAD.left + W/2, canvas.height - 14);
+  ctx.save(); ctx.translate(18, PAD.top + H/2); ctx.rotate(-Math.PI/2); ctx.fillText("Cycles", 0, 0); ctx.restore();
+  ctx.strokeStyle = "#e8e8e8"; ctx.fillStyle = "#666"; ctx.font = "11px sans-serif";
+  for (const v of niceTicks(minA, maxA, o.logX)) {
+    const x = PAD.left + tx(v,minA,maxA,o.logX)*W;
+    ctx.beginPath(); ctx.moveTo(x,PAD.top); ctx.lineTo(x,PAD.top+H); ctx.stroke();
+    ctx.textAlign = "center"; ctx.fillText(fmt(Math.round(v)), x, PAD.top+H+18);
+  }
+  for (const v of niceTicks(minC, maxC, o.logY)) {
+    const y = PAD.top + H - tx(v,minC,maxC,o.logY)*H;
+    ctx.beginPath(); ctx.moveTo(PAD.left,y); ctx.lineTo(PAD.left+W,y); ctx.stroke();
+    ctx.textAlign = "right"; ctx.fillText(fmt(Math.round(v)), PAD.left-8, y+4);
+  }
+  drawn = [];
+  function plot(p, emph=false) {
+    const x = PAD.left + tx(p.area,minA,maxA,o.logX)*W;
+    const y = PAD.top + H - tx(p.cycles,minC,maxC,o.logY)*H;
+    const r = emph ? 7 : 4.5;
+    ctx.beginPath(); ctx.arc(x,y,r,0,2*Math.PI);
+    ctx.fillStyle = CAT_COLOR[p.category] || CAT_COLOR["Other CI"]; ctx.fill();
+    ctx.lineWidth = emph ? 2.5 : 1; ctx.strokeStyle = emph ? "#000" : "#fff"; ctx.stroke();
+    drawn.push({p,x,y,r:r+3});
+  }
+  pts.forEach(p => plot(p, false));
+  if (o.showPareto) {
+    const front = PARETO.filter(p => o.filter === "all" || p.category === o.filter).sort((a,b)=>a.area-b.area);
+    if (front.length > 1) {
+      ctx.beginPath();
+      front.forEach((p,i) => {
+        const x = PAD.left + tx(p.area,minA,maxA,o.logX)*W;
+        const y = PAD.top + H - tx(p.cycles,minC,maxC,o.logY)*H;
+        if (i === 0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+      });
+      ctx.strokeStyle = "#000"; ctx.lineWidth = 1.5; ctx.stroke();
+    }
+    front.forEach(p => plot(p, true));
+  }
+}
+canvas.addEventListener("mousemove", e => {
+  const rect = canvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+  let hit = null;
+  for (const d of drawn) { if (Math.hypot(mx-d.x,my-d.y) <= d.r) hit = d.p; }
+  if (!hit) { tooltip.style.display = "none"; return; }
+  tooltip.innerHTML = `<b>${hit.variant}</b><br>category: ${hit.category}<br>cycles: ${fmt(hit.cycles)}<br>area: ${fmt(hit.area)}<br>speedup: ${hit.speedup}x<br>area overhead: ${hit.area_pct}%<br>CPI: ${hit.cpi}<br>CPI no-CI: ${hit.cpi_no_ci}<br>no-CI overhead: ${hit.no_ci_overhead}`;
+  tooltip.style.left = `${e.pageX + 12}px`; tooltip.style.top = `${e.pageY + 12}px`; tooltip.style.display = "block";
+});
+canvas.addEventListener("mouseleave", () => tooltip.style.display = "none");
+["logX","logY","showPareto","showAll","filterCat"].forEach(id => document.getElementById(id).addEventListener("change", draw));
+draw();
+</script>
+</body>
+</html>

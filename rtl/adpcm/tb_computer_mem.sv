@@ -19,7 +19,7 @@ module tb_computer;
   // Parameters
   // --------------------------------------------------------------------------
   parameter IMEM_SIZE  = 65536; // 64K words
-  parameter DMEM_SIZE  = 4096;  // 4K words
+  parameter DMEM_SIZE  = 65536; // 64K words
   parameter ADDR_BITS  = 16;
   parameter CLK_PERIOD = 10;     // 10 ns -> 100 MHz (matches -c1000 = 10ns)
 
@@ -77,12 +77,12 @@ module tb_computer;
     .imem_arg_MEMB32W65536_RA1      (imem_addr),
     .imem_arg_MEMB32W65536_RD1      (imem_rdata),
 
-    .dmem_arg_MEMB32W4096_RE1      (dmem_re),
-    .dmem_arg_MEMB32W4096_RA1      (dmem_raddr),
-    .dmem_arg_MEMB32W4096_RD1      (dmem_rdata),
-    .dmem_arg_MEMB32W4096_WA2      (dmem_waddr),
-    .dmem_arg_MEMB32W4096_WD2      (dmem_wdata),
-    .dmem_arg_MEMB32W4096_WE2      (dmem_we),
+    .dmem_arg_MEMB32W65536_RE1     (dmem_re),
+    .dmem_arg_MEMB32W65536_RA1     (dmem_raddr),
+    .dmem_arg_MEMB32W65536_RD1     (dmem_rdata),
+    .dmem_arg_MEMB32W65536_WA2     (dmem_waddr),
+    .dmem_arg_MEMB32W65536_WD2     (dmem_wdata),
+    .dmem_arg_MEMB32W65536_WE2     (dmem_we),
 
     .computer_ret                    (halt),
     .CLOCK                           (clk),

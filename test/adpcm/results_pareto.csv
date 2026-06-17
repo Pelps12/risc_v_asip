@@ -1,0 +1,5 @@
+variant,cycles,area,speedup,area_overhead_pct,cpi,cpi_no_ci,no_ci_overhead
+baseline,4656668,14747,1.000,0.0,3.000,N/A,N/A
+accel_filtep,4235018,22605,1.100,53.3,3,3.000,1.100
+accel_decode,2462921,125048,1.891,748.0,3,3.000,1.891
+accel_encode_decode,31633,143823,147.209,875.3,3,3.000,147.209

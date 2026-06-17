@@ -1,0 +1,37 @@
+Reading ACCEL flags from /home/pelps/Comp_Arc/risc_v_asip/scripts/../test/adpcm/accel_filtez/accel.conf
+ACCEL flags: ACCEL_ADPCM_FILTEZ
+EXTRA_CFLAGS: -DACCEL_ADPCM_FILTEZ
+=== Step 1: Compiling adpcm/adpcm ===
+Compiling /home/pelps/Comp_Arc/risc_v_asip/scripts/../test/adpcm/adpcm.c to RV32I...
+Generating binary...
+Generating hex file...
+Generating disassembly...
+
+Generated files:
+  /home/pelps/Comp_Arc/risc_v_asip/scripts/adpcm/adpcm.elf  - ELF executable
+  /home/pelps/Comp_Arc/risc_v_asip/scripts/adpcm/adpcm.bin  - Raw binary
+  /home/pelps/Comp_Arc/risc_v_asip/scripts/adpcm/adpcm.hex  - Hex file for simulator
+  /home/pelps/Comp_Arc/risc_v_asip/scripts/adpcm/adpcm.dis  - Disassembly
+
+Run with: ../sim /home/pelps/Comp_Arc/risc_v_asip/scripts/adpcm/adpcm.hex
+
+=== Step 2: Building C Simulator ===
+Using test-local simulator: /home/pelps/Comp_Arc/risc_v_asip/scripts/../test/adpcm/computer.cpp
+=== Step 1: Compiling adpcm/adpcm ===
+Compiling /home/pelps/Comp_Arc/risc_v_asip/scripts/../test/adpcm/adpcm.c to RV32I...
+Generating binary...
+Generating hex file...
+Generating disassembly...
+
+Generated files:
+  /home/pelps/Comp_Arc/risc_v_asip/scripts/../test/adpcm/accel_filtez/iss/artifacts/adpcm.elf  - ELF executable
+  /home/pelps/Comp_Arc/risc_v_asip/scripts/../test/adpcm/accel_filtez/iss/artifacts/adpcm.bin  - Raw binary
+  /home/pelps/Comp_Arc/risc_v_asip/scripts/../test/adpcm/accel_filtez/iss/artifacts/adpcm.hex  - Hex file for simulator
+  /home/pelps/Comp_Arc/risc_v_asip/scripts/../test/adpcm/accel_filtez/iss/artifacts/adpcm.dis  - Disassembly
+
+Run with: ../sim /home/pelps/Comp_Arc/risc_v_asip/scripts/../test/adpcm/accel_filtez/iss/artifacts/adpcm.hex
+
+=== Step 2: Building C Simulator ===
+Built: /home/pelps/Comp_Arc/risc_v_asip/scripts/../sim/rv32i_sim
+
+=== Step 3: Running C Simulation ===
