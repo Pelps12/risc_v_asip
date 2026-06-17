@@ -1,0 +1,177 @@
+#@VERSION{3.00}
+#@CNT{computer}
+#@KIND{BASIC_OPERATOR}
+#@CLK 100000
+#@UNIT 1/10ps
+@FCNT{
+	NAME	sub4u
+	LIMIT	2  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	sub16u
+	LIMIT	1  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	sub40s
+	LIMIT	12  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	mul16s
+	LIMIT	8  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	mul20s
+	LIMIT	3  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	mul32s
+	LIMIT	10  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	lsft32u
+	LIMIT	2  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	rsft12u
+	LIMIT	2  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	rsft32s
+	LIMIT	1  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	rsft32u
+	LIMIT	1  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	gop16u
+	LIMIT	2  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	leop20u
+	LIMIT	7  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	adpcm_ilb_table
+	LIMIT	2  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	adpcm_qq2_code2_table
+	LIMIT	1  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	adpcm_qq4_code4_table
+	LIMIT	2  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	adpcm_qq6_code6_table
+	LIMIT	1  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	adpcm_quant26bt_neg
+	LIMIT	1  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	adpcm_quant26bt_pos
+	LIMIT	1  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	adpcm_wh_code_table
+	LIMIT	1  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	adpcm_wl_code_table
+	LIMIT	2  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	addsub12s
+	LIMIT	2  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	addsub16s
+	LIMIT	4  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	addsub20s
+	LIMIT	8  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	addsub20u
+	LIMIT	4  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	addsub24s
+	LIMIT	34  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	addsub24u
+	LIMIT	4  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	addsub28s
+	LIMIT	34  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	addsub28u
+	LIMIT	3  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	addsub32s
+	LIMIT	33  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	addsub32u
+	LIMIT	2  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	comp16s
+	LIMIT	2  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	comp20s
+	LIMIT	23  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	comp32s
+	LIMIT	3  AUTO
+#	COMMENT
+}
+@FCNT{
+	NAME	comp32u
+	LIMIT	3  AUTO
+#	COMMENT
+}
+#@HASH{b3df9af51c3bbd940ec2141c69492a2b}
+#@END{computer}
