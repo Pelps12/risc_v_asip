@@ -488,6 +488,24 @@ static int full_enc_plt1 = 0, full_enc_plt2 = 0, full_enc_rlt1 = 0, full_enc_rlt
 static int full_enc_nbh = 0, full_enc_ah1 = 0, full_enc_ah2 = 0;
 static int full_enc_ph1 = 0, full_enc_ph2 = 0, full_enc_rh1 = 0, full_enc_rh2 = 0;
 
+static inline void adpcm_full_encode_reset() {
+  full_enc_detl = 32;
+  full_enc_deth = 8;
+  full_enc_nbl = full_enc_al1 = full_enc_al2 = 0;
+  full_enc_plt1 = full_enc_plt2 = full_enc_rlt1 = full_enc_rlt2 = 0;
+  full_enc_nbh = full_enc_ah1 = full_enc_ah2 = 0;
+  full_enc_ph1 = full_enc_ph2 = full_enc_rh1 = full_enc_rh2 = 0;
+
+  for (int i = 0; i < 6; i++) {
+    full_enc_delay_bpl[i] = 0;
+    full_enc_delay_dltx[i] = 0;
+    full_enc_delay_dhx[i] = 0;
+    full_enc_delay_bph[i] = 0;
+  }
+
+  for (int i = 0; i < 24; i++) full_enc_tqmf[i] = 0;
+}
+
 static inline int full_enc_filtez(int *bpl, int *dlt) {
   long int zl = (long int)bpl[0] * dlt[0];
 #ifdef ACCEL_ADPCM_FULL_ENCODE_FZ_U6
@@ -645,6 +663,27 @@ static int full_dec_nbl = 0, full_dec_al1 = 0, full_dec_al2 = 0;
 static int full_dec_plt1 = 0, full_dec_plt2 = 0, full_dec_rlt1 = 0, full_dec_rlt2 = 0;
 static int full_dec_nbh = 0, full_dec_ah1 = 0, full_dec_ah2 = 0;
 static int full_dec_ph1 = 0, full_dec_ph2 = 0, full_dec_rh1 = 0, full_dec_rh2 = 0;
+
+static inline void adpcm_full_decode_reset() {
+  full_dec_detl = 32;
+  full_dec_deth = 8;
+  full_dec_nbl = full_dec_al1 = full_dec_al2 = 0;
+  full_dec_plt1 = full_dec_plt2 = full_dec_rlt1 = full_dec_rlt2 = 0;
+  full_dec_nbh = full_dec_ah1 = full_dec_ah2 = 0;
+  full_dec_ph1 = full_dec_ph2 = full_dec_rh1 = full_dec_rh2 = 0;
+
+  for (int i = 0; i < 6; i++) {
+    full_dec_del_bpl[i] = 0;
+    full_dec_del_dltx[i] = 0;
+    full_dec_del_bph[i] = 0;
+    full_dec_del_dhx[i] = 0;
+  }
+
+  for (int i = 0; i < 11; i++) {
+    full_dec_accumc[i] = 0;
+    full_dec_accumd[i] = 0;
+  }
+}
 
 static inline int full_dec_filtez(int *bpl, int *dlt) {
   long int zl = (long int)bpl[0] * dlt[0];
@@ -1102,7 +1141,12 @@ bool computer(uint32_t imem_arg[MEM_SIZE],
 #endif
 #endif
       } else if (funct3 == 3 && funct7 == 0) {
-        // Reset CI is intentionally a no-op; hardware reset initializes state.
+#if defined(ACCEL_ADPCM_FULL_ENCODE) || defined(ACCEL_ADPCM_FULL_ENCODE_HW)
+        adpcm_full_encode_reset();
+#endif
+#if defined(ACCEL_ADPCM_FULL_DECODE) || defined(ACCEL_ADPCM_FULL_DECODE_HW)
+        adpcm_full_decode_reset();
+#endif
       } else if (funct3 == 4 && funct7 == 0) {
 #if defined(ACCEL_ADPCM_FILTEP) || defined(ACCEL_ADPCM_FILTEP_HW)
         uint32_t accel_result =
