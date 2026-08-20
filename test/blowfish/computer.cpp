@@ -943,15 +943,19 @@ int main(int argc, char *argv[]) {
 
   load_program(argv[1]);
 
-  ofstream rpt("sim_cpu.rpt");
+  // run_test.sh supplies a per-variant report path as argv[2].  Keep the
+  // historical repository-local filename when the simulator is invoked
+  // directly, but honor the workflow's path when it is provided.
+  const char *report_path = (argc >= 3) ? argv[2] : "sim_cpu.rpt";
+  ofstream rpt(report_path);
 
   bool halted = computer(imem, dmem, rpt);
 
   dump_regs(rpt);
   rpt.close();
 
-  cout << "Simulation finished (halt=" << halted << "). Report in sim_cpu.rpt"
-       << endl;
+  cout << "Simulation finished (halt=" << halted << "). Report in "
+       << report_path << endl;
   cout << "Final PC: 0x" << hex << setw(8) << setfill('0') << PC << endl;
 
   return 0;

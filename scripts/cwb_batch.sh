@@ -10,6 +10,7 @@
 #
 # Logs per variant: test/<app>/<variant>/rtl/cwb_batch.log
 # Summary written to: test/<app>/cwb_batch_summary.tsv
+# Override the summary path with CWB_BATCH_SUMMARY for a filtered sub-matrix.
 
 set -euo pipefail
 
@@ -69,7 +70,8 @@ if [[ ! -d "$APP_DIR" ]]; then
     exit 1
 fi
 
-SUMMARY="${APP_DIR}/cwb_batch_summary.tsv"
+SUMMARY="${CWB_BATCH_SUMMARY:-${APP_DIR}/cwb_batch_summary.tsv}"
+mkdir -p "$(dirname "$SUMMARY")"
 
 # ── Collect variants ──────────────────────────────────────────────────────────
 mapfile -t ALL_VARIANTS < <(

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Blowfish Pareto Front</title>
+<style>
+  body { font-family: sans-serif; margin: 20px; background: #fafafa; color:#222; }
+  h2 { margin-bottom: 4px; }
+  .sub { margin-top:0; color:#555; font-size:13px; }
+  #controls { display:flex; gap:16px; align-items:center; margin-bottom:10px; flex-wrap:wrap; }
+  #controls label { font-size:13px; }
+  #tooltip { position:absolute; background:rgba(20,20,20,0.9); color:#fff; padding:8px 12px; border-radius:6px; font-size:12px; pointer-events:none; display:none; max-width:360px; line-height:1.6; z-index:5; }
+  canvas { border:1px solid #ddd; background:#fff; cursor:crosshair; }
+  #legend { display:flex; gap:18px; flex-wrap:wrap; margin-top:8px; font-size:12px; }
+  .leg-item { display:flex; align-items:center; gap:5px; }
+  .leg-dot { width:12px; height:12px; border-radius:50%; display:inline-block; }
+</style>
+</head>
+<body>
+<h2>Blowfish Accelerator - Area vs Cycles</h2>
+<p class="sub">Generated from <code>test/blowfish/results.csv</code>. Pareto minimizes both area and cycles. Points: 33 verified, 3 Pareto.</p>
+<div id="controls">
+  <label><input type="checkbox" id="logX"> Log X-axis</label>
+  <label><input type="checkbox" id="logY" checked> Log Y-axis</label>
+  <label><input type="checkbox" id="showPareto" checked> Highlight Pareto front</label>
+  <label><input type="checkbox" id="showAll" checked> Show all points</label>
+  <label>Filter:
+    <select id="filterCat"><option value="all">All categories</option>      <option value="Baseline">Baseline</option>
+      <option value="Benchmark-specific CI">Benchmark-specific CI</option>
+      <option value="Full-block CI">Full-block CI</option>
+      <option value="Partial CI">Partial CI</option>
+      <option value="Resident-context CI">Resident-context CI</option>
+      <option value="Reusable context CI">Reusable context CI</option>
+    </select>
+  </label>
+</div>
+<canvas id="chart" width="1080" height="620"></canvas>
+<div id="legend">
+  <div class="leg-item"><span class="leg-dot" style="background:#555555"></span>Baseline</div>
+  <div class="leg-item"><span class="leg-dot" style="background:#9467bd"></span>Benchmark-specific CI</div>
+  <div class="leg-item"><span class="leg-dot" style="background:#d62728"></span>Full-block CI</div>
+  <div class="leg-item"><span class="leg-dot" style="background:#2ca02c"></span>Partial CI</div>
+  <div class="leg-item"><span class="leg-dot" style="background:#ff7f0e"></span>Resident-context CI</div>
+  <div class="leg-item"><span class="leg-dot" style="background:#1f77b4"></span>Reusable context CI</div>
+  <div class="leg-item"><span class="leg-dot" style="background:#000;border:2px solid #000"></span>Pareto-optimal</div>
+</div>
+<div id="tooltip"></div>
+<script>
+const POINTS = [{"variant": "accel_bf_cfb40_ctx", "cycles": 2203343, "area": 46754, "speedup": "1.665", "area_pct": "217.0", "cpi": "3.0", "cpi_no_ci": "3.0", "no_ci_overhead": "1.000", "category": "Benchmark-specific CI", "pareto": false}, {"variant": "accel_bf_cfb40_ctx_no_ci", "cycles": 3669398, "area": 46754, "speedup": "1.000", "area_pct": "217.0", "cpi": "3.0", "cpi_no_ci": "3.0", "no_ci_overhead": "1.000", "category": "Benchmark-specific CI", "pareto": false}, {"variant": "accel_bf_cfb40_ctx_u1", "cycles": 2204903, "area": 33358, "speedup": "1.664", "area_pct": "126.2", "cpi": "3.0", "cpi_no_ci": "3.0", "no_ci_overhead": "1.000", "category": "Benchmark-specific CI", "pareto": false}, {"variant": "accel_bf_cfb40_ctx_u1_no_ci", "cycles": 3669398, "area": 33358, "speedup": "1.000", "area_pct": "126.2", "cpi": "3.0", "cpi_no_ci": "3.0", "no_ci_overhead": "1.000", "category": "Benchmark-specific CI", "pareto": false}, {"variant": "accel_bf_cfb40_ctx_u2", "cycles": 2204123, "area": 39911, "speedup": "1.665", "area_pct": "170.6", "cpi": "3.0", "cpi_no_ci": "3.0", "no_ci_overhead": "1.000", "category": "Benchmark-specific CI", "pareto": false}, {"variant": "accel_bf_cfb40_ctx_u2_no_ci", "cycles": 3669398, "area": 39911, "speedup": "1.000", "area_pct": "170.6", "cpi": "3.0", "cpi_no_ci": "3.0", "no_ci_overhead": "1.000", "category": "Benchmark-specific CI", "pareto": false}, {"variant": "accel_bf_cfb40_ctx_u5", "cycles": 2203343, "area": 46754, "speedup": "1.665", "area_pct": "217.0", "cpi": "3.0", "cpi_no_ci": "3.0", "no_ci_overhead": "1.000", "category": "Benchmark-specific CI", "pareto": false}, {"variant": "accel_bf_cfb_block_ctx", "cycles": 2446443, "area": 30271, "speedup": "1.500", "area_pct": "105.3", "cpi": "3.0", "cpi_no_ci": "3.0", "no_ci_overhead": "1.000", "category": "Reusable context CI", "pareto": false}, {"variant": "accel_bf_cfb40_ctx_u5_no_ci", "cycles": 3669398, "area": 46754, "speedup": "1.000", "area_pct": "217.0", "cpi": "3.0", "cpi_no_ci": "3.0", "no_ci_overhead": "1.000", "category": "Benchmark-specific CI", "pareto": false}, {"variant": "accel_bf_cfb_block_ctx_no_ci", "cycles": 3669398, "area": 30271, "speedup": "1.000", "area_pct": "105.3", "cpi": "3.0", "cpi_no_ci": "3.0", "no_ci_overhead": "1.000", "category": "Reusable context CI", "pareto": false}, {"variant": "accel_bf_encrypt_ctx", "cycles": 2090217, "area": 29158, "speedup": "1.756", "area_pct": "97.7", "cpi": "3.1", "cpi_no_ci": "3.0", "no_ci_overhead": "1.000", "category": "Full-block CI", "pareto": false}, {"variant": "accel_bf_encrypt_ctx_u1", "cycles": 2090217, "area": 27757, "speedup": "1.756", "area_pct": "88.2", "cpi": "3.1", "cpi_no_ci": "3.0", "no_ci_overhead": "1.000", "category": "Full-block CI", "pareto": true}, {"variant": "accel_bf_encrypt_ctx_no_ci", "cycles": 3669398, "area": 29158, "speedup": "1.000", "area_pct": "97.7", "cpi": "3.0", "cpi_no_ci": "3.0", "no_ci_overhead": "1.000", "category": "Full-block CI", "pareto": false}, {"variant": "accel_bf_encrypt_ctx_u2", "cycles": 2098414, "area": 28229, "speedup": "1.749", "area_pct": "91.4", "cpi": "3.1", "cpi_no_ci": "3.0", "no_ci_overhead": "1.000", "category": "Full-block CI", "pareto": false}, {"variant": "accel_bf_encrypt_ctx_u1_no_ci", "cycles": 3669398, "area": 27757, "speedup": "1.000", "area_pct": "88.2", "cpi": "3.0", "cpi_no_ci": "3.0", "no_ci_overhead": "1.000", "category": "Full-block CI", "pareto": false}, {"variant": "accel_bf_encrypt_ctx_u4", "cycles": 2107782, "area": 29316, "speedup": "1.741", "area_pct": "98.8", "cpi": "3.1", "cpi_no_ci": "3.0", "no_ci_overhead": "1.000", "category": "Full-block CI", "pareto": false}, {"variant": "accel_bf_encrypt_ctx_u2_no_ci", "cycles": 3669398, "area": 28229, "speedup": "1.000", "area_pct": "91.4", "cpi": "3.0", "cpi_no_ci": "3.0", "no_ci_overhead": "1.000", "category": "Full-block CI", "pareto": false}, {"variant": "accel_bf_encrypt_ctx_u4_no_ci", "cycles": 3669398, "area": 29316, "speedup": "1.000", "area_pct": "98.8", "cpi": "3.0", "cpi_no_ci": "3.0", "no_ci_overhead": "1.000", "category": "Full-block CI", "pareto": false}, {"variant": "accel_bf_f", "cycles": 6254966, "area": 15401, "speedup": "0.587", "area_pct": "4.4", "cpi": "3.0", "cpi_no_ci": "3.0", "no_ci_overhead": "1.000", "category": "Partial CI", "pareto": false}, {"variant": "accel_bf_f_no_ci", "cycles": 3669398, "area": 15401, "speedup": "1.000", "area_pct": "4.4", "cpi": "3.0", "cpi_no_ci": "3.0", "no_ci_overhead": "1.000", "category": "Partial CI", "pareto": false}, {"variant": "accel_bf_key_expand_ctx", "cycles": 4173515, "area": 107480, "speedup": "0.879", "area_pct": "628.8", "cpi": "4.3", "cpi_no_ci": "4.3", "no_ci_overhead": "1.440", "category": "Reusable context CI", "pareto": false}, {"variant": "accel_bf_key_expand_ctx_u1", "cycles": 2906196, "area": 36358, "speedup": "1.263", "area_pct": "146.5", "cpi": "3.0", "cpi_no_ci": "3.0", "no_ci_overhead": "1.000", "category": "Reusable context CI", "pareto": false}, {"variant": "accel_bf_key_expand_ctx_no_ci", "cycles": 5282129, "area": 107480, "speedup": "0.695", "area_pct": "628.8", "cpi": "4.3", "cpi_no_ci": "4.3", "no_ci_overhead": "1.440", "category": "Reusable context CI", "pareto": false}, {"variant": "accel_bf_key_expand_ctx_u1_no_ci", "cycles": 3669398, "area": 36358, "speedup": "1.000", "area_pct": "146.5", "cpi": "3.0", "cpi_no_ci": "3.0", "no_ci_overhead": "1.000", "category": "Reusable context CI", "pareto": false}, {"variant": "accel_bf_key_expand_ctx_u2_no_ci", "cycles": 3669398, "area": 45337, "speedup": "1.000", "area_pct": "207.4", "cpi": "3.0", "cpi_no_ci": "3.0", "no_ci_overhead": "1.000", "category": "Reusable context CI", "pareto": false}, {"variant": "accel_bf_phase40_ctx", "cycles": 1871033, "area": 131676, "speedup": "1.961", "area_pct": "792.9", "cpi": "4.4", "cpi_no_ci": "4.3", "no_ci_overhead": "1.440", "category": "Benchmark-specific CI", "pareto": true}, {"variant": "accel_bf_key_expand_ctx_u4_no_ci", "cycles": 3669398, "area": 67589, "speedup": "1.000", "area_pct": "358.3", "cpi": "3.0", "cpi_no_ci": "3.0", "no_ci_overhead": "1.000", "category": "Reusable context CI", "pareto": false}, {"variant": "accel_bf_phase_ctx", "cycles": 2224763, "area": 112384, "speedup": "1.649", "area_pct": "662.1", "cpi": "4.4", "cpi_no_ci": "4.3", "no_ci_overhead": "1.440", "category": "Resident-context CI", "pareto": false}, {"variant": "accel_bf_phase40_ctx_no_ci", "cycles": 5282129, "area": 131676, "speedup": "0.695", "area_pct": "792.9", "cpi": "4.3", "cpi_no_ci": "4.3", "no_ci_overhead": "1.440", "category": "Benchmark-specific CI", "pareto": false}, {"variant": "accel_bf_phase_ctx_no_ci", "cycles": 5282129, "area": 112384, "speedup": "0.695", "area_pct": "662.1", "cpi": "4.3", "cpi_no_ci": "4.3", "no_ci_overhead": "1.440", "category": "Resident-context CI", "pareto": false}, {"variant": "accel_bf_round", "cycles": 7435334, "area": 15598, "speedup": "0.494", "area_pct": "5.8", "cpi": "3.0", "cpi_no_ci": "3.0", "no_ci_overhead": "1.000", "category": "Partial CI", "pareto": false}, {"variant": "accel_bf_round_no_ci", "cycles": 3669398, "area": 15598, "speedup": "1.000", "area_pct": "5.8", "cpi": "3.0", "cpi_no_ci": "3.0", "no_ci_overhead": "1.000", "category": "Partial CI", "pareto": false}, {"variant": "baseline", "cycles": 3669398, "area": 14747, "speedup": "1.000", "area_pct": "0.0", "cpi": "3.0", "cpi_no_ci": "N/A", "no_ci_overhead": "N/A", "category": "Baseline", "pareto": true}];
+const PARETO = [{"variant": "accel_bf_phase40_ctx", "cycles": 1871033, "area": 131676, "speedup": "1.961", "area_pct": "792.9", "cpi": "4.4", "cpi_no_ci": "4.3", "no_ci_overhead": "1.440", "category": "Benchmark-specific CI", "pareto": true}, {"variant": "accel_bf_encrypt_ctx_u1", "cycles": 2090217, "area": 27757, "speedup": "1.756", "area_pct": "88.2", "cpi": "3.1", "cpi_no_ci": "3.0", "no_ci_overhead": "1.000", "category": "Full-block CI", "pareto": true}, {"variant": "baseline", "cycles": 3669398, "area": 14747, "speedup": "1.000", "area_pct": "0.0", "cpi": "3.0", "cpi_no_ci": "N/A", "no_ci_overhead": "N/A", "category": "Baseline", "pareto": true}];
+const CAT_COLOR = {"Baseline": "#555555", "Partial CI": "#2ca02c", "Full-block CI": "#d62728", "Reusable context CI": "#1f77b4", "Benchmark-specific CI": "#9467bd", "Resident-context CI": "#ff7f0e", "Pair CI": "#17becf"};
+const canvas = document.getElementById("chart");
+const ctx = canvas.getContext("2d");
+const tooltip = document.getElementById("tooltip");
+const PAD = {top:30, right:30, bottom:58, left:86};
+const W = canvas.width - PAD.left - PAD.right;
+const H = canvas.height - PAD.top - PAD.bottom;
+let drawn = [];
+function opts() { return { logX: document.getElementById("logX").checked, logY: document.getElementById("logY").checked, showPareto: document.getElementById("showPareto").checked, showAll: document.getElementById("showAll").checked, filter: document.getElementById("filterCat").value }; }
+function shown(o) { return POINTS.filter(p => o.showAll && (o.filter === "all" || p.category === o.filter)); }
+function tx(v, min, max, log) { if (log) { const a = Math.log10(min), b = Math.log10(max); return (Math.log10(v) - a) / (b - a); } return (v - min) / (max - min); }
+function fmt(v) { return Number(v).toLocaleString(); }
+function niceTicks(min, max, log) { if (log) { const out = []; for (let p = Math.floor(Math.log10(min)); p <= Math.ceil(Math.log10(max)); p++) { for (const m of [1,2,5]) { const v = m * Math.pow(10,p); if (v >= min && v <= max) out.push(v); } } return out; } const out = [], n = 6, step = (max - min) / n; for (let i=0; i<=n; i++) out.push(min + i*step); return out; }
+function draw() {
+  const o = opts(); const pts = shown(o); const all = pts.length ? pts : POINTS;
+  let minA = Math.min(...all.map(p => p.area)), maxA = Math.max(...all.map(p => p.area));
+  let minC = Math.min(...all.map(p => p.cycles)), maxC = Math.max(...all.map(p => p.cycles));
+  minA *= 0.92; maxA *= 1.08; minC *= 0.82; maxC *= 1.18;
+  ctx.clearRect(0,0,canvas.width,canvas.height); ctx.strokeStyle = "#222"; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(PAD.left, PAD.top); ctx.lineTo(PAD.left, PAD.top+H); ctx.lineTo(PAD.left+W, PAD.top+H); ctx.stroke();
+  ctx.fillStyle = "#333"; ctx.font = "12px sans-serif"; ctx.textAlign = "center"; ctx.fillText("Area", PAD.left + W/2, canvas.height - 14);
+  ctx.save(); ctx.translate(18, PAD.top + H/2); ctx.rotate(-Math.PI/2); ctx.fillText("Cycles", 0, 0); ctx.restore();
+  ctx.strokeStyle = "#e8e8e8"; ctx.fillStyle = "#666"; ctx.font = "11px sans-serif";
+  for (const v of niceTicks(minA, maxA, o.logX)) { const x = PAD.left + tx(v,minA,maxA,o.logX)*W; ctx.beginPath(); ctx.moveTo(x,PAD.top); ctx.lineTo(x,PAD.top+H); ctx.stroke(); ctx.textAlign = "center"; ctx.fillText(fmt(Math.round(v)), x, PAD.top+H+18); }
+  for (const v of niceTicks(minC, maxC, o.logY)) { const y = PAD.top + H - tx(v,minC,maxC,o.logY)*H; ctx.beginPath(); ctx.moveTo(PAD.left,y); ctx.lineTo(PAD.left+W,y); ctx.stroke(); ctx.textAlign = "right"; ctx.fillText(fmt(Math.round(v)), PAD.left-8, y+4); }
+  drawn = [];
+  function plot(p, emph=false) { const x = PAD.left + tx(p.area,minA,maxA,o.logX)*W; const y = PAD.top + H - tx(p.cycles,minC,maxC,o.logY)*H; ctx.beginPath(); ctx.arc(x,y, emph ? 6 : 4, 0, Math.PI*2); ctx.fillStyle = CAT_COLOR[p.category] || "#777"; ctx.fill(); if (emph) { ctx.lineWidth = 2; ctx.strokeStyle = "#000"; ctx.stroke(); } drawn.push({x,y,p,r:emph ? 8 : 6}); }
+  for (const p of pts) plot(p, false);
+  if (o.showPareto) { const pf = PARETO.filter(p => o.filter === "all" || p.category === o.filter); pf.sort((a,b)=>a.area-b.area); ctx.strokeStyle = "#000"; ctx.lineWidth = 1.5; ctx.beginPath(); pf.forEach((p,i)=>{ const x = PAD.left + tx(p.area,minA,maxA,o.logX)*W; const y = PAD.top + H - tx(p.cycles,minC,maxC,o.logY)*H; if (i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y); }); ctx.stroke(); for (const p of pf) plot(p, true); }
+}
+canvas.addEventListener("mousemove", e => { const rect = canvas.getBoundingClientRect(); const mx = e.clientX - rect.left, my = e.clientY - rect.top; let hit = null; for (const d of drawn) { if ((d.x-mx)**2 + (d.y-my)**2 <= d.r**2) hit = d.p; } if (hit) { tooltip.style.display = "block"; tooltip.style.left = `${e.pageX + 12}px`; tooltip.style.top = `${e.pageY + 12}px`; tooltip.innerHTML = `<b>${hit.variant}</b><br>Category: ${hit.category}<br>Cycles: ${fmt(hit.cycles)}<br>Area: ${fmt(hit.area)}<br>Speedup: ${hit.speedup}x<br>Area overhead: ${hit.area_pct}%<br>CPI: ${hit.cpi}<br>No-CI CPI: ${hit.cpi_no_ci}<br>No-CI overhead: ${hit.no_ci_overhead}`; } else tooltip.style.display = "none"; });
+canvas.addEventListener("mouseleave", () => tooltip.style.display = "none");
+for (const id of ["logX","logY","showPareto","showAll","filterCat"]) document.getElementById(id).addEventListener("change", draw);
+draw();
+
+</script>
+</body>
+</html>

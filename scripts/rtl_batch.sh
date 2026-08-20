@@ -15,6 +15,7 @@
 #
 # Logs per variant: test/<app>/<variant>/rtl/rtl_batch.log
 # Summary:          test/<app>/rtl_batch_summary.tsv
+# Override the summary path with RTL_BATCH_SUMMARY for a filtered sub-matrix.
 
 set -euo pipefail
 
@@ -56,7 +57,8 @@ fi
 APP_DIR="${TEST_DIR}/${APP}"
 [[ -d "$APP_DIR" ]] || { echo "Error: ${APP_DIR} does not exist" >&2; exit 1; }
 
-SUMMARY="${APP_DIR}/rtl_batch_summary.tsv"
+SUMMARY="${RTL_BATCH_SUMMARY:-${APP_DIR}/rtl_batch_summary.tsv}"
+mkdir -p "$(dirname "$SUMMARY")"
 
 # ── Collect variants (must have rtl/computer_E.v) ─────────────────────────────
 mapfile -t ALL_VARIANTS < <(
@@ -85,10 +87,7 @@ echo "=== rtl_batch: ${APP} | ${TOTAL} variants | jobs=${JOBS} ==="
 [[ "$DRY_RUN" -eq 1 ]] && echo "(dry-run — nothing will run)"
 if [[ "$CLEAN_ISS_RPT" -eq 1 ]]; then
     echo "ISS reports will be deleted after each confirmed RTL/ISS pass."
-    if [[ "$JOBS" -gt 1 ]]; then
-        echo "Forcing jobs=1 because streaming ISS+RTL avoids shared simulator races and large report accumulation."
-        JOBS=1
-    fi
+    echo "Parallel streaming uses per-variant ISS simulator executables."
 fi
 echo ""
 
@@ -103,8 +102,8 @@ fi
 echo -e "variant\tstatus\tcycles\tarea\tcpi" > "$SUMMARY"
 
 # ── Phase 1: serial ISS pass — build hex for any variant that needs it ────────
-# All variants share the same sim/rv32i_sim binary; building it in parallel
-# causes "Text file busy" errors.  Run ISS once per missing hex, serially.
+# Non-streaming mode keeps an ISS pre-pass.  In streaming mode each worker gets
+# a private simulator executable, so parallel jobs do not fight over sim/rv32i_sim.
 if [[ "$CLEAN_ISS_RPT" -eq 0 ]]; then
     echo "=== Phase 1: ISS (serial) ==="
     for v in "${VARIANTS[@]}"; do
@@ -157,11 +156,14 @@ run_variant() {
     local variant="$1"
     local log_file="${APP_DIR}/${variant}/rtl/rtl_batch.log"
     local obj_dir="${APP_DIR}/${variant}/rtl/obj_dir"
+    local iss_artifacts="${APP_DIR}/${variant}/iss/artifacts"
     local iss_rpt="${APP_DIR}/${variant}/iss/artifacts/${APP}.iss.rpt"
+    local sim_exec="${APP_DIR}/${variant}/iss/artifacts/rv32i_sim"
     local run_mode="--rtl-only"
     local t_start t_end elapsed status cycles area cpi rtl_flag trace_flag=""
 
     mkdir -p "${APP_DIR}/${variant}/rtl"
+    mkdir -p "$iss_artifacts"
     t_start=$(date +%s)
 
     [[ "$TRACE" -eq 1 ]] && trace_flag="--trace"
@@ -176,7 +178,8 @@ run_variant() {
 
     # In default streaming mode, run ISS+RTL together so the large ISS report
     # can be discarded immediately after a confirmed comparison.
-    if bash "$RUN_TEST_SH" "${APP}/${APP}" "$run_mode" "${variant}" ${trace_flag} \
+    if SIM_EXEC="$sim_exec" RUN_TEST_SKIP_LEGACY_COMPILE=1 \
+            bash "$RUN_TEST_SH" "${APP}/${APP}" "$run_mode" "${variant}" ${trace_flag} \
             > "$log_file" 2>&1; then
         status="OK"
     else
@@ -194,6 +197,7 @@ run_variant() {
 
     # Remove obj_dir to reclaim disk space (binary not needed after sim)
     rm -rf "$obj_dir"
+    rm -f "$sim_exec"
     if [[ "$CLEAN_ISS_RPT" -eq 1 && "$status" = "OK" ]]; then
         rm -f "$iss_rpt"
     fi

@@ -1,0 +1,36 @@
+variant	status	cycles	area	cpi
+accel_bf_cfb40_ctx	OK	2203343	46754	3.0
+accel_bf_cfb40_ctx_no_ci	OK	3669398	46754	3.0
+accel_bf_cfb40_ctx_u1	OK	2204903	33358	3.0
+accel_bf_cfb40_ctx_u1_no_ci	OK	3669398	33358	3.0
+accel_bf_cfb40_ctx_u2	OK	2204123	39911	3.0
+accel_bf_cfb40_ctx_u2_no_ci	OK	3669398	39911	3.0
+accel_bf_cfb40_ctx_u5	OK	2203343	46754	3.0
+accel_bf_cfb_block_ctx	OK	2446443	30271	3.0
+accel_bf_cfb40_ctx_u5_no_ci	OK	3669398	46754	3.0
+accel_bf_cfb_block_ctx_no_ci	OK	3669398	30271	3.0
+accel_bf_encrypt_ctx	OK	2090217	29158	3.1
+accel_bf_encrypt_ctx_u1	OK	2090217	27757	3.1
+accel_bf_encrypt_ctx_no_ci	OK	3669398	29158	3.0
+accel_bf_encrypt_ctx_u2	OK	2098414	28229	3.1
+accel_bf_encrypt_ctx_u1_no_ci	OK	3669398	27757	3.0
+accel_bf_encrypt_ctx_u4	OK	2107782	29316	3.1
+accel_bf_encrypt_ctx_u2_no_ci	OK	3669398	28229	3.0
+accel_bf_encrypt_ctx_u4_no_ci	OK	3669398	29316	3.0
+accel_bf_f	OK	6254966	15401	3.0
+accel_bf_f_no_ci	OK	3669398	15401	3.0
+accel_bf_key_expand_ctx	OK	4173515	107480	4.3
+accel_bf_key_expand_ctx_u1	OK	2906196	36358	3.0
+accel_bf_key_expand_ctx_no_ci	OK	5282129	107480	4.3
+accel_bf_key_expand_ctx_u2	FAIL		45337
+accel_bf_key_expand_ctx_u1_no_ci	OK	3669398	36358	3.0
+accel_bf_key_expand_ctx_u2_no_ci	OK	3669398	45337	3.0
+accel_bf_key_expand_ctx_u4	FAIL		67589	3.0
+accel_bf_phase40_ctx	OK	1871033	131676	4.4
+accel_bf_key_expand_ctx_u4_no_ci	OK	3669398	67589	3.0
+accel_bf_phase_ctx	OK	2224763	112384	4.4
+accel_bf_phase40_ctx_no_ci	OK	5282129	131676	4.3
+accel_bf_phase_ctx_no_ci	OK	5282129	112384	4.3
+accel_bf_round	OK	7435334	15598	3.0
+accel_bf_round_no_ci	OK	3669398	15598	3.0
+baseline	OK	3669398	14747	3.0

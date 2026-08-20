@@ -13,7 +13,7 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ROOT_DIR="${SCRIPT_DIR}/.."
 TEST_DIR="${ROOT_DIR}/test"
-SIM_EXEC="${ROOT_DIR}/sim/rv32i_sim"
+SIM_EXEC="${SIM_EXEC:-${ROOT_DIR}/sim/rv32i_sim}"
 RTL_COMMON_DIR="${ROOT_DIR}/sim/verilog"
 
 # Parse arguments
@@ -166,8 +166,12 @@ HEX_FILE="${OUTPUT_PREFIX}.hex"
 # ==========================================================================
 # Step 1: Compile Test Program (with ACCEL flags)
 # ==========================================================================
-echo "=== Step 1: Compiling ${TEST_NAME} ==="
-"${SCRIPT_DIR}/compile.sh" "${SOURCE_FILE}" "${OUTPUT_PREFIX}" "${EXTRA_CFLAGS}"
+if [ "${RUN_TEST_SKIP_LEGACY_COMPILE:-0}" -ne 1 ]; then
+    echo "=== Step 1: Compiling ${TEST_NAME} ==="
+    "${SCRIPT_DIR}/compile.sh" "${SOURCE_FILE}" "${OUTPUT_PREFIX}" "${EXTRA_CFLAGS}"
+else
+    echo "=== Step 1: Skipping legacy compile output for ${TEST_NAME} ==="
+fi
 
 # ==========================================================================
 # Step 2: Build & Run C Simulator

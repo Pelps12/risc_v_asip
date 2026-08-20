@@ -1,0 +1,4 @@
+variant,status,family,no_ci,cycles,area,cpi,speedup,area_overhead_pct,aliases
+accel_bf_phase40_ctx,OK,phase40 (benchmark-specific),False,1871033,131676,4.4,1.9611615615544995,792.9002508984878,accel_bf_phase40_ctx
+accel_bf_encrypt_ctx_u1,OK,full-block encrypt,False,2090217,27757,3.1,1.7555105522536656,88.2213331525056,accel_bf_encrypt_ctx_u1
+baseline,OK,baseline,False,3669398,14747,3.0,1.0,0.0,baseline

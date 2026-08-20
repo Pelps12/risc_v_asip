@@ -1,0 +1,36 @@
+variant,status,family,no_ci,cycles,area,cpi,speedup,area_overhead_pct
+accel_bf_cfb40_ctx,OK,CFB40 (benchmark-specific),False,2203343,46754,3.0,1.6653775649093219,217.0407540516715
+accel_bf_cfb40_ctx_no_ci,OK,CFB40 (benchmark-specific),True,3669398,46754,3.0,1.0,217.0407540516715
+accel_bf_cfb40_ctx_u1,OK,CFB40 (benchmark-specific),False,2204903,33358,3.0,1.6641992867713455,126.20193937750051
+accel_bf_cfb40_ctx_u1_no_ci,OK,CFB40 (benchmark-specific),True,3669398,33358,3.0,1.0,126.20193937750051
+accel_bf_cfb40_ctx_u2,OK,CFB40 (benchmark-specific),False,2204123,39911,3.0,1.6647882173544761,170.6380958839086
+accel_bf_cfb40_ctx_u2_no_ci,OK,CFB40 (benchmark-specific),True,3669398,39911,3.0,1.0,170.6380958839086
+accel_bf_cfb40_ctx_u5,OK,CFB40 (benchmark-specific),False,2203343,46754,3.0,1.6653775649093219,217.0407540516715
+accel_bf_cfb_block_ctx,OK,CFB block,False,2446443,30271,3.0,1.4998910663359006,105.26886824438868
+accel_bf_cfb40_ctx_u5_no_ci,OK,CFB40 (benchmark-specific),True,3669398,46754,3.0,1.0,217.0407540516715
+accel_bf_cfb_block_ctx_no_ci,OK,CFB block,True,3669398,30271,3.0,1.0,105.26886824438868
+accel_bf_encrypt_ctx,OK,full-block encrypt,False,2090217,29158,3.1,1.7555105522536656,97.721570488913
+accel_bf_encrypt_ctx_u1,OK,full-block encrypt,False,2090217,27757,3.1,1.7555105522536656,88.2213331525056
+accel_bf_encrypt_ctx_no_ci,OK,full-block encrypt,True,3669398,29158,3.0,1.0,97.721570488913
+accel_bf_encrypt_ctx_u2,OK,full-block encrypt,False,2098414,28229,3.1,1.7486530303362444,91.4219841323659
+accel_bf_encrypt_ctx_u1_no_ci,OK,full-block encrypt,True,3669398,27757,3.0,1.0,88.2213331525056
+accel_bf_encrypt_ctx_u4,OK,full-block encrypt,False,2107782,29316,3.1,1.7408811727208982,98.79297484234081
+accel_bf_encrypt_ctx_u2_no_ci,OK,full-block encrypt,True,3669398,28229,3.0,1.0,91.4219841323659
+accel_bf_encrypt_ctx_u4_no_ci,OK,full-block encrypt,True,3669398,29316,3.0,1.0,98.79297484234081
+accel_bf_f,OK,F function,False,6254966,15401,3.0,0.5866375612593258,4.4348002983657695
+accel_bf_f_no_ci,OK,F function,True,3669398,15401,3.0,1.0,4.4348002983657695
+accel_bf_key_expand_ctx,OK,key expansion,False,4173515,107480,4.3,0.8792104497048651,628.8262019393775
+accel_bf_key_expand_ctx_u1,OK,key expansion,False,2906196,36358,3.0,1.2626120192856918,146.54506001220588
+accel_bf_key_expand_ctx_no_ci,OK,key expansion,True,5282129,107480,4.3,0.6946816331066508,628.8262019393775
+accel_bf_key_expand_ctx_u2,FAIL,key expansion,False,,45337,,,
+accel_bf_key_expand_ctx_u1_no_ci,OK,key expansion,True,3669398,36358,3.0,1.0,146.54506001220588
+accel_bf_key_expand_ctx_u2_no_ci,OK,key expansion,True,3669398,45337,3.0,1.0,207.43202007187904
+accel_bf_key_expand_ctx_u4,FAIL,key expansion,False,,67589,3.0,,
+accel_bf_phase40_ctx,OK,phase40 (benchmark-specific),False,1871033,131676,4.4,1.9611615615544995,792.9002508984878
+accel_bf_key_expand_ctx_u4_no_ci,OK,key expansion,True,3669398,67589,3.0,1.0,358.3237268597003
+accel_bf_phase_ctx,OK,phase (resident context),False,2224763,112384,4.4,1.649343323311292,662.0804231369092
+accel_bf_phase40_ctx_no_ci,OK,phase40 (benchmark-specific),True,5282129,131676,4.3,0.6946816331066508,792.9002508984878
+accel_bf_phase_ctx_no_ci,OK,phase (resident context),True,5282129,112384,4.3,0.6946816331066508,662.0804231369092
+accel_bf_round,OK,round,False,7435334,15598,3.0,0.4935081598217377,5.770665220044755
+accel_bf_round_no_ci,OK,round,True,3669398,15598,3.0,1.0,5.770665220044755
+baseline,OK,baseline,False,3669398,14747,3.0,1.0,0.0

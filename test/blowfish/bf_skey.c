@@ -175,7 +175,30 @@ BF_set_key (int len, unsigned char *data)
   in[0] = 0L;
   in[1] = 0L;
 
-#if defined(ACCEL_BF_ENCRYPT) && defined(__riscv)
+#if (defined(ACCEL_BF_KEY_EXPAND) || defined(ACCEL_BF_PHASE) || \
+       defined(ACCEL_BF_PHASE40)) && defined(__riscv)
+  {
+    BF_LONG k0, k1;
+    k0 = ((BF_LONG)data[0] << 24) | ((BF_LONG)data[1] << 16) |
+         ((BF_LONG)data[2] << 8) | data[3];
+    k1 = ((BF_LONG)data[4] << 24) | ((BF_LONG)data[5] << 16) |
+         ((BF_LONG)data[6] << 8) | data[7];
+    /* BF_KEY_EXPAND receives the unmodified initial P/S constants and applies
+     * the key fold inside the resident context. */
+    for (i = 0; i < (BF_ROUNDS + 2); ++i)
+      key_P[i] = bf_init_P[i];
+    bf_accel_load_context ();
+    bf_accel_key_expand (k0, k1, len);
+#if !defined(ACCEL_BF_ENCRYPT) && !defined(ACCEL_BF_CFB_BLOCK) && \
+    !defined(ACCEL_BF_CFB40) && !defined(ACCEL_BF_PHASE) && \
+    !defined(ACCEL_BF_PHASE40)
+    /* A following scalar/fine-grained consumer observes P/S in DMEM. */
+    bf_accel_export_context ();
+#else
+    /* A paired coarse consumer reuses the resident P/S state directly. */
+#endif
+  }
+#elif defined(ACCEL_BF_ENCRYPT) && defined(__riscv)
   bf_accel_load_context ();
   for (i = 0; i < (BF_ROUNDS + 2); i += 2)
     {
@@ -192,26 +215,6 @@ BF_set_key (int len, unsigned char *data)
       p[i + 1] = in[1];
       bf_accel_ctx_write4 (18 + i, 2, p[i], p[i + 1], 0, 0);
     }
-#elif (defined(ACCEL_BF_KEY_EXPAND) || defined(ACCEL_BF_PHASE) || \
-       defined(ACCEL_BF_PHASE40)) && defined(__riscv)
-  {
-    BF_LONG k0, k1;
-    k0 = ((BF_LONG)data[0] << 24) | ((BF_LONG)data[1] << 16) |
-         ((BF_LONG)data[2] << 8) | data[3];
-    k1 = ((BF_LONG)data[4] << 24) | ((BF_LONG)data[5] << 16) |
-         ((BF_LONG)data[6] << 8) | data[7];
-    /* BF_KEY_EXPAND receives the unmodified initial P/S constants and applies
-     * the key fold inside the resident context. */
-    for (i = 0; i < (BF_ROUNDS + 2); ++i)
-      key_P[i] = bf_init_P[i];
-    bf_accel_load_context ();
-    bf_accel_key_expand (k0, k1, len);
-#if defined(ACCEL_BF_PHASE) || defined(ACCEL_BF_PHASE40)
-    /* The phase-shared variants intentionally retain resident P/S state. */
-#else
-    bf_accel_export_context ();
-#endif
-  }
 #else
   for (i = 0; i < (BF_ROUNDS + 2); i += 2)
     {
