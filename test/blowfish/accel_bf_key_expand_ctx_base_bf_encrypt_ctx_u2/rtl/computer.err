@@ -1,0 +1,462 @@
+I_BT1173: LOG file is generated. (computer.LOG.gz)
+I_BT1921: License has been successfully obtained by FLEXlm.
+I_BT2619: Synthesize in ASIC mode.
+I_BT6773: The BLIB and FLIB files are loaded.
+	/proj/cad/cwb-6.1/packages/asic_45.BLIB
+	/proj/cad/cwb-6.1/packages/asic_45.FLIB
+I_BT4146: All signals are synthesized as descending bit-order because all declared signals are of descending bit-order.
+I_BT4563: Synthesis of function(mem_read_byte) by inline expansion, because function have pointer argument.
+I_BT4563: Synthesis of function(mem_read_half) by inline expansion, because function have pointer argument.
+I_BT4563: Synthesis of function(mem_read_word) by inline expansion, because function have pointer argument.
+I_BT4563: Synthesis of function(mem_write_byte) by inline expansion, because function have pointer argument.
+I_BT4563: Synthesis of function(mem_write_half) by inline expansion, because function have pointer argument.
+I_BT4563: Synthesis of function(mem_write_word) by inline expansion, because function have pointer argument.
+I_BT4563: Synthesis of function(accel_bf_encrypt) by inline expansion, because function have pointer argument.
+I_BT4563: Synthesis of function(bf_ctx_encrypt) by inline expansion, because function have pointer argument.
+I_BT4563: Synthesis of function(accel_bf_ctx_read4) by inline expansion, because function have pointer argument.
+I_BT4568: Function accel_bf_ctx_commit is inline-expanded.
+I_BT4568: Function accel_bf_ctx_begin is inline-expanded.
+I_BT4568: Function sign_extend is inline-expanded.
+I_BT4568: Function bf_ctx_s_read is inline-expanded.
+I_BT4568: Function accel_bf_ctx_read4 is inline-expanded.
+I_BT4568: Function accel_bf_ctx_write4 is inline-expanded.
+I_BT4568: Function bf_ctx_s_write is inline-expanded.
+I_BT4568: Function accel_bf_key_expand is inline-expanded.
+I_BT4568: Function bf_ctx_encrypt is inline-expanded.
+I_BT4568: Function accel_bf_encrypt is inline-expanded.
+I_BT4568: Function mem_write_word is inline-expanded.
+I_BT4568: Function mem_write_half is inline-expanded.
+I_BT4568: Function mem_write_byte is inline-expanded.
+I_BT4568: Function decode_imm_s is inline-expanded.
+I_BT4568: Function mem_read_word is inline-expanded.
+I_BT4568: Function mem_read_half is inline-expanded.
+I_BT4568: Function mem_read_byte is inline-expanded.
+I_BT4568: Function decode_imm_b is inline-expanded.
+I_BT4568: Function decode_imm_j is inline-expanded.
+I_BT4568: Function decode_imm_u is inline-expanded.
+I_BT4874: for loop is unrolled at every 2 iterations
+	[Source Lines]
+	376(computer.cpp):   for (uint32_t i = 1; i <= 16; ++i) {
+I_BT4607: for loop is unrolled
+	[Source Lines]
+	423(computer.cpp):     for (uint32_t j = 0; j < 4; ++j)
+I_BT4607: for loop is unrolled
+	[Source Lines]
+	414(computer.cpp):   for (uint32_t i = 0; i < 18; ++i) {
+I_BT4607: for loop is unrolled
+	[Source Lines]
+	436(computer.cpp):   for (uint32_t i = 0; i < 18; i += 2) {
+I_BT4619: Since the number 1536 of statements after unrolling is large(> 512), loop cannot be unrolled.
+ [Action] In the case of unrolling, specify attribute, or the option (-U# or -UN).
+	[Source Lines]
+	448(computer.cpp):   for (uint32_t i = 0; i < 1024; i += 2) {
+I_BT4874: for loop is unrolled at every 2 iterations
+	[Source Lines]
+	376(computer.cpp):   for (uint32_t i = 1; i <= 16; ++i) {
+I_BT4563: Synthesis of function(bf_ctx_encrypt) by inline expansion, because function have pointer argument.
+I_BT4568: Function accel_bf_key_byte is inline-expanded.
+I_BT4568: Function decode_imm_i is inline-expanded.
+W_BT4865: The synthesis will not be a good result because the divided array (bf_ctx_p) is accessed by variable.
+ [Action] Change all access of array to constant, or add 'array_div=NO' attribute to the array, or use '-Zarray_div=NO' option to disable synthesis function of array dividing.
+I_BT4542: Function bf_ctx_read_word is converted using goto conversion.
+I_BT4542: Function bf_ctx_write_word is converted using goto conversion.
+I_BT4542: Function accel_bf_ctx_f is converted using goto conversion.
+I_BT5514: 41 address decoders (R40,W1) to access to array signal 'regs'.
+	[Source Lines]
+	19(computer.cpp): uint32_t regs[32] = {0};    // x0-x31 (x0 hardwired to 0)
+I_BT5514: 66 address decoders (R65,W1) to access to array signal 'bf_ctx_p_0'.
+	[Source Lines]
+	255(computer.cpp): uint32_t bf_ctx_p[18];
+I_BT5514: 74 address decoders (R73,W1) to access to array signal 'bf_ctx_p_1'.
+	[Source Lines]
+	255(computer.cpp): uint32_t bf_ctx_p[18];
+W_BT8766: Removed unreferenced assignment to variable 'k1_1'.
+ [Action] Remove the assignment.
+	[Source Lines]
+	424(computer.cpp):       word = (word << 8) | accel_bf_key_byte(k0, k1, (i * 4 + j) % length);
+W_BT8766: Removed unreferenced assignment to variable 'bf_ctx_fault'.
+ [Action] Remove the assignment.
+	[Source Lines]
+	364(computer.cpp):     bf_ctx_fault = true;
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	102(computer.cpp):   uint32_t imm = ((instr >> 31) << 12) |         // bit 12
+	103(computer.cpp):                  (((instr >> 7) & 0x1) << 11) |  // bit 11
+	104(computer.cpp):                  (((instr >> 25) & 0x3F) << 5) | // bits 10:5
+	105(computer.cpp):                  (((instr >> 8) & 0xF) << 1);    // bits 4:1
+	575(computer.cpp):     uint32_t funct7 = (instr >> 25) & 0x7F;
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	114(computer.cpp):   uint32_t imm = ((instr >> 31) << 20) |          // bit 20
+	115(computer.cpp):                  (((instr >> 12) & 0xFF) << 12) | // bits 19:12
+	116(computer.cpp):                  (((instr >> 20) & 0x1) << 11) |  // bit 11
+	117(computer.cpp):                  (((instr >> 21) & 0x3FF) << 1);  // bits 10:1
+	572(computer.cpp):     uint32_t funct3 = (instr >> 12) & 0x7;
+	574(computer.cpp):     uint32_t rs2 = (instr >> 20) & 0x1F;
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	378(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	378(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	380(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	380(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	380(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	380(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	378(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	378(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	378(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	378(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	380(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	380(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	380(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	380(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	378(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	378(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	378(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	378(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	380(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	380(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	380(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	380(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	378(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	378(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	378(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	378(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	380(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	380(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	380(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	380(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	378(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	378(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	378(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	378(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	380(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	380(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	378(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	380(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	380(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	378(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	378(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	378(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	380(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	380(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	378(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	380(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT4383: Generate memory library file / memory constraint file.
+	computer-auto.MLIB
+	computer-auto.MCNT
+W_BT4423: The comparison operation '<' is substituted in constant 1 by optimization.
+ [Action] If required, confirm the relevance of the bitwidth of the comparison target.
+	[Source Lines]
+	397(computer.cpp):   if (index < 4)
+W_BT4423: The comparison operation '<' is substituted in constant 1 by optimization.
+ [Action] If required, confirm the relevance of the bitwidth of the comparison target.
+	[Source Lines]
+	397(computer.cpp):   if (index < 4)
+W_BT4423: The comparison operation '<' is substituted in constant 1 by optimization.
+ [Action] If required, confirm the relevance of the bitwidth of the comparison target.
+	[Source Lines]
+	397(computer.cpp):   if (index < 4)
+W_BT4422: The comparison operation '>' is substituted in constant 0 by optimization.
+ [Action] If required, confirm the relevance of the bitwidth of the comparison target.
+	[Source Lines]
+	334(computer.cpp):   w2 = (count > 2) ? bf_ctx_read_word(index + 2) : 0;
+W_BT4422: The comparison operation '>' is substituted in constant 0 by optimization.
+ [Action] If required, confirm the relevance of the bitwidth of the comparison target.
+	[Source Lines]
+	335(computer.cpp):   w3 = (count > 3) ? bf_ctx_read_word(index + 3) : 0;
+W_BT4422: The comparison operation '>' is substituted in constant 0 by optimization.
+ [Action] If required, confirm the relevance of the bitwidth of the comparison target.
+	[Source Lines]
+	335(computer.cpp):   w3 = (count > 3) ? bf_ctx_read_word(index + 3) : 0;
+I_BT4395: 1 functional units template is generated.
+I_BT4387: FLIB file successfully generated without area and delay information. Execute FLIBgen to include delay and area information.
+W_BT4397: "DELAY" or "AREA" for following functional unit(s) cannot be estimated.
+ [Action] Run FLIBgen to characterize the generated FLIB file "foo-auto.FLIB".
+	mod32_32u_pipe
+I_BT4392: No arithmetic macro functional unit required.
+I_BT4319: Empty FLIB file (computer-amacro-auto.FLIB) generated. No functional units required.
+ [Action] If required, confirm the description.
+I_BT4318: Empty FCNT file (computer-amacro-auto.FCNT) generated. No functional units required.
+ [Action] If required, confirm the description.
+I_BT4382: Generate functional unit library files / functional unit constraint files.
+	computer-auto.FLIB
+	computer-auto.FCNT
+	computer-amacro-auto.FLIB
+	computer-amacro-auto.FCNT
+W_BT8105: Possible reference to signal 'i_21' before assignment.
+ [Action] Initialize signal 'i_21'.
+	[Source Lines]
+	376(computer.cpp):   for (uint32_t i = 1; i <= 16; ++i) {
+W_BT8105: Possible reference to signal 'r_1' before assignment.
+ [Action] Initialize signal 'r_1'.
+	[Source Lines]
+	368(computer.cpp):   uint32_t r = right;
+W_BT8105: Possible reference to signal 'l_1' before assignment.
+ [Action] Initialize signal 'l_1'.
+	[Source Lines]
+	367(computer.cpp):   uint32_t l = left ^ bf_ctx_p[0];
+W_BT8105: Possible reference to signal 'r_2' before assignment.
+ [Action] Initialize signal 'r_2'.
+	[Source Lines]
+	368(computer.cpp):   uint32_t r = right;
+W_BT8105: Possible reference to signal 'l_2' before assignment.
+ [Action] Initialize signal 'l_2'.
+	[Source Lines]
+	367(computer.cpp):   uint32_t l = left ^ bf_ctx_p[0];
+W_BT8105: Possible reference to signal 'r_3' before assignment.
+ [Action] Initialize signal 'r_3'.
+	[Source Lines]
+	368(computer.cpp):   uint32_t r = right;
+W_BT8105: Possible reference to signal 'l_3' before assignment.
+ [Action] Initialize signal 'l_3'.
+	[Source Lines]
+	367(computer.cpp):   uint32_t l = left ^ bf_ctx_p[0];
+W_BT8105: Possible reference to signal 'r_4' before assignment.
+ [Action] Initialize signal 'r_4'.
+	[Source Lines]
+	368(computer.cpp):   uint32_t r = right;
+W_BT8105: Possible reference to signal 'l_4' before assignment.
+ [Action] Initialize signal 'l_4'.
+	[Source Lines]
+	367(computer.cpp):   uint32_t l = left ^ bf_ctx_p[0];
+W_BT8105: Possible reference to signal 'r_5' before assignment.
+ [Action] Initialize signal 'r_5'.
+	[Source Lines]
+	368(computer.cpp):   uint32_t r = right;
+W_BT8105: Possible reference to signal 'l_5' before assignment.
+ [Action] Initialize signal 'l_5'.
+	[Source Lines]
+	367(computer.cpp):   uint32_t l = left ^ bf_ctx_p[0];
+W_BT8105: Possible reference to signal 'r_6' before assignment.
+ [Action] Initialize signal 'r_6'.
+	[Source Lines]
+	368(computer.cpp):   uint32_t r = right;
+W_BT8105: Possible reference to signal 'l_6' before assignment.
+ [Action] Initialize signal 'l_6'.
+	[Source Lines]
+	367(computer.cpp):   uint32_t l = left ^ bf_ctx_p[0];
+W_BT8105: Possible reference to signal 'r_7' before assignment.
+ [Action] Initialize signal 'r_7'.
+	[Source Lines]
+	368(computer.cpp):   uint32_t r = right;
+W_BT8105: Possible reference to signal 'l_7' before assignment.
+ [Action] Initialize signal 'l_7'.
+	[Source Lines]
+	367(computer.cpp):   uint32_t l = left ^ bf_ctx_p[0];
+W_BT8105: Possible reference to signal 'r_8' before assignment.
+ [Action] Initialize signal 'r_8'.
+	[Source Lines]
+	368(computer.cpp):   uint32_t r = right;
+W_BT8105: Possible reference to signal 'l_8' before assignment.
+ [Action] Initialize signal 'l_8'.
+	[Source Lines]
+	367(computer.cpp):   uint32_t l = left ^ bf_ctx_p[0];
+W_BT8105: Possible reference to signal 'r_9' before assignment.
+ [Action] Initialize signal 'r_9'.
+	[Source Lines]
+	368(computer.cpp):   uint32_t r = right;
+W_BT8105: Possible reference to signal 'l_9' before assignment.
+ [Action] Initialize signal 'l_9'.
+	[Source Lines]
+	367(computer.cpp):   uint32_t l = left ^ bf_ctx_p[0];
+W_BT8105: Possible reference to signal 'r_10' before assignment.
+ [Action] Initialize signal 'r_10'.
+	[Source Lines]
+	368(computer.cpp):   uint32_t r = right;
+W_BT8105: Possible reference to signal 'l_10' before assignment.
+ [Action] Initialize signal 'l_10'.
+	[Source Lines]
+	367(computer.cpp):   uint32_t l = left ^ bf_ctx_p[0];
+W_BT8105: Possible reference to signal 'r_11' before assignment.
+ [Action] Initialize signal 'r_11'.
+	[Source Lines]
+	368(computer.cpp):   uint32_t r = right;
+W_BT8105: Possible reference to signal 'l_11' before assignment.
+ [Action] Initialize signal 'l_11'.
+	[Source Lines]
+	367(computer.cpp):   uint32_t l = left ^ bf_ctx_p[0];
+W_BT8105: Possible reference to signal 'i_31' before assignment.
+ [Action] Initialize signal 'i_31'.
+	[Source Lines]
+	376(computer.cpp):   for (uint32_t i = 1; i <= 16; ++i) {
+W_BT8105: Possible reference to signal 'i211' before assignment.
+ [Action] Initialize signal 'i211'.
+	[Source Lines]
+	448(computer.cpp):   for (uint32_t i = 0; i < 1024; i += 2) {
+W_BT8105: Possible reference to signal 'i_121' before assignment.
+ [Action] Initialize signal 'i_121'.
+	[Source Lines]
+	376(computer.cpp):   for (uint32_t i = 1; i <= 16; ++i) {
+W_BT8105: Possible reference to signal 'i_111' before assignment.
+ [Action] Initialize signal 'i_111'.
+	[Source Lines]
+	376(computer.cpp):   for (uint32_t i = 1; i <= 16; ++i) {
+W_BT8105: Possible reference to signal 'i_101' before assignment.
+ [Action] Initialize signal 'i_101'.
+	[Source Lines]
+	376(computer.cpp):   for (uint32_t i = 1; i <= 16; ++i) {
+W_BT8105: Possible reference to signal 'i_91' before assignment.
+ [Action] Initialize signal 'i_91'.
+	[Source Lines]
+	376(computer.cpp):   for (uint32_t i = 1; i <= 16; ++i) {
+W_BT8105: Possible reference to signal 'i_81' before assignment.
+ [Action] Initialize signal 'i_81'.
+	[Source Lines]
+	376(computer.cpp):   for (uint32_t i = 1; i <= 16; ++i) {
+W_BT8105: Possible reference to signal 'i_71' before assignment.
+ [Action] Initialize signal 'i_71'.
+	[Source Lines]
+	376(computer.cpp):   for (uint32_t i = 1; i <= 16; ++i) {
+W_BT8105: Possible reference to signal 'i_61' before assignment.
+ [Action] Initialize signal 'i_61'.
+	[Source Lines]
+	376(computer.cpp):   for (uint32_t i = 1; i <= 16; ++i) {
+W_BT8105: Possible reference to signal 'i_51' before assignment.
+ [Action] Initialize signal 'i_51'.
+	[Source Lines]
+	376(computer.cpp):   for (uint32_t i = 1; i <= 16; ++i) {
+W_BT8105: Possible reference to signal 'i_41' before assignment.
+ [Action] Initialize signal 'i_41'.
+	[Source Lines]
+	376(computer.cpp):   for (uint32_t i = 1; i <= 16; ++i) {
+W_BT8105: Possible reference to signal 'handled' before assignment.
+ [Action] Initialize signal 'handled'.
+	[Source Lines]
+	814(computer.cpp):       bool handled = false;
+W_BT8105: Possible reference to signal 'i' before assignment.
+ [Action] Initialize signal 'i'.
+	[Source Lines]
+	317(computer.cpp):   for (uint32_t i = 0; i < count; ++i) {
+W_BT8105: Possible reference to signal 'count_1' before assignment.
+ [Action] Initialize signal 'count_1'.
+	[Source Lines]
+	307(computer.cpp): void accel_bf_ctx_write4(uint32_t index, uint32_t count, uint32_t w0,
+W_BT8105: Possible reference to signal 'w0_1' before assignment.
+ [Action] Initialize signal 'w0_1'.
+	[Source Lines]
+	307(computer.cpp): void accel_bf_ctx_write4(uint32_t index, uint32_t count, uint32_t w0,
+W_BT8105: Possible reference to signal 'w1_1' before assignment.
+ [Action] Initialize signal 'w1_1'.
+	[Source Lines]
+	308(computer.cpp):                          uint32_t w1, uint32_t w2, uint32_t w3) {
+W_BT8105: Possible reference to signal 'w2_1' before assignment.
+ [Action] Initialize signal 'w2_1'.
+	[Source Lines]
+	308(computer.cpp):                          uint32_t w1, uint32_t w2, uint32_t w3) {
+W_BT8105: Possible reference to signal 'w3_1' before assignment.
+ [Action] Initialize signal 'w3_1'.
+	[Source Lines]
+	308(computer.cpp):                          uint32_t w1, uint32_t w2, uint32_t w3) {
+W_BT8105: Possible reference to signal 'index_1' before assignment.
+ [Action] Initialize signal 'index_1'.
+	[Source Lines]
+	307(computer.cpp): void accel_bf_ctx_write4(uint32_t index, uint32_t count, uint32_t w0,
+W_BT8105: Possible reference to signal 'r1' before assignment.
+ [Action] Initialize signal 'r1'.
+	[Source Lines]
+	428(computer.cpp):   uint32_t r = 0;
+W_BT8105: Possible reference to signal 'l1' before assignment.
+ [Action] Initialize signal 'l1'.
+	[Source Lines]
+	427(computer.cpp):   uint32_t l = 0;
+I_BT4392: No arithmetic macro functional unit required.
+F_BT6702: It does not support, when 1 stage of pipeline functional unit becomes multi-cycle,.
+ [Action] Clock cycle period should be bigger than 1 stage of delay.
+	[Source Lines]
+	424(computer.cpp):       word = (word << 8) | accel_bf_key_byte(k0, k1, (i * 4 + j) % length);
+I_BT1190: The following ERROR/WARNING/INFO/TIPS exist.
+	 1 fatal error  exist
+	54 warning      exist
+	105 information  exist
+	 1 tips         exist
+	---> SEE computer.err FILE and computer.tips FILE for DETAILS
