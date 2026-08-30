@@ -783,6 +783,7 @@ static inline uint32_t adpcm_full_decode(int32_t input, int32_t current_il) {
   (void)ih;
 #endif
 
+#ifndef ACCEL_ADPCM_FULL_DECODE_DEBUG_SKIP_QMF
   int xd = rl - rh;
   int xs = rl + rh;
   long int xa1 = (long int)xd * full_h[0];
@@ -820,6 +821,9 @@ static inline uint32_t adpcm_full_decode(int32_t input, int32_t current_il) {
   full_dec_accumc[0] = xd;
   full_dec_accumd[0] = xs;
   return ((uint32_t)xout2 << 16) | ((uint32_t)xout1 & 0xffffu);
+#else
+  return (uint32_t)(rl + rh);
+#endif
 }
 #endif
 #endif
