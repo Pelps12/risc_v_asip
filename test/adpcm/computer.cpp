@@ -385,8 +385,9 @@ static inline int32_t accel_adpcm_quantl(int32_t el, int32_t detl) {
 // partial-kernel CI helpers above; they own separate state and expose internal
 // pragma knobs the way AES_FULL exposes R/SB/MC knobs.
 // ============================================================================
-#if defined(ACCEL_ADPCM_FULL_ENCODE) || defined(ACCEL_ADPCM_FULL_ENCODE_HW) ||   \
-    defined(ACCEL_ADPCM_FULL_DECODE) || defined(ACCEL_ADPCM_FULL_DECODE_HW)
+#if (defined(ACCEL_ADPCM_FULL_ENCODE) || defined(ACCEL_ADPCM_FULL_ENCODE_HW) ||   \
+    defined(ACCEL_ADPCM_FULL_DECODE) || defined(ACCEL_ADPCM_FULL_DECODE_HW)) &&  \
+    !defined(ACCEL_ADPCM_FULL_DECODE_DEBUG_GUTTED)
 static const int full_h[24] = {
     12, -44, -44, 212, 48, -624, 128, 1448,
     -840, -3220, 3804, 15504, 15504, 3804, -3220, -840,
@@ -830,6 +831,10 @@ static inline uint32_t adpcm_full_decode(int32_t input, int32_t current_il) {
 #endif
 }
 #endif
+#else
+static inline uint32_t adpcm_full_decode(int32_t input, int32_t current_il) {
+  return (uint32_t)(input + current_il);
+}
 #endif
 
 // ============================================================================
