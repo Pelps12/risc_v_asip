@@ -385,9 +385,8 @@ static inline int32_t accel_adpcm_quantl(int32_t el, int32_t detl) {
 // partial-kernel CI helpers above; they own separate state and expose internal
 // pragma knobs the way AES_FULL exposes R/SB/MC knobs.
 // ============================================================================
-#if (defined(ACCEL_ADPCM_FULL_ENCODE) || defined(ACCEL_ADPCM_FULL_ENCODE_HW) ||   \
-    defined(ACCEL_ADPCM_FULL_DECODE) || defined(ACCEL_ADPCM_FULL_DECODE_HW)) &&  \
-    !defined(ACCEL_ADPCM_FULL_DECODE_DEBUG_GUTTED)
+#if defined(ACCEL_ADPCM_FULL_ENCODE) || defined(ACCEL_ADPCM_FULL_ENCODE_HW) ||   \
+    defined(ACCEL_ADPCM_FULL_DECODE) || defined(ACCEL_ADPCM_FULL_DECODE_HW)
 static const int full_h[24] = {
     12, -44, -44, 212, 48, -624, 128, 1448,
     -840, -3220, 3804, 15504, 15504, 3804, -3220, -840,
@@ -735,40 +734,24 @@ static inline void full_dec_upzero(int dlt, int *dlti, int *bli) {
 }
 
 static inline uint32_t adpcm_full_decode(int32_t input, int32_t current_il) {
-#ifdef ACCEL_ADPCM_FULL_DECODE_DEBUG_GUTTED
-  return (uint32_t)(input + current_il);
-#else
   int ilr = input & 0x3f;
   int ih = input >> 6;
-#if !defined(ACCEL_ADPCM_FULL_DECODE_DEBUG_CHAINLEN) || ACCEL_ADPCM_FULL_DECODE_DEBUG_CHAINLEN >= 1
   int dec_szl = full_dec_filtez(full_dec_del_bpl, full_dec_del_dltx);
-#else
-  int dec_szl = 0;
-#endif
   int dec_spl = full_filtep(full_dec_rlt1, full_dec_al1, full_dec_rlt2, full_dec_al2);
   int dec_sl = dec_spl + dec_szl;
-#if !defined(ACCEL_ADPCM_FULL_DECODE_DEBUG_CHAINLEN) || ACCEL_ADPCM_FULL_DECODE_DEBUG_CHAINLEN >= 2
   int dec_dlt = ((long int)full_dec_detl * full_qq4_code4_table[ilr >> 2]) >> 15;
   int dl = ((long int)full_dec_detl * full_qq6_code6_table[current_il]) >> 15;
   int rl = dl + dec_sl;
   full_dec_nbl = full_logscl(ilr, full_dec_nbl);
   full_dec_detl = full_scalel(full_dec_nbl, 8);
   int dec_plt = dec_dlt + dec_szl;
-#else
-  int rl = dec_sl;
-#endif
-#if !defined(ACCEL_ADPCM_FULL_DECODE_DEBUG_CHAINLEN) || ACCEL_ADPCM_FULL_DECODE_DEBUG_CHAINLEN >= 3
   full_dec_upzero(dec_dlt, full_dec_del_dltx, full_dec_del_bpl);
-#endif
-#if !defined(ACCEL_ADPCM_FULL_DECODE_DEBUG_CHAINLEN) || ACCEL_ADPCM_FULL_DECODE_DEBUG_CHAINLEN >= 4
   full_dec_al2 = full_uppol2(full_dec_al1, full_dec_al2, dec_plt, full_dec_plt1, full_dec_plt2);
   full_dec_al1 = full_uppol1(full_dec_al1, full_dec_al2, dec_plt, full_dec_plt1);
   int dec_rlt = dec_sl + dec_dlt;
   full_dec_rlt2 = full_dec_rlt1; full_dec_rlt1 = dec_rlt;
   full_dec_plt2 = full_dec_plt1; full_dec_plt1 = dec_plt;
-#endif
 
-#ifndef ACCEL_ADPCM_FULL_DECODE_DEBUG_CHAINLEN
   int dec_szh = full_dec_filtez(full_dec_del_bph, full_dec_del_dhx);
   int dec_sph = full_filtep(full_dec_rh1, full_dec_ah1, full_dec_rh2, full_dec_ah2);
   int dec_sh = dec_sph + dec_szh;
@@ -782,12 +765,7 @@ static inline uint32_t adpcm_full_decode(int32_t input, int32_t current_il) {
   int rh = dec_sh + dec_dh;
   full_dec_rh2 = full_dec_rh1; full_dec_rh1 = rh;
   full_dec_ph2 = full_dec_ph1; full_dec_ph1 = dec_ph;
-#else
-  int rh = 0;
-  (void)ih;
-#endif
 
-#ifndef ACCEL_ADPCM_FULL_DECODE_DEBUG_SKIP_QMF
   int xd = rl - rh;
   int xs = rl + rh;
   long int xa1 = (long int)xd * full_h[0];
@@ -825,58 +803,7 @@ static inline uint32_t adpcm_full_decode(int32_t input, int32_t current_il) {
   full_dec_accumc[0] = xd;
   full_dec_accumd[0] = xs;
   return ((uint32_t)xout2 << 16) | ((uint32_t)xout1 & 0xffffu);
-#else
-  return (uint32_t)(rl + rh);
-#endif
-#endif
 }
-#endif
-#else
-#ifdef ACCEL_ADPCM_FULL_DECODE_DEBUG_KEEP_STATICS
-static int full_dec_accumc[11] = {0}, full_dec_accumd[11] = {0};
-static int full_dec_del_bpl[6] = {0}, full_dec_del_dltx[6] = {0};
-static int full_dec_del_bph[6] = {0}, full_dec_del_dhx[6] = {0};
-static int full_dec_detl = 32, full_dec_deth = 8;
-static int full_dec_nbl = 0, full_dec_al1 = 0, full_dec_al2 = 0;
-static int full_dec_plt1 = 0, full_dec_plt2 = 0, full_dec_rlt1 = 0, full_dec_rlt2 = 0;
-static int full_dec_nbh = 0, full_dec_ah1 = 0, full_dec_ah2 = 0;
-static int full_dec_ph1 = 0, full_dec_ph2 = 0, full_dec_rh1 = 0, full_dec_rh2 = 0;
-static inline uint32_t adpcm_full_decode(int32_t input, int32_t current_il) {
-  full_dec_rlt1 = input;
-  full_dec_al1 = current_il;
-  full_dec_accumc[0] = full_dec_del_bpl[0];
-  full_dec_accumd[0] = full_dec_del_bph[0];
-  return (uint32_t)(input + current_il + full_dec_detl + full_dec_deth +
-                     full_dec_nbl + full_dec_al2 + full_dec_plt1 +
-                     full_dec_plt2 + full_dec_rlt2 + full_dec_nbh +
-                     full_dec_ah1 + full_dec_ah2 + full_dec_ph1 +
-                     full_dec_ph2 + full_dec_rh1 + full_dec_rh2 +
-                     full_dec_del_dltx[0] + full_dec_del_dhx[0] +
-                     full_dec_accumc[0] + full_dec_accumd[0]);
-}
-static inline void adpcm_full_decode_reset() {
-  full_dec_detl = 32;
-  full_dec_deth = 8;
-  full_dec_nbl = full_dec_al1 = full_dec_al2 = 0;
-  full_dec_plt1 = full_dec_plt2 = full_dec_rlt1 = full_dec_rlt2 = 0;
-  full_dec_nbh = full_dec_ah1 = full_dec_ah2 = 0;
-  full_dec_ph1 = full_dec_ph2 = full_dec_rh1 = full_dec_rh2 = 0;
-  for (int i = 0; i < 6; i++) {
-    full_dec_del_bpl[i] = 0;
-    full_dec_del_dltx[i] = 0;
-    full_dec_del_bph[i] = 0;
-    full_dec_del_dhx[i] = 0;
-  }
-  for (int i = 0; i < 11; i++) {
-    full_dec_accumc[i] = 0;
-    full_dec_accumd[i] = 0;
-  }
-}
-#else
-static inline uint32_t adpcm_full_decode(int32_t input, int32_t current_il) {
-  return (uint32_t)(input + current_il);
-}
-static inline void adpcm_full_decode_reset() {}
 #endif
 #endif
 
