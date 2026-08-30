@@ -1141,12 +1141,12 @@ bool computer(uint32_t imem_arg[MEM_SIZE],
 #endif
 #endif
       } else if (funct3 == 3 && funct7 == 0) {
-#if defined(ACCEL_ADPCM_FULL_ENCODE) || defined(ACCEL_ADPCM_FULL_ENCODE_HW)
+/*#if defined(ACCEL_ADPCM_FULL_ENCODE) || defined(ACCEL_ADPCM_FULL_ENCODE_HW)
         adpcm_full_encode_reset();
 #endif
 #if defined(ACCEL_ADPCM_FULL_DECODE) || defined(ACCEL_ADPCM_FULL_DECODE_HW)
         adpcm_full_decode_reset();
-#endif
+#endif*/
       } else if (funct3 == 4 && funct7 == 0) {
 #if defined(ACCEL_ADPCM_FILTEP) || defined(ACCEL_ADPCM_FILTEP_HW)
         uint32_t accel_result =
