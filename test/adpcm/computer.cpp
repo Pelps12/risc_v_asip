@@ -832,10 +832,52 @@ static inline uint32_t adpcm_full_decode(int32_t input, int32_t current_il) {
 }
 #endif
 #else
+#ifdef ACCEL_ADPCM_FULL_DECODE_DEBUG_KEEP_STATICS
+static int full_dec_accumc[11] = {0}, full_dec_accumd[11] = {0};
+static int full_dec_del_bpl[6] = {0}, full_dec_del_dltx[6] = {0};
+static int full_dec_del_bph[6] = {0}, full_dec_del_dhx[6] = {0};
+static int full_dec_detl = 32, full_dec_deth = 8;
+static int full_dec_nbl = 0, full_dec_al1 = 0, full_dec_al2 = 0;
+static int full_dec_plt1 = 0, full_dec_plt2 = 0, full_dec_rlt1 = 0, full_dec_rlt2 = 0;
+static int full_dec_nbh = 0, full_dec_ah1 = 0, full_dec_ah2 = 0;
+static int full_dec_ph1 = 0, full_dec_ph2 = 0, full_dec_rh1 = 0, full_dec_rh2 = 0;
+static inline uint32_t adpcm_full_decode(int32_t input, int32_t current_il) {
+  full_dec_rlt1 = input;
+  full_dec_al1 = current_il;
+  full_dec_accumc[0] = full_dec_del_bpl[0];
+  full_dec_accumd[0] = full_dec_del_bph[0];
+  return (uint32_t)(input + current_il + full_dec_detl + full_dec_deth +
+                     full_dec_nbl + full_dec_al2 + full_dec_plt1 +
+                     full_dec_plt2 + full_dec_rlt2 + full_dec_nbh +
+                     full_dec_ah1 + full_dec_ah2 + full_dec_ph1 +
+                     full_dec_ph2 + full_dec_rh1 + full_dec_rh2 +
+                     full_dec_del_dltx[0] + full_dec_del_dhx[0] +
+                     full_dec_accumc[0] + full_dec_accumd[0]);
+}
+static inline void adpcm_full_decode_reset() {
+  full_dec_detl = 32;
+  full_dec_deth = 8;
+  full_dec_nbl = full_dec_al1 = full_dec_al2 = 0;
+  full_dec_plt1 = full_dec_plt2 = full_dec_rlt1 = full_dec_rlt2 = 0;
+  full_dec_nbh = full_dec_ah1 = full_dec_ah2 = 0;
+  full_dec_ph1 = full_dec_ph2 = full_dec_rh1 = full_dec_rh2 = 0;
+  for (int i = 0; i < 6; i++) {
+    full_dec_del_bpl[i] = 0;
+    full_dec_del_dltx[i] = 0;
+    full_dec_del_bph[i] = 0;
+    full_dec_del_dhx[i] = 0;
+  }
+  for (int i = 0; i < 11; i++) {
+    full_dec_accumc[i] = 0;
+    full_dec_accumd[i] = 0;
+  }
+}
+#else
 static inline uint32_t adpcm_full_decode(int32_t input, int32_t current_il) {
   return (uint32_t)(input + current_il);
 }
 static inline void adpcm_full_decode_reset() {}
+#endif
 #endif
 
 // ============================================================================
