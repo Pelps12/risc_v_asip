@@ -835,6 +835,7 @@ static inline uint32_t adpcm_full_decode(int32_t input, int32_t current_il) {
 static inline uint32_t adpcm_full_decode(int32_t input, int32_t current_il) {
   return (uint32_t)(input + current_il);
 }
+static inline void adpcm_full_decode_reset() {}
 #endif
 
 // ============================================================================
