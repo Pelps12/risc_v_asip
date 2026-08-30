@@ -739,19 +739,28 @@ static inline uint32_t adpcm_full_decode(int32_t input, int32_t current_il) {
   int dec_szl = full_dec_filtez(full_dec_del_bpl, full_dec_del_dltx);
   int dec_spl = full_filtep(full_dec_rlt1, full_dec_al1, full_dec_rlt2, full_dec_al2);
   int dec_sl = dec_spl + dec_szl;
+#if !defined(ACCEL_ADPCM_FULL_DECODE_DEBUG_CHAINLEN) || ACCEL_ADPCM_FULL_DECODE_DEBUG_CHAINLEN >= 2
   int dec_dlt = ((long int)full_dec_detl * full_qq4_code4_table[ilr >> 2]) >> 15;
   int dl = ((long int)full_dec_detl * full_qq6_code6_table[current_il]) >> 15;
   int rl = dl + dec_sl;
   full_dec_nbl = full_logscl(ilr, full_dec_nbl);
   full_dec_detl = full_scalel(full_dec_nbl, 8);
   int dec_plt = dec_dlt + dec_szl;
+#else
+  int rl = dec_sl;
+#endif
+#if !defined(ACCEL_ADPCM_FULL_DECODE_DEBUG_CHAINLEN) || ACCEL_ADPCM_FULL_DECODE_DEBUG_CHAINLEN >= 3
   full_dec_upzero(dec_dlt, full_dec_del_dltx, full_dec_del_bpl);
+#endif
+#if !defined(ACCEL_ADPCM_FULL_DECODE_DEBUG_CHAINLEN) || ACCEL_ADPCM_FULL_DECODE_DEBUG_CHAINLEN >= 4
   full_dec_al2 = full_uppol2(full_dec_al1, full_dec_al2, dec_plt, full_dec_plt1, full_dec_plt2);
   full_dec_al1 = full_uppol1(full_dec_al1, full_dec_al2, dec_plt, full_dec_plt1);
   int dec_rlt = dec_sl + dec_dlt;
   full_dec_rlt2 = full_dec_rlt1; full_dec_rlt1 = dec_rlt;
   full_dec_plt2 = full_dec_plt1; full_dec_plt1 = dec_plt;
+#endif
 
+#ifndef ACCEL_ADPCM_FULL_DECODE_DEBUG_CHAINLEN
   int dec_szh = full_dec_filtez(full_dec_del_bph, full_dec_del_dhx);
   int dec_sph = full_filtep(full_dec_rh1, full_dec_ah1, full_dec_rh2, full_dec_ah2);
   int dec_sh = dec_sph + dec_szh;
@@ -765,6 +774,10 @@ static inline uint32_t adpcm_full_decode(int32_t input, int32_t current_il) {
   int rh = dec_sh + dec_dh;
   full_dec_rh2 = full_dec_rh1; full_dec_rh1 = rh;
   full_dec_ph2 = full_dec_ph1; full_dec_ph1 = dec_ph;
+#else
+  int rh = 0;
+  (void)ih;
+#endif
 
   int xd = rl - rh;
   int xs = rl + rh;
