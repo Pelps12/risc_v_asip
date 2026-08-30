@@ -734,6 +734,9 @@ static inline void full_dec_upzero(int dlt, int *dlti, int *bli) {
 }
 
 static inline uint32_t adpcm_full_decode(int32_t input, int32_t current_il) {
+#ifdef ACCEL_ADPCM_FULL_DECODE_DEBUG_GUTTED
+  return (uint32_t)(input + current_il);
+#else
   int ilr = input & 0x3f;
   int ih = input >> 6;
 #if !defined(ACCEL_ADPCM_FULL_DECODE_DEBUG_CHAINLEN) || ACCEL_ADPCM_FULL_DECODE_DEBUG_CHAINLEN >= 1
@@ -823,6 +826,7 @@ static inline uint32_t adpcm_full_decode(int32_t input, int32_t current_il) {
   return ((uint32_t)xout2 << 16) | ((uint32_t)xout1 & 0xffffu);
 #else
   return (uint32_t)(rl + rh);
+#endif
 #endif
 }
 #endif
