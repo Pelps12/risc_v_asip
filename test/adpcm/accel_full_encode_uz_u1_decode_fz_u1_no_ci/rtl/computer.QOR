@@ -275,7 +275,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : L2, L3, L4, L5
-        Line          : computer.cpp:829
+        Line          : computer.cpp:868
     L2:
         Type          : S
         Latency       : 1 * 6
@@ -285,7 +285,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:539
+        Line          : computer.cpp:557
     L3:
         Type          : S
         Latency       : 1 * 6
@@ -295,7 +295,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:550
+        Line          : computer.cpp:568
     L4:
         Type          : S
         Latency       : 1 * 5
@@ -305,7 +305,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:660
+        Line          : computer.cpp:699
     L5:
         Type          : S
         Latency       : (1 + {{L8, 2 + L6}, 2 + L7}) * N5 + (1 + {0, L8})
@@ -325,7 +325,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:539
+        Line          : computer.cpp:557
     L7:
         Type          : S
         Latency       : 1 * 6
@@ -335,7 +335,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:550
+        Line          : computer.cpp:568
     L8:
         Type          : S
         Latency       : 1 * 5
@@ -345,7 +345,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:660
+        Line          : computer.cpp:699
 
 =======
 ; FSM ;
