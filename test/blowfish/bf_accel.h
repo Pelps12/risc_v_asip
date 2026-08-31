@@ -2,10 +2,10 @@
 #define BLOWFISH_ACCEL_H
 
 /*
- * Blowfish custom-instruction wrappers.  All operands are implicit fixed GPRs
- * and the instruction itself has no hidden DMEM access.  The surrounding C
- * code performs ordinary loads/stores and supplies the memory clobber for
- * context transfers only.
+ * Blowfish custom-instruction wrappers.  Operands use implicit fixed GPRs.
+ * Register-bound instructions leave DMEM traffic to scalar code.  BF_KEY_MEM
+ * and BF_CFB_MEM receive architectural DMEM addresses and therefore declare a
+ * memory clobber.
  */
 
 #if defined(ACCEL_BF_F) || defined(ACCEL_BF_F_HW) || \
@@ -14,6 +14,8 @@
     defined(ACCEL_BF_KEY_EXPAND) || defined(ACCEL_BF_KEY_EXPAND_HW) || \
     defined(ACCEL_BF_CFB_BLOCK) || defined(ACCEL_BF_CFB_BLOCK_HW) || \
     defined(ACCEL_BF_CFB40) || defined(ACCEL_BF_CFB40_HW) || \
+    defined(ACCEL_BF_KEY_MEM) || defined(ACCEL_BF_KEY_MEM_HW) || \
+    defined(ACCEL_BF_CFB_MEM) || defined(ACCEL_BF_CFB_MEM_HW) || \
     defined(ACCEL_BF_PHASE) || defined(ACCEL_BF_PHASE_HW) || \
     defined(ACCEL_BF_PHASE40) || defined(ACCEL_BF_PHASE40_HW)
 
@@ -112,6 +114,37 @@ static inline void bf_accel_key_expand(BF_LONG key0, BF_LONG key1,
   register unsigned t0 asm("t0") = length;
   asm volatile(".insn r 0x0B, 4, 0, x0, x0, x0"
                : "+r"(a0), "+r"(a1), "+r"(t0));
+}
+
+static inline void bf_accel_key_mem(const BF_LONG *initial_p,
+                                    const BF_LONG *initial_s,
+                                    const unsigned char *key,
+                                    unsigned length) {
+  /* BF_KEY_MEM reads initial P/S and key bytes from DMEM.  The expanded key
+   * remains in accelerator-owned context. */
+  register const BF_LONG *a0 asm("a0") = initial_p;
+  register const BF_LONG *a1 asm("a1") = initial_s;
+  register const unsigned char *a2 asm("a2") = key;
+  register unsigned a3 asm("a3") = length;
+  asm volatile(".insn r 0x0B, 7, 0, x0, x0, x0"
+               : "+r"(a0), "+r"(a1), "+r"(a2), "+r"(a3)
+               :
+               : "memory");
+}
+
+static inline void bf_accel_cfb_mem(const unsigned char *in,
+                                    unsigned char *out,
+                                    unsigned char *ivec,
+                                    unsigned length) {
+  /* BF_CFB_MEM encrypts complete 64-bit CFB blocks using resident P/S. */
+  register const unsigned char *a0 asm("a0") = in;
+  register unsigned char *a1 asm("a1") = out;
+  register unsigned char *a2 asm("a2") = ivec;
+  register unsigned a3 asm("a3") = length;
+  asm volatile(".insn r 0x0B, 7, 1, x0, x0, x0"
+               : "+r"(a0), "+r"(a1), "+r"(a2), "+r"(a3)
+               :
+               : "memory");
 }
 
 static inline void bf_accel_cfb_block(BF_LONG *iv0, BF_LONG *iv1,

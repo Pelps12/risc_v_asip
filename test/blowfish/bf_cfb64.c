@@ -97,6 +97,35 @@ BF_cfb64_encrypt (in, out, length, ivec, num, encrypt)
   n = *num;
   l = length;
   iv = (unsigned char *) ivec;
+#if defined(ACCEL_BF_CFB_MEM) && defined(__riscv)
+#if !defined(ACCEL_BF_CFB_MEM_N5200)
+  if (encrypt && n == 0 && length > 0
+#if defined(ACCEL_BF_CFB_MEM_N8)
+      && (length & 7) == 0
+#else
+      && length == 40
+#endif
+      )
+    {
+#if defined(ACCEL_BF_CFB_MEM_N8)
+      long remaining = length;
+      while (remaining > 0)
+        {
+          bf_accel_cfb_mem (in, out, ivec, 8);
+          in += 8;
+          out += 8;
+          remaining -= 8;
+        }
+#else
+      /* N40 uses the benchmark's existing 40-byte call.  N5200 reaches the
+       * same interface through the whole-workload path in blowfish_main. */
+      bf_accel_cfb_mem (in, out, ivec, length);
+#endif
+      *num = 0;
+      return;
+    }
+#endif
+#endif
 #if (defined(ACCEL_BF_CFB40) || defined(ACCEL_BF_PHASE40)) && defined(__riscv)
   if (encrypt && n == 0 && length == 40)
     {

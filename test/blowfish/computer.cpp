@@ -246,12 +246,14 @@ void accel_bf_round(uint32_t &x, uint32_t &y, uint32_t p, uint32_t s0,
     defined(ACCEL_BF_KEY_EXPAND) || defined(ACCEL_BF_KEY_EXPAND_HW) || \
     defined(ACCEL_BF_CFB_BLOCK) || defined(ACCEL_BF_CFB_BLOCK_HW) || \
     defined(ACCEL_BF_CFB40) || defined(ACCEL_BF_CFB40_HW) || \
+    defined(ACCEL_BF_KEY_MEM) || defined(ACCEL_BF_KEY_MEM_HW) || \
+    defined(ACCEL_BF_CFB_MEM) || defined(ACCEL_BF_CFB_MEM_HW) || \
     defined(ACCEL_BF_PHASE) || defined(ACCEL_BF_PHASE_HW) || \
     defined(ACCEL_BF_PHASE40) || defined(ACCEL_BF_PHASE40_HW)
 
-// The context is accelerator-owned state.  Software can only access it through
-// the four-word transfer instructions; compute instructions never receive a
-// DMEM pointer.
+// The context is accelerator-owned state. Register-bound configurations use
+// the four-word transfer instructions. Memory-bound configurations import or
+// consume data through architectural DMEM addresses.
 uint32_t bf_ctx_p[18];
 uint32_t bf_ctx_s0[256];
 uint32_t bf_ctx_s1[256];
@@ -357,6 +359,8 @@ inline uint32_t accel_bf_ctx_f(uint32_t x) {
     defined(ACCEL_BF_KEY_EXPAND) || defined(ACCEL_BF_KEY_EXPAND_HW) || \
     defined(ACCEL_BF_CFB_BLOCK) || defined(ACCEL_BF_CFB_BLOCK_HW) || \
     defined(ACCEL_BF_CFB40) || defined(ACCEL_BF_CFB40_HW) || \
+    defined(ACCEL_BF_KEY_MEM) || defined(ACCEL_BF_KEY_MEM_HW) || \
+    defined(ACCEL_BF_CFB_MEM) || defined(ACCEL_BF_CFB_MEM_HW) || \
     defined(ACCEL_BF_PHASE) || defined(ACCEL_BF_PHASE_HW) || \
     defined(ACCEL_BF_PHASE40) || defined(ACCEL_BF_PHASE40_HW)
 void bf_ctx_encrypt(uint32_t &left, uint32_t &right) {
@@ -390,7 +394,57 @@ void accel_bf_encrypt(uint32_t &left, uint32_t &right) {
 }
 #endif
 
+#if defined(ACCEL_BF_KEY_MEM) || defined(ACCEL_BF_KEY_MEM_HW) || \
+    defined(ACCEL_BF_CFB_MEM) || defined(ACCEL_BF_CFB_MEM_HW)
+#if defined(ACCEL_BF_CFB_MEM_N8)
+const uint32_t BF_MEM_CFB_BYTES = 8;
+#elif defined(ACCEL_BF_CFB_MEM_N5200)
+const uint32_t BF_MEM_CFB_BYTES = 5200;
+#else
+const uint32_t BF_MEM_CFB_BYTES = 40;
+#endif
+
+inline bool bf_mem_range_valid(uint32_t addr, uint32_t size) {
+  const uint32_t dmem_bytes = MEM_SIZE * 4u;
+  if (addr < DMEM_BASE || size > dmem_bytes)
+    return false;
+  uint32_t offset = addr - DMEM_BASE;
+  return offset <= dmem_bytes - size;
+}
+
+inline uint32_t bf_mem_bswap32(uint32_t value) {
+  return ((value & 0x000000ffu) << 24) |
+         ((value & 0x0000ff00u) << 8) |
+         ((value & 0x00ff0000u) >> 8) |
+         ((value & 0xff000000u) >> 24);
+}
+
+inline uint32_t bf_mem_read_be32(uint32_t dmem_arg[], uint32_t addr) {
+#if defined(ACCEL_BF_CFB_MEM_BYTE)
+  return ((uint32_t)mem_read_byte(dmem_arg, addr) << 24) |
+         ((uint32_t)mem_read_byte(dmem_arg, addr + 1) << 16) |
+         ((uint32_t)mem_read_byte(dmem_arg, addr + 2) << 8) |
+         (uint32_t)mem_read_byte(dmem_arg, addr + 3);
+#else
+  return bf_mem_bswap32(mem_read_word(dmem_arg, addr));
+#endif
+}
+
+inline void bf_mem_write_be32(uint32_t dmem_arg[], uint32_t addr,
+                              uint32_t value) {
+#if defined(ACCEL_BF_CFB_MEM_BYTE)
+  mem_write_byte(dmem_arg, addr, (value >> 24) & 0xffu);
+  mem_write_byte(dmem_arg, addr + 1, (value >> 16) & 0xffu);
+  mem_write_byte(dmem_arg, addr + 2, (value >> 8) & 0xffu);
+  mem_write_byte(dmem_arg, addr + 3, value & 0xffu);
+#else
+  mem_write_word(dmem_arg, addr, bf_mem_bswap32(value));
+#endif
+}
+#endif
+
 #if defined(ACCEL_BF_KEY_EXPAND) || defined(ACCEL_BF_KEY_EXPAND_HW) || \
+    defined(ACCEL_BF_KEY_MEM) || defined(ACCEL_BF_KEY_MEM_HW) || \
     defined(ACCEL_BF_PHASE) || defined(ACCEL_BF_PHASE_HW) || \
     defined(ACCEL_BF_PHASE40) || defined(ACCEL_BF_PHASE40_HW)
 inline uint32_t accel_bf_key_byte(uint32_t k0, uint32_t k1, uint32_t index) {
@@ -399,38 +453,14 @@ inline uint32_t accel_bf_key_byte(uint32_t k0, uint32_t k1, uint32_t index) {
   return (k1 >> ((7u - index) << 3)) & 0xffu;
 }
 
-void accel_bf_key_expand(uint32_t k0, uint32_t k1, uint32_t length) {
-  if (!bf_ctx_valid || length == 0 || length > 8) {
-    bf_ctx_fault = true;
-    return;
-  }
-#if defined(ACCEL_BF_KEY_EXPAND_U4)
-// Cyber unroll_times=4
-#elif defined(ACCEL_BF_KEY_EXPAND_U2)
-// Cyber unroll_times=2
-#elif defined(ACCEL_BF_KEY_EXPAND_U1)
-// Cyber unroll_times=1
-#endif
-  for (uint32_t i = 0; i < 18; ++i) {
-    uint32_t word = 0;
-#if defined(ACCEL_BF_KEY_EXPAND_U4)
-// Cyber unroll_times=4
-#elif defined(ACCEL_BF_KEY_EXPAND_U2)
-// Cyber unroll_times=2
-#elif defined(ACCEL_BF_KEY_EXPAND_U1)
-// Cyber unroll_times=1
-#endif
-    for (uint32_t j = 0; j < 4; ++j)
-      word = (word << 8) | accel_bf_key_byte(k0, k1, (i * 4 + j) % length);
-    bf_ctx_p[i] ^= word;
-  }
+void accel_bf_expand_context() {
   uint32_t l = 0;
   uint32_t r = 0;
-#if defined(ACCEL_BF_KEY_EXPAND_U4)
+#if defined(ACCEL_BF_KEY_EXPAND_U4) || defined(ACCEL_BF_KEY_MEM_U4)
 // Cyber unroll_times=4
-#elif defined(ACCEL_BF_KEY_EXPAND_U2)
+#elif defined(ACCEL_BF_KEY_EXPAND_U2) || defined(ACCEL_BF_KEY_MEM_U2)
 // Cyber unroll_times=2
-#elif defined(ACCEL_BF_KEY_EXPAND_U1)
+#elif defined(ACCEL_BF_KEY_EXPAND_U1) || defined(ACCEL_BF_KEY_MEM_U1)
 // Cyber unroll_times=1
 #endif
   for (uint32_t i = 0; i < 18; i += 2) {
@@ -438,11 +468,11 @@ void accel_bf_key_expand(uint32_t k0, uint32_t k1, uint32_t length) {
     bf_ctx_p[i] = l;
     bf_ctx_p[i + 1] = r;
   }
-#if defined(ACCEL_BF_KEY_EXPAND_U4)
+#if defined(ACCEL_BF_KEY_EXPAND_U4) || defined(ACCEL_BF_KEY_MEM_U4)
 // Cyber unroll_times=4
-#elif defined(ACCEL_BF_KEY_EXPAND_U2)
+#elif defined(ACCEL_BF_KEY_EXPAND_U2) || defined(ACCEL_BF_KEY_MEM_U2)
 // Cyber unroll_times=2
-#elif defined(ACCEL_BF_KEY_EXPAND_U1)
+#elif defined(ACCEL_BF_KEY_EXPAND_U1) || defined(ACCEL_BF_KEY_MEM_U1)
 // Cyber unroll_times=1
 #endif
   for (uint32_t i = 0; i < 1024; i += 2) {
@@ -451,6 +481,85 @@ void accel_bf_key_expand(uint32_t k0, uint32_t k1, uint32_t length) {
     bf_ctx_write_word(18 + i + 1, r);
   }
 }
+
+void accel_bf_key_expand(uint32_t k0, uint32_t k1, uint32_t length) {
+  if (!bf_ctx_valid || length == 0 || length > 8) {
+    bf_ctx_fault = true;
+    return;
+  }
+#if defined(ACCEL_BF_KEY_EXPAND_U4) || defined(ACCEL_BF_KEY_MEM_U4)
+// Cyber unroll_times=4
+#elif defined(ACCEL_BF_KEY_EXPAND_U2) || defined(ACCEL_BF_KEY_MEM_U2)
+// Cyber unroll_times=2
+#elif defined(ACCEL_BF_KEY_EXPAND_U1) || defined(ACCEL_BF_KEY_MEM_U1)
+// Cyber unroll_times=1
+#endif
+  uint32_t key_index = 0;
+  for (uint32_t i = 0; i < 18; ++i) {
+    uint32_t word = 0;
+#if defined(ACCEL_BF_KEY_EXPAND_U4) || defined(ACCEL_BF_KEY_MEM_U4)
+// Cyber unroll_times=4
+#elif defined(ACCEL_BF_KEY_EXPAND_U2) || defined(ACCEL_BF_KEY_MEM_U2)
+// Cyber unroll_times=2
+#elif defined(ACCEL_BF_KEY_EXPAND_U1) || defined(ACCEL_BF_KEY_MEM_U1)
+// Cyber unroll_times=1
+#endif
+    for (uint32_t j = 0; j < 4; ++j) {
+      word = (word << 8) | accel_bf_key_byte(k0, k1, key_index);
+      ++key_index;
+      if (key_index == length)
+        key_index = 0;
+    }
+    bf_ctx_p[i] ^= word;
+  }
+  accel_bf_expand_context();
+}
+
+#if defined(ACCEL_BF_KEY_MEM) || defined(ACCEL_BF_KEY_MEM_HW)
+void accel_bf_key_mem(uint32_t dmem_arg[], uint32_t initial_p_addr,
+                      uint32_t initial_s_addr, uint32_t key_addr,
+                      uint32_t length) {
+  bf_ctx_valid = false;
+  bf_ctx_fault = false;
+  bf_ctx_load_next = 0;
+  if (length == 0 || length > 72 || (initial_p_addr & 3u) != 0 ||
+      (initial_s_addr & 3u) != 0 ||
+      !bf_mem_range_valid(initial_p_addr, 18u * 4u) ||
+      !bf_mem_range_valid(initial_s_addr, 1024u * 4u) ||
+      !bf_mem_range_valid(key_addr, length)) {
+    bf_ctx_fault = true;
+    return;
+  }
+
+  for (uint32_t i = 0; i < 18; ++i)
+    bf_ctx_p[i] = mem_read_word(dmem_arg, initial_p_addr + i * 4u);
+  for (uint32_t i = 0; i < 1024; ++i)
+    bf_ctx_write_word(18u + i,
+                      mem_read_word(dmem_arg, initial_s_addr + i * 4u));
+
+  bf_ctx_load_next = 1042;
+  bf_ctx_valid = true;
+  uint32_t key_index = 0;
+#if defined(ACCEL_BF_KEY_MEM_U4)
+// Cyber unroll_times=4
+#elif defined(ACCEL_BF_KEY_MEM_U2)
+// Cyber unroll_times=2
+#elif defined(ACCEL_BF_KEY_MEM_U1)
+// Cyber unroll_times=1
+#endif
+  for (uint32_t i = 0; i < 18; ++i) {
+    uint32_t word = 0;
+    for (uint32_t j = 0; j < 4; ++j) {
+      word = (word << 8) | mem_read_byte(dmem_arg, key_addr + key_index);
+      ++key_index;
+      if (key_index == length)
+        key_index = 0;
+    }
+    bf_ctx_p[i] ^= word;
+  }
+  accel_bf_expand_context();
+}
+#endif
 #endif
 
 #if defined(ACCEL_BF_CFB_BLOCK) || defined(ACCEL_BF_CFB_BLOCK_HW) || \
@@ -494,6 +603,60 @@ void accel_bf_cfb40(uint32_t &iv0, uint32_t &iv1, uint32_t &w0,
   }
   w0 = words[0]; w1 = words[1]; w2 = words[2]; w3 = words[3]; w4 = words[4];
   w5 = words[5]; w6 = words[6]; w7 = words[7]; w8 = words[8]; w9 = words[9];
+}
+#endif
+
+#if defined(ACCEL_BF_CFB_MEM) || defined(ACCEL_BF_CFB_MEM_HW)
+inline bool bf_mem_ranges_overlap(uint32_t a, uint32_t a_size, uint32_t b,
+                                  uint32_t b_size) {
+  return a < b + b_size && b < a + a_size;
+}
+
+void accel_bf_cfb_mem(uint32_t dmem_arg[], uint32_t in_addr,
+                      uint32_t out_addr, uint32_t iv_addr, uint32_t length) {
+  bool data_alias_ok = in_addr == out_addr ||
+                       !bf_mem_ranges_overlap(in_addr, length, out_addr,
+                                              length);
+  bool iv_alias_ok = !bf_mem_ranges_overlap(iv_addr, 8, in_addr, length) &&
+                     !bf_mem_ranges_overlap(iv_addr, 8, out_addr, length);
+#if !defined(ACCEL_BF_CFB_MEM_BYTE)
+  bool alignment_ok = ((in_addr | out_addr | iv_addr) & 3u) == 0;
+#else
+  bool alignment_ok = true;
+#endif
+  if (!bf_ctx_valid || length != BF_MEM_CFB_BYTES || !alignment_ok ||
+      !data_alias_ok || !iv_alias_ok ||
+      !bf_mem_range_valid(in_addr, length) ||
+      !bf_mem_range_valid(out_addr, length) ||
+      !bf_mem_range_valid(iv_addr, 8)) {
+    bf_ctx_fault = true;
+    return;
+  }
+
+  uint32_t iv0 = bf_mem_read_be32(dmem_arg, iv_addr);
+  uint32_t iv1 = bf_mem_read_be32(dmem_arg, iv_addr + 4);
+#if defined(ACCEL_BF_CFB_MEM_U5)
+// Cyber unroll_times=5
+#elif defined(ACCEL_BF_CFB_MEM_U2)
+// Cyber unroll_times=2
+#elif defined(ACCEL_BF_CFB_MEM_U1)
+// Cyber unroll_times=1
+#endif
+  for (uint32_t offset = 0; offset < BF_MEM_CFB_BYTES; offset += 8) {
+    uint32_t data0 = bf_mem_read_be32(dmem_arg, in_addr + offset);
+    uint32_t data1 = bf_mem_read_be32(dmem_arg, in_addr + offset + 4);
+    uint32_t stream0 = iv0;
+    uint32_t stream1 = iv1;
+    bf_ctx_encrypt(stream0, stream1);
+    data0 ^= stream0;
+    data1 ^= stream1;
+    bf_mem_write_be32(dmem_arg, out_addr + offset, data0);
+    bf_mem_write_be32(dmem_arg, out_addr + offset + 4, data1);
+    iv0 = data0;
+    iv1 = data1;
+  }
+  bf_mem_write_be32(dmem_arg, iv_addr, iv0);
+  bf_mem_write_be32(dmem_arg, iv_addr + 4, iv1);
 }
 #endif
 
@@ -807,9 +970,11 @@ bool computer(uint32_t imem_arg[MEM_SIZE]/* Cyber array=ROM */,
 #if defined(ACCEL_BF_F) || defined(ACCEL_BF_ROUND) || \
     defined(ACCEL_BF_ENCRYPT) || defined(ACCEL_BF_KEY_EXPAND) || \
     defined(ACCEL_BF_CFB_BLOCK) || defined(ACCEL_BF_CFB40) || \
+    defined(ACCEL_BF_KEY_MEM) || defined(ACCEL_BF_CFB_MEM) || \
     defined(ACCEL_BF_PHASE) || defined(ACCEL_BF_PHASE40)
     // Custom opcode 0x0B uses the funct3/funct7 map in acceleration_plan.md.
-    // All data operands are implicit GPRs; compute operations do not access DMEM.
+    // Operands use implicit GPRs. The funct3=7 operations interpret them as
+    // architectural DMEM addresses and block the processor until completion.
     case 0x0B: {
       bool handled = false;
 #if defined(ACCEL_BF_F)
@@ -851,6 +1016,18 @@ bool computer(uint32_t imem_arg[MEM_SIZE]/* Cyber array=ROM */,
         handled = true;
       }
 #endif
+#if defined(ACCEL_BF_KEY_MEM)
+      if (!handled && funct3 == 7 && funct7 == 0) {
+        accel_bf_key_mem(dmem_arg, regs[10], regs[11], regs[12], regs[13]);
+        handled = true;
+      }
+#endif
+#if defined(ACCEL_BF_CFB_MEM)
+      if (!handled && funct3 == 7 && funct7 == 1) {
+        accel_bf_cfb_mem(dmem_arg, regs[10], regs[11], regs[12], regs[13]);
+        handled = true;
+      }
+#endif
 #if defined(ACCEL_BF_PHASE)
       if (!handled && funct3 == 4 && funct7 == 0) {
         accel_bf_key_expand(regs[10], regs[11], regs[5]);
@@ -875,6 +1052,7 @@ bool computer(uint32_t imem_arg[MEM_SIZE]/* Cyber array=ROM */,
 #endif
 #if defined(ACCEL_BF_ENCRYPT) || defined(ACCEL_BF_KEY_EXPAND) || \
     defined(ACCEL_BF_CFB_BLOCK) || defined(ACCEL_BF_CFB40) || \
+    defined(ACCEL_BF_KEY_MEM) || defined(ACCEL_BF_CFB_MEM) || \
     defined(ACCEL_BF_PHASE) || defined(ACCEL_BF_PHASE40)
       if (!handled && funct3 == 2 && funct7 == 0) {
         accel_bf_ctx_begin();
@@ -904,6 +1082,7 @@ bool computer(uint32_t imem_arg[MEM_SIZE]/* Cyber array=ROM */,
       }
 #if defined(ACCEL_BF_ENCRYPT) || defined(ACCEL_BF_KEY_EXPAND) || \
     defined(ACCEL_BF_CFB_BLOCK) || defined(ACCEL_BF_CFB40) || \
+    defined(ACCEL_BF_KEY_MEM) || defined(ACCEL_BF_CFB_MEM) || \
     defined(ACCEL_BF_PHASE) || defined(ACCEL_BF_PHASE40)
       if (bf_ctx_fault)
         halt = true;

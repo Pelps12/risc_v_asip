@@ -86,7 +86,7 @@ TOTAL="${#VARIANTS[@]}"
 echo "=== rtl_batch: ${APP} | ${TOTAL} variants | jobs=${JOBS} ==="
 [[ "$DRY_RUN" -eq 1 ]] && echo "(dry-run — nothing will run)"
 if [[ "$CLEAN_ISS_RPT" -eq 1 ]]; then
-    echo "ISS reports will be deleted after each confirmed RTL/ISS pass."
+    echo "ISS reports will be deleted after each RTL/ISS comparison."
     echo "Parallel streaming uses per-variant ISS simulator executables."
 fi
 echo ""
@@ -198,7 +198,10 @@ run_variant() {
     # Remove obj_dir to reclaim disk space (binary not needed after sim)
     rm -rf "$obj_dir"
     rm -f "$sim_exec"
-    if [[ "$CLEAN_ISS_RPT" -eq 1 && "$status" = "OK" ]]; then
+    # The compact batch log and sim_rtl.rpt retain the final x10 values needed
+    # to diagnose a mismatch. Keep the multi-hundred-MiB ISS trace only when
+    # the caller explicitly requests it, regardless of pass/fail status.
+    if [[ "$CLEAN_ISS_RPT" -eq 1 ]]; then
         rm -f "$iss_rpt"
     fi
 

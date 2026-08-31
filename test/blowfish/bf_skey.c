@@ -139,12 +139,25 @@ BF_set_key (int len, unsigned char *data)
   BF_LONG *p, ri, in[2];
   unsigned char *d, *end;
 
+  if (len > ((BF_ROUNDS + 2) * 4))
+    len = (BF_ROUNDS + 2) * 4;
+
+#if defined(ACCEL_BF_KEY_MEM) && defined(__riscv)
+  /* BF_KEY_MEM owns initialization, key folding, and expansion.  Initial
+   * constants and key bytes are read directly from architectural DMEM. */
+  bf_accel_key_mem (bf_init_P, bf_init_S, data, len);
+#if !defined(ACCEL_BF_ENCRYPT) && !defined(ACCEL_BF_CFB_BLOCK) && \
+    !defined(ACCEL_BF_CFB40) && !defined(ACCEL_BF_CFB_MEM) && \
+    !defined(ACCEL_BF_PHASE) && !defined(ACCEL_BF_PHASE40)
+  /* A following scalar/fine-grained consumer observes P/S in DMEM. */
+  bf_accel_export_context ();
+#endif
+  return;
+#endif
+
   local_memcpy (key_P, bf_init_P, BF_ROUNDS + 2);
   local_memcpy (key_S, bf_init_S, 4 * 256);
   p = key_P;
-
-  if (len > ((BF_ROUNDS + 2) * 4))
-    len = (BF_ROUNDS + 2) * 4;
 
   d = data;
   end = &(data[len]);
@@ -230,7 +243,8 @@ BF_set_key (int len, unsigned char *data)
       p[i] = in[0];
       p[i + 1] = in[1];
     }
-#if (defined(ACCEL_BF_CFB_BLOCK) || defined(ACCEL_BF_CFB40)) && defined(__riscv)
+#if (defined(ACCEL_BF_CFB_BLOCK) || defined(ACCEL_BF_CFB40) || \
+     defined(ACCEL_BF_CFB_MEM)) && defined(__riscv)
   bf_accel_load_context ();
 #endif
 #endif

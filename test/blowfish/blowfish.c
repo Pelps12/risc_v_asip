@@ -89,7 +89,7 @@
 +--------------------------------------------------------------------------+
 */
 #define KEYSIZE 5200
-const unsigned char in_key[KEYSIZE] = {
+const unsigned char in_key[KEYSIZE] __attribute__((aligned(4))) = {
   75, 117, 114, 116, 86, 111, 110, 110, 101, 103, 117, 116, 115, 67, 111, 109,
   109, 101, 110, 99, 101, 109, 101, 110, 116, 65, 100, 100, 114, 101, 115,
   115, 97, 116, 77, 73, 84, 76, 97, 100,
@@ -815,10 +815,14 @@ const unsigned char out_key[KEYSIZE] = {
 int
 blowfish_main ()
 {
-  unsigned char ukey[8];
-  unsigned char indata[N];
-  unsigned char outdata[N];
-  unsigned char ivec[8];
+  unsigned char ukey[8] __attribute__((aligned(4)));
+  unsigned char indata[N] __attribute__((aligned(4)));
+  unsigned char outdata[N] __attribute__((aligned(4)));
+  unsigned char ivec[8] __attribute__((aligned(4)));
+#if defined(ACCEL_BF_CFB_MEM) && defined(ACCEL_BF_CFB_MEM_N5200) && \
+    defined(__riscv)
+  static unsigned char stream_out[KEYSIZE] __attribute__((aligned(4)));
+#endif
   int num;
   int i, j, k, l;
   int encordec;
@@ -835,6 +839,15 @@ blowfish_main ()
       ivec[i] = 0;
     }
   BF_set_key (8, ukey);
+#if defined(ACCEL_BF_CFB_MEM) && defined(ACCEL_BF_CFB_MEM_N5200) && \
+    defined(__riscv)
+  /* Whole-workload point: one memory-facing instruction consumes the
+   * contiguous fixture. Expected-output checking remains scalar. */
+  bf_accel_cfb_mem (in_key, stream_out, ivec, KEYSIZE);
+  for (j = 0; j < KEYSIZE; j++)
+    check += (stream_out[j] != out_key[j]);
+  return check;
+#endif
   i = 0;
   while (k < KEYSIZE)
     {
