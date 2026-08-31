@@ -162,7 +162,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : L2, L5, L6
-        Line          : computer.cpp:560
+        Line          : computer.cpp:723
     L2:
         Type          : S
         Latency       : (1 + L3) * N2 + (1 + {0, L3})
@@ -192,7 +192,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : L7
-        Line          : computer.cpp:376
+        Line          : computer.cpp:380
     L5:
         Type          : S
         Latency       : 1 * N5    [N5 >= 1]
@@ -202,7 +202,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:317
+        Line          : computer.cpp:319
     L6:
         Type          : S
         Latency       : (2 + {0, 1} + {0, 1}) * N6 + (2 + {0, {0, 1} + 1})

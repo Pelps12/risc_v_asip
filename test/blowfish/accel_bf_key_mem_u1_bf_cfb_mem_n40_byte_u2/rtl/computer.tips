@@ -1,0 +1,13 @@
+H_BT9003: "reg" variable is used in automatic scheduling mode.
+ [Tips] Use "var" or logic type, if possible, which possibly can reduce the number of cycles.
+H_BT9009: Bitwidths of right and left operands are different.
+ [Tips] Casting can reduce area when the maximum value is known.
+        example)
+         var(1..0) a,b,c;
+         var(2..0) x; 
+         x = a+b+c;   ->  (var (1..0))x =a+b+c;
+	[Source Lines]
+	612(computer.cpp):   return a < b + b_size && b < a + a_size;
+	617(computer.cpp):   bool data_alias_ok = in_addr == out_addr ||
+	618(computer.cpp):                        !bf_mem_ranges_overlap(in_addr, length, out_addr,
+	619(computer.cpp):                                               length);
