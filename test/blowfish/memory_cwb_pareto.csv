@@ -1,0 +1,3 @@
+variant,cwb_area,cwb_latency_index,aliases
+accel_bf_cfb_mem_n8_word_u1,33254,20,accel_bf_cfb_mem_n8_word_u1
+accel_bf_cfb_mem_n8_word_base,35446,17,accel_bf_cfb_mem_n8_word_base;accel_bf_cfb_mem_n8_word_u2;accel_bf_cfb_mem_n8_word_u5
