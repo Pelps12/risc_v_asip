@@ -602,7 +602,12 @@ static inline int32_t adpcm_full_encode(int32_t xin1, int32_t xin2) {
 #elif defined(ACCEL_ADPCM_FULL_ENCODE_SHIFT_U1)
 // Cyber unroll_times=1
 #endif
-  for (int i = 23; i >= 2; i--) full_enc_tqmf[i] = full_enc_tqmf[i - 2];
+  // Shift reads and writes alias the same array; unrolling in place let CWB
+  // mis-schedule the cross-cycle forwarding at U2/U11 (RTL/ISS x10
+  // mismatch). Read from a snapshot so every unroll factor is hazard-free.
+  int32_t old_tqmf[24];
+  for (int i = 0; i < 24; i++) old_tqmf[i] = full_enc_tqmf[i];
+  for (int i = 23; i >= 2; i--) full_enc_tqmf[i] = old_tqmf[i - 2];
   full_enc_tqmf[1] = xin1;
   full_enc_tqmf[0] = xin2;
 
@@ -796,9 +801,18 @@ static inline uint32_t adpcm_full_decode(int32_t input, int32_t current_il) {
 #elif defined(ACCEL_ADPCM_FULL_DECODE_SHIFT_U1)
 // Cyber unroll_times=1
 #endif
+  // Shift reads and writes alias the same arrays; unrolling in place let CWB
+  // mis-schedule the cross-cycle forwarding at U2 (RTL/ISS x10 mismatch,
+  // FSM dropping the final iteration). Read from a snapshot so every
+  // unroll factor is hazard-free.
+  int old_accumc[11], old_accumd[11];
+  for (int i = 0; i <= 10; i++) {
+    old_accumc[i] = full_dec_accumc[i];
+    old_accumd[i] = full_dec_accumd[i];
+  }
   for (int i = 10; i >= 1; i--) {
-    full_dec_accumc[i] = full_dec_accumc[i - 1];
-    full_dec_accumd[i] = full_dec_accumd[i - 1];
+    full_dec_accumc[i] = old_accumc[i - 1];
+    full_dec_accumd[i] = old_accumd[i - 1];
   }
   full_dec_accumc[0] = xd;
   full_dec_accumd[0] = xs;
