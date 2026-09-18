@@ -8,9 +8,9 @@ Cyber Synthesis Report
   Module Name         : computer
   Basic Library Name  : CWBSTDBLIB
 
-  Total Area          :    149,531
+  Total Area          :    149,594
     Sequential        :     33,246
-    Combinational     :    116,285
+    Combinational     :    116,348
 
   Latency Index       :         23
   Total States        :         19
@@ -18,8 +18,8 @@ Cyber Synthesis Report
   Clock Period        :       10ns
   Critical Path Delay :   9.2572ns
 
-  Net                 :    111,915
-  Pin Pair            :    266,665
+  Net                 :    111,922
+  Pin Pair            :    266,794
 
   Port                :        150
     In                :         66
@@ -30,14 +30,14 @@ Cyber Synthesis Report
 ========
 
   Total :
-    Total           :    149,531
+    Total           :    149,594
       Sequential    : 
         REG         :     33,246 (22%)
-      Combinational :    116,285 (77%)
+      Combinational :    116,348 (77%)
         FU          :     90,852 (60%)
-        MUX         :     23,625 (15%)
+        MUX         :     23,687 (15%)
         DEC         :         60 ( <1%)
-        MISC        :      1,748 ( 1%)
+        MISC        :      1,749 ( 1%)
       Memory        :          -
 
 ===================
@@ -242,11 +242,11 @@ Cyber Synthesis Report
   27 bit:  2way: 2 ,  3way: 2 ,  4way: 1 
   28 bit:  2way:20 ,  3way: 9 
   29 bit:  2way: 7 
-  30 bit:  2way:11 ,  3way:10 ,  4way:15 ,  5way: 4 
+  30 bit:  2way:11 ,  3way: 8 ,  4way:17 ,  5way: 4 
   31 bit:  2way: 3 ,  5way: 1 
   32 bit:  2way:26 ,  3way:64 ,  4way:15 ,  5way: 4 ,  6way: 9 ,  7way: 1 ,
 	  8way: 3 , 20way: 1 , 32way: 4 
-   Total : 41,271 (# of Fanins)
+   Total : 41,331 (# of Fanins)
 
 ===========
 ; Decoder ;
@@ -288,7 +288,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : L2, L3, L4
-        Line          : computer.cpp:829
+        Line          : computer.cpp:882
     L2:
         Type          : S
         Latency       : 3 * 2
@@ -298,7 +298,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:676
+        Line          : computer.cpp:720
     L3:
         Type          : S
         Latency       : 3 * 2
@@ -308,7 +308,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:687
+        Line          : computer.cpp:731
     L4:
         Type          : S
         Latency       : (2 + {{1, L5}, L6}) * N4 + {1, 2 + L6}
@@ -328,7 +328,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:676
+        Line          : computer.cpp:720
     L6:
         Type          : S
         Latency       : 3 * 2
@@ -338,7 +338,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:687
+        Line          : computer.cpp:731
 
 =======
 ; FSM ;
@@ -374,17 +374,17 @@ Cyber Synthesis Report
       Name                 / Port [Signal              ]   (ns)   (ns)  Stage
       -----------------------------------------------------------------------
       11                   / CNST [                    ]      -    0.00     0
-      _XOR_87675           / o1   [                    ]   0.00    0.00     0
-      _RNOR_79629          / o1   [M_1242              ]   0.18    0.18     3
-      _AND_38310           / o1   [U_15                ]   0.05    0.23     4
-      _LOGIC_38608         / o1   [U_52                ]   0.02    0.25     4
-      _AND_38611           / o1   [U_53                ]   0.04    0.29     5
-      _NMUX_17047          / o1   [mul20s3i2           ]   0.08    0.37     8
+      _XOR_87950           / o1   [                    ]   0.00    0.00     0
+      _RNOR_79883          / o1   [M_1234              ]   0.18    0.18     3
+      _AND_38484           / o1   [U_15                ]   0.05    0.23     4
+      _LOGIC_38782         / o1   [U_52                ]   0.02    0.25     4
+      _AND_38785           / o1   [U_53                ]   0.04    0.29     5
+      _NMUX_17208          / o1   [mul20s3i2           ]   0.08    0.37     8
       mul20s@3             / o1   [mul20s3ot           ]   3.09    3.46    75
-      _AND_39600           / o1   [U_280               ]   0.05    3.51    76
-      _NMUX_17206          / o1   [addsub20s_19_11i1   ]   0.07    3.58    79
+      _AND_39774           / o1   [U_280               ]   0.05    3.51    76
+      _NMUX_17367          / o1   [addsub20s_19_11i1   ]   0.07    3.58    79
       addsub20s_19_1@1     / o1   [addsub20s_19_11ot   ]   1.03    4.61    92
-      _NMUX_17201          / o1   [addsub20s_20_11i2   ]   0.07    4.68    94
+      _NMUX_17362          / o1   [addsub20s_20_11i2   ]   0.07    4.68    94
       addsub20s_20_1@1     / o1   [addsub20s_20_11ot   ]   0.46    5.14    99
       addsub24s_23_3@1     / o1   [addsub24s_23_31ot   ]   0.64    5.78   107
       addsub28s_25_1@1     / o1   [addsub28s_25_11ot   ]   0.66    6.43   116
@@ -393,8 +393,8 @@ Cyber Synthesis Report
       addsub28s@9          / o1   [addsub28s9ot        ]   0.52    7.99   137
       addsub28s@8          / o1   [addsub28s8ot        ]   0.52    8.51   144
       addsub28s@1          / o1   [addsub28s1ot        ]   0.52    9.03   151
-      _NMUX_17386          / o1   [regs_wd04           ]   0.15    9.19   154
-      _NMUX_15617          / o1   [regs_rg00           ]   0.07    9.26   156
+      _NMUX_17547          / o1   [regs_wd04           ]   0.15    9.19   154
+      _NMUX_15778          / o1   [regs_rg00           ]   0.07    9.26   156
       regs_rg00            / din  [                    ]      -    9.26   156
 
   False Path                    :  Unchecked
@@ -406,14 +406,14 @@ Cyber Synthesis Report
 ; Wire ;
 ========
 
-  Total Net Count      :  111,915
-  Total Pin Pair Count :  266,665
+  Total Net Count      :  111,922
+  Total Pin Pair Count :  266,794
   Const Fanout         :    7,616
 
   Net Count :
          Bit       Net    Bit*Net
      ----------------------------
-           1     1,028      1,028
+           1     1,029      1,029
            2        64        128
            3        35        105
            4        46        184
@@ -447,7 +447,7 @@ Cyber Synthesis Report
           37         3        111
           40         7        280
      ----------------------------
-       Total               25,610
+       Total               25,611
 
   Pin Pair Count :
       Fanout    Bit    Count   Subtotal
@@ -456,7 +456,7 @@ Cyber Synthesis Report
          161      1        1        161
          145      1        1        145
          137      1        1        137
-         107      1        1        107
+         105      1        1        105
           86      1        1         86
           67      6        1        402
           63      5        1        315
@@ -484,16 +484,16 @@ Cyber Synthesis Report
           22      1        5        110
           19      5        1         95
           19      1        4         76
-          18      1        1         18
+          18      1        2         36
           17      1        1         17
           16     32        1        512
           16      2        1         32
-          16      1        4         64
+          16      1        3         48
           15      3        1         45
           15      1        4         60
           14     32        1        448
           14     12        1        168
-          14      1        2         28
+          14      1        1         14
           13     32        1        416
           13      7        1         91
           13      1        3         39
@@ -517,28 +517,29 @@ Cyber Synthesis Report
            8     18        2        288
            8     14        1        112
            8     12        1         96
-           8      3        3         72
+           8      3        4         96
            8      2        5         80
-           8      1       31        248
-           7     26        1        182
+           8      1       33        264
            7     23        1        161
            7     22        1        154
+           7     21        1        147
            7     20        2        280
-           7     19        1        133
+           7     19        2        266
            7     18        1        126
            7     17        3        357
            7     16        2        224
            7     15        2        210
            7     11        2        154
            7      4        1         28
-           7      3        5        105
+           7      3        4         84
            7      2        5         70
            7      1       25        175
            6     32        4        768
            6     30        1        180
            6     27        3        486
+           6     26        1        156
            6     23        2        276
-           6     19        2        228
+           6     19        1        114
            6     18        3        324
            6     17        2        204
            6     16        7        672
@@ -546,6 +547,7 @@ Cyber Synthesis Report
            6     14        1         84
            6     13        6        468
            6     10        2        120
+           6      5        1         30
            6      4        3         72
            6      3        5         90
            6      2        8         96
@@ -553,7 +555,6 @@ Cyber Synthesis Report
            5     32       48      7,680
            5     28        3        420
            5     26        2        260
-           5     21        1        105
            5     19        6        570
            5     18        3        270
            5     16        8        640
@@ -570,9 +571,8 @@ Cyber Synthesis Report
            5      1       27        135
            4     32        9      1,152
            4     30        1        120
-           4     27        1        108
            4     26        1        104
-           4     25        1        100
+           4     25        2        200
            4     20        1         80
            4     19        6        456
            4     18        2        144
@@ -583,16 +583,15 @@ Cyber Synthesis Report
            4     10        2         80
            4      9        1         36
            4      7        2         56
-           4      5        2         40
+           4      5        1         20
            4      4        2         32
-           4      3       11        132
-           4      2       14        112
+           4      3       12        144
+           4      2       16        128
            4      1       81        324
            3     32       12      1,152
            3     29        1         87
            3     28        1         84
-           3     27        4        324
-           3     25        1         75
+           3     27        5        405
            3     24        1         72
            3     22        3        198
            3     20        1         60
@@ -605,10 +604,10 @@ Cyber Synthesis Report
            3     12        1         36
            3     11        2         66
            3     10        1         30
-           3      5        2         30
-           3      3        5         45
-           3      2       14         84
-           3      1      103        309
+           3      5        3         45
+           3      3        4         36
+           3      2       13         78
+           3      1      105        315
            2     32       11        704
            2     31        2        124
            2     30        4        240
@@ -635,11 +634,11 @@ Cyber Synthesis Report
            2      8        2         32
            2      7        1         14
            2      6        2         24
-           2      5        3         30
+           2      5        2         20
            2      4        2         16
            2      3        5         30
-           2      2       19         76
-           2      1      242        484
+           2      2       18         72
+           2      1      241        482
            1     32      178      5,696
            1     31        5        155
            1     30       44      1,320
@@ -671,9 +670,9 @@ Cyber Synthesis Report
            1      4       12         48
            1      3       32         96
            1      2       73        146
-           1      1      576        576
+           1      1      575        575
     -----------------------------------
-       Total                     57,893
+       Total                     57,958
 
   Fanout for Consts:
       Value    Fanout
@@ -712,11 +711,11 @@ Cyber Synthesis Report
       Register Name                              Cone Size
       ----------------------------------------------------
       B01_streg(4..0)                                  304
-      RG_i_i1(2..0)                                    240
-      FF_dec_dh(0..0)                                  212
-      RG_243(0..0)                                     205
-      RG_full_enc_delay_bpl_8(31..0)                   197
-      RG_241(0..0)                                     191
+      RG_i_i1(2..0)                                    234
+      FF_dec_dh(0..0)                                  214
+      RG_243(0..0)                                     207
+      RG_full_enc_delay_bpl_8(31..0)                   199
+      RG_241(0..0)                                     193
       RG_next_pc_PC(31..0)                             184
       FF_halt(0..0)                                    184
       RL_full_dec_deth_full_enc_al2(14..0)             178
@@ -741,18 +740,18 @@ Cyber Synthesis Report
       CLOCK(0..0)                                   302      302 ( 1bit)
       RG_full_enc_delay_bpl_op2_szh(31..0)          289       12 ( 5bit)
       regs_rd00(31..0)                              254        8 (30bit)
-      RG_full_enc_tqmf_13(29..0)                    220       11 ( 1bit)
+      RG_full_enc_tqmf_16(29..0)                    220       11 ( 1bit)
       RG_full_enc_tqmf_9(29..0)                     218       10 ( 1bit)
-      RG_full_enc_tqmf_20(29..0)                    218       10 ( 1bit)
-      RG_full_enc_tqmf_16(29..0)                    218        9 ( 2bit)
+      RG_full_enc_tqmf_14(29..0)                    218       10 ( 1bit)
+      RG_full_enc_tqmf_7(29..0)                     218        9 ( 2bit)
       RG_dec_dh_dh_dlt_wd(15..0)                    217       26 ( 1bit)
       RG_dec_plt_plt(18..0)                         211       31 ( 1bit)
-      RG_full_enc_tqmf_8(29..0)                     206       10 ( 1bit)
-      RG_full_enc_tqmf_23(29..0)                    204        7 (26bit)
+      RG_full_enc_tqmf_3(29..0)                     206       10 ( 1bit)
       addsub20u_181ot(17..0)                        201       31 ( 1bit)
-      RG_full_enc_tqmf_21(29..0)                    200        8 ( 2bit)
+      RG_full_enc_tqmf_20(29..0)                    200        8 ( 2bit)
       RL_decis_full_enc_detl_funct7(14..0)          199       86 ( 1bit)
       addsub32s9ot(31..0)                           196        9 ( 1bit)
+      RG_full_enc_tqmf_10(29..0)                    195        7 (21bit)
 
     Top 25 Nets
     sorted by "Max" (Maximum Fanout)
@@ -762,7 +761,7 @@ Cyber Synthesis Report
       RESET(0..0)                                   161      161 ( 1bit)
       U_01(0..0)                                    145      145 ( 1bit)
       U_268(0..0)                                   137      137 ( 1bit)
-      U_53(0..0)                                    107      107 ( 1bit)
+      U_53(0..0)                                    105      105 ( 1bit)
       RL_decis_full_enc_detl_funct7(14..0)          199       86 ( 1bit)
       regs_rd01(31..0)                              462       67 ( 6bit)
       mil_11_t16(4..0)                              315       63 ( 5bit)

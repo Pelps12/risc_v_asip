@@ -208,7 +208,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : L1
-        Line          : computer.cpp:826
+        Line          : computer.cpp:879
     L1:
         Type          : S
         Latency       : (3 + {0, L2}) * N1 + {1, 3 + L2}
@@ -218,7 +218,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : L2
-        Line          : computer.cpp:829
+        Line          : computer.cpp:882
     L2:
         Type          : S
         Latency       : 2 * N2 + {1, 2}
@@ -264,28 +264,28 @@ Cyber Synthesis Report
       Name                 / Port [Signal              ]   (ns)   (ns)  Stage
       -----------------------------------------------------------------------
       99                   / CNST [                    ]      -    0.00     0
-      _XOR_28304           / o1   [                    ]   0.00    0.00     0
-      _RNOR_27086          / o1   [M_638               ]   0.18    0.18     3
-      _LOGIC_27755         / o1   [M_688               ]   0.14    0.32     5
-      _LOGIC_24910         / o1   [                    ]   0.04    0.36     6
-      _NMUX_9483           / o1   [regs_ad00           ]   0.07    0.43     8
-      _DMUX_8105           / o1   [regs_rd00           ]   0.48    0.91    17
-      _DMUX_7540           / o1   [M_724               ]   0.06    0.97    16
+      _XOR_28493           / o1   [                    ]   0.00    0.00     0
+      _RNOR_27275          / o1   [M_638               ]   0.18    0.18     3
+      _LOGIC_27944         / o1   [M_688               ]   0.14    0.32     5
+      _LOGIC_25099         / o1   [                    ]   0.04    0.36     6
+      _NMUX_9536           / o1   [regs_ad00           ]   0.07    0.43     8
+      _DMUX_8158           / o1   [regs_rd00           ]   0.48    0.91    17
+      _DMUX_7593           / o1   [M_724               ]   0.06    0.97    16
       mul16s_29@1          / o1   [mul16s_291ot        ]   2.59    3.56    73
-      _RNOR_10431          / o1   [CT_06               ]   0.16    3.72    75
-      _LOGIC_20373         / o1   [U_64                ]   0.04    3.76    75
-      _NMUX_9315           / o1   [mul16s2i2           ]   0.07    3.83    78
+      _RNOR_10620          / o1   [CT_06               ]   0.16    3.72    75
+      _LOGIC_20562         / o1   [U_64                ]   0.04    3.76    75
+      _NMUX_9368           / o1   [mul16s2i2           ]   0.07    3.83    78
       mul16s@2             / o1   [mul16s2ot           ]   2.59    6.42   135
       addsub20s_19_3@1     / o1   [addsub20s_19_31ot   ]   0.00    6.42   135
       addsub20s_20@1       / o1   [addsub20s_201ot     ]   0.46    6.88   140
-      _NMUX_9427           / o1   [M_708               ]   0.07    6.95   142
+      _NMUX_9480           / o1   [M_708               ]   0.07    6.95   142
       addsub24s_23@8       / o1   [addsub24s_238ot     ]   0.64    7.59   150
-      _NMUX_9610           / o1   [TR_31               ]   0.07    7.66   152
+      _NMUX_9663           / o1   [TR_31               ]   0.07    7.66   152
       addsub28s_25_1@1     / o1   [addsub28s_25_11ot   ]   0.66    8.32   161
       addsub28s_25@1       / o1   [addsub28s_251ot     ]   0.52    8.84   168
       addsub28s@2          / o1   [addsub28s2ot        ]   0.52    9.36   175
-      _NMUX_9488           / o1   [regs_wd04           ]   0.14    9.50   177
-      _NMUX_8237           / o1   [regs_rg00           ]   0.07    9.57   179
+      _NMUX_9541           / o1   [regs_wd04           ]   0.14    9.50   177
+      _NMUX_8290           / o1   [regs_rg00           ]   0.07    9.57   179
       regs_rg00            / din  [                    ]      -    9.57   179
 
   False Path                    :  Unchecked

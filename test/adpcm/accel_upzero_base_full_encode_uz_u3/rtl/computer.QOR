@@ -255,7 +255,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : L1
-        Line          : computer.cpp:826
+        Line          : computer.cpp:865
     L1:
         Type          : S
         Latency       : (3 + {{{{{{0, {0, {{0, 1}, 1 + 1} + 1} + 1 + 2} + 1, {{0, {{0, {0, {0, {0, {0, {0, {{0, 1}, 1 + 1} + 1} + 1 + 2} + 1 + 1} + 1} + 1 + 1} + 1 + 1}, {0, {0, {0, {0, {0, {0, {{0, 1}, 1 + 1} + 1} + 1 + 2} + 1 + 1} + 1} + 1 + 1} + 1 + 1 + 1} + 1} + 1 + 1}, {{0, {{0, {0, {0, {0, {0, {0, {{0, 1}, 1 + 1} + 1} + 1 + 2} + 1 + 1} + 1} + 1 + 1} + 1 + 1}, {0, {0, {0, {0, {0, {0, {{0, 1}, 1 + 1} + 1} + 1 + 2} + 1 + 1} + 1} + 1 + 1} + 1 + 1 + 1} + 1} + 1 + 1}, {{0, {0, {0, {0, {0, {0, {{0, 1}, 1 + 1} + 1} + 1 + 2} + 1 + 1} + 1} + 1 + 1} + 1 + 1}, {0, {0, {0, {0, {0, {0, {{0, 1}, 1 + 1} + 1} + 1 + 2} + 1 + 1} + 1} + 1 + 1} + 1 + 1 + 1} + 1} + 1 + 1 + 1} + 1} + 1}, {{{{{{{{{{{{{0, 1}, {{0, 1}, 1 + 1} + 1}, {0, {{0, 1}, 1 + 1} + 1} + 1}, {0, {0, {{0, 1}, 1 + 1} + 1} + 1 + 2} + 1}, {0, {0, {0, {{0, 1}, 1 + 1} + 1} + 1 + 2} + 1 + 1} + 1}, {0, {0, {0, {0, {{0, 1}, 1 + 1} + 1} + 1 + 2} + 1 + 1} + 1} + 1}, {0, {0, {0, {0, {0, {{0, 1}, 1 + 1} + 1} + 1 + 2} + 1 + 1} + 1} + 1 + 1} + 1}, {0, {0, {0, {0, {0, {0, {{0, 1}, 1 + 1} + 1} + 1 + 2} + 1 + 1} + 1} + 1 + 1} + 1 + 1 + 1} + 1}, {{0, {0, {0, {0, {0, {0, {{0, 1}, 1 + 1} + 1} + 1 + 2} + 1 + 1} + 1} + 1 + 1} + 1 + 1}, {0, {0, {0, {0, {0, {0, {{0, 1}, 1 + 1} + 1} + 1 + 2} + 1 + 1} + 1} + 1 + 1} + 1 + 1 + 1} + 1} + 1}, {{0, {0, {0, {0, {0, {0, {{0, 1}, 1 + 1} + 1} + 1 + 2} + 1 + 1} + 1} + 1 + 1} + 1 + 1}, {0, {0, {0, {0, {0, {0, {{0, 1}, 1 + 1} + 1} + 1 + 2} + 1 + 1} + 1} + 1 + 1} + 1 + 1 + 1} + 1} + 1 + 1}, {{0, {0, {0, {0, {0, {0, {{0, 1}, 1 + 1} + 1} + 1 + 2} + 1 + 1} + 1} + 1 + 1} + 1 + 1}, {0, {0, {0, {0, {0, {0, {{0, 1}, 1 + 1} + 1} + 1 + 2} + 1 + 1} + 1} + 1 + 1} + 1 + 1 + 1} + 1} + 1 + 1 + 1}, {{0, {{0, {0, {0, {0, {0, {0, {{0, 1}, 1 + 1} + 1} + 1 + 2} + 1 + 1} + 1} + 1 + 1} + 1 + 1}, {0, {0, {0, {0, {0, {0, {{0, 1}, 1 + 1} + 1} + 1 + 2} + 1 + 1} + 1} + 1 + 1} + 1 + 1 + 1} + 1} + 1 + 1}, {{0, {0, {0, {0, {0, {0, {{0, 1}, 1 + 1} + 1} + 1 + 2} + 1 + 1} + 1} + 1 + 1} + 1 + 1}, {0, {0, {0, {0, {0, {0, {{0, 1}, 1 + 1} + 1} + 1 + 2} + 1 + 1} + 1} + 1 + 1} + 1 + 1 + 1} + 1} + 1 + 1 + 1} + 1 ...
@@ -265,7 +265,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : L2, L3, L4, L5
-        Line          : computer.cpp:829
+        Line          : computer.cpp:868
     L2:
         Type          : S
         Latency       : 3 * 2
@@ -275,7 +275,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:539
+        Line          : computer.cpp:557
     L3:
         Type          : S
         Latency       : 3 * 2
@@ -285,7 +285,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:550
+        Line          : computer.cpp:568
     L4:
         Type          : S
         Latency       : 3 * 2
@@ -295,7 +295,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:539
+        Line          : computer.cpp:557
     L5:
         Type          : S
         Latency       : 3 * 2
@@ -305,7 +305,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:550
+        Line          : computer.cpp:568
 
 =======
 ; FSM ;
