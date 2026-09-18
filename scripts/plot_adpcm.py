@@ -68,8 +68,8 @@ def merge_no_ci(rows, summary_path):
             cpi = raw["cpi"]
             if not cycles or cycles == "N/A":
                 continue
-            base_cycles = float(by_variant["baseline"]["cycles"])
-            no_ci_overhead = int(cycles) / base_cycles
+            ci_cycles = float(ci_row["cycles"])
+            no_ci_overhead = int(cycles) / ci_cycles
             ci_row["cpi_no_ci"] = cpi if cpi else "N/A"
             ci_row["no_ci_overhead"] = f"{no_ci_overhead:.3f}"
             updated += 1
