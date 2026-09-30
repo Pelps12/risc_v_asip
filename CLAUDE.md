@@ -107,6 +107,7 @@ Every application has its own `test/<app>/computer.cpp`. The same file is:
 | `filter` | FIR tap MAC | `ACCEL_FILT` | 0x0B / 0 | REG (memory-bound) |
 | `gemm` | 8-element dot product (MAC) | `ACCEL_MAC` | 0x0B / 1 | REG (memory-bound) |
 | `aes` | GF(2⁸) MixColumns on one column | `ACCEL_MIX_COL` | 0x0B / 2 | none (register-bound) |
+| `dct` | 8×8 2-D DCT on one block (Q8.12) | `ACCEL_DCT` | 0x0B / 0 | RAM (block staged in registers) |
 
 ---
 
