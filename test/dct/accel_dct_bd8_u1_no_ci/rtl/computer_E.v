@@ -2,12 +2,12 @@
 // options:  veriloggen -EE computer_E.IFF -sim_mem
 // bdlpars options:  -EE -DACCEL_DCT -DACCEL_DCT_BD8 -DACCEL_DCT_U1 -info_base_name computer computer.cpp
 // bdltran options:  -EE computer.IFF -c1000 -s -Zresource_fcnt=GENERATE -Zresource_mcnt=GENERATE -Zsync -Zdup_reset=YES -Zfolding_sharing=inter_stage -lb /proj/cad/cwb-6.1/packages/asic_45.BLIB -lfl /proj/cad/cwb-6.1/packages/asic_45.FLIB -o-P 
-// timestamp_0: 20260930200311_57503_73380
-// timestamp_5: 20260930211044_97392_19707
-// timestamp_9: 20260930211128_97392_05762
-// timestamp_C: 20260930211128_97392_11901
-// timestamp_E: 20260930211129_97392_11271
-// timestamp_V: 20260930211132_97637_73026
+// timestamp_0: 20261006162731_38971_18507
+// timestamp_5: 20261006162733_38988_21271
+// timestamp_9: 20261006162810_38988_04955
+// timestamp_C: 20261006162809_38988_04321
+// timestamp_E: 20261006162811_38988_71930
+// timestamp_V: 20261006162813_39182_06420
 
 module computer ( imem_arg_MEMB32W65536_RA1 ,imem_arg_MEMB32W65536_RD1 ,imem_arg_MEMB32W65536_RE1 ,
 	dmem_arg_MEMB32W65536_RA1 ,dmem_arg_MEMB32W65536_RD1 ,dmem_arg_MEMB32W65536_RE1 ,
@@ -22,177 +22,23 @@ output		dmem_arg_MEMB32W65536_RE1 ;
 output	[15:0]	dmem_arg_MEMB32W65536_WA2 ;
 output	[31:0]	dmem_arg_MEMB32W65536_WD2 ;
 output		dmem_arg_MEMB32W65536_WE2 ;
-output		computer_ret ;	// line#=computer.cpp:431
+output		computer_ret ;	// line#=computer.cpp:438
 input		CLOCK ;
 input		RESET ;
-wire		TR_179 ;
-wire		M_2875 ;
-wire		M_2872 ;
-wire		M_2871 ;
-wire		M_2865 ;
-wire		M_2863 ;
-wire		M_2859 ;
-wire		M_2854 ;
-wire		M_2853 ;
-wire		M_2848 ;
-wire		U_704 ;
-wire		U_683 ;
-wire		U_630 ;
-wire		U_576 ;
+wire		TR_155 ;
+wire		M_2785 ;
+wire		M_2783 ;
+wire		M_2782 ;
+wire		M_2781 ;
+wire		M_2777 ;
+wire		M_2769 ;
+wire		M_2764 ;
+wire		M_2763 ;
+wire		M_2758 ;
+wire		U_706 ;
+wire		U_633 ;
+wire		U_579 ;
 wire		U_12 ;
-wire		ST1_492d ;
-wire		ST1_491d ;
-wire		ST1_490d ;
-wire		ST1_489d ;
-wire		ST1_488d ;
-wire		ST1_487d ;
-wire		ST1_486d ;
-wire		ST1_485d ;
-wire		ST1_484d ;
-wire		ST1_483d ;
-wire		ST1_482d ;
-wire		ST1_481d ;
-wire		ST1_480d ;
-wire		ST1_479d ;
-wire		ST1_478d ;
-wire		ST1_477d ;
-wire		ST1_476d ;
-wire		ST1_475d ;
-wire		ST1_474d ;
-wire		ST1_473d ;
-wire		ST1_472d ;
-wire		ST1_471d ;
-wire		ST1_470d ;
-wire		ST1_469d ;
-wire		ST1_468d ;
-wire		ST1_467d ;
-wire		ST1_466d ;
-wire		ST1_465d ;
-wire		ST1_464d ;
-wire		ST1_463d ;
-wire		ST1_462d ;
-wire		ST1_461d ;
-wire		ST1_460d ;
-wire		ST1_459d ;
-wire		ST1_458d ;
-wire		ST1_457d ;
-wire		ST1_456d ;
-wire		ST1_455d ;
-wire		ST1_454d ;
-wire		ST1_453d ;
-wire		ST1_452d ;
-wire		ST1_451d ;
-wire		ST1_450d ;
-wire		ST1_449d ;
-wire		ST1_448d ;
-wire		ST1_447d ;
-wire		ST1_446d ;
-wire		ST1_445d ;
-wire		ST1_444d ;
-wire		ST1_443d ;
-wire		ST1_442d ;
-wire		ST1_441d ;
-wire		ST1_440d ;
-wire		ST1_439d ;
-wire		ST1_438d ;
-wire		ST1_437d ;
-wire		ST1_436d ;
-wire		ST1_435d ;
-wire		ST1_434d ;
-wire		ST1_433d ;
-wire		ST1_432d ;
-wire		ST1_431d ;
-wire		ST1_430d ;
-wire		ST1_429d ;
-wire		ST1_428d ;
-wire		ST1_427d ;
-wire		ST1_426d ;
-wire		ST1_425d ;
-wire		ST1_424d ;
-wire		ST1_423d ;
-wire		ST1_422d ;
-wire		ST1_421d ;
-wire		ST1_420d ;
-wire		ST1_419d ;
-wire		ST1_418d ;
-wire		ST1_417d ;
-wire		ST1_416d ;
-wire		ST1_415d ;
-wire		ST1_414d ;
-wire		ST1_413d ;
-wire		ST1_412d ;
-wire		ST1_411d ;
-wire		ST1_410d ;
-wire		ST1_409d ;
-wire		ST1_408d ;
-wire		ST1_407d ;
-wire		ST1_406d ;
-wire		ST1_405d ;
-wire		ST1_404d ;
-wire		ST1_403d ;
-wire		ST1_402d ;
-wire		ST1_401d ;
-wire		ST1_400d ;
-wire		ST1_399d ;
-wire		ST1_398d ;
-wire		ST1_397d ;
-wire		ST1_396d ;
-wire		ST1_395d ;
-wire		ST1_394d ;
-wire		ST1_393d ;
-wire		ST1_392d ;
-wire		ST1_391d ;
-wire		ST1_390d ;
-wire		ST1_389d ;
-wire		ST1_388d ;
-wire		ST1_387d ;
-wire		ST1_386d ;
-wire		ST1_385d ;
-wire		ST1_384d ;
-wire		ST1_383d ;
-wire		ST1_382d ;
-wire		ST1_381d ;
-wire		ST1_380d ;
-wire		ST1_379d ;
-wire		ST1_378d ;
-wire		ST1_377d ;
-wire		ST1_376d ;
-wire		ST1_375d ;
-wire		ST1_374d ;
-wire		ST1_373d ;
-wire		ST1_372d ;
-wire		ST1_371d ;
-wire		ST1_370d ;
-wire		ST1_369d ;
-wire		ST1_368d ;
-wire		ST1_367d ;
-wire		ST1_366d ;
-wire		ST1_365d ;
-wire		ST1_364d ;
-wire		ST1_363d ;
-wire		ST1_362d ;
-wire		ST1_361d ;
-wire		ST1_360d ;
-wire		ST1_359d ;
-wire		ST1_358d ;
-wire		ST1_357d ;
-wire		ST1_356d ;
-wire		ST1_355d ;
-wire		ST1_354d ;
-wire		ST1_353d ;
-wire		ST1_352d ;
-wire		ST1_351d ;
-wire		ST1_350d ;
-wire		ST1_349d ;
-wire		ST1_348d ;
-wire		ST1_347d ;
-wire		ST1_346d ;
-wire		ST1_345d ;
-wire		ST1_344d ;
-wire		ST1_343d ;
-wire		ST1_342d ;
-wire		ST1_341d ;
-wire		ST1_340d ;
 wire		ST1_339d ;
 wire		ST1_338d ;
 wire		ST1_337d ;
@@ -532,13 +378,13 @@ wire		ST1_04d ;
 wire		ST1_03d ;
 wire		ST1_02d ;
 wire		ST1_01d ;
-wire		JF_194 ;
 wire		JF_193 ;
 wire		JF_192 ;
 wire		JF_191 ;
 wire		JF_190 ;
 wire		JF_189 ;
 wire		JF_188 ;
+wire		JF_187 ;
 wire		JF_186 ;
 wire		JF_185 ;
 wire		JF_184 ;
@@ -546,6 +392,7 @@ wire		JF_183 ;
 wire		JF_182 ;
 wire		JF_181 ;
 wire		JF_180 ;
+wire		JF_179 ;
 wire		JF_178 ;
 wire		JF_177 ;
 wire		JF_176 ;
@@ -553,6 +400,7 @@ wire		JF_175 ;
 wire		JF_174 ;
 wire		JF_173 ;
 wire		JF_172 ;
+wire		JF_171 ;
 wire		JF_170 ;
 wire		JF_169 ;
 wire		JF_168 ;
@@ -560,6 +408,7 @@ wire		JF_167 ;
 wire		JF_166 ;
 wire		JF_165 ;
 wire		JF_164 ;
+wire		JF_163 ;
 wire		JF_162 ;
 wire		JF_161 ;
 wire		JF_160 ;
@@ -567,6 +416,7 @@ wire		JF_159 ;
 wire		JF_158 ;
 wire		JF_157 ;
 wire		JF_156 ;
+wire		JF_155 ;
 wire		JF_154 ;
 wire		JF_153 ;
 wire		JF_152 ;
@@ -574,6 +424,7 @@ wire		JF_151 ;
 wire		JF_150 ;
 wire		JF_149 ;
 wire		JF_148 ;
+wire		JF_147 ;
 wire		JF_146 ;
 wire		JF_145 ;
 wire		JF_144 ;
@@ -581,6 +432,7 @@ wire		JF_143 ;
 wire		JF_142 ;
 wire		JF_141 ;
 wire		JF_140 ;
+wire		JF_139 ;
 wire		JF_138 ;
 wire		JF_137 ;
 wire		JF_136 ;
@@ -588,81 +440,85 @@ wire		JF_135 ;
 wire		JF_134 ;
 wire		JF_133 ;
 wire		JF_132 ;
-wire		JF_129 ;
-wire		JF_128 ;
+wire		JF_131 ;
+wire		JF_130 ;
 wire		JF_127 ;
 wire		JF_126 ;
 wire		JF_125 ;
 wire		JF_124 ;
 wire		JF_123 ;
+wire		JF_122 ;
 wire		JF_121 ;
-wire		JF_120 ;
 wire		JF_119 ;
 wire		JF_118 ;
 wire		JF_117 ;
 wire		JF_116 ;
 wire		JF_115 ;
+wire		JF_114 ;
 wire		JF_113 ;
-wire		JF_112 ;
 wire		JF_111 ;
 wire		JF_110 ;
 wire		JF_109 ;
 wire		JF_108 ;
 wire		JF_107 ;
+wire		JF_106 ;
 wire		JF_105 ;
-wire		JF_104 ;
 wire		JF_103 ;
 wire		JF_102 ;
 wire		JF_101 ;
 wire		JF_100 ;
 wire		JF_99 ;
+wire		JF_98 ;
 wire		JF_97 ;
-wire		JF_96 ;
 wire		JF_95 ;
 wire		JF_94 ;
 wire		JF_93 ;
 wire		JF_92 ;
 wire		JF_91 ;
+wire		JF_90 ;
 wire		JF_89 ;
-wire		JF_88 ;
 wire		JF_87 ;
 wire		JF_86 ;
 wire		JF_85 ;
 wire		JF_84 ;
 wire		JF_83 ;
+wire		JF_82 ;
 wire		JF_81 ;
-wire		JF_80 ;
 wire		JF_79 ;
 wire		JF_78 ;
 wire		JF_77 ;
 wire		JF_76 ;
 wire		JF_75 ;
+wire		JF_74 ;
 wire		JF_73 ;
-wire		JF_72 ;
 wire		JF_71 ;
 wire		JF_70 ;
 wire		JF_69 ;
 wire		JF_68 ;
 wire		JF_67 ;
 wire		JF_66 ;
+wire		JF_65 ;
+wire		JF_64 ;
+wire		JF_62 ;
 wire		JF_49 ;
 wire		JF_47 ;
-wire		JF_42 ;
-wire		JF_38 ;
+wire		JF_41 ;
+wire		JF_39 ;
+wire		JF_37 ;
 wire		JF_36 ;
 wire		JF_35 ;
 wire		JF_34 ;
 wire		JF_33 ;
-wire		JF_32 ;
+wire		JF_30 ;
 wire		JF_28 ;
+wire		JF_27 ;
 wire		CT_15 ;
-wire		JF_24 ;
-wire		JF_18 ;
+wire		JF_23 ;
 wire		JF_17 ;
 wire		JF_16 ;
 wire		JF_15 ;
 wire		JF_14 ;
-wire		JF_11 ;
+wire		JF_13 ;
 wire		JF_10 ;
 wire		JF_09 ;
 wire		JF_08 ;
@@ -671,66 +527,14 @@ wire		JF_06 ;
 wire		JF_03 ;
 wire		JF_02 ;
 wire		CT_01 ;
-wire	[3:0]	RG_k ;	// line#=computer.cpp:300
-wire		RG_08 ;
-wire	[31:0]	RG_buf_buf1_funct3_imm1_next_pc ;	// line#=computer.cpp:317,351,452,458,584
-wire		FF_take ;	// line#=computer.cpp:506
+wire	[3:0]	RG_k ;	// line#=computer.cpp:307
+wire	[31:0]	RG_funct3_imm1 ;	// line#=computer.cpp:459,591
+wire		FF_take ;	// line#=computer.cpp:513
 
 computer_fsm INST_fsm ( .imem_arg_MEMB32W65536_RD1(imem_arg_MEMB32W65536_RD1) ,.CLOCK(CLOCK) ,
-	.RESET(RESET) ,.TR_179(TR_179) ,.M_2875(M_2875) ,.M_2872(M_2872) ,.M_2871(M_2871) ,
-	.M_2865(M_2865) ,.M_2863(M_2863) ,.M_2859(M_2859) ,.M_2854(M_2854) ,.M_2853(M_2853) ,
-	.M_2848(M_2848) ,.U_704(U_704) ,.U_683(U_683) ,.U_630(U_630) ,.U_576(U_576) ,
-	.U_12(U_12) ,.ST1_492d_port(ST1_492d) ,.ST1_491d_port(ST1_491d) ,.ST1_490d_port(ST1_490d) ,
-	.ST1_489d_port(ST1_489d) ,.ST1_488d_port(ST1_488d) ,.ST1_487d_port(ST1_487d) ,
-	.ST1_486d_port(ST1_486d) ,.ST1_485d_port(ST1_485d) ,.ST1_484d_port(ST1_484d) ,
-	.ST1_483d_port(ST1_483d) ,.ST1_482d_port(ST1_482d) ,.ST1_481d_port(ST1_481d) ,
-	.ST1_480d_port(ST1_480d) ,.ST1_479d_port(ST1_479d) ,.ST1_478d_port(ST1_478d) ,
-	.ST1_477d_port(ST1_477d) ,.ST1_476d_port(ST1_476d) ,.ST1_475d_port(ST1_475d) ,
-	.ST1_474d_port(ST1_474d) ,.ST1_473d_port(ST1_473d) ,.ST1_472d_port(ST1_472d) ,
-	.ST1_471d_port(ST1_471d) ,.ST1_470d_port(ST1_470d) ,.ST1_469d_port(ST1_469d) ,
-	.ST1_468d_port(ST1_468d) ,.ST1_467d_port(ST1_467d) ,.ST1_466d_port(ST1_466d) ,
-	.ST1_465d_port(ST1_465d) ,.ST1_464d_port(ST1_464d) ,.ST1_463d_port(ST1_463d) ,
-	.ST1_462d_port(ST1_462d) ,.ST1_461d_port(ST1_461d) ,.ST1_460d_port(ST1_460d) ,
-	.ST1_459d_port(ST1_459d) ,.ST1_458d_port(ST1_458d) ,.ST1_457d_port(ST1_457d) ,
-	.ST1_456d_port(ST1_456d) ,.ST1_455d_port(ST1_455d) ,.ST1_454d_port(ST1_454d) ,
-	.ST1_453d_port(ST1_453d) ,.ST1_452d_port(ST1_452d) ,.ST1_451d_port(ST1_451d) ,
-	.ST1_450d_port(ST1_450d) ,.ST1_449d_port(ST1_449d) ,.ST1_448d_port(ST1_448d) ,
-	.ST1_447d_port(ST1_447d) ,.ST1_446d_port(ST1_446d) ,.ST1_445d_port(ST1_445d) ,
-	.ST1_444d_port(ST1_444d) ,.ST1_443d_port(ST1_443d) ,.ST1_442d_port(ST1_442d) ,
-	.ST1_441d_port(ST1_441d) ,.ST1_440d_port(ST1_440d) ,.ST1_439d_port(ST1_439d) ,
-	.ST1_438d_port(ST1_438d) ,.ST1_437d_port(ST1_437d) ,.ST1_436d_port(ST1_436d) ,
-	.ST1_435d_port(ST1_435d) ,.ST1_434d_port(ST1_434d) ,.ST1_433d_port(ST1_433d) ,
-	.ST1_432d_port(ST1_432d) ,.ST1_431d_port(ST1_431d) ,.ST1_430d_port(ST1_430d) ,
-	.ST1_429d_port(ST1_429d) ,.ST1_428d_port(ST1_428d) ,.ST1_427d_port(ST1_427d) ,
-	.ST1_426d_port(ST1_426d) ,.ST1_425d_port(ST1_425d) ,.ST1_424d_port(ST1_424d) ,
-	.ST1_423d_port(ST1_423d) ,.ST1_422d_port(ST1_422d) ,.ST1_421d_port(ST1_421d) ,
-	.ST1_420d_port(ST1_420d) ,.ST1_419d_port(ST1_419d) ,.ST1_418d_port(ST1_418d) ,
-	.ST1_417d_port(ST1_417d) ,.ST1_416d_port(ST1_416d) ,.ST1_415d_port(ST1_415d) ,
-	.ST1_414d_port(ST1_414d) ,.ST1_413d_port(ST1_413d) ,.ST1_412d_port(ST1_412d) ,
-	.ST1_411d_port(ST1_411d) ,.ST1_410d_port(ST1_410d) ,.ST1_409d_port(ST1_409d) ,
-	.ST1_408d_port(ST1_408d) ,.ST1_407d_port(ST1_407d) ,.ST1_406d_port(ST1_406d) ,
-	.ST1_405d_port(ST1_405d) ,.ST1_404d_port(ST1_404d) ,.ST1_403d_port(ST1_403d) ,
-	.ST1_402d_port(ST1_402d) ,.ST1_401d_port(ST1_401d) ,.ST1_400d_port(ST1_400d) ,
-	.ST1_399d_port(ST1_399d) ,.ST1_398d_port(ST1_398d) ,.ST1_397d_port(ST1_397d) ,
-	.ST1_396d_port(ST1_396d) ,.ST1_395d_port(ST1_395d) ,.ST1_394d_port(ST1_394d) ,
-	.ST1_393d_port(ST1_393d) ,.ST1_392d_port(ST1_392d) ,.ST1_391d_port(ST1_391d) ,
-	.ST1_390d_port(ST1_390d) ,.ST1_389d_port(ST1_389d) ,.ST1_388d_port(ST1_388d) ,
-	.ST1_387d_port(ST1_387d) ,.ST1_386d_port(ST1_386d) ,.ST1_385d_port(ST1_385d) ,
-	.ST1_384d_port(ST1_384d) ,.ST1_383d_port(ST1_383d) ,.ST1_382d_port(ST1_382d) ,
-	.ST1_381d_port(ST1_381d) ,.ST1_380d_port(ST1_380d) ,.ST1_379d_port(ST1_379d) ,
-	.ST1_378d_port(ST1_378d) ,.ST1_377d_port(ST1_377d) ,.ST1_376d_port(ST1_376d) ,
-	.ST1_375d_port(ST1_375d) ,.ST1_374d_port(ST1_374d) ,.ST1_373d_port(ST1_373d) ,
-	.ST1_372d_port(ST1_372d) ,.ST1_371d_port(ST1_371d) ,.ST1_370d_port(ST1_370d) ,
-	.ST1_369d_port(ST1_369d) ,.ST1_368d_port(ST1_368d) ,.ST1_367d_port(ST1_367d) ,
-	.ST1_366d_port(ST1_366d) ,.ST1_365d_port(ST1_365d) ,.ST1_364d_port(ST1_364d) ,
-	.ST1_363d_port(ST1_363d) ,.ST1_362d_port(ST1_362d) ,.ST1_361d_port(ST1_361d) ,
-	.ST1_360d_port(ST1_360d) ,.ST1_359d_port(ST1_359d) ,.ST1_358d_port(ST1_358d) ,
-	.ST1_357d_port(ST1_357d) ,.ST1_356d_port(ST1_356d) ,.ST1_355d_port(ST1_355d) ,
-	.ST1_354d_port(ST1_354d) ,.ST1_353d_port(ST1_353d) ,.ST1_352d_port(ST1_352d) ,
-	.ST1_351d_port(ST1_351d) ,.ST1_350d_port(ST1_350d) ,.ST1_349d_port(ST1_349d) ,
-	.ST1_348d_port(ST1_348d) ,.ST1_347d_port(ST1_347d) ,.ST1_346d_port(ST1_346d) ,
-	.ST1_345d_port(ST1_345d) ,.ST1_344d_port(ST1_344d) ,.ST1_343d_port(ST1_343d) ,
-	.ST1_342d_port(ST1_342d) ,.ST1_341d_port(ST1_341d) ,.ST1_340d_port(ST1_340d) ,
+	.RESET(RESET) ,.TR_155(TR_155) ,.M_2785(M_2785) ,.M_2783(M_2783) ,.M_2782(M_2782) ,
+	.M_2781(M_2781) ,.M_2777(M_2777) ,.M_2769(M_2769) ,.M_2764(M_2764) ,.M_2763(M_2763) ,
+	.M_2758(M_2758) ,.U_706(U_706) ,.U_633(U_633) ,.U_579(U_579) ,.U_12(U_12) ,
 	.ST1_339d_port(ST1_339d) ,.ST1_338d_port(ST1_338d) ,.ST1_337d_port(ST1_337d) ,
 	.ST1_336d_port(ST1_336d) ,.ST1_335d_port(ST1_335d) ,.ST1_334d_port(ST1_334d) ,
 	.ST1_333d_port(ST1_333d) ,.ST1_332d_port(ST1_332d) ,.ST1_331d_port(ST1_331d) ,
@@ -844,485 +648,265 @@ computer_fsm INST_fsm ( .imem_arg_MEMB32W65536_RD1(imem_arg_MEMB32W65536_RD1) ,.
 	.ST1_09d_port(ST1_09d) ,.ST1_08d_port(ST1_08d) ,.ST1_07d_port(ST1_07d) ,
 	.ST1_06d_port(ST1_06d) ,.ST1_05d_port(ST1_05d) ,.ST1_04d_port(ST1_04d) ,
 	.ST1_03d_port(ST1_03d) ,.ST1_02d_port(ST1_02d) ,.ST1_01d_port(ST1_01d) ,
-	.JF_194(JF_194) ,.JF_193(JF_193) ,.JF_192(JF_192) ,.JF_191(JF_191) ,.JF_190(JF_190) ,
-	.JF_189(JF_189) ,.JF_188(JF_188) ,.JF_186(JF_186) ,.JF_185(JF_185) ,.JF_184(JF_184) ,
-	.JF_183(JF_183) ,.JF_182(JF_182) ,.JF_181(JF_181) ,.JF_180(JF_180) ,.JF_178(JF_178) ,
-	.JF_177(JF_177) ,.JF_176(JF_176) ,.JF_175(JF_175) ,.JF_174(JF_174) ,.JF_173(JF_173) ,
-	.JF_172(JF_172) ,.JF_170(JF_170) ,.JF_169(JF_169) ,.JF_168(JF_168) ,.JF_167(JF_167) ,
-	.JF_166(JF_166) ,.JF_165(JF_165) ,.JF_164(JF_164) ,.JF_162(JF_162) ,.JF_161(JF_161) ,
-	.JF_160(JF_160) ,.JF_159(JF_159) ,.JF_158(JF_158) ,.JF_157(JF_157) ,.JF_156(JF_156) ,
-	.JF_154(JF_154) ,.JF_153(JF_153) ,.JF_152(JF_152) ,.JF_151(JF_151) ,.JF_150(JF_150) ,
-	.JF_149(JF_149) ,.JF_148(JF_148) ,.JF_146(JF_146) ,.JF_145(JF_145) ,.JF_144(JF_144) ,
-	.JF_143(JF_143) ,.JF_142(JF_142) ,.JF_141(JF_141) ,.JF_140(JF_140) ,.JF_138(JF_138) ,
-	.JF_137(JF_137) ,.JF_136(JF_136) ,.JF_135(JF_135) ,.JF_134(JF_134) ,.JF_133(JF_133) ,
-	.JF_132(JF_132) ,.JF_129(JF_129) ,.JF_128(JF_128) ,.JF_127(JF_127) ,.JF_126(JF_126) ,
-	.JF_125(JF_125) ,.JF_124(JF_124) ,.JF_123(JF_123) ,.JF_121(JF_121) ,.JF_120(JF_120) ,
-	.JF_119(JF_119) ,.JF_118(JF_118) ,.JF_117(JF_117) ,.JF_116(JF_116) ,.JF_115(JF_115) ,
-	.JF_113(JF_113) ,.JF_112(JF_112) ,.JF_111(JF_111) ,.JF_110(JF_110) ,.JF_109(JF_109) ,
-	.JF_108(JF_108) ,.JF_107(JF_107) ,.JF_105(JF_105) ,.JF_104(JF_104) ,.JF_103(JF_103) ,
-	.JF_102(JF_102) ,.JF_101(JF_101) ,.JF_100(JF_100) ,.JF_99(JF_99) ,.JF_97(JF_97) ,
-	.JF_96(JF_96) ,.JF_95(JF_95) ,.JF_94(JF_94) ,.JF_93(JF_93) ,.JF_92(JF_92) ,
-	.JF_91(JF_91) ,.JF_89(JF_89) ,.JF_88(JF_88) ,.JF_87(JF_87) ,.JF_86(JF_86) ,
-	.JF_85(JF_85) ,.JF_84(JF_84) ,.JF_83(JF_83) ,.JF_81(JF_81) ,.JF_80(JF_80) ,
-	.JF_79(JF_79) ,.JF_78(JF_78) ,.JF_77(JF_77) ,.JF_76(JF_76) ,.JF_75(JF_75) ,
-	.JF_73(JF_73) ,.JF_72(JF_72) ,.JF_71(JF_71) ,.JF_70(JF_70) ,.JF_69(JF_69) ,
-	.JF_68(JF_68) ,.JF_67(JF_67) ,.JF_66(JF_66) ,.JF_49(JF_49) ,.JF_47(JF_47) ,
-	.JF_42(JF_42) ,.JF_38(JF_38) ,.JF_36(JF_36) ,.JF_35(JF_35) ,.JF_34(JF_34) ,
-	.JF_33(JF_33) ,.JF_32(JF_32) ,.JF_28(JF_28) ,.CT_15(CT_15) ,.JF_24(JF_24) ,
-	.JF_18(JF_18) ,.JF_17(JF_17) ,.JF_16(JF_16) ,.JF_15(JF_15) ,.JF_14(JF_14) ,
-	.JF_11(JF_11) ,.JF_10(JF_10) ,.JF_09(JF_09) ,.JF_08(JF_08) ,.JF_07(JF_07) ,
+	.JF_193(JF_193) ,.JF_192(JF_192) ,.JF_191(JF_191) ,.JF_190(JF_190) ,.JF_189(JF_189) ,
+	.JF_188(JF_188) ,.JF_187(JF_187) ,.JF_186(JF_186) ,.JF_185(JF_185) ,.JF_184(JF_184) ,
+	.JF_183(JF_183) ,.JF_182(JF_182) ,.JF_181(JF_181) ,.JF_180(JF_180) ,.JF_179(JF_179) ,
+	.JF_178(JF_178) ,.JF_177(JF_177) ,.JF_176(JF_176) ,.JF_175(JF_175) ,.JF_174(JF_174) ,
+	.JF_173(JF_173) ,.JF_172(JF_172) ,.JF_171(JF_171) ,.JF_170(JF_170) ,.JF_169(JF_169) ,
+	.JF_168(JF_168) ,.JF_167(JF_167) ,.JF_166(JF_166) ,.JF_165(JF_165) ,.JF_164(JF_164) ,
+	.JF_163(JF_163) ,.JF_162(JF_162) ,.JF_161(JF_161) ,.JF_160(JF_160) ,.JF_159(JF_159) ,
+	.JF_158(JF_158) ,.JF_157(JF_157) ,.JF_156(JF_156) ,.JF_155(JF_155) ,.JF_154(JF_154) ,
+	.JF_153(JF_153) ,.JF_152(JF_152) ,.JF_151(JF_151) ,.JF_150(JF_150) ,.JF_149(JF_149) ,
+	.JF_148(JF_148) ,.JF_147(JF_147) ,.JF_146(JF_146) ,.JF_145(JF_145) ,.JF_144(JF_144) ,
+	.JF_143(JF_143) ,.JF_142(JF_142) ,.JF_141(JF_141) ,.JF_140(JF_140) ,.JF_139(JF_139) ,
+	.JF_138(JF_138) ,.JF_137(JF_137) ,.JF_136(JF_136) ,.JF_135(JF_135) ,.JF_134(JF_134) ,
+	.JF_133(JF_133) ,.JF_132(JF_132) ,.JF_131(JF_131) ,.JF_130(JF_130) ,.JF_127(JF_127) ,
+	.JF_126(JF_126) ,.JF_125(JF_125) ,.JF_124(JF_124) ,.JF_123(JF_123) ,.JF_122(JF_122) ,
+	.JF_121(JF_121) ,.JF_119(JF_119) ,.JF_118(JF_118) ,.JF_117(JF_117) ,.JF_116(JF_116) ,
+	.JF_115(JF_115) ,.JF_114(JF_114) ,.JF_113(JF_113) ,.JF_111(JF_111) ,.JF_110(JF_110) ,
+	.JF_109(JF_109) ,.JF_108(JF_108) ,.JF_107(JF_107) ,.JF_106(JF_106) ,.JF_105(JF_105) ,
+	.JF_103(JF_103) ,.JF_102(JF_102) ,.JF_101(JF_101) ,.JF_100(JF_100) ,.JF_99(JF_99) ,
+	.JF_98(JF_98) ,.JF_97(JF_97) ,.JF_95(JF_95) ,.JF_94(JF_94) ,.JF_93(JF_93) ,
+	.JF_92(JF_92) ,.JF_91(JF_91) ,.JF_90(JF_90) ,.JF_89(JF_89) ,.JF_87(JF_87) ,
+	.JF_86(JF_86) ,.JF_85(JF_85) ,.JF_84(JF_84) ,.JF_83(JF_83) ,.JF_82(JF_82) ,
+	.JF_81(JF_81) ,.JF_79(JF_79) ,.JF_78(JF_78) ,.JF_77(JF_77) ,.JF_76(JF_76) ,
+	.JF_75(JF_75) ,.JF_74(JF_74) ,.JF_73(JF_73) ,.JF_71(JF_71) ,.JF_70(JF_70) ,
+	.JF_69(JF_69) ,.JF_68(JF_68) ,.JF_67(JF_67) ,.JF_66(JF_66) ,.JF_65(JF_65) ,
+	.JF_64(JF_64) ,.JF_62(JF_62) ,.JF_49(JF_49) ,.JF_47(JF_47) ,.JF_41(JF_41) ,
+	.JF_39(JF_39) ,.JF_37(JF_37) ,.JF_36(JF_36) ,.JF_35(JF_35) ,.JF_34(JF_34) ,
+	.JF_33(JF_33) ,.JF_30(JF_30) ,.JF_28(JF_28) ,.JF_27(JF_27) ,.CT_15(CT_15) ,
+	.JF_23(JF_23) ,.JF_17(JF_17) ,.JF_16(JF_16) ,.JF_15(JF_15) ,.JF_14(JF_14) ,
+	.JF_13(JF_13) ,.JF_10(JF_10) ,.JF_09(JF_09) ,.JF_08(JF_08) ,.JF_07(JF_07) ,
 	.JF_06(JF_06) ,.JF_03(JF_03) ,.JF_02(JF_02) ,.CT_01(CT_01) ,.RG_k(RG_k) ,
-	.RG_08(RG_08) ,.RG_buf_buf1_funct3_imm1_next_pc(RG_buf_buf1_funct3_imm1_next_pc) ,
-	.FF_take(FF_take) );
+	.RG_funct3_imm1(RG_funct3_imm1) ,.FF_take(FF_take) );
 computer_dat INST_dat ( .imem_arg_MEMB32W65536_RA1(imem_arg_MEMB32W65536_RA1) ,.imem_arg_MEMB32W65536_RD1(imem_arg_MEMB32W65536_RD1) ,
 	.imem_arg_MEMB32W65536_RE1(imem_arg_MEMB32W65536_RE1) ,.dmem_arg_MEMB32W65536_RA1(dmem_arg_MEMB32W65536_RA1) ,
 	.dmem_arg_MEMB32W65536_RD1(dmem_arg_MEMB32W65536_RD1) ,.dmem_arg_MEMB32W65536_RE1(dmem_arg_MEMB32W65536_RE1) ,
 	.dmem_arg_MEMB32W65536_WA2(dmem_arg_MEMB32W65536_WA2) ,.dmem_arg_MEMB32W65536_WD2(dmem_arg_MEMB32W65536_WD2) ,
 	.dmem_arg_MEMB32W65536_WE2(dmem_arg_MEMB32W65536_WE2) ,.computer_ret(computer_ret) ,
-	.CLOCK(CLOCK) ,.RESET(RESET) ,.TR_179(TR_179) ,.M_2875_port(M_2875) ,.M_2872_port(M_2872) ,
-	.M_2871_port(M_2871) ,.M_2865_port(M_2865) ,.M_2863_port(M_2863) ,.M_2859_port(M_2859) ,
-	.M_2854_port(M_2854) ,.M_2853_port(M_2853) ,.M_2848_port(M_2848) ,.U_704_port(U_704) ,
-	.U_683_port(U_683) ,.U_630_port(U_630) ,.U_576_port(U_576) ,.U_12_port(U_12) ,
-	.ST1_492d(ST1_492d) ,.ST1_491d(ST1_491d) ,.ST1_490d(ST1_490d) ,.ST1_489d(ST1_489d) ,
-	.ST1_488d(ST1_488d) ,.ST1_487d(ST1_487d) ,.ST1_486d(ST1_486d) ,.ST1_485d(ST1_485d) ,
-	.ST1_484d(ST1_484d) ,.ST1_483d(ST1_483d) ,.ST1_482d(ST1_482d) ,.ST1_481d(ST1_481d) ,
-	.ST1_480d(ST1_480d) ,.ST1_479d(ST1_479d) ,.ST1_478d(ST1_478d) ,.ST1_477d(ST1_477d) ,
-	.ST1_476d(ST1_476d) ,.ST1_475d(ST1_475d) ,.ST1_474d(ST1_474d) ,.ST1_473d(ST1_473d) ,
-	.ST1_472d(ST1_472d) ,.ST1_471d(ST1_471d) ,.ST1_470d(ST1_470d) ,.ST1_469d(ST1_469d) ,
-	.ST1_468d(ST1_468d) ,.ST1_467d(ST1_467d) ,.ST1_466d(ST1_466d) ,.ST1_465d(ST1_465d) ,
-	.ST1_464d(ST1_464d) ,.ST1_463d(ST1_463d) ,.ST1_462d(ST1_462d) ,.ST1_461d(ST1_461d) ,
-	.ST1_460d(ST1_460d) ,.ST1_459d(ST1_459d) ,.ST1_458d(ST1_458d) ,.ST1_457d(ST1_457d) ,
-	.ST1_456d(ST1_456d) ,.ST1_455d(ST1_455d) ,.ST1_454d(ST1_454d) ,.ST1_453d(ST1_453d) ,
-	.ST1_452d(ST1_452d) ,.ST1_451d(ST1_451d) ,.ST1_450d(ST1_450d) ,.ST1_449d(ST1_449d) ,
-	.ST1_448d(ST1_448d) ,.ST1_447d(ST1_447d) ,.ST1_446d(ST1_446d) ,.ST1_445d(ST1_445d) ,
-	.ST1_444d(ST1_444d) ,.ST1_443d(ST1_443d) ,.ST1_442d(ST1_442d) ,.ST1_441d(ST1_441d) ,
-	.ST1_440d(ST1_440d) ,.ST1_439d(ST1_439d) ,.ST1_438d(ST1_438d) ,.ST1_437d(ST1_437d) ,
-	.ST1_436d(ST1_436d) ,.ST1_435d(ST1_435d) ,.ST1_434d(ST1_434d) ,.ST1_433d(ST1_433d) ,
-	.ST1_432d(ST1_432d) ,.ST1_431d(ST1_431d) ,.ST1_430d(ST1_430d) ,.ST1_429d(ST1_429d) ,
-	.ST1_428d(ST1_428d) ,.ST1_427d(ST1_427d) ,.ST1_426d(ST1_426d) ,.ST1_425d(ST1_425d) ,
-	.ST1_424d(ST1_424d) ,.ST1_423d(ST1_423d) ,.ST1_422d(ST1_422d) ,.ST1_421d(ST1_421d) ,
-	.ST1_420d(ST1_420d) ,.ST1_419d(ST1_419d) ,.ST1_418d(ST1_418d) ,.ST1_417d(ST1_417d) ,
-	.ST1_416d(ST1_416d) ,.ST1_415d(ST1_415d) ,.ST1_414d(ST1_414d) ,.ST1_413d(ST1_413d) ,
-	.ST1_412d(ST1_412d) ,.ST1_411d(ST1_411d) ,.ST1_410d(ST1_410d) ,.ST1_409d(ST1_409d) ,
-	.ST1_408d(ST1_408d) ,.ST1_407d(ST1_407d) ,.ST1_406d(ST1_406d) ,.ST1_405d(ST1_405d) ,
-	.ST1_404d(ST1_404d) ,.ST1_403d(ST1_403d) ,.ST1_402d(ST1_402d) ,.ST1_401d(ST1_401d) ,
-	.ST1_400d(ST1_400d) ,.ST1_399d(ST1_399d) ,.ST1_398d(ST1_398d) ,.ST1_397d(ST1_397d) ,
-	.ST1_396d(ST1_396d) ,.ST1_395d(ST1_395d) ,.ST1_394d(ST1_394d) ,.ST1_393d(ST1_393d) ,
-	.ST1_392d(ST1_392d) ,.ST1_391d(ST1_391d) ,.ST1_390d(ST1_390d) ,.ST1_389d(ST1_389d) ,
-	.ST1_388d(ST1_388d) ,.ST1_387d(ST1_387d) ,.ST1_386d(ST1_386d) ,.ST1_385d(ST1_385d) ,
-	.ST1_384d(ST1_384d) ,.ST1_383d(ST1_383d) ,.ST1_382d(ST1_382d) ,.ST1_381d(ST1_381d) ,
-	.ST1_380d(ST1_380d) ,.ST1_379d(ST1_379d) ,.ST1_378d(ST1_378d) ,.ST1_377d(ST1_377d) ,
-	.ST1_376d(ST1_376d) ,.ST1_375d(ST1_375d) ,.ST1_374d(ST1_374d) ,.ST1_373d(ST1_373d) ,
-	.ST1_372d(ST1_372d) ,.ST1_371d(ST1_371d) ,.ST1_370d(ST1_370d) ,.ST1_369d(ST1_369d) ,
-	.ST1_368d(ST1_368d) ,.ST1_367d(ST1_367d) ,.ST1_366d(ST1_366d) ,.ST1_365d(ST1_365d) ,
-	.ST1_364d(ST1_364d) ,.ST1_363d(ST1_363d) ,.ST1_362d(ST1_362d) ,.ST1_361d(ST1_361d) ,
-	.ST1_360d(ST1_360d) ,.ST1_359d(ST1_359d) ,.ST1_358d(ST1_358d) ,.ST1_357d(ST1_357d) ,
-	.ST1_356d(ST1_356d) ,.ST1_355d(ST1_355d) ,.ST1_354d(ST1_354d) ,.ST1_353d(ST1_353d) ,
-	.ST1_352d(ST1_352d) ,.ST1_351d(ST1_351d) ,.ST1_350d(ST1_350d) ,.ST1_349d(ST1_349d) ,
-	.ST1_348d(ST1_348d) ,.ST1_347d(ST1_347d) ,.ST1_346d(ST1_346d) ,.ST1_345d(ST1_345d) ,
-	.ST1_344d(ST1_344d) ,.ST1_343d(ST1_343d) ,.ST1_342d(ST1_342d) ,.ST1_341d(ST1_341d) ,
-	.ST1_340d(ST1_340d) ,.ST1_339d(ST1_339d) ,.ST1_338d(ST1_338d) ,.ST1_337d(ST1_337d) ,
-	.ST1_336d(ST1_336d) ,.ST1_335d(ST1_335d) ,.ST1_334d(ST1_334d) ,.ST1_333d(ST1_333d) ,
-	.ST1_332d(ST1_332d) ,.ST1_331d(ST1_331d) ,.ST1_330d(ST1_330d) ,.ST1_329d(ST1_329d) ,
-	.ST1_328d(ST1_328d) ,.ST1_327d(ST1_327d) ,.ST1_326d(ST1_326d) ,.ST1_325d(ST1_325d) ,
-	.ST1_324d(ST1_324d) ,.ST1_323d(ST1_323d) ,.ST1_322d(ST1_322d) ,.ST1_321d(ST1_321d) ,
-	.ST1_320d(ST1_320d) ,.ST1_319d(ST1_319d) ,.ST1_318d(ST1_318d) ,.ST1_317d(ST1_317d) ,
-	.ST1_316d(ST1_316d) ,.ST1_315d(ST1_315d) ,.ST1_314d(ST1_314d) ,.ST1_313d(ST1_313d) ,
-	.ST1_312d(ST1_312d) ,.ST1_311d(ST1_311d) ,.ST1_310d(ST1_310d) ,.ST1_309d(ST1_309d) ,
-	.ST1_308d(ST1_308d) ,.ST1_307d(ST1_307d) ,.ST1_306d(ST1_306d) ,.ST1_305d(ST1_305d) ,
-	.ST1_304d(ST1_304d) ,.ST1_303d(ST1_303d) ,.ST1_302d(ST1_302d) ,.ST1_301d(ST1_301d) ,
-	.ST1_300d(ST1_300d) ,.ST1_299d(ST1_299d) ,.ST1_298d(ST1_298d) ,.ST1_297d(ST1_297d) ,
-	.ST1_296d(ST1_296d) ,.ST1_295d(ST1_295d) ,.ST1_294d(ST1_294d) ,.ST1_293d(ST1_293d) ,
-	.ST1_292d(ST1_292d) ,.ST1_291d(ST1_291d) ,.ST1_290d(ST1_290d) ,.ST1_289d(ST1_289d) ,
-	.ST1_288d(ST1_288d) ,.ST1_287d(ST1_287d) ,.ST1_286d(ST1_286d) ,.ST1_285d(ST1_285d) ,
-	.ST1_284d(ST1_284d) ,.ST1_283d(ST1_283d) ,.ST1_282d(ST1_282d) ,.ST1_281d(ST1_281d) ,
-	.ST1_280d(ST1_280d) ,.ST1_279d(ST1_279d) ,.ST1_278d(ST1_278d) ,.ST1_277d(ST1_277d) ,
-	.ST1_276d(ST1_276d) ,.ST1_275d(ST1_275d) ,.ST1_274d(ST1_274d) ,.ST1_273d(ST1_273d) ,
-	.ST1_272d(ST1_272d) ,.ST1_271d(ST1_271d) ,.ST1_270d(ST1_270d) ,.ST1_269d(ST1_269d) ,
-	.ST1_268d(ST1_268d) ,.ST1_267d(ST1_267d) ,.ST1_266d(ST1_266d) ,.ST1_265d(ST1_265d) ,
-	.ST1_264d(ST1_264d) ,.ST1_263d(ST1_263d) ,.ST1_262d(ST1_262d) ,.ST1_261d(ST1_261d) ,
-	.ST1_260d(ST1_260d) ,.ST1_259d(ST1_259d) ,.ST1_258d(ST1_258d) ,.ST1_257d(ST1_257d) ,
-	.ST1_256d(ST1_256d) ,.ST1_255d(ST1_255d) ,.ST1_254d(ST1_254d) ,.ST1_253d(ST1_253d) ,
-	.ST1_252d(ST1_252d) ,.ST1_251d(ST1_251d) ,.ST1_250d(ST1_250d) ,.ST1_249d(ST1_249d) ,
-	.ST1_248d(ST1_248d) ,.ST1_247d(ST1_247d) ,.ST1_246d(ST1_246d) ,.ST1_245d(ST1_245d) ,
-	.ST1_244d(ST1_244d) ,.ST1_243d(ST1_243d) ,.ST1_242d(ST1_242d) ,.ST1_241d(ST1_241d) ,
-	.ST1_240d(ST1_240d) ,.ST1_239d(ST1_239d) ,.ST1_238d(ST1_238d) ,.ST1_237d(ST1_237d) ,
-	.ST1_236d(ST1_236d) ,.ST1_235d(ST1_235d) ,.ST1_234d(ST1_234d) ,.ST1_233d(ST1_233d) ,
-	.ST1_232d(ST1_232d) ,.ST1_231d(ST1_231d) ,.ST1_230d(ST1_230d) ,.ST1_229d(ST1_229d) ,
-	.ST1_228d(ST1_228d) ,.ST1_227d(ST1_227d) ,.ST1_226d(ST1_226d) ,.ST1_225d(ST1_225d) ,
-	.ST1_224d(ST1_224d) ,.ST1_223d(ST1_223d) ,.ST1_222d(ST1_222d) ,.ST1_221d(ST1_221d) ,
-	.ST1_220d(ST1_220d) ,.ST1_219d(ST1_219d) ,.ST1_218d(ST1_218d) ,.ST1_217d(ST1_217d) ,
-	.ST1_216d(ST1_216d) ,.ST1_215d(ST1_215d) ,.ST1_214d(ST1_214d) ,.ST1_213d(ST1_213d) ,
-	.ST1_212d(ST1_212d) ,.ST1_211d(ST1_211d) ,.ST1_210d(ST1_210d) ,.ST1_209d(ST1_209d) ,
-	.ST1_208d(ST1_208d) ,.ST1_207d(ST1_207d) ,.ST1_206d(ST1_206d) ,.ST1_205d(ST1_205d) ,
-	.ST1_204d(ST1_204d) ,.ST1_203d(ST1_203d) ,.ST1_202d(ST1_202d) ,.ST1_201d(ST1_201d) ,
-	.ST1_200d(ST1_200d) ,.ST1_199d(ST1_199d) ,.ST1_198d(ST1_198d) ,.ST1_197d(ST1_197d) ,
-	.ST1_196d(ST1_196d) ,.ST1_195d(ST1_195d) ,.ST1_194d(ST1_194d) ,.ST1_193d(ST1_193d) ,
-	.ST1_192d(ST1_192d) ,.ST1_191d(ST1_191d) ,.ST1_190d(ST1_190d) ,.ST1_189d(ST1_189d) ,
-	.ST1_188d(ST1_188d) ,.ST1_187d(ST1_187d) ,.ST1_186d(ST1_186d) ,.ST1_185d(ST1_185d) ,
-	.ST1_184d(ST1_184d) ,.ST1_183d(ST1_183d) ,.ST1_182d(ST1_182d) ,.ST1_181d(ST1_181d) ,
-	.ST1_180d(ST1_180d) ,.ST1_179d(ST1_179d) ,.ST1_178d(ST1_178d) ,.ST1_177d(ST1_177d) ,
-	.ST1_176d(ST1_176d) ,.ST1_175d(ST1_175d) ,.ST1_174d(ST1_174d) ,.ST1_173d(ST1_173d) ,
-	.ST1_172d(ST1_172d) ,.ST1_171d(ST1_171d) ,.ST1_170d(ST1_170d) ,.ST1_169d(ST1_169d) ,
-	.ST1_168d(ST1_168d) ,.ST1_167d(ST1_167d) ,.ST1_166d(ST1_166d) ,.ST1_165d(ST1_165d) ,
-	.ST1_164d(ST1_164d) ,.ST1_163d(ST1_163d) ,.ST1_162d(ST1_162d) ,.ST1_161d(ST1_161d) ,
-	.ST1_160d(ST1_160d) ,.ST1_159d(ST1_159d) ,.ST1_158d(ST1_158d) ,.ST1_157d(ST1_157d) ,
-	.ST1_156d(ST1_156d) ,.ST1_155d(ST1_155d) ,.ST1_154d(ST1_154d) ,.ST1_153d(ST1_153d) ,
-	.ST1_152d(ST1_152d) ,.ST1_151d(ST1_151d) ,.ST1_150d(ST1_150d) ,.ST1_149d(ST1_149d) ,
-	.ST1_148d(ST1_148d) ,.ST1_147d(ST1_147d) ,.ST1_146d(ST1_146d) ,.ST1_145d(ST1_145d) ,
-	.ST1_144d(ST1_144d) ,.ST1_143d(ST1_143d) ,.ST1_142d(ST1_142d) ,.ST1_141d(ST1_141d) ,
-	.ST1_140d(ST1_140d) ,.ST1_139d(ST1_139d) ,.ST1_138d(ST1_138d) ,.ST1_137d(ST1_137d) ,
-	.ST1_136d(ST1_136d) ,.ST1_135d(ST1_135d) ,.ST1_134d(ST1_134d) ,.ST1_133d(ST1_133d) ,
-	.ST1_132d(ST1_132d) ,.ST1_131d(ST1_131d) ,.ST1_130d(ST1_130d) ,.ST1_129d(ST1_129d) ,
-	.ST1_128d(ST1_128d) ,.ST1_127d(ST1_127d) ,.ST1_126d(ST1_126d) ,.ST1_125d(ST1_125d) ,
-	.ST1_124d(ST1_124d) ,.ST1_123d(ST1_123d) ,.ST1_122d(ST1_122d) ,.ST1_121d(ST1_121d) ,
-	.ST1_120d(ST1_120d) ,.ST1_119d(ST1_119d) ,.ST1_118d(ST1_118d) ,.ST1_117d(ST1_117d) ,
-	.ST1_116d(ST1_116d) ,.ST1_115d(ST1_115d) ,.ST1_114d(ST1_114d) ,.ST1_113d(ST1_113d) ,
-	.ST1_112d(ST1_112d) ,.ST1_111d(ST1_111d) ,.ST1_110d(ST1_110d) ,.ST1_109d(ST1_109d) ,
-	.ST1_108d(ST1_108d) ,.ST1_107d(ST1_107d) ,.ST1_106d(ST1_106d) ,.ST1_105d(ST1_105d) ,
-	.ST1_104d(ST1_104d) ,.ST1_103d(ST1_103d) ,.ST1_102d(ST1_102d) ,.ST1_101d(ST1_101d) ,
-	.ST1_100d(ST1_100d) ,.ST1_99d(ST1_99d) ,.ST1_98d(ST1_98d) ,.ST1_97d(ST1_97d) ,
-	.ST1_96d(ST1_96d) ,.ST1_95d(ST1_95d) ,.ST1_94d(ST1_94d) ,.ST1_93d(ST1_93d) ,
-	.ST1_92d(ST1_92d) ,.ST1_91d(ST1_91d) ,.ST1_90d(ST1_90d) ,.ST1_89d(ST1_89d) ,
-	.ST1_88d(ST1_88d) ,.ST1_87d(ST1_87d) ,.ST1_86d(ST1_86d) ,.ST1_85d(ST1_85d) ,
-	.ST1_84d(ST1_84d) ,.ST1_83d(ST1_83d) ,.ST1_82d(ST1_82d) ,.ST1_81d(ST1_81d) ,
-	.ST1_80d(ST1_80d) ,.ST1_79d(ST1_79d) ,.ST1_78d(ST1_78d) ,.ST1_77d(ST1_77d) ,
-	.ST1_76d(ST1_76d) ,.ST1_75d(ST1_75d) ,.ST1_74d(ST1_74d) ,.ST1_73d(ST1_73d) ,
-	.ST1_72d(ST1_72d) ,.ST1_71d(ST1_71d) ,.ST1_70d(ST1_70d) ,.ST1_69d(ST1_69d) ,
-	.ST1_68d(ST1_68d) ,.ST1_67d(ST1_67d) ,.ST1_66d(ST1_66d) ,.ST1_65d(ST1_65d) ,
-	.ST1_64d(ST1_64d) ,.ST1_63d(ST1_63d) ,.ST1_62d(ST1_62d) ,.ST1_61d(ST1_61d) ,
-	.ST1_60d(ST1_60d) ,.ST1_59d(ST1_59d) ,.ST1_58d(ST1_58d) ,.ST1_57d(ST1_57d) ,
-	.ST1_56d(ST1_56d) ,.ST1_55d(ST1_55d) ,.ST1_54d(ST1_54d) ,.ST1_53d(ST1_53d) ,
-	.ST1_52d(ST1_52d) ,.ST1_51d(ST1_51d) ,.ST1_50d(ST1_50d) ,.ST1_49d(ST1_49d) ,
-	.ST1_48d(ST1_48d) ,.ST1_47d(ST1_47d) ,.ST1_46d(ST1_46d) ,.ST1_45d(ST1_45d) ,
-	.ST1_44d(ST1_44d) ,.ST1_43d(ST1_43d) ,.ST1_42d(ST1_42d) ,.ST1_41d(ST1_41d) ,
-	.ST1_40d(ST1_40d) ,.ST1_39d(ST1_39d) ,.ST1_38d(ST1_38d) ,.ST1_37d(ST1_37d) ,
-	.ST1_36d(ST1_36d) ,.ST1_35d(ST1_35d) ,.ST1_34d(ST1_34d) ,.ST1_33d(ST1_33d) ,
-	.ST1_32d(ST1_32d) ,.ST1_31d(ST1_31d) ,.ST1_30d(ST1_30d) ,.ST1_29d(ST1_29d) ,
-	.ST1_28d(ST1_28d) ,.ST1_27d(ST1_27d) ,.ST1_26d(ST1_26d) ,.ST1_25d(ST1_25d) ,
-	.ST1_24d(ST1_24d) ,.ST1_23d(ST1_23d) ,.ST1_22d(ST1_22d) ,.ST1_21d(ST1_21d) ,
-	.ST1_20d(ST1_20d) ,.ST1_19d(ST1_19d) ,.ST1_18d(ST1_18d) ,.ST1_17d(ST1_17d) ,
-	.ST1_16d(ST1_16d) ,.ST1_15d(ST1_15d) ,.ST1_14d(ST1_14d) ,.ST1_13d(ST1_13d) ,
-	.ST1_12d(ST1_12d) ,.ST1_11d(ST1_11d) ,.ST1_10d(ST1_10d) ,.ST1_09d(ST1_09d) ,
-	.ST1_08d(ST1_08d) ,.ST1_07d(ST1_07d) ,.ST1_06d(ST1_06d) ,.ST1_05d(ST1_05d) ,
-	.ST1_04d(ST1_04d) ,.ST1_03d(ST1_03d) ,.ST1_02d(ST1_02d) ,.ST1_01d(ST1_01d) ,
-	.JF_194(JF_194) ,.JF_193(JF_193) ,.JF_192(JF_192) ,.JF_191(JF_191) ,.JF_190(JF_190) ,
-	.JF_189(JF_189) ,.JF_188(JF_188) ,.JF_186(JF_186) ,.JF_185(JF_185) ,.JF_184(JF_184) ,
-	.JF_183(JF_183) ,.JF_182(JF_182) ,.JF_181(JF_181) ,.JF_180(JF_180) ,.JF_178(JF_178) ,
-	.JF_177(JF_177) ,.JF_176(JF_176) ,.JF_175(JF_175) ,.JF_174(JF_174) ,.JF_173(JF_173) ,
-	.JF_172(JF_172) ,.JF_170(JF_170) ,.JF_169(JF_169) ,.JF_168(JF_168) ,.JF_167(JF_167) ,
-	.JF_166(JF_166) ,.JF_165(JF_165) ,.JF_164(JF_164) ,.JF_162(JF_162) ,.JF_161(JF_161) ,
-	.JF_160(JF_160) ,.JF_159(JF_159) ,.JF_158(JF_158) ,.JF_157(JF_157) ,.JF_156(JF_156) ,
-	.JF_154(JF_154) ,.JF_153(JF_153) ,.JF_152(JF_152) ,.JF_151(JF_151) ,.JF_150(JF_150) ,
-	.JF_149(JF_149) ,.JF_148(JF_148) ,.JF_146(JF_146) ,.JF_145(JF_145) ,.JF_144(JF_144) ,
-	.JF_143(JF_143) ,.JF_142(JF_142) ,.JF_141(JF_141) ,.JF_140(JF_140) ,.JF_138(JF_138) ,
-	.JF_137(JF_137) ,.JF_136(JF_136) ,.JF_135(JF_135) ,.JF_134(JF_134) ,.JF_133(JF_133) ,
-	.JF_132(JF_132) ,.JF_129(JF_129) ,.JF_128(JF_128) ,.JF_127(JF_127) ,.JF_126(JF_126) ,
-	.JF_125(JF_125) ,.JF_124(JF_124) ,.JF_123(JF_123) ,.JF_121(JF_121) ,.JF_120(JF_120) ,
-	.JF_119(JF_119) ,.JF_118(JF_118) ,.JF_117(JF_117) ,.JF_116(JF_116) ,.JF_115(JF_115) ,
-	.JF_113(JF_113) ,.JF_112(JF_112) ,.JF_111(JF_111) ,.JF_110(JF_110) ,.JF_109(JF_109) ,
-	.JF_108(JF_108) ,.JF_107(JF_107) ,.JF_105(JF_105) ,.JF_104(JF_104) ,.JF_103(JF_103) ,
-	.JF_102(JF_102) ,.JF_101(JF_101) ,.JF_100(JF_100) ,.JF_99(JF_99) ,.JF_97(JF_97) ,
-	.JF_96(JF_96) ,.JF_95(JF_95) ,.JF_94(JF_94) ,.JF_93(JF_93) ,.JF_92(JF_92) ,
-	.JF_91(JF_91) ,.JF_89(JF_89) ,.JF_88(JF_88) ,.JF_87(JF_87) ,.JF_86(JF_86) ,
-	.JF_85(JF_85) ,.JF_84(JF_84) ,.JF_83(JF_83) ,.JF_81(JF_81) ,.JF_80(JF_80) ,
-	.JF_79(JF_79) ,.JF_78(JF_78) ,.JF_77(JF_77) ,.JF_76(JF_76) ,.JF_75(JF_75) ,
-	.JF_73(JF_73) ,.JF_72(JF_72) ,.JF_71(JF_71) ,.JF_70(JF_70) ,.JF_69(JF_69) ,
-	.JF_68(JF_68) ,.JF_67(JF_67) ,.JF_66(JF_66) ,.JF_49(JF_49) ,.JF_47(JF_47) ,
-	.JF_42(JF_42) ,.JF_38(JF_38) ,.JF_36(JF_36) ,.JF_35(JF_35) ,.JF_34(JF_34) ,
-	.JF_33(JF_33) ,.JF_32(JF_32) ,.JF_28(JF_28) ,.CT_15_port(CT_15) ,.JF_24(JF_24) ,
-	.JF_18(JF_18) ,.JF_17(JF_17) ,.JF_16(JF_16) ,.JF_15(JF_15) ,.JF_14(JF_14) ,
-	.JF_11(JF_11) ,.JF_10(JF_10) ,.JF_09(JF_09) ,.JF_08(JF_08) ,.JF_07(JF_07) ,
-	.JF_06(JF_06) ,.JF_03(JF_03) ,.JF_02(JF_02) ,.CT_01_port(CT_01) ,.RG_k_port(RG_k) ,
-	.RG_08(RG_08) ,.RG_buf_buf1_funct3_imm1_next_pc_port(RG_buf_buf1_funct3_imm1_next_pc) ,
+	.CLOCK(CLOCK) ,.RESET(RESET) ,.TR_155(TR_155) ,.M_2785_port(M_2785) ,.M_2783_port(M_2783) ,
+	.M_2782_port(M_2782) ,.M_2781_port(M_2781) ,.M_2777_port(M_2777) ,.M_2769_port(M_2769) ,
+	.M_2764_port(M_2764) ,.M_2763_port(M_2763) ,.M_2758_port(M_2758) ,.U_706_port(U_706) ,
+	.U_633_port(U_633) ,.U_579_port(U_579) ,.U_12_port(U_12) ,.ST1_339d(ST1_339d) ,
+	.ST1_338d(ST1_338d) ,.ST1_337d(ST1_337d) ,.ST1_336d(ST1_336d) ,.ST1_335d(ST1_335d) ,
+	.ST1_334d(ST1_334d) ,.ST1_333d(ST1_333d) ,.ST1_332d(ST1_332d) ,.ST1_331d(ST1_331d) ,
+	.ST1_330d(ST1_330d) ,.ST1_329d(ST1_329d) ,.ST1_328d(ST1_328d) ,.ST1_327d(ST1_327d) ,
+	.ST1_326d(ST1_326d) ,.ST1_325d(ST1_325d) ,.ST1_324d(ST1_324d) ,.ST1_323d(ST1_323d) ,
+	.ST1_322d(ST1_322d) ,.ST1_321d(ST1_321d) ,.ST1_320d(ST1_320d) ,.ST1_319d(ST1_319d) ,
+	.ST1_318d(ST1_318d) ,.ST1_317d(ST1_317d) ,.ST1_316d(ST1_316d) ,.ST1_315d(ST1_315d) ,
+	.ST1_314d(ST1_314d) ,.ST1_313d(ST1_313d) ,.ST1_312d(ST1_312d) ,.ST1_311d(ST1_311d) ,
+	.ST1_310d(ST1_310d) ,.ST1_309d(ST1_309d) ,.ST1_308d(ST1_308d) ,.ST1_307d(ST1_307d) ,
+	.ST1_306d(ST1_306d) ,.ST1_305d(ST1_305d) ,.ST1_304d(ST1_304d) ,.ST1_303d(ST1_303d) ,
+	.ST1_302d(ST1_302d) ,.ST1_301d(ST1_301d) ,.ST1_300d(ST1_300d) ,.ST1_299d(ST1_299d) ,
+	.ST1_298d(ST1_298d) ,.ST1_297d(ST1_297d) ,.ST1_296d(ST1_296d) ,.ST1_295d(ST1_295d) ,
+	.ST1_294d(ST1_294d) ,.ST1_293d(ST1_293d) ,.ST1_292d(ST1_292d) ,.ST1_291d(ST1_291d) ,
+	.ST1_290d(ST1_290d) ,.ST1_289d(ST1_289d) ,.ST1_288d(ST1_288d) ,.ST1_287d(ST1_287d) ,
+	.ST1_286d(ST1_286d) ,.ST1_285d(ST1_285d) ,.ST1_284d(ST1_284d) ,.ST1_283d(ST1_283d) ,
+	.ST1_282d(ST1_282d) ,.ST1_281d(ST1_281d) ,.ST1_280d(ST1_280d) ,.ST1_279d(ST1_279d) ,
+	.ST1_278d(ST1_278d) ,.ST1_277d(ST1_277d) ,.ST1_276d(ST1_276d) ,.ST1_275d(ST1_275d) ,
+	.ST1_274d(ST1_274d) ,.ST1_273d(ST1_273d) ,.ST1_272d(ST1_272d) ,.ST1_271d(ST1_271d) ,
+	.ST1_270d(ST1_270d) ,.ST1_269d(ST1_269d) ,.ST1_268d(ST1_268d) ,.ST1_267d(ST1_267d) ,
+	.ST1_266d(ST1_266d) ,.ST1_265d(ST1_265d) ,.ST1_264d(ST1_264d) ,.ST1_263d(ST1_263d) ,
+	.ST1_262d(ST1_262d) ,.ST1_261d(ST1_261d) ,.ST1_260d(ST1_260d) ,.ST1_259d(ST1_259d) ,
+	.ST1_258d(ST1_258d) ,.ST1_257d(ST1_257d) ,.ST1_256d(ST1_256d) ,.ST1_255d(ST1_255d) ,
+	.ST1_254d(ST1_254d) ,.ST1_253d(ST1_253d) ,.ST1_252d(ST1_252d) ,.ST1_251d(ST1_251d) ,
+	.ST1_250d(ST1_250d) ,.ST1_249d(ST1_249d) ,.ST1_248d(ST1_248d) ,.ST1_247d(ST1_247d) ,
+	.ST1_246d(ST1_246d) ,.ST1_245d(ST1_245d) ,.ST1_244d(ST1_244d) ,.ST1_243d(ST1_243d) ,
+	.ST1_242d(ST1_242d) ,.ST1_241d(ST1_241d) ,.ST1_240d(ST1_240d) ,.ST1_239d(ST1_239d) ,
+	.ST1_238d(ST1_238d) ,.ST1_237d(ST1_237d) ,.ST1_236d(ST1_236d) ,.ST1_235d(ST1_235d) ,
+	.ST1_234d(ST1_234d) ,.ST1_233d(ST1_233d) ,.ST1_232d(ST1_232d) ,.ST1_231d(ST1_231d) ,
+	.ST1_230d(ST1_230d) ,.ST1_229d(ST1_229d) ,.ST1_228d(ST1_228d) ,.ST1_227d(ST1_227d) ,
+	.ST1_226d(ST1_226d) ,.ST1_225d(ST1_225d) ,.ST1_224d(ST1_224d) ,.ST1_223d(ST1_223d) ,
+	.ST1_222d(ST1_222d) ,.ST1_221d(ST1_221d) ,.ST1_220d(ST1_220d) ,.ST1_219d(ST1_219d) ,
+	.ST1_218d(ST1_218d) ,.ST1_217d(ST1_217d) ,.ST1_216d(ST1_216d) ,.ST1_215d(ST1_215d) ,
+	.ST1_214d(ST1_214d) ,.ST1_213d(ST1_213d) ,.ST1_212d(ST1_212d) ,.ST1_211d(ST1_211d) ,
+	.ST1_210d(ST1_210d) ,.ST1_209d(ST1_209d) ,.ST1_208d(ST1_208d) ,.ST1_207d(ST1_207d) ,
+	.ST1_206d(ST1_206d) ,.ST1_205d(ST1_205d) ,.ST1_204d(ST1_204d) ,.ST1_203d(ST1_203d) ,
+	.ST1_202d(ST1_202d) ,.ST1_201d(ST1_201d) ,.ST1_200d(ST1_200d) ,.ST1_199d(ST1_199d) ,
+	.ST1_198d(ST1_198d) ,.ST1_197d(ST1_197d) ,.ST1_196d(ST1_196d) ,.ST1_195d(ST1_195d) ,
+	.ST1_194d(ST1_194d) ,.ST1_193d(ST1_193d) ,.ST1_192d(ST1_192d) ,.ST1_191d(ST1_191d) ,
+	.ST1_190d(ST1_190d) ,.ST1_189d(ST1_189d) ,.ST1_188d(ST1_188d) ,.ST1_187d(ST1_187d) ,
+	.ST1_186d(ST1_186d) ,.ST1_185d(ST1_185d) ,.ST1_184d(ST1_184d) ,.ST1_183d(ST1_183d) ,
+	.ST1_182d(ST1_182d) ,.ST1_181d(ST1_181d) ,.ST1_180d(ST1_180d) ,.ST1_179d(ST1_179d) ,
+	.ST1_178d(ST1_178d) ,.ST1_177d(ST1_177d) ,.ST1_176d(ST1_176d) ,.ST1_175d(ST1_175d) ,
+	.ST1_174d(ST1_174d) ,.ST1_173d(ST1_173d) ,.ST1_172d(ST1_172d) ,.ST1_171d(ST1_171d) ,
+	.ST1_170d(ST1_170d) ,.ST1_169d(ST1_169d) ,.ST1_168d(ST1_168d) ,.ST1_167d(ST1_167d) ,
+	.ST1_166d(ST1_166d) ,.ST1_165d(ST1_165d) ,.ST1_164d(ST1_164d) ,.ST1_163d(ST1_163d) ,
+	.ST1_162d(ST1_162d) ,.ST1_161d(ST1_161d) ,.ST1_160d(ST1_160d) ,.ST1_159d(ST1_159d) ,
+	.ST1_158d(ST1_158d) ,.ST1_157d(ST1_157d) ,.ST1_156d(ST1_156d) ,.ST1_155d(ST1_155d) ,
+	.ST1_154d(ST1_154d) ,.ST1_153d(ST1_153d) ,.ST1_152d(ST1_152d) ,.ST1_151d(ST1_151d) ,
+	.ST1_150d(ST1_150d) ,.ST1_149d(ST1_149d) ,.ST1_148d(ST1_148d) ,.ST1_147d(ST1_147d) ,
+	.ST1_146d(ST1_146d) ,.ST1_145d(ST1_145d) ,.ST1_144d(ST1_144d) ,.ST1_143d(ST1_143d) ,
+	.ST1_142d(ST1_142d) ,.ST1_141d(ST1_141d) ,.ST1_140d(ST1_140d) ,.ST1_139d(ST1_139d) ,
+	.ST1_138d(ST1_138d) ,.ST1_137d(ST1_137d) ,.ST1_136d(ST1_136d) ,.ST1_135d(ST1_135d) ,
+	.ST1_134d(ST1_134d) ,.ST1_133d(ST1_133d) ,.ST1_132d(ST1_132d) ,.ST1_131d(ST1_131d) ,
+	.ST1_130d(ST1_130d) ,.ST1_129d(ST1_129d) ,.ST1_128d(ST1_128d) ,.ST1_127d(ST1_127d) ,
+	.ST1_126d(ST1_126d) ,.ST1_125d(ST1_125d) ,.ST1_124d(ST1_124d) ,.ST1_123d(ST1_123d) ,
+	.ST1_122d(ST1_122d) ,.ST1_121d(ST1_121d) ,.ST1_120d(ST1_120d) ,.ST1_119d(ST1_119d) ,
+	.ST1_118d(ST1_118d) ,.ST1_117d(ST1_117d) ,.ST1_116d(ST1_116d) ,.ST1_115d(ST1_115d) ,
+	.ST1_114d(ST1_114d) ,.ST1_113d(ST1_113d) ,.ST1_112d(ST1_112d) ,.ST1_111d(ST1_111d) ,
+	.ST1_110d(ST1_110d) ,.ST1_109d(ST1_109d) ,.ST1_108d(ST1_108d) ,.ST1_107d(ST1_107d) ,
+	.ST1_106d(ST1_106d) ,.ST1_105d(ST1_105d) ,.ST1_104d(ST1_104d) ,.ST1_103d(ST1_103d) ,
+	.ST1_102d(ST1_102d) ,.ST1_101d(ST1_101d) ,.ST1_100d(ST1_100d) ,.ST1_99d(ST1_99d) ,
+	.ST1_98d(ST1_98d) ,.ST1_97d(ST1_97d) ,.ST1_96d(ST1_96d) ,.ST1_95d(ST1_95d) ,
+	.ST1_94d(ST1_94d) ,.ST1_93d(ST1_93d) ,.ST1_92d(ST1_92d) ,.ST1_91d(ST1_91d) ,
+	.ST1_90d(ST1_90d) ,.ST1_89d(ST1_89d) ,.ST1_88d(ST1_88d) ,.ST1_87d(ST1_87d) ,
+	.ST1_86d(ST1_86d) ,.ST1_85d(ST1_85d) ,.ST1_84d(ST1_84d) ,.ST1_83d(ST1_83d) ,
+	.ST1_82d(ST1_82d) ,.ST1_81d(ST1_81d) ,.ST1_80d(ST1_80d) ,.ST1_79d(ST1_79d) ,
+	.ST1_78d(ST1_78d) ,.ST1_77d(ST1_77d) ,.ST1_76d(ST1_76d) ,.ST1_75d(ST1_75d) ,
+	.ST1_74d(ST1_74d) ,.ST1_73d(ST1_73d) ,.ST1_72d(ST1_72d) ,.ST1_71d(ST1_71d) ,
+	.ST1_70d(ST1_70d) ,.ST1_69d(ST1_69d) ,.ST1_68d(ST1_68d) ,.ST1_67d(ST1_67d) ,
+	.ST1_66d(ST1_66d) ,.ST1_65d(ST1_65d) ,.ST1_64d(ST1_64d) ,.ST1_63d(ST1_63d) ,
+	.ST1_62d(ST1_62d) ,.ST1_61d(ST1_61d) ,.ST1_60d(ST1_60d) ,.ST1_59d(ST1_59d) ,
+	.ST1_58d(ST1_58d) ,.ST1_57d(ST1_57d) ,.ST1_56d(ST1_56d) ,.ST1_55d(ST1_55d) ,
+	.ST1_54d(ST1_54d) ,.ST1_53d(ST1_53d) ,.ST1_52d(ST1_52d) ,.ST1_51d(ST1_51d) ,
+	.ST1_50d(ST1_50d) ,.ST1_49d(ST1_49d) ,.ST1_48d(ST1_48d) ,.ST1_47d(ST1_47d) ,
+	.ST1_46d(ST1_46d) ,.ST1_45d(ST1_45d) ,.ST1_44d(ST1_44d) ,.ST1_43d(ST1_43d) ,
+	.ST1_42d(ST1_42d) ,.ST1_41d(ST1_41d) ,.ST1_40d(ST1_40d) ,.ST1_39d(ST1_39d) ,
+	.ST1_38d(ST1_38d) ,.ST1_37d(ST1_37d) ,.ST1_36d(ST1_36d) ,.ST1_35d(ST1_35d) ,
+	.ST1_34d(ST1_34d) ,.ST1_33d(ST1_33d) ,.ST1_32d(ST1_32d) ,.ST1_31d(ST1_31d) ,
+	.ST1_30d(ST1_30d) ,.ST1_29d(ST1_29d) ,.ST1_28d(ST1_28d) ,.ST1_27d(ST1_27d) ,
+	.ST1_26d(ST1_26d) ,.ST1_25d(ST1_25d) ,.ST1_24d(ST1_24d) ,.ST1_23d(ST1_23d) ,
+	.ST1_22d(ST1_22d) ,.ST1_21d(ST1_21d) ,.ST1_20d(ST1_20d) ,.ST1_19d(ST1_19d) ,
+	.ST1_18d(ST1_18d) ,.ST1_17d(ST1_17d) ,.ST1_16d(ST1_16d) ,.ST1_15d(ST1_15d) ,
+	.ST1_14d(ST1_14d) ,.ST1_13d(ST1_13d) ,.ST1_12d(ST1_12d) ,.ST1_11d(ST1_11d) ,
+	.ST1_10d(ST1_10d) ,.ST1_09d(ST1_09d) ,.ST1_08d(ST1_08d) ,.ST1_07d(ST1_07d) ,
+	.ST1_06d(ST1_06d) ,.ST1_05d(ST1_05d) ,.ST1_04d(ST1_04d) ,.ST1_03d(ST1_03d) ,
+	.ST1_02d(ST1_02d) ,.ST1_01d(ST1_01d) ,.JF_193(JF_193) ,.JF_192(JF_192) ,
+	.JF_191(JF_191) ,.JF_190(JF_190) ,.JF_189(JF_189) ,.JF_188(JF_188) ,.JF_187(JF_187) ,
+	.JF_186(JF_186) ,.JF_185(JF_185) ,.JF_184(JF_184) ,.JF_183(JF_183) ,.JF_182(JF_182) ,
+	.JF_181(JF_181) ,.JF_180(JF_180) ,.JF_179(JF_179) ,.JF_178(JF_178) ,.JF_177(JF_177) ,
+	.JF_176(JF_176) ,.JF_175(JF_175) ,.JF_174(JF_174) ,.JF_173(JF_173) ,.JF_172(JF_172) ,
+	.JF_171(JF_171) ,.JF_170(JF_170) ,.JF_169(JF_169) ,.JF_168(JF_168) ,.JF_167(JF_167) ,
+	.JF_166(JF_166) ,.JF_165(JF_165) ,.JF_164(JF_164) ,.JF_163(JF_163) ,.JF_162(JF_162) ,
+	.JF_161(JF_161) ,.JF_160(JF_160) ,.JF_159(JF_159) ,.JF_158(JF_158) ,.JF_157(JF_157) ,
+	.JF_156(JF_156) ,.JF_155(JF_155) ,.JF_154(JF_154) ,.JF_153(JF_153) ,.JF_152(JF_152) ,
+	.JF_151(JF_151) ,.JF_150(JF_150) ,.JF_149(JF_149) ,.JF_148(JF_148) ,.JF_147(JF_147) ,
+	.JF_146(JF_146) ,.JF_145(JF_145) ,.JF_144(JF_144) ,.JF_143(JF_143) ,.JF_142(JF_142) ,
+	.JF_141(JF_141) ,.JF_140(JF_140) ,.JF_139(JF_139) ,.JF_138(JF_138) ,.JF_137(JF_137) ,
+	.JF_136(JF_136) ,.JF_135(JF_135) ,.JF_134(JF_134) ,.JF_133(JF_133) ,.JF_132(JF_132) ,
+	.JF_131(JF_131) ,.JF_130(JF_130) ,.JF_127(JF_127) ,.JF_126(JF_126) ,.JF_125(JF_125) ,
+	.JF_124(JF_124) ,.JF_123(JF_123) ,.JF_122(JF_122) ,.JF_121(JF_121) ,.JF_119(JF_119) ,
+	.JF_118(JF_118) ,.JF_117(JF_117) ,.JF_116(JF_116) ,.JF_115(JF_115) ,.JF_114(JF_114) ,
+	.JF_113(JF_113) ,.JF_111(JF_111) ,.JF_110(JF_110) ,.JF_109(JF_109) ,.JF_108(JF_108) ,
+	.JF_107(JF_107) ,.JF_106(JF_106) ,.JF_105(JF_105) ,.JF_103(JF_103) ,.JF_102(JF_102) ,
+	.JF_101(JF_101) ,.JF_100(JF_100) ,.JF_99(JF_99) ,.JF_98(JF_98) ,.JF_97(JF_97) ,
+	.JF_95(JF_95) ,.JF_94(JF_94) ,.JF_93(JF_93) ,.JF_92(JF_92) ,.JF_91(JF_91) ,
+	.JF_90(JF_90) ,.JF_89(JF_89) ,.JF_87(JF_87) ,.JF_86(JF_86) ,.JF_85(JF_85) ,
+	.JF_84(JF_84) ,.JF_83(JF_83) ,.JF_82(JF_82) ,.JF_81(JF_81) ,.JF_79(JF_79) ,
+	.JF_78(JF_78) ,.JF_77(JF_77) ,.JF_76(JF_76) ,.JF_75(JF_75) ,.JF_74(JF_74) ,
+	.JF_73(JF_73) ,.JF_71(JF_71) ,.JF_70(JF_70) ,.JF_69(JF_69) ,.JF_68(JF_68) ,
+	.JF_67(JF_67) ,.JF_66(JF_66) ,.JF_65(JF_65) ,.JF_64(JF_64) ,.JF_62(JF_62) ,
+	.JF_49(JF_49) ,.JF_47(JF_47) ,.JF_41(JF_41) ,.JF_39(JF_39) ,.JF_37(JF_37) ,
+	.JF_36(JF_36) ,.JF_35(JF_35) ,.JF_34(JF_34) ,.JF_33(JF_33) ,.JF_30(JF_30) ,
+	.JF_28(JF_28) ,.JF_27(JF_27) ,.CT_15_port(CT_15) ,.JF_23(JF_23) ,.JF_17(JF_17) ,
+	.JF_16(JF_16) ,.JF_15(JF_15) ,.JF_14(JF_14) ,.JF_13(JF_13) ,.JF_10(JF_10) ,
+	.JF_09(JF_09) ,.JF_08(JF_08) ,.JF_07(JF_07) ,.JF_06(JF_06) ,.JF_03(JF_03) ,
+	.JF_02(JF_02) ,.CT_01_port(CT_01) ,.RG_k_port(RG_k) ,.RG_funct3_imm1_port(RG_funct3_imm1) ,
 	.FF_take_port(FF_take) );
 
 endmodule
 
-module computer_fsm ( imem_arg_MEMB32W65536_RD1 ,CLOCK ,RESET ,TR_179 ,M_2875 ,M_2872 ,
-	M_2871 ,M_2865 ,M_2863 ,M_2859 ,M_2854 ,M_2853 ,M_2848 ,U_704 ,U_683 ,U_630 ,
-	U_576 ,U_12 ,ST1_492d_port ,ST1_491d_port ,ST1_490d_port ,ST1_489d_port ,
-	ST1_488d_port ,ST1_487d_port ,ST1_486d_port ,ST1_485d_port ,ST1_484d_port ,
-	ST1_483d_port ,ST1_482d_port ,ST1_481d_port ,ST1_480d_port ,ST1_479d_port ,
-	ST1_478d_port ,ST1_477d_port ,ST1_476d_port ,ST1_475d_port ,ST1_474d_port ,
-	ST1_473d_port ,ST1_472d_port ,ST1_471d_port ,ST1_470d_port ,ST1_469d_port ,
-	ST1_468d_port ,ST1_467d_port ,ST1_466d_port ,ST1_465d_port ,ST1_464d_port ,
-	ST1_463d_port ,ST1_462d_port ,ST1_461d_port ,ST1_460d_port ,ST1_459d_port ,
-	ST1_458d_port ,ST1_457d_port ,ST1_456d_port ,ST1_455d_port ,ST1_454d_port ,
-	ST1_453d_port ,ST1_452d_port ,ST1_451d_port ,ST1_450d_port ,ST1_449d_port ,
-	ST1_448d_port ,ST1_447d_port ,ST1_446d_port ,ST1_445d_port ,ST1_444d_port ,
-	ST1_443d_port ,ST1_442d_port ,ST1_441d_port ,ST1_440d_port ,ST1_439d_port ,
-	ST1_438d_port ,ST1_437d_port ,ST1_436d_port ,ST1_435d_port ,ST1_434d_port ,
-	ST1_433d_port ,ST1_432d_port ,ST1_431d_port ,ST1_430d_port ,ST1_429d_port ,
-	ST1_428d_port ,ST1_427d_port ,ST1_426d_port ,ST1_425d_port ,ST1_424d_port ,
-	ST1_423d_port ,ST1_422d_port ,ST1_421d_port ,ST1_420d_port ,ST1_419d_port ,
-	ST1_418d_port ,ST1_417d_port ,ST1_416d_port ,ST1_415d_port ,ST1_414d_port ,
-	ST1_413d_port ,ST1_412d_port ,ST1_411d_port ,ST1_410d_port ,ST1_409d_port ,
-	ST1_408d_port ,ST1_407d_port ,ST1_406d_port ,ST1_405d_port ,ST1_404d_port ,
-	ST1_403d_port ,ST1_402d_port ,ST1_401d_port ,ST1_400d_port ,ST1_399d_port ,
-	ST1_398d_port ,ST1_397d_port ,ST1_396d_port ,ST1_395d_port ,ST1_394d_port ,
-	ST1_393d_port ,ST1_392d_port ,ST1_391d_port ,ST1_390d_port ,ST1_389d_port ,
-	ST1_388d_port ,ST1_387d_port ,ST1_386d_port ,ST1_385d_port ,ST1_384d_port ,
-	ST1_383d_port ,ST1_382d_port ,ST1_381d_port ,ST1_380d_port ,ST1_379d_port ,
-	ST1_378d_port ,ST1_377d_port ,ST1_376d_port ,ST1_375d_port ,ST1_374d_port ,
-	ST1_373d_port ,ST1_372d_port ,ST1_371d_port ,ST1_370d_port ,ST1_369d_port ,
-	ST1_368d_port ,ST1_367d_port ,ST1_366d_port ,ST1_365d_port ,ST1_364d_port ,
-	ST1_363d_port ,ST1_362d_port ,ST1_361d_port ,ST1_360d_port ,ST1_359d_port ,
-	ST1_358d_port ,ST1_357d_port ,ST1_356d_port ,ST1_355d_port ,ST1_354d_port ,
-	ST1_353d_port ,ST1_352d_port ,ST1_351d_port ,ST1_350d_port ,ST1_349d_port ,
-	ST1_348d_port ,ST1_347d_port ,ST1_346d_port ,ST1_345d_port ,ST1_344d_port ,
-	ST1_343d_port ,ST1_342d_port ,ST1_341d_port ,ST1_340d_port ,ST1_339d_port ,
-	ST1_338d_port ,ST1_337d_port ,ST1_336d_port ,ST1_335d_port ,ST1_334d_port ,
-	ST1_333d_port ,ST1_332d_port ,ST1_331d_port ,ST1_330d_port ,ST1_329d_port ,
-	ST1_328d_port ,ST1_327d_port ,ST1_326d_port ,ST1_325d_port ,ST1_324d_port ,
-	ST1_323d_port ,ST1_322d_port ,ST1_321d_port ,ST1_320d_port ,ST1_319d_port ,
-	ST1_318d_port ,ST1_317d_port ,ST1_316d_port ,ST1_315d_port ,ST1_314d_port ,
-	ST1_313d_port ,ST1_312d_port ,ST1_311d_port ,ST1_310d_port ,ST1_309d_port ,
-	ST1_308d_port ,ST1_307d_port ,ST1_306d_port ,ST1_305d_port ,ST1_304d_port ,
-	ST1_303d_port ,ST1_302d_port ,ST1_301d_port ,ST1_300d_port ,ST1_299d_port ,
-	ST1_298d_port ,ST1_297d_port ,ST1_296d_port ,ST1_295d_port ,ST1_294d_port ,
-	ST1_293d_port ,ST1_292d_port ,ST1_291d_port ,ST1_290d_port ,ST1_289d_port ,
-	ST1_288d_port ,ST1_287d_port ,ST1_286d_port ,ST1_285d_port ,ST1_284d_port ,
-	ST1_283d_port ,ST1_282d_port ,ST1_281d_port ,ST1_280d_port ,ST1_279d_port ,
-	ST1_278d_port ,ST1_277d_port ,ST1_276d_port ,ST1_275d_port ,ST1_274d_port ,
-	ST1_273d_port ,ST1_272d_port ,ST1_271d_port ,ST1_270d_port ,ST1_269d_port ,
-	ST1_268d_port ,ST1_267d_port ,ST1_266d_port ,ST1_265d_port ,ST1_264d_port ,
-	ST1_263d_port ,ST1_262d_port ,ST1_261d_port ,ST1_260d_port ,ST1_259d_port ,
-	ST1_258d_port ,ST1_257d_port ,ST1_256d_port ,ST1_255d_port ,ST1_254d_port ,
-	ST1_253d_port ,ST1_252d_port ,ST1_251d_port ,ST1_250d_port ,ST1_249d_port ,
-	ST1_248d_port ,ST1_247d_port ,ST1_246d_port ,ST1_245d_port ,ST1_244d_port ,
-	ST1_243d_port ,ST1_242d_port ,ST1_241d_port ,ST1_240d_port ,ST1_239d_port ,
-	ST1_238d_port ,ST1_237d_port ,ST1_236d_port ,ST1_235d_port ,ST1_234d_port ,
-	ST1_233d_port ,ST1_232d_port ,ST1_231d_port ,ST1_230d_port ,ST1_229d_port ,
-	ST1_228d_port ,ST1_227d_port ,ST1_226d_port ,ST1_225d_port ,ST1_224d_port ,
-	ST1_223d_port ,ST1_222d_port ,ST1_221d_port ,ST1_220d_port ,ST1_219d_port ,
-	ST1_218d_port ,ST1_217d_port ,ST1_216d_port ,ST1_215d_port ,ST1_214d_port ,
-	ST1_213d_port ,ST1_212d_port ,ST1_211d_port ,ST1_210d_port ,ST1_209d_port ,
-	ST1_208d_port ,ST1_207d_port ,ST1_206d_port ,ST1_205d_port ,ST1_204d_port ,
-	ST1_203d_port ,ST1_202d_port ,ST1_201d_port ,ST1_200d_port ,ST1_199d_port ,
-	ST1_198d_port ,ST1_197d_port ,ST1_196d_port ,ST1_195d_port ,ST1_194d_port ,
-	ST1_193d_port ,ST1_192d_port ,ST1_191d_port ,ST1_190d_port ,ST1_189d_port ,
-	ST1_188d_port ,ST1_187d_port ,ST1_186d_port ,ST1_185d_port ,ST1_184d_port ,
-	ST1_183d_port ,ST1_182d_port ,ST1_181d_port ,ST1_180d_port ,ST1_179d_port ,
-	ST1_178d_port ,ST1_177d_port ,ST1_176d_port ,ST1_175d_port ,ST1_174d_port ,
-	ST1_173d_port ,ST1_172d_port ,ST1_171d_port ,ST1_170d_port ,ST1_169d_port ,
-	ST1_168d_port ,ST1_167d_port ,ST1_166d_port ,ST1_165d_port ,ST1_164d_port ,
-	ST1_163d_port ,ST1_162d_port ,ST1_161d_port ,ST1_160d_port ,ST1_159d_port ,
-	ST1_158d_port ,ST1_157d_port ,ST1_156d_port ,ST1_155d_port ,ST1_154d_port ,
-	ST1_153d_port ,ST1_152d_port ,ST1_151d_port ,ST1_150d_port ,ST1_149d_port ,
-	ST1_148d_port ,ST1_147d_port ,ST1_146d_port ,ST1_145d_port ,ST1_144d_port ,
-	ST1_143d_port ,ST1_142d_port ,ST1_141d_port ,ST1_140d_port ,ST1_139d_port ,
-	ST1_138d_port ,ST1_137d_port ,ST1_136d_port ,ST1_135d_port ,ST1_134d_port ,
-	ST1_133d_port ,ST1_132d_port ,ST1_131d_port ,ST1_130d_port ,ST1_129d_port ,
-	ST1_128d_port ,ST1_127d_port ,ST1_126d_port ,ST1_125d_port ,ST1_124d_port ,
-	ST1_123d_port ,ST1_122d_port ,ST1_121d_port ,ST1_120d_port ,ST1_119d_port ,
-	ST1_118d_port ,ST1_117d_port ,ST1_116d_port ,ST1_115d_port ,ST1_114d_port ,
-	ST1_113d_port ,ST1_112d_port ,ST1_111d_port ,ST1_110d_port ,ST1_109d_port ,
-	ST1_108d_port ,ST1_107d_port ,ST1_106d_port ,ST1_105d_port ,ST1_104d_port ,
-	ST1_103d_port ,ST1_102d_port ,ST1_101d_port ,ST1_100d_port ,ST1_99d_port ,
-	ST1_98d_port ,ST1_97d_port ,ST1_96d_port ,ST1_95d_port ,ST1_94d_port ,ST1_93d_port ,
-	ST1_92d_port ,ST1_91d_port ,ST1_90d_port ,ST1_89d_port ,ST1_88d_port ,ST1_87d_port ,
-	ST1_86d_port ,ST1_85d_port ,ST1_84d_port ,ST1_83d_port ,ST1_82d_port ,ST1_81d_port ,
-	ST1_80d_port ,ST1_79d_port ,ST1_78d_port ,ST1_77d_port ,ST1_76d_port ,ST1_75d_port ,
-	ST1_74d_port ,ST1_73d_port ,ST1_72d_port ,ST1_71d_port ,ST1_70d_port ,ST1_69d_port ,
-	ST1_68d_port ,ST1_67d_port ,ST1_66d_port ,ST1_65d_port ,ST1_64d_port ,ST1_63d_port ,
-	ST1_62d_port ,ST1_61d_port ,ST1_60d_port ,ST1_59d_port ,ST1_58d_port ,ST1_57d_port ,
-	ST1_56d_port ,ST1_55d_port ,ST1_54d_port ,ST1_53d_port ,ST1_52d_port ,ST1_51d_port ,
-	ST1_50d_port ,ST1_49d_port ,ST1_48d_port ,ST1_47d_port ,ST1_46d_port ,ST1_45d_port ,
-	ST1_44d_port ,ST1_43d_port ,ST1_42d_port ,ST1_41d_port ,ST1_40d_port ,ST1_39d_port ,
-	ST1_38d_port ,ST1_37d_port ,ST1_36d_port ,ST1_35d_port ,ST1_34d_port ,ST1_33d_port ,
-	ST1_32d_port ,ST1_31d_port ,ST1_30d_port ,ST1_29d_port ,ST1_28d_port ,ST1_27d_port ,
-	ST1_26d_port ,ST1_25d_port ,ST1_24d_port ,ST1_23d_port ,ST1_22d_port ,ST1_21d_port ,
-	ST1_20d_port ,ST1_19d_port ,ST1_18d_port ,ST1_17d_port ,ST1_16d_port ,ST1_15d_port ,
-	ST1_14d_port ,ST1_13d_port ,ST1_12d_port ,ST1_11d_port ,ST1_10d_port ,ST1_09d_port ,
-	ST1_08d_port ,ST1_07d_port ,ST1_06d_port ,ST1_05d_port ,ST1_04d_port ,ST1_03d_port ,
-	ST1_02d_port ,ST1_01d_port ,JF_194 ,JF_193 ,JF_192 ,JF_191 ,JF_190 ,JF_189 ,
-	JF_188 ,JF_186 ,JF_185 ,JF_184 ,JF_183 ,JF_182 ,JF_181 ,JF_180 ,JF_178 ,
-	JF_177 ,JF_176 ,JF_175 ,JF_174 ,JF_173 ,JF_172 ,JF_170 ,JF_169 ,JF_168 ,
-	JF_167 ,JF_166 ,JF_165 ,JF_164 ,JF_162 ,JF_161 ,JF_160 ,JF_159 ,JF_158 ,
-	JF_157 ,JF_156 ,JF_154 ,JF_153 ,JF_152 ,JF_151 ,JF_150 ,JF_149 ,JF_148 ,
-	JF_146 ,JF_145 ,JF_144 ,JF_143 ,JF_142 ,JF_141 ,JF_140 ,JF_138 ,JF_137 ,
-	JF_136 ,JF_135 ,JF_134 ,JF_133 ,JF_132 ,JF_129 ,JF_128 ,JF_127 ,JF_126 ,
-	JF_125 ,JF_124 ,JF_123 ,JF_121 ,JF_120 ,JF_119 ,JF_118 ,JF_117 ,JF_116 ,
-	JF_115 ,JF_113 ,JF_112 ,JF_111 ,JF_110 ,JF_109 ,JF_108 ,JF_107 ,JF_105 ,
-	JF_104 ,JF_103 ,JF_102 ,JF_101 ,JF_100 ,JF_99 ,JF_97 ,JF_96 ,JF_95 ,JF_94 ,
-	JF_93 ,JF_92 ,JF_91 ,JF_89 ,JF_88 ,JF_87 ,JF_86 ,JF_85 ,JF_84 ,JF_83 ,JF_81 ,
-	JF_80 ,JF_79 ,JF_78 ,JF_77 ,JF_76 ,JF_75 ,JF_73 ,JF_72 ,JF_71 ,JF_70 ,JF_69 ,
-	JF_68 ,JF_67 ,JF_66 ,JF_49 ,JF_47 ,JF_42 ,JF_38 ,JF_36 ,JF_35 ,JF_34 ,JF_33 ,
-	JF_32 ,JF_28 ,CT_15 ,JF_24 ,JF_18 ,JF_17 ,JF_16 ,JF_15 ,JF_14 ,JF_11 ,JF_10 ,
-	JF_09 ,JF_08 ,JF_07 ,JF_06 ,JF_03 ,JF_02 ,CT_01 ,RG_k ,RG_08 ,RG_buf_buf1_funct3_imm1_next_pc ,
-	FF_take );
+module computer_fsm ( imem_arg_MEMB32W65536_RD1 ,CLOCK ,RESET ,TR_155 ,M_2785 ,M_2783 ,
+	M_2782 ,M_2781 ,M_2777 ,M_2769 ,M_2764 ,M_2763 ,M_2758 ,U_706 ,U_633 ,U_579 ,
+	U_12 ,ST1_339d_port ,ST1_338d_port ,ST1_337d_port ,ST1_336d_port ,ST1_335d_port ,
+	ST1_334d_port ,ST1_333d_port ,ST1_332d_port ,ST1_331d_port ,ST1_330d_port ,
+	ST1_329d_port ,ST1_328d_port ,ST1_327d_port ,ST1_326d_port ,ST1_325d_port ,
+	ST1_324d_port ,ST1_323d_port ,ST1_322d_port ,ST1_321d_port ,ST1_320d_port ,
+	ST1_319d_port ,ST1_318d_port ,ST1_317d_port ,ST1_316d_port ,ST1_315d_port ,
+	ST1_314d_port ,ST1_313d_port ,ST1_312d_port ,ST1_311d_port ,ST1_310d_port ,
+	ST1_309d_port ,ST1_308d_port ,ST1_307d_port ,ST1_306d_port ,ST1_305d_port ,
+	ST1_304d_port ,ST1_303d_port ,ST1_302d_port ,ST1_301d_port ,ST1_300d_port ,
+	ST1_299d_port ,ST1_298d_port ,ST1_297d_port ,ST1_296d_port ,ST1_295d_port ,
+	ST1_294d_port ,ST1_293d_port ,ST1_292d_port ,ST1_291d_port ,ST1_290d_port ,
+	ST1_289d_port ,ST1_288d_port ,ST1_287d_port ,ST1_286d_port ,ST1_285d_port ,
+	ST1_284d_port ,ST1_283d_port ,ST1_282d_port ,ST1_281d_port ,ST1_280d_port ,
+	ST1_279d_port ,ST1_278d_port ,ST1_277d_port ,ST1_276d_port ,ST1_275d_port ,
+	ST1_274d_port ,ST1_273d_port ,ST1_272d_port ,ST1_271d_port ,ST1_270d_port ,
+	ST1_269d_port ,ST1_268d_port ,ST1_267d_port ,ST1_266d_port ,ST1_265d_port ,
+	ST1_264d_port ,ST1_263d_port ,ST1_262d_port ,ST1_261d_port ,ST1_260d_port ,
+	ST1_259d_port ,ST1_258d_port ,ST1_257d_port ,ST1_256d_port ,ST1_255d_port ,
+	ST1_254d_port ,ST1_253d_port ,ST1_252d_port ,ST1_251d_port ,ST1_250d_port ,
+	ST1_249d_port ,ST1_248d_port ,ST1_247d_port ,ST1_246d_port ,ST1_245d_port ,
+	ST1_244d_port ,ST1_243d_port ,ST1_242d_port ,ST1_241d_port ,ST1_240d_port ,
+	ST1_239d_port ,ST1_238d_port ,ST1_237d_port ,ST1_236d_port ,ST1_235d_port ,
+	ST1_234d_port ,ST1_233d_port ,ST1_232d_port ,ST1_231d_port ,ST1_230d_port ,
+	ST1_229d_port ,ST1_228d_port ,ST1_227d_port ,ST1_226d_port ,ST1_225d_port ,
+	ST1_224d_port ,ST1_223d_port ,ST1_222d_port ,ST1_221d_port ,ST1_220d_port ,
+	ST1_219d_port ,ST1_218d_port ,ST1_217d_port ,ST1_216d_port ,ST1_215d_port ,
+	ST1_214d_port ,ST1_213d_port ,ST1_212d_port ,ST1_211d_port ,ST1_210d_port ,
+	ST1_209d_port ,ST1_208d_port ,ST1_207d_port ,ST1_206d_port ,ST1_205d_port ,
+	ST1_204d_port ,ST1_203d_port ,ST1_202d_port ,ST1_201d_port ,ST1_200d_port ,
+	ST1_199d_port ,ST1_198d_port ,ST1_197d_port ,ST1_196d_port ,ST1_195d_port ,
+	ST1_194d_port ,ST1_193d_port ,ST1_192d_port ,ST1_191d_port ,ST1_190d_port ,
+	ST1_189d_port ,ST1_188d_port ,ST1_187d_port ,ST1_186d_port ,ST1_185d_port ,
+	ST1_184d_port ,ST1_183d_port ,ST1_182d_port ,ST1_181d_port ,ST1_180d_port ,
+	ST1_179d_port ,ST1_178d_port ,ST1_177d_port ,ST1_176d_port ,ST1_175d_port ,
+	ST1_174d_port ,ST1_173d_port ,ST1_172d_port ,ST1_171d_port ,ST1_170d_port ,
+	ST1_169d_port ,ST1_168d_port ,ST1_167d_port ,ST1_166d_port ,ST1_165d_port ,
+	ST1_164d_port ,ST1_163d_port ,ST1_162d_port ,ST1_161d_port ,ST1_160d_port ,
+	ST1_159d_port ,ST1_158d_port ,ST1_157d_port ,ST1_156d_port ,ST1_155d_port ,
+	ST1_154d_port ,ST1_153d_port ,ST1_152d_port ,ST1_151d_port ,ST1_150d_port ,
+	ST1_149d_port ,ST1_148d_port ,ST1_147d_port ,ST1_146d_port ,ST1_145d_port ,
+	ST1_144d_port ,ST1_143d_port ,ST1_142d_port ,ST1_141d_port ,ST1_140d_port ,
+	ST1_139d_port ,ST1_138d_port ,ST1_137d_port ,ST1_136d_port ,ST1_135d_port ,
+	ST1_134d_port ,ST1_133d_port ,ST1_132d_port ,ST1_131d_port ,ST1_130d_port ,
+	ST1_129d_port ,ST1_128d_port ,ST1_127d_port ,ST1_126d_port ,ST1_125d_port ,
+	ST1_124d_port ,ST1_123d_port ,ST1_122d_port ,ST1_121d_port ,ST1_120d_port ,
+	ST1_119d_port ,ST1_118d_port ,ST1_117d_port ,ST1_116d_port ,ST1_115d_port ,
+	ST1_114d_port ,ST1_113d_port ,ST1_112d_port ,ST1_111d_port ,ST1_110d_port ,
+	ST1_109d_port ,ST1_108d_port ,ST1_107d_port ,ST1_106d_port ,ST1_105d_port ,
+	ST1_104d_port ,ST1_103d_port ,ST1_102d_port ,ST1_101d_port ,ST1_100d_port ,
+	ST1_99d_port ,ST1_98d_port ,ST1_97d_port ,ST1_96d_port ,ST1_95d_port ,ST1_94d_port ,
+	ST1_93d_port ,ST1_92d_port ,ST1_91d_port ,ST1_90d_port ,ST1_89d_port ,ST1_88d_port ,
+	ST1_87d_port ,ST1_86d_port ,ST1_85d_port ,ST1_84d_port ,ST1_83d_port ,ST1_82d_port ,
+	ST1_81d_port ,ST1_80d_port ,ST1_79d_port ,ST1_78d_port ,ST1_77d_port ,ST1_76d_port ,
+	ST1_75d_port ,ST1_74d_port ,ST1_73d_port ,ST1_72d_port ,ST1_71d_port ,ST1_70d_port ,
+	ST1_69d_port ,ST1_68d_port ,ST1_67d_port ,ST1_66d_port ,ST1_65d_port ,ST1_64d_port ,
+	ST1_63d_port ,ST1_62d_port ,ST1_61d_port ,ST1_60d_port ,ST1_59d_port ,ST1_58d_port ,
+	ST1_57d_port ,ST1_56d_port ,ST1_55d_port ,ST1_54d_port ,ST1_53d_port ,ST1_52d_port ,
+	ST1_51d_port ,ST1_50d_port ,ST1_49d_port ,ST1_48d_port ,ST1_47d_port ,ST1_46d_port ,
+	ST1_45d_port ,ST1_44d_port ,ST1_43d_port ,ST1_42d_port ,ST1_41d_port ,ST1_40d_port ,
+	ST1_39d_port ,ST1_38d_port ,ST1_37d_port ,ST1_36d_port ,ST1_35d_port ,ST1_34d_port ,
+	ST1_33d_port ,ST1_32d_port ,ST1_31d_port ,ST1_30d_port ,ST1_29d_port ,ST1_28d_port ,
+	ST1_27d_port ,ST1_26d_port ,ST1_25d_port ,ST1_24d_port ,ST1_23d_port ,ST1_22d_port ,
+	ST1_21d_port ,ST1_20d_port ,ST1_19d_port ,ST1_18d_port ,ST1_17d_port ,ST1_16d_port ,
+	ST1_15d_port ,ST1_14d_port ,ST1_13d_port ,ST1_12d_port ,ST1_11d_port ,ST1_10d_port ,
+	ST1_09d_port ,ST1_08d_port ,ST1_07d_port ,ST1_06d_port ,ST1_05d_port ,ST1_04d_port ,
+	ST1_03d_port ,ST1_02d_port ,ST1_01d_port ,JF_193 ,JF_192 ,JF_191 ,JF_190 ,
+	JF_189 ,JF_188 ,JF_187 ,JF_186 ,JF_185 ,JF_184 ,JF_183 ,JF_182 ,JF_181 ,
+	JF_180 ,JF_179 ,JF_178 ,JF_177 ,JF_176 ,JF_175 ,JF_174 ,JF_173 ,JF_172 ,
+	JF_171 ,JF_170 ,JF_169 ,JF_168 ,JF_167 ,JF_166 ,JF_165 ,JF_164 ,JF_163 ,
+	JF_162 ,JF_161 ,JF_160 ,JF_159 ,JF_158 ,JF_157 ,JF_156 ,JF_155 ,JF_154 ,
+	JF_153 ,JF_152 ,JF_151 ,JF_150 ,JF_149 ,JF_148 ,JF_147 ,JF_146 ,JF_145 ,
+	JF_144 ,JF_143 ,JF_142 ,JF_141 ,JF_140 ,JF_139 ,JF_138 ,JF_137 ,JF_136 ,
+	JF_135 ,JF_134 ,JF_133 ,JF_132 ,JF_131 ,JF_130 ,JF_127 ,JF_126 ,JF_125 ,
+	JF_124 ,JF_123 ,JF_122 ,JF_121 ,JF_119 ,JF_118 ,JF_117 ,JF_116 ,JF_115 ,
+	JF_114 ,JF_113 ,JF_111 ,JF_110 ,JF_109 ,JF_108 ,JF_107 ,JF_106 ,JF_105 ,
+	JF_103 ,JF_102 ,JF_101 ,JF_100 ,JF_99 ,JF_98 ,JF_97 ,JF_95 ,JF_94 ,JF_93 ,
+	JF_92 ,JF_91 ,JF_90 ,JF_89 ,JF_87 ,JF_86 ,JF_85 ,JF_84 ,JF_83 ,JF_82 ,JF_81 ,
+	JF_79 ,JF_78 ,JF_77 ,JF_76 ,JF_75 ,JF_74 ,JF_73 ,JF_71 ,JF_70 ,JF_69 ,JF_68 ,
+	JF_67 ,JF_66 ,JF_65 ,JF_64 ,JF_62 ,JF_49 ,JF_47 ,JF_41 ,JF_39 ,JF_37 ,JF_36 ,
+	JF_35 ,JF_34 ,JF_33 ,JF_30 ,JF_28 ,JF_27 ,CT_15 ,JF_23 ,JF_17 ,JF_16 ,JF_15 ,
+	JF_14 ,JF_13 ,JF_10 ,JF_09 ,JF_08 ,JF_07 ,JF_06 ,JF_03 ,JF_02 ,CT_01 ,RG_k ,
+	RG_funct3_imm1 ,FF_take );
 input	[31:0]	imem_arg_MEMB32W65536_RD1 ;
 input		CLOCK ;
 input		RESET ;
-input		TR_179 ;
-input		M_2875 ;
-input		M_2872 ;
-input		M_2871 ;
-input		M_2865 ;
-input		M_2863 ;
-input		M_2859 ;
-input		M_2854 ;
-input		M_2853 ;
-input		M_2848 ;
-input		U_704 ;
-input		U_683 ;
-input		U_630 ;
-input		U_576 ;
+input		TR_155 ;
+input		M_2785 ;
+input		M_2783 ;
+input		M_2782 ;
+input		M_2781 ;
+input		M_2777 ;
+input		M_2769 ;
+input		M_2764 ;
+input		M_2763 ;
+input		M_2758 ;
+input		U_706 ;
+input		U_633 ;
+input		U_579 ;
 input		U_12 ;
-output		ST1_492d_port ;
-output		ST1_491d_port ;
-output		ST1_490d_port ;
-output		ST1_489d_port ;
-output		ST1_488d_port ;
-output		ST1_487d_port ;
-output		ST1_486d_port ;
-output		ST1_485d_port ;
-output		ST1_484d_port ;
-output		ST1_483d_port ;
-output		ST1_482d_port ;
-output		ST1_481d_port ;
-output		ST1_480d_port ;
-output		ST1_479d_port ;
-output		ST1_478d_port ;
-output		ST1_477d_port ;
-output		ST1_476d_port ;
-output		ST1_475d_port ;
-output		ST1_474d_port ;
-output		ST1_473d_port ;
-output		ST1_472d_port ;
-output		ST1_471d_port ;
-output		ST1_470d_port ;
-output		ST1_469d_port ;
-output		ST1_468d_port ;
-output		ST1_467d_port ;
-output		ST1_466d_port ;
-output		ST1_465d_port ;
-output		ST1_464d_port ;
-output		ST1_463d_port ;
-output		ST1_462d_port ;
-output		ST1_461d_port ;
-output		ST1_460d_port ;
-output		ST1_459d_port ;
-output		ST1_458d_port ;
-output		ST1_457d_port ;
-output		ST1_456d_port ;
-output		ST1_455d_port ;
-output		ST1_454d_port ;
-output		ST1_453d_port ;
-output		ST1_452d_port ;
-output		ST1_451d_port ;
-output		ST1_450d_port ;
-output		ST1_449d_port ;
-output		ST1_448d_port ;
-output		ST1_447d_port ;
-output		ST1_446d_port ;
-output		ST1_445d_port ;
-output		ST1_444d_port ;
-output		ST1_443d_port ;
-output		ST1_442d_port ;
-output		ST1_441d_port ;
-output		ST1_440d_port ;
-output		ST1_439d_port ;
-output		ST1_438d_port ;
-output		ST1_437d_port ;
-output		ST1_436d_port ;
-output		ST1_435d_port ;
-output		ST1_434d_port ;
-output		ST1_433d_port ;
-output		ST1_432d_port ;
-output		ST1_431d_port ;
-output		ST1_430d_port ;
-output		ST1_429d_port ;
-output		ST1_428d_port ;
-output		ST1_427d_port ;
-output		ST1_426d_port ;
-output		ST1_425d_port ;
-output		ST1_424d_port ;
-output		ST1_423d_port ;
-output		ST1_422d_port ;
-output		ST1_421d_port ;
-output		ST1_420d_port ;
-output		ST1_419d_port ;
-output		ST1_418d_port ;
-output		ST1_417d_port ;
-output		ST1_416d_port ;
-output		ST1_415d_port ;
-output		ST1_414d_port ;
-output		ST1_413d_port ;
-output		ST1_412d_port ;
-output		ST1_411d_port ;
-output		ST1_410d_port ;
-output		ST1_409d_port ;
-output		ST1_408d_port ;
-output		ST1_407d_port ;
-output		ST1_406d_port ;
-output		ST1_405d_port ;
-output		ST1_404d_port ;
-output		ST1_403d_port ;
-output		ST1_402d_port ;
-output		ST1_401d_port ;
-output		ST1_400d_port ;
-output		ST1_399d_port ;
-output		ST1_398d_port ;
-output		ST1_397d_port ;
-output		ST1_396d_port ;
-output		ST1_395d_port ;
-output		ST1_394d_port ;
-output		ST1_393d_port ;
-output		ST1_392d_port ;
-output		ST1_391d_port ;
-output		ST1_390d_port ;
-output		ST1_389d_port ;
-output		ST1_388d_port ;
-output		ST1_387d_port ;
-output		ST1_386d_port ;
-output		ST1_385d_port ;
-output		ST1_384d_port ;
-output		ST1_383d_port ;
-output		ST1_382d_port ;
-output		ST1_381d_port ;
-output		ST1_380d_port ;
-output		ST1_379d_port ;
-output		ST1_378d_port ;
-output		ST1_377d_port ;
-output		ST1_376d_port ;
-output		ST1_375d_port ;
-output		ST1_374d_port ;
-output		ST1_373d_port ;
-output		ST1_372d_port ;
-output		ST1_371d_port ;
-output		ST1_370d_port ;
-output		ST1_369d_port ;
-output		ST1_368d_port ;
-output		ST1_367d_port ;
-output		ST1_366d_port ;
-output		ST1_365d_port ;
-output		ST1_364d_port ;
-output		ST1_363d_port ;
-output		ST1_362d_port ;
-output		ST1_361d_port ;
-output		ST1_360d_port ;
-output		ST1_359d_port ;
-output		ST1_358d_port ;
-output		ST1_357d_port ;
-output		ST1_356d_port ;
-output		ST1_355d_port ;
-output		ST1_354d_port ;
-output		ST1_353d_port ;
-output		ST1_352d_port ;
-output		ST1_351d_port ;
-output		ST1_350d_port ;
-output		ST1_349d_port ;
-output		ST1_348d_port ;
-output		ST1_347d_port ;
-output		ST1_346d_port ;
-output		ST1_345d_port ;
-output		ST1_344d_port ;
-output		ST1_343d_port ;
-output		ST1_342d_port ;
-output		ST1_341d_port ;
-output		ST1_340d_port ;
 output		ST1_339d_port ;
 output		ST1_338d_port ;
 output		ST1_337d_port ;
@@ -1662,13 +1246,13 @@ output		ST1_04d_port ;
 output		ST1_03d_port ;
 output		ST1_02d_port ;
 output		ST1_01d_port ;
-input		JF_194 ;
 input		JF_193 ;
 input		JF_192 ;
 input		JF_191 ;
 input		JF_190 ;
 input		JF_189 ;
 input		JF_188 ;
+input		JF_187 ;
 input		JF_186 ;
 input		JF_185 ;
 input		JF_184 ;
@@ -1676,6 +1260,7 @@ input		JF_183 ;
 input		JF_182 ;
 input		JF_181 ;
 input		JF_180 ;
+input		JF_179 ;
 input		JF_178 ;
 input		JF_177 ;
 input		JF_176 ;
@@ -1683,6 +1268,7 @@ input		JF_175 ;
 input		JF_174 ;
 input		JF_173 ;
 input		JF_172 ;
+input		JF_171 ;
 input		JF_170 ;
 input		JF_169 ;
 input		JF_168 ;
@@ -1690,6 +1276,7 @@ input		JF_167 ;
 input		JF_166 ;
 input		JF_165 ;
 input		JF_164 ;
+input		JF_163 ;
 input		JF_162 ;
 input		JF_161 ;
 input		JF_160 ;
@@ -1697,6 +1284,7 @@ input		JF_159 ;
 input		JF_158 ;
 input		JF_157 ;
 input		JF_156 ;
+input		JF_155 ;
 input		JF_154 ;
 input		JF_153 ;
 input		JF_152 ;
@@ -1704,6 +1292,7 @@ input		JF_151 ;
 input		JF_150 ;
 input		JF_149 ;
 input		JF_148 ;
+input		JF_147 ;
 input		JF_146 ;
 input		JF_145 ;
 input		JF_144 ;
@@ -1711,6 +1300,7 @@ input		JF_143 ;
 input		JF_142 ;
 input		JF_141 ;
 input		JF_140 ;
+input		JF_139 ;
 input		JF_138 ;
 input		JF_137 ;
 input		JF_136 ;
@@ -1718,81 +1308,85 @@ input		JF_135 ;
 input		JF_134 ;
 input		JF_133 ;
 input		JF_132 ;
-input		JF_129 ;
-input		JF_128 ;
+input		JF_131 ;
+input		JF_130 ;
 input		JF_127 ;
 input		JF_126 ;
 input		JF_125 ;
 input		JF_124 ;
 input		JF_123 ;
+input		JF_122 ;
 input		JF_121 ;
-input		JF_120 ;
 input		JF_119 ;
 input		JF_118 ;
 input		JF_117 ;
 input		JF_116 ;
 input		JF_115 ;
+input		JF_114 ;
 input		JF_113 ;
-input		JF_112 ;
 input		JF_111 ;
 input		JF_110 ;
 input		JF_109 ;
 input		JF_108 ;
 input		JF_107 ;
+input		JF_106 ;
 input		JF_105 ;
-input		JF_104 ;
 input		JF_103 ;
 input		JF_102 ;
 input		JF_101 ;
 input		JF_100 ;
 input		JF_99 ;
+input		JF_98 ;
 input		JF_97 ;
-input		JF_96 ;
 input		JF_95 ;
 input		JF_94 ;
 input		JF_93 ;
 input		JF_92 ;
 input		JF_91 ;
+input		JF_90 ;
 input		JF_89 ;
-input		JF_88 ;
 input		JF_87 ;
 input		JF_86 ;
 input		JF_85 ;
 input		JF_84 ;
 input		JF_83 ;
+input		JF_82 ;
 input		JF_81 ;
-input		JF_80 ;
 input		JF_79 ;
 input		JF_78 ;
 input		JF_77 ;
 input		JF_76 ;
 input		JF_75 ;
+input		JF_74 ;
 input		JF_73 ;
-input		JF_72 ;
 input		JF_71 ;
 input		JF_70 ;
 input		JF_69 ;
 input		JF_68 ;
 input		JF_67 ;
 input		JF_66 ;
+input		JF_65 ;
+input		JF_64 ;
+input		JF_62 ;
 input		JF_49 ;
 input		JF_47 ;
-input		JF_42 ;
-input		JF_38 ;
+input		JF_41 ;
+input		JF_39 ;
+input		JF_37 ;
 input		JF_36 ;
 input		JF_35 ;
 input		JF_34 ;
 input		JF_33 ;
-input		JF_32 ;
+input		JF_30 ;
 input		JF_28 ;
+input		JF_27 ;
 input		CT_15 ;
-input		JF_24 ;
-input		JF_18 ;
+input		JF_23 ;
 input		JF_17 ;
 input		JF_16 ;
 input		JF_15 ;
 input		JF_14 ;
-input		JF_11 ;
+input		JF_13 ;
 input		JF_10 ;
 input		JF_09 ;
 input		JF_08 ;
@@ -1801,34 +1395,25 @@ input		JF_06 ;
 input		JF_03 ;
 input		JF_02 ;
 input		CT_01 ;
-input	[3:0]	RG_k ;	// line#=computer.cpp:300
-input		RG_08 ;
-input	[31:0]	RG_buf_buf1_funct3_imm1_next_pc ;	// line#=computer.cpp:317,351,452,458,584
-input		FF_take ;	// line#=computer.cpp:506
-wire		M_3061 ;
-wire		M_2965 ;
-wire		M_2964 ;
-wire		M_2963 ;
-wire		M_2961 ;
-wire		M_2960 ;
-wire		M_2959 ;
-wire		M_2958 ;
-wire		M_2921 ;
-wire		M_2920 ;
-wire		M_2919 ;
-wire		M_2918 ;
-wire		M_2917 ;
-wire		M_2916 ;
-wire		M_2915 ;
-wire		M_2914 ;
-wire		M_2913 ;
+input	[3:0]	RG_k ;	// line#=computer.cpp:307
+input	[31:0]	RG_funct3_imm1 ;	// line#=computer.cpp:459,591
+input		FF_take ;	// line#=computer.cpp:513
+wire		M_2970 ;
 wire		M_2912 ;
 wire		M_2911 ;
+wire		M_2910 ;
+wire		M_2909 ;
 wire		M_2908 ;
+wire		M_2907 ;
+wire		M_2906 ;
 wire		M_2905 ;
+wire		M_2904 ;
 wire		M_2903 ;
+wire		M_2902 ;
 wire		M_2901 ;
+wire		M_2900 ;
 wire		M_2899 ;
+wire		M_2898 ;
 wire		M_2897 ;
 wire		M_2896 ;
 wire		M_2895 ;
@@ -1845,7 +1430,36 @@ wire		M_2885 ;
 wire		M_2884 ;
 wire		M_2883 ;
 wire		M_2882 ;
-wire		M_2880 ;
+wire		M_2827 ;
+wire		M_2826 ;
+wire		M_2825 ;
+wire		M_2824 ;
+wire		M_2823 ;
+wire		M_2822 ;
+wire		M_2821 ;
+wire		M_2820 ;
+wire		M_2816 ;
+wire		M_2814 ;
+wire		M_2812 ;
+wire		M_2810 ;
+wire		M_2809 ;
+wire		M_2808 ;
+wire		M_2807 ;
+wire		M_2806 ;
+wire		M_2805 ;
+wire		M_2804 ;
+wire		M_2803 ;
+wire		M_2802 ;
+wire		M_2801 ;
+wire		M_2800 ;
+wire		M_2799 ;
+wire		M_2798 ;
+wire		M_2797 ;
+wire		M_2796 ;
+wire		M_2795 ;
+wire		M_2794 ;
+wire		M_2793 ;
+wire		M_2791 ;
 wire		ST1_01d ;
 wire		ST1_02d ;
 wire		ST1_03d ;
@@ -2185,224 +1799,106 @@ wire		ST1_336d ;
 wire		ST1_337d ;
 wire		ST1_338d ;
 wire		ST1_339d ;
-wire		ST1_340d ;
-wire		ST1_341d ;
-wire		ST1_342d ;
-wire		ST1_343d ;
-wire		ST1_344d ;
-wire		ST1_345d ;
-wire		ST1_346d ;
-wire		ST1_347d ;
-wire		ST1_348d ;
-wire		ST1_349d ;
-wire		ST1_350d ;
-wire		ST1_351d ;
-wire		ST1_352d ;
-wire		ST1_353d ;
-wire		ST1_354d ;
-wire		ST1_355d ;
-wire		ST1_356d ;
-wire		ST1_357d ;
-wire		ST1_358d ;
-wire		ST1_359d ;
-wire		ST1_360d ;
-wire		ST1_361d ;
-wire		ST1_362d ;
-wire		ST1_363d ;
-wire		ST1_364d ;
-wire		ST1_365d ;
-wire		ST1_366d ;
-wire		ST1_367d ;
-wire		ST1_368d ;
-wire		ST1_369d ;
-wire		ST1_370d ;
-wire		ST1_371d ;
-wire		ST1_372d ;
-wire		ST1_373d ;
-wire		ST1_374d ;
-wire		ST1_375d ;
-wire		ST1_376d ;
-wire		ST1_377d ;
-wire		ST1_378d ;
-wire		ST1_379d ;
-wire		ST1_380d ;
-wire		ST1_381d ;
-wire		ST1_382d ;
-wire		ST1_383d ;
-wire		ST1_384d ;
-wire		ST1_385d ;
-wire		ST1_386d ;
-wire		ST1_387d ;
-wire		ST1_388d ;
-wire		ST1_389d ;
-wire		ST1_390d ;
-wire		ST1_391d ;
-wire		ST1_392d ;
-wire		ST1_393d ;
-wire		ST1_394d ;
-wire		ST1_395d ;
-wire		ST1_396d ;
-wire		ST1_397d ;
-wire		ST1_398d ;
-wire		ST1_399d ;
-wire		ST1_400d ;
-wire		ST1_401d ;
-wire		ST1_402d ;
-wire		ST1_403d ;
-wire		ST1_404d ;
-wire		ST1_405d ;
-wire		ST1_406d ;
-wire		ST1_407d ;
-wire		ST1_408d ;
-wire		ST1_409d ;
-wire		ST1_410d ;
-wire		ST1_411d ;
-wire		ST1_412d ;
-wire		ST1_413d ;
-wire		ST1_414d ;
-wire		ST1_415d ;
-wire		ST1_416d ;
-wire		ST1_417d ;
-wire		ST1_418d ;
-wire		ST1_419d ;
-wire		ST1_420d ;
-wire		ST1_421d ;
-wire		ST1_422d ;
-wire		ST1_423d ;
-wire		ST1_424d ;
-wire		ST1_425d ;
-wire		ST1_426d ;
-wire		ST1_427d ;
-wire		ST1_428d ;
-wire		ST1_429d ;
-wire		ST1_430d ;
-wire		ST1_431d ;
-wire		ST1_432d ;
-wire		ST1_433d ;
-wire		ST1_434d ;
-wire		ST1_435d ;
-wire		ST1_436d ;
-wire		ST1_437d ;
-wire		ST1_438d ;
-wire		ST1_439d ;
-wire		ST1_440d ;
-wire		ST1_441d ;
-wire		ST1_442d ;
-wire		ST1_443d ;
-wire		ST1_444d ;
-wire		ST1_445d ;
-wire		ST1_446d ;
-wire		ST1_447d ;
-wire		ST1_448d ;
-wire		ST1_449d ;
-wire		ST1_450d ;
-wire		ST1_451d ;
-wire		ST1_452d ;
-wire		ST1_453d ;
-wire		ST1_454d ;
-wire		ST1_455d ;
-wire		ST1_456d ;
-wire		ST1_457d ;
-wire		ST1_458d ;
-wire		ST1_459d ;
-wire		ST1_460d ;
-wire		ST1_461d ;
-wire		ST1_462d ;
-wire		ST1_463d ;
-wire		ST1_464d ;
-wire		ST1_465d ;
-wire		ST1_466d ;
-wire		ST1_467d ;
-wire		ST1_468d ;
-wire		ST1_469d ;
-wire		ST1_470d ;
-wire		ST1_471d ;
-wire		ST1_472d ;
-wire		ST1_473d ;
-wire		ST1_474d ;
-wire		ST1_475d ;
-wire		ST1_476d ;
-wire		ST1_477d ;
-wire		ST1_478d ;
-wire		ST1_479d ;
-wire		ST1_480d ;
-wire		ST1_481d ;
-wire		ST1_482d ;
-wire		ST1_483d ;
-wire		ST1_484d ;
-wire		ST1_485d ;
-wire		ST1_486d ;
-wire		ST1_487d ;
-wire		ST1_488d ;
-wire		ST1_489d ;
-wire		ST1_490d ;
-wire		ST1_491d ;
-wire		ST1_492d ;
 reg	[8:0]	B01_streg ;
-reg	[1:0]	M_3079 ;
-reg	[2:0]	TR_85 ;
-reg	[1:0]	TR_123 ;
-reg	TR_123_c1 ;
-reg	[1:0]	TR_164 ;
-reg	TR_164_c1 ;
-reg	[2:0]	TR_124 ;
-reg	TR_124_c1 ;
-reg	[3:0]	TR_86 ;
-reg	TR_86_c1 ;
-reg	[4:0]	TR_44 ;
-reg	TR_44_c1 ;
-reg	[1:0]	TR_88 ;
-reg	TR_88_c1 ;
-reg	[1:0]	TR_127 ;
-reg	TR_127_c1 ;
-reg	[2:0]	TR_89 ;
-reg	TR_89_c1 ;
-reg	[1:0]	TR_129 ;
-reg	TR_129_c1 ;
-reg	[1:0]	TR_168 ;
-reg	TR_168_c1 ;
-reg	[2:0]	TR_130 ;
+reg	[1:0]	M_2986 ;
+reg	[2:0]	M_2985 ;
+reg	[2:0]	M_2984 ;
+reg	[4:0]	TR_43 ;
+reg	TR_43_c1 ;
+reg	TR_43_c2 ;
+reg	TR_43_d ;
+reg	[1:0]	TR_73 ;
+reg	TR_73_c1 ;
+reg	[1:0]	TR_101 ;
+reg	TR_101_c1 ;
+reg	[2:0]	TR_74 ;
+reg	TR_74_c1 ;
+reg	[1:0]	TR_103 ;
+reg	TR_103_c1 ;
+reg	[1:0]	TR_130 ;
 reg	TR_130_c1 ;
-reg	[3:0]	TR_90 ;
-reg	TR_90_c1 ;
-reg	[1:0]	M_3078 ;
-reg	[4:0]	TR_91 ;
-reg	TR_91_c1 ;
-reg	[5:0]	TR_45 ;
+reg	[2:0]	TR_104 ;
+reg	TR_104_c1 ;
+reg	[3:0]	TR_75 ;
+reg	TR_75_c1 ;
+reg	[1:0]	M_2983 ;
+reg	[4:0]	TR_76 ;
+reg	TR_76_c1 ;
+reg	[5:0]	TR_44 ;
+reg	TR_44_c1 ;
+reg	[4:0]	M_2982 ;
+reg	[4:0]	M_2981 ;
+reg	[6:0]	TR_45 ;
 reg	TR_45_c1 ;
-reg	[4:0]	M_3077 ;
-reg	[4:0]	M_3076 ;
-reg	[6:0]	TR_46 ;
+reg	TR_45_c2 ;
+reg	TR_45_d ;
+reg	[5:0]	M_2980 ;
+reg	[5:0]	M_2979 ;
+reg	[7:0]	TR_46 ;
 reg	TR_46_c1 ;
 reg	TR_46_c2 ;
 reg	TR_46_d ;
-reg	[1:0]	TR_95 ;
-reg	TR_95_c1 ;
-reg	[1:0]	TR_134 ;
-reg	[2:0]	TR_96 ;
-reg	TR_96_c1 ;
-reg	[1:0]	M_3075 ;
-reg	[3:0]	TR_97 ;
-reg	TR_97_c1 ;
-reg	[2:0]	M_3074 ;
-reg	[2:0]	M_3073 ;
-reg	[4:0]	TR_98 ;
-reg	TR_98_c1 ;
-reg	TR_98_c2 ;
-reg	[3:0]	M_3072 ;
-reg	[3:0]	M_3071 ;
-reg	[5:0]	TR_99 ;
-reg	TR_99_c1 ;
-reg	TR_99_c2 ;
-reg	[4:0]	M_3070 ;
-reg	[4:0]	M_3069 ;
-reg	[6:0]	TR_100 ;
-reg	TR_100_c1 ;
-reg	TR_100_c2 ;
-reg	[7:0]	TR_47 ;
-reg	TR_47_c1 ;
-reg	[6:0]	M_3068 ;
-reg	[6:0]	M_3067 ;
+reg	[1:0]	TR_48 ;
+reg	TR_48_c1 ;
+reg	[1:0]	TR_83 ;
+reg	TR_83_c1 ;
+reg	[1:0]	TR_108 ;
+reg	TR_108_c1 ;
+reg	[2:0]	TR_84 ;
+reg	TR_84_c1 ;
+reg	[3:0]	TR_49 ;
+reg	TR_49_c1 ;
+reg	[1:0]	TR_86 ;
+reg	TR_86_c1 ;
+reg	[1:0]	TR_111 ;
+reg	TR_111_c1 ;
+reg	[2:0]	TR_87 ;
+reg	TR_87_c1 ;
+reg	[1:0]	TR_113 ;
+reg	TR_113_c1 ;
+reg	[1:0]	TR_135 ;
+reg	TR_135_c1 ;
+reg	[2:0]	TR_114 ;
+reg	TR_114_c1 ;
+reg	[3:0]	TR_88 ;
+reg	TR_88_c1 ;
+reg	[1:0]	TR_116 ;
+reg	TR_116_c1 ;
+reg	[1:0]	TR_138 ;
+reg	TR_138_c1 ;
+reg	[2:0]	TR_117 ;
+reg	TR_117_c1 ;
+reg	[1:0]	TR_140 ;
+reg	TR_140_c1 ;
+reg	[1:0]	TR_151 ;
+reg	TR_151_c1 ;
+reg	[2:0]	TR_141 ;
+reg	TR_141_c1 ;
+reg	[3:0]	TR_118 ;
+reg	TR_118_c1 ;
+reg	[4:0]	TR_89 ;
+reg	TR_89_c1 ;
+reg	[5:0]	TR_50 ;
+reg	TR_50_c1 ;
+reg	[1:0]	TR_91 ;
+reg	TR_91_c1 ;
+reg	[1:0]	TR_121 ;
+reg	TR_121_c1 ;
+reg	[2:0]	TR_92 ;
+reg	TR_92_c1 ;
+reg	[1:0]	TR_123 ;
+reg	TR_123_c1 ;
+reg	[1:0]	TR_145 ;
+reg	TR_145_c1 ;
+reg	[2:0]	TR_124 ;
+reg	TR_124_c1 ;
+reg	[3:0]	TR_93 ;
+reg	TR_93_c1 ;
+reg	[1:0]	TR_126 ;
+reg	[4:0]	TR_94 ;
+reg	TR_94_c1 ;
+reg	[6:0]	TR_51 ;
+reg	TR_51_c1 ;
 reg	[8:0]	B01_streg_t ;
 reg	[8:0]	B01_streg_t1 ;
 reg	B01_streg_t1_c1 ;
@@ -2444,20 +1940,22 @@ reg	[8:0]	B01_streg_t13 ;
 reg	B01_streg_t13_c1 ;
 reg	[8:0]	B01_streg_t14 ;
 reg	B01_streg_t14_c1 ;
-reg	B01_streg_t14_c2 ;
-reg	B01_streg_t14_c3 ;
-reg	B01_streg_t14_c4 ;
-reg	B01_streg_t14_c5 ;
-reg	B01_streg_t14_c6 ;
-reg	B01_streg_t14_c7 ;
-reg	B01_streg_t14_c8 ;
-reg	B01_streg_t14_c9 ;
-reg	B01_streg_t14_c10 ;
-reg	B01_streg_t14_c11 ;
-reg	B01_streg_t14_c12 ;
-reg	B01_streg_t14_c13 ;
 reg	[8:0]	B01_streg_t15 ;
 reg	B01_streg_t15_c1 ;
+reg	B01_streg_t15_c2 ;
+reg	B01_streg_t15_c3 ;
+reg	B01_streg_t15_c4 ;
+reg	B01_streg_t15_c5 ;
+reg	B01_streg_t15_c6 ;
+reg	B01_streg_t15_c7 ;
+reg	B01_streg_t15_c8 ;
+reg	B01_streg_t15_c9 ;
+reg	B01_streg_t15_c10 ;
+reg	B01_streg_t15_c11 ;
+reg	B01_streg_t15_c12 ;
+reg	B01_streg_t15_c13 ;
+reg	B01_streg_t15_c14 ;
+reg	B01_streg_t15_c15 ;
 reg	[8:0]	B01_streg_t16 ;
 reg	B01_streg_t16_c1 ;
 reg	[8:0]	B01_streg_t17 ;
@@ -2642,12 +2140,10 @@ reg	[8:0]	B01_streg_t106 ;
 reg	B01_streg_t106_c1 ;
 reg	[8:0]	B01_streg_t107 ;
 reg	B01_streg_t107_c1 ;
-reg	B01_streg_t_c1 ;
 reg	[8:0]	B01_streg_t108 ;
 reg	B01_streg_t108_c1 ;
 reg	[8:0]	B01_streg_t109 ;
 reg	B01_streg_t109_c1 ;
-reg	B01_streg_t_c2 ;
 reg	[8:0]	B01_streg_t110 ;
 reg	B01_streg_t110_c1 ;
 reg	[8:0]	B01_streg_t111 ;
@@ -2756,12 +2252,7 @@ reg	[8:0]	B01_streg_t162 ;
 reg	B01_streg_t162_c1 ;
 reg	[8:0]	B01_streg_t163 ;
 reg	B01_streg_t163_c1 ;
-reg	[8:0]	B01_streg_t164 ;
-reg	B01_streg_t164_c1 ;
-reg	[8:0]	B01_streg_t165 ;
-reg	B01_streg_t165_c1 ;
-reg	[8:0]	B01_streg_t166 ;
-reg	B01_streg_t166_c1 ;
+reg	B01_streg_t_c1 ;
 reg	B01_streg_t_d ;
 
 parameter	ST1_02 = 9'h001 ;
@@ -3102,159 +2593,6 @@ parameter	ST1_336 = 9'h14f ;
 parameter	ST1_337 = 9'h150 ;
 parameter	ST1_338 = 9'h151 ;
 parameter	ST1_339 = 9'h152 ;
-parameter	ST1_340 = 9'h153 ;
-parameter	ST1_341 = 9'h154 ;
-parameter	ST1_342 = 9'h155 ;
-parameter	ST1_343 = 9'h156 ;
-parameter	ST1_344 = 9'h157 ;
-parameter	ST1_345 = 9'h158 ;
-parameter	ST1_346 = 9'h159 ;
-parameter	ST1_347 = 9'h15a ;
-parameter	ST1_348 = 9'h15b ;
-parameter	ST1_349 = 9'h15c ;
-parameter	ST1_350 = 9'h15d ;
-parameter	ST1_351 = 9'h15e ;
-parameter	ST1_352 = 9'h15f ;
-parameter	ST1_353 = 9'h160 ;
-parameter	ST1_354 = 9'h161 ;
-parameter	ST1_355 = 9'h162 ;
-parameter	ST1_356 = 9'h163 ;
-parameter	ST1_357 = 9'h164 ;
-parameter	ST1_358 = 9'h165 ;
-parameter	ST1_359 = 9'h166 ;
-parameter	ST1_360 = 9'h167 ;
-parameter	ST1_361 = 9'h168 ;
-parameter	ST1_362 = 9'h169 ;
-parameter	ST1_363 = 9'h16a ;
-parameter	ST1_364 = 9'h16b ;
-parameter	ST1_365 = 9'h16c ;
-parameter	ST1_366 = 9'h16d ;
-parameter	ST1_367 = 9'h16e ;
-parameter	ST1_368 = 9'h16f ;
-parameter	ST1_369 = 9'h170 ;
-parameter	ST1_370 = 9'h171 ;
-parameter	ST1_371 = 9'h172 ;
-parameter	ST1_372 = 9'h173 ;
-parameter	ST1_373 = 9'h174 ;
-parameter	ST1_374 = 9'h175 ;
-parameter	ST1_375 = 9'h176 ;
-parameter	ST1_376 = 9'h177 ;
-parameter	ST1_377 = 9'h178 ;
-parameter	ST1_378 = 9'h179 ;
-parameter	ST1_379 = 9'h17a ;
-parameter	ST1_380 = 9'h17b ;
-parameter	ST1_381 = 9'h17c ;
-parameter	ST1_382 = 9'h17d ;
-parameter	ST1_383 = 9'h17e ;
-parameter	ST1_384 = 9'h17f ;
-parameter	ST1_385 = 9'h180 ;
-parameter	ST1_386 = 9'h181 ;
-parameter	ST1_387 = 9'h182 ;
-parameter	ST1_388 = 9'h183 ;
-parameter	ST1_389 = 9'h184 ;
-parameter	ST1_390 = 9'h185 ;
-parameter	ST1_391 = 9'h186 ;
-parameter	ST1_392 = 9'h187 ;
-parameter	ST1_393 = 9'h188 ;
-parameter	ST1_394 = 9'h189 ;
-parameter	ST1_395 = 9'h18a ;
-parameter	ST1_396 = 9'h18b ;
-parameter	ST1_397 = 9'h18c ;
-parameter	ST1_398 = 9'h18d ;
-parameter	ST1_399 = 9'h18e ;
-parameter	ST1_400 = 9'h18f ;
-parameter	ST1_401 = 9'h190 ;
-parameter	ST1_402 = 9'h191 ;
-parameter	ST1_403 = 9'h192 ;
-parameter	ST1_404 = 9'h193 ;
-parameter	ST1_405 = 9'h194 ;
-parameter	ST1_406 = 9'h195 ;
-parameter	ST1_407 = 9'h196 ;
-parameter	ST1_408 = 9'h197 ;
-parameter	ST1_409 = 9'h198 ;
-parameter	ST1_410 = 9'h199 ;
-parameter	ST1_411 = 9'h19a ;
-parameter	ST1_412 = 9'h19b ;
-parameter	ST1_413 = 9'h19c ;
-parameter	ST1_414 = 9'h19d ;
-parameter	ST1_415 = 9'h19e ;
-parameter	ST1_416 = 9'h19f ;
-parameter	ST1_417 = 9'h1a0 ;
-parameter	ST1_418 = 9'h1a1 ;
-parameter	ST1_419 = 9'h1a2 ;
-parameter	ST1_420 = 9'h1a3 ;
-parameter	ST1_421 = 9'h1a4 ;
-parameter	ST1_422 = 9'h1a5 ;
-parameter	ST1_423 = 9'h1a6 ;
-parameter	ST1_424 = 9'h1a7 ;
-parameter	ST1_425 = 9'h1a8 ;
-parameter	ST1_426 = 9'h1a9 ;
-parameter	ST1_427 = 9'h1aa ;
-parameter	ST1_428 = 9'h1ab ;
-parameter	ST1_429 = 9'h1ac ;
-parameter	ST1_430 = 9'h1ad ;
-parameter	ST1_431 = 9'h1ae ;
-parameter	ST1_432 = 9'h1af ;
-parameter	ST1_433 = 9'h1b0 ;
-parameter	ST1_434 = 9'h1b1 ;
-parameter	ST1_435 = 9'h1b2 ;
-parameter	ST1_436 = 9'h1b3 ;
-parameter	ST1_437 = 9'h1b4 ;
-parameter	ST1_438 = 9'h1b5 ;
-parameter	ST1_439 = 9'h1b6 ;
-parameter	ST1_440 = 9'h1b7 ;
-parameter	ST1_441 = 9'h1b8 ;
-parameter	ST1_442 = 9'h1b9 ;
-parameter	ST1_443 = 9'h1ba ;
-parameter	ST1_444 = 9'h1bb ;
-parameter	ST1_445 = 9'h1bc ;
-parameter	ST1_446 = 9'h1bd ;
-parameter	ST1_447 = 9'h1be ;
-parameter	ST1_448 = 9'h1bf ;
-parameter	ST1_449 = 9'h1c0 ;
-parameter	ST1_450 = 9'h1c1 ;
-parameter	ST1_451 = 9'h1c2 ;
-parameter	ST1_452 = 9'h1c3 ;
-parameter	ST1_453 = 9'h1c4 ;
-parameter	ST1_454 = 9'h1c5 ;
-parameter	ST1_455 = 9'h1c6 ;
-parameter	ST1_456 = 9'h1c7 ;
-parameter	ST1_457 = 9'h1c8 ;
-parameter	ST1_458 = 9'h1c9 ;
-parameter	ST1_459 = 9'h1ca ;
-parameter	ST1_460 = 9'h1cb ;
-parameter	ST1_461 = 9'h1cc ;
-parameter	ST1_462 = 9'h1cd ;
-parameter	ST1_463 = 9'h1ce ;
-parameter	ST1_464 = 9'h1cf ;
-parameter	ST1_465 = 9'h1d0 ;
-parameter	ST1_466 = 9'h1d1 ;
-parameter	ST1_467 = 9'h1d2 ;
-parameter	ST1_468 = 9'h1d3 ;
-parameter	ST1_469 = 9'h1d4 ;
-parameter	ST1_470 = 9'h1d5 ;
-parameter	ST1_471 = 9'h1d6 ;
-parameter	ST1_472 = 9'h1d7 ;
-parameter	ST1_473 = 9'h1d8 ;
-parameter	ST1_474 = 9'h1d9 ;
-parameter	ST1_475 = 9'h1da ;
-parameter	ST1_476 = 9'h1db ;
-parameter	ST1_477 = 9'h1dc ;
-parameter	ST1_478 = 9'h1dd ;
-parameter	ST1_479 = 9'h1de ;
-parameter	ST1_480 = 9'h1df ;
-parameter	ST1_481 = 9'h1e0 ;
-parameter	ST1_482 = 9'h1e1 ;
-parameter	ST1_483 = 9'h1e2 ;
-parameter	ST1_484 = 9'h1e3 ;
-parameter	ST1_485 = 9'h1e4 ;
-parameter	ST1_486 = 9'h1e5 ;
-parameter	ST1_487 = 9'h1e6 ;
-parameter	ST1_488 = 9'h1e7 ;
-parameter	ST1_489 = 9'h1e8 ;
-parameter	ST1_490 = 9'h1e9 ;
-parameter	ST1_491 = 9'h1ea ;
-parameter	ST1_492 = 9'h1eb ;
 
 assign	ST1_01d = ~|B01_streg ;
 assign	ST1_01d_port = ST1_01d ;
@@ -3934,929 +3272,522 @@ assign	ST1_338d = ~|( B01_streg ^ ST1_338 ) ;
 assign	ST1_338d_port = ST1_338d ;
 assign	ST1_339d = ~|( B01_streg ^ ST1_339 ) ;
 assign	ST1_339d_port = ST1_339d ;
-assign	ST1_340d = ~|( B01_streg ^ ST1_340 ) ;
-assign	ST1_340d_port = ST1_340d ;
-assign	ST1_341d = ~|( B01_streg ^ ST1_341 ) ;
-assign	ST1_341d_port = ST1_341d ;
-assign	ST1_342d = ~|( B01_streg ^ ST1_342 ) ;
-assign	ST1_342d_port = ST1_342d ;
-assign	ST1_343d = ~|( B01_streg ^ ST1_343 ) ;
-assign	ST1_343d_port = ST1_343d ;
-assign	ST1_344d = ~|( B01_streg ^ ST1_344 ) ;
-assign	ST1_344d_port = ST1_344d ;
-assign	ST1_345d = ~|( B01_streg ^ ST1_345 ) ;
-assign	ST1_345d_port = ST1_345d ;
-assign	ST1_346d = ~|( B01_streg ^ ST1_346 ) ;
-assign	ST1_346d_port = ST1_346d ;
-assign	ST1_347d = ~|( B01_streg ^ ST1_347 ) ;
-assign	ST1_347d_port = ST1_347d ;
-assign	ST1_348d = ~|( B01_streg ^ ST1_348 ) ;
-assign	ST1_348d_port = ST1_348d ;
-assign	ST1_349d = ~|( B01_streg ^ ST1_349 ) ;
-assign	ST1_349d_port = ST1_349d ;
-assign	ST1_350d = ~|( B01_streg ^ ST1_350 ) ;
-assign	ST1_350d_port = ST1_350d ;
-assign	ST1_351d = ~|( B01_streg ^ ST1_351 ) ;
-assign	ST1_351d_port = ST1_351d ;
-assign	ST1_352d = ~|( B01_streg ^ ST1_352 ) ;
-assign	ST1_352d_port = ST1_352d ;
-assign	ST1_353d = ~|( B01_streg ^ ST1_353 ) ;
-assign	ST1_353d_port = ST1_353d ;
-assign	ST1_354d = ~|( B01_streg ^ ST1_354 ) ;
-assign	ST1_354d_port = ST1_354d ;
-assign	ST1_355d = ~|( B01_streg ^ ST1_355 ) ;
-assign	ST1_355d_port = ST1_355d ;
-assign	ST1_356d = ~|( B01_streg ^ ST1_356 ) ;
-assign	ST1_356d_port = ST1_356d ;
-assign	ST1_357d = ~|( B01_streg ^ ST1_357 ) ;
-assign	ST1_357d_port = ST1_357d ;
-assign	ST1_358d = ~|( B01_streg ^ ST1_358 ) ;
-assign	ST1_358d_port = ST1_358d ;
-assign	ST1_359d = ~|( B01_streg ^ ST1_359 ) ;
-assign	ST1_359d_port = ST1_359d ;
-assign	ST1_360d = ~|( B01_streg ^ ST1_360 ) ;
-assign	ST1_360d_port = ST1_360d ;
-assign	ST1_361d = ~|( B01_streg ^ ST1_361 ) ;
-assign	ST1_361d_port = ST1_361d ;
-assign	ST1_362d = ~|( B01_streg ^ ST1_362 ) ;
-assign	ST1_362d_port = ST1_362d ;
-assign	ST1_363d = ~|( B01_streg ^ ST1_363 ) ;
-assign	ST1_363d_port = ST1_363d ;
-assign	ST1_364d = ~|( B01_streg ^ ST1_364 ) ;
-assign	ST1_364d_port = ST1_364d ;
-assign	ST1_365d = ~|( B01_streg ^ ST1_365 ) ;
-assign	ST1_365d_port = ST1_365d ;
-assign	ST1_366d = ~|( B01_streg ^ ST1_366 ) ;
-assign	ST1_366d_port = ST1_366d ;
-assign	ST1_367d = ~|( B01_streg ^ ST1_367 ) ;
-assign	ST1_367d_port = ST1_367d ;
-assign	ST1_368d = ~|( B01_streg ^ ST1_368 ) ;
-assign	ST1_368d_port = ST1_368d ;
-assign	ST1_369d = ~|( B01_streg ^ ST1_369 ) ;
-assign	ST1_369d_port = ST1_369d ;
-assign	ST1_370d = ~|( B01_streg ^ ST1_370 ) ;
-assign	ST1_370d_port = ST1_370d ;
-assign	ST1_371d = ~|( B01_streg ^ ST1_371 ) ;
-assign	ST1_371d_port = ST1_371d ;
-assign	ST1_372d = ~|( B01_streg ^ ST1_372 ) ;
-assign	ST1_372d_port = ST1_372d ;
-assign	ST1_373d = ~|( B01_streg ^ ST1_373 ) ;
-assign	ST1_373d_port = ST1_373d ;
-assign	ST1_374d = ~|( B01_streg ^ ST1_374 ) ;
-assign	ST1_374d_port = ST1_374d ;
-assign	ST1_375d = ~|( B01_streg ^ ST1_375 ) ;
-assign	ST1_375d_port = ST1_375d ;
-assign	ST1_376d = ~|( B01_streg ^ ST1_376 ) ;
-assign	ST1_376d_port = ST1_376d ;
-assign	ST1_377d = ~|( B01_streg ^ ST1_377 ) ;
-assign	ST1_377d_port = ST1_377d ;
-assign	ST1_378d = ~|( B01_streg ^ ST1_378 ) ;
-assign	ST1_378d_port = ST1_378d ;
-assign	ST1_379d = ~|( B01_streg ^ ST1_379 ) ;
-assign	ST1_379d_port = ST1_379d ;
-assign	ST1_380d = ~|( B01_streg ^ ST1_380 ) ;
-assign	ST1_380d_port = ST1_380d ;
-assign	ST1_381d = ~|( B01_streg ^ ST1_381 ) ;
-assign	ST1_381d_port = ST1_381d ;
-assign	ST1_382d = ~|( B01_streg ^ ST1_382 ) ;
-assign	ST1_382d_port = ST1_382d ;
-assign	ST1_383d = ~|( B01_streg ^ ST1_383 ) ;
-assign	ST1_383d_port = ST1_383d ;
-assign	ST1_384d = ~|( B01_streg ^ ST1_384 ) ;
-assign	ST1_384d_port = ST1_384d ;
-assign	ST1_385d = ~|( B01_streg ^ ST1_385 ) ;
-assign	ST1_385d_port = ST1_385d ;
-assign	ST1_386d = ~|( B01_streg ^ ST1_386 ) ;
-assign	ST1_386d_port = ST1_386d ;
-assign	ST1_387d = ~|( B01_streg ^ ST1_387 ) ;
-assign	ST1_387d_port = ST1_387d ;
-assign	ST1_388d = ~|( B01_streg ^ ST1_388 ) ;
-assign	ST1_388d_port = ST1_388d ;
-assign	ST1_389d = ~|( B01_streg ^ ST1_389 ) ;
-assign	ST1_389d_port = ST1_389d ;
-assign	ST1_390d = ~|( B01_streg ^ ST1_390 ) ;
-assign	ST1_390d_port = ST1_390d ;
-assign	ST1_391d = ~|( B01_streg ^ ST1_391 ) ;
-assign	ST1_391d_port = ST1_391d ;
-assign	ST1_392d = ~|( B01_streg ^ ST1_392 ) ;
-assign	ST1_392d_port = ST1_392d ;
-assign	ST1_393d = ~|( B01_streg ^ ST1_393 ) ;
-assign	ST1_393d_port = ST1_393d ;
-assign	ST1_394d = ~|( B01_streg ^ ST1_394 ) ;
-assign	ST1_394d_port = ST1_394d ;
-assign	ST1_395d = ~|( B01_streg ^ ST1_395 ) ;
-assign	ST1_395d_port = ST1_395d ;
-assign	ST1_396d = ~|( B01_streg ^ ST1_396 ) ;
-assign	ST1_396d_port = ST1_396d ;
-assign	ST1_397d = ~|( B01_streg ^ ST1_397 ) ;
-assign	ST1_397d_port = ST1_397d ;
-assign	ST1_398d = ~|( B01_streg ^ ST1_398 ) ;
-assign	ST1_398d_port = ST1_398d ;
-assign	ST1_399d = ~|( B01_streg ^ ST1_399 ) ;
-assign	ST1_399d_port = ST1_399d ;
-assign	ST1_400d = ~|( B01_streg ^ ST1_400 ) ;
-assign	ST1_400d_port = ST1_400d ;
-assign	ST1_401d = ~|( B01_streg ^ ST1_401 ) ;
-assign	ST1_401d_port = ST1_401d ;
-assign	ST1_402d = ~|( B01_streg ^ ST1_402 ) ;
-assign	ST1_402d_port = ST1_402d ;
-assign	ST1_403d = ~|( B01_streg ^ ST1_403 ) ;
-assign	ST1_403d_port = ST1_403d ;
-assign	ST1_404d = ~|( B01_streg ^ ST1_404 ) ;
-assign	ST1_404d_port = ST1_404d ;
-assign	ST1_405d = ~|( B01_streg ^ ST1_405 ) ;
-assign	ST1_405d_port = ST1_405d ;
-assign	ST1_406d = ~|( B01_streg ^ ST1_406 ) ;
-assign	ST1_406d_port = ST1_406d ;
-assign	ST1_407d = ~|( B01_streg ^ ST1_407 ) ;
-assign	ST1_407d_port = ST1_407d ;
-assign	ST1_408d = ~|( B01_streg ^ ST1_408 ) ;
-assign	ST1_408d_port = ST1_408d ;
-assign	ST1_409d = ~|( B01_streg ^ ST1_409 ) ;
-assign	ST1_409d_port = ST1_409d ;
-assign	ST1_410d = ~|( B01_streg ^ ST1_410 ) ;
-assign	ST1_410d_port = ST1_410d ;
-assign	ST1_411d = ~|( B01_streg ^ ST1_411 ) ;
-assign	ST1_411d_port = ST1_411d ;
-assign	ST1_412d = ~|( B01_streg ^ ST1_412 ) ;
-assign	ST1_412d_port = ST1_412d ;
-assign	ST1_413d = ~|( B01_streg ^ ST1_413 ) ;
-assign	ST1_413d_port = ST1_413d ;
-assign	ST1_414d = ~|( B01_streg ^ ST1_414 ) ;
-assign	ST1_414d_port = ST1_414d ;
-assign	ST1_415d = ~|( B01_streg ^ ST1_415 ) ;
-assign	ST1_415d_port = ST1_415d ;
-assign	ST1_416d = ~|( B01_streg ^ ST1_416 ) ;
-assign	ST1_416d_port = ST1_416d ;
-assign	ST1_417d = ~|( B01_streg ^ ST1_417 ) ;
-assign	ST1_417d_port = ST1_417d ;
-assign	ST1_418d = ~|( B01_streg ^ ST1_418 ) ;
-assign	ST1_418d_port = ST1_418d ;
-assign	ST1_419d = ~|( B01_streg ^ ST1_419 ) ;
-assign	ST1_419d_port = ST1_419d ;
-assign	ST1_420d = ~|( B01_streg ^ ST1_420 ) ;
-assign	ST1_420d_port = ST1_420d ;
-assign	ST1_421d = ~|( B01_streg ^ ST1_421 ) ;
-assign	ST1_421d_port = ST1_421d ;
-assign	ST1_422d = ~|( B01_streg ^ ST1_422 ) ;
-assign	ST1_422d_port = ST1_422d ;
-assign	ST1_423d = ~|( B01_streg ^ ST1_423 ) ;
-assign	ST1_423d_port = ST1_423d ;
-assign	ST1_424d = ~|( B01_streg ^ ST1_424 ) ;
-assign	ST1_424d_port = ST1_424d ;
-assign	ST1_425d = ~|( B01_streg ^ ST1_425 ) ;
-assign	ST1_425d_port = ST1_425d ;
-assign	ST1_426d = ~|( B01_streg ^ ST1_426 ) ;
-assign	ST1_426d_port = ST1_426d ;
-assign	ST1_427d = ~|( B01_streg ^ ST1_427 ) ;
-assign	ST1_427d_port = ST1_427d ;
-assign	ST1_428d = ~|( B01_streg ^ ST1_428 ) ;
-assign	ST1_428d_port = ST1_428d ;
-assign	ST1_429d = ~|( B01_streg ^ ST1_429 ) ;
-assign	ST1_429d_port = ST1_429d ;
-assign	ST1_430d = ~|( B01_streg ^ ST1_430 ) ;
-assign	ST1_430d_port = ST1_430d ;
-assign	ST1_431d = ~|( B01_streg ^ ST1_431 ) ;
-assign	ST1_431d_port = ST1_431d ;
-assign	ST1_432d = ~|( B01_streg ^ ST1_432 ) ;
-assign	ST1_432d_port = ST1_432d ;
-assign	ST1_433d = ~|( B01_streg ^ ST1_433 ) ;
-assign	ST1_433d_port = ST1_433d ;
-assign	ST1_434d = ~|( B01_streg ^ ST1_434 ) ;
-assign	ST1_434d_port = ST1_434d ;
-assign	ST1_435d = ~|( B01_streg ^ ST1_435 ) ;
-assign	ST1_435d_port = ST1_435d ;
-assign	ST1_436d = ~|( B01_streg ^ ST1_436 ) ;
-assign	ST1_436d_port = ST1_436d ;
-assign	ST1_437d = ~|( B01_streg ^ ST1_437 ) ;
-assign	ST1_437d_port = ST1_437d ;
-assign	ST1_438d = ~|( B01_streg ^ ST1_438 ) ;
-assign	ST1_438d_port = ST1_438d ;
-assign	ST1_439d = ~|( B01_streg ^ ST1_439 ) ;
-assign	ST1_439d_port = ST1_439d ;
-assign	ST1_440d = ~|( B01_streg ^ ST1_440 ) ;
-assign	ST1_440d_port = ST1_440d ;
-assign	ST1_441d = ~|( B01_streg ^ ST1_441 ) ;
-assign	ST1_441d_port = ST1_441d ;
-assign	ST1_442d = ~|( B01_streg ^ ST1_442 ) ;
-assign	ST1_442d_port = ST1_442d ;
-assign	ST1_443d = ~|( B01_streg ^ ST1_443 ) ;
-assign	ST1_443d_port = ST1_443d ;
-assign	ST1_444d = ~|( B01_streg ^ ST1_444 ) ;
-assign	ST1_444d_port = ST1_444d ;
-assign	ST1_445d = ~|( B01_streg ^ ST1_445 ) ;
-assign	ST1_445d_port = ST1_445d ;
-assign	ST1_446d = ~|( B01_streg ^ ST1_446 ) ;
-assign	ST1_446d_port = ST1_446d ;
-assign	ST1_447d = ~|( B01_streg ^ ST1_447 ) ;
-assign	ST1_447d_port = ST1_447d ;
-assign	ST1_448d = ~|( B01_streg ^ ST1_448 ) ;
-assign	ST1_448d_port = ST1_448d ;
-assign	ST1_449d = ~|( B01_streg ^ ST1_449 ) ;
-assign	ST1_449d_port = ST1_449d ;
-assign	ST1_450d = ~|( B01_streg ^ ST1_450 ) ;
-assign	ST1_450d_port = ST1_450d ;
-assign	ST1_451d = ~|( B01_streg ^ ST1_451 ) ;
-assign	ST1_451d_port = ST1_451d ;
-assign	ST1_452d = ~|( B01_streg ^ ST1_452 ) ;
-assign	ST1_452d_port = ST1_452d ;
-assign	ST1_453d = ~|( B01_streg ^ ST1_453 ) ;
-assign	ST1_453d_port = ST1_453d ;
-assign	ST1_454d = ~|( B01_streg ^ ST1_454 ) ;
-assign	ST1_454d_port = ST1_454d ;
-assign	ST1_455d = ~|( B01_streg ^ ST1_455 ) ;
-assign	ST1_455d_port = ST1_455d ;
-assign	ST1_456d = ~|( B01_streg ^ ST1_456 ) ;
-assign	ST1_456d_port = ST1_456d ;
-assign	ST1_457d = ~|( B01_streg ^ ST1_457 ) ;
-assign	ST1_457d_port = ST1_457d ;
-assign	ST1_458d = ~|( B01_streg ^ ST1_458 ) ;
-assign	ST1_458d_port = ST1_458d ;
-assign	ST1_459d = ~|( B01_streg ^ ST1_459 ) ;
-assign	ST1_459d_port = ST1_459d ;
-assign	ST1_460d = ~|( B01_streg ^ ST1_460 ) ;
-assign	ST1_460d_port = ST1_460d ;
-assign	ST1_461d = ~|( B01_streg ^ ST1_461 ) ;
-assign	ST1_461d_port = ST1_461d ;
-assign	ST1_462d = ~|( B01_streg ^ ST1_462 ) ;
-assign	ST1_462d_port = ST1_462d ;
-assign	ST1_463d = ~|( B01_streg ^ ST1_463 ) ;
-assign	ST1_463d_port = ST1_463d ;
-assign	ST1_464d = ~|( B01_streg ^ ST1_464 ) ;
-assign	ST1_464d_port = ST1_464d ;
-assign	ST1_465d = ~|( B01_streg ^ ST1_465 ) ;
-assign	ST1_465d_port = ST1_465d ;
-assign	ST1_466d = ~|( B01_streg ^ ST1_466 ) ;
-assign	ST1_466d_port = ST1_466d ;
-assign	ST1_467d = ~|( B01_streg ^ ST1_467 ) ;
-assign	ST1_467d_port = ST1_467d ;
-assign	ST1_468d = ~|( B01_streg ^ ST1_468 ) ;
-assign	ST1_468d_port = ST1_468d ;
-assign	ST1_469d = ~|( B01_streg ^ ST1_469 ) ;
-assign	ST1_469d_port = ST1_469d ;
-assign	ST1_470d = ~|( B01_streg ^ ST1_470 ) ;
-assign	ST1_470d_port = ST1_470d ;
-assign	ST1_471d = ~|( B01_streg ^ ST1_471 ) ;
-assign	ST1_471d_port = ST1_471d ;
-assign	ST1_472d = ~|( B01_streg ^ ST1_472 ) ;
-assign	ST1_472d_port = ST1_472d ;
-assign	ST1_473d = ~|( B01_streg ^ ST1_473 ) ;
-assign	ST1_473d_port = ST1_473d ;
-assign	ST1_474d = ~|( B01_streg ^ ST1_474 ) ;
-assign	ST1_474d_port = ST1_474d ;
-assign	ST1_475d = ~|( B01_streg ^ ST1_475 ) ;
-assign	ST1_475d_port = ST1_475d ;
-assign	ST1_476d = ~|( B01_streg ^ ST1_476 ) ;
-assign	ST1_476d_port = ST1_476d ;
-assign	ST1_477d = ~|( B01_streg ^ ST1_477 ) ;
-assign	ST1_477d_port = ST1_477d ;
-assign	ST1_478d = ~|( B01_streg ^ ST1_478 ) ;
-assign	ST1_478d_port = ST1_478d ;
-assign	ST1_479d = ~|( B01_streg ^ ST1_479 ) ;
-assign	ST1_479d_port = ST1_479d ;
-assign	ST1_480d = ~|( B01_streg ^ ST1_480 ) ;
-assign	ST1_480d_port = ST1_480d ;
-assign	ST1_481d = ~|( B01_streg ^ ST1_481 ) ;
-assign	ST1_481d_port = ST1_481d ;
-assign	ST1_482d = ~|( B01_streg ^ ST1_482 ) ;
-assign	ST1_482d_port = ST1_482d ;
-assign	ST1_483d = ~|( B01_streg ^ ST1_483 ) ;
-assign	ST1_483d_port = ST1_483d ;
-assign	ST1_484d = ~|( B01_streg ^ ST1_484 ) ;
-assign	ST1_484d_port = ST1_484d ;
-assign	ST1_485d = ~|( B01_streg ^ ST1_485 ) ;
-assign	ST1_485d_port = ST1_485d ;
-assign	ST1_486d = ~|( B01_streg ^ ST1_486 ) ;
-assign	ST1_486d_port = ST1_486d ;
-assign	ST1_487d = ~|( B01_streg ^ ST1_487 ) ;
-assign	ST1_487d_port = ST1_487d ;
-assign	ST1_488d = ~|( B01_streg ^ ST1_488 ) ;
-assign	ST1_488d_port = ST1_488d ;
-assign	ST1_489d = ~|( B01_streg ^ ST1_489 ) ;
-assign	ST1_489d_port = ST1_489d ;
-assign	ST1_490d = ~|( B01_streg ^ ST1_490 ) ;
-assign	ST1_490d_port = ST1_490d ;
-assign	ST1_491d = ~|( B01_streg ^ ST1_491 ) ;
-assign	ST1_491d_port = ST1_491d ;
-assign	ST1_492d = ~|( B01_streg ^ ST1_492 ) ;
-assign	ST1_492d_port = ST1_492d ;
-always @ ( ST1_492d or ST1_01d or ST1_04d )
-	M_3079 = ( ( { 2{ ST1_04d } } & 2'h2 )
-		| ( { 2{ ~ST1_04d } } & { 1'h0 , ( ST1_01d | ST1_492d ) } ) ) ;
-always @ ( ST1_23d )
-	TR_85 = ( { 3{ ST1_23d } } & 3'h7 )
-		 ;
-assign	M_2911 = ( ST1_24d | ST1_25d ) ;
-always @ ( ST1_27d or ST1_26d or ST1_25d or M_2911 )
+always @ ( ST1_339d or ST1_01d or ST1_04d )
+	M_2986 = ( ( { 2{ ST1_04d } } & 2'h2 )
+		| ( { 2{ ~ST1_04d } } & { 1'h0 , ( ST1_01d | ST1_339d ) } ) ) ;
+always @ ( ST1_30d or ST1_28d or ST1_26d or ST1_24d or ST1_18d )
+	M_2985 = ( ( { 3{ ST1_18d } } & 3'h1 )
+		| ( { 3{ ST1_24d } } & 3'h4 )
+		| ( { 3{ ST1_26d } } & 3'h5 )
+		| ( { 3{ ST1_28d } } & 3'h6 )
+		| ( { 3{ ST1_30d } } & 3'h7 ) ) ;
+always @ ( ST1_31d or ST1_29d or ST1_27d or ST1_25d or ST1_23d )
+	M_2984 = ( ( { 3{ ST1_23d } } & 3'h3 )
+		| ( { 3{ ST1_25d } } & 3'h4 )
+		| ( { 3{ ST1_27d } } & 3'h5 )
+		| ( { 3{ ST1_29d } } & 3'h6 )
+		| ( { 3{ ST1_31d } } & 3'h7 ) ) ;
+always @ ( M_2986 or M_2984 or ST1_31d or ST1_29d or ST1_27d or ST1_25d or ST1_23d or 
+	M_2985 or ST1_30d or ST1_28d or ST1_26d or ST1_24d or ST1_18d or ST1_16d )
 	begin
-	TR_123_c1 = ( ST1_26d | ST1_27d ) ;
-	TR_123 = ( ( { 2{ M_2911 } } & { 1'h0 , ST1_25d } )
-		| ( { 2{ TR_123_c1 } } & { 1'h1 , ST1_27d } ) ) ;
+	TR_43_c1 = ( ( ( ( ( ST1_16d | ST1_18d ) | ST1_24d ) | ST1_26d ) | ST1_28d ) | 
+		ST1_30d ) ;
+	TR_43_c2 = ( ( ( ( ST1_23d | ST1_25d ) | ST1_27d ) | ST1_29d ) | ST1_31d ) ;
+	TR_43_d = ( ( ~TR_43_c1 ) & ( ~TR_43_c2 ) ) ;
+	TR_43 = ( ( { 5{ TR_43_c1 } } & { 1'h1 , M_2985 , 1'h0 } )
+		| ( { 5{ TR_43_c2 } } & { 1'h1 , M_2984 , 1'h1 } )
+		| ( { 5{ TR_43_d } } & { 2'h0 , M_2986 [1] , 1'h0 , M_2986 [0] } ) ) ;
 	end
-assign	M_2913 = ( ST1_28d | ST1_29d ) ;
-always @ ( ST1_31d or ST1_30d or ST1_29d or M_2913 )
+assign	M_2820 = ( ST1_32d | ST1_33d ) ;
+always @ ( ST1_35d or ST1_34d or ST1_33d or M_2820 )
 	begin
-	TR_164_c1 = ( ST1_30d | ST1_31d ) ;
-	TR_164 = ( ( { 2{ M_2913 } } & { 1'h0 , ST1_29d } )
-		| ( { 2{ TR_164_c1 } } & { 1'h1 , ST1_31d } ) ) ;
+	TR_73_c1 = ( ST1_34d | ST1_35d ) ;
+	TR_73 = ( ( { 2{ M_2820 } } & { 1'h0 , ST1_33d } )
+		| ( { 2{ TR_73_c1 } } & { 1'h1 , ST1_35d } ) ) ;
 	end
-assign	M_2912 = ( ( M_2911 | ST1_26d ) | ST1_27d ) ;
-always @ ( TR_164 or ST1_31d or ST1_30d or M_2913 or TR_123 or M_2912 )
+assign	M_2823 = ( ST1_36d | ST1_37d ) ;
+always @ ( ST1_39d or ST1_38d or ST1_37d or M_2823 )
 	begin
-	TR_124_c1 = ( ( M_2913 | ST1_30d ) | ST1_31d ) ;
-	TR_124 = ( ( { 3{ M_2912 } } & { 1'h0 , TR_123 } )
-		| ( { 3{ TR_124_c1 } } & { 1'h1 , TR_164 } ) ) ;
+	TR_101_c1 = ( ST1_38d | ST1_39d ) ;
+	TR_101 = ( ( { 2{ M_2823 } } & { 1'h0 , ST1_37d } )
+		| ( { 2{ TR_101_c1 } } & { 1'h1 , ST1_39d } ) ) ;
 	end
-assign	M_2908 = ( ST1_16d | ST1_23d ) ;
-always @ ( TR_124 or ST1_31d or ST1_30d or ST1_29d or ST1_28d or M_2912 or TR_85 or 
-	M_2908 )
+assign	M_2821 = ( ( M_2820 | ST1_34d ) | ST1_35d ) ;
+always @ ( TR_101 or ST1_39d or ST1_38d or M_2823 or TR_73 or M_2821 )
 	begin
-	TR_86_c1 = ( ( ( ( M_2912 | ST1_28d ) | ST1_29d ) | ST1_30d ) | ST1_31d ) ;
-	TR_86 = ( ( { 4{ M_2908 } } & { 1'h0 , TR_85 } )
-		| ( { 4{ TR_86_c1 } } & { 1'h1 , TR_124 } ) ) ;
+	TR_74_c1 = ( ( M_2823 | ST1_38d ) | ST1_39d ) ;
+	TR_74 = ( ( { 3{ M_2821 } } & { 1'h0 , TR_73 } )
+		| ( { 3{ TR_74_c1 } } & { 1'h1 , TR_101 } ) ) ;
 	end
-always @ ( M_3079 or TR_86 or ST1_31d or ST1_30d or ST1_29d or ST1_28d or ST1_27d or 
-	ST1_26d or ST1_25d or ST1_24d or M_2908 )
+assign	M_2825 = ( ST1_40d | ST1_41d ) ;
+always @ ( ST1_43d or ST1_42d or ST1_41d or M_2825 )
 	begin
-	TR_44_c1 = ( ( ( ( ( ( ( ( M_2908 | ST1_24d ) | ST1_25d ) | ST1_26d ) | ST1_27d ) | 
-		ST1_28d ) | ST1_29d ) | ST1_30d ) | ST1_31d ) ;
-	TR_44 = ( ( { 5{ TR_44_c1 } } & { 1'h1 , TR_86 } )
-		| ( { 5{ ~TR_44_c1 } } & { 2'h0 , M_3079 [1] , 1'h0 , M_3079 [0] } ) ) ;
+	TR_103_c1 = ( ST1_42d | ST1_43d ) ;
+	TR_103 = ( ( { 2{ M_2825 } } & { 1'h0 , ST1_41d } )
+		| ( { 2{ TR_103_c1 } } & { 1'h1 , ST1_43d } ) ) ;
 	end
-assign	M_2914 = ( ST1_32d | ST1_33d ) ;
-always @ ( ST1_35d or ST1_34d or ST1_33d or M_2914 )
+assign	M_2827 = ( ST1_44d | ST1_45d ) ;
+always @ ( ST1_47d or ST1_46d or ST1_45d or M_2827 )
 	begin
-	TR_88_c1 = ( ST1_34d | ST1_35d ) ;
-	TR_88 = ( ( { 2{ M_2914 } } & { 1'h0 , ST1_33d } )
-		| ( { 2{ TR_88_c1 } } & { 1'h1 , ST1_35d } ) ) ;
+	TR_130_c1 = ( ST1_46d | ST1_47d ) ;
+	TR_130 = ( ( { 2{ M_2827 } } & { 1'h0 , ST1_45d } )
+		| ( { 2{ TR_130_c1 } } & { 1'h1 , ST1_47d } ) ) ;
 	end
-assign	M_2917 = ( ST1_36d | ST1_37d ) ;
-always @ ( ST1_39d or ST1_38d or ST1_37d or M_2917 )
+assign	M_2826 = ( ( M_2825 | ST1_42d ) | ST1_43d ) ;
+always @ ( TR_130 or ST1_47d or ST1_46d or M_2827 or TR_103 or M_2826 )
 	begin
-	TR_127_c1 = ( ST1_38d | ST1_39d ) ;
-	TR_127 = ( ( { 2{ M_2917 } } & { 1'h0 , ST1_37d } )
-		| ( { 2{ TR_127_c1 } } & { 1'h1 , ST1_39d } ) ) ;
+	TR_104_c1 = ( ( M_2827 | ST1_46d ) | ST1_47d ) ;
+	TR_104 = ( ( { 3{ M_2826 } } & { 1'h0 , TR_103 } )
+		| ( { 3{ TR_104_c1 } } & { 1'h1 , TR_130 } ) ) ;
 	end
-assign	M_2915 = ( ( M_2914 | ST1_34d ) | ST1_35d ) ;
-always @ ( TR_127 or ST1_39d or ST1_38d or M_2917 or TR_88 or M_2915 )
+assign	M_2822 = ( ( ( ( M_2821 | ST1_36d ) | ST1_37d ) | ST1_38d ) | ST1_39d ) ;
+always @ ( TR_104 or ST1_47d or ST1_46d or ST1_45d or ST1_44d or M_2826 or TR_74 or 
+	M_2822 )
 	begin
-	TR_89_c1 = ( ( M_2917 | ST1_38d ) | ST1_39d ) ;
-	TR_89 = ( ( { 3{ M_2915 } } & { 1'h0 , TR_88 } )
-		| ( { 3{ TR_89_c1 } } & { 1'h1 , TR_127 } ) ) ;
-	end
-assign	M_2919 = ( ST1_40d | ST1_41d ) ;
-always @ ( ST1_43d or ST1_42d or ST1_41d or M_2919 )
-	begin
-	TR_129_c1 = ( ST1_42d | ST1_43d ) ;
-	TR_129 = ( ( { 2{ M_2919 } } & { 1'h0 , ST1_41d } )
-		| ( { 2{ TR_129_c1 } } & { 1'h1 , ST1_43d } ) ) ;
-	end
-assign	M_2921 = ( ST1_44d | ST1_45d ) ;
-always @ ( ST1_47d or ST1_46d or ST1_45d or M_2921 )
-	begin
-	TR_168_c1 = ( ST1_46d | ST1_47d ) ;
-	TR_168 = ( ( { 2{ M_2921 } } & { 1'h0 , ST1_45d } )
-		| ( { 2{ TR_168_c1 } } & { 1'h1 , ST1_47d } ) ) ;
-	end
-assign	M_2920 = ( ( M_2919 | ST1_42d ) | ST1_43d ) ;
-always @ ( TR_168 or ST1_47d or ST1_46d or M_2921 or TR_129 or M_2920 )
-	begin
-	TR_130_c1 = ( ( M_2921 | ST1_46d ) | ST1_47d ) ;
-	TR_130 = ( ( { 3{ M_2920 } } & { 1'h0 , TR_129 } )
-		| ( { 3{ TR_130_c1 } } & { 1'h1 , TR_168 } ) ) ;
-	end
-assign	M_2916 = ( ( ( ( M_2915 | ST1_36d ) | ST1_37d ) | ST1_38d ) | ST1_39d ) ;
-always @ ( TR_130 or ST1_47d or ST1_46d or ST1_45d or ST1_44d or M_2920 or TR_89 or 
-	M_2916 )
-	begin
-	TR_90_c1 = ( ( ( ( M_2920 | ST1_44d ) | ST1_45d ) | ST1_46d ) | ST1_47d ) ;
-	TR_90 = ( ( { 4{ M_2916 } } & { 1'h0 , TR_89 } )
-		| ( { 4{ TR_90_c1 } } & { 1'h1 , TR_130 } ) ) ;
+	TR_75_c1 = ( ( ( ( M_2826 | ST1_44d ) | ST1_45d ) | ST1_46d ) | ST1_47d ) ;
+	TR_75 = ( ( { 4{ M_2822 } } & { 1'h0 , TR_74 } )
+		| ( { 4{ TR_75_c1 } } & { 1'h1 , TR_104 } ) ) ;
 	end
 always @ ( ST1_60d or ST1_57d )
-	M_3078 = ( ( { 2{ ST1_57d } } & 2'h1 )
+	M_2983 = ( ( { 2{ ST1_57d } } & 2'h1 )
 		| ( { 2{ ST1_60d } } & 2'h2 ) ) ;
-assign	M_2918 = ( ( ( ( ( ( ( ( M_2916 | ST1_40d ) | ST1_41d ) | ST1_42d ) | ST1_43d ) | 
+assign	M_2824 = ( ( ( ( ( ( ( ( M_2822 | ST1_40d ) | ST1_41d ) | ST1_42d ) | ST1_43d ) | 
 	ST1_44d ) | ST1_45d ) | ST1_46d ) | ST1_47d ) ;
-always @ ( M_3078 or ST1_60d or ST1_57d or TR_90 or M_2918 )
+always @ ( M_2983 or ST1_60d or ST1_57d or TR_75 or M_2824 )
 	begin
-	TR_91_c1 = ( ST1_57d | ST1_60d ) ;
-	TR_91 = ( ( { 5{ M_2918 } } & { 1'h0 , TR_90 } )
-		| ( { 5{ TR_91_c1 } } & { 2'h3 , M_3078 [1] , 1'h0 , M_3078 [0] } ) ) ;
+	TR_76_c1 = ( ST1_57d | ST1_60d ) ;
+	TR_76 = ( ( { 5{ M_2824 } } & { 1'h0 , TR_75 } )
+		| ( { 5{ TR_76_c1 } } & { 2'h3 , M_2983 [1] , 1'h0 , M_2983 [0] } ) ) ;
 	end
-always @ ( TR_44 or TR_91 or ST1_60d or ST1_57d or M_2918 )
+always @ ( TR_43 or TR_76 or ST1_60d or ST1_57d or M_2824 )
 	begin
-	TR_45_c1 = ( ( M_2918 | ST1_57d ) | ST1_60d ) ;
-	TR_45 = ( ( { 6{ TR_45_c1 } } & { 1'h1 , TR_91 } )
-		| ( { 6{ ~TR_45_c1 } } & { 1'h0 , TR_44 } ) ) ;
+	TR_44_c1 = ( ( M_2824 | ST1_57d ) | ST1_60d ) ;
+	TR_44 = ( ( { 6{ TR_44_c1 } } & { 1'h1 , TR_76 } )
+		| ( { 6{ ~TR_44_c1 } } & { 1'h0 , TR_43 } ) ) ;
 	end
-always @ ( ST1_126d or ST1_124d or ST1_122d or ST1_120d or ST1_118d or ST1_116d or 
-	ST1_114d or ST1_112d or ST1_110d or ST1_108d or ST1_106d or ST1_104d or 
-	ST1_102d or ST1_100d or ST1_98d or ST1_96d or ST1_94d or ST1_92d or ST1_90d or 
-	ST1_88d or ST1_86d or ST1_84d or ST1_82d or ST1_80d or ST1_78d or ST1_76d or 
-	ST1_74d or ST1_72d or ST1_70d or ST1_68d or ST1_66d )
-	M_3077 = ( ( { 5{ ST1_66d } } & 5'h01 )
-		| ( { 5{ ST1_68d } } & 5'h02 )
-		| ( { 5{ ST1_70d } } & 5'h03 )
-		| ( { 5{ ST1_72d } } & 5'h04 )
+always @ ( ST1_120d or ST1_118d or ST1_116d or ST1_114d or ST1_112d or ST1_110d or 
+	ST1_102d or ST1_100d or ST1_98d or ST1_96d or ST1_94d or ST1_92d or ST1_84d or 
+	ST1_82d or ST1_80d or ST1_78d or ST1_76d or ST1_74d or ST1_66d )
+	M_2982 = ( ( { 5{ ST1_66d } } & 5'h01 )
 		| ( { 5{ ST1_74d } } & 5'h05 )
 		| ( { 5{ ST1_76d } } & 5'h06 )
 		| ( { 5{ ST1_78d } } & 5'h07 )
 		| ( { 5{ ST1_80d } } & 5'h08 )
 		| ( { 5{ ST1_82d } } & 5'h09 )
 		| ( { 5{ ST1_84d } } & 5'h0a )
-		| ( { 5{ ST1_86d } } & 5'h0b )
-		| ( { 5{ ST1_88d } } & 5'h0c )
-		| ( { 5{ ST1_90d } } & 5'h0d )
 		| ( { 5{ ST1_92d } } & 5'h0e )
 		| ( { 5{ ST1_94d } } & 5'h0f )
 		| ( { 5{ ST1_96d } } & 5'h10 )
 		| ( { 5{ ST1_98d } } & 5'h11 )
 		| ( { 5{ ST1_100d } } & 5'h12 )
 		| ( { 5{ ST1_102d } } & 5'h13 )
-		| ( { 5{ ST1_104d } } & 5'h14 )
-		| ( { 5{ ST1_106d } } & 5'h15 )
-		| ( { 5{ ST1_108d } } & 5'h16 )
 		| ( { 5{ ST1_110d } } & 5'h17 )
 		| ( { 5{ ST1_112d } } & 5'h18 )
 		| ( { 5{ ST1_114d } } & 5'h19 )
 		| ( { 5{ ST1_116d } } & 5'h1a )
 		| ( { 5{ ST1_118d } } & 5'h1b )
-		| ( { 5{ ST1_120d } } & 5'h1c )
-		| ( { 5{ ST1_122d } } & 5'h1d )
-		| ( { 5{ ST1_124d } } & 5'h1e )
-		| ( { 5{ ST1_126d } } & 5'h1f ) ) ;
-always @ ( ST1_111d or ST1_109d or ST1_107d or ST1_89d or ST1_87d or ST1_85d )
-	M_3076 = ( ( { 5{ ST1_85d } } & 5'h0a )
-		| ( { 5{ ST1_87d } } & 5'h0b )
+		| ( { 5{ ST1_120d } } & 5'h1c ) ) ;
+always @ ( ST1_125d or ST1_121d or ST1_119d or ST1_117d or ST1_107d or ST1_103d or 
+	ST1_101d or ST1_99d or ST1_89d or ST1_85d or ST1_83d or ST1_81d or ST1_71d )
+	M_2981 = ( ( { 5{ ST1_71d } } & 5'h03 )
+		| ( { 5{ ST1_81d } } & 5'h08 )
+		| ( { 5{ ST1_83d } } & 5'h09 )
+		| ( { 5{ ST1_85d } } & 5'h0a )
 		| ( { 5{ ST1_89d } } & 5'h0c )
+		| ( { 5{ ST1_99d } } & 5'h11 )
+		| ( { 5{ ST1_101d } } & 5'h12 )
+		| ( { 5{ ST1_103d } } & 5'h13 )
 		| ( { 5{ ST1_107d } } & 5'h15 )
-		| ( { 5{ ST1_109d } } & 5'h16 )
-		| ( { 5{ ST1_111d } } & 5'h17 ) ) ;
-always @ ( TR_45 or M_3076 or ST1_111d or ST1_109d or ST1_107d or ST1_89d or ST1_87d or 
-	ST1_85d or M_3077 or ST1_126d or ST1_124d or ST1_122d or ST1_120d or ST1_118d or 
-	ST1_116d or ST1_114d or ST1_112d or ST1_110d or ST1_108d or ST1_106d or 
-	ST1_104d or ST1_102d or ST1_100d or ST1_98d or ST1_96d or ST1_94d or ST1_92d or 
-	ST1_90d or ST1_88d or ST1_86d or ST1_84d or ST1_82d or ST1_80d or ST1_78d or 
-	ST1_76d or ST1_74d or ST1_72d or ST1_70d or ST1_68d or ST1_66d )
+		| ( { 5{ ST1_117d } } & 5'h1a )
+		| ( { 5{ ST1_119d } } & 5'h1b )
+		| ( { 5{ ST1_121d } } & 5'h1c )
+		| ( { 5{ ST1_125d } } & 5'h1e ) ) ;
+always @ ( TR_44 or M_2981 or ST1_125d or ST1_121d or ST1_119d or ST1_117d or ST1_107d or 
+	ST1_103d or ST1_101d or ST1_99d or ST1_89d or ST1_85d or ST1_83d or ST1_81d or 
+	ST1_71d or M_2982 or ST1_120d or ST1_118d or ST1_116d or ST1_114d or ST1_112d or 
+	ST1_110d or ST1_102d or ST1_100d or ST1_98d or ST1_96d or ST1_94d or ST1_92d or 
+	ST1_84d or ST1_82d or ST1_80d or ST1_78d or ST1_76d or ST1_74d or ST1_66d or 
+	ST1_64d )
 	begin
-	TR_46_c1 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_66d | 
-		ST1_68d ) | ST1_70d ) | ST1_72d ) | ST1_74d ) | ST1_76d ) | ST1_78d ) | 
-		ST1_80d ) | ST1_82d ) | ST1_84d ) | ST1_86d ) | ST1_88d ) | ST1_90d ) | 
-		ST1_92d ) | ST1_94d ) | ST1_96d ) | ST1_98d ) | ST1_100d ) | ST1_102d ) | 
-		ST1_104d ) | ST1_106d ) | ST1_108d ) | ST1_110d ) | ST1_112d ) | 
-		ST1_114d ) | ST1_116d ) | ST1_118d ) | ST1_120d ) | ST1_122d ) | 
-		ST1_124d ) | ST1_126d ) ;
-	TR_46_c2 = ( ( ( ( ( ST1_85d | ST1_87d ) | ST1_89d ) | ST1_107d ) | ST1_109d ) | 
-		ST1_111d ) ;
-	TR_46_d = ( ( ~TR_46_c1 ) & ( ~TR_46_c2 ) ) ;
-	TR_46 = ( ( { 7{ TR_46_c1 } } & { 1'h1 , M_3077 , 1'h0 } )
-		| ( { 7{ TR_46_c2 } } & { 1'h1 , M_3076 , 1'h1 } )
-		| ( { 7{ TR_46_d } } & { 1'h0 , TR_45 } ) ) ;
+	TR_45_c1 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_64d | ST1_66d ) | ST1_74d ) | 
+		ST1_76d ) | ST1_78d ) | ST1_80d ) | ST1_82d ) | ST1_84d ) | ST1_92d ) | 
+		ST1_94d ) | ST1_96d ) | ST1_98d ) | ST1_100d ) | ST1_102d ) | ST1_110d ) | 
+		ST1_112d ) | ST1_114d ) | ST1_116d ) | ST1_118d ) | ST1_120d ) ;
+	TR_45_c2 = ( ( ( ( ( ( ( ( ( ( ( ( ST1_71d | ST1_81d ) | ST1_83d ) | ST1_85d ) | 
+		ST1_89d ) | ST1_99d ) | ST1_101d ) | ST1_103d ) | ST1_107d ) | ST1_117d ) | 
+		ST1_119d ) | ST1_121d ) | ST1_125d ) ;
+	TR_45_d = ( ( ~TR_45_c1 ) & ( ~TR_45_c2 ) ) ;
+	TR_45 = ( ( { 7{ TR_45_c1 } } & { 1'h1 , M_2982 , 1'h0 } )
+		| ( { 7{ TR_45_c2 } } & { 1'h1 , M_2981 , 1'h1 } )
+		| ( { 7{ TR_45_d } } & { 1'h0 , TR_44 } ) ) ;
 	end
-assign	M_2958 = ( ST1_128d | ST1_129d ) ;
-always @ ( ST1_131d or ST1_130d or ST1_129d or M_2958 )
-	begin
-	TR_95_c1 = ( ST1_130d | ST1_131d ) ;
-	TR_95 = ( ( { 2{ M_2958 } } & { 1'h0 , ST1_129d } )
-		| ( { 2{ TR_95_c1 } } & { 1'h1 , ST1_131d } ) ) ;
-	end
-assign	M_2961 = ( ST1_132d | ST1_133d ) ;
-always @ ( ST1_134d or ST1_133d or M_2961 )
-	TR_134 = ( ( { 2{ M_2961 } } & { 1'h0 , ST1_133d } )
-		| ( { 2{ ST1_134d } } & 2'h2 ) ) ;
-assign	M_2959 = ( ( M_2958 | ST1_130d ) | ST1_131d ) ;
-always @ ( TR_134 or ST1_134d or M_2961 or TR_95 or M_2959 )
-	begin
-	TR_96_c1 = ( M_2961 | ST1_134d ) ;
-	TR_96 = ( ( { 3{ M_2959 } } & { 1'h0 , TR_95 } )
-		| ( { 3{ TR_96_c1 } } & { 1'h1 , TR_134 } ) ) ;
-	end
-always @ ( ST1_142d or ST1_140d or ST1_138d )
-	M_3075 = ( ( { 2{ ST1_138d } } & 2'h1 )
-		| ( { 2{ ST1_140d } } & 2'h2 )
-		| ( { 2{ ST1_142d } } & 2'h3 ) ) ;
-assign	M_2960 = ( ( ( M_2959 | ST1_132d ) | ST1_133d ) | ST1_134d ) ;
-always @ ( M_3075 or ST1_142d or ST1_140d or ST1_138d or ST1_136d or TR_96 or M_2960 )
-	begin
-	TR_97_c1 = ( ( ( ST1_136d | ST1_138d ) | ST1_140d ) | ST1_142d ) ;
-	TR_97 = ( ( { 4{ M_2960 } } & { 1'h0 , TR_96 } )
-		| ( { 4{ TR_97_c1 } } & { 1'h1 , M_3075 , 1'h0 } ) ) ;
-	end
-always @ ( ST1_158d or ST1_156d or ST1_154d or ST1_152d or ST1_150d or ST1_148d or 
-	ST1_146d )
-	M_3074 = ( ( { 3{ ST1_146d } } & 3'h1 )
-		| ( { 3{ ST1_148d } } & 3'h2 )
-		| ( { 3{ ST1_150d } } & 3'h3 )
-		| ( { 3{ ST1_152d } } & 3'h4 )
-		| ( { 3{ ST1_154d } } & 3'h5 )
-		| ( { 3{ ST1_156d } } & 3'h6 )
-		| ( { 3{ ST1_158d } } & 3'h7 ) ) ;
-always @ ( ST1_155d or ST1_153d or ST1_151d )
-	M_3073 = ( ( { 3{ ST1_151d } } & 3'h3 )
-		| ( { 3{ ST1_153d } } & 3'h4 )
-		| ( { 3{ ST1_155d } } & 3'h5 ) ) ;
-assign	M_2963 = ( ( ( ( M_2960 | ST1_136d ) | ST1_138d ) | ST1_140d ) | ST1_142d ) ;
-always @ ( M_3073 or ST1_155d or ST1_153d or ST1_151d or M_3074 or ST1_158d or ST1_156d or 
-	ST1_154d or ST1_152d or ST1_150d or ST1_148d or ST1_146d or ST1_144d or 
-	TR_97 or M_2963 )
-	begin
-	TR_98_c1 = ( ( ( ( ( ( ( ST1_144d | ST1_146d ) | ST1_148d ) | ST1_150d ) | 
-		ST1_152d ) | ST1_154d ) | ST1_156d ) | ST1_158d ) ;
-	TR_98_c2 = ( ( ST1_151d | ST1_153d ) | ST1_155d ) ;
-	TR_98 = ( ( { 5{ M_2963 } } & { 1'h0 , TR_97 } )
-		| ( { 5{ TR_98_c1 } } & { 1'h1 , M_3074 , 1'h0 } )
-		| ( { 5{ TR_98_c2 } } & { 1'h1 , M_3073 , 1'h1 } ) ) ;
-	end
-always @ ( ST1_190d or ST1_188d or ST1_186d or ST1_184d or ST1_182d or ST1_180d or 
-	ST1_178d or ST1_176d or ST1_174d or ST1_172d or ST1_170d or ST1_168d or 
-	ST1_166d or ST1_164d or ST1_162d )
-	M_3072 = ( ( { 4{ ST1_162d } } & 4'h1 )
-		| ( { 4{ ST1_164d } } & 4'h2 )
-		| ( { 4{ ST1_166d } } & 4'h3 )
-		| ( { 4{ ST1_168d } } & 4'h4 )
-		| ( { 4{ ST1_170d } } & 4'h5 )
-		| ( { 4{ ST1_172d } } & 4'h6 )
-		| ( { 4{ ST1_174d } } & 4'h7 )
-		| ( { 4{ ST1_176d } } & 4'h8 )
-		| ( { 4{ ST1_178d } } & 4'h9 )
-		| ( { 4{ ST1_180d } } & 4'ha )
-		| ( { 4{ ST1_182d } } & 4'hb )
-		| ( { 4{ ST1_184d } } & 4'hc )
-		| ( { 4{ ST1_186d } } & 4'hd )
-		| ( { 4{ ST1_188d } } & 4'he )
-		| ( { 4{ ST1_190d } } & 4'hf ) ) ;
-always @ ( ST1_177d or ST1_175d or ST1_173d )
-	M_3071 = ( ( { 4{ ST1_173d } } & 4'h6 )
-		| ( { 4{ ST1_175d } } & 4'h7 )
-		| ( { 4{ ST1_177d } } & 4'h8 ) ) ;
-assign	M_2964 = ( ( ( ( ( ( ( ( ( ( ( M_2963 | ST1_144d ) | ST1_146d ) | ST1_148d ) | 
-	ST1_150d ) | ST1_151d ) | ST1_152d ) | ST1_153d ) | ST1_154d ) | ST1_155d ) | 
-	ST1_156d ) | ST1_158d ) ;
-always @ ( M_3071 or ST1_177d or ST1_175d or ST1_173d or M_3072 or ST1_190d or ST1_188d or 
-	ST1_186d or ST1_184d or ST1_182d or ST1_180d or ST1_178d or ST1_176d or 
+always @ ( ST1_210d or ST1_208d or ST1_206d or ST1_204d or ST1_202d or ST1_200d or 
+	ST1_192d or ST1_190d or ST1_188d or ST1_186d or ST1_184d or ST1_182d or 
 	ST1_174d or ST1_172d or ST1_170d or ST1_168d or ST1_166d or ST1_164d or 
-	ST1_162d or ST1_160d or TR_98 or M_2964 )
+	ST1_156d or ST1_154d or ST1_152d or ST1_150d or ST1_148d or ST1_146d or 
+	ST1_138d or ST1_136d or ST1_134d or ST1_132d or ST1_130d )
+	M_2980 = ( ( { 6{ ST1_130d } } & 6'h01 )
+		| ( { 6{ ST1_132d } } & 6'h02 )
+		| ( { 6{ ST1_134d } } & 6'h03 )
+		| ( { 6{ ST1_136d } } & 6'h04 )
+		| ( { 6{ ST1_138d } } & 6'h05 )
+		| ( { 6{ ST1_146d } } & 6'h09 )
+		| ( { 6{ ST1_148d } } & 6'h0a )
+		| ( { 6{ ST1_150d } } & 6'h0b )
+		| ( { 6{ ST1_152d } } & 6'h0c )
+		| ( { 6{ ST1_154d } } & 6'h0d )
+		| ( { 6{ ST1_156d } } & 6'h0e )
+		| ( { 6{ ST1_164d } } & 6'h12 )
+		| ( { 6{ ST1_166d } } & 6'h13 )
+		| ( { 6{ ST1_168d } } & 6'h14 )
+		| ( { 6{ ST1_170d } } & 6'h15 )
+		| ( { 6{ ST1_172d } } & 6'h16 )
+		| ( { 6{ ST1_174d } } & 6'h17 )
+		| ( { 6{ ST1_182d } } & 6'h1b )
+		| ( { 6{ ST1_184d } } & 6'h1c )
+		| ( { 6{ ST1_186d } } & 6'h1d )
+		| ( { 6{ ST1_188d } } & 6'h1e )
+		| ( { 6{ ST1_190d } } & 6'h1f )
+		| ( { 6{ ST1_192d } } & 6'h20 )
+		| ( { 6{ ST1_200d } } & 6'h24 )
+		| ( { 6{ ST1_202d } } & 6'h25 )
+		| ( { 6{ ST1_204d } } & 6'h26 )
+		| ( { 6{ ST1_206d } } & 6'h27 )
+		| ( { 6{ ST1_208d } } & 6'h28 )
+		| ( { 6{ ST1_210d } } & 6'h29 ) ) ;
+always @ ( ST1_209d or ST1_207d or ST1_197d or ST1_193d or ST1_191d or ST1_189d or 
+	ST1_179d or ST1_175d or ST1_173d or ST1_171d or ST1_161d or ST1_157d or 
+	ST1_155d or ST1_153d or ST1_143d or ST1_139d or ST1_137d or ST1_135d )
+	M_2979 = ( ( { 6{ ST1_135d } } & 6'h03 )
+		| ( { 6{ ST1_137d } } & 6'h04 )
+		| ( { 6{ ST1_139d } } & 6'h05 )
+		| ( { 6{ ST1_143d } } & 6'h07 )
+		| ( { 6{ ST1_153d } } & 6'h0c )
+		| ( { 6{ ST1_155d } } & 6'h0d )
+		| ( { 6{ ST1_157d } } & 6'h0e )
+		| ( { 6{ ST1_161d } } & 6'h10 )
+		| ( { 6{ ST1_171d } } & 6'h15 )
+		| ( { 6{ ST1_173d } } & 6'h16 )
+		| ( { 6{ ST1_175d } } & 6'h17 )
+		| ( { 6{ ST1_179d } } & 6'h19 )
+		| ( { 6{ ST1_189d } } & 6'h1e )
+		| ( { 6{ ST1_191d } } & 6'h1f )
+		| ( { 6{ ST1_193d } } & 6'h20 )
+		| ( { 6{ ST1_197d } } & 6'h22 )
+		| ( { 6{ ST1_207d } } & 6'h27 )
+		| ( { 6{ ST1_209d } } & 6'h28 ) ) ;
+always @ ( TR_45 or M_2979 or ST1_209d or ST1_207d or ST1_197d or ST1_193d or ST1_191d or 
+	ST1_189d or ST1_179d or ST1_175d or ST1_173d or ST1_171d or ST1_161d or 
+	ST1_157d or ST1_155d or ST1_153d or ST1_143d or ST1_139d or ST1_137d or 
+	ST1_135d or M_2980 or ST1_210d or ST1_208d or ST1_206d or ST1_204d or ST1_202d or 
+	ST1_200d or ST1_192d or ST1_190d or ST1_188d or ST1_186d or ST1_184d or 
+	ST1_182d or ST1_174d or ST1_172d or ST1_170d or ST1_168d or ST1_166d or 
+	ST1_164d or ST1_156d or ST1_154d or ST1_152d or ST1_150d or ST1_148d or 
+	ST1_146d or ST1_138d or ST1_136d or ST1_134d or ST1_132d or ST1_130d or 
+	ST1_128d )
 	begin
-	TR_99_c1 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_160d | ST1_162d ) | ST1_164d ) | 
-		ST1_166d ) | ST1_168d ) | ST1_170d ) | ST1_172d ) | ST1_174d ) | 
-		ST1_176d ) | ST1_178d ) | ST1_180d ) | ST1_182d ) | ST1_184d ) | 
-		ST1_186d ) | ST1_188d ) | ST1_190d ) ;
-	TR_99_c2 = ( ( ST1_173d | ST1_175d ) | ST1_177d ) ;
-	TR_99 = ( ( { 6{ M_2964 } } & { 1'h0 , TR_98 } )
-		| ( { 6{ TR_99_c1 } } & { 1'h1 , M_3072 , 1'h0 } )
-		| ( { 6{ TR_99_c2 } } & { 1'h1 , M_3071 , 1'h1 } ) ) ;
+	TR_46_c1 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_128d | 
+		ST1_130d ) | ST1_132d ) | ST1_134d ) | ST1_136d ) | ST1_138d ) | 
+		ST1_146d ) | ST1_148d ) | ST1_150d ) | ST1_152d ) | ST1_154d ) | 
+		ST1_156d ) | ST1_164d ) | ST1_166d ) | ST1_168d ) | ST1_170d ) | 
+		ST1_172d ) | ST1_174d ) | ST1_182d ) | ST1_184d ) | ST1_186d ) | 
+		ST1_188d ) | ST1_190d ) | ST1_192d ) | ST1_200d ) | ST1_202d ) | 
+		ST1_204d ) | ST1_206d ) | ST1_208d ) | ST1_210d ) ;
+	TR_46_c2 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_135d | ST1_137d ) | ST1_139d ) | 
+		ST1_143d ) | ST1_153d ) | ST1_155d ) | ST1_157d ) | ST1_161d ) | 
+		ST1_171d ) | ST1_173d ) | ST1_175d ) | ST1_179d ) | ST1_189d ) | 
+		ST1_191d ) | ST1_193d ) | ST1_197d ) | ST1_207d ) | ST1_209d ) ;
+	TR_46_d = ( ( ~TR_46_c1 ) & ( ~TR_46_c2 ) ) ;
+	TR_46 = ( ( { 8{ TR_46_c1 } } & { 1'h1 , M_2980 , 1'h0 } )
+		| ( { 8{ TR_46_c2 } } & { 1'h1 , M_2979 , 1'h1 } )
+		| ( { 8{ TR_46_d } } & { 1'h0 , TR_45 } ) ) ;
 	end
-always @ ( ST1_254d or ST1_252d or ST1_250d or ST1_248d or ST1_246d or ST1_244d or 
-	ST1_242d or ST1_240d or ST1_238d or ST1_236d or ST1_234d or ST1_232d or 
-	ST1_230d or ST1_228d or ST1_226d or ST1_224d or ST1_222d or ST1_220d or 
-	ST1_218d or ST1_216d or ST1_214d or ST1_212d or ST1_210d or ST1_208d or 
-	ST1_206d or ST1_204d or ST1_202d or ST1_200d or ST1_198d or ST1_196d or 
-	ST1_194d )
-	M_3070 = ( ( { 5{ ST1_194d } } & 5'h01 )
-		| ( { 5{ ST1_196d } } & 5'h02 )
-		| ( { 5{ ST1_198d } } & 5'h03 )
-		| ( { 5{ ST1_200d } } & 5'h04 )
-		| ( { 5{ ST1_202d } } & 5'h05 )
-		| ( { 5{ ST1_204d } } & 5'h06 )
-		| ( { 5{ ST1_206d } } & 5'h07 )
-		| ( { 5{ ST1_208d } } & 5'h08 )
-		| ( { 5{ ST1_210d } } & 5'h09 )
-		| ( { 5{ ST1_212d } } & 5'h0a )
-		| ( { 5{ ST1_214d } } & 5'h0b )
-		| ( { 5{ ST1_216d } } & 5'h0c )
-		| ( { 5{ ST1_218d } } & 5'h0d )
-		| ( { 5{ ST1_220d } } & 5'h0e )
-		| ( { 5{ ST1_222d } } & 5'h0f )
-		| ( { 5{ ST1_224d } } & 5'h10 )
-		| ( { 5{ ST1_226d } } & 5'h11 )
-		| ( { 5{ ST1_228d } } & 5'h12 )
-		| ( { 5{ ST1_230d } } & 5'h13 )
-		| ( { 5{ ST1_232d } } & 5'h14 )
-		| ( { 5{ ST1_234d } } & 5'h15 )
-		| ( { 5{ ST1_236d } } & 5'h16 )
-		| ( { 5{ ST1_238d } } & 5'h17 )
-		| ( { 5{ ST1_240d } } & 5'h18 )
-		| ( { 5{ ST1_242d } } & 5'h19 )
-		| ( { 5{ ST1_244d } } & 5'h1a )
-		| ( { 5{ ST1_246d } } & 5'h1b )
-		| ( { 5{ ST1_248d } } & 5'h1c )
-		| ( { 5{ ST1_250d } } & 5'h1d )
-		| ( { 5{ ST1_252d } } & 5'h1e )
-		| ( { 5{ ST1_254d } } & 5'h1f ) ) ;
-always @ ( ST1_241d or ST1_239d or ST1_221d or ST1_219d or ST1_217d or ST1_199d or 
-	ST1_197d or ST1_195d )
-	M_3069 = ( ( { 5{ ST1_195d } } & 5'h01 )
-		| ( { 5{ ST1_197d } } & 5'h02 )
-		| ( { 5{ ST1_199d } } & 5'h03 )
-		| ( { 5{ ST1_217d } } & 5'h0c )
-		| ( { 5{ ST1_219d } } & 5'h0d )
-		| ( { 5{ ST1_221d } } & 5'h0e )
-		| ( { 5{ ST1_239d } } & 5'h17 )
-		| ( { 5{ ST1_241d } } & 5'h18 ) ) ;
-assign	M_2965 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( M_2964 | ST1_160d ) | ST1_162d ) | 
-	ST1_164d ) | ST1_166d ) | ST1_168d ) | ST1_170d ) | ST1_172d ) | ST1_173d ) | 
-	ST1_174d ) | ST1_175d ) | ST1_176d ) | ST1_177d ) | ST1_178d ) | ST1_180d ) | 
-	ST1_182d ) | ST1_184d ) | ST1_186d ) | ST1_188d ) | ST1_190d ) ;
-always @ ( M_3069 or ST1_241d or ST1_239d or ST1_221d or ST1_219d or ST1_217d or 
-	ST1_199d or ST1_197d or ST1_195d or M_3070 or ST1_254d or ST1_252d or ST1_250d or 
-	ST1_248d or ST1_246d or ST1_244d or ST1_242d or ST1_240d or ST1_238d or 
-	ST1_236d or ST1_234d or ST1_232d or ST1_230d or ST1_228d or ST1_226d or 
-	ST1_224d or ST1_222d or ST1_220d or ST1_218d or ST1_216d or ST1_214d or 
-	ST1_212d or ST1_210d or ST1_208d or ST1_206d or ST1_204d or ST1_202d or 
-	ST1_200d or ST1_198d or ST1_196d or ST1_194d or ST1_192d or TR_99 or M_2965 )
+assign	M_2882 = ( ST1_276d | ST1_277d ) ;
+always @ ( ST1_279d or ST1_278d or ST1_277d or M_2882 )
 	begin
-	TR_100_c1 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-		ST1_192d | ST1_194d ) | ST1_196d ) | ST1_198d ) | ST1_200d ) | ST1_202d ) | 
-		ST1_204d ) | ST1_206d ) | ST1_208d ) | ST1_210d ) | ST1_212d ) | 
-		ST1_214d ) | ST1_216d ) | ST1_218d ) | ST1_220d ) | ST1_222d ) | 
-		ST1_224d ) | ST1_226d ) | ST1_228d ) | ST1_230d ) | ST1_232d ) | 
-		ST1_234d ) | ST1_236d ) | ST1_238d ) | ST1_240d ) | ST1_242d ) | 
-		ST1_244d ) | ST1_246d ) | ST1_248d ) | ST1_250d ) | ST1_252d ) | 
-		ST1_254d ) ;
-	TR_100_c2 = ( ( ( ( ( ( ( ST1_195d | ST1_197d ) | ST1_199d ) | ST1_217d ) | 
-		ST1_219d ) | ST1_221d ) | ST1_239d ) | ST1_241d ) ;
-	TR_100 = ( ( { 7{ M_2965 } } & { 1'h0 , TR_99 } )
-		| ( { 7{ TR_100_c1 } } & { 1'h1 , M_3070 , 1'h0 } )
-		| ( { 7{ TR_100_c2 } } & { 1'h1 , M_3069 , 1'h1 } ) ) ;
+	TR_48_c1 = ( ST1_278d | ST1_279d ) ;
+	TR_48 = ( ( { 2{ M_2882 } } & { 1'h0 , ST1_277d } )
+		| ( { 2{ TR_48_c1 } } & { 1'h1 , ST1_279d } ) ) ;
 	end
-always @ ( TR_46 or TR_100 or ST1_254d or ST1_252d or ST1_250d or ST1_248d or ST1_246d or 
-	ST1_244d or ST1_242d or ST1_241d or ST1_240d or ST1_239d or ST1_238d or 
-	ST1_236d or ST1_234d or ST1_232d or ST1_230d or ST1_228d or ST1_226d or 
-	ST1_224d or ST1_222d or ST1_221d or ST1_220d or ST1_219d or ST1_218d or 
-	ST1_217d or ST1_216d or ST1_214d or ST1_212d or ST1_210d or ST1_208d or 
-	ST1_206d or ST1_204d or ST1_202d or ST1_200d or ST1_199d or ST1_198d or 
-	ST1_197d or ST1_196d or ST1_195d or ST1_194d or ST1_192d or M_2965 )
+assign	M_2885 = ( ST1_280d | ST1_281d ) ;
+always @ ( ST1_283d or ST1_282d or ST1_281d or M_2885 )
 	begin
-	TR_47_c1 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-		( ( ( ( ( ( ( ( ( M_2965 | ST1_192d ) | ST1_194d ) | ST1_195d ) | 
-		ST1_196d ) | ST1_197d ) | ST1_198d ) | ST1_199d ) | ST1_200d ) | 
-		ST1_202d ) | ST1_204d ) | ST1_206d ) | ST1_208d ) | ST1_210d ) | 
-		ST1_212d ) | ST1_214d ) | ST1_216d ) | ST1_217d ) | ST1_218d ) | 
-		ST1_219d ) | ST1_220d ) | ST1_221d ) | ST1_222d ) | ST1_224d ) | 
-		ST1_226d ) | ST1_228d ) | ST1_230d ) | ST1_232d ) | ST1_234d ) | 
-		ST1_236d ) | ST1_238d ) | ST1_239d ) | ST1_240d ) | ST1_241d ) | 
-		ST1_242d ) | ST1_244d ) | ST1_246d ) | ST1_248d ) | ST1_250d ) | 
-		ST1_252d ) | ST1_254d ) ;
-	TR_47 = ( ( { 8{ TR_47_c1 } } & { 1'h1 , TR_100 } )
-		| ( { 8{ ~TR_47_c1 } } & { 1'h0 , TR_46 } ) ) ;
+	TR_83_c1 = ( ST1_282d | ST1_283d ) ;
+	TR_83 = ( ( { 2{ M_2885 } } & { 1'h0 , ST1_281d } )
+		| ( { 2{ TR_83_c1 } } & { 1'h1 , ST1_283d } ) ) ;
 	end
-always @ ( ST1_490d or ST1_488d or ST1_486d or ST1_484d or ST1_482d or ST1_480d or 
-	ST1_478d or ST1_476d or ST1_474d or ST1_472d or ST1_470d or ST1_468d or 
-	ST1_466d or ST1_464d or ST1_462d or ST1_460d or ST1_458d or ST1_456d or 
-	ST1_454d or ST1_452d or ST1_450d or ST1_448d or ST1_446d or ST1_444d or 
-	ST1_442d or ST1_440d or ST1_438d or ST1_436d or ST1_434d or ST1_432d or 
-	ST1_430d or ST1_428d or ST1_426d or ST1_424d or ST1_422d or ST1_404d or 
-	ST1_402d or ST1_400d or ST1_398d or ST1_396d or ST1_394d or ST1_392d or 
-	ST1_390d or ST1_388d or ST1_386d or ST1_384d or ST1_382d or ST1_380d or 
-	ST1_378d or ST1_376d or ST1_358d or ST1_356d or ST1_354d or ST1_352d or 
-	ST1_350d or ST1_348d or ST1_346d or ST1_344d or ST1_342d or ST1_340d or 
-	ST1_338d or ST1_336d or ST1_334d or ST1_332d or ST1_330d or ST1_312d or 
-	ST1_310d or ST1_308d or ST1_306d or ST1_304d or ST1_302d or ST1_300d or 
-	ST1_298d or ST1_296d or ST1_294d or ST1_292d or ST1_290d or ST1_288d or 
-	ST1_286d or ST1_284d or ST1_266d or ST1_264d or ST1_262d or ST1_260d or 
-	ST1_258d )
-	M_3068 = ( ( { 7{ ST1_258d } } & 7'h01 )
-		| ( { 7{ ST1_260d } } & 7'h02 )
-		| ( { 7{ ST1_262d } } & 7'h03 )
-		| ( { 7{ ST1_264d } } & 7'h04 )
-		| ( { 7{ ST1_266d } } & 7'h05 )
-		| ( { 7{ ST1_284d } } & 7'h0e )
-		| ( { 7{ ST1_286d } } & 7'h0f )
-		| ( { 7{ ST1_288d } } & 7'h10 )
-		| ( { 7{ ST1_290d } } & 7'h11 )
-		| ( { 7{ ST1_292d } } & 7'h12 )
-		| ( { 7{ ST1_294d } } & 7'h13 )
-		| ( { 7{ ST1_296d } } & 7'h14 )
-		| ( { 7{ ST1_298d } } & 7'h15 )
-		| ( { 7{ ST1_300d } } & 7'h16 )
-		| ( { 7{ ST1_302d } } & 7'h17 )
-		| ( { 7{ ST1_304d } } & 7'h18 )
-		| ( { 7{ ST1_306d } } & 7'h19 )
-		| ( { 7{ ST1_308d } } & 7'h1a )
-		| ( { 7{ ST1_310d } } & 7'h1b )
-		| ( { 7{ ST1_312d } } & 7'h1c )
-		| ( { 7{ ST1_330d } } & 7'h25 )
-		| ( { 7{ ST1_332d } } & 7'h26 )
-		| ( { 7{ ST1_334d } } & 7'h27 )
-		| ( { 7{ ST1_336d } } & 7'h28 )
-		| ( { 7{ ST1_338d } } & 7'h29 )
-		| ( { 7{ ST1_340d } } & 7'h2a )
-		| ( { 7{ ST1_342d } } & 7'h2b )
-		| ( { 7{ ST1_344d } } & 7'h2c )
-		| ( { 7{ ST1_346d } } & 7'h2d )
-		| ( { 7{ ST1_348d } } & 7'h2e )
-		| ( { 7{ ST1_350d } } & 7'h2f )
-		| ( { 7{ ST1_352d } } & 7'h30 )
-		| ( { 7{ ST1_354d } } & 7'h31 )
-		| ( { 7{ ST1_356d } } & 7'h32 )
-		| ( { 7{ ST1_358d } } & 7'h33 )
-		| ( { 7{ ST1_376d } } & 7'h3c )
-		| ( { 7{ ST1_378d } } & 7'h3d )
-		| ( { 7{ ST1_380d } } & 7'h3e )
-		| ( { 7{ ST1_382d } } & 7'h3f )
-		| ( { 7{ ST1_384d } } & 7'h40 )
-		| ( { 7{ ST1_386d } } & 7'h41 )
-		| ( { 7{ ST1_388d } } & 7'h42 )
-		| ( { 7{ ST1_390d } } & 7'h43 )
-		| ( { 7{ ST1_392d } } & 7'h44 )
-		| ( { 7{ ST1_394d } } & 7'h45 )
-		| ( { 7{ ST1_396d } } & 7'h46 )
-		| ( { 7{ ST1_398d } } & 7'h47 )
-		| ( { 7{ ST1_400d } } & 7'h48 )
-		| ( { 7{ ST1_402d } } & 7'h49 )
-		| ( { 7{ ST1_404d } } & 7'h4a )
-		| ( { 7{ ST1_422d } } & 7'h53 )
-		| ( { 7{ ST1_424d } } & 7'h54 )
-		| ( { 7{ ST1_426d } } & 7'h55 )
-		| ( { 7{ ST1_428d } } & 7'h56 )
-		| ( { 7{ ST1_430d } } & 7'h57 )
-		| ( { 7{ ST1_432d } } & 7'h58 )
-		| ( { 7{ ST1_434d } } & 7'h59 )
-		| ( { 7{ ST1_436d } } & 7'h5a )
-		| ( { 7{ ST1_438d } } & 7'h5b )
-		| ( { 7{ ST1_440d } } & 7'h5c )
-		| ( { 7{ ST1_442d } } & 7'h5d )
-		| ( { 7{ ST1_444d } } & 7'h5e )
-		| ( { 7{ ST1_446d } } & 7'h5f )
-		| ( { 7{ ST1_448d } } & 7'h60 )
-		| ( { 7{ ST1_450d } } & 7'h61 )
-		| ( { 7{ ST1_452d } } & 7'h62 )
-		| ( { 7{ ST1_454d } } & 7'h63 )
-		| ( { 7{ ST1_456d } } & 7'h64 )
-		| ( { 7{ ST1_458d } } & 7'h65 )
-		| ( { 7{ ST1_460d } } & 7'h66 )
-		| ( { 7{ ST1_462d } } & 7'h67 )
-		| ( { 7{ ST1_464d } } & 7'h68 )
-		| ( { 7{ ST1_466d } } & 7'h69 )
-		| ( { 7{ ST1_468d } } & 7'h6a )
-		| ( { 7{ ST1_470d } } & 7'h6b )
-		| ( { 7{ ST1_472d } } & 7'h6c )
-		| ( { 7{ ST1_474d } } & 7'h6d )
-		| ( { 7{ ST1_476d } } & 7'h6e )
-		| ( { 7{ ST1_478d } } & 7'h6f )
-		| ( { 7{ ST1_480d } } & 7'h70 )
-		| ( { 7{ ST1_482d } } & 7'h71 )
-		| ( { 7{ ST1_484d } } & 7'h72 )
-		| ( { 7{ ST1_486d } } & 7'h73 )
-		| ( { 7{ ST1_488d } } & 7'h74 )
-		| ( { 7{ ST1_490d } } & 7'h75 ) ) ;
-always @ ( ST1_491d or ST1_489d or ST1_487d or ST1_485d or ST1_483d or ST1_481d or 
-	ST1_479d or ST1_477d or ST1_475d or ST1_473d or ST1_471d or ST1_469d or 
-	ST1_467d or ST1_465d or ST1_463d or ST1_461d or ST1_459d or ST1_457d or 
-	ST1_455d or ST1_453d or ST1_451d or ST1_449d or ST1_447d or ST1_445d or 
-	ST1_443d or ST1_441d or ST1_439d or ST1_437d or ST1_435d or ST1_433d or 
-	ST1_431d or ST1_429d or ST1_425d or ST1_423d or ST1_421d or ST1_419d or 
-	ST1_417d or ST1_415d or ST1_413d or ST1_411d or ST1_409d or ST1_407d or 
-	ST1_405d or ST1_403d or ST1_401d or ST1_399d or ST1_381d or ST1_379d or 
-	ST1_377d or ST1_375d or ST1_373d or ST1_371d or ST1_369d or ST1_367d or 
-	ST1_365d or ST1_363d or ST1_361d or ST1_359d or ST1_357d or ST1_355d or 
-	ST1_353d or ST1_335d or ST1_333d or ST1_331d or ST1_329d or ST1_327d or 
-	ST1_325d or ST1_323d or ST1_321d or ST1_319d or ST1_317d or ST1_315d or 
-	ST1_313d or ST1_311d or ST1_309d or ST1_307d or ST1_289d or ST1_287d or 
-	ST1_285d or ST1_283d or ST1_281d or ST1_279d or ST1_277d or ST1_275d or 
-	ST1_273d or ST1_271d or ST1_269d or ST1_267d or ST1_265d or ST1_263d or 
-	ST1_261d )
-	M_3067 = ( ( { 7{ ST1_261d } } & 7'h02 )
-		| ( { 7{ ST1_263d } } & 7'h03 )
-		| ( { 7{ ST1_265d } } & 7'h04 )
-		| ( { 7{ ST1_267d } } & 7'h05 )
-		| ( { 7{ ST1_269d } } & 7'h06 )
-		| ( { 7{ ST1_271d } } & 7'h07 )
-		| ( { 7{ ST1_273d } } & 7'h08 )
-		| ( { 7{ ST1_275d } } & 7'h09 )
-		| ( { 7{ ST1_277d } } & 7'h0a )
-		| ( { 7{ ST1_279d } } & 7'h0b )
-		| ( { 7{ ST1_281d } } & 7'h0c )
-		| ( { 7{ ST1_283d } } & 7'h0d )
-		| ( { 7{ ST1_285d } } & 7'h0e )
-		| ( { 7{ ST1_287d } } & 7'h0f )
-		| ( { 7{ ST1_289d } } & 7'h10 )
-		| ( { 7{ ST1_307d } } & 7'h19 )
-		| ( { 7{ ST1_309d } } & 7'h1a )
-		| ( { 7{ ST1_311d } } & 7'h1b )
-		| ( { 7{ ST1_313d } } & 7'h1c )
-		| ( { 7{ ST1_315d } } & 7'h1d )
-		| ( { 7{ ST1_317d } } & 7'h1e )
-		| ( { 7{ ST1_319d } } & 7'h1f )
-		| ( { 7{ ST1_321d } } & 7'h20 )
-		| ( { 7{ ST1_323d } } & 7'h21 )
-		| ( { 7{ ST1_325d } } & 7'h22 )
-		| ( { 7{ ST1_327d } } & 7'h23 )
-		| ( { 7{ ST1_329d } } & 7'h24 )
-		| ( { 7{ ST1_331d } } & 7'h25 )
-		| ( { 7{ ST1_333d } } & 7'h26 )
-		| ( { 7{ ST1_335d } } & 7'h27 )
-		| ( { 7{ ST1_353d } } & 7'h30 )
-		| ( { 7{ ST1_355d } } & 7'h31 )
-		| ( { 7{ ST1_357d } } & 7'h32 )
-		| ( { 7{ ST1_359d } } & 7'h33 )
-		| ( { 7{ ST1_361d } } & 7'h34 )
-		| ( { 7{ ST1_363d } } & 7'h35 )
-		| ( { 7{ ST1_365d } } & 7'h36 )
-		| ( { 7{ ST1_367d } } & 7'h37 )
-		| ( { 7{ ST1_369d } } & 7'h38 )
-		| ( { 7{ ST1_371d } } & 7'h39 )
-		| ( { 7{ ST1_373d } } & 7'h3a )
-		| ( { 7{ ST1_375d } } & 7'h3b )
-		| ( { 7{ ST1_377d } } & 7'h3c )
-		| ( { 7{ ST1_379d } } & 7'h3d )
-		| ( { 7{ ST1_381d } } & 7'h3e )
-		| ( { 7{ ST1_399d } } & 7'h47 )
-		| ( { 7{ ST1_401d } } & 7'h48 )
-		| ( { 7{ ST1_403d } } & 7'h49 )
-		| ( { 7{ ST1_405d } } & 7'h4a )
-		| ( { 7{ ST1_407d } } & 7'h4b )
-		| ( { 7{ ST1_409d } } & 7'h4c )
-		| ( { 7{ ST1_411d } } & 7'h4d )
-		| ( { 7{ ST1_413d } } & 7'h4e )
-		| ( { 7{ ST1_415d } } & 7'h4f )
-		| ( { 7{ ST1_417d } } & 7'h50 )
-		| ( { 7{ ST1_419d } } & 7'h51 )
-		| ( { 7{ ST1_421d } } & 7'h52 )
-		| ( { 7{ ST1_423d } } & 7'h53 )
-		| ( { 7{ ST1_425d } } & 7'h54 )
-		| ( { 7{ ST1_429d } } & 7'h56 )
-		| ( { 7{ ST1_431d } } & 7'h57 )
-		| ( { 7{ ST1_433d } } & 7'h58 )
-		| ( { 7{ ST1_435d } } & 7'h59 )
-		| ( { 7{ ST1_437d } } & 7'h5a )
-		| ( { 7{ ST1_439d } } & 7'h5b )
-		| ( { 7{ ST1_441d } } & 7'h5c )
-		| ( { 7{ ST1_443d } } & 7'h5d )
-		| ( { 7{ ST1_445d } } & 7'h5e )
-		| ( { 7{ ST1_447d } } & 7'h5f )
-		| ( { 7{ ST1_449d } } & 7'h60 )
-		| ( { 7{ ST1_451d } } & 7'h61 )
-		| ( { 7{ ST1_453d } } & 7'h62 )
-		| ( { 7{ ST1_455d } } & 7'h63 )
-		| ( { 7{ ST1_457d } } & 7'h64 )
-		| ( { 7{ ST1_459d } } & 7'h65 )
-		| ( { 7{ ST1_461d } } & 7'h66 )
-		| ( { 7{ ST1_463d } } & 7'h67 )
-		| ( { 7{ ST1_465d } } & 7'h68 )
-		| ( { 7{ ST1_467d } } & 7'h69 )
-		| ( { 7{ ST1_469d } } & 7'h6a )
-		| ( { 7{ ST1_471d } } & 7'h6b )
-		| ( { 7{ ST1_473d } } & 7'h6c )
-		| ( { 7{ ST1_475d } } & 7'h6d )
-		| ( { 7{ ST1_477d } } & 7'h6e )
-		| ( { 7{ ST1_479d } } & 7'h6f )
-		| ( { 7{ ST1_481d } } & 7'h70 )
-		| ( { 7{ ST1_483d } } & 7'h71 )
-		| ( { 7{ ST1_485d } } & 7'h72 )
-		| ( { 7{ ST1_487d } } & 7'h73 )
-		| ( { 7{ ST1_489d } } & 7'h74 )
-		| ( { 7{ ST1_491d } } & 7'h75 ) ) ;
-assign	M_2880 = ( JF_02 | JF_03 ) ;
-assign	M_2882 = ( ( M_2872 | M_2853 ) | ( U_12 & ( ( ( ( ( ( imem_arg_MEMB32W65536_RD1 [14:12] == 
+assign	M_2887 = ( ST1_284d | ST1_285d ) ;
+always @ ( ST1_287d or ST1_286d or ST1_285d or M_2887 )
+	begin
+	TR_108_c1 = ( ST1_286d | ST1_287d ) ;
+	TR_108 = ( ( { 2{ M_2887 } } & { 1'h0 , ST1_285d } )
+		| ( { 2{ TR_108_c1 } } & { 1'h1 , ST1_287d } ) ) ;
+	end
+assign	M_2886 = ( ( M_2885 | ST1_282d ) | ST1_283d ) ;
+always @ ( TR_108 or ST1_287d or ST1_286d or M_2887 or TR_83 or M_2886 )
+	begin
+	TR_84_c1 = ( ( M_2887 | ST1_286d ) | ST1_287d ) ;
+	TR_84 = ( ( { 3{ M_2886 } } & { 1'h0 , TR_83 } )
+		| ( { 3{ TR_84_c1 } } & { 1'h1 , TR_108 } ) ) ;
+	end
+assign	M_2883 = ( ( M_2882 | ST1_278d ) | ST1_279d ) ;
+always @ ( TR_84 or ST1_287d or ST1_286d or ST1_285d or ST1_284d or M_2886 or TR_48 or 
+	M_2883 )
+	begin
+	TR_49_c1 = ( ( ( ( M_2886 | ST1_284d ) | ST1_285d ) | ST1_286d ) | ST1_287d ) ;
+	TR_49 = ( ( { 4{ M_2883 } } & { 2'h1 , TR_48 } )
+		| ( { 4{ TR_49_c1 } } & { 1'h1 , TR_84 } ) ) ;
+	end
+assign	M_2889 = ( ST1_288d | ST1_289d ) ;
+always @ ( ST1_291d or ST1_290d or ST1_289d or M_2889 )
+	begin
+	TR_86_c1 = ( ST1_290d | ST1_291d ) ;
+	TR_86 = ( ( { 2{ M_2889 } } & { 1'h0 , ST1_289d } )
+		| ( { 2{ TR_86_c1 } } & { 1'h1 , ST1_291d } ) ) ;
+	end
+assign	M_2892 = ( ST1_292d | ST1_293d ) ;
+always @ ( ST1_295d or ST1_294d or ST1_293d or M_2892 )
+	begin
+	TR_111_c1 = ( ST1_294d | ST1_295d ) ;
+	TR_111 = ( ( { 2{ M_2892 } } & { 1'h0 , ST1_293d } )
+		| ( { 2{ TR_111_c1 } } & { 1'h1 , ST1_295d } ) ) ;
+	end
+assign	M_2890 = ( ( M_2889 | ST1_290d ) | ST1_291d ) ;
+always @ ( TR_111 or ST1_295d or ST1_294d or M_2892 or TR_86 or M_2890 )
+	begin
+	TR_87_c1 = ( ( M_2892 | ST1_294d ) | ST1_295d ) ;
+	TR_87 = ( ( { 3{ M_2890 } } & { 1'h0 , TR_86 } )
+		| ( { 3{ TR_87_c1 } } & { 1'h1 , TR_111 } ) ) ;
+	end
+assign	M_2894 = ( ST1_296d | ST1_297d ) ;
+always @ ( ST1_299d or ST1_298d or ST1_297d or M_2894 )
+	begin
+	TR_113_c1 = ( ST1_298d | ST1_299d ) ;
+	TR_113 = ( ( { 2{ M_2894 } } & { 1'h0 , ST1_297d } )
+		| ( { 2{ TR_113_c1 } } & { 1'h1 , ST1_299d } ) ) ;
+	end
+assign	M_2896 = ( ST1_300d | ST1_301d ) ;
+always @ ( ST1_303d or ST1_302d or ST1_301d or M_2896 )
+	begin
+	TR_135_c1 = ( ST1_302d | ST1_303d ) ;
+	TR_135 = ( ( { 2{ M_2896 } } & { 1'h0 , ST1_301d } )
+		| ( { 2{ TR_135_c1 } } & { 1'h1 , ST1_303d } ) ) ;
+	end
+assign	M_2895 = ( ( M_2894 | ST1_298d ) | ST1_299d ) ;
+always @ ( TR_135 or ST1_303d or ST1_302d or M_2896 or TR_113 or M_2895 )
+	begin
+	TR_114_c1 = ( ( M_2896 | ST1_302d ) | ST1_303d ) ;
+	TR_114 = ( ( { 3{ M_2895 } } & { 1'h0 , TR_113 } )
+		| ( { 3{ TR_114_c1 } } & { 1'h1 , TR_135 } ) ) ;
+	end
+assign	M_2891 = ( ( ( ( M_2890 | ST1_292d ) | ST1_293d ) | ST1_294d ) | ST1_295d ) ;
+always @ ( TR_114 or ST1_303d or ST1_302d or ST1_301d or ST1_300d or M_2895 or TR_87 or 
+	M_2891 )
+	begin
+	TR_88_c1 = ( ( ( ( M_2895 | ST1_300d ) | ST1_301d ) | ST1_302d ) | ST1_303d ) ;
+	TR_88 = ( ( { 4{ M_2891 } } & { 1'h0 , TR_87 } )
+		| ( { 4{ TR_88_c1 } } & { 1'h1 , TR_114 } ) ) ;
+	end
+assign	M_2897 = ( ST1_304d | ST1_305d ) ;
+always @ ( ST1_307d or ST1_306d or ST1_305d or M_2897 )
+	begin
+	TR_116_c1 = ( ST1_306d | ST1_307d ) ;
+	TR_116 = ( ( { 2{ M_2897 } } & { 1'h0 , ST1_305d } )
+		| ( { 2{ TR_116_c1 } } & { 1'h1 , ST1_307d } ) ) ;
+	end
+assign	M_2900 = ( ST1_308d | ST1_309d ) ;
+always @ ( ST1_311d or ST1_310d or ST1_309d or M_2900 )
+	begin
+	TR_138_c1 = ( ST1_310d | ST1_311d ) ;
+	TR_138 = ( ( { 2{ M_2900 } } & { 1'h0 , ST1_309d } )
+		| ( { 2{ TR_138_c1 } } & { 1'h1 , ST1_311d } ) ) ;
+	end
+assign	M_2898 = ( ( M_2897 | ST1_306d ) | ST1_307d ) ;
+always @ ( TR_138 or ST1_311d or ST1_310d or M_2900 or TR_116 or M_2898 )
+	begin
+	TR_117_c1 = ( ( M_2900 | ST1_310d ) | ST1_311d ) ;
+	TR_117 = ( ( { 3{ M_2898 } } & { 1'h0 , TR_116 } )
+		| ( { 3{ TR_117_c1 } } & { 1'h1 , TR_138 } ) ) ;
+	end
+assign	M_2901 = ( ST1_312d | ST1_313d ) ;
+always @ ( ST1_315d or ST1_314d or ST1_313d or M_2901 )
+	begin
+	TR_140_c1 = ( ST1_314d | ST1_315d ) ;
+	TR_140 = ( ( { 2{ M_2901 } } & { 1'h0 , ST1_313d } )
+		| ( { 2{ TR_140_c1 } } & { 1'h1 , ST1_315d } ) ) ;
+	end
+assign	M_2903 = ( ST1_316d | ST1_317d ) ;
+always @ ( ST1_319d or ST1_318d or ST1_317d or M_2903 )
+	begin
+	TR_151_c1 = ( ST1_318d | ST1_319d ) ;
+	TR_151 = ( ( { 2{ M_2903 } } & { 1'h0 , ST1_317d } )
+		| ( { 2{ TR_151_c1 } } & { 1'h1 , ST1_319d } ) ) ;
+	end
+assign	M_2902 = ( ( M_2901 | ST1_314d ) | ST1_315d ) ;
+always @ ( TR_151 or ST1_319d or ST1_318d or M_2903 or TR_140 or M_2902 )
+	begin
+	TR_141_c1 = ( ( M_2903 | ST1_318d ) | ST1_319d ) ;
+	TR_141 = ( ( { 3{ M_2902 } } & { 1'h0 , TR_140 } )
+		| ( { 3{ TR_141_c1 } } & { 1'h1 , TR_151 } ) ) ;
+	end
+assign	M_2899 = ( ( ( ( M_2898 | ST1_308d ) | ST1_309d ) | ST1_310d ) | ST1_311d ) ;
+always @ ( TR_141 or ST1_319d or ST1_318d or ST1_317d or ST1_316d or M_2902 or TR_117 or 
+	M_2899 )
+	begin
+	TR_118_c1 = ( ( ( ( M_2902 | ST1_316d ) | ST1_317d ) | ST1_318d ) | ST1_319d ) ;
+	TR_118 = ( ( { 4{ M_2899 } } & { 1'h0 , TR_117 } )
+		| ( { 4{ TR_118_c1 } } & { 1'h1 , TR_141 } ) ) ;
+	end
+assign	M_2893 = ( ( ( ( ( ( ( ( M_2891 | ST1_296d ) | ST1_297d ) | ST1_298d ) | 
+	ST1_299d ) | ST1_300d ) | ST1_301d ) | ST1_302d ) | ST1_303d ) ;
+always @ ( TR_118 or ST1_319d or ST1_318d or ST1_317d or ST1_316d or ST1_315d or 
+	ST1_314d or ST1_313d or ST1_312d or M_2899 or TR_88 or M_2893 )
+	begin
+	TR_89_c1 = ( ( ( ( ( ( ( ( M_2899 | ST1_312d ) | ST1_313d ) | ST1_314d ) | 
+		ST1_315d ) | ST1_316d ) | ST1_317d ) | ST1_318d ) | ST1_319d ) ;
+	TR_89 = ( ( { 5{ M_2893 } } & { 1'h0 , TR_88 } )
+		| ( { 5{ TR_89_c1 } } & { 1'h1 , TR_118 } ) ) ;
+	end
+assign	M_2884 = ( ( ( ( ( ( ( ( M_2883 | ST1_280d ) | ST1_281d ) | ST1_282d ) | 
+	ST1_283d ) | ST1_284d ) | ST1_285d ) | ST1_286d ) | ST1_287d ) ;
+always @ ( TR_89 or ST1_319d or ST1_318d or ST1_317d or ST1_316d or ST1_315d or 
+	ST1_314d or ST1_313d or ST1_312d or ST1_311d or ST1_310d or ST1_309d or 
+	ST1_308d or ST1_307d or ST1_306d or ST1_305d or ST1_304d or M_2893 or TR_49 or 
+	M_2884 )
+	begin
+	TR_50_c1 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( M_2893 | ST1_304d ) | ST1_305d ) | 
+		ST1_306d ) | ST1_307d ) | ST1_308d ) | ST1_309d ) | ST1_310d ) | 
+		ST1_311d ) | ST1_312d ) | ST1_313d ) | ST1_314d ) | ST1_315d ) | 
+		ST1_316d ) | ST1_317d ) | ST1_318d ) | ST1_319d ) ;
+	TR_50 = ( ( { 6{ M_2884 } } & { 2'h1 , TR_49 } )
+		| ( { 6{ TR_50_c1 } } & { 1'h1 , TR_89 } ) ) ;
+	end
+assign	M_2904 = ( ST1_320d | ST1_321d ) ;
+always @ ( ST1_323d or ST1_322d or ST1_321d or M_2904 )
+	begin
+	TR_91_c1 = ( ST1_322d | ST1_323d ) ;
+	TR_91 = ( ( { 2{ M_2904 } } & { 1'h0 , ST1_321d } )
+		| ( { 2{ TR_91_c1 } } & { 1'h1 , ST1_323d } ) ) ;
+	end
+assign	M_2907 = ( ST1_324d | ST1_325d ) ;
+always @ ( ST1_327d or ST1_326d or ST1_325d or M_2907 )
+	begin
+	TR_121_c1 = ( ST1_326d | ST1_327d ) ;
+	TR_121 = ( ( { 2{ M_2907 } } & { 1'h0 , ST1_325d } )
+		| ( { 2{ TR_121_c1 } } & { 1'h1 , ST1_327d } ) ) ;
+	end
+assign	M_2905 = ( ( M_2904 | ST1_322d ) | ST1_323d ) ;
+always @ ( TR_121 or ST1_327d or ST1_326d or M_2907 or TR_91 or M_2905 )
+	begin
+	TR_92_c1 = ( ( M_2907 | ST1_326d ) | ST1_327d ) ;
+	TR_92 = ( ( { 3{ M_2905 } } & { 1'h0 , TR_91 } )
+		| ( { 3{ TR_92_c1 } } & { 1'h1 , TR_121 } ) ) ;
+	end
+assign	M_2909 = ( ST1_328d | ST1_329d ) ;
+always @ ( ST1_331d or ST1_330d or ST1_329d or M_2909 )
+	begin
+	TR_123_c1 = ( ST1_330d | ST1_331d ) ;
+	TR_123 = ( ( { 2{ M_2909 } } & { 1'h0 , ST1_329d } )
+		| ( { 2{ TR_123_c1 } } & { 1'h1 , ST1_331d } ) ) ;
+	end
+assign	M_2911 = ( ST1_332d | ST1_333d ) ;
+always @ ( ST1_335d or ST1_334d or ST1_333d or M_2911 )
+	begin
+	TR_145_c1 = ( ST1_334d | ST1_335d ) ;
+	TR_145 = ( ( { 2{ M_2911 } } & { 1'h0 , ST1_333d } )
+		| ( { 2{ TR_145_c1 } } & { 1'h1 , ST1_335d } ) ) ;
+	end
+assign	M_2910 = ( ( M_2909 | ST1_330d ) | ST1_331d ) ;
+always @ ( TR_145 or ST1_335d or ST1_334d or M_2911 or TR_123 or M_2910 )
+	begin
+	TR_124_c1 = ( ( M_2911 | ST1_334d ) | ST1_335d ) ;
+	TR_124 = ( ( { 3{ M_2910 } } & { 1'h0 , TR_123 } )
+		| ( { 3{ TR_124_c1 } } & { 1'h1 , TR_145 } ) ) ;
+	end
+assign	M_2906 = ( ( ( ( M_2905 | ST1_324d ) | ST1_325d ) | ST1_326d ) | ST1_327d ) ;
+always @ ( TR_124 or ST1_335d or ST1_334d or ST1_333d or ST1_332d or M_2910 or TR_92 or 
+	M_2906 )
+	begin
+	TR_93_c1 = ( ( ( ( M_2910 | ST1_332d ) | ST1_333d ) | ST1_334d ) | ST1_335d ) ;
+	TR_93 = ( ( { 4{ M_2906 } } & { 1'h0 , TR_92 } )
+		| ( { 4{ TR_93_c1 } } & { 1'h1 , TR_124 } ) ) ;
+	end
+assign	M_2912 = ( ST1_336d | ST1_337d ) ;
+always @ ( ST1_338d or ST1_337d or M_2912 )
+	TR_126 = ( ( { 2{ M_2912 } } & { 1'h0 , ST1_337d } )
+		| ( { 2{ ST1_338d } } & 2'h2 ) ) ;
+assign	M_2908 = ( ( ( ( ( ( ( ( M_2906 | ST1_328d ) | ST1_329d ) | ST1_330d ) | 
+	ST1_331d ) | ST1_332d ) | ST1_333d ) | ST1_334d ) | ST1_335d ) ;
+always @ ( TR_126 or ST1_338d or M_2912 or TR_93 or M_2908 )
+	begin
+	TR_94_c1 = ( M_2912 | ST1_338d ) ;
+	TR_94 = ( ( { 5{ M_2908 } } & { 1'h0 , TR_93 } )
+		| ( { 5{ TR_94_c1 } } & { 3'h4 , TR_126 } ) ) ;
+	end
+assign	M_2888 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
+	M_2884 | ST1_288d ) | ST1_289d ) | ST1_290d ) | ST1_291d ) | ST1_292d ) | 
+	ST1_293d ) | ST1_294d ) | ST1_295d ) | ST1_296d ) | ST1_297d ) | ST1_298d ) | 
+	ST1_299d ) | ST1_300d ) | ST1_301d ) | ST1_302d ) | ST1_303d ) | ST1_304d ) | 
+	ST1_305d ) | ST1_306d ) | ST1_307d ) | ST1_308d ) | ST1_309d ) | ST1_310d ) | 
+	ST1_311d ) | ST1_312d ) | ST1_313d ) | ST1_314d ) | ST1_315d ) | ST1_316d ) | 
+	ST1_317d ) | ST1_318d ) | ST1_319d ) ;
+always @ ( TR_94 or ST1_338d or ST1_337d or ST1_336d or M_2908 or TR_50 or M_2888 )
+	begin
+	TR_51_c1 = ( ( ( M_2908 | ST1_336d ) | ST1_337d ) | ST1_338d ) ;
+	TR_51 = ( ( { 7{ M_2888 } } & { 1'h0 , TR_50 } )
+		| ( { 7{ TR_51_c1 } } & { 2'h2 , TR_94 } ) ) ;
+	end
+assign	M_2791 = ( JF_02 | JF_03 ) ;
+assign	M_2793 = ( ( M_2782 | M_2763 ) | ( U_12 & ( ( ( ( ( ( imem_arg_MEMB32W65536_RD1 [14:12] == 
 	3'h0 ) | ( imem_arg_MEMB32W65536_RD1 [14:12] == 3'h4 ) ) | ( imem_arg_MEMB32W65536_RD1 [14:12] == 
 	3'h6 ) ) | ( imem_arg_MEMB32W65536_RD1 [14:12] == 3'h7 ) ) | ( imem_arg_MEMB32W65536_RD1 [14:12] == 
-	3'h1 ) ) | ( imem_arg_MEMB32W65536_RD1 [14:12] == 3'h5 ) ) ) ) ;	// line#=computer.cpp:442,587
-assign	M_3061 = ( M_2880 | M_2882 ) ;
-assign	M_2883 = ( M_3061 | JF_06 ) ;
-assign	M_2884 = ( M_2883 | JF_07 ) ;
-assign	M_2885 = ( M_2848 | JF_14 ) ;	// line#=computer.cpp:461
-assign	M_2886 = ( M_2885 | JF_15 ) ;
-assign	M_2887 = ( M_2886 | JF_16 ) ;
-assign	M_2888 = ( JF_28 | M_2863 ) ;	// line#=computer.cpp:461,466,475,484,495
-assign	M_2889 = ( M_2888 | M_2875 ) ;	// line#=computer.cpp:461,466,475,484,495
-assign	M_2890 = ( M_2889 | M_2871 ) ;	// line#=computer.cpp:461,466,475,484,495
-assign	M_2891 = ( M_2890 | JF_32 ) ;
-assign	M_2892 = ( M_2891 | JF_33 ) ;
-assign	M_2893 = ( M_2892 | JF_34 ) ;
-assign	M_2894 = ( M_2893 | JF_35 ) ;
-assign	M_2895 = ( M_2894 | JF_36 ) ;
-assign	M_2896 = ( M_2895 | M_2859 ) ;	// line#=computer.cpp:461,466,475,484,495
-assign	M_2897 = ( M_2896 | JF_38 ) ;
-assign	M_2899 = ( M_2848 | ( U_576 & CT_15 ) ) ;	// line#=computer.cpp:461,466,484,495,555
-							// ,619,665
-assign	M_2901 = ( M_2848 | ( U_630 & CT_15 ) ) ;	// line#=computer.cpp:461,466,484,495,555
-							// ,619,665
-assign	M_2903 = ( M_2848 | ( U_683 & ( ( ( ( ( RG_buf_buf1_funct3_imm1_next_pc [2:0] == 
-	3'h0 ) | ( RG_buf_buf1_funct3_imm1_next_pc [2:0] == 3'h1 ) ) | ( RG_buf_buf1_funct3_imm1_next_pc [2:0] == 
-	3'h2 ) ) | ( RG_buf_buf1_funct3_imm1_next_pc [2:0] == 3'h4 ) ) | ( RG_buf_buf1_funct3_imm1_next_pc [2:0] == 
-	3'h5 ) ) ) ) ;	// line#=computer.cpp:461,538
-assign	M_2905 = ( M_2848 | ( U_704 & ( ( ( ( RG_buf_buf1_funct3_imm1_next_pc == 
-	32'h00000001 ) | ( RG_buf_buf1_funct3_imm1_next_pc == 32'h00000002 ) ) | 
-	( RG_buf_buf1_funct3_imm1_next_pc == 32'h00000004 ) ) | ( RG_buf_buf1_funct3_imm1_next_pc == 
-	32'h00000005 ) ) ) ) ;	// line#=computer.cpp:461,538
+	3'h1 ) ) | ( imem_arg_MEMB32W65536_RD1 [14:12] == 3'h5 ) ) ) ) ;	// line#=computer.cpp:449,594
+assign	M_2970 = ( M_2791 | M_2793 ) ;
+assign	M_2794 = ( M_2970 | JF_06 ) ;
+assign	M_2795 = ( M_2794 | JF_07 ) ;
+assign	M_2796 = ( M_2758 | JF_13 ) ;	// line#=computer.cpp:468
+assign	M_2797 = ( M_2796 | JF_14 ) ;
+assign	M_2798 = ( M_2797 | JF_15 ) ;
+assign	M_2799 = ( JF_28 | M_2785 ) ;	// line#=computer.cpp:468,473,482,491,502
+					// ,690
+assign	M_2800 = ( M_2799 | JF_30 ) ;
+assign	M_2801 = ( M_2800 | M_2781 ) ;	// line#=computer.cpp:468,473,482,491,502
+					// ,690
+assign	M_2802 = ( M_2801 | M_2783 ) ;	// line#=computer.cpp:468,473,482,491,502
+					// ,690
+assign	M_2803 = ( M_2802 | JF_33 ) ;
+assign	M_2804 = ( M_2803 | JF_34 ) ;
+assign	M_2805 = ( M_2804 | JF_35 ) ;
+assign	M_2806 = ( M_2805 | JF_36 ) ;
+assign	M_2807 = ( M_2806 | JF_37 ) ;
+assign	M_2808 = ( M_2807 | M_2769 ) ;	// line#=computer.cpp:468,473,482,491,502
+					// ,690
+assign	M_2809 = ( M_2808 | JF_39 ) ;
+assign	M_2810 = ( M_2809 | M_2777 ) ;	// line#=computer.cpp:468,473,482,491,502
+					// ,690
+assign	M_2812 = ( M_2758 | ( U_579 & CT_15 ) ) ;	// line#=computer.cpp:468,473,491,502,562
+							// ,626,672
+assign	M_2814 = ( M_2758 | ( U_633 & CT_15 ) ) ;	// line#=computer.cpp:468,473,491,502,562
+							// ,626,672
+assign	M_2816 = ( JF_62 | ( U_706 & ( ( ( ( RG_funct3_imm1 == 32'h00000001 ) | ( 
+	RG_funct3_imm1 == 32'h00000002 ) ) | ( RG_funct3_imm1 == 32'h00000004 ) ) | 
+	( RG_funct3_imm1 == 32'h00000005 ) ) ) ) ;	// line#=computer.cpp:545
 always @ ( CT_01 )
 	begin
 	B01_streg_t1_c1 = ~( ~CT_01 ) ;
 	B01_streg_t1 = ( { 9{ B01_streg_t1_c1 } } & ST1_03 )
 		 ;
 	end
-always @ ( JF_09 or JF_08 or M_2884 or JF_07 or M_2883 or JF_06 or M_3061 or M_2882 or 
-	M_2880 or JF_03 or JF_02 )
+always @ ( JF_09 or JF_08 or M_2795 or JF_07 or M_2794 or JF_06 or M_2970 or M_2793 or 
+	M_2791 or JF_03 or JF_02 )
 	begin
 	B01_streg_t2_c1 = ( ( ~JF_02 ) & JF_03 ) ;
-	B01_streg_t2_c2 = ( ( ~M_2880 ) & M_2882 ) ;
-	B01_streg_t2_c3 = ( ( ~M_3061 ) & JF_06 ) ;
-	B01_streg_t2_c4 = ( ( ~M_2883 ) & JF_07 ) ;
-	B01_streg_t2_c5 = ( ( ~M_2884 ) & JF_08 ) ;
-	B01_streg_t2_c6 = ( ( ~( M_2884 | JF_08 ) ) & JF_09 ) ;
-	B01_streg_t2_c7 = ~( ( ( ( ( ( JF_09 | JF_08 ) | JF_07 ) | JF_06 ) | M_2882 ) | 
+	B01_streg_t2_c2 = ( ( ~M_2791 ) & M_2793 ) ;
+	B01_streg_t2_c3 = ( ( ~M_2970 ) & JF_06 ) ;
+	B01_streg_t2_c4 = ( ( ~M_2794 ) & JF_07 ) ;
+	B01_streg_t2_c5 = ( ( ~M_2795 ) & JF_08 ) ;
+	B01_streg_t2_c6 = ( ( ~( M_2795 | JF_08 ) ) & JF_09 ) ;
+	B01_streg_t2_c7 = ~( ( ( ( ( ( JF_09 | JF_08 ) | JF_07 ) | JF_06 ) | M_2793 ) | 
 		JF_03 ) | JF_02 ) ;
 	B01_streg_t2 = ( ( { 9{ JF_02 } } & ST1_04 )
 		| ( { 9{ B01_streg_t2_c1 } } & ST1_05 )
@@ -4865,32 +3796,31 @@ always @ ( JF_09 or JF_08 or M_2884 or JF_07 or M_2883 or JF_06 or M_3061 or M_2
 		| ( { 9{ B01_streg_t2_c4 } } & ST1_09 )
 		| ( { 9{ B01_streg_t2_c5 } } & ST1_10 )
 		| ( { 9{ B01_streg_t2_c6 } } & ST1_17 )
-		| ( { 9{ B01_streg_t2_c7 } } & ST1_67 ) ) ;
+		| ( { 9{ B01_streg_t2_c7 } } & ST1_19 ) ) ;
 	end
-always @ ( JF_11 or JF_10 )
+always @ ( JF_10 )
 	begin
-	B01_streg_t3_c1 = ~( JF_11 | JF_10 ) ;
+	B01_streg_t3_c1 = ~JF_10 ;
 	B01_streg_t3 = ( ( { 9{ JF_10 } } & ST1_06 )
-		| ( { 9{ JF_11 } } & ST1_22 )
-		| ( { 9{ B01_streg_t3_c1 } } & ST1_67 ) ) ;
+		| ( { 9{ B01_streg_t3_c1 } } & ST1_19 ) ) ;
 	end
-always @ ( TR_179 )	// line#=computer.cpp:461
+always @ ( TR_155 )	// line#=computer.cpp:468
 	begin
-	B01_streg_t4_c1 = ~TR_179 ;
-	B01_streg_t4 = ( ( { 9{ TR_179 } } & ST1_07 )
-		| ( { 9{ B01_streg_t4_c1 } } & ST1_63 ) ) ;
+	B01_streg_t4_c1 = ~TR_155 ;
+	B01_streg_t4 = ( ( { 9{ TR_155 } } & ST1_07 )
+		| ( { 9{ B01_streg_t4_c1 } } & ST1_19 ) ) ;
 	end
-always @ ( JF_18 or JF_17 or M_2887 or JF_16 or M_2886 or JF_15 or M_2885 or JF_14 or 
-	M_2848 )	// line#=computer.cpp:461
+always @ ( JF_17 or JF_16 or M_2798 or JF_15 or M_2797 or JF_14 or M_2796 or JF_13 or 
+	M_2758 )	// line#=computer.cpp:468
 	begin
-	B01_streg_t5_c1 = ( ( ~M_2848 ) & JF_14 ) ;
-	B01_streg_t5_c2 = ( ( ~M_2885 ) & JF_15 ) ;
-	B01_streg_t5_c3 = ( ( ~M_2886 ) & JF_16 ) ;
-	B01_streg_t5_c4 = ( ( ~M_2887 ) & JF_17 ) ;
-	B01_streg_t5_c5 = ( ( ~( M_2887 | JF_17 ) ) & JF_18 ) ;
-	B01_streg_t5_c6 = ~( ( ( ( ( JF_18 | JF_17 ) | JF_16 ) | JF_15 ) | JF_14 ) | 
-		M_2848 ) ;
-	B01_streg_t5 = ( ( { 9{ M_2848 } } & ST1_08 )
+	B01_streg_t5_c1 = ( ( ~M_2758 ) & JF_13 ) ;
+	B01_streg_t5_c2 = ( ( ~M_2796 ) & JF_14 ) ;
+	B01_streg_t5_c3 = ( ( ~M_2797 ) & JF_15 ) ;
+	B01_streg_t5_c4 = ( ( ~M_2798 ) & JF_16 ) ;
+	B01_streg_t5_c5 = ( ( ~( M_2798 | JF_16 ) ) & JF_17 ) ;
+	B01_streg_t5_c6 = ~( ( ( ( ( JF_17 | JF_16 ) | JF_15 ) | JF_14 ) | JF_13 ) | 
+		M_2758 ) ;
+	B01_streg_t5 = ( ( { 9{ M_2758 } } & ST1_08 )
 		| ( { 9{ B01_streg_t5_c1 } } & ST1_11 )
 		| ( { 9{ B01_streg_t5_c2 } } & ST1_12 )
 		| ( { 9{ B01_streg_t5_c3 } } & ST1_13 )
@@ -4898,238 +3828,244 @@ always @ ( JF_18 or JF_17 or M_2887 or JF_16 or M_2886 or JF_15 or M_2885 or JF_
 		| ( { 9{ B01_streg_t5_c5 } } & ST1_16 )
 		| ( { 9{ B01_streg_t5_c6 } } & ST1_17 ) ) ;
 	end
-always @ ( M_2848 )	// line#=computer.cpp:461
+always @ ( M_2758 )	// line#=computer.cpp:468
 	begin
-	B01_streg_t6_c1 = ~M_2848 ;
-	B01_streg_t6 = ( ( { 9{ M_2848 } } & ST1_09 )
+	B01_streg_t6_c1 = ~M_2758 ;
+	B01_streg_t6 = ( ( { 9{ M_2758 } } & ST1_09 )
 		| ( { 9{ B01_streg_t6_c1 } } & ST1_17 ) ) ;
 	end
-always @ ( M_2848 )	// line#=computer.cpp:461
+always @ ( M_2758 )	// line#=computer.cpp:468
 	begin
-	B01_streg_t7_c1 = ~M_2848 ;
-	B01_streg_t7 = ( ( { 9{ M_2848 } } & ST1_10 )
+	B01_streg_t7_c1 = ~M_2758 ;
+	B01_streg_t7 = ( ( { 9{ M_2758 } } & ST1_10 )
 		| ( { 9{ B01_streg_t7_c1 } } & ST1_17 ) ) ;
 	end
-always @ ( TR_179 )	// line#=computer.cpp:461
+always @ ( TR_155 )	// line#=computer.cpp:468
 	begin
-	B01_streg_t8_c1 = ~TR_179 ;
-	B01_streg_t8 = ( ( { 9{ TR_179 } } & ST1_11 )
+	B01_streg_t8_c1 = ~TR_155 ;
+	B01_streg_t8 = ( ( { 9{ TR_155 } } & ST1_11 )
 		| ( { 9{ B01_streg_t8_c1 } } & ST1_17 ) ) ;
 	end
-always @ ( TR_179 )	// line#=computer.cpp:461
+always @ ( TR_155 )	// line#=computer.cpp:468
 	begin
-	B01_streg_t9_c1 = ~TR_179 ;
-	B01_streg_t9 = ( ( { 9{ TR_179 } } & ST1_12 )
+	B01_streg_t9_c1 = ~TR_155 ;
+	B01_streg_t9 = ( ( { 9{ TR_155 } } & ST1_12 )
 		| ( { 9{ B01_streg_t9_c1 } } & ST1_17 ) ) ;
 	end
-always @ ( JF_24 or M_2848 )	// line#=computer.cpp:461
+always @ ( JF_23 or M_2758 )	// line#=computer.cpp:468
 	begin
-	B01_streg_t10_c1 = ( ( ~M_2848 ) & JF_24 ) ;
-	B01_streg_t10_c2 = ~( JF_24 | M_2848 ) ;
-	B01_streg_t10 = ( ( { 9{ M_2848 } } & ST1_13 )
+	B01_streg_t10_c1 = ( ( ~M_2758 ) & JF_23 ) ;
+	B01_streg_t10_c2 = ~( JF_23 | M_2758 ) ;
+	B01_streg_t10 = ( ( { 9{ M_2758 } } & ST1_13 )
 		| ( { 9{ B01_streg_t10_c1 } } & ST1_14 )
 		| ( { 9{ B01_streg_t10_c2 } } & ST1_17 ) ) ;
 	end
-always @ ( TR_179 )	// line#=computer.cpp:461
+always @ ( TR_155 )	// line#=computer.cpp:468
 	begin
-	B01_streg_t11_c1 = ~TR_179 ;
-	B01_streg_t11 = ( ( { 9{ TR_179 } } & ST1_14 )
+	B01_streg_t11_c1 = ~TR_155 ;
+	B01_streg_t11 = ( ( { 9{ TR_155 } } & ST1_14 )
 		| ( { 9{ B01_streg_t11_c1 } } & ST1_17 ) ) ;
 	end
-always @ ( TR_179 )	// line#=computer.cpp:461
+always @ ( TR_155 )	// line#=computer.cpp:468
 	begin
-	B01_streg_t12_c1 = ~TR_179 ;
-	B01_streg_t12 = ( ( { 9{ TR_179 } } & ST1_15 )
+	B01_streg_t12_c1 = ~TR_155 ;
+	B01_streg_t12 = ( ( { 9{ TR_155 } } & ST1_15 )
 		| ( { 9{ B01_streg_t12_c1 } } & ST1_17 ) ) ;
 	end
-always @ ( TR_179 )	// line#=computer.cpp:461
+always @ ( TR_155 )	// line#=computer.cpp:468
 	begin
-	B01_streg_t13_c1 = ~TR_179 ;
-	B01_streg_t13 = ( ( { 9{ TR_179 } } & ST1_16 )
+	B01_streg_t13_c1 = ~TR_155 ;
+	B01_streg_t13 = ( ( { 9{ TR_155 } } & ST1_16 )
 		| ( { 9{ B01_streg_t13_c1 } } & ST1_17 ) ) ;
 	end
-always @ ( M_2854 or M_2865 or M_2897 or JF_38 or M_2896 or M_2859 or M_2895 or 
-	JF_36 or M_2894 or JF_35 or M_2893 or JF_34 or M_2892 or JF_33 or M_2891 or 
-	JF_32 or M_2890 or M_2871 or M_2889 or M_2875 or M_2888 or M_2863 or JF_28 )	// line#=computer.cpp:461,466,475,484,495
+always @ ( JF_27 )
 	begin
-	B01_streg_t14_c1 = ( ( ~JF_28 ) & M_2863 ) ;
-	B01_streg_t14_c2 = ( ( ~M_2888 ) & M_2875 ) ;
-	B01_streg_t14_c3 = ( ( ~M_2889 ) & M_2871 ) ;
-	B01_streg_t14_c4 = ( ( ~M_2890 ) & JF_32 ) ;
-	B01_streg_t14_c5 = ( ( ~M_2891 ) & JF_33 ) ;
-	B01_streg_t14_c6 = ( ( ~M_2892 ) & JF_34 ) ;
-	B01_streg_t14_c7 = ( ( ~M_2893 ) & JF_35 ) ;
-	B01_streg_t14_c8 = ( ( ~M_2894 ) & JF_36 ) ;
-	B01_streg_t14_c9 = ( ( ~M_2895 ) & M_2859 ) ;
-	B01_streg_t14_c10 = ( ( ~M_2896 ) & JF_38 ) ;
-	B01_streg_t14_c11 = ( ( ~M_2897 ) & M_2865 ) ;
-	B01_streg_t14_c12 = ( ( ~( M_2897 | M_2865 ) ) & M_2854 ) ;
-	B01_streg_t14_c13 = ~( ( ( ( ( ( ( ( ( ( ( ( M_2854 | M_2865 ) | JF_38 ) | 
-		M_2859 ) | JF_36 ) | JF_35 ) | JF_34 ) | JF_33 ) | JF_32 ) | M_2871 ) | 
-		M_2875 ) | M_2863 ) | JF_28 ) ;
-	B01_streg_t14 = ( ( { 9{ JF_28 } } & ST1_18 )
-		| ( { 9{ B01_streg_t14_c1 } } & ST1_19 )
-		| ( { 9{ B01_streg_t14_c2 } } & ST1_21 )
-		| ( { 9{ B01_streg_t14_c3 } } & ST1_49 )
-		| ( { 9{ B01_streg_t14_c4 } } & ST1_53 )
-		| ( { 9{ B01_streg_t14_c5 } } & ST1_54 )
-		| ( { 9{ B01_streg_t14_c6 } } & ST1_55 )
-		| ( { 9{ B01_streg_t14_c7 } } & ST1_56 )
-		| ( { 9{ B01_streg_t14_c8 } } & ST1_57 )
-		| ( { 9{ B01_streg_t14_c9 } } & ST1_58 )
-		| ( { 9{ B01_streg_t14_c10 } } & ST1_60 )
-		| ( { 9{ B01_streg_t14_c11 } } & ST1_61 )
-		| ( { 9{ B01_streg_t14_c12 } } & ST1_64 )
-		| ( { 9{ B01_streg_t14_c13 } } & ST1_67 ) ) ;
+	B01_streg_t14_c1 = ~JF_27 ;
+	B01_streg_t14 = ( ( { 9{ JF_27 } } & ST1_18 )
+		| ( { 9{ B01_streg_t14_c1 } } & ST1_19 ) ) ;
 	end
-always @ ( TR_179 )	// line#=computer.cpp:461
+always @ ( M_2764 or JF_41 or M_2810 or M_2777 or M_2809 or JF_39 or M_2808 or M_2769 or 
+	M_2807 or JF_37 or M_2806 or JF_36 or M_2805 or JF_35 or M_2804 or JF_34 or 
+	M_2803 or JF_33 or M_2802 or M_2783 or M_2801 or M_2781 or M_2800 or JF_30 or 
+	M_2799 or M_2785 or JF_28 )	// line#=computer.cpp:468,473,482,491,502
+					// ,690
 	begin
-	B01_streg_t15_c1 = ~TR_179 ;
-	B01_streg_t15 = ( ( { 9{ TR_179 } } & ST1_19 )
-		| ( { 9{ B01_streg_t15_c1 } } & ST1_51 ) ) ;
+	B01_streg_t15_c1 = ( ( ~JF_28 ) & M_2785 ) ;
+	B01_streg_t15_c2 = ( ( ~M_2799 ) & JF_30 ) ;
+	B01_streg_t15_c3 = ( ( ~M_2800 ) & M_2781 ) ;
+	B01_streg_t15_c4 = ( ( ~M_2801 ) & M_2783 ) ;
+	B01_streg_t15_c5 = ( ( ~M_2802 ) & JF_33 ) ;
+	B01_streg_t15_c6 = ( ( ~M_2803 ) & JF_34 ) ;
+	B01_streg_t15_c7 = ( ( ~M_2804 ) & JF_35 ) ;
+	B01_streg_t15_c8 = ( ( ~M_2805 ) & JF_36 ) ;
+	B01_streg_t15_c9 = ( ( ~M_2806 ) & JF_37 ) ;
+	B01_streg_t15_c10 = ( ( ~M_2807 ) & M_2769 ) ;
+	B01_streg_t15_c11 = ( ( ~M_2808 ) & JF_39 ) ;
+	B01_streg_t15_c12 = ( ( ~M_2809 ) & M_2777 ) ;
+	B01_streg_t15_c13 = ( ( ~M_2810 ) & JF_41 ) ;
+	B01_streg_t15_c14 = ( ( ~( M_2810 | JF_41 ) ) & M_2764 ) ;
+	B01_streg_t15_c15 = ~( ( ( ( ( ( ( ( ( ( ( ( ( ( M_2764 | JF_41 ) | M_2777 ) | 
+		JF_39 ) | M_2769 ) | JF_37 ) | JF_36 ) | JF_35 ) | JF_34 ) | JF_33 ) | 
+		M_2783 ) | M_2781 ) | JF_30 ) | M_2785 ) | JF_28 ) ;
+	B01_streg_t15 = ( ( { 9{ JF_28 } } & ST1_20 )
+		| ( { 9{ B01_streg_t15_c1 } } & ST1_21 )
+		| ( { 9{ B01_streg_t15_c2 } } & ST1_22 )
+		| ( { 9{ B01_streg_t15_c3 } } & ST1_49 )
+		| ( { 9{ B01_streg_t15_c4 } } & ST1_51 )
+		| ( { 9{ B01_streg_t15_c5 } } & ST1_53 )
+		| ( { 9{ B01_streg_t15_c6 } } & ST1_54 )
+		| ( { 9{ B01_streg_t15_c7 } } & ST1_55 )
+		| ( { 9{ B01_streg_t15_c8 } } & ST1_56 )
+		| ( { 9{ B01_streg_t15_c9 } } & ST1_57 )
+		| ( { 9{ B01_streg_t15_c10 } } & ST1_58 )
+		| ( { 9{ B01_streg_t15_c11 } } & ST1_60 )
+		| ( { 9{ B01_streg_t15_c12 } } & ST1_61 )
+		| ( { 9{ B01_streg_t15_c13 } } & ST1_63 )
+		| ( { 9{ B01_streg_t15_c14 } } & ST1_64 )
+		| ( { 9{ B01_streg_t15_c15 } } & ST1_65 ) ) ;
 	end
-always @ ( JF_42 )
+always @ ( TR_155 )	// line#=computer.cpp:468
 	begin
-	B01_streg_t16_c1 = ~JF_42 ;
-	B01_streg_t16 = ( ( { 9{ JF_42 } } & ST1_20 )
-		| ( { 9{ B01_streg_t16_c1 } } & ST1_67 ) ) ;
+	B01_streg_t16_c1 = ~TR_155 ;
+	B01_streg_t16 = ( ( { 9{ TR_155 } } & ST1_21 )
+		| ( { 9{ B01_streg_t16_c1 } } & ST1_65 ) ) ;
 	end
-always @ ( TR_179 )	// line#=computer.cpp:461
+always @ ( M_2758 )	// line#=computer.cpp:468
 	begin
-	B01_streg_t17_c1 = ~TR_179 ;
-	B01_streg_t17 = ( ( { 9{ TR_179 } } & ST1_21 )
-		| ( { 9{ B01_streg_t17_c1 } } & ST1_67 ) ) ;
+	B01_streg_t17_c1 = ~M_2758 ;
+	B01_streg_t17 = ( ( { 9{ M_2758 } } & ST1_22 )
+		| ( { 9{ B01_streg_t17_c1 } } & ST1_65 ) ) ;
 	end
-always @ ( M_2848 )	// line#=computer.cpp:461
+always @ ( TR_155 )	// line#=computer.cpp:468
 	begin
-	B01_streg_t18_c1 = ~M_2848 ;
-	B01_streg_t18 = ( ( { 9{ M_2848 } } & ST1_22 )
-		| ( { 9{ B01_streg_t18_c1 } } & ST1_67 ) ) ;
+	B01_streg_t18_c1 = ~TR_155 ;
+	B01_streg_t18 = ( ( { 9{ TR_155 } } & ST1_23 )
+		| ( { 9{ B01_streg_t18_c1 } } & ST1_48 ) ) ;
 	end
-always @ ( TR_179 )	// line#=computer.cpp:461
+always @ ( TR_155 )	// line#=computer.cpp:468
 	begin
-	B01_streg_t19_c1 = ~TR_179 ;
-	B01_streg_t19 = ( ( { 9{ TR_179 } } & ST1_23 )
-		| ( { 9{ B01_streg_t19_c1 } } & ST1_48 ) ) ;
-	end
-always @ ( TR_179 )	// line#=computer.cpp:461
-	begin
-	B01_streg_t20_c1 = ~TR_179 ;
-	B01_streg_t20 = ( ( { 9{ TR_179 } } & ST1_49 )
-		| ( { 9{ B01_streg_t20_c1 } } & ST1_67 ) ) ;
+	B01_streg_t19_c1 = ~TR_155 ;
+	B01_streg_t19 = ( ( { 9{ TR_155 } } & ST1_49 )
+		| ( { 9{ B01_streg_t19_c1 } } & ST1_65 ) ) ;
 	end
 always @ ( JF_47 )
 	begin
-	B01_streg_t21_c1 = ~JF_47 ;
-	B01_streg_t21 = ( ( { 9{ JF_47 } } & ST1_50 )
-		| ( { 9{ B01_streg_t21_c1 } } & ST1_67 ) ) ;
+	B01_streg_t20_c1 = ~JF_47 ;
+	B01_streg_t20 = ( ( { 9{ JF_47 } } & ST1_50 )
+		| ( { 9{ B01_streg_t20_c1 } } & ST1_65 ) ) ;
 	end
-always @ ( TR_179 )	// line#=computer.cpp:461
+always @ ( TR_155 )	// line#=computer.cpp:468
 	begin
-	B01_streg_t22_c1 = ~TR_179 ;
-	B01_streg_t22 = ( ( { 9{ TR_179 } } & ST1_51 )
-		| ( { 9{ B01_streg_t22_c1 } } & ST1_67 ) ) ;
+	B01_streg_t21_c1 = ~TR_155 ;
+	B01_streg_t21 = ( ( { 9{ TR_155 } } & ST1_51 )
+		| ( { 9{ B01_streg_t21_c1 } } & ST1_65 ) ) ;
 	end
 always @ ( JF_49 )
 	begin
-	B01_streg_t23_c1 = ~JF_49 ;
-	B01_streg_t23 = ( ( { 9{ JF_49 } } & ST1_52 )
-		| ( { 9{ B01_streg_t23_c1 } } & ST1_67 ) ) ;
+	B01_streg_t22_c1 = ~JF_49 ;
+	B01_streg_t22 = ( ( { 9{ JF_49 } } & ST1_52 )
+		| ( { 9{ B01_streg_t22_c1 } } & ST1_65 ) ) ;
 	end
-always @ ( TR_179 )	// line#=computer.cpp:461
+always @ ( TR_155 )	// line#=computer.cpp:468
 	begin
-	B01_streg_t24_c1 = ~TR_179 ;
-	B01_streg_t24 = ( ( { 9{ TR_179 } } & ST1_53 )
-		| ( { 9{ B01_streg_t24_c1 } } & ST1_67 ) ) ;
+	B01_streg_t23_c1 = ~TR_155 ;
+	B01_streg_t23 = ( ( { 9{ TR_155 } } & ST1_53 )
+		| ( { 9{ B01_streg_t23_c1 } } & ST1_65 ) ) ;
 	end
-always @ ( TR_179 )	// line#=computer.cpp:461
+always @ ( TR_155 )	// line#=computer.cpp:468
 	begin
-	B01_streg_t25_c1 = ~TR_179 ;
-	B01_streg_t25 = ( ( { 9{ TR_179 } } & ST1_54 )
-		| ( { 9{ B01_streg_t25_c1 } } & ST1_67 ) ) ;
+	B01_streg_t24_c1 = ~TR_155 ;
+	B01_streg_t24 = ( ( { 9{ TR_155 } } & ST1_54 )
+		| ( { 9{ B01_streg_t24_c1 } } & ST1_65 ) ) ;
 	end
-always @ ( TR_179 )	// line#=computer.cpp:461
+always @ ( TR_155 )	// line#=computer.cpp:468
 	begin
-	B01_streg_t26_c1 = ~TR_179 ;
-	B01_streg_t26 = ( ( { 9{ TR_179 } } & ST1_55 )
+	B01_streg_t25_c1 = ~TR_155 ;
+	B01_streg_t25 = ( ( { 9{ TR_155 } } & ST1_55 )
+		| ( { 9{ B01_streg_t25_c1 } } & ST1_58 ) ) ;
+	end
+always @ ( TR_155 )	// line#=computer.cpp:468
+	begin
+	B01_streg_t26_c1 = ~TR_155 ;
+	B01_streg_t26 = ( ( { 9{ TR_155 } } & ST1_56 )
 		| ( { 9{ B01_streg_t26_c1 } } & ST1_58 ) ) ;
 	end
-always @ ( TR_179 )	// line#=computer.cpp:461
+always @ ( TR_155 )	// line#=computer.cpp:468
 	begin
-	B01_streg_t27_c1 = ~TR_179 ;
-	B01_streg_t27 = ( ( { 9{ TR_179 } } & ST1_56 )
+	B01_streg_t27_c1 = ~TR_155 ;
+	B01_streg_t27 = ( ( { 9{ TR_155 } } & ST1_57 )
 		| ( { 9{ B01_streg_t27_c1 } } & ST1_58 ) ) ;
 	end
-always @ ( TR_179 )	// line#=computer.cpp:461
+always @ ( M_2812 )
 	begin
-	B01_streg_t28_c1 = ~TR_179 ;
-	B01_streg_t28 = ( ( { 9{ TR_179 } } & ST1_57 )
-		| ( { 9{ B01_streg_t28_c1 } } & ST1_58 ) ) ;
+	B01_streg_t28_c1 = ~M_2812 ;
+	B01_streg_t28 = ( ( { 9{ M_2812 } } & ST1_59 )
+		| ( { 9{ B01_streg_t28_c1 } } & ST1_65 ) ) ;
 	end
-always @ ( M_2899 )
+always @ ( TR_155 )	// line#=computer.cpp:468
 	begin
-	B01_streg_t29_c1 = ~M_2899 ;
-	B01_streg_t29 = ( ( { 9{ M_2899 } } & ST1_59 )
-		| ( { 9{ B01_streg_t29_c1 } } & ST1_67 ) ) ;
+	B01_streg_t29_c1 = ~TR_155 ;
+	B01_streg_t29 = ( ( { 9{ TR_155 } } & ST1_60 )
+		| ( { 9{ B01_streg_t29_c1 } } & ST1_65 ) ) ;
 	end
-always @ ( TR_179 )	// line#=computer.cpp:461
+always @ ( M_2814 )
 	begin
-	B01_streg_t30_c1 = ~TR_179 ;
-	B01_streg_t30 = ( ( { 9{ TR_179 } } & ST1_60 )
-		| ( { 9{ B01_streg_t30_c1 } } & ST1_67 ) ) ;
+	B01_streg_t30_c1 = ~M_2814 ;
+	B01_streg_t30 = ( ( { 9{ M_2814 } } & ST1_62 )
+		| ( { 9{ B01_streg_t30_c1 } } & ST1_65 ) ) ;
 	end
-always @ ( M_2901 )
+always @ ( TR_155 )	// line#=computer.cpp:468
 	begin
-	B01_streg_t31_c1 = ~M_2901 ;
-	B01_streg_t31 = ( ( { 9{ M_2901 } } & ST1_62 )
-		| ( { 9{ B01_streg_t31_c1 } } & ST1_67 ) ) ;
+	B01_streg_t31_c1 = ~TR_155 ;
+	B01_streg_t31 = ( ( { 9{ TR_155 } } & ST1_63 )
+		| ( { 9{ B01_streg_t31_c1 } } & ST1_65 ) ) ;
 	end
-always @ ( TR_179 )	// line#=computer.cpp:461
+always @ ( TR_155 )	// line#=computer.cpp:468
 	begin
-	B01_streg_t32_c1 = ~TR_179 ;
-	B01_streg_t32 = ( ( { 9{ TR_179 } } & ST1_63 )
-		| ( { 9{ B01_streg_t32_c1 } } & ST1_67 ) ) ;
+	B01_streg_t32_c1 = ~TR_155 ;
+	B01_streg_t32 = ( ( { 9{ TR_155 } } & ST1_64 )
+		| ( { 9{ B01_streg_t32_c1 } } & ST1_65 ) ) ;
 	end
-always @ ( TR_179 )	// line#=computer.cpp:461
+always @ ( M_2816 )
 	begin
-	B01_streg_t33_c1 = ~TR_179 ;
-	B01_streg_t33 = ( ( { 9{ TR_179 } } & ST1_64 )
-		| ( { 9{ B01_streg_t33_c1 } } & ST1_66 ) ) ;
+	B01_streg_t33_c1 = ~M_2816 ;
+	B01_streg_t33 = ( ( { 9{ M_2816 } } & ST1_66 )
+		| ( { 9{ B01_streg_t33_c1 } } & ST1_67 ) ) ;
 	end
-always @ ( M_2903 )
+always @ ( JF_64 )
 	begin
-	B01_streg_t34_c1 = ~M_2903 ;
-	B01_streg_t34 = ( ( { 9{ M_2903 } } & ST1_65 )
-		| ( { 9{ B01_streg_t34_c1 } } & ST1_67 ) ) ;
+	B01_streg_t34_c1 = ~JF_64 ;
+	B01_streg_t34 = ( ( { 9{ JF_64 } } & ST1_02 )
+		| ( { 9{ B01_streg_t34_c1 } } & ST1_68 ) ) ;
 	end
-always @ ( M_2905 )
+always @ ( JF_65 )
 	begin
-	B01_streg_t35_c1 = ~M_2905 ;
-	B01_streg_t35 = ( ( { 9{ M_2905 } } & ST1_66 )
-		| ( { 9{ B01_streg_t35_c1 } } & ST1_67 ) ) ;
+	B01_streg_t35_c1 = ~JF_65 ;
+	B01_streg_t35 = ( ( { 9{ JF_65 } } & ST1_68 )
+		| ( { 9{ B01_streg_t35_c1 } } & ST1_69 ) ) ;
 	end
 always @ ( JF_66 )
 	begin
 	B01_streg_t36_c1 = ~JF_66 ;
-	B01_streg_t36 = ( ( { 9{ JF_66 } } & ST1_02 )
-		| ( { 9{ B01_streg_t36_c1 } } & ST1_68 ) ) ;
+	B01_streg_t36 = ( ( { 9{ JF_66 } } & ST1_69 )
+		| ( { 9{ B01_streg_t36_c1 } } & ST1_70 ) ) ;
 	end
 always @ ( JF_67 )
 	begin
 	B01_streg_t37_c1 = ~JF_67 ;
-	B01_streg_t37 = ( ( { 9{ JF_67 } } & ST1_68 )
-		| ( { 9{ B01_streg_t37_c1 } } & ST1_70 ) ) ;
+	B01_streg_t37 = ( ( { 9{ JF_67 } } & ST1_70 )
+		| ( { 9{ B01_streg_t37_c1 } } & ST1_71 ) ) ;
 	end
 always @ ( JF_68 )
 	begin
 	B01_streg_t38_c1 = ~JF_68 ;
-	B01_streg_t38 = ( ( { 9{ JF_68 } } & ST1_70 )
-		| ( { 9{ B01_streg_t38_c1 } } & ST1_72 ) ) ;
+	B01_streg_t38 = ( ( { 9{ JF_68 } } & ST1_71 )
+		| ( { 9{ B01_streg_t38_c1 } } & ST1_73 ) ) ;
 	end
 always @ ( JF_69 )
 	begin
 	B01_streg_t39_c1 = ~JF_69 ;
-	B01_streg_t39 = ( ( { 9{ JF_69 } } & ST1_72 )
+	B01_streg_t39 = ( ( { 9{ JF_69 } } & ST1_73 )
 		| ( { 9{ B01_streg_t39_c1 } } & ST1_74 ) ) ;
 	end
 always @ ( JF_70 )
@@ -5144,1187 +4080,1083 @@ always @ ( JF_71 )
 	B01_streg_t41 = ( ( { 9{ JF_71 } } & ST1_76 )
 		| ( { 9{ B01_streg_t41_c1 } } & ST1_78 ) ) ;
 	end
-always @ ( JF_72 )
+always @ ( FF_take )	// line#=computer.cpp:336
 	begin
-	B01_streg_t42_c1 = ~JF_72 ;
-	B01_streg_t42 = ( ( { 9{ JF_72 } } & ST1_78 )
+	B01_streg_t42_c1 = ~FF_take ;
+	B01_streg_t42 = ( ( { 9{ FF_take } } & ST1_78 )
 		| ( { 9{ B01_streg_t42_c1 } } & ST1_80 ) ) ;
 	end
 always @ ( JF_73 )
 	begin
 	B01_streg_t43_c1 = ~JF_73 ;
-	B01_streg_t43 = ( ( { 9{ JF_73 } } & ST1_80 )
-		| ( { 9{ B01_streg_t43_c1 } } & ST1_82 ) ) ;
+	B01_streg_t43 = ( ( { 9{ JF_73 } } & ST1_86 )
+		| ( { 9{ B01_streg_t43_c1 } } & ST1_87 ) ) ;
 	end
-always @ ( FF_take )	// line#=computer.cpp:329,363
+always @ ( JF_74 )
 	begin
-	B01_streg_t44_c1 = ~FF_take ;
-	B01_streg_t44 = ( ( { 9{ FF_take } } & ST1_82 )
-		| ( { 9{ B01_streg_t44_c1 } } & ST1_84 ) ) ;
+	B01_streg_t44_c1 = ~JF_74 ;
+	B01_streg_t44 = ( ( { 9{ JF_74 } } & ST1_87 )
+		| ( { 9{ B01_streg_t44_c1 } } & ST1_88 ) ) ;
 	end
 always @ ( JF_75 )
 	begin
 	B01_streg_t45_c1 = ~JF_75 ;
-	B01_streg_t45 = ( ( { 9{ JF_75 } } & ST1_90 )
-		| ( { 9{ B01_streg_t45_c1 } } & ST1_92 ) ) ;
+	B01_streg_t45 = ( ( { 9{ JF_75 } } & ST1_88 )
+		| ( { 9{ B01_streg_t45_c1 } } & ST1_89 ) ) ;
 	end
 always @ ( JF_76 )
 	begin
 	B01_streg_t46_c1 = ~JF_76 ;
-	B01_streg_t46 = ( ( { 9{ JF_76 } } & ST1_92 )
-		| ( { 9{ B01_streg_t46_c1 } } & ST1_94 ) ) ;
+	B01_streg_t46 = ( ( { 9{ JF_76 } } & ST1_89 )
+		| ( { 9{ B01_streg_t46_c1 } } & ST1_91 ) ) ;
 	end
 always @ ( JF_77 )
 	begin
 	B01_streg_t47_c1 = ~JF_77 ;
-	B01_streg_t47 = ( ( { 9{ JF_77 } } & ST1_94 )
-		| ( { 9{ B01_streg_t47_c1 } } & ST1_96 ) ) ;
+	B01_streg_t47 = ( ( { 9{ JF_77 } } & ST1_91 )
+		| ( { 9{ B01_streg_t47_c1 } } & ST1_92 ) ) ;
 	end
 always @ ( JF_78 )
 	begin
 	B01_streg_t48_c1 = ~JF_78 ;
-	B01_streg_t48 = ( ( { 9{ JF_78 } } & ST1_96 )
-		| ( { 9{ B01_streg_t48_c1 } } & ST1_98 ) ) ;
+	B01_streg_t48 = ( ( { 9{ JF_78 } } & ST1_92 )
+		| ( { 9{ B01_streg_t48_c1 } } & ST1_94 ) ) ;
 	end
 always @ ( JF_79 )
 	begin
 	B01_streg_t49_c1 = ~JF_79 ;
-	B01_streg_t49 = ( ( { 9{ JF_79 } } & ST1_98 )
-		| ( { 9{ B01_streg_t49_c1 } } & ST1_100 ) ) ;
+	B01_streg_t49 = ( ( { 9{ JF_79 } } & ST1_94 )
+		| ( { 9{ B01_streg_t49_c1 } } & ST1_96 ) ) ;
 	end
-always @ ( JF_80 )
+always @ ( FF_take )	// line#=computer.cpp:336
 	begin
-	B01_streg_t50_c1 = ~JF_80 ;
-	B01_streg_t50 = ( ( { 9{ JF_80 } } & ST1_100 )
-		| ( { 9{ B01_streg_t50_c1 } } & ST1_102 ) ) ;
+	B01_streg_t50_c1 = ~FF_take ;
+	B01_streg_t50 = ( ( { 9{ FF_take } } & ST1_96 )
+		| ( { 9{ B01_streg_t50_c1 } } & ST1_98 ) ) ;
 	end
 always @ ( JF_81 )
 	begin
 	B01_streg_t51_c1 = ~JF_81 ;
-	B01_streg_t51 = ( ( { 9{ JF_81 } } & ST1_102 )
-		| ( { 9{ B01_streg_t51_c1 } } & ST1_104 ) ) ;
+	B01_streg_t51 = ( ( { 9{ JF_81 } } & ST1_104 )
+		| ( { 9{ B01_streg_t51_c1 } } & ST1_105 ) ) ;
 	end
-always @ ( FF_take )	// line#=computer.cpp:329,363
+always @ ( JF_82 )
 	begin
-	B01_streg_t52_c1 = ~FF_take ;
-	B01_streg_t52 = ( ( { 9{ FF_take } } & ST1_104 )
+	B01_streg_t52_c1 = ~JF_82 ;
+	B01_streg_t52 = ( ( { 9{ JF_82 } } & ST1_105 )
 		| ( { 9{ B01_streg_t52_c1 } } & ST1_106 ) ) ;
 	end
 always @ ( JF_83 )
 	begin
 	B01_streg_t53_c1 = ~JF_83 ;
-	B01_streg_t53 = ( ( { 9{ JF_83 } } & ST1_112 )
-		| ( { 9{ B01_streg_t53_c1 } } & ST1_114 ) ) ;
+	B01_streg_t53 = ( ( { 9{ JF_83 } } & ST1_106 )
+		| ( { 9{ B01_streg_t53_c1 } } & ST1_107 ) ) ;
 	end
 always @ ( JF_84 )
 	begin
 	B01_streg_t54_c1 = ~JF_84 ;
-	B01_streg_t54 = ( ( { 9{ JF_84 } } & ST1_114 )
-		| ( { 9{ B01_streg_t54_c1 } } & ST1_116 ) ) ;
+	B01_streg_t54 = ( ( { 9{ JF_84 } } & ST1_107 )
+		| ( { 9{ B01_streg_t54_c1 } } & ST1_109 ) ) ;
 	end
 always @ ( JF_85 )
 	begin
 	B01_streg_t55_c1 = ~JF_85 ;
-	B01_streg_t55 = ( ( { 9{ JF_85 } } & ST1_116 )
-		| ( { 9{ B01_streg_t55_c1 } } & ST1_118 ) ) ;
+	B01_streg_t55 = ( ( { 9{ JF_85 } } & ST1_109 )
+		| ( { 9{ B01_streg_t55_c1 } } & ST1_110 ) ) ;
 	end
 always @ ( JF_86 )
 	begin
 	B01_streg_t56_c1 = ~JF_86 ;
-	B01_streg_t56 = ( ( { 9{ JF_86 } } & ST1_118 )
-		| ( { 9{ B01_streg_t56_c1 } } & ST1_120 ) ) ;
+	B01_streg_t56 = ( ( { 9{ JF_86 } } & ST1_110 )
+		| ( { 9{ B01_streg_t56_c1 } } & ST1_112 ) ) ;
 	end
 always @ ( JF_87 )
 	begin
 	B01_streg_t57_c1 = ~JF_87 ;
-	B01_streg_t57 = ( ( { 9{ JF_87 } } & ST1_120 )
-		| ( { 9{ B01_streg_t57_c1 } } & ST1_122 ) ) ;
+	B01_streg_t57 = ( ( { 9{ JF_87 } } & ST1_112 )
+		| ( { 9{ B01_streg_t57_c1 } } & ST1_114 ) ) ;
 	end
-always @ ( JF_88 )
+always @ ( FF_take )	// line#=computer.cpp:336
 	begin
-	B01_streg_t58_c1 = ~JF_88 ;
-	B01_streg_t58 = ( ( { 9{ JF_88 } } & ST1_122 )
-		| ( { 9{ B01_streg_t58_c1 } } & ST1_124 ) ) ;
+	B01_streg_t58_c1 = ~FF_take ;
+	B01_streg_t58 = ( ( { 9{ FF_take } } & ST1_114 )
+		| ( { 9{ B01_streg_t58_c1 } } & ST1_116 ) ) ;
 	end
 always @ ( JF_89 )
 	begin
 	B01_streg_t59_c1 = ~JF_89 ;
-	B01_streg_t59 = ( ( { 9{ JF_89 } } & ST1_124 )
-		| ( { 9{ B01_streg_t59_c1 } } & ST1_126 ) ) ;
+	B01_streg_t59 = ( ( { 9{ JF_89 } } & ST1_122 )
+		| ( { 9{ B01_streg_t59_c1 } } & ST1_123 ) ) ;
 	end
-always @ ( FF_take )	// line#=computer.cpp:329,363
+always @ ( JF_90 )
 	begin
-	B01_streg_t60_c1 = ~FF_take ;
-	B01_streg_t60 = ( ( { 9{ FF_take } } & ST1_126 )
-		| ( { 9{ B01_streg_t60_c1 } } & ST1_128 ) ) ;
+	B01_streg_t60_c1 = ~JF_90 ;
+	B01_streg_t60 = ( ( { 9{ JF_90 } } & ST1_123 )
+		| ( { 9{ B01_streg_t60_c1 } } & ST1_124 ) ) ;
 	end
 always @ ( JF_91 )
 	begin
 	B01_streg_t61_c1 = ~JF_91 ;
-	B01_streg_t61 = ( ( { 9{ JF_91 } } & ST1_134 )
-		| ( { 9{ B01_streg_t61_c1 } } & ST1_136 ) ) ;
+	B01_streg_t61 = ( ( { 9{ JF_91 } } & ST1_124 )
+		| ( { 9{ B01_streg_t61_c1 } } & ST1_125 ) ) ;
 	end
 always @ ( JF_92 )
 	begin
 	B01_streg_t62_c1 = ~JF_92 ;
-	B01_streg_t62 = ( ( { 9{ JF_92 } } & ST1_136 )
-		| ( { 9{ B01_streg_t62_c1 } } & ST1_138 ) ) ;
+	B01_streg_t62 = ( ( { 9{ JF_92 } } & ST1_125 )
+		| ( { 9{ B01_streg_t62_c1 } } & ST1_127 ) ) ;
 	end
 always @ ( JF_93 )
 	begin
 	B01_streg_t63_c1 = ~JF_93 ;
-	B01_streg_t63 = ( ( { 9{ JF_93 } } & ST1_138 )
-		| ( { 9{ B01_streg_t63_c1 } } & ST1_140 ) ) ;
+	B01_streg_t63 = ( ( { 9{ JF_93 } } & ST1_127 )
+		| ( { 9{ B01_streg_t63_c1 } } & ST1_128 ) ) ;
 	end
 always @ ( JF_94 )
 	begin
 	B01_streg_t64_c1 = ~JF_94 ;
-	B01_streg_t64 = ( ( { 9{ JF_94 } } & ST1_140 )
-		| ( { 9{ B01_streg_t64_c1 } } & ST1_142 ) ) ;
+	B01_streg_t64 = ( ( { 9{ JF_94 } } & ST1_128 )
+		| ( { 9{ B01_streg_t64_c1 } } & ST1_130 ) ) ;
 	end
 always @ ( JF_95 )
 	begin
 	B01_streg_t65_c1 = ~JF_95 ;
-	B01_streg_t65 = ( ( { 9{ JF_95 } } & ST1_142 )
-		| ( { 9{ B01_streg_t65_c1 } } & ST1_144 ) ) ;
+	B01_streg_t65 = ( ( { 9{ JF_95 } } & ST1_130 )
+		| ( { 9{ B01_streg_t65_c1 } } & ST1_132 ) ) ;
 	end
-always @ ( JF_96 )
+always @ ( FF_take )	// line#=computer.cpp:336
 	begin
-	B01_streg_t66_c1 = ~JF_96 ;
-	B01_streg_t66 = ( ( { 9{ JF_96 } } & ST1_144 )
-		| ( { 9{ B01_streg_t66_c1 } } & ST1_146 ) ) ;
+	B01_streg_t66_c1 = ~FF_take ;
+	B01_streg_t66 = ( ( { 9{ FF_take } } & ST1_132 )
+		| ( { 9{ B01_streg_t66_c1 } } & ST1_134 ) ) ;
 	end
 always @ ( JF_97 )
 	begin
 	B01_streg_t67_c1 = ~JF_97 ;
-	B01_streg_t67 = ( ( { 9{ JF_97 } } & ST1_146 )
-		| ( { 9{ B01_streg_t67_c1 } } & ST1_148 ) ) ;
+	B01_streg_t67 = ( ( { 9{ JF_97 } } & ST1_140 )
+		| ( { 9{ B01_streg_t67_c1 } } & ST1_141 ) ) ;
 	end
-always @ ( FF_take )	// line#=computer.cpp:329,363
+always @ ( JF_98 )
 	begin
-	B01_streg_t68_c1 = ~FF_take ;
-	B01_streg_t68 = ( ( { 9{ FF_take } } & ST1_148 )
-		| ( { 9{ B01_streg_t68_c1 } } & ST1_150 ) ) ;
+	B01_streg_t68_c1 = ~JF_98 ;
+	B01_streg_t68 = ( ( { 9{ JF_98 } } & ST1_141 )
+		| ( { 9{ B01_streg_t68_c1 } } & ST1_142 ) ) ;
 	end
 always @ ( JF_99 )
 	begin
 	B01_streg_t69_c1 = ~JF_99 ;
-	B01_streg_t69 = ( ( { 9{ JF_99 } } & ST1_156 )
-		| ( { 9{ B01_streg_t69_c1 } } & ST1_158 ) ) ;
+	B01_streg_t69 = ( ( { 9{ JF_99 } } & ST1_142 )
+		| ( { 9{ B01_streg_t69_c1 } } & ST1_143 ) ) ;
 	end
 always @ ( JF_100 )
 	begin
 	B01_streg_t70_c1 = ~JF_100 ;
-	B01_streg_t70 = ( ( { 9{ JF_100 } } & ST1_158 )
-		| ( { 9{ B01_streg_t70_c1 } } & ST1_160 ) ) ;
+	B01_streg_t70 = ( ( { 9{ JF_100 } } & ST1_143 )
+		| ( { 9{ B01_streg_t70_c1 } } & ST1_145 ) ) ;
 	end
 always @ ( JF_101 )
 	begin
 	B01_streg_t71_c1 = ~JF_101 ;
-	B01_streg_t71 = ( ( { 9{ JF_101 } } & ST1_160 )
-		| ( { 9{ B01_streg_t71_c1 } } & ST1_162 ) ) ;
+	B01_streg_t71 = ( ( { 9{ JF_101 } } & ST1_145 )
+		| ( { 9{ B01_streg_t71_c1 } } & ST1_146 ) ) ;
 	end
 always @ ( JF_102 )
 	begin
 	B01_streg_t72_c1 = ~JF_102 ;
-	B01_streg_t72 = ( ( { 9{ JF_102 } } & ST1_162 )
-		| ( { 9{ B01_streg_t72_c1 } } & ST1_164 ) ) ;
+	B01_streg_t72 = ( ( { 9{ JF_102 } } & ST1_146 )
+		| ( { 9{ B01_streg_t72_c1 } } & ST1_148 ) ) ;
 	end
 always @ ( JF_103 )
 	begin
 	B01_streg_t73_c1 = ~JF_103 ;
-	B01_streg_t73 = ( ( { 9{ JF_103 } } & ST1_164 )
-		| ( { 9{ B01_streg_t73_c1 } } & ST1_166 ) ) ;
+	B01_streg_t73 = ( ( { 9{ JF_103 } } & ST1_148 )
+		| ( { 9{ B01_streg_t73_c1 } } & ST1_150 ) ) ;
 	end
-always @ ( JF_104 )
+always @ ( FF_take )	// line#=computer.cpp:336
 	begin
-	B01_streg_t74_c1 = ~JF_104 ;
-	B01_streg_t74 = ( ( { 9{ JF_104 } } & ST1_166 )
-		| ( { 9{ B01_streg_t74_c1 } } & ST1_168 ) ) ;
+	B01_streg_t74_c1 = ~FF_take ;
+	B01_streg_t74 = ( ( { 9{ FF_take } } & ST1_150 )
+		| ( { 9{ B01_streg_t74_c1 } } & ST1_152 ) ) ;
 	end
 always @ ( JF_105 )
 	begin
 	B01_streg_t75_c1 = ~JF_105 ;
-	B01_streg_t75 = ( ( { 9{ JF_105 } } & ST1_168 )
-		| ( { 9{ B01_streg_t75_c1 } } & ST1_170 ) ) ;
+	B01_streg_t75 = ( ( { 9{ JF_105 } } & ST1_158 )
+		| ( { 9{ B01_streg_t75_c1 } } & ST1_159 ) ) ;
 	end
-always @ ( FF_take )	// line#=computer.cpp:329,363
+always @ ( JF_106 )
 	begin
-	B01_streg_t76_c1 = ~FF_take ;
-	B01_streg_t76 = ( ( { 9{ FF_take } } & ST1_170 )
-		| ( { 9{ B01_streg_t76_c1 } } & ST1_172 ) ) ;
+	B01_streg_t76_c1 = ~JF_106 ;
+	B01_streg_t76 = ( ( { 9{ JF_106 } } & ST1_159 )
+		| ( { 9{ B01_streg_t76_c1 } } & ST1_160 ) ) ;
 	end
 always @ ( JF_107 )
 	begin
 	B01_streg_t77_c1 = ~JF_107 ;
-	B01_streg_t77 = ( ( { 9{ JF_107 } } & ST1_178 )
-		| ( { 9{ B01_streg_t77_c1 } } & ST1_180 ) ) ;
+	B01_streg_t77 = ( ( { 9{ JF_107 } } & ST1_160 )
+		| ( { 9{ B01_streg_t77_c1 } } & ST1_161 ) ) ;
 	end
 always @ ( JF_108 )
 	begin
 	B01_streg_t78_c1 = ~JF_108 ;
-	B01_streg_t78 = ( ( { 9{ JF_108 } } & ST1_180 )
-		| ( { 9{ B01_streg_t78_c1 } } & ST1_182 ) ) ;
+	B01_streg_t78 = ( ( { 9{ JF_108 } } & ST1_161 )
+		| ( { 9{ B01_streg_t78_c1 } } & ST1_163 ) ) ;
 	end
 always @ ( JF_109 )
 	begin
 	B01_streg_t79_c1 = ~JF_109 ;
-	B01_streg_t79 = ( ( { 9{ JF_109 } } & ST1_182 )
-		| ( { 9{ B01_streg_t79_c1 } } & ST1_184 ) ) ;
+	B01_streg_t79 = ( ( { 9{ JF_109 } } & ST1_163 )
+		| ( { 9{ B01_streg_t79_c1 } } & ST1_164 ) ) ;
 	end
 always @ ( JF_110 )
 	begin
 	B01_streg_t80_c1 = ~JF_110 ;
-	B01_streg_t80 = ( ( { 9{ JF_110 } } & ST1_184 )
-		| ( { 9{ B01_streg_t80_c1 } } & ST1_186 ) ) ;
+	B01_streg_t80 = ( ( { 9{ JF_110 } } & ST1_164 )
+		| ( { 9{ B01_streg_t80_c1 } } & ST1_166 ) ) ;
 	end
 always @ ( JF_111 )
 	begin
 	B01_streg_t81_c1 = ~JF_111 ;
-	B01_streg_t81 = ( ( { 9{ JF_111 } } & ST1_186 )
-		| ( { 9{ B01_streg_t81_c1 } } & ST1_188 ) ) ;
+	B01_streg_t81 = ( ( { 9{ JF_111 } } & ST1_166 )
+		| ( { 9{ B01_streg_t81_c1 } } & ST1_168 ) ) ;
 	end
-always @ ( JF_112 )
+always @ ( FF_take )	// line#=computer.cpp:336
 	begin
-	B01_streg_t82_c1 = ~JF_112 ;
-	B01_streg_t82 = ( ( { 9{ JF_112 } } & ST1_188 )
-		| ( { 9{ B01_streg_t82_c1 } } & ST1_190 ) ) ;
+	B01_streg_t82_c1 = ~FF_take ;
+	B01_streg_t82 = ( ( { 9{ FF_take } } & ST1_168 )
+		| ( { 9{ B01_streg_t82_c1 } } & ST1_170 ) ) ;
 	end
 always @ ( JF_113 )
 	begin
 	B01_streg_t83_c1 = ~JF_113 ;
-	B01_streg_t83 = ( ( { 9{ JF_113 } } & ST1_190 )
-		| ( { 9{ B01_streg_t83_c1 } } & ST1_192 ) ) ;
+	B01_streg_t83 = ( ( { 9{ JF_113 } } & ST1_176 )
+		| ( { 9{ B01_streg_t83_c1 } } & ST1_177 ) ) ;
 	end
-always @ ( FF_take )	// line#=computer.cpp:329,363
+always @ ( JF_114 )
 	begin
-	B01_streg_t84_c1 = ~FF_take ;
-	B01_streg_t84 = ( ( { 9{ FF_take } } & ST1_192 )
-		| ( { 9{ B01_streg_t84_c1 } } & ST1_194 ) ) ;
+	B01_streg_t84_c1 = ~JF_114 ;
+	B01_streg_t84 = ( ( { 9{ JF_114 } } & ST1_177 )
+		| ( { 9{ B01_streg_t84_c1 } } & ST1_178 ) ) ;
 	end
 always @ ( JF_115 )
 	begin
 	B01_streg_t85_c1 = ~JF_115 ;
-	B01_streg_t85 = ( ( { 9{ JF_115 } } & ST1_200 )
-		| ( { 9{ B01_streg_t85_c1 } } & ST1_202 ) ) ;
+	B01_streg_t85 = ( ( { 9{ JF_115 } } & ST1_178 )
+		| ( { 9{ B01_streg_t85_c1 } } & ST1_179 ) ) ;
 	end
 always @ ( JF_116 )
 	begin
 	B01_streg_t86_c1 = ~JF_116 ;
-	B01_streg_t86 = ( ( { 9{ JF_116 } } & ST1_202 )
-		| ( { 9{ B01_streg_t86_c1 } } & ST1_204 ) ) ;
+	B01_streg_t86 = ( ( { 9{ JF_116 } } & ST1_179 )
+		| ( { 9{ B01_streg_t86_c1 } } & ST1_181 ) ) ;
 	end
 always @ ( JF_117 )
 	begin
 	B01_streg_t87_c1 = ~JF_117 ;
-	B01_streg_t87 = ( ( { 9{ JF_117 } } & ST1_204 )
-		| ( { 9{ B01_streg_t87_c1 } } & ST1_206 ) ) ;
+	B01_streg_t87 = ( ( { 9{ JF_117 } } & ST1_181 )
+		| ( { 9{ B01_streg_t87_c1 } } & ST1_182 ) ) ;
 	end
 always @ ( JF_118 )
 	begin
 	B01_streg_t88_c1 = ~JF_118 ;
-	B01_streg_t88 = ( ( { 9{ JF_118 } } & ST1_206 )
-		| ( { 9{ B01_streg_t88_c1 } } & ST1_208 ) ) ;
+	B01_streg_t88 = ( ( { 9{ JF_118 } } & ST1_182 )
+		| ( { 9{ B01_streg_t88_c1 } } & ST1_184 ) ) ;
 	end
 always @ ( JF_119 )
 	begin
 	B01_streg_t89_c1 = ~JF_119 ;
-	B01_streg_t89 = ( ( { 9{ JF_119 } } & ST1_208 )
-		| ( { 9{ B01_streg_t89_c1 } } & ST1_210 ) ) ;
+	B01_streg_t89 = ( ( { 9{ JF_119 } } & ST1_184 )
+		| ( { 9{ B01_streg_t89_c1 } } & ST1_186 ) ) ;
 	end
-always @ ( JF_120 )
+always @ ( FF_take )	// line#=computer.cpp:336
 	begin
-	B01_streg_t90_c1 = ~JF_120 ;
-	B01_streg_t90 = ( ( { 9{ JF_120 } } & ST1_210 )
-		| ( { 9{ B01_streg_t90_c1 } } & ST1_212 ) ) ;
+	B01_streg_t90_c1 = ~FF_take ;
+	B01_streg_t90 = ( ( { 9{ FF_take } } & ST1_186 )
+		| ( { 9{ B01_streg_t90_c1 } } & ST1_188 ) ) ;
 	end
 always @ ( JF_121 )
 	begin
 	B01_streg_t91_c1 = ~JF_121 ;
-	B01_streg_t91 = ( ( { 9{ JF_121 } } & ST1_212 )
-		| ( { 9{ B01_streg_t91_c1 } } & ST1_214 ) ) ;
+	B01_streg_t91 = ( ( { 9{ JF_121 } } & ST1_194 )
+		| ( { 9{ B01_streg_t91_c1 } } & ST1_195 ) ) ;
 	end
-always @ ( FF_take )	// line#=computer.cpp:329,363
+always @ ( JF_122 )
 	begin
-	B01_streg_t92_c1 = ~FF_take ;
-	B01_streg_t92 = ( ( { 9{ FF_take } } & ST1_214 )
-		| ( { 9{ B01_streg_t92_c1 } } & ST1_216 ) ) ;
+	B01_streg_t92_c1 = ~JF_122 ;
+	B01_streg_t92 = ( ( { 9{ JF_122 } } & ST1_195 )
+		| ( { 9{ B01_streg_t92_c1 } } & ST1_196 ) ) ;
 	end
 always @ ( JF_123 )
 	begin
 	B01_streg_t93_c1 = ~JF_123 ;
-	B01_streg_t93 = ( ( { 9{ JF_123 } } & ST1_222 )
-		| ( { 9{ B01_streg_t93_c1 } } & ST1_224 ) ) ;
+	B01_streg_t93 = ( ( { 9{ JF_123 } } & ST1_196 )
+		| ( { 9{ B01_streg_t93_c1 } } & ST1_197 ) ) ;
 	end
 always @ ( JF_124 )
 	begin
 	B01_streg_t94_c1 = ~JF_124 ;
-	B01_streg_t94 = ( ( { 9{ JF_124 } } & ST1_224 )
-		| ( { 9{ B01_streg_t94_c1 } } & ST1_226 ) ) ;
+	B01_streg_t94 = ( ( { 9{ JF_124 } } & ST1_197 )
+		| ( { 9{ B01_streg_t94_c1 } } & ST1_199 ) ) ;
 	end
 always @ ( JF_125 )
 	begin
 	B01_streg_t95_c1 = ~JF_125 ;
-	B01_streg_t95 = ( ( { 9{ JF_125 } } & ST1_226 )
-		| ( { 9{ B01_streg_t95_c1 } } & ST1_228 ) ) ;
+	B01_streg_t95 = ( ( { 9{ JF_125 } } & ST1_199 )
+		| ( { 9{ B01_streg_t95_c1 } } & ST1_200 ) ) ;
 	end
 always @ ( JF_126 )
 	begin
 	B01_streg_t96_c1 = ~JF_126 ;
-	B01_streg_t96 = ( ( { 9{ JF_126 } } & ST1_228 )
-		| ( { 9{ B01_streg_t96_c1 } } & ST1_230 ) ) ;
+	B01_streg_t96 = ( ( { 9{ JF_126 } } & ST1_200 )
+		| ( { 9{ B01_streg_t96_c1 } } & ST1_202 ) ) ;
 	end
 always @ ( JF_127 )
 	begin
 	B01_streg_t97_c1 = ~JF_127 ;
-	B01_streg_t97 = ( ( { 9{ JF_127 } } & ST1_230 )
-		| ( { 9{ B01_streg_t97_c1 } } & ST1_232 ) ) ;
+	B01_streg_t97 = ( ( { 9{ JF_127 } } & ST1_202 )
+		| ( { 9{ B01_streg_t97_c1 } } & ST1_204 ) ) ;
 	end
-always @ ( JF_128 )
+always @ ( FF_take )	// line#=computer.cpp:336
 	begin
-	B01_streg_t98_c1 = ~JF_128 ;
-	B01_streg_t98 = ( ( { 9{ JF_128 } } & ST1_232 )
-		| ( { 9{ B01_streg_t98_c1 } } & ST1_234 ) ) ;
+	B01_streg_t98_c1 = ~FF_take ;
+	B01_streg_t98 = ( ( { 9{ FF_take } } & ST1_204 )
+		| ( { 9{ B01_streg_t98_c1 } } & ST1_206 ) ) ;
 	end
-always @ ( JF_129 )
+always @ ( RG_k )
 	begin
-	B01_streg_t99_c1 = ~JF_129 ;
-	B01_streg_t99 = ( ( { 9{ JF_129 } } & ST1_234 )
-		| ( { 9{ B01_streg_t99_c1 } } & ST1_236 ) ) ;
+	B01_streg_t99_c1 = ~RG_k [3] ;
+	B01_streg_t99 = ( ( { 9{ RG_k [3] } } & ST1_68 )
+		| ( { 9{ B01_streg_t99_c1 } } & ST1_212 ) ) ;
 	end
-always @ ( FF_take )	// line#=computer.cpp:329,363
+always @ ( JF_130 )
 	begin
-	B01_streg_t100_c1 = ~FF_take ;
-	B01_streg_t100 = ( ( { 9{ FF_take } } & ST1_236 )
-		| ( { 9{ B01_streg_t100_c1 } } & ST1_238 ) ) ;
+	B01_streg_t100_c1 = ~JF_130 ;
+	B01_streg_t100 = ( ( { 9{ JF_130 } } & ST1_212 )
+		| ( { 9{ B01_streg_t100_c1 } } & ST1_213 ) ) ;
 	end
-always @ ( RG_k )	// line#=computer.cpp:308
+always @ ( JF_131 )
 	begin
-	B01_streg_t101_c1 = ~RG_k [3] ;
-	B01_streg_t101 = ( ( { 9{ RG_k [3] } } & ST1_68 )
-		| ( { 9{ B01_streg_t101_c1 } } & ST1_244 ) ) ;
+	B01_streg_t101_c1 = ~JF_131 ;
+	B01_streg_t101 = ( ( { 9{ JF_131 } } & ST1_213 )
+		| ( { 9{ B01_streg_t101_c1 } } & ST1_214 ) ) ;
 	end
 always @ ( JF_132 )
 	begin
 	B01_streg_t102_c1 = ~JF_132 ;
-	B01_streg_t102 = ( ( { 9{ JF_132 } } & ST1_244 )
-		| ( { 9{ B01_streg_t102_c1 } } & ST1_246 ) ) ;
+	B01_streg_t102 = ( ( { 9{ JF_132 } } & ST1_214 )
+		| ( { 9{ B01_streg_t102_c1 } } & ST1_215 ) ) ;
 	end
 always @ ( JF_133 )
 	begin
 	B01_streg_t103_c1 = ~JF_133 ;
-	B01_streg_t103 = ( ( { 9{ JF_133 } } & ST1_246 )
-		| ( { 9{ B01_streg_t103_c1 } } & ST1_248 ) ) ;
+	B01_streg_t103 = ( ( { 9{ JF_133 } } & ST1_215 )
+		| ( { 9{ B01_streg_t103_c1 } } & ST1_216 ) ) ;
 	end
 always @ ( JF_134 )
 	begin
 	B01_streg_t104_c1 = ~JF_134 ;
-	B01_streg_t104 = ( ( { 9{ JF_134 } } & ST1_248 )
-		| ( { 9{ B01_streg_t104_c1 } } & ST1_250 ) ) ;
+	B01_streg_t104 = ( ( { 9{ JF_134 } } & ST1_216 )
+		| ( { 9{ B01_streg_t104_c1 } } & ST1_217 ) ) ;
 	end
 always @ ( JF_135 )
 	begin
 	B01_streg_t105_c1 = ~JF_135 ;
-	B01_streg_t105 = ( ( { 9{ JF_135 } } & ST1_250 )
-		| ( { 9{ B01_streg_t105_c1 } } & ST1_252 ) ) ;
+	B01_streg_t105 = ( ( { 9{ JF_135 } } & ST1_217 )
+		| ( { 9{ B01_streg_t105_c1 } } & ST1_218 ) ) ;
 	end
 always @ ( JF_136 )
 	begin
 	B01_streg_t106_c1 = ~JF_136 ;
-	B01_streg_t106 = ( ( { 9{ JF_136 } } & ST1_252 )
-		| ( { 9{ B01_streg_t106_c1 } } & ST1_254 ) ) ;
+	B01_streg_t106 = ( ( { 9{ JF_136 } } & ST1_218 )
+		| ( { 9{ B01_streg_t106_c1 } } & ST1_219 ) ) ;
 	end
 always @ ( JF_137 )
 	begin
 	B01_streg_t107_c1 = ~JF_137 ;
-	B01_streg_t107 = ( ( { 9{ JF_137 } } & ST1_254 )
-		| ( { 9{ B01_streg_t107_c1 } } & ST1_256 ) ) ;
+	B01_streg_t107 = ( ( { 9{ JF_137 } } & ST1_219 )
+		| ( { 9{ B01_streg_t107_c1 } } & ST1_220 ) ) ;
 	end
 always @ ( JF_138 )
 	begin
 	B01_streg_t108_c1 = ~JF_138 ;
-	B01_streg_t108 = ( ( { 9{ JF_138 } } & ST1_256 )
-		| ( { 9{ B01_streg_t108_c1 } } & ST1_258 ) ) ;
+	B01_streg_t108 = ( ( { 9{ JF_138 } } & ST1_220 )
+		| ( { 9{ B01_streg_t108_c1 } } & ST1_221 ) ) ;
 	end
-always @ ( FF_take )	// line#=computer.cpp:329,363
+always @ ( JF_139 )
 	begin
-	B01_streg_t109_c1 = ~FF_take ;
-	B01_streg_t109 = ( ( { 9{ FF_take } } & ST1_258 )
-		| ( { 9{ B01_streg_t109_c1 } } & ST1_260 ) ) ;
+	B01_streg_t109_c1 = ~JF_139 ;
+	B01_streg_t109 = ( ( { 9{ JF_139 } } & ST1_221 )
+		| ( { 9{ B01_streg_t109_c1 } } & ST1_222 ) ) ;
 	end
 always @ ( JF_140 )
 	begin
 	B01_streg_t110_c1 = ~JF_140 ;
-	B01_streg_t110 = ( ( { 9{ JF_140 } } & ST1_267 )
-		| ( { 9{ B01_streg_t110_c1 } } & ST1_269 ) ) ;
+	B01_streg_t110 = ( ( { 9{ JF_140 } } & ST1_222 )
+		| ( { 9{ B01_streg_t110_c1 } } & ST1_223 ) ) ;
 	end
 always @ ( JF_141 )
 	begin
 	B01_streg_t111_c1 = ~JF_141 ;
-	B01_streg_t111 = ( ( { 9{ JF_141 } } & ST1_269 )
-		| ( { 9{ B01_streg_t111_c1 } } & ST1_271 ) ) ;
+	B01_streg_t111 = ( ( { 9{ JF_141 } } & ST1_223 )
+		| ( { 9{ B01_streg_t111_c1 } } & ST1_224 ) ) ;
 	end
 always @ ( JF_142 )
 	begin
 	B01_streg_t112_c1 = ~JF_142 ;
-	B01_streg_t112 = ( ( { 9{ JF_142 } } & ST1_271 )
-		| ( { 9{ B01_streg_t112_c1 } } & ST1_273 ) ) ;
+	B01_streg_t112 = ( ( { 9{ JF_142 } } & ST1_224 )
+		| ( { 9{ B01_streg_t112_c1 } } & ST1_225 ) ) ;
 	end
 always @ ( JF_143 )
 	begin
 	B01_streg_t113_c1 = ~JF_143 ;
-	B01_streg_t113 = ( ( { 9{ JF_143 } } & ST1_273 )
-		| ( { 9{ B01_streg_t113_c1 } } & ST1_275 ) ) ;
+	B01_streg_t113 = ( ( { 9{ JF_143 } } & ST1_225 )
+		| ( { 9{ B01_streg_t113_c1 } } & ST1_226 ) ) ;
 	end
 always @ ( JF_144 )
 	begin
 	B01_streg_t114_c1 = ~JF_144 ;
-	B01_streg_t114 = ( ( { 9{ JF_144 } } & ST1_275 )
-		| ( { 9{ B01_streg_t114_c1 } } & ST1_277 ) ) ;
+	B01_streg_t114 = ( ( { 9{ JF_144 } } & ST1_226 )
+		| ( { 9{ B01_streg_t114_c1 } } & ST1_227 ) ) ;
 	end
 always @ ( JF_145 )
 	begin
 	B01_streg_t115_c1 = ~JF_145 ;
-	B01_streg_t115 = ( ( { 9{ JF_145 } } & ST1_277 )
-		| ( { 9{ B01_streg_t115_c1 } } & ST1_279 ) ) ;
+	B01_streg_t115 = ( ( { 9{ JF_145 } } & ST1_227 )
+		| ( { 9{ B01_streg_t115_c1 } } & ST1_228 ) ) ;
 	end
 always @ ( JF_146 )
 	begin
 	B01_streg_t116_c1 = ~JF_146 ;
-	B01_streg_t116 = ( ( { 9{ JF_146 } } & ST1_279 )
-		| ( { 9{ B01_streg_t116_c1 } } & ST1_281 ) ) ;
+	B01_streg_t116 = ( ( { 9{ JF_146 } } & ST1_228 )
+		| ( { 9{ B01_streg_t116_c1 } } & ST1_229 ) ) ;
 	end
-always @ ( FF_take )	// line#=computer.cpp:329,363
+always @ ( JF_147 )
 	begin
-	B01_streg_t117_c1 = ~FF_take ;
-	B01_streg_t117 = ( ( { 9{ FF_take } } & ST1_281 )
-		| ( { 9{ B01_streg_t117_c1 } } & ST1_283 ) ) ;
+	B01_streg_t117_c1 = ~JF_147 ;
+	B01_streg_t117 = ( ( { 9{ JF_147 } } & ST1_229 )
+		| ( { 9{ B01_streg_t117_c1 } } & ST1_230 ) ) ;
 	end
 always @ ( JF_148 )
 	begin
 	B01_streg_t118_c1 = ~JF_148 ;
-	B01_streg_t118 = ( ( { 9{ JF_148 } } & ST1_290 )
-		| ( { 9{ B01_streg_t118_c1 } } & ST1_292 ) ) ;
+	B01_streg_t118 = ( ( { 9{ JF_148 } } & ST1_230 )
+		| ( { 9{ B01_streg_t118_c1 } } & ST1_231 ) ) ;
 	end
 always @ ( JF_149 )
 	begin
 	B01_streg_t119_c1 = ~JF_149 ;
-	B01_streg_t119 = ( ( { 9{ JF_149 } } & ST1_292 )
-		| ( { 9{ B01_streg_t119_c1 } } & ST1_294 ) ) ;
+	B01_streg_t119 = ( ( { 9{ JF_149 } } & ST1_231 )
+		| ( { 9{ B01_streg_t119_c1 } } & ST1_232 ) ) ;
 	end
 always @ ( JF_150 )
 	begin
 	B01_streg_t120_c1 = ~JF_150 ;
-	B01_streg_t120 = ( ( { 9{ JF_150 } } & ST1_294 )
-		| ( { 9{ B01_streg_t120_c1 } } & ST1_296 ) ) ;
+	B01_streg_t120 = ( ( { 9{ JF_150 } } & ST1_232 )
+		| ( { 9{ B01_streg_t120_c1 } } & ST1_233 ) ) ;
 	end
 always @ ( JF_151 )
 	begin
 	B01_streg_t121_c1 = ~JF_151 ;
-	B01_streg_t121 = ( ( { 9{ JF_151 } } & ST1_296 )
-		| ( { 9{ B01_streg_t121_c1 } } & ST1_298 ) ) ;
+	B01_streg_t121 = ( ( { 9{ JF_151 } } & ST1_233 )
+		| ( { 9{ B01_streg_t121_c1 } } & ST1_234 ) ) ;
 	end
 always @ ( JF_152 )
 	begin
 	B01_streg_t122_c1 = ~JF_152 ;
-	B01_streg_t122 = ( ( { 9{ JF_152 } } & ST1_298 )
-		| ( { 9{ B01_streg_t122_c1 } } & ST1_300 ) ) ;
+	B01_streg_t122 = ( ( { 9{ JF_152 } } & ST1_234 )
+		| ( { 9{ B01_streg_t122_c1 } } & ST1_235 ) ) ;
 	end
 always @ ( JF_153 )
 	begin
 	B01_streg_t123_c1 = ~JF_153 ;
-	B01_streg_t123 = ( ( { 9{ JF_153 } } & ST1_300 )
-		| ( { 9{ B01_streg_t123_c1 } } & ST1_302 ) ) ;
+	B01_streg_t123 = ( ( { 9{ JF_153 } } & ST1_235 )
+		| ( { 9{ B01_streg_t123_c1 } } & ST1_236 ) ) ;
 	end
 always @ ( JF_154 )
 	begin
 	B01_streg_t124_c1 = ~JF_154 ;
-	B01_streg_t124 = ( ( { 9{ JF_154 } } & ST1_302 )
-		| ( { 9{ B01_streg_t124_c1 } } & ST1_304 ) ) ;
+	B01_streg_t124 = ( ( { 9{ JF_154 } } & ST1_236 )
+		| ( { 9{ B01_streg_t124_c1 } } & ST1_237 ) ) ;
 	end
-always @ ( FF_take )	// line#=computer.cpp:329,363
+always @ ( JF_155 )
 	begin
-	B01_streg_t125_c1 = ~FF_take ;
-	B01_streg_t125 = ( ( { 9{ FF_take } } & ST1_304 )
-		| ( { 9{ B01_streg_t125_c1 } } & ST1_306 ) ) ;
+	B01_streg_t125_c1 = ~JF_155 ;
+	B01_streg_t125 = ( ( { 9{ JF_155 } } & ST1_237 )
+		| ( { 9{ B01_streg_t125_c1 } } & ST1_238 ) ) ;
 	end
 always @ ( JF_156 )
 	begin
 	B01_streg_t126_c1 = ~JF_156 ;
-	B01_streg_t126 = ( ( { 9{ JF_156 } } & ST1_313 )
-		| ( { 9{ B01_streg_t126_c1 } } & ST1_315 ) ) ;
+	B01_streg_t126 = ( ( { 9{ JF_156 } } & ST1_238 )
+		| ( { 9{ B01_streg_t126_c1 } } & ST1_239 ) ) ;
 	end
 always @ ( JF_157 )
 	begin
 	B01_streg_t127_c1 = ~JF_157 ;
-	B01_streg_t127 = ( ( { 9{ JF_157 } } & ST1_315 )
-		| ( { 9{ B01_streg_t127_c1 } } & ST1_317 ) ) ;
+	B01_streg_t127 = ( ( { 9{ JF_157 } } & ST1_239 )
+		| ( { 9{ B01_streg_t127_c1 } } & ST1_240 ) ) ;
 	end
 always @ ( JF_158 )
 	begin
 	B01_streg_t128_c1 = ~JF_158 ;
-	B01_streg_t128 = ( ( { 9{ JF_158 } } & ST1_317 )
-		| ( { 9{ B01_streg_t128_c1 } } & ST1_319 ) ) ;
+	B01_streg_t128 = ( ( { 9{ JF_158 } } & ST1_240 )
+		| ( { 9{ B01_streg_t128_c1 } } & ST1_241 ) ) ;
 	end
 always @ ( JF_159 )
 	begin
 	B01_streg_t129_c1 = ~JF_159 ;
-	B01_streg_t129 = ( ( { 9{ JF_159 } } & ST1_319 )
-		| ( { 9{ B01_streg_t129_c1 } } & ST1_321 ) ) ;
+	B01_streg_t129 = ( ( { 9{ JF_159 } } & ST1_241 )
+		| ( { 9{ B01_streg_t129_c1 } } & ST1_242 ) ) ;
 	end
 always @ ( JF_160 )
 	begin
 	B01_streg_t130_c1 = ~JF_160 ;
-	B01_streg_t130 = ( ( { 9{ JF_160 } } & ST1_321 )
-		| ( { 9{ B01_streg_t130_c1 } } & ST1_323 ) ) ;
+	B01_streg_t130 = ( ( { 9{ JF_160 } } & ST1_242 )
+		| ( { 9{ B01_streg_t130_c1 } } & ST1_243 ) ) ;
 	end
 always @ ( JF_161 )
 	begin
 	B01_streg_t131_c1 = ~JF_161 ;
-	B01_streg_t131 = ( ( { 9{ JF_161 } } & ST1_323 )
-		| ( { 9{ B01_streg_t131_c1 } } & ST1_325 ) ) ;
+	B01_streg_t131 = ( ( { 9{ JF_161 } } & ST1_243 )
+		| ( { 9{ B01_streg_t131_c1 } } & ST1_244 ) ) ;
 	end
 always @ ( JF_162 )
 	begin
 	B01_streg_t132_c1 = ~JF_162 ;
-	B01_streg_t132 = ( ( { 9{ JF_162 } } & ST1_325 )
-		| ( { 9{ B01_streg_t132_c1 } } & ST1_327 ) ) ;
+	B01_streg_t132 = ( ( { 9{ JF_162 } } & ST1_244 )
+		| ( { 9{ B01_streg_t132_c1 } } & ST1_245 ) ) ;
 	end
-always @ ( FF_take )	// line#=computer.cpp:329,363
+always @ ( JF_163 )
 	begin
-	B01_streg_t133_c1 = ~FF_take ;
-	B01_streg_t133 = ( ( { 9{ FF_take } } & ST1_327 )
-		| ( { 9{ B01_streg_t133_c1 } } & ST1_329 ) ) ;
+	B01_streg_t133_c1 = ~JF_163 ;
+	B01_streg_t133 = ( ( { 9{ JF_163 } } & ST1_245 )
+		| ( { 9{ B01_streg_t133_c1 } } & ST1_246 ) ) ;
 	end
 always @ ( JF_164 )
 	begin
 	B01_streg_t134_c1 = ~JF_164 ;
-	B01_streg_t134 = ( ( { 9{ JF_164 } } & ST1_336 )
-		| ( { 9{ B01_streg_t134_c1 } } & ST1_338 ) ) ;
+	B01_streg_t134 = ( ( { 9{ JF_164 } } & ST1_246 )
+		| ( { 9{ B01_streg_t134_c1 } } & ST1_247 ) ) ;
 	end
 always @ ( JF_165 )
 	begin
 	B01_streg_t135_c1 = ~JF_165 ;
-	B01_streg_t135 = ( ( { 9{ JF_165 } } & ST1_338 )
-		| ( { 9{ B01_streg_t135_c1 } } & ST1_340 ) ) ;
+	B01_streg_t135 = ( ( { 9{ JF_165 } } & ST1_247 )
+		| ( { 9{ B01_streg_t135_c1 } } & ST1_248 ) ) ;
 	end
 always @ ( JF_166 )
 	begin
 	B01_streg_t136_c1 = ~JF_166 ;
-	B01_streg_t136 = ( ( { 9{ JF_166 } } & ST1_340 )
-		| ( { 9{ B01_streg_t136_c1 } } & ST1_342 ) ) ;
+	B01_streg_t136 = ( ( { 9{ JF_166 } } & ST1_248 )
+		| ( { 9{ B01_streg_t136_c1 } } & ST1_249 ) ) ;
 	end
 always @ ( JF_167 )
 	begin
 	B01_streg_t137_c1 = ~JF_167 ;
-	B01_streg_t137 = ( ( { 9{ JF_167 } } & ST1_342 )
-		| ( { 9{ B01_streg_t137_c1 } } & ST1_344 ) ) ;
+	B01_streg_t137 = ( ( { 9{ JF_167 } } & ST1_249 )
+		| ( { 9{ B01_streg_t137_c1 } } & ST1_250 ) ) ;
 	end
 always @ ( JF_168 )
 	begin
 	B01_streg_t138_c1 = ~JF_168 ;
-	B01_streg_t138 = ( ( { 9{ JF_168 } } & ST1_344 )
-		| ( { 9{ B01_streg_t138_c1 } } & ST1_346 ) ) ;
+	B01_streg_t138 = ( ( { 9{ JF_168 } } & ST1_250 )
+		| ( { 9{ B01_streg_t138_c1 } } & ST1_251 ) ) ;
 	end
 always @ ( JF_169 )
 	begin
 	B01_streg_t139_c1 = ~JF_169 ;
-	B01_streg_t139 = ( ( { 9{ JF_169 } } & ST1_346 )
-		| ( { 9{ B01_streg_t139_c1 } } & ST1_348 ) ) ;
+	B01_streg_t139 = ( ( { 9{ JF_169 } } & ST1_251 )
+		| ( { 9{ B01_streg_t139_c1 } } & ST1_252 ) ) ;
 	end
 always @ ( JF_170 )
 	begin
 	B01_streg_t140_c1 = ~JF_170 ;
-	B01_streg_t140 = ( ( { 9{ JF_170 } } & ST1_348 )
-		| ( { 9{ B01_streg_t140_c1 } } & ST1_350 ) ) ;
+	B01_streg_t140 = ( ( { 9{ JF_170 } } & ST1_252 )
+		| ( { 9{ B01_streg_t140_c1 } } & ST1_253 ) ) ;
 	end
-always @ ( FF_take )	// line#=computer.cpp:329,363
+always @ ( JF_171 )
 	begin
-	B01_streg_t141_c1 = ~FF_take ;
-	B01_streg_t141 = ( ( { 9{ FF_take } } & ST1_350 )
-		| ( { 9{ B01_streg_t141_c1 } } & ST1_352 ) ) ;
+	B01_streg_t141_c1 = ~JF_171 ;
+	B01_streg_t141 = ( ( { 9{ JF_171 } } & ST1_253 )
+		| ( { 9{ B01_streg_t141_c1 } } & ST1_254 ) ) ;
 	end
 always @ ( JF_172 )
 	begin
 	B01_streg_t142_c1 = ~JF_172 ;
-	B01_streg_t142 = ( ( { 9{ JF_172 } } & ST1_359 )
-		| ( { 9{ B01_streg_t142_c1 } } & ST1_361 ) ) ;
+	B01_streg_t142 = ( ( { 9{ JF_172 } } & ST1_254 )
+		| ( { 9{ B01_streg_t142_c1 } } & ST1_255 ) ) ;
 	end
 always @ ( JF_173 )
 	begin
 	B01_streg_t143_c1 = ~JF_173 ;
-	B01_streg_t143 = ( ( { 9{ JF_173 } } & ST1_361 )
-		| ( { 9{ B01_streg_t143_c1 } } & ST1_363 ) ) ;
+	B01_streg_t143 = ( ( { 9{ JF_173 } } & ST1_255 )
+		| ( { 9{ B01_streg_t143_c1 } } & ST1_256 ) ) ;
 	end
 always @ ( JF_174 )
 	begin
 	B01_streg_t144_c1 = ~JF_174 ;
-	B01_streg_t144 = ( ( { 9{ JF_174 } } & ST1_363 )
-		| ( { 9{ B01_streg_t144_c1 } } & ST1_365 ) ) ;
+	B01_streg_t144 = ( ( { 9{ JF_174 } } & ST1_256 )
+		| ( { 9{ B01_streg_t144_c1 } } & ST1_257 ) ) ;
 	end
 always @ ( JF_175 )
 	begin
 	B01_streg_t145_c1 = ~JF_175 ;
-	B01_streg_t145 = ( ( { 9{ JF_175 } } & ST1_365 )
-		| ( { 9{ B01_streg_t145_c1 } } & ST1_367 ) ) ;
+	B01_streg_t145 = ( ( { 9{ JF_175 } } & ST1_257 )
+		| ( { 9{ B01_streg_t145_c1 } } & ST1_258 ) ) ;
 	end
 always @ ( JF_176 )
 	begin
 	B01_streg_t146_c1 = ~JF_176 ;
-	B01_streg_t146 = ( ( { 9{ JF_176 } } & ST1_367 )
-		| ( { 9{ B01_streg_t146_c1 } } & ST1_369 ) ) ;
+	B01_streg_t146 = ( ( { 9{ JF_176 } } & ST1_258 )
+		| ( { 9{ B01_streg_t146_c1 } } & ST1_259 ) ) ;
 	end
 always @ ( JF_177 )
 	begin
 	B01_streg_t147_c1 = ~JF_177 ;
-	B01_streg_t147 = ( ( { 9{ JF_177 } } & ST1_369 )
-		| ( { 9{ B01_streg_t147_c1 } } & ST1_371 ) ) ;
+	B01_streg_t147 = ( ( { 9{ JF_177 } } & ST1_259 )
+		| ( { 9{ B01_streg_t147_c1 } } & ST1_260 ) ) ;
 	end
 always @ ( JF_178 )
 	begin
 	B01_streg_t148_c1 = ~JF_178 ;
-	B01_streg_t148 = ( ( { 9{ JF_178 } } & ST1_371 )
-		| ( { 9{ B01_streg_t148_c1 } } & ST1_373 ) ) ;
+	B01_streg_t148 = ( ( { 9{ JF_178 } } & ST1_260 )
+		| ( { 9{ B01_streg_t148_c1 } } & ST1_261 ) ) ;
 	end
-always @ ( FF_take )	// line#=computer.cpp:329,363
+always @ ( JF_179 )
 	begin
-	B01_streg_t149_c1 = ~FF_take ;
-	B01_streg_t149 = ( ( { 9{ FF_take } } & ST1_373 )
-		| ( { 9{ B01_streg_t149_c1 } } & ST1_375 ) ) ;
+	B01_streg_t149_c1 = ~JF_179 ;
+	B01_streg_t149 = ( ( { 9{ JF_179 } } & ST1_261 )
+		| ( { 9{ B01_streg_t149_c1 } } & ST1_262 ) ) ;
 	end
 always @ ( JF_180 )
 	begin
 	B01_streg_t150_c1 = ~JF_180 ;
-	B01_streg_t150 = ( ( { 9{ JF_180 } } & ST1_382 )
-		| ( { 9{ B01_streg_t150_c1 } } & ST1_384 ) ) ;
+	B01_streg_t150 = ( ( { 9{ JF_180 } } & ST1_262 )
+		| ( { 9{ B01_streg_t150_c1 } } & ST1_263 ) ) ;
 	end
 always @ ( JF_181 )
 	begin
 	B01_streg_t151_c1 = ~JF_181 ;
-	B01_streg_t151 = ( ( { 9{ JF_181 } } & ST1_384 )
-		| ( { 9{ B01_streg_t151_c1 } } & ST1_386 ) ) ;
+	B01_streg_t151 = ( ( { 9{ JF_181 } } & ST1_263 )
+		| ( { 9{ B01_streg_t151_c1 } } & ST1_264 ) ) ;
 	end
 always @ ( JF_182 )
 	begin
 	B01_streg_t152_c1 = ~JF_182 ;
-	B01_streg_t152 = ( ( { 9{ JF_182 } } & ST1_386 )
-		| ( { 9{ B01_streg_t152_c1 } } & ST1_388 ) ) ;
+	B01_streg_t152 = ( ( { 9{ JF_182 } } & ST1_264 )
+		| ( { 9{ B01_streg_t152_c1 } } & ST1_265 ) ) ;
 	end
 always @ ( JF_183 )
 	begin
 	B01_streg_t153_c1 = ~JF_183 ;
-	B01_streg_t153 = ( ( { 9{ JF_183 } } & ST1_388 )
-		| ( { 9{ B01_streg_t153_c1 } } & ST1_390 ) ) ;
+	B01_streg_t153 = ( ( { 9{ JF_183 } } & ST1_265 )
+		| ( { 9{ B01_streg_t153_c1 } } & ST1_266 ) ) ;
 	end
 always @ ( JF_184 )
 	begin
 	B01_streg_t154_c1 = ~JF_184 ;
-	B01_streg_t154 = ( ( { 9{ JF_184 } } & ST1_390 )
-		| ( { 9{ B01_streg_t154_c1 } } & ST1_392 ) ) ;
+	B01_streg_t154 = ( ( { 9{ JF_184 } } & ST1_266 )
+		| ( { 9{ B01_streg_t154_c1 } } & ST1_267 ) ) ;
 	end
 always @ ( JF_185 )
 	begin
 	B01_streg_t155_c1 = ~JF_185 ;
-	B01_streg_t155 = ( ( { 9{ JF_185 } } & ST1_392 )
-		| ( { 9{ B01_streg_t155_c1 } } & ST1_394 ) ) ;
+	B01_streg_t155 = ( ( { 9{ JF_185 } } & ST1_267 )
+		| ( { 9{ B01_streg_t155_c1 } } & ST1_268 ) ) ;
 	end
 always @ ( JF_186 )
 	begin
 	B01_streg_t156_c1 = ~JF_186 ;
-	B01_streg_t156 = ( ( { 9{ JF_186 } } & ST1_394 )
-		| ( { 9{ B01_streg_t156_c1 } } & ST1_396 ) ) ;
+	B01_streg_t156 = ( ( { 9{ JF_186 } } & ST1_268 )
+		| ( { 9{ B01_streg_t156_c1 } } & ST1_269 ) ) ;
 	end
-always @ ( FF_take )	// line#=computer.cpp:329,363
+always @ ( JF_187 )
 	begin
-	B01_streg_t157_c1 = ~FF_take ;
-	B01_streg_t157 = ( ( { 9{ FF_take } } & ST1_396 )
-		| ( { 9{ B01_streg_t157_c1 } } & ST1_398 ) ) ;
+	B01_streg_t157_c1 = ~JF_187 ;
+	B01_streg_t157 = ( ( { 9{ JF_187 } } & ST1_269 )
+		| ( { 9{ B01_streg_t157_c1 } } & ST1_270 ) ) ;
 	end
 always @ ( JF_188 )
 	begin
 	B01_streg_t158_c1 = ~JF_188 ;
-	B01_streg_t158 = ( ( { 9{ JF_188 } } & ST1_405 )
-		| ( { 9{ B01_streg_t158_c1 } } & ST1_407 ) ) ;
+	B01_streg_t158 = ( ( { 9{ JF_188 } } & ST1_270 )
+		| ( { 9{ B01_streg_t158_c1 } } & ST1_271 ) ) ;
 	end
 always @ ( JF_189 )
 	begin
 	B01_streg_t159_c1 = ~JF_189 ;
-	B01_streg_t159 = ( ( { 9{ JF_189 } } & ST1_407 )
-		| ( { 9{ B01_streg_t159_c1 } } & ST1_409 ) ) ;
+	B01_streg_t159 = ( ( { 9{ JF_189 } } & ST1_271 )
+		| ( { 9{ B01_streg_t159_c1 } } & ST1_272 ) ) ;
 	end
 always @ ( JF_190 )
 	begin
 	B01_streg_t160_c1 = ~JF_190 ;
-	B01_streg_t160 = ( ( { 9{ JF_190 } } & ST1_409 )
-		| ( { 9{ B01_streg_t160_c1 } } & ST1_411 ) ) ;
+	B01_streg_t160 = ( ( { 9{ JF_190 } } & ST1_272 )
+		| ( { 9{ B01_streg_t160_c1 } } & ST1_273 ) ) ;
 	end
 always @ ( JF_191 )
 	begin
 	B01_streg_t161_c1 = ~JF_191 ;
-	B01_streg_t161 = ( ( { 9{ JF_191 } } & ST1_411 )
-		| ( { 9{ B01_streg_t161_c1 } } & ST1_413 ) ) ;
+	B01_streg_t161 = ( ( { 9{ JF_191 } } & ST1_273 )
+		| ( { 9{ B01_streg_t161_c1 } } & ST1_274 ) ) ;
 	end
 always @ ( JF_192 )
 	begin
 	B01_streg_t162_c1 = ~JF_192 ;
-	B01_streg_t162 = ( ( { 9{ JF_192 } } & ST1_413 )
-		| ( { 9{ B01_streg_t162_c1 } } & ST1_415 ) ) ;
+	B01_streg_t162 = ( ( { 9{ JF_192 } } & ST1_274 )
+		| ( { 9{ B01_streg_t162_c1 } } & ST1_275 ) ) ;
 	end
 always @ ( JF_193 )
 	begin
 	B01_streg_t163_c1 = ~JF_193 ;
-	B01_streg_t163 = ( ( { 9{ JF_193 } } & ST1_415 )
-		| ( { 9{ B01_streg_t163_c1 } } & ST1_417 ) ) ;
+	B01_streg_t163 = ( ( { 9{ JF_193 } } & ST1_275 )
+		| ( { 9{ B01_streg_t163_c1 } } & ST1_276 ) ) ;
 	end
-always @ ( JF_194 )
+always @ ( TR_46 or TR_51 or ST1_338d or ST1_337d or ST1_336d or ST1_335d or ST1_334d or 
+	ST1_333d or ST1_332d or ST1_331d or ST1_330d or ST1_329d or ST1_328d or 
+	ST1_327d or ST1_326d or ST1_325d or ST1_324d or ST1_323d or ST1_322d or 
+	ST1_321d or ST1_320d or M_2888 or B01_streg_t163 or ST1_275d or B01_streg_t162 or 
+	ST1_274d or B01_streg_t161 or ST1_273d or B01_streg_t160 or ST1_272d or 
+	B01_streg_t159 or ST1_271d or B01_streg_t158 or ST1_270d or B01_streg_t157 or 
+	ST1_269d or B01_streg_t156 or ST1_268d or B01_streg_t155 or ST1_267d or 
+	B01_streg_t154 or ST1_266d or B01_streg_t153 or ST1_265d or B01_streg_t152 or 
+	ST1_264d or B01_streg_t151 or ST1_263d or B01_streg_t150 or ST1_262d or 
+	B01_streg_t149 or ST1_261d or B01_streg_t148 or ST1_260d or B01_streg_t147 or 
+	ST1_259d or B01_streg_t146 or ST1_258d or B01_streg_t145 or ST1_257d or 
+	B01_streg_t144 or ST1_256d or B01_streg_t143 or ST1_255d or B01_streg_t142 or 
+	ST1_254d or B01_streg_t141 or ST1_253d or B01_streg_t140 or ST1_252d or 
+	B01_streg_t139 or ST1_251d or B01_streg_t138 or ST1_250d or B01_streg_t137 or 
+	ST1_249d or B01_streg_t136 or ST1_248d or B01_streg_t135 or ST1_247d or 
+	B01_streg_t134 or ST1_246d or B01_streg_t133 or ST1_245d or B01_streg_t132 or 
+	ST1_244d or B01_streg_t131 or ST1_243d or B01_streg_t130 or ST1_242d or 
+	B01_streg_t129 or ST1_241d or B01_streg_t128 or ST1_240d or B01_streg_t127 or 
+	ST1_239d or B01_streg_t126 or ST1_238d or B01_streg_t125 or ST1_237d or 
+	B01_streg_t124 or ST1_236d or B01_streg_t123 or ST1_235d or B01_streg_t122 or 
+	ST1_234d or B01_streg_t121 or ST1_233d or B01_streg_t120 or ST1_232d or 
+	B01_streg_t119 or ST1_231d or B01_streg_t118 or ST1_230d or B01_streg_t117 or 
+	ST1_229d or B01_streg_t116 or ST1_228d or B01_streg_t115 or ST1_227d or 
+	B01_streg_t114 or ST1_226d or B01_streg_t113 or ST1_225d or B01_streg_t112 or 
+	ST1_224d or B01_streg_t111 or ST1_223d or B01_streg_t110 or ST1_222d or 
+	B01_streg_t109 or ST1_221d or B01_streg_t108 or ST1_220d or B01_streg_t107 or 
+	ST1_219d or B01_streg_t106 or ST1_218d or B01_streg_t105 or ST1_217d or 
+	B01_streg_t104 or ST1_216d or B01_streg_t103 or ST1_215d or B01_streg_t102 or 
+	ST1_214d or B01_streg_t101 or ST1_213d or B01_streg_t100 or ST1_212d or 
+	B01_streg_t99 or ST1_211d or B01_streg_t98 or ST1_205d or B01_streg_t97 or 
+	ST1_203d or B01_streg_t96 or ST1_201d or B01_streg_t95 or ST1_199d or B01_streg_t94 or 
+	ST1_198d or B01_streg_t93 or ST1_196d or B01_streg_t92 or ST1_195d or B01_streg_t91 or 
+	ST1_194d or B01_streg_t90 or ST1_187d or B01_streg_t89 or ST1_185d or B01_streg_t88 or 
+	ST1_183d or B01_streg_t87 or ST1_181d or B01_streg_t86 or ST1_180d or B01_streg_t85 or 
+	ST1_178d or B01_streg_t84 or ST1_177d or B01_streg_t83 or ST1_176d or B01_streg_t82 or 
+	ST1_169d or B01_streg_t81 or ST1_167d or B01_streg_t80 or ST1_165d or B01_streg_t79 or 
+	ST1_163d or B01_streg_t78 or ST1_162d or B01_streg_t77 or ST1_160d or B01_streg_t76 or 
+	ST1_159d or B01_streg_t75 or ST1_158d or B01_streg_t74 or ST1_151d or B01_streg_t73 or 
+	ST1_149d or B01_streg_t72 or ST1_147d or B01_streg_t71 or ST1_145d or B01_streg_t70 or 
+	ST1_144d or B01_streg_t69 or ST1_142d or B01_streg_t68 or ST1_141d or B01_streg_t67 or 
+	ST1_140d or B01_streg_t66 or ST1_133d or B01_streg_t65 or ST1_131d or B01_streg_t64 or 
+	ST1_129d or B01_streg_t63 or ST1_127d or B01_streg_t62 or ST1_126d or B01_streg_t61 or 
+	ST1_124d or B01_streg_t60 or ST1_123d or B01_streg_t59 or ST1_122d or B01_streg_t58 or 
+	ST1_115d or B01_streg_t57 or ST1_113d or B01_streg_t56 or ST1_111d or B01_streg_t55 or 
+	ST1_109d or B01_streg_t54 or ST1_108d or B01_streg_t53 or ST1_106d or B01_streg_t52 or 
+	ST1_105d or B01_streg_t51 or ST1_104d or B01_streg_t50 or ST1_97d or B01_streg_t49 or 
+	ST1_95d or B01_streg_t48 or ST1_93d or B01_streg_t47 or ST1_91d or B01_streg_t46 or 
+	ST1_90d or B01_streg_t45 or ST1_88d or B01_streg_t44 or ST1_87d or B01_streg_t43 or 
+	ST1_86d or B01_streg_t42 or ST1_79d or B01_streg_t41 or ST1_77d or B01_streg_t40 or 
+	ST1_75d or B01_streg_t39 or ST1_73d or B01_streg_t38 or ST1_72d or B01_streg_t37 or 
+	ST1_70d or B01_streg_t36 or ST1_69d or B01_streg_t35 or ST1_68d or B01_streg_t34 or 
+	ST1_67d or B01_streg_t33 or ST1_65d or B01_streg_t32 or ST1_63d or B01_streg_t31 or 
+	ST1_62d or B01_streg_t30 or ST1_61d or B01_streg_t29 or ST1_59d or B01_streg_t28 or 
+	ST1_58d or B01_streg_t27 or ST1_56d or B01_streg_t26 or ST1_55d or B01_streg_t25 or 
+	ST1_54d or B01_streg_t24 or ST1_53d or B01_streg_t23 or ST1_52d or B01_streg_t22 or 
+	ST1_51d or B01_streg_t21 or ST1_50d or B01_streg_t20 or ST1_49d or B01_streg_t19 or 
+	ST1_48d or B01_streg_t18 or ST1_22d or B01_streg_t17 or ST1_21d or B01_streg_t16 or 
+	ST1_20d or B01_streg_t15 or ST1_19d or B01_streg_t14 or ST1_17d or B01_streg_t13 or 
+	ST1_15d or B01_streg_t12 or ST1_14d or B01_streg_t11 or ST1_13d or B01_streg_t10 or 
+	ST1_12d or B01_streg_t9 or ST1_11d or B01_streg_t8 or ST1_10d or B01_streg_t7 or 
+	ST1_09d or B01_streg_t6 or ST1_08d or B01_streg_t5 or ST1_07d or B01_streg_t4 or 
+	ST1_06d or B01_streg_t3 or ST1_05d or B01_streg_t2 or ST1_03d or B01_streg_t1 or 
+	ST1_02d )
 	begin
-	B01_streg_t164_c1 = ~JF_194 ;
-	B01_streg_t164 = ( ( { 9{ JF_194 } } & ST1_417 )
-		| ( { 9{ B01_streg_t164_c1 } } & ST1_419 ) ) ;
-	end
-always @ ( FF_take )	// line#=computer.cpp:329,363
-	begin
-	B01_streg_t165_c1 = ~FF_take ;
-	B01_streg_t165 = ( ( { 9{ FF_take } } & ST1_419 )
-		| ( { 9{ B01_streg_t165_c1 } } & ST1_421 ) ) ;
-	end
-always @ ( RG_08 )	// line#=computer.cpp:342
-	begin
-	B01_streg_t166_c1 = ~RG_08 ;
-	B01_streg_t166 = ( ( { 9{ RG_08 } } & ST1_244 )
-		| ( { 9{ B01_streg_t166_c1 } } & ST1_428 ) ) ;
-	end
-always @ ( TR_47 or B01_streg_t166 or ST1_427d or B01_streg_t165 or ST1_420d or 
-	B01_streg_t164 or ST1_418d or B01_streg_t163 or ST1_416d or B01_streg_t162 or 
-	ST1_414d or B01_streg_t161 or ST1_412d or B01_streg_t160 or ST1_410d or 
-	B01_streg_t159 or ST1_408d or B01_streg_t158 or ST1_406d or B01_streg_t157 or 
-	ST1_397d or B01_streg_t156 or ST1_395d or B01_streg_t155 or ST1_393d or 
-	B01_streg_t154 or ST1_391d or B01_streg_t153 or ST1_389d or B01_streg_t152 or 
-	ST1_387d or B01_streg_t151 or ST1_385d or B01_streg_t150 or ST1_383d or 
-	B01_streg_t149 or ST1_374d or B01_streg_t148 or ST1_372d or B01_streg_t147 or 
-	ST1_370d or B01_streg_t146 or ST1_368d or B01_streg_t145 or ST1_366d or 
-	B01_streg_t144 or ST1_364d or B01_streg_t143 or ST1_362d or B01_streg_t142 or 
-	ST1_360d or B01_streg_t141 or ST1_351d or B01_streg_t140 or ST1_349d or 
-	B01_streg_t139 or ST1_347d or B01_streg_t138 or ST1_345d or B01_streg_t137 or 
-	ST1_343d or B01_streg_t136 or ST1_341d or B01_streg_t135 or ST1_339d or 
-	B01_streg_t134 or ST1_337d or B01_streg_t133 or ST1_328d or B01_streg_t132 or 
-	ST1_326d or B01_streg_t131 or ST1_324d or B01_streg_t130 or ST1_322d or 
-	B01_streg_t129 or ST1_320d or B01_streg_t128 or ST1_318d or B01_streg_t127 or 
-	ST1_316d or B01_streg_t126 or ST1_314d or B01_streg_t125 or ST1_305d or 
-	B01_streg_t124 or ST1_303d or B01_streg_t123 or ST1_301d or B01_streg_t122 or 
-	ST1_299d or B01_streg_t121 or ST1_297d or B01_streg_t120 or ST1_295d or 
-	B01_streg_t119 or ST1_293d or B01_streg_t118 or ST1_291d or B01_streg_t117 or 
-	ST1_282d or B01_streg_t116 or ST1_280d or B01_streg_t115 or ST1_278d or 
-	B01_streg_t114 or ST1_276d or B01_streg_t113 or ST1_274d or B01_streg_t112 or 
-	ST1_272d or B01_streg_t111 or ST1_270d or B01_streg_t110 or ST1_268d or 
-	M_3067 or ST1_491d or ST1_489d or ST1_487d or ST1_485d or ST1_483d or ST1_481d or 
-	ST1_479d or ST1_477d or ST1_475d or ST1_473d or ST1_471d or ST1_469d or 
-	ST1_467d or ST1_465d or ST1_463d or ST1_461d or ST1_459d or ST1_457d or 
-	ST1_455d or ST1_453d or ST1_451d or ST1_449d or ST1_447d or ST1_445d or 
-	ST1_443d or ST1_441d or ST1_439d or ST1_437d or ST1_435d or ST1_433d or 
-	ST1_431d or ST1_429d or ST1_425d or ST1_423d or ST1_421d or ST1_419d or 
-	ST1_417d or ST1_415d or ST1_413d or ST1_411d or ST1_409d or ST1_407d or 
-	ST1_405d or ST1_403d or ST1_401d or ST1_399d or ST1_381d or ST1_379d or 
-	ST1_377d or ST1_375d or ST1_373d or ST1_371d or ST1_369d or ST1_367d or 
-	ST1_365d or ST1_363d or ST1_361d or ST1_359d or ST1_357d or ST1_355d or 
-	ST1_353d or ST1_335d or ST1_333d or ST1_331d or ST1_329d or ST1_327d or 
-	ST1_325d or ST1_323d or ST1_321d or ST1_319d or ST1_317d or ST1_315d or 
-	ST1_313d or ST1_311d or ST1_309d or ST1_307d or ST1_289d or ST1_287d or 
-	ST1_285d or ST1_283d or ST1_281d or ST1_279d or ST1_277d or ST1_275d or 
-	ST1_273d or ST1_271d or ST1_269d or ST1_267d or ST1_265d or ST1_263d or 
-	ST1_261d or B01_streg_t109 or ST1_259d or B01_streg_t108 or ST1_257d or 
-	M_3068 or ST1_490d or ST1_488d or ST1_486d or ST1_484d or ST1_482d or ST1_480d or 
-	ST1_478d or ST1_476d or ST1_474d or ST1_472d or ST1_470d or ST1_468d or 
-	ST1_466d or ST1_464d or ST1_462d or ST1_460d or ST1_458d or ST1_456d or 
-	ST1_454d or ST1_452d or ST1_450d or ST1_448d or ST1_446d or ST1_444d or 
-	ST1_442d or ST1_440d or ST1_438d or ST1_436d or ST1_434d or ST1_432d or 
-	ST1_430d or ST1_428d or ST1_426d or ST1_424d or ST1_422d or ST1_404d or 
-	ST1_402d or ST1_400d or ST1_398d or ST1_396d or ST1_394d or ST1_392d or 
-	ST1_390d or ST1_388d or ST1_386d or ST1_384d or ST1_382d or ST1_380d or 
-	ST1_378d or ST1_376d or ST1_358d or ST1_356d or ST1_354d or ST1_352d or 
-	ST1_350d or ST1_348d or ST1_346d or ST1_344d or ST1_342d or ST1_340d or 
-	ST1_338d or ST1_336d or ST1_334d or ST1_332d or ST1_330d or ST1_312d or 
-	ST1_310d or ST1_308d or ST1_306d or ST1_304d or ST1_302d or ST1_300d or 
-	ST1_298d or ST1_296d or ST1_294d or ST1_292d or ST1_290d or ST1_288d or 
-	ST1_286d or ST1_284d or ST1_266d or ST1_264d or ST1_262d or ST1_260d or 
-	ST1_258d or ST1_256d or B01_streg_t107 or ST1_255d or B01_streg_t106 or 
-	ST1_253d or B01_streg_t105 or ST1_251d or B01_streg_t104 or ST1_249d or 
-	B01_streg_t103 or ST1_247d or B01_streg_t102 or ST1_245d or B01_streg_t101 or 
-	ST1_243d or B01_streg_t100 or ST1_237d or B01_streg_t99 or ST1_235d or B01_streg_t98 or 
-	ST1_233d or B01_streg_t97 or ST1_231d or B01_streg_t96 or ST1_229d or B01_streg_t95 or 
-	ST1_227d or B01_streg_t94 or ST1_225d or B01_streg_t93 or ST1_223d or B01_streg_t92 or 
-	ST1_215d or B01_streg_t91 or ST1_213d or B01_streg_t90 or ST1_211d or B01_streg_t89 or 
-	ST1_209d or B01_streg_t88 or ST1_207d or B01_streg_t87 or ST1_205d or B01_streg_t86 or 
-	ST1_203d or B01_streg_t85 or ST1_201d or B01_streg_t84 or ST1_193d or B01_streg_t83 or 
-	ST1_191d or B01_streg_t82 or ST1_189d or B01_streg_t81 or ST1_187d or B01_streg_t80 or 
-	ST1_185d or B01_streg_t79 or ST1_183d or B01_streg_t78 or ST1_181d or B01_streg_t77 or 
-	ST1_179d or B01_streg_t76 or ST1_171d or B01_streg_t75 or ST1_169d or B01_streg_t74 or 
-	ST1_167d or B01_streg_t73 or ST1_165d or B01_streg_t72 or ST1_163d or B01_streg_t71 or 
-	ST1_161d or B01_streg_t70 or ST1_159d or B01_streg_t69 or ST1_157d or B01_streg_t68 or 
-	ST1_149d or B01_streg_t67 or ST1_147d or B01_streg_t66 or ST1_145d or B01_streg_t65 or 
-	ST1_143d or B01_streg_t64 or ST1_141d or B01_streg_t63 or ST1_139d or B01_streg_t62 or 
-	ST1_137d or B01_streg_t61 or ST1_135d or B01_streg_t60 or ST1_127d or B01_streg_t59 or 
-	ST1_125d or B01_streg_t58 or ST1_123d or B01_streg_t57 or ST1_121d or B01_streg_t56 or 
-	ST1_119d or B01_streg_t55 or ST1_117d or B01_streg_t54 or ST1_115d or B01_streg_t53 or 
-	ST1_113d or B01_streg_t52 or ST1_105d or B01_streg_t51 or ST1_103d or B01_streg_t50 or 
-	ST1_101d or B01_streg_t49 or ST1_99d or B01_streg_t48 or ST1_97d or B01_streg_t47 or 
-	ST1_95d or B01_streg_t46 or ST1_93d or B01_streg_t45 or ST1_91d or B01_streg_t44 or 
-	ST1_83d or B01_streg_t43 or ST1_81d or B01_streg_t42 or ST1_79d or B01_streg_t41 or 
-	ST1_77d or B01_streg_t40 or ST1_75d or B01_streg_t39 or ST1_73d or B01_streg_t38 or 
-	ST1_71d or B01_streg_t37 or ST1_69d or B01_streg_t36 or ST1_67d or B01_streg_t35 or 
-	ST1_65d or B01_streg_t34 or ST1_64d or B01_streg_t33 or ST1_63d or B01_streg_t32 or 
-	ST1_62d or B01_streg_t31 or ST1_61d or B01_streg_t30 or ST1_59d or B01_streg_t29 or 
-	ST1_58d or B01_streg_t28 or ST1_56d or B01_streg_t27 or ST1_55d or B01_streg_t26 or 
-	ST1_54d or B01_streg_t25 or ST1_53d or B01_streg_t24 or ST1_52d or B01_streg_t23 or 
-	ST1_51d or B01_streg_t22 or ST1_50d or B01_streg_t21 or ST1_49d or B01_streg_t20 or 
-	ST1_48d or B01_streg_t19 or ST1_22d or B01_streg_t18 or ST1_21d or B01_streg_t17 or 
-	ST1_20d or B01_streg_t16 or ST1_19d or B01_streg_t15 or ST1_18d or B01_streg_t14 or 
-	ST1_17d or B01_streg_t13 or ST1_15d or B01_streg_t12 or ST1_14d or B01_streg_t11 or 
-	ST1_13d or B01_streg_t10 or ST1_12d or B01_streg_t9 or ST1_11d or B01_streg_t8 or 
-	ST1_10d or B01_streg_t7 or ST1_09d or B01_streg_t6 or ST1_08d or B01_streg_t5 or 
-	ST1_07d or B01_streg_t4 or ST1_06d or B01_streg_t3 or ST1_05d or B01_streg_t2 or 
-	ST1_03d or B01_streg_t1 or ST1_02d )
-	begin
-	B01_streg_t_c1 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-		( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-		( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_256d | ST1_258d ) | 
-		ST1_260d ) | ST1_262d ) | ST1_264d ) | ST1_266d ) | ST1_284d ) | 
-		ST1_286d ) | ST1_288d ) | ST1_290d ) | ST1_292d ) | ST1_294d ) | 
-		ST1_296d ) | ST1_298d ) | ST1_300d ) | ST1_302d ) | ST1_304d ) | 
-		ST1_306d ) | ST1_308d ) | ST1_310d ) | ST1_312d ) | ST1_330d ) | 
-		ST1_332d ) | ST1_334d ) | ST1_336d ) | ST1_338d ) | ST1_340d ) | 
-		ST1_342d ) | ST1_344d ) | ST1_346d ) | ST1_348d ) | ST1_350d ) | 
-		ST1_352d ) | ST1_354d ) | ST1_356d ) | ST1_358d ) | ST1_376d ) | 
-		ST1_378d ) | ST1_380d ) | ST1_382d ) | ST1_384d ) | ST1_386d ) | 
-		ST1_388d ) | ST1_390d ) | ST1_392d ) | ST1_394d ) | ST1_396d ) | 
-		ST1_398d ) | ST1_400d ) | ST1_402d ) | ST1_404d ) | ST1_422d ) | 
-		ST1_424d ) | ST1_426d ) | ST1_428d ) | ST1_430d ) | ST1_432d ) | 
-		ST1_434d ) | ST1_436d ) | ST1_438d ) | ST1_440d ) | ST1_442d ) | 
-		ST1_444d ) | ST1_446d ) | ST1_448d ) | ST1_450d ) | ST1_452d ) | 
-		ST1_454d ) | ST1_456d ) | ST1_458d ) | ST1_460d ) | ST1_462d ) | 
-		ST1_464d ) | ST1_466d ) | ST1_468d ) | ST1_470d ) | ST1_472d ) | 
-		ST1_474d ) | ST1_476d ) | ST1_478d ) | ST1_480d ) | ST1_482d ) | 
-		ST1_484d ) | ST1_486d ) | ST1_488d ) | ST1_490d ) ;
-	B01_streg_t_c2 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-		( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-		( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_261d | 
-		ST1_263d ) | ST1_265d ) | ST1_267d ) | ST1_269d ) | ST1_271d ) | 
-		ST1_273d ) | ST1_275d ) | ST1_277d ) | ST1_279d ) | ST1_281d ) | 
-		ST1_283d ) | ST1_285d ) | ST1_287d ) | ST1_289d ) | ST1_307d ) | 
-		ST1_309d ) | ST1_311d ) | ST1_313d ) | ST1_315d ) | ST1_317d ) | 
-		ST1_319d ) | ST1_321d ) | ST1_323d ) | ST1_325d ) | ST1_327d ) | 
-		ST1_329d ) | ST1_331d ) | ST1_333d ) | ST1_335d ) | ST1_353d ) | 
-		ST1_355d ) | ST1_357d ) | ST1_359d ) | ST1_361d ) | ST1_363d ) | 
-		ST1_365d ) | ST1_367d ) | ST1_369d ) | ST1_371d ) | ST1_373d ) | 
-		ST1_375d ) | ST1_377d ) | ST1_379d ) | ST1_381d ) | ST1_399d ) | 
-		ST1_401d ) | ST1_403d ) | ST1_405d ) | ST1_407d ) | ST1_409d ) | 
-		ST1_411d ) | ST1_413d ) | ST1_415d ) | ST1_417d ) | ST1_419d ) | 
-		ST1_421d ) | ST1_423d ) | ST1_425d ) | ST1_429d ) | ST1_431d ) | 
-		ST1_433d ) | ST1_435d ) | ST1_437d ) | ST1_439d ) | ST1_441d ) | 
-		ST1_443d ) | ST1_445d ) | ST1_447d ) | ST1_449d ) | ST1_451d ) | 
-		ST1_453d ) | ST1_455d ) | ST1_457d ) | ST1_459d ) | ST1_461d ) | 
-		ST1_463d ) | ST1_465d ) | ST1_467d ) | ST1_469d ) | ST1_471d ) | 
-		ST1_473d ) | ST1_475d ) | ST1_477d ) | ST1_479d ) | ST1_481d ) | 
-		ST1_483d ) | ST1_485d ) | ST1_487d ) | ST1_489d ) | ST1_491d ) ;
+	B01_streg_t_c1 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( M_2888 | ST1_320d ) | 
+		ST1_321d ) | ST1_322d ) | ST1_323d ) | ST1_324d ) | ST1_325d ) | 
+		ST1_326d ) | ST1_327d ) | ST1_328d ) | ST1_329d ) | ST1_330d ) | 
+		ST1_331d ) | ST1_332d ) | ST1_333d ) | ST1_334d ) | ST1_335d ) | 
+		ST1_336d ) | ST1_337d ) | ST1_338d ) ;
 	B01_streg_t_d = ( ( ~ST1_02d ) & ( ~ST1_03d ) & ( ~ST1_05d ) & ( ~ST1_06d ) & ( 
 		~ST1_07d ) & ( ~ST1_08d ) & ( ~ST1_09d ) & ( ~ST1_10d ) & ( ~ST1_11d ) & ( 
 		~ST1_12d ) & ( ~ST1_13d ) & ( ~ST1_14d ) & ( ~ST1_15d ) & ( ~ST1_17d ) & ( 
-		~ST1_18d ) & ( ~ST1_19d ) & ( ~ST1_20d ) & ( ~ST1_21d ) & ( ~ST1_22d ) & ( 
-		~ST1_48d ) & ( ~ST1_49d ) & ( ~ST1_50d ) & ( ~ST1_51d ) & ( ~ST1_52d ) & ( 
-		~ST1_53d ) & ( ~ST1_54d ) & ( ~ST1_55d ) & ( ~ST1_56d ) & ( ~ST1_58d ) & ( 
-		~ST1_59d ) & ( ~ST1_61d ) & ( ~ST1_62d ) & ( ~ST1_63d ) & ( ~ST1_64d ) & ( 
-		~ST1_65d ) & ( ~ST1_67d ) & ( ~ST1_69d ) & ( ~ST1_71d ) & ( ~ST1_73d ) & ( 
-		~ST1_75d ) & ( ~ST1_77d ) & ( ~ST1_79d ) & ( ~ST1_81d ) & ( ~ST1_83d ) & ( 
-		~ST1_91d ) & ( ~ST1_93d ) & ( ~ST1_95d ) & ( ~ST1_97d ) & ( ~ST1_99d ) & ( 
-		~ST1_101d ) & ( ~ST1_103d ) & ( ~ST1_105d ) & ( ~ST1_113d ) & ( ~
-		ST1_115d ) & ( ~ST1_117d ) & ( ~ST1_119d ) & ( ~ST1_121d ) & ( ~ST1_123d ) & ( 
-		~ST1_125d ) & ( ~ST1_127d ) & ( ~ST1_135d ) & ( ~ST1_137d ) & ( ~
-		ST1_139d ) & ( ~ST1_141d ) & ( ~ST1_143d ) & ( ~ST1_145d ) & ( ~ST1_147d ) & ( 
-		~ST1_149d ) & ( ~ST1_157d ) & ( ~ST1_159d ) & ( ~ST1_161d ) & ( ~
-		ST1_163d ) & ( ~ST1_165d ) & ( ~ST1_167d ) & ( ~ST1_169d ) & ( ~ST1_171d ) & ( 
-		~ST1_179d ) & ( ~ST1_181d ) & ( ~ST1_183d ) & ( ~ST1_185d ) & ( ~
-		ST1_187d ) & ( ~ST1_189d ) & ( ~ST1_191d ) & ( ~ST1_193d ) & ( ~ST1_201d ) & ( 
-		~ST1_203d ) & ( ~ST1_205d ) & ( ~ST1_207d ) & ( ~ST1_209d ) & ( ~
-		ST1_211d ) & ( ~ST1_213d ) & ( ~ST1_215d ) & ( ~ST1_223d ) & ( ~ST1_225d ) & ( 
-		~ST1_227d ) & ( ~ST1_229d ) & ( ~ST1_231d ) & ( ~ST1_233d ) & ( ~
-		ST1_235d ) & ( ~ST1_237d ) & ( ~ST1_243d ) & ( ~ST1_245d ) & ( ~ST1_247d ) & ( 
-		~ST1_249d ) & ( ~ST1_251d ) & ( ~ST1_253d ) & ( ~ST1_255d ) & ( ~
-		B01_streg_t_c1 ) & ( ~ST1_257d ) & ( ~ST1_259d ) & ( ~B01_streg_t_c2 ) & ( 
-		~ST1_268d ) & ( ~ST1_270d ) & ( ~ST1_272d ) & ( ~ST1_274d ) & ( ~
-		ST1_276d ) & ( ~ST1_278d ) & ( ~ST1_280d ) & ( ~ST1_282d ) & ( ~ST1_291d ) & ( 
-		~ST1_293d ) & ( ~ST1_295d ) & ( ~ST1_297d ) & ( ~ST1_299d ) & ( ~
-		ST1_301d ) & ( ~ST1_303d ) & ( ~ST1_305d ) & ( ~ST1_314d ) & ( ~ST1_316d ) & ( 
-		~ST1_318d ) & ( ~ST1_320d ) & ( ~ST1_322d ) & ( ~ST1_324d ) & ( ~
-		ST1_326d ) & ( ~ST1_328d ) & ( ~ST1_337d ) & ( ~ST1_339d ) & ( ~ST1_341d ) & ( 
-		~ST1_343d ) & ( ~ST1_345d ) & ( ~ST1_347d ) & ( ~ST1_349d ) & ( ~
-		ST1_351d ) & ( ~ST1_360d ) & ( ~ST1_362d ) & ( ~ST1_364d ) & ( ~ST1_366d ) & ( 
-		~ST1_368d ) & ( ~ST1_370d ) & ( ~ST1_372d ) & ( ~ST1_374d ) & ( ~
-		ST1_383d ) & ( ~ST1_385d ) & ( ~ST1_387d ) & ( ~ST1_389d ) & ( ~ST1_391d ) & ( 
-		~ST1_393d ) & ( ~ST1_395d ) & ( ~ST1_397d ) & ( ~ST1_406d ) & ( ~
-		ST1_408d ) & ( ~ST1_410d ) & ( ~ST1_412d ) & ( ~ST1_414d ) & ( ~ST1_416d ) & ( 
-		~ST1_418d ) & ( ~ST1_420d ) & ( ~ST1_427d ) ) ;
+		~ST1_19d ) & ( ~ST1_20d ) & ( ~ST1_21d ) & ( ~ST1_22d ) & ( ~ST1_48d ) & ( 
+		~ST1_49d ) & ( ~ST1_50d ) & ( ~ST1_51d ) & ( ~ST1_52d ) & ( ~ST1_53d ) & ( 
+		~ST1_54d ) & ( ~ST1_55d ) & ( ~ST1_56d ) & ( ~ST1_58d ) & ( ~ST1_59d ) & ( 
+		~ST1_61d ) & ( ~ST1_62d ) & ( ~ST1_63d ) & ( ~ST1_65d ) & ( ~ST1_67d ) & ( 
+		~ST1_68d ) & ( ~ST1_69d ) & ( ~ST1_70d ) & ( ~ST1_72d ) & ( ~ST1_73d ) & ( 
+		~ST1_75d ) & ( ~ST1_77d ) & ( ~ST1_79d ) & ( ~ST1_86d ) & ( ~ST1_87d ) & ( 
+		~ST1_88d ) & ( ~ST1_90d ) & ( ~ST1_91d ) & ( ~ST1_93d ) & ( ~ST1_95d ) & ( 
+		~ST1_97d ) & ( ~ST1_104d ) & ( ~ST1_105d ) & ( ~ST1_106d ) & ( ~ST1_108d ) & ( 
+		~ST1_109d ) & ( ~ST1_111d ) & ( ~ST1_113d ) & ( ~ST1_115d ) & ( ~
+		ST1_122d ) & ( ~ST1_123d ) & ( ~ST1_124d ) & ( ~ST1_126d ) & ( ~ST1_127d ) & ( 
+		~ST1_129d ) & ( ~ST1_131d ) & ( ~ST1_133d ) & ( ~ST1_140d ) & ( ~
+		ST1_141d ) & ( ~ST1_142d ) & ( ~ST1_144d ) & ( ~ST1_145d ) & ( ~ST1_147d ) & ( 
+		~ST1_149d ) & ( ~ST1_151d ) & ( ~ST1_158d ) & ( ~ST1_159d ) & ( ~
+		ST1_160d ) & ( ~ST1_162d ) & ( ~ST1_163d ) & ( ~ST1_165d ) & ( ~ST1_167d ) & ( 
+		~ST1_169d ) & ( ~ST1_176d ) & ( ~ST1_177d ) & ( ~ST1_178d ) & ( ~
+		ST1_180d ) & ( ~ST1_181d ) & ( ~ST1_183d ) & ( ~ST1_185d ) & ( ~ST1_187d ) & ( 
+		~ST1_194d ) & ( ~ST1_195d ) & ( ~ST1_196d ) & ( ~ST1_198d ) & ( ~
+		ST1_199d ) & ( ~ST1_201d ) & ( ~ST1_203d ) & ( ~ST1_205d ) & ( ~ST1_211d ) & ( 
+		~ST1_212d ) & ( ~ST1_213d ) & ( ~ST1_214d ) & ( ~ST1_215d ) & ( ~
+		ST1_216d ) & ( ~ST1_217d ) & ( ~ST1_218d ) & ( ~ST1_219d ) & ( ~ST1_220d ) & ( 
+		~ST1_221d ) & ( ~ST1_222d ) & ( ~ST1_223d ) & ( ~ST1_224d ) & ( ~
+		ST1_225d ) & ( ~ST1_226d ) & ( ~ST1_227d ) & ( ~ST1_228d ) & ( ~ST1_229d ) & ( 
+		~ST1_230d ) & ( ~ST1_231d ) & ( ~ST1_232d ) & ( ~ST1_233d ) & ( ~
+		ST1_234d ) & ( ~ST1_235d ) & ( ~ST1_236d ) & ( ~ST1_237d ) & ( ~ST1_238d ) & ( 
+		~ST1_239d ) & ( ~ST1_240d ) & ( ~ST1_241d ) & ( ~ST1_242d ) & ( ~
+		ST1_243d ) & ( ~ST1_244d ) & ( ~ST1_245d ) & ( ~ST1_246d ) & ( ~ST1_247d ) & ( 
+		~ST1_248d ) & ( ~ST1_249d ) & ( ~ST1_250d ) & ( ~ST1_251d ) & ( ~
+		ST1_252d ) & ( ~ST1_253d ) & ( ~ST1_254d ) & ( ~ST1_255d ) & ( ~ST1_256d ) & ( 
+		~ST1_257d ) & ( ~ST1_258d ) & ( ~ST1_259d ) & ( ~ST1_260d ) & ( ~
+		ST1_261d ) & ( ~ST1_262d ) & ( ~ST1_263d ) & ( ~ST1_264d ) & ( ~ST1_265d ) & ( 
+		~ST1_266d ) & ( ~ST1_267d ) & ( ~ST1_268d ) & ( ~ST1_269d ) & ( ~
+		ST1_270d ) & ( ~ST1_271d ) & ( ~ST1_272d ) & ( ~ST1_273d ) & ( ~ST1_274d ) & ( 
+		~ST1_275d ) & ( ~B01_streg_t_c1 ) ) ;
 	B01_streg_t = ( ( { 9{ ST1_02d } } & B01_streg_t1 )
 		| ( { 9{ ST1_03d } } & B01_streg_t2 )
 		| ( { 9{ ST1_05d } } & B01_streg_t3 )
-		| ( { 9{ ST1_06d } } & B01_streg_t4 )		// line#=computer.cpp:461
-		| ( { 9{ ST1_07d } } & B01_streg_t5 )		// line#=computer.cpp:461
-		| ( { 9{ ST1_08d } } & B01_streg_t6 )		// line#=computer.cpp:461
-		| ( { 9{ ST1_09d } } & B01_streg_t7 )		// line#=computer.cpp:461
-		| ( { 9{ ST1_10d } } & B01_streg_t8 )		// line#=computer.cpp:461
-		| ( { 9{ ST1_11d } } & B01_streg_t9 )		// line#=computer.cpp:461
-		| ( { 9{ ST1_12d } } & B01_streg_t10 )		// line#=computer.cpp:461
-		| ( { 9{ ST1_13d } } & B01_streg_t11 )		// line#=computer.cpp:461
-		| ( { 9{ ST1_14d } } & B01_streg_t12 )		// line#=computer.cpp:461
-		| ( { 9{ ST1_15d } } & B01_streg_t13 )		// line#=computer.cpp:461
-		| ( { 9{ ST1_17d } } & B01_streg_t14 )		// line#=computer.cpp:461,466,475,484,495
-		| ( { 9{ ST1_18d } } & B01_streg_t15 )		// line#=computer.cpp:461
-		| ( { 9{ ST1_19d } } & B01_streg_t16 )
-		| ( { 9{ ST1_20d } } & B01_streg_t17 )		// line#=computer.cpp:461
-		| ( { 9{ ST1_21d } } & B01_streg_t18 )		// line#=computer.cpp:461
-		| ( { 9{ ST1_22d } } & B01_streg_t19 )		// line#=computer.cpp:461
-		| ( { 9{ ST1_48d } } & B01_streg_t20 )		// line#=computer.cpp:461
-		| ( { 9{ ST1_49d } } & B01_streg_t21 )
-		| ( { 9{ ST1_50d } } & B01_streg_t22 )		// line#=computer.cpp:461
-		| ( { 9{ ST1_51d } } & B01_streg_t23 )
-		| ( { 9{ ST1_52d } } & B01_streg_t24 )		// line#=computer.cpp:461
-		| ( { 9{ ST1_53d } } & B01_streg_t25 )		// line#=computer.cpp:461
-		| ( { 9{ ST1_54d } } & B01_streg_t26 )		// line#=computer.cpp:461
-		| ( { 9{ ST1_55d } } & B01_streg_t27 )		// line#=computer.cpp:461
-		| ( { 9{ ST1_56d } } & B01_streg_t28 )		// line#=computer.cpp:461
-		| ( { 9{ ST1_58d } } & B01_streg_t29 )
-		| ( { 9{ ST1_59d } } & B01_streg_t30 )		// line#=computer.cpp:461
-		| ( { 9{ ST1_61d } } & B01_streg_t31 )
-		| ( { 9{ ST1_62d } } & B01_streg_t32 )		// line#=computer.cpp:461
-		| ( { 9{ ST1_63d } } & B01_streg_t33 )		// line#=computer.cpp:461
-		| ( { 9{ ST1_64d } } & B01_streg_t34 )
-		| ( { 9{ ST1_65d } } & B01_streg_t35 )
-		| ( { 9{ ST1_67d } } & B01_streg_t36 )
-		| ( { 9{ ST1_69d } } & B01_streg_t37 )
-		| ( { 9{ ST1_71d } } & B01_streg_t38 )
+		| ( { 9{ ST1_06d } } & B01_streg_t4 )	// line#=computer.cpp:468
+		| ( { 9{ ST1_07d } } & B01_streg_t5 )	// line#=computer.cpp:468
+		| ( { 9{ ST1_08d } } & B01_streg_t6 )	// line#=computer.cpp:468
+		| ( { 9{ ST1_09d } } & B01_streg_t7 )	// line#=computer.cpp:468
+		| ( { 9{ ST1_10d } } & B01_streg_t8 )	// line#=computer.cpp:468
+		| ( { 9{ ST1_11d } } & B01_streg_t9 )	// line#=computer.cpp:468
+		| ( { 9{ ST1_12d } } & B01_streg_t10 )	// line#=computer.cpp:468
+		| ( { 9{ ST1_13d } } & B01_streg_t11 )	// line#=computer.cpp:468
+		| ( { 9{ ST1_14d } } & B01_streg_t12 )	// line#=computer.cpp:468
+		| ( { 9{ ST1_15d } } & B01_streg_t13 )	// line#=computer.cpp:468
+		| ( { 9{ ST1_17d } } & B01_streg_t14 )
+		| ( { 9{ ST1_19d } } & B01_streg_t15 )	// line#=computer.cpp:468,473,482,491,502
+							// ,690
+		| ( { 9{ ST1_20d } } & B01_streg_t16 )	// line#=computer.cpp:468
+		| ( { 9{ ST1_21d } } & B01_streg_t17 )	// line#=computer.cpp:468
+		| ( { 9{ ST1_22d } } & B01_streg_t18 )	// line#=computer.cpp:468
+		| ( { 9{ ST1_48d } } & B01_streg_t19 )	// line#=computer.cpp:468
+		| ( { 9{ ST1_49d } } & B01_streg_t20 )
+		| ( { 9{ ST1_50d } } & B01_streg_t21 )	// line#=computer.cpp:468
+		| ( { 9{ ST1_51d } } & B01_streg_t22 )
+		| ( { 9{ ST1_52d } } & B01_streg_t23 )	// line#=computer.cpp:468
+		| ( { 9{ ST1_53d } } & B01_streg_t24 )	// line#=computer.cpp:468
+		| ( { 9{ ST1_54d } } & B01_streg_t25 )	// line#=computer.cpp:468
+		| ( { 9{ ST1_55d } } & B01_streg_t26 )	// line#=computer.cpp:468
+		| ( { 9{ ST1_56d } } & B01_streg_t27 )	// line#=computer.cpp:468
+		| ( { 9{ ST1_58d } } & B01_streg_t28 )
+		| ( { 9{ ST1_59d } } & B01_streg_t29 )	// line#=computer.cpp:468
+		| ( { 9{ ST1_61d } } & B01_streg_t30 )
+		| ( { 9{ ST1_62d } } & B01_streg_t31 )	// line#=computer.cpp:468
+		| ( { 9{ ST1_63d } } & B01_streg_t32 )	// line#=computer.cpp:468
+		| ( { 9{ ST1_65d } } & B01_streg_t33 )
+		| ( { 9{ ST1_67d } } & B01_streg_t34 )
+		| ( { 9{ ST1_68d } } & B01_streg_t35 )
+		| ( { 9{ ST1_69d } } & B01_streg_t36 )
+		| ( { 9{ ST1_70d } } & B01_streg_t37 )
+		| ( { 9{ ST1_72d } } & B01_streg_t38 )
 		| ( { 9{ ST1_73d } } & B01_streg_t39 )
 		| ( { 9{ ST1_75d } } & B01_streg_t40 )
 		| ( { 9{ ST1_77d } } & B01_streg_t41 )
-		| ( { 9{ ST1_79d } } & B01_streg_t42 )
-		| ( { 9{ ST1_81d } } & B01_streg_t43 )
-		| ( { 9{ ST1_83d } } & B01_streg_t44 )		// line#=computer.cpp:329,363
-		| ( { 9{ ST1_91d } } & B01_streg_t45 )
-		| ( { 9{ ST1_93d } } & B01_streg_t46 )
-		| ( { 9{ ST1_95d } } & B01_streg_t47 )
-		| ( { 9{ ST1_97d } } & B01_streg_t48 )
-		| ( { 9{ ST1_99d } } & B01_streg_t49 )
-		| ( { 9{ ST1_101d } } & B01_streg_t50 )
-		| ( { 9{ ST1_103d } } & B01_streg_t51 )
-		| ( { 9{ ST1_105d } } & B01_streg_t52 )		// line#=computer.cpp:329,363
-		| ( { 9{ ST1_113d } } & B01_streg_t53 )
-		| ( { 9{ ST1_115d } } & B01_streg_t54 )
-		| ( { 9{ ST1_117d } } & B01_streg_t55 )
-		| ( { 9{ ST1_119d } } & B01_streg_t56 )
-		| ( { 9{ ST1_121d } } & B01_streg_t57 )
-		| ( { 9{ ST1_123d } } & B01_streg_t58 )
-		| ( { 9{ ST1_125d } } & B01_streg_t59 )
-		| ( { 9{ ST1_127d } } & B01_streg_t60 )		// line#=computer.cpp:329,363
-		| ( { 9{ ST1_135d } } & B01_streg_t61 )
-		| ( { 9{ ST1_137d } } & B01_streg_t62 )
-		| ( { 9{ ST1_139d } } & B01_streg_t63 )
-		| ( { 9{ ST1_141d } } & B01_streg_t64 )
-		| ( { 9{ ST1_143d } } & B01_streg_t65 )
-		| ( { 9{ ST1_145d } } & B01_streg_t66 )
-		| ( { 9{ ST1_147d } } & B01_streg_t67 )
-		| ( { 9{ ST1_149d } } & B01_streg_t68 )		// line#=computer.cpp:329,363
-		| ( { 9{ ST1_157d } } & B01_streg_t69 )
-		| ( { 9{ ST1_159d } } & B01_streg_t70 )
-		| ( { 9{ ST1_161d } } & B01_streg_t71 )
-		| ( { 9{ ST1_163d } } & B01_streg_t72 )
-		| ( { 9{ ST1_165d } } & B01_streg_t73 )
-		| ( { 9{ ST1_167d } } & B01_streg_t74 )
-		| ( { 9{ ST1_169d } } & B01_streg_t75 )
-		| ( { 9{ ST1_171d } } & B01_streg_t76 )		// line#=computer.cpp:329,363
-		| ( { 9{ ST1_179d } } & B01_streg_t77 )
-		| ( { 9{ ST1_181d } } & B01_streg_t78 )
-		| ( { 9{ ST1_183d } } & B01_streg_t79 )
-		| ( { 9{ ST1_185d } } & B01_streg_t80 )
-		| ( { 9{ ST1_187d } } & B01_streg_t81 )
-		| ( { 9{ ST1_189d } } & B01_streg_t82 )
-		| ( { 9{ ST1_191d } } & B01_streg_t83 )
-		| ( { 9{ ST1_193d } } & B01_streg_t84 )		// line#=computer.cpp:329,363
-		| ( { 9{ ST1_201d } } & B01_streg_t85 )
-		| ( { 9{ ST1_203d } } & B01_streg_t86 )
-		| ( { 9{ ST1_205d } } & B01_streg_t87 )
-		| ( { 9{ ST1_207d } } & B01_streg_t88 )
-		| ( { 9{ ST1_209d } } & B01_streg_t89 )
-		| ( { 9{ ST1_211d } } & B01_streg_t90 )
-		| ( { 9{ ST1_213d } } & B01_streg_t91 )
-		| ( { 9{ ST1_215d } } & B01_streg_t92 )		// line#=computer.cpp:329,363
-		| ( { 9{ ST1_223d } } & B01_streg_t93 )
-		| ( { 9{ ST1_225d } } & B01_streg_t94 )
-		| ( { 9{ ST1_227d } } & B01_streg_t95 )
-		| ( { 9{ ST1_229d } } & B01_streg_t96 )
-		| ( { 9{ ST1_231d } } & B01_streg_t97 )
-		| ( { 9{ ST1_233d } } & B01_streg_t98 )
-		| ( { 9{ ST1_235d } } & B01_streg_t99 )
-		| ( { 9{ ST1_237d } } & B01_streg_t100 )	// line#=computer.cpp:329,363
-		| ( { 9{ ST1_243d } } & B01_streg_t101 )	// line#=computer.cpp:308
-		| ( { 9{ ST1_245d } } & B01_streg_t102 )
-		| ( { 9{ ST1_247d } } & B01_streg_t103 )
-		| ( { 9{ ST1_249d } } & B01_streg_t104 )
-		| ( { 9{ ST1_251d } } & B01_streg_t105 )
-		| ( { 9{ ST1_253d } } & B01_streg_t106 )
-		| ( { 9{ ST1_255d } } & B01_streg_t107 )
-		| ( { 9{ B01_streg_t_c1 } } & { 1'h1 , M_3068 , 1'h0 } )
-		| ( { 9{ ST1_257d } } & B01_streg_t108 )
-		| ( { 9{ ST1_259d } } & B01_streg_t109 )	// line#=computer.cpp:329,363
-		| ( { 9{ B01_streg_t_c2 } } & { 1'h1 , M_3067 , 1'h1 } )
-		| ( { 9{ ST1_268d } } & B01_streg_t110 )
-		| ( { 9{ ST1_270d } } & B01_streg_t111 )
-		| ( { 9{ ST1_272d } } & B01_streg_t112 )
-		| ( { 9{ ST1_274d } } & B01_streg_t113 )
-		| ( { 9{ ST1_276d } } & B01_streg_t114 )
-		| ( { 9{ ST1_278d } } & B01_streg_t115 )
-		| ( { 9{ ST1_280d } } & B01_streg_t116 )
-		| ( { 9{ ST1_282d } } & B01_streg_t117 )	// line#=computer.cpp:329,363
-		| ( { 9{ ST1_291d } } & B01_streg_t118 )
-		| ( { 9{ ST1_293d } } & B01_streg_t119 )
-		| ( { 9{ ST1_295d } } & B01_streg_t120 )
-		| ( { 9{ ST1_297d } } & B01_streg_t121 )
-		| ( { 9{ ST1_299d } } & B01_streg_t122 )
-		| ( { 9{ ST1_301d } } & B01_streg_t123 )
-		| ( { 9{ ST1_303d } } & B01_streg_t124 )
-		| ( { 9{ ST1_305d } } & B01_streg_t125 )	// line#=computer.cpp:329,363
-		| ( { 9{ ST1_314d } } & B01_streg_t126 )
-		| ( { 9{ ST1_316d } } & B01_streg_t127 )
-		| ( { 9{ ST1_318d } } & B01_streg_t128 )
-		| ( { 9{ ST1_320d } } & B01_streg_t129 )
-		| ( { 9{ ST1_322d } } & B01_streg_t130 )
-		| ( { 9{ ST1_324d } } & B01_streg_t131 )
-		| ( { 9{ ST1_326d } } & B01_streg_t132 )
-		| ( { 9{ ST1_328d } } & B01_streg_t133 )	// line#=computer.cpp:329,363
-		| ( { 9{ ST1_337d } } & B01_streg_t134 )
-		| ( { 9{ ST1_339d } } & B01_streg_t135 )
-		| ( { 9{ ST1_341d } } & B01_streg_t136 )
-		| ( { 9{ ST1_343d } } & B01_streg_t137 )
-		| ( { 9{ ST1_345d } } & B01_streg_t138 )
-		| ( { 9{ ST1_347d } } & B01_streg_t139 )
-		| ( { 9{ ST1_349d } } & B01_streg_t140 )
-		| ( { 9{ ST1_351d } } & B01_streg_t141 )	// line#=computer.cpp:329,363
-		| ( { 9{ ST1_360d } } & B01_streg_t142 )
-		| ( { 9{ ST1_362d } } & B01_streg_t143 )
-		| ( { 9{ ST1_364d } } & B01_streg_t144 )
-		| ( { 9{ ST1_366d } } & B01_streg_t145 )
-		| ( { 9{ ST1_368d } } & B01_streg_t146 )
-		| ( { 9{ ST1_370d } } & B01_streg_t147 )
-		| ( { 9{ ST1_372d } } & B01_streg_t148 )
-		| ( { 9{ ST1_374d } } & B01_streg_t149 )	// line#=computer.cpp:329,363
-		| ( { 9{ ST1_383d } } & B01_streg_t150 )
-		| ( { 9{ ST1_385d } } & B01_streg_t151 )
-		| ( { 9{ ST1_387d } } & B01_streg_t152 )
-		| ( { 9{ ST1_389d } } & B01_streg_t153 )
-		| ( { 9{ ST1_391d } } & B01_streg_t154 )
-		| ( { 9{ ST1_393d } } & B01_streg_t155 )
-		| ( { 9{ ST1_395d } } & B01_streg_t156 )
-		| ( { 9{ ST1_397d } } & B01_streg_t157 )	// line#=computer.cpp:329,363
-		| ( { 9{ ST1_406d } } & B01_streg_t158 )
-		| ( { 9{ ST1_408d } } & B01_streg_t159 )
-		| ( { 9{ ST1_410d } } & B01_streg_t160 )
-		| ( { 9{ ST1_412d } } & B01_streg_t161 )
-		| ( { 9{ ST1_414d } } & B01_streg_t162 )
-		| ( { 9{ ST1_416d } } & B01_streg_t163 )
-		| ( { 9{ ST1_418d } } & B01_streg_t164 )
-		| ( { 9{ ST1_420d } } & B01_streg_t165 )	// line#=computer.cpp:329,363
-		| ( { 9{ ST1_427d } } & B01_streg_t166 )	// line#=computer.cpp:342
-		| ( { 9{ B01_streg_t_d } } & { 1'h0 , TR_47 } ) ) ;
+		| ( { 9{ ST1_79d } } & B01_streg_t42 )	// line#=computer.cpp:336
+		| ( { 9{ ST1_86d } } & B01_streg_t43 )
+		| ( { 9{ ST1_87d } } & B01_streg_t44 )
+		| ( { 9{ ST1_88d } } & B01_streg_t45 )
+		| ( { 9{ ST1_90d } } & B01_streg_t46 )
+		| ( { 9{ ST1_91d } } & B01_streg_t47 )
+		| ( { 9{ ST1_93d } } & B01_streg_t48 )
+		| ( { 9{ ST1_95d } } & B01_streg_t49 )
+		| ( { 9{ ST1_97d } } & B01_streg_t50 )	// line#=computer.cpp:336
+		| ( { 9{ ST1_104d } } & B01_streg_t51 )
+		| ( { 9{ ST1_105d } } & B01_streg_t52 )
+		| ( { 9{ ST1_106d } } & B01_streg_t53 )
+		| ( { 9{ ST1_108d } } & B01_streg_t54 )
+		| ( { 9{ ST1_109d } } & B01_streg_t55 )
+		| ( { 9{ ST1_111d } } & B01_streg_t56 )
+		| ( { 9{ ST1_113d } } & B01_streg_t57 )
+		| ( { 9{ ST1_115d } } & B01_streg_t58 )	// line#=computer.cpp:336
+		| ( { 9{ ST1_122d } } & B01_streg_t59 )
+		| ( { 9{ ST1_123d } } & B01_streg_t60 )
+		| ( { 9{ ST1_124d } } & B01_streg_t61 )
+		| ( { 9{ ST1_126d } } & B01_streg_t62 )
+		| ( { 9{ ST1_127d } } & B01_streg_t63 )
+		| ( { 9{ ST1_129d } } & B01_streg_t64 )
+		| ( { 9{ ST1_131d } } & B01_streg_t65 )
+		| ( { 9{ ST1_133d } } & B01_streg_t66 )	// line#=computer.cpp:336
+		| ( { 9{ ST1_140d } } & B01_streg_t67 )
+		| ( { 9{ ST1_141d } } & B01_streg_t68 )
+		| ( { 9{ ST1_142d } } & B01_streg_t69 )
+		| ( { 9{ ST1_144d } } & B01_streg_t70 )
+		| ( { 9{ ST1_145d } } & B01_streg_t71 )
+		| ( { 9{ ST1_147d } } & B01_streg_t72 )
+		| ( { 9{ ST1_149d } } & B01_streg_t73 )
+		| ( { 9{ ST1_151d } } & B01_streg_t74 )	// line#=computer.cpp:336
+		| ( { 9{ ST1_158d } } & B01_streg_t75 )
+		| ( { 9{ ST1_159d } } & B01_streg_t76 )
+		| ( { 9{ ST1_160d } } & B01_streg_t77 )
+		| ( { 9{ ST1_162d } } & B01_streg_t78 )
+		| ( { 9{ ST1_163d } } & B01_streg_t79 )
+		| ( { 9{ ST1_165d } } & B01_streg_t80 )
+		| ( { 9{ ST1_167d } } & B01_streg_t81 )
+		| ( { 9{ ST1_169d } } & B01_streg_t82 )	// line#=computer.cpp:336
+		| ( { 9{ ST1_176d } } & B01_streg_t83 )
+		| ( { 9{ ST1_177d } } & B01_streg_t84 )
+		| ( { 9{ ST1_178d } } & B01_streg_t85 )
+		| ( { 9{ ST1_180d } } & B01_streg_t86 )
+		| ( { 9{ ST1_181d } } & B01_streg_t87 )
+		| ( { 9{ ST1_183d } } & B01_streg_t88 )
+		| ( { 9{ ST1_185d } } & B01_streg_t89 )
+		| ( { 9{ ST1_187d } } & B01_streg_t90 )	// line#=computer.cpp:336
+		| ( { 9{ ST1_194d } } & B01_streg_t91 )
+		| ( { 9{ ST1_195d } } & B01_streg_t92 )
+		| ( { 9{ ST1_196d } } & B01_streg_t93 )
+		| ( { 9{ ST1_198d } } & B01_streg_t94 )
+		| ( { 9{ ST1_199d } } & B01_streg_t95 )
+		| ( { 9{ ST1_201d } } & B01_streg_t96 )
+		| ( { 9{ ST1_203d } } & B01_streg_t97 )
+		| ( { 9{ ST1_205d } } & B01_streg_t98 )	// line#=computer.cpp:336
+		| ( { 9{ ST1_211d } } & B01_streg_t99 )
+		| ( { 9{ ST1_212d } } & B01_streg_t100 )
+		| ( { 9{ ST1_213d } } & B01_streg_t101 )
+		| ( { 9{ ST1_214d } } & B01_streg_t102 )
+		| ( { 9{ ST1_215d } } & B01_streg_t103 )
+		| ( { 9{ ST1_216d } } & B01_streg_t104 )
+		| ( { 9{ ST1_217d } } & B01_streg_t105 )
+		| ( { 9{ ST1_218d } } & B01_streg_t106 )
+		| ( { 9{ ST1_219d } } & B01_streg_t107 )
+		| ( { 9{ ST1_220d } } & B01_streg_t108 )
+		| ( { 9{ ST1_221d } } & B01_streg_t109 )
+		| ( { 9{ ST1_222d } } & B01_streg_t110 )
+		| ( { 9{ ST1_223d } } & B01_streg_t111 )
+		| ( { 9{ ST1_224d } } & B01_streg_t112 )
+		| ( { 9{ ST1_225d } } & B01_streg_t113 )
+		| ( { 9{ ST1_226d } } & B01_streg_t114 )
+		| ( { 9{ ST1_227d } } & B01_streg_t115 )
+		| ( { 9{ ST1_228d } } & B01_streg_t116 )
+		| ( { 9{ ST1_229d } } & B01_streg_t117 )
+		| ( { 9{ ST1_230d } } & B01_streg_t118 )
+		| ( { 9{ ST1_231d } } & B01_streg_t119 )
+		| ( { 9{ ST1_232d } } & B01_streg_t120 )
+		| ( { 9{ ST1_233d } } & B01_streg_t121 )
+		| ( { 9{ ST1_234d } } & B01_streg_t122 )
+		| ( { 9{ ST1_235d } } & B01_streg_t123 )
+		| ( { 9{ ST1_236d } } & B01_streg_t124 )
+		| ( { 9{ ST1_237d } } & B01_streg_t125 )
+		| ( { 9{ ST1_238d } } & B01_streg_t126 )
+		| ( { 9{ ST1_239d } } & B01_streg_t127 )
+		| ( { 9{ ST1_240d } } & B01_streg_t128 )
+		| ( { 9{ ST1_241d } } & B01_streg_t129 )
+		| ( { 9{ ST1_242d } } & B01_streg_t130 )
+		| ( { 9{ ST1_243d } } & B01_streg_t131 )
+		| ( { 9{ ST1_244d } } & B01_streg_t132 )
+		| ( { 9{ ST1_245d } } & B01_streg_t133 )
+		| ( { 9{ ST1_246d } } & B01_streg_t134 )
+		| ( { 9{ ST1_247d } } & B01_streg_t135 )
+		| ( { 9{ ST1_248d } } & B01_streg_t136 )
+		| ( { 9{ ST1_249d } } & B01_streg_t137 )
+		| ( { 9{ ST1_250d } } & B01_streg_t138 )
+		| ( { 9{ ST1_251d } } & B01_streg_t139 )
+		| ( { 9{ ST1_252d } } & B01_streg_t140 )
+		| ( { 9{ ST1_253d } } & B01_streg_t141 )
+		| ( { 9{ ST1_254d } } & B01_streg_t142 )
+		| ( { 9{ ST1_255d } } & B01_streg_t143 )
+		| ( { 9{ ST1_256d } } & B01_streg_t144 )
+		| ( { 9{ ST1_257d } } & B01_streg_t145 )
+		| ( { 9{ ST1_258d } } & B01_streg_t146 )
+		| ( { 9{ ST1_259d } } & B01_streg_t147 )
+		| ( { 9{ ST1_260d } } & B01_streg_t148 )
+		| ( { 9{ ST1_261d } } & B01_streg_t149 )
+		| ( { 9{ ST1_262d } } & B01_streg_t150 )
+		| ( { 9{ ST1_263d } } & B01_streg_t151 )
+		| ( { 9{ ST1_264d } } & B01_streg_t152 )
+		| ( { 9{ ST1_265d } } & B01_streg_t153 )
+		| ( { 9{ ST1_266d } } & B01_streg_t154 )
+		| ( { 9{ ST1_267d } } & B01_streg_t155 )
+		| ( { 9{ ST1_268d } } & B01_streg_t156 )
+		| ( { 9{ ST1_269d } } & B01_streg_t157 )
+		| ( { 9{ ST1_270d } } & B01_streg_t158 )
+		| ( { 9{ ST1_271d } } & B01_streg_t159 )
+		| ( { 9{ ST1_272d } } & B01_streg_t160 )
+		| ( { 9{ ST1_273d } } & B01_streg_t161 )
+		| ( { 9{ ST1_274d } } & B01_streg_t162 )
+		| ( { 9{ ST1_275d } } & B01_streg_t163 )
+		| ( { 9{ B01_streg_t_c1 } } & { 2'h2 , TR_51 } )
+		| ( { 9{ B01_streg_t_d } } & { 1'h0 , TR_46 } ) ) ;
 	end
 always @ ( posedge CLOCK )
 	if ( RESET )
 		B01_streg <= 9'h000 ;
 	else
-		B01_streg <= B01_streg_t ;	// line#=computer.cpp:308,329,342,363,461
-						// ,466,475,484,495
+		B01_streg <= B01_streg_t ;	// line#=computer.cpp:336,468,473,482,491
+						// ,502,690
 
 endmodule
 
 module computer_dat ( imem_arg_MEMB32W65536_RA1 ,imem_arg_MEMB32W65536_RD1 ,imem_arg_MEMB32W65536_RE1 ,
 	dmem_arg_MEMB32W65536_RA1 ,dmem_arg_MEMB32W65536_RD1 ,dmem_arg_MEMB32W65536_RE1 ,
 	dmem_arg_MEMB32W65536_WA2 ,dmem_arg_MEMB32W65536_WD2 ,dmem_arg_MEMB32W65536_WE2 ,
-	computer_ret ,CLOCK ,RESET ,TR_179 ,M_2875_port ,M_2872_port ,M_2871_port ,
-	M_2865_port ,M_2863_port ,M_2859_port ,M_2854_port ,M_2853_port ,M_2848_port ,
-	U_704_port ,U_683_port ,U_630_port ,U_576_port ,U_12_port ,ST1_492d ,ST1_491d ,
-	ST1_490d ,ST1_489d ,ST1_488d ,ST1_487d ,ST1_486d ,ST1_485d ,ST1_484d ,ST1_483d ,
-	ST1_482d ,ST1_481d ,ST1_480d ,ST1_479d ,ST1_478d ,ST1_477d ,ST1_476d ,ST1_475d ,
-	ST1_474d ,ST1_473d ,ST1_472d ,ST1_471d ,ST1_470d ,ST1_469d ,ST1_468d ,ST1_467d ,
-	ST1_466d ,ST1_465d ,ST1_464d ,ST1_463d ,ST1_462d ,ST1_461d ,ST1_460d ,ST1_459d ,
-	ST1_458d ,ST1_457d ,ST1_456d ,ST1_455d ,ST1_454d ,ST1_453d ,ST1_452d ,ST1_451d ,
-	ST1_450d ,ST1_449d ,ST1_448d ,ST1_447d ,ST1_446d ,ST1_445d ,ST1_444d ,ST1_443d ,
-	ST1_442d ,ST1_441d ,ST1_440d ,ST1_439d ,ST1_438d ,ST1_437d ,ST1_436d ,ST1_435d ,
-	ST1_434d ,ST1_433d ,ST1_432d ,ST1_431d ,ST1_430d ,ST1_429d ,ST1_428d ,ST1_427d ,
-	ST1_426d ,ST1_425d ,ST1_424d ,ST1_423d ,ST1_422d ,ST1_421d ,ST1_420d ,ST1_419d ,
-	ST1_418d ,ST1_417d ,ST1_416d ,ST1_415d ,ST1_414d ,ST1_413d ,ST1_412d ,ST1_411d ,
-	ST1_410d ,ST1_409d ,ST1_408d ,ST1_407d ,ST1_406d ,ST1_405d ,ST1_404d ,ST1_403d ,
-	ST1_402d ,ST1_401d ,ST1_400d ,ST1_399d ,ST1_398d ,ST1_397d ,ST1_396d ,ST1_395d ,
-	ST1_394d ,ST1_393d ,ST1_392d ,ST1_391d ,ST1_390d ,ST1_389d ,ST1_388d ,ST1_387d ,
-	ST1_386d ,ST1_385d ,ST1_384d ,ST1_383d ,ST1_382d ,ST1_381d ,ST1_380d ,ST1_379d ,
-	ST1_378d ,ST1_377d ,ST1_376d ,ST1_375d ,ST1_374d ,ST1_373d ,ST1_372d ,ST1_371d ,
-	ST1_370d ,ST1_369d ,ST1_368d ,ST1_367d ,ST1_366d ,ST1_365d ,ST1_364d ,ST1_363d ,
-	ST1_362d ,ST1_361d ,ST1_360d ,ST1_359d ,ST1_358d ,ST1_357d ,ST1_356d ,ST1_355d ,
-	ST1_354d ,ST1_353d ,ST1_352d ,ST1_351d ,ST1_350d ,ST1_349d ,ST1_348d ,ST1_347d ,
-	ST1_346d ,ST1_345d ,ST1_344d ,ST1_343d ,ST1_342d ,ST1_341d ,ST1_340d ,ST1_339d ,
-	ST1_338d ,ST1_337d ,ST1_336d ,ST1_335d ,ST1_334d ,ST1_333d ,ST1_332d ,ST1_331d ,
-	ST1_330d ,ST1_329d ,ST1_328d ,ST1_327d ,ST1_326d ,ST1_325d ,ST1_324d ,ST1_323d ,
-	ST1_322d ,ST1_321d ,ST1_320d ,ST1_319d ,ST1_318d ,ST1_317d ,ST1_316d ,ST1_315d ,
-	ST1_314d ,ST1_313d ,ST1_312d ,ST1_311d ,ST1_310d ,ST1_309d ,ST1_308d ,ST1_307d ,
-	ST1_306d ,ST1_305d ,ST1_304d ,ST1_303d ,ST1_302d ,ST1_301d ,ST1_300d ,ST1_299d ,
-	ST1_298d ,ST1_297d ,ST1_296d ,ST1_295d ,ST1_294d ,ST1_293d ,ST1_292d ,ST1_291d ,
-	ST1_290d ,ST1_289d ,ST1_288d ,ST1_287d ,ST1_286d ,ST1_285d ,ST1_284d ,ST1_283d ,
-	ST1_282d ,ST1_281d ,ST1_280d ,ST1_279d ,ST1_278d ,ST1_277d ,ST1_276d ,ST1_275d ,
-	ST1_274d ,ST1_273d ,ST1_272d ,ST1_271d ,ST1_270d ,ST1_269d ,ST1_268d ,ST1_267d ,
-	ST1_266d ,ST1_265d ,ST1_264d ,ST1_263d ,ST1_262d ,ST1_261d ,ST1_260d ,ST1_259d ,
-	ST1_258d ,ST1_257d ,ST1_256d ,ST1_255d ,ST1_254d ,ST1_253d ,ST1_252d ,ST1_251d ,
-	ST1_250d ,ST1_249d ,ST1_248d ,ST1_247d ,ST1_246d ,ST1_245d ,ST1_244d ,ST1_243d ,
-	ST1_242d ,ST1_241d ,ST1_240d ,ST1_239d ,ST1_238d ,ST1_237d ,ST1_236d ,ST1_235d ,
-	ST1_234d ,ST1_233d ,ST1_232d ,ST1_231d ,ST1_230d ,ST1_229d ,ST1_228d ,ST1_227d ,
-	ST1_226d ,ST1_225d ,ST1_224d ,ST1_223d ,ST1_222d ,ST1_221d ,ST1_220d ,ST1_219d ,
-	ST1_218d ,ST1_217d ,ST1_216d ,ST1_215d ,ST1_214d ,ST1_213d ,ST1_212d ,ST1_211d ,
-	ST1_210d ,ST1_209d ,ST1_208d ,ST1_207d ,ST1_206d ,ST1_205d ,ST1_204d ,ST1_203d ,
-	ST1_202d ,ST1_201d ,ST1_200d ,ST1_199d ,ST1_198d ,ST1_197d ,ST1_196d ,ST1_195d ,
-	ST1_194d ,ST1_193d ,ST1_192d ,ST1_191d ,ST1_190d ,ST1_189d ,ST1_188d ,ST1_187d ,
-	ST1_186d ,ST1_185d ,ST1_184d ,ST1_183d ,ST1_182d ,ST1_181d ,ST1_180d ,ST1_179d ,
-	ST1_178d ,ST1_177d ,ST1_176d ,ST1_175d ,ST1_174d ,ST1_173d ,ST1_172d ,ST1_171d ,
-	ST1_170d ,ST1_169d ,ST1_168d ,ST1_167d ,ST1_166d ,ST1_165d ,ST1_164d ,ST1_163d ,
-	ST1_162d ,ST1_161d ,ST1_160d ,ST1_159d ,ST1_158d ,ST1_157d ,ST1_156d ,ST1_155d ,
-	ST1_154d ,ST1_153d ,ST1_152d ,ST1_151d ,ST1_150d ,ST1_149d ,ST1_148d ,ST1_147d ,
-	ST1_146d ,ST1_145d ,ST1_144d ,ST1_143d ,ST1_142d ,ST1_141d ,ST1_140d ,ST1_139d ,
-	ST1_138d ,ST1_137d ,ST1_136d ,ST1_135d ,ST1_134d ,ST1_133d ,ST1_132d ,ST1_131d ,
-	ST1_130d ,ST1_129d ,ST1_128d ,ST1_127d ,ST1_126d ,ST1_125d ,ST1_124d ,ST1_123d ,
-	ST1_122d ,ST1_121d ,ST1_120d ,ST1_119d ,ST1_118d ,ST1_117d ,ST1_116d ,ST1_115d ,
-	ST1_114d ,ST1_113d ,ST1_112d ,ST1_111d ,ST1_110d ,ST1_109d ,ST1_108d ,ST1_107d ,
-	ST1_106d ,ST1_105d ,ST1_104d ,ST1_103d ,ST1_102d ,ST1_101d ,ST1_100d ,ST1_99d ,
-	ST1_98d ,ST1_97d ,ST1_96d ,ST1_95d ,ST1_94d ,ST1_93d ,ST1_92d ,ST1_91d ,
-	ST1_90d ,ST1_89d ,ST1_88d ,ST1_87d ,ST1_86d ,ST1_85d ,ST1_84d ,ST1_83d ,
-	ST1_82d ,ST1_81d ,ST1_80d ,ST1_79d ,ST1_78d ,ST1_77d ,ST1_76d ,ST1_75d ,
-	ST1_74d ,ST1_73d ,ST1_72d ,ST1_71d ,ST1_70d ,ST1_69d ,ST1_68d ,ST1_67d ,
-	ST1_66d ,ST1_65d ,ST1_64d ,ST1_63d ,ST1_62d ,ST1_61d ,ST1_60d ,ST1_59d ,
-	ST1_58d ,ST1_57d ,ST1_56d ,ST1_55d ,ST1_54d ,ST1_53d ,ST1_52d ,ST1_51d ,
-	ST1_50d ,ST1_49d ,ST1_48d ,ST1_47d ,ST1_46d ,ST1_45d ,ST1_44d ,ST1_43d ,
-	ST1_42d ,ST1_41d ,ST1_40d ,ST1_39d ,ST1_38d ,ST1_37d ,ST1_36d ,ST1_35d ,
-	ST1_34d ,ST1_33d ,ST1_32d ,ST1_31d ,ST1_30d ,ST1_29d ,ST1_28d ,ST1_27d ,
-	ST1_26d ,ST1_25d ,ST1_24d ,ST1_23d ,ST1_22d ,ST1_21d ,ST1_20d ,ST1_19d ,
-	ST1_18d ,ST1_17d ,ST1_16d ,ST1_15d ,ST1_14d ,ST1_13d ,ST1_12d ,ST1_11d ,
-	ST1_10d ,ST1_09d ,ST1_08d ,ST1_07d ,ST1_06d ,ST1_05d ,ST1_04d ,ST1_03d ,
-	ST1_02d ,ST1_01d ,JF_194 ,JF_193 ,JF_192 ,JF_191 ,JF_190 ,JF_189 ,JF_188 ,
-	JF_186 ,JF_185 ,JF_184 ,JF_183 ,JF_182 ,JF_181 ,JF_180 ,JF_178 ,JF_177 ,
-	JF_176 ,JF_175 ,JF_174 ,JF_173 ,JF_172 ,JF_170 ,JF_169 ,JF_168 ,JF_167 ,
-	JF_166 ,JF_165 ,JF_164 ,JF_162 ,JF_161 ,JF_160 ,JF_159 ,JF_158 ,JF_157 ,
-	JF_156 ,JF_154 ,JF_153 ,JF_152 ,JF_151 ,JF_150 ,JF_149 ,JF_148 ,JF_146 ,
-	JF_145 ,JF_144 ,JF_143 ,JF_142 ,JF_141 ,JF_140 ,JF_138 ,JF_137 ,JF_136 ,
-	JF_135 ,JF_134 ,JF_133 ,JF_132 ,JF_129 ,JF_128 ,JF_127 ,JF_126 ,JF_125 ,
-	JF_124 ,JF_123 ,JF_121 ,JF_120 ,JF_119 ,JF_118 ,JF_117 ,JF_116 ,JF_115 ,
-	JF_113 ,JF_112 ,JF_111 ,JF_110 ,JF_109 ,JF_108 ,JF_107 ,JF_105 ,JF_104 ,
-	JF_103 ,JF_102 ,JF_101 ,JF_100 ,JF_99 ,JF_97 ,JF_96 ,JF_95 ,JF_94 ,JF_93 ,
-	JF_92 ,JF_91 ,JF_89 ,JF_88 ,JF_87 ,JF_86 ,JF_85 ,JF_84 ,JF_83 ,JF_81 ,JF_80 ,
-	JF_79 ,JF_78 ,JF_77 ,JF_76 ,JF_75 ,JF_73 ,JF_72 ,JF_71 ,JF_70 ,JF_69 ,JF_68 ,
-	JF_67 ,JF_66 ,JF_49 ,JF_47 ,JF_42 ,JF_38 ,JF_36 ,JF_35 ,JF_34 ,JF_33 ,JF_32 ,
-	JF_28 ,CT_15_port ,JF_24 ,JF_18 ,JF_17 ,JF_16 ,JF_15 ,JF_14 ,JF_11 ,JF_10 ,
-	JF_09 ,JF_08 ,JF_07 ,JF_06 ,JF_03 ,JF_02 ,CT_01_port ,RG_k_port ,RG_08 ,
-	RG_buf_buf1_funct3_imm1_next_pc_port ,FF_take_port );
+	computer_ret ,CLOCK ,RESET ,TR_155 ,M_2785_port ,M_2783_port ,M_2782_port ,
+	M_2781_port ,M_2777_port ,M_2769_port ,M_2764_port ,M_2763_port ,M_2758_port ,
+	U_706_port ,U_633_port ,U_579_port ,U_12_port ,ST1_339d ,ST1_338d ,ST1_337d ,
+	ST1_336d ,ST1_335d ,ST1_334d ,ST1_333d ,ST1_332d ,ST1_331d ,ST1_330d ,ST1_329d ,
+	ST1_328d ,ST1_327d ,ST1_326d ,ST1_325d ,ST1_324d ,ST1_323d ,ST1_322d ,ST1_321d ,
+	ST1_320d ,ST1_319d ,ST1_318d ,ST1_317d ,ST1_316d ,ST1_315d ,ST1_314d ,ST1_313d ,
+	ST1_312d ,ST1_311d ,ST1_310d ,ST1_309d ,ST1_308d ,ST1_307d ,ST1_306d ,ST1_305d ,
+	ST1_304d ,ST1_303d ,ST1_302d ,ST1_301d ,ST1_300d ,ST1_299d ,ST1_298d ,ST1_297d ,
+	ST1_296d ,ST1_295d ,ST1_294d ,ST1_293d ,ST1_292d ,ST1_291d ,ST1_290d ,ST1_289d ,
+	ST1_288d ,ST1_287d ,ST1_286d ,ST1_285d ,ST1_284d ,ST1_283d ,ST1_282d ,ST1_281d ,
+	ST1_280d ,ST1_279d ,ST1_278d ,ST1_277d ,ST1_276d ,ST1_275d ,ST1_274d ,ST1_273d ,
+	ST1_272d ,ST1_271d ,ST1_270d ,ST1_269d ,ST1_268d ,ST1_267d ,ST1_266d ,ST1_265d ,
+	ST1_264d ,ST1_263d ,ST1_262d ,ST1_261d ,ST1_260d ,ST1_259d ,ST1_258d ,ST1_257d ,
+	ST1_256d ,ST1_255d ,ST1_254d ,ST1_253d ,ST1_252d ,ST1_251d ,ST1_250d ,ST1_249d ,
+	ST1_248d ,ST1_247d ,ST1_246d ,ST1_245d ,ST1_244d ,ST1_243d ,ST1_242d ,ST1_241d ,
+	ST1_240d ,ST1_239d ,ST1_238d ,ST1_237d ,ST1_236d ,ST1_235d ,ST1_234d ,ST1_233d ,
+	ST1_232d ,ST1_231d ,ST1_230d ,ST1_229d ,ST1_228d ,ST1_227d ,ST1_226d ,ST1_225d ,
+	ST1_224d ,ST1_223d ,ST1_222d ,ST1_221d ,ST1_220d ,ST1_219d ,ST1_218d ,ST1_217d ,
+	ST1_216d ,ST1_215d ,ST1_214d ,ST1_213d ,ST1_212d ,ST1_211d ,ST1_210d ,ST1_209d ,
+	ST1_208d ,ST1_207d ,ST1_206d ,ST1_205d ,ST1_204d ,ST1_203d ,ST1_202d ,ST1_201d ,
+	ST1_200d ,ST1_199d ,ST1_198d ,ST1_197d ,ST1_196d ,ST1_195d ,ST1_194d ,ST1_193d ,
+	ST1_192d ,ST1_191d ,ST1_190d ,ST1_189d ,ST1_188d ,ST1_187d ,ST1_186d ,ST1_185d ,
+	ST1_184d ,ST1_183d ,ST1_182d ,ST1_181d ,ST1_180d ,ST1_179d ,ST1_178d ,ST1_177d ,
+	ST1_176d ,ST1_175d ,ST1_174d ,ST1_173d ,ST1_172d ,ST1_171d ,ST1_170d ,ST1_169d ,
+	ST1_168d ,ST1_167d ,ST1_166d ,ST1_165d ,ST1_164d ,ST1_163d ,ST1_162d ,ST1_161d ,
+	ST1_160d ,ST1_159d ,ST1_158d ,ST1_157d ,ST1_156d ,ST1_155d ,ST1_154d ,ST1_153d ,
+	ST1_152d ,ST1_151d ,ST1_150d ,ST1_149d ,ST1_148d ,ST1_147d ,ST1_146d ,ST1_145d ,
+	ST1_144d ,ST1_143d ,ST1_142d ,ST1_141d ,ST1_140d ,ST1_139d ,ST1_138d ,ST1_137d ,
+	ST1_136d ,ST1_135d ,ST1_134d ,ST1_133d ,ST1_132d ,ST1_131d ,ST1_130d ,ST1_129d ,
+	ST1_128d ,ST1_127d ,ST1_126d ,ST1_125d ,ST1_124d ,ST1_123d ,ST1_122d ,ST1_121d ,
+	ST1_120d ,ST1_119d ,ST1_118d ,ST1_117d ,ST1_116d ,ST1_115d ,ST1_114d ,ST1_113d ,
+	ST1_112d ,ST1_111d ,ST1_110d ,ST1_109d ,ST1_108d ,ST1_107d ,ST1_106d ,ST1_105d ,
+	ST1_104d ,ST1_103d ,ST1_102d ,ST1_101d ,ST1_100d ,ST1_99d ,ST1_98d ,ST1_97d ,
+	ST1_96d ,ST1_95d ,ST1_94d ,ST1_93d ,ST1_92d ,ST1_91d ,ST1_90d ,ST1_89d ,
+	ST1_88d ,ST1_87d ,ST1_86d ,ST1_85d ,ST1_84d ,ST1_83d ,ST1_82d ,ST1_81d ,
+	ST1_80d ,ST1_79d ,ST1_78d ,ST1_77d ,ST1_76d ,ST1_75d ,ST1_74d ,ST1_73d ,
+	ST1_72d ,ST1_71d ,ST1_70d ,ST1_69d ,ST1_68d ,ST1_67d ,ST1_66d ,ST1_65d ,
+	ST1_64d ,ST1_63d ,ST1_62d ,ST1_61d ,ST1_60d ,ST1_59d ,ST1_58d ,ST1_57d ,
+	ST1_56d ,ST1_55d ,ST1_54d ,ST1_53d ,ST1_52d ,ST1_51d ,ST1_50d ,ST1_49d ,
+	ST1_48d ,ST1_47d ,ST1_46d ,ST1_45d ,ST1_44d ,ST1_43d ,ST1_42d ,ST1_41d ,
+	ST1_40d ,ST1_39d ,ST1_38d ,ST1_37d ,ST1_36d ,ST1_35d ,ST1_34d ,ST1_33d ,
+	ST1_32d ,ST1_31d ,ST1_30d ,ST1_29d ,ST1_28d ,ST1_27d ,ST1_26d ,ST1_25d ,
+	ST1_24d ,ST1_23d ,ST1_22d ,ST1_21d ,ST1_20d ,ST1_19d ,ST1_18d ,ST1_17d ,
+	ST1_16d ,ST1_15d ,ST1_14d ,ST1_13d ,ST1_12d ,ST1_11d ,ST1_10d ,ST1_09d ,
+	ST1_08d ,ST1_07d ,ST1_06d ,ST1_05d ,ST1_04d ,ST1_03d ,ST1_02d ,ST1_01d ,
+	JF_193 ,JF_192 ,JF_191 ,JF_190 ,JF_189 ,JF_188 ,JF_187 ,JF_186 ,JF_185 ,
+	JF_184 ,JF_183 ,JF_182 ,JF_181 ,JF_180 ,JF_179 ,JF_178 ,JF_177 ,JF_176 ,
+	JF_175 ,JF_174 ,JF_173 ,JF_172 ,JF_171 ,JF_170 ,JF_169 ,JF_168 ,JF_167 ,
+	JF_166 ,JF_165 ,JF_164 ,JF_163 ,JF_162 ,JF_161 ,JF_160 ,JF_159 ,JF_158 ,
+	JF_157 ,JF_156 ,JF_155 ,JF_154 ,JF_153 ,JF_152 ,JF_151 ,JF_150 ,JF_149 ,
+	JF_148 ,JF_147 ,JF_146 ,JF_145 ,JF_144 ,JF_143 ,JF_142 ,JF_141 ,JF_140 ,
+	JF_139 ,JF_138 ,JF_137 ,JF_136 ,JF_135 ,JF_134 ,JF_133 ,JF_132 ,JF_131 ,
+	JF_130 ,JF_127 ,JF_126 ,JF_125 ,JF_124 ,JF_123 ,JF_122 ,JF_121 ,JF_119 ,
+	JF_118 ,JF_117 ,JF_116 ,JF_115 ,JF_114 ,JF_113 ,JF_111 ,JF_110 ,JF_109 ,
+	JF_108 ,JF_107 ,JF_106 ,JF_105 ,JF_103 ,JF_102 ,JF_101 ,JF_100 ,JF_99 ,JF_98 ,
+	JF_97 ,JF_95 ,JF_94 ,JF_93 ,JF_92 ,JF_91 ,JF_90 ,JF_89 ,JF_87 ,JF_86 ,JF_85 ,
+	JF_84 ,JF_83 ,JF_82 ,JF_81 ,JF_79 ,JF_78 ,JF_77 ,JF_76 ,JF_75 ,JF_74 ,JF_73 ,
+	JF_71 ,JF_70 ,JF_69 ,JF_68 ,JF_67 ,JF_66 ,JF_65 ,JF_64 ,JF_62 ,JF_49 ,JF_47 ,
+	JF_41 ,JF_39 ,JF_37 ,JF_36 ,JF_35 ,JF_34 ,JF_33 ,JF_30 ,JF_28 ,JF_27 ,CT_15_port ,
+	JF_23 ,JF_17 ,JF_16 ,JF_15 ,JF_14 ,JF_13 ,JF_10 ,JF_09 ,JF_08 ,JF_07 ,JF_06 ,
+	JF_03 ,JF_02 ,CT_01_port ,RG_k_port ,RG_funct3_imm1_port ,FF_take_port );
 output	[15:0]	imem_arg_MEMB32W65536_RA1 ;
 input	[31:0]	imem_arg_MEMB32W65536_RD1 ;
 output		imem_arg_MEMB32W65536_RE1 ;
@@ -6334,177 +5166,23 @@ output		dmem_arg_MEMB32W65536_RE1 ;
 output	[15:0]	dmem_arg_MEMB32W65536_WA2 ;
 output	[31:0]	dmem_arg_MEMB32W65536_WD2 ;
 output		dmem_arg_MEMB32W65536_WE2 ;
-output		computer_ret ;	// line#=computer.cpp:431
+output		computer_ret ;	// line#=computer.cpp:438
 input		CLOCK ;
 input		RESET ;
-output		TR_179 ;
-output		M_2875_port ;
-output		M_2872_port ;
-output		M_2871_port ;
-output		M_2865_port ;
-output		M_2863_port ;
-output		M_2859_port ;
-output		M_2854_port ;
-output		M_2853_port ;
-output		M_2848_port ;
-output		U_704_port ;
-output		U_683_port ;
-output		U_630_port ;
-output		U_576_port ;
+output		TR_155 ;
+output		M_2785_port ;
+output		M_2783_port ;
+output		M_2782_port ;
+output		M_2781_port ;
+output		M_2777_port ;
+output		M_2769_port ;
+output		M_2764_port ;
+output		M_2763_port ;
+output		M_2758_port ;
+output		U_706_port ;
+output		U_633_port ;
+output		U_579_port ;
 output		U_12_port ;
-input		ST1_492d ;
-input		ST1_491d ;
-input		ST1_490d ;
-input		ST1_489d ;
-input		ST1_488d ;
-input		ST1_487d ;
-input		ST1_486d ;
-input		ST1_485d ;
-input		ST1_484d ;
-input		ST1_483d ;
-input		ST1_482d ;
-input		ST1_481d ;
-input		ST1_480d ;
-input		ST1_479d ;
-input		ST1_478d ;
-input		ST1_477d ;
-input		ST1_476d ;
-input		ST1_475d ;
-input		ST1_474d ;
-input		ST1_473d ;
-input		ST1_472d ;
-input		ST1_471d ;
-input		ST1_470d ;
-input		ST1_469d ;
-input		ST1_468d ;
-input		ST1_467d ;
-input		ST1_466d ;
-input		ST1_465d ;
-input		ST1_464d ;
-input		ST1_463d ;
-input		ST1_462d ;
-input		ST1_461d ;
-input		ST1_460d ;
-input		ST1_459d ;
-input		ST1_458d ;
-input		ST1_457d ;
-input		ST1_456d ;
-input		ST1_455d ;
-input		ST1_454d ;
-input		ST1_453d ;
-input		ST1_452d ;
-input		ST1_451d ;
-input		ST1_450d ;
-input		ST1_449d ;
-input		ST1_448d ;
-input		ST1_447d ;
-input		ST1_446d ;
-input		ST1_445d ;
-input		ST1_444d ;
-input		ST1_443d ;
-input		ST1_442d ;
-input		ST1_441d ;
-input		ST1_440d ;
-input		ST1_439d ;
-input		ST1_438d ;
-input		ST1_437d ;
-input		ST1_436d ;
-input		ST1_435d ;
-input		ST1_434d ;
-input		ST1_433d ;
-input		ST1_432d ;
-input		ST1_431d ;
-input		ST1_430d ;
-input		ST1_429d ;
-input		ST1_428d ;
-input		ST1_427d ;
-input		ST1_426d ;
-input		ST1_425d ;
-input		ST1_424d ;
-input		ST1_423d ;
-input		ST1_422d ;
-input		ST1_421d ;
-input		ST1_420d ;
-input		ST1_419d ;
-input		ST1_418d ;
-input		ST1_417d ;
-input		ST1_416d ;
-input		ST1_415d ;
-input		ST1_414d ;
-input		ST1_413d ;
-input		ST1_412d ;
-input		ST1_411d ;
-input		ST1_410d ;
-input		ST1_409d ;
-input		ST1_408d ;
-input		ST1_407d ;
-input		ST1_406d ;
-input		ST1_405d ;
-input		ST1_404d ;
-input		ST1_403d ;
-input		ST1_402d ;
-input		ST1_401d ;
-input		ST1_400d ;
-input		ST1_399d ;
-input		ST1_398d ;
-input		ST1_397d ;
-input		ST1_396d ;
-input		ST1_395d ;
-input		ST1_394d ;
-input		ST1_393d ;
-input		ST1_392d ;
-input		ST1_391d ;
-input		ST1_390d ;
-input		ST1_389d ;
-input		ST1_388d ;
-input		ST1_387d ;
-input		ST1_386d ;
-input		ST1_385d ;
-input		ST1_384d ;
-input		ST1_383d ;
-input		ST1_382d ;
-input		ST1_381d ;
-input		ST1_380d ;
-input		ST1_379d ;
-input		ST1_378d ;
-input		ST1_377d ;
-input		ST1_376d ;
-input		ST1_375d ;
-input		ST1_374d ;
-input		ST1_373d ;
-input		ST1_372d ;
-input		ST1_371d ;
-input		ST1_370d ;
-input		ST1_369d ;
-input		ST1_368d ;
-input		ST1_367d ;
-input		ST1_366d ;
-input		ST1_365d ;
-input		ST1_364d ;
-input		ST1_363d ;
-input		ST1_362d ;
-input		ST1_361d ;
-input		ST1_360d ;
-input		ST1_359d ;
-input		ST1_358d ;
-input		ST1_357d ;
-input		ST1_356d ;
-input		ST1_355d ;
-input		ST1_354d ;
-input		ST1_353d ;
-input		ST1_352d ;
-input		ST1_351d ;
-input		ST1_350d ;
-input		ST1_349d ;
-input		ST1_348d ;
-input		ST1_347d ;
-input		ST1_346d ;
-input		ST1_345d ;
-input		ST1_344d ;
-input		ST1_343d ;
-input		ST1_342d ;
-input		ST1_341d ;
-input		ST1_340d ;
 input		ST1_339d ;
 input		ST1_338d ;
 input		ST1_337d ;
@@ -6844,13 +5522,13 @@ input		ST1_04d ;
 input		ST1_03d ;
 input		ST1_02d ;
 input		ST1_01d ;
-output		JF_194 ;
 output		JF_193 ;
 output		JF_192 ;
 output		JF_191 ;
 output		JF_190 ;
 output		JF_189 ;
 output		JF_188 ;
+output		JF_187 ;
 output		JF_186 ;
 output		JF_185 ;
 output		JF_184 ;
@@ -6858,6 +5536,7 @@ output		JF_183 ;
 output		JF_182 ;
 output		JF_181 ;
 output		JF_180 ;
+output		JF_179 ;
 output		JF_178 ;
 output		JF_177 ;
 output		JF_176 ;
@@ -6865,6 +5544,7 @@ output		JF_175 ;
 output		JF_174 ;
 output		JF_173 ;
 output		JF_172 ;
+output		JF_171 ;
 output		JF_170 ;
 output		JF_169 ;
 output		JF_168 ;
@@ -6872,6 +5552,7 @@ output		JF_167 ;
 output		JF_166 ;
 output		JF_165 ;
 output		JF_164 ;
+output		JF_163 ;
 output		JF_162 ;
 output		JF_161 ;
 output		JF_160 ;
@@ -6879,6 +5560,7 @@ output		JF_159 ;
 output		JF_158 ;
 output		JF_157 ;
 output		JF_156 ;
+output		JF_155 ;
 output		JF_154 ;
 output		JF_153 ;
 output		JF_152 ;
@@ -6886,6 +5568,7 @@ output		JF_151 ;
 output		JF_150 ;
 output		JF_149 ;
 output		JF_148 ;
+output		JF_147 ;
 output		JF_146 ;
 output		JF_145 ;
 output		JF_144 ;
@@ -6893,6 +5576,7 @@ output		JF_143 ;
 output		JF_142 ;
 output		JF_141 ;
 output		JF_140 ;
+output		JF_139 ;
 output		JF_138 ;
 output		JF_137 ;
 output		JF_136 ;
@@ -6900,81 +5584,85 @@ output		JF_135 ;
 output		JF_134 ;
 output		JF_133 ;
 output		JF_132 ;
-output		JF_129 ;
-output		JF_128 ;
+output		JF_131 ;
+output		JF_130 ;
 output		JF_127 ;
 output		JF_126 ;
 output		JF_125 ;
 output		JF_124 ;
 output		JF_123 ;
+output		JF_122 ;
 output		JF_121 ;
-output		JF_120 ;
 output		JF_119 ;
 output		JF_118 ;
 output		JF_117 ;
 output		JF_116 ;
 output		JF_115 ;
+output		JF_114 ;
 output		JF_113 ;
-output		JF_112 ;
 output		JF_111 ;
 output		JF_110 ;
 output		JF_109 ;
 output		JF_108 ;
 output		JF_107 ;
+output		JF_106 ;
 output		JF_105 ;
-output		JF_104 ;
 output		JF_103 ;
 output		JF_102 ;
 output		JF_101 ;
 output		JF_100 ;
 output		JF_99 ;
+output		JF_98 ;
 output		JF_97 ;
-output		JF_96 ;
 output		JF_95 ;
 output		JF_94 ;
 output		JF_93 ;
 output		JF_92 ;
 output		JF_91 ;
+output		JF_90 ;
 output		JF_89 ;
-output		JF_88 ;
 output		JF_87 ;
 output		JF_86 ;
 output		JF_85 ;
 output		JF_84 ;
 output		JF_83 ;
+output		JF_82 ;
 output		JF_81 ;
-output		JF_80 ;
 output		JF_79 ;
 output		JF_78 ;
 output		JF_77 ;
 output		JF_76 ;
 output		JF_75 ;
+output		JF_74 ;
 output		JF_73 ;
-output		JF_72 ;
 output		JF_71 ;
 output		JF_70 ;
 output		JF_69 ;
 output		JF_68 ;
 output		JF_67 ;
 output		JF_66 ;
+output		JF_65 ;
+output		JF_64 ;
+output		JF_62 ;
 output		JF_49 ;
 output		JF_47 ;
-output		JF_42 ;
-output		JF_38 ;
+output		JF_41 ;
+output		JF_39 ;
+output		JF_37 ;
 output		JF_36 ;
 output		JF_35 ;
 output		JF_34 ;
 output		JF_33 ;
-output		JF_32 ;
+output		JF_30 ;
 output		JF_28 ;
+output		JF_27 ;
 output		CT_15_port ;
-output		JF_24 ;
-output		JF_18 ;
+output		JF_23 ;
 output		JF_17 ;
 output		JF_16 ;
 output		JF_15 ;
 output		JF_14 ;
-output		JF_11 ;
+output		JF_13 ;
 output		JF_10 ;
 output		JF_09 ;
 output		JF_08 ;
@@ -6983,388 +5671,353 @@ output		JF_06 ;
 output		JF_03 ;
 output		JF_02 ;
 output		CT_01_port ;
-output	[3:0]	RG_k_port ;	// line#=computer.cpp:300
-output		RG_08 ;
-output	[31:0]	RG_buf_buf1_funct3_imm1_next_pc_port ;	// line#=computer.cpp:317,351,452,458,584
-output		FF_take_port ;	// line#=computer.cpp:506
-wire		M_3064 ;
-wire		M_3063 ;
-wire		M_3062 ;
-wire		M_3055 ;
-wire		M_3053 ;
-wire		M_3052 ;
-wire		M_3051 ;
-wire		M_3049 ;
-wire		M_3047 ;
-wire		M_3043 ;
-wire		M_3041 ;
-wire		M_3040 ;
-wire		M_3038 ;
-wire		M_3035 ;
-wire		M_3032 ;
-wire		M_3030 ;
-wire		M_3029 ;
-wire		M_3028 ;
-wire		M_3027 ;
-wire		M_3026 ;
-wire		M_3025 ;
-wire		M_3024 ;
-wire		M_3023 ;
-wire		M_3022 ;
-wire		M_3021 ;
-wire		M_3020 ;
-wire		M_3019 ;
-wire		M_3018 ;
-wire		M_3017 ;
-wire		M_3016 ;
-wire		M_3015 ;
-wire		M_3014 ;
-wire		M_3013 ;
-wire		M_3012 ;
-wire		M_3011 ;
-wire		M_3010 ;
-wire		M_3009 ;
-wire		M_3008 ;
-wire		M_3007 ;
-wire		M_3006 ;
-wire		M_3005 ;
-wire		M_3004 ;
-wire		M_3003 ;
-wire		M_3002 ;
-wire		M_3001 ;
-wire		M_3000 ;
-wire		M_2999 ;
-wire		M_2998 ;
-wire		M_2997 ;
-wire		M_2996 ;
-wire		M_2995 ;
-wire		M_2994 ;
-wire		M_2993 ;
-wire		M_2992 ;
-wire		M_2991 ;
+output	[3:0]	RG_k_port ;	// line#=computer.cpp:307
+output	[31:0]	RG_funct3_imm1_port ;	// line#=computer.cpp:459,591
+output		FF_take_port ;	// line#=computer.cpp:513
 wire		M_2990 ;
-wire		M_2989 ;
-wire		M_2988 ;
-wire		M_2987 ;
-wire		M_2986 ;
-wire		M_2985 ;
-wire		M_2984 ;
-wire		M_2983 ;
-wire		M_2982 ;
-wire		M_2981 ;
-wire		M_2980 ;
-wire		M_2979 ;
-wire		M_2978 ;
-wire		M_2977 ;
+wire		TR_154 ;
 wire		M_2976 ;
 wire		M_2975 ;
 wire		M_2974 ;
 wire		M_2973 ;
 wire		M_2972 ;
 wire		M_2971 ;
-wire		M_2970 ;
 wire		M_2969 ;
-wire		M_2968 ;
-wire		M_2967 ;
-wire		M_2966 ;
-wire		M_2962 ;
-wire		M_2957 ;
+wire		M_2963 ;
+wire		M_2961 ;
+wire		M_2959 ;
+wire		M_2958 ;
 wire		M_2956 ;
-wire		M_2955 ;
 wire		M_2954 ;
 wire		M_2953 ;
-wire		M_2952 ;
-wire		M_2951 ;
-wire		M_2950 ;
 wire		M_2949 ;
-wire		M_2948 ;
 wire		M_2947 ;
-wire		M_2946 ;
 wire		M_2945 ;
 wire		M_2944 ;
-wire		M_2942 ;
-wire		M_2941 ;
+wire		M_2943 ;
 wire		M_2940 ;
-wire		M_2939 ;
-wire		M_2938 ;
 wire		M_2937 ;
-wire		M_2936 ;
 wire		M_2935 ;
 wire		M_2934 ;
-wire		M_2933 ;
 wire		M_2932 ;
 wire		M_2931 ;
 wire		M_2930 ;
 wire		M_2929 ;
-wire		M_2928 ;
-wire		M_2927 ;
-wire		M_2926 ;
 wire		M_2925 ;
 wire		M_2924 ;
 wire		M_2923 ;
 wire		M_2922 ;
-wire		M_2910 ;
-wire		M_2909 ;
-wire	[31:0]	M_2907 ;
-wire		M_2906 ;
+wire		M_2921 ;
+wire		M_2920 ;
+wire		M_2919 ;
+wire		M_2918 ;
+wire		M_2917 ;
+wire		M_2916 ;
+wire		M_2915 ;
+wire		M_2914 ;
+wire		M_2913 ;
+wire		M_2881 ;
+wire		M_2880 ;
 wire		M_2879 ;
-wire		M_2878 ;
 wire		M_2877 ;
 wire		M_2876 ;
+wire		M_2875 ;
 wire		M_2874 ;
 wire		M_2873 ;
+wire		M_2872 ;
+wire		M_2871 ;
 wire		M_2870 ;
-wire		M_2869 ;
 wire		M_2868 ;
 wire		M_2867 ;
 wire		M_2866 ;
+wire		M_2865 ;
 wire		M_2864 ;
+wire		M_2863 ;
 wire		M_2862 ;
 wire		M_2861 ;
 wire		M_2860 ;
+wire		M_2859 ;
 wire		M_2858 ;
 wire		M_2857 ;
+wire		M_2856 ;
 wire		M_2855 ;
+wire		M_2853 ;
+wire		M_2852 ;
 wire		M_2851 ;
+wire		M_2850 ;
 wire		M_2849 ;
+wire		M_2848 ;
 wire		M_2847 ;
+wire		M_2846 ;
+wire		M_2845 ;
+wire		M_2844 ;
+wire		M_2843 ;
+wire		M_2842 ;
+wire		M_2841 ;
+wire		M_2840 ;
+wire		M_2839 ;
 wire		M_2838 ;
 wire		M_2837 ;
+wire		M_2836 ;
 wire		M_2835 ;
+wire		M_2834 ;
 wire		M_2833 ;
 wire		M_2832 ;
-wire		M_2831 ;
+wire		M_2830 ;
 wire		M_2829 ;
-wire		M_2826 ;
-wire		M_2825 ;
-wire		M_2816 ;
-wire		M_2815 ;
-wire		U_1500 ;
-wire		U_1493 ;
-wire		U_1492 ;
-wire		U_1487 ;
+wire		M_2828 ;
+wire		M_2819 ;
+wire		M_2818 ;
+wire	[31:0]	M_2817 ;
+wire		M_2790 ;
+wire		M_2789 ;
+wire	[31:0]	M_2788 ;
+wire		M_2787 ;
+wire		M_2786 ;
+wire		M_2784 ;
+wire		M_2780 ;
+wire		M_2779 ;
+wire		M_2778 ;
+wire		M_2776 ;
+wire		M_2775 ;
+wire		M_2774 ;
+wire		M_2773 ;
+wire		M_2772 ;
+wire		M_2771 ;
+wire		M_2770 ;
+wire		M_2768 ;
+wire		M_2765 ;
+wire		M_2762 ;
+wire		M_2761 ;
+wire		M_2759 ;
+wire		M_2757 ;
+wire		M_2748 ;
+wire		M_2747 ;
+wire		M_2745 ;
+wire		M_2743 ;
+wire		M_2742 ;
+wire		M_2741 ;
+wire		M_2739 ;
+wire		M_2736 ;
+wire		M_2735 ;
+wire		M_2726 ;
+wire		M_2725 ;
 wire		U_1486 ;
-wire		U_1481 ;
+wire		U_1485 ;
 wire		U_1480 ;
-wire		U_1455 ;
-wire		U_1448 ;
-wire		U_1447 ;
+wire		U_1479 ;
+wire		U_1474 ;
+wire		U_1468 ;
+wire		U_1462 ;
+wire		U_1452 ;
 wire		U_1442 ;
 wire		U_1441 ;
 wire		U_1436 ;
 wire		U_1435 ;
-wire		U_1410 ;
-wire		U_1403 ;
-wire		U_1402 ;
+wire		U_1430 ;
+wire		U_1424 ;
+wire		U_1418 ;
+wire		U_1408 ;
+wire		U_1398 ;
 wire		U_1397 ;
-wire		U_1396 ;
+wire		U_1392 ;
 wire		U_1391 ;
-wire		U_1390 ;
-wire		U_1365 ;
-wire		U_1358 ;
-wire		U_1357 ;
-wire		U_1352 ;
-wire		U_1351 ;
-wire		U_1346 ;
-wire		U_1345 ;
+wire		U_1386 ;
+wire		U_1380 ;
+wire		U_1374 ;
+wire		U_1364 ;
+wire		U_1354 ;
+wire		U_1353 ;
+wire		U_1348 ;
+wire		U_1347 ;
+wire		U_1342 ;
+wire		U_1336 ;
+wire		U_1330 ;
 wire		U_1320 ;
-wire		U_1313 ;
-wire		U_1312 ;
-wire		U_1307 ;
-wire		U_1306 ;
-wire		U_1301 ;
-wire		U_1300 ;
-wire		U_1275 ;
-wire		U_1268 ;
-wire		U_1267 ;
-wire		U_1262 ;
-wire		U_1261 ;
-wire		U_1256 ;
-wire		U_1255 ;
-wire		U_1230 ;
-wire		U_1223 ;
+wire		U_1310 ;
+wire		U_1309 ;
+wire		U_1304 ;
+wire		U_1303 ;
+wire		U_1298 ;
+wire		U_1292 ;
+wire		U_1286 ;
+wire		U_1276 ;
+wire		U_1266 ;
+wire		U_1265 ;
+wire		U_1260 ;
+wire		U_1259 ;
+wire		U_1254 ;
+wire		U_1248 ;
+wire		U_1242 ;
+wire		U_1232 ;
 wire		U_1222 ;
-wire		U_1217 ;
+wire		U_1221 ;
 wire		U_1216 ;
-wire		U_1211 ;
+wire		U_1215 ;
 wire		U_1210 ;
-wire		U_1185 ;
+wire		U_1204 ;
+wire		U_1198 ;
+wire		U_1188 ;
+wire		U_1178 ;
+wire		U_1177 ;
 wire		U_1172 ;
 wire		U_1171 ;
 wire		U_1166 ;
-wire		U_1165 ;
 wire		U_1160 ;
-wire		U_1159 ;
-wire		U_1136 ;
+wire		U_1154 ;
+wire		U_1144 ;
+wire		U_1135 ;
 wire		U_1132 ;
 wire		U_1128 ;
-wire		U_1127 ;
-wire		U_1122 ;
-wire		U_1121 ;
-wire		U_1116 ;
-wire		U_1115 ;
-wire		U_1110 ;
-wire		U_1109 ;
-wire		U_1090 ;
-wire		U_1086 ;
-wire		U_1082 ;
-wire		U_1081 ;
-wire		U_1076 ;
-wire		U_1075 ;
-wire		U_1070 ;
-wire		U_1069 ;
-wire		U_1064 ;
-wire		U_1063 ;
-wire		U_1044 ;
-wire		U_1040 ;
-wire		U_1036 ;
+wire		U_1125 ;
+wire		U_1119 ;
+wire		U_1111 ;
+wire		U_1099 ;
+wire		U_1087 ;
+wire		U_1083 ;
+wire		U_1080 ;
+wire		U_1074 ;
+wire		U_1066 ;
+wire		U_1054 ;
+wire		U_1042 ;
+wire		U_1038 ;
 wire		U_1035 ;
-wire		U_1030 ;
 wire		U_1029 ;
-wire		U_1024 ;
-wire		U_1023 ;
-wire		U_1018 ;
-wire		U_1017 ;
-wire		U_998 ;
-wire		U_994 ;
+wire		U_1021 ;
+wire		U_1009 ;
+wire		U_997 ;
+wire		U_993 ;
 wire		U_990 ;
-wire		U_989 ;
 wire		U_984 ;
-wire		U_983 ;
-wire		U_978 ;
-wire		U_977 ;
-wire		U_972 ;
-wire		U_971 ;
+wire		U_976 ;
+wire		U_964 ;
 wire		U_952 ;
 wire		U_948 ;
-wire		U_944 ;
-wire		U_943 ;
-wire		U_938 ;
-wire		U_937 ;
-wire		U_932 ;
+wire		U_945 ;
+wire		U_939 ;
 wire		U_931 ;
-wire		U_926 ;
-wire		U_925 ;
-wire		U_906 ;
-wire		U_902 ;
-wire		U_898 ;
-wire		U_897 ;
-wire		U_892 ;
-wire		U_891 ;
+wire		U_919 ;
+wire		U_907 ;
+wire		U_903 ;
+wire		U_900 ;
+wire		U_894 ;
 wire		U_886 ;
-wire		U_885 ;
-wire		U_880 ;
-wire		U_879 ;
-wire		U_860 ;
-wire		U_856 ;
-wire		U_852 ;
-wire		U_851 ;
-wire		U_846 ;
-wire		U_845 ;
-wire		U_840 ;
-wire		U_839 ;
-wire		U_834 ;
-wire		U_833 ;
-wire		U_814 ;
+wire		U_874 ;
+wire		U_862 ;
+wire		U_858 ;
+wire		U_855 ;
+wire		U_849 ;
+wire		U_841 ;
+wire		U_829 ;
+wire		U_817 ;
+wire		U_813 ;
 wire		U_810 ;
-wire		U_776 ;
+wire		U_809 ;
+wire		U_804 ;
+wire		U_803 ;
+wire		U_796 ;
+wire		U_792 ;
+wire		U_784 ;
+wire		U_780 ;
+wire		U_775 ;
+wire		U_769 ;
 wire		U_766 ;
-wire		U_765 ;
-wire		U_762 ;
-wire		U_760 ;
+wire		U_764 ;
+wire		U_761 ;
+wire		U_759 ;
+wire		U_758 ;
 wire		U_755 ;
 wire		U_754 ;
-wire		U_751 ;
-wire		U_750 ;
+wire		U_753 ;
 wire		U_749 ;
 wire		U_748 ;
-wire		U_747 ;
-wire		U_746 ;
-wire		U_745 ;
-wire		U_744 ;
-wire		U_743 ;
-wire		U_742 ;
 wire		U_741 ;
-wire		U_737 ;
-wire		U_736 ;
+wire		U_740 ;
+wire		U_734 ;
 wire		U_730 ;
-wire		U_726 ;
-wire		U_725 ;
+wire		U_729 ;
+wire		U_720 ;
+wire		U_718 ;
+wire		U_717 ;
 wire		U_716 ;
 wire		U_715 ;
-wire		U_714 ;
-wire		U_713 ;
-wire		U_709 ;
+wire		U_711 ;
+wire		U_699 ;
+wire		U_698 ;
+wire		U_697 ;
+wire		U_696 ;
 wire		U_695 ;
-wire		U_694 ;
-wire		U_693 ;
 wire		U_692 ;
-wire		U_691 ;
-wire		U_688 ;
+wire		U_687 ;
+wire		U_677 ;
 wire		U_673 ;
-wire		U_669 ;
-wire		U_658 ;
-wire		U_656 ;
-wire		U_643 ;
-wire		U_632 ;
-wire		U_619 ;
-wire		U_617 ;
+wire		U_662 ;
+wire		U_660 ;
+wire		U_647 ;
+wire		U_638 ;
+wire		U_635 ;
+wire		U_622 ;
+wire		U_620 ;
+wire		U_607 ;
 wire		U_604 ;
-wire		U_601 ;
+wire		U_585 ;
 wire		U_582 ;
-wire		U_579 ;
+wire		U_569 ;
 wire		U_566 ;
-wire		U_563 ;
+wire		U_554 ;
 wire		U_551 ;
-wire		U_548 ;
+wire		U_539 ;
 wire		U_536 ;
-wire		U_533 ;
-wire		U_521 ;
-wire		U_506 ;
-wire		U_497 ;
-wire		U_491 ;
-wire		U_484 ;
-wire		U_474 ;
-wire		U_467 ;
-wire		U_459 ;
-wire		U_451 ;
-wire		U_442 ;
-wire		U_434 ;
-wire		U_427 ;
-wire		U_423 ;
-wire		U_412 ;
+wire		U_524 ;
+wire		U_509 ;
+wire		U_500 ;
+wire		U_494 ;
+wire		U_487 ;
+wire		U_477 ;
+wire		U_470 ;
+wire		U_462 ;
+wire		U_454 ;
+wire		U_445 ;
+wire		U_437 ;
+wire		U_430 ;
+wire		U_426 ;
+wire		U_415 ;
+wire		U_411 ;
+wire		U_402 ;
 wire		U_399 ;
-wire		U_396 ;
-wire		U_390 ;
-wire		U_381 ;
-wire		U_371 ;
-wire		U_364 ;
-wire		U_349 ;
-wire		U_300 ;
-wire		U_291 ;
-wire		U_288 ;
+wire		U_393 ;
+wire		U_384 ;
+wire		U_374 ;
+wire		U_342 ;
+wire		U_329 ;
+wire		U_315 ;
+wire		U_313 ;
+wire		U_312 ;
+wire		U_305 ;
+wire		U_302 ;
+wire		U_289 ;
 wire		U_286 ;
-wire		U_285 ;
-wire		U_283 ;
-wire		U_279 ;
-wire		U_275 ;
-wire		U_260 ;
-wire		U_245 ;
-wire		U_230 ;
-wire		U_211 ;
-wire		U_208 ;
-wire		U_196 ;
-wire		U_181 ;
+wire		U_281 ;
+wire		U_277 ;
+wire		U_273 ;
+wire		U_258 ;
+wire		U_243 ;
+wire		U_228 ;
+wire		U_209 ;
+wire		U_206 ;
+wire		U_194 ;
 wire		U_179 ;
-wire		U_168 ;
-wire		U_165 ;
+wire		U_177 ;
+wire		U_166 ;
 wire		U_163 ;
-wire		U_152 ;
-wire		U_149 ;
+wire		U_161 ;
+wire		U_150 ;
 wire		U_147 ;
-wire		U_124 ;
-wire		U_121 ;
-wire		U_109 ;
+wire		U_145 ;
+wire		U_122 ;
+wire		U_119 ;
+wire		U_107 ;
+wire		U_103 ;
 wire		U_93 ;
 wire		U_88 ;
 wire		U_84 ;
@@ -7379,6 +6032,8 @@ wire		U_11 ;
 wire		U_10 ;
 wire		U_09 ;
 wire		U_01 ;
+wire		blk_out1_we01 ;	// line#=computer.cpp:306
+wire	[63:0]	blk_out1_d01 ;	// line#=computer.cpp:306
 wire		regs_we04 ;	// line#=computer.cpp:19
 wire	[31:0]	regs_d04 ;	// line#=computer.cpp:19
 wire	[4:0]	regs_ad04 ;	// line#=computer.cpp:19
@@ -7388,8 +6043,7 @@ wire	[3:0]	comp32s_1_11ot ;
 wire	[2:0]	addsub8u_7_61i2 ;
 wire	[4:0]	addsub8u_7_61i1 ;
 wire	[5:0]	addsub8u_7_61ot ;
-wire	[4:0]	add8s_7_61i2 ;
-wire	[5:0]	add8s_7_61ot ;
+wire	[3:0]	C_q1i1 ;
 wire	[31:0]	comp32s_12i2 ;
 wire	[31:0]	comp32s_12i1 ;
 wire	[3:0]	comp32s_12ot ;
@@ -7413,26 +6067,32 @@ wire	[2:0]	addsub3s1i1 ;
 wire	[2:0]	addsub3s1ot ;
 wire	[2:0]	decr3s1i1 ;
 wire	[2:0]	decr3s1ot ;
+wire	[5:0]	incr8s_61i1 ;
 wire	[5:0]	incr8s_61ot ;
 wire	[3:0]	incr4s1i1 ;
 wire	[3:0]	incr4s1ot ;
 wire	[2:0]	incr3s1i1 ;
 wire	[2:0]	incr3s1ot ;
+wire	[2:0]	incr3u1i1 ;
 wire	[3:0]	incr3u1ot ;
 wire	[31:0]	rsft32s1ot ;
 wire	[31:0]	rsft32u1ot ;
 wire	[31:0]	lsft32u1ot ;
 wire	[31:0]	mul32s1ot ;
+wire	[19:0]	mul20s1i1 ;
+wire	[31:0]	mul20s1ot ;
 wire	[22:0]	sub28s_271i2 ;
 wire	[26:0]	sub28s_271i1 ;
 wire	[26:0]	sub28s_271ot ;
 wire	[21:0]	sub24s_231i1 ;
 wire	[22:0]	sub24s_231ot ;
 wire	[17:0]	sub20u_182i2 ;
-wire	[17:0]	sub20u_182i1 ;
 wire	[17:0]	sub20u_182ot ;
 wire	[17:0]	sub20u_181i2 ;
 wire	[17:0]	sub20u_181ot ;
+wire	[13:0]	sub16s_132i2 ;
+wire	[1:0]	sub16s_132i1 ;
+wire	[12:0]	sub16s_132ot ;
 wire	[13:0]	sub16s_131i2 ;
 wire	[1:0]	sub16s_131i1 ;
 wire	[12:0]	sub16s_131ot ;
@@ -7442,13 +6102,52 @@ wire	[6:0]	add8s_71i2 ;
 wire	[6:0]	add8s_71i1 ;
 wire	[6:0]	add8s_71ot ;
 wire		CT_02 ;
-wire		blk_out_RE1 ;
-wire		blk_out_WE2 ;
-wire		blk_in_RE1 ;
-wire		blk_in_WE2 ;
-wire	[31:0]	blk_out_RD1 ;
-wire	[31:0]	blk_in_RD1 ;
-wire		RG_dst_addr_en ;
+wire		RG_07_en ;
+wire		RG_11_en ;
+wire		RG_18_en ;
+wire		RG_19_en ;
+wire		RG_20_en ;
+wire		RG_21_en ;
+wire		RG_22_en ;
+wire		RG_24_en ;
+wire		RG_25_en ;
+wire		RG_27_en ;
+wire		RG_30_en ;
+wire		RG_31_en ;
+wire		RG_32_en ;
+wire		RG_33_en ;
+wire		RG_34_en ;
+wire		RG_35_en ;
+wire		RG_36_en ;
+wire		RG_37_en ;
+wire		RG_38_en ;
+wire		RG_39_en ;
+wire		RG_40_en ;
+wire		RG_41_en ;
+wire		RG_42_en ;
+wire		RG_43_en ;
+wire		RG_44_en ;
+wire		RG_45_en ;
+wire		RG_46_en ;
+wire		RG_47_en ;
+wire		RG_48_en ;
+wire		RG_49_en ;
+wire		RG_50_en ;
+wire		RG_51_en ;
+wire		RG_52_en ;
+wire		RG_53_en ;
+wire		RG_54_en ;
+wire		RG_57_en ;
+wire		RG_58_en ;
+wire		RG_59_en ;
+wire		RG_60_en ;
+wire		RG_61_en ;
+wire		RG_62_en ;
+wire		RG_63_en ;
+wire		RG_64_en ;
+wire		RG_65_en ;
+wire		RG_66_en ;
+wire		RG_67_en ;
 wire		computer_ret_r_en ;
 wire		regs_rg00_en ;
 wire		regs_rg01_en ;
@@ -7482,38 +6181,366 @@ wire		regs_rg28_en ;
 wire		regs_rg29_en ;
 wire		regs_rg30_en ;
 wire		regs_rg31_en ;
+wire		blk_in_rg00_en ;
+wire		blk_in_rg01_en ;
+wire		blk_in_rg02_en ;
+wire		blk_in_rg03_en ;
+wire		blk_in_rg04_en ;
+wire		blk_in_rg05_en ;
+wire		blk_in_rg06_en ;
+wire		blk_in_rg07_en ;
+wire		blk_in_rg08_en ;
+wire		blk_in_rg09_en ;
+wire		blk_in_rg10_en ;
+wire		blk_in_rg11_en ;
+wire		blk_in_rg12_en ;
+wire		blk_in_rg13_en ;
+wire		blk_in_rg14_en ;
+wire		blk_in_rg15_en ;
+wire		blk_in_rg16_en ;
+wire		blk_in_rg17_en ;
+wire		blk_in_rg18_en ;
+wire		blk_in_rg19_en ;
+wire		blk_in_rg20_en ;
+wire		blk_in_rg21_en ;
+wire		blk_in_rg22_en ;
+wire		blk_in_rg23_en ;
+wire		blk_in_rg24_en ;
+wire		blk_in_rg25_en ;
+wire		blk_in_rg26_en ;
+wire		blk_in_rg27_en ;
+wire		blk_in_rg28_en ;
+wire		blk_in_rg29_en ;
+wire		blk_in_rg30_en ;
+wire		blk_in_rg31_en ;
+wire		blk_in_rg32_en ;
+wire		blk_in_rg33_en ;
+wire		blk_in_rg34_en ;
+wire		blk_in_rg35_en ;
+wire		blk_in_rg36_en ;
+wire		blk_in_rg37_en ;
+wire		blk_in_rg38_en ;
+wire		blk_in_rg39_en ;
+wire		blk_in_rg40_en ;
+wire		blk_in_rg41_en ;
+wire		blk_in_rg42_en ;
+wire		blk_in_rg43_en ;
+wire		blk_in_rg44_en ;
+wire		blk_in_rg45_en ;
+wire		blk_in_rg46_en ;
+wire		blk_in_rg47_en ;
+wire		blk_in_rg48_en ;
+wire		blk_in_rg49_en ;
+wire		blk_in_rg50_en ;
+wire		blk_in_rg51_en ;
+wire		blk_in_rg52_en ;
+wire		blk_in_rg53_en ;
+wire		blk_in_rg54_en ;
+wire		blk_in_rg55_en ;
+wire		blk_in_rg56_en ;
+wire		blk_in_rg57_en ;
+wire		blk_in_rg58_en ;
+wire		blk_in_rg59_en ;
+wire		blk_in_rg60_en ;
+wire		blk_in_rg61_en ;
+wire		blk_in_rg62_en ;
+wire		blk_in_rg63_en ;
+wire		M_01 ;
+wire		M_02 ;
+wire		M_03 ;
+wire		M_04 ;
+wire		M_05 ;
+wire		M_06 ;
+wire		M_07 ;
+wire		M_08 ;
+wire		M_09 ;
+wire		M_10 ;
+wire		M_11 ;
+wire		M_12 ;
+wire		M_13 ;
+wire		M_14 ;
+wire		M_15 ;
+wire		M_16 ;
+wire		M_17 ;
+wire		M_18 ;
+wire		M_19 ;
+wire		M_20 ;
+wire		M_21 ;
+wire		M_22 ;
+wire		M_23 ;
+wire		M_24 ;
+wire		M_25 ;
+wire		M_26 ;
+wire		M_27 ;
+wire		M_28 ;
+wire		M_29 ;
+wire		M_30 ;
+wire		M_31 ;
+wire		M_32 ;
+wire		M_33 ;
+wire		M_34 ;
+wire		M_35 ;
+wire		M_36 ;
+wire		M_37 ;
+wire		M_38 ;
+wire		M_39 ;
+wire		M_40 ;
+wire		M_41 ;
+wire		M_42 ;
+wire		M_43 ;
+wire		M_44 ;
+wire		M_45 ;
+wire		M_46 ;
+wire		M_47 ;
+wire		M_48 ;
+wire		M_49 ;
+wire		M_50 ;
+wire		M_51 ;
+wire		M_52 ;
+wire		M_53 ;
+wire		M_54 ;
+wire		M_55 ;
+wire		M_56 ;
+wire		M_57 ;
+wire		M_58 ;
+wire		M_59 ;
+wire		M_60 ;
+wire		M_61 ;
+wire		M_62 ;
+wire		M_63 ;
+wire		M_64 ;
 wire		CT_01 ;
 wire		CT_15 ;
 wire		U_12 ;
-wire		U_576 ;
-wire		U_630 ;
-wire		U_683 ;
-wire		U_704 ;
-wire		M_2848 ;
-wire		M_2853 ;
-wire		M_2854 ;
-wire		M_2859 ;
-wire		M_2863 ;
-wire		M_2865 ;
-wire		M_2871 ;
-wire		M_2872 ;
-wire		M_2875 ;
-wire		RG_addr1_next_pc_op1_PC_src_addr_en ;
-wire		RG_buf_buf1_en ;
+wire		U_579 ;
+wire		U_633 ;
+wire		U_706 ;
+wire		M_2758 ;
+wire		M_2763 ;
+wire		M_2764 ;
+wire		M_2769 ;
+wire		M_2777 ;
+wire		M_2781 ;
+wire		M_2782 ;
+wire		M_2783 ;
+wire		M_2785 ;
+wire		blk_out1_rg00_en ;
+wire		blk_out1_rg01_en ;
+wire		blk_out1_rg02_en ;
+wire		blk_out1_rg03_en ;
+wire		blk_out1_rg04_en ;
+wire		blk_out1_rg05_en ;
+wire		blk_out1_rg06_en ;
+wire		blk_out1_rg07_en ;
+wire		blk_out1_rg08_en ;
+wire		blk_out1_rg09_en ;
+wire		blk_out1_rg10_en ;
+wire		blk_out1_rg11_en ;
+wire		blk_out1_rg12_en ;
+wire		blk_out1_rg13_en ;
+wire		blk_out1_rg14_en ;
+wire		blk_out1_rg15_en ;
+wire		blk_out1_rg16_en ;
+wire		blk_out1_rg17_en ;
+wire		blk_out1_rg18_en ;
+wire		blk_out1_rg19_en ;
+wire		blk_out1_rg20_en ;
+wire		blk_out1_rg21_en ;
+wire		blk_out1_rg22_en ;
+wire		blk_out1_rg23_en ;
+wire		blk_out1_rg24_en ;
+wire		blk_out1_rg25_en ;
+wire		blk_out1_rg26_en ;
+wire		blk_out1_rg27_en ;
+wire		blk_out1_rg28_en ;
+wire		blk_out1_rg29_en ;
+wire		blk_out1_rg30_en ;
+wire		blk_out1_rg31_en ;
+wire		blk_out1_rg32_en ;
+wire		blk_out1_rg33_en ;
+wire		blk_out1_rg34_en ;
+wire		blk_out1_rg35_en ;
+wire		blk_out1_rg36_en ;
+wire		blk_out1_rg37_en ;
+wire		blk_out1_rg38_en ;
+wire		blk_out1_rg39_en ;
+wire		blk_out1_rg40_en ;
+wire		blk_out1_rg41_en ;
+wire		blk_out1_rg42_en ;
+wire		blk_out1_rg43_en ;
+wire		blk_out1_rg44_en ;
+wire		blk_out1_rg45_en ;
+wire		blk_out1_rg46_en ;
+wire		blk_out1_rg47_en ;
+wire		blk_out1_rg48_en ;
+wire		blk_out1_rg49_en ;
+wire		blk_out1_rg50_en ;
+wire		blk_out1_rg51_en ;
+wire		blk_out1_rg52_en ;
+wire		blk_out1_rg53_en ;
+wire		blk_out1_rg54_en ;
+wire		blk_out1_rg55_en ;
+wire		blk_out1_rg56_en ;
+wire		blk_out1_rg57_en ;
+wire		blk_out1_rg58_en ;
+wire		blk_out1_rg59_en ;
+wire		blk_out1_rg60_en ;
+wire		blk_out1_rg61_en ;
+wire		blk_out1_rg62_en ;
+wire		blk_out1_rg63_en ;
+wire		RL_addr1_buf_buf1_next_pc_op1_PC_en ;
+wire		RG_buf_en ;
+wire		RG_buf_buf1_dst_addr_src_addr_en ;
+wire		RG_buf_buf1_src_addr_y_en ;
 wire		RG_k_en ;
-wire		RG_y_en ;
 wire		FF_halt_en ;
-wire		RL_addr_buf_instr_op2_result_en ;
-wire		RG_buf_buf1_1_en ;
-wire		RG_08_en ;
-wire		RG_rs1_rs2_en ;
-wire		RL_buf_buf1_coef_rs1_rs2_val1_en ;
-wire		RG_buf_buf1_2_en ;
-wire		RG_buf_buf1_funct3_imm1_next_pc_en ;
-wire		RG_buf_buf1_instr_rd_word_addr_en ;
+wire		RG_op2_result1_en ;
+wire		RG_rs1_rs2_y_en ;
+wire		RL_blk_out_buf_buf1_dst_addr_rs1_en ;
+wire		RG_funct3_imm1_en ;
+wire		RL_buf_buf1_instr_next_pc_rd_en ;
 wire		FF_take_en ;
-wire		RG_buf_buf1_coef_y_en ;
-wire		RG_buf1_coef_coef1_y_en ;
+wire		RG_result_result1_en ;
+wire		RG_result_result1_word_addr_en ;
+wire		RG_17_en ;
+wire		RG_instr_next_pc_PC_en ;
+wire		RG_dst_addr_en ;
+wire		RG_addr_next_pc_en ;
+wire		RG_29_en ;
+wire		RG_coef_en ;
+wire		RG_56_en ;
+wire		RG_buf1_en ;
+wire		RG_buf_buf1_en ;
+wire		RG_buf_buf1_val_en ;
+wire		RG_71_en ;
+reg	[19:0]	blk_out1_rg63 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg62 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg61 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg60 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg59 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg58 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg57 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg56 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg55 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg54 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg53 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg52 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg51 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg50 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg49 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg48 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg47 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg46 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg45 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg44 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg43 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg42 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg41 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg40 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg39 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg38 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg37 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg36 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg35 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg34 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg33 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg32 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg31 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg30 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg29 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg28 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg27 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg26 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg25 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg24 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg23 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg22 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg21 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg20 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg19 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg18 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg17 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg16 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg15 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg14 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg13 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg12 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg11 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg10 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg09 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg08 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg07 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg06 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg05 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg04 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg03 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg02 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg01 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg00 ;	// line#=computer.cpp:306
+reg	[31:0]	blk_in_rg63 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg62 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg61 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg60 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg59 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg58 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg57 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg56 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg55 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg54 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg53 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg52 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg51 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg50 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg49 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg48 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg47 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg46 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg45 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg44 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg43 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg42 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg41 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg40 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg39 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg38 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg37 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg36 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg35 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg34 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg33 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg32 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg31 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg30 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg29 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg28 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg27 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg26 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg25 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg24 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg23 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg22 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg21 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg20 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg19 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg18 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg17 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg16 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg15 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg14 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg13 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg12 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg11 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg10 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg09 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg08 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg07 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg06 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg05 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg04 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg03 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg02 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg01 ;	// line#=computer.cpp:305
+reg	[31:0]	blk_in_rg00 ;	// line#=computer.cpp:305
 reg	[31:0]	regs_rg31 ;	// line#=computer.cpp:19
 reg	[31:0]	regs_rg30 ;	// line#=computer.cpp:19
 reg	[31:0]	regs_rg29 ;	// line#=computer.cpp:19
@@ -7546,113 +6573,350 @@ reg	[31:0]	regs_rg03 ;	// line#=computer.cpp:19
 reg	[31:0]	regs_rg02 ;	// line#=computer.cpp:19
 reg	[31:0]	regs_rg01 ;	// line#=computer.cpp:19
 reg	[31:0]	regs_rg00 ;	// line#=computer.cpp:19
-reg	[31:0]	RG_addr1_next_pc_op1_PC_src_addr ;	// line#=computer.cpp:20,292,458,564,628
-reg	[19:0]	RG_buf_buf1 ;	// line#=computer.cpp:317,351
-reg	[17:0]	RG_dst_addr ;	// line#=computer.cpp:293
-reg	[3:0]	RG_k ;	// line#=computer.cpp:300
-reg	[5:0]	RG_y ;	// line#=computer.cpp:300
-reg	FF_halt ;	// line#=computer.cpp:438
-reg	[31:0]	RL_addr_buf_instr_op2_result ;	// line#=computer.cpp:317,536,537,586,629
-						// ,630
-reg	[31:0]	RG_buf_buf1_1 ;	// line#=computer.cpp:317,351
-reg	RG_08 ;
-reg	[5:0]	RG_rs1_rs2 ;	// line#=computer.cpp:453,454
-reg	[19:0]	RL_buf_buf1_coef_rs1_rs2_val1 ;	// line#=computer.cpp:140,317,331,351,453
-						// ,454
-reg	[31:0]	RG_buf_buf1_2 ;	// line#=computer.cpp:317,351
-reg	[31:0]	RG_buf_buf1_funct3_imm1_next_pc ;	// line#=computer.cpp:317,351,452,458,584
-reg	[24:0]	RG_buf_buf1_instr_rd_word_addr ;	// line#=computer.cpp:189,208,317,351,451
-reg	FF_take ;	// line#=computer.cpp:506
-reg	[19:0]	RG_buf_buf1_coef_y ;	// line#=computer.cpp:300,317,331,351
-reg	[19:0]	RG_buf1_coef_coef1_y ;	// line#=computer.cpp:300,331,351,365
-reg	[13:0]	RG_coef1 ;	// line#=computer.cpp:365
-reg	computer_ret_r ;	// line#=computer.cpp:431
+reg	[31:0]	RL_addr1_buf_buf1_next_pc_op1_PC ;	// line#=computer.cpp:20,299,324,358,465
+							// ,571,635
+reg	[31:0]	RG_buf ;	// line#=computer.cpp:324
+reg	[31:0]	RG_buf_buf1_dst_addr_src_addr ;	// line#=computer.cpp:299,300,324,358
+reg	[31:0]	RG_buf_buf1_src_addr_y ;	// line#=computer.cpp:299,307,324,358
+reg	[3:0]	RG_k ;	// line#=computer.cpp:307
+reg	FF_halt ;	// line#=computer.cpp:445
+reg	[31:0]	RG_op2_result1 ;	// line#=computer.cpp:636,637
+reg	[31:0]	RG_07 ;
+reg	[4:0]	RG_rs1_rs2_y ;	// line#=computer.cpp:307,460,461
+reg	[19:0]	RL_blk_out_buf_buf1_dst_addr_rs1 ;	// line#=computer.cpp:300,306,324,358,460
+							// ,461
+reg	[31:0]	RG_11 ;
+reg	[31:0]	RG_funct3_imm1 ;	// line#=computer.cpp:459,591
+reg	[31:0]	RL_buf_buf1_instr_next_pc_rd ;	// line#=computer.cpp:189,208,299,324,358
+						// ,458,465
+reg	FF_take ;	// line#=computer.cpp:513
+reg	[31:0]	RG_result_result1 ;	// line#=computer.cpp:593,637
+reg	[31:0]	RG_result_result1_word_addr ;	// line#=computer.cpp:140,593,637
+reg	[31:0]	RG_17 ;
+reg	[31:0]	RG_18 ;
+reg	[31:0]	RG_19 ;
+reg	[31:0]	RG_20 ;
+reg	[31:0]	RG_21 ;
+reg	[31:0]	RG_22 ;
+reg	[31:0]	RG_instr_next_pc_PC ;	// line#=computer.cpp:20,465
+reg	[31:0]	RG_24 ;
+reg	[31:0]	RG_25 ;
+reg	[31:0]	RG_dst_addr ;	// line#=computer.cpp:300
+reg	[31:0]	RG_27 ;
+reg	[31:0]	RG_addr_next_pc ;	// line#=computer.cpp:465,543
+reg	[31:0]	RG_29 ;
+reg	[31:0]	RG_30 ;
+reg	[31:0]	RG_31 ;
+reg	[31:0]	RG_32 ;
+reg	[31:0]	RG_33 ;
+reg	[31:0]	RG_34 ;
+reg	[31:0]	RG_35 ;
+reg	[31:0]	RG_36 ;
+reg	[31:0]	RG_37 ;
+reg	[31:0]	RG_38 ;
+reg	[31:0]	RG_39 ;
+reg	[31:0]	RG_40 ;
+reg	[31:0]	RG_41 ;
+reg	[31:0]	RG_42 ;
+reg	[31:0]	RG_43 ;
+reg	[31:0]	RG_44 ;
+reg	[31:0]	RG_45 ;
+reg	[31:0]	RG_46 ;
+reg	[31:0]	RG_47 ;
+reg	[31:0]	RG_48 ;
+reg	[31:0]	RG_49 ;
+reg	[31:0]	RG_50 ;
+reg	[31:0]	RG_51 ;
+reg	[31:0]	RG_52 ;
+reg	[31:0]	RG_53 ;
+reg	[31:0]	RG_54 ;
+reg	[15:0]	RG_coef ;	// line#=computer.cpp:338
+reg	[31:0]	RG_56 ;
+reg	[31:0]	RG_57 ;
+reg	[31:0]	RG_58 ;
+reg	[31:0]	RG_59 ;
+reg	[31:0]	RG_60 ;
+reg	[31:0]	RG_61 ;
+reg	[31:0]	RG_62 ;
+reg	[31:0]	RG_63 ;
+reg	[31:0]	RG_64 ;
+reg	[31:0]	RG_65 ;
+reg	[31:0]	RG_66 ;
+reg	[31:0]	RG_67 ;
+reg	[31:0]	RG_buf1 ;	// line#=computer.cpp:358
+reg	[31:0]	RG_buf_buf1 ;	// line#=computer.cpp:324,358
+reg	[31:0]	RG_buf_buf1_val ;	// line#=computer.cpp:324,358,544
+reg	[2:0]	RG_71 ;
+reg	computer_ret_r ;	// line#=computer.cpp:438
 reg	[13:0]	C_q1ot ;
+reg	[13:0]	C_q2ot ;
+reg	[13:0]	C_q3ot ;
 reg	[31:0]	regs_rd00 ;	// line#=computer.cpp:19
 reg	[31:0]	regs_rd01 ;	// line#=computer.cpp:19
 reg	[31:0]	regs_rd02 ;	// line#=computer.cpp:19
 reg	[31:0]	regs_rd03 ;	// line#=computer.cpp:19
+reg	[31:0]	blk_in_rd00 ;	// line#=computer.cpp:305
+reg	[19:0]	blk_out1_rd00 ;	// line#=computer.cpp:306
+reg	[19:0]	blk_out1_rg00_t ;
+reg	blk_out1_rg00_t_c1 ;
+reg	blk_out1_rg00_t_c2 ;
+reg	[19:0]	blk_out1_rg01_t ;
+reg	blk_out1_rg01_t_c1 ;
+reg	blk_out1_rg01_t_c2 ;
+reg	[19:0]	blk_out1_rg02_t ;
+reg	blk_out1_rg02_t_c1 ;
+reg	blk_out1_rg02_t_c2 ;
+reg	[19:0]	blk_out1_rg03_t ;
+reg	blk_out1_rg03_t_c1 ;
+reg	blk_out1_rg03_t_c2 ;
+reg	[19:0]	blk_out1_rg04_t ;
+reg	blk_out1_rg04_t_c1 ;
+reg	blk_out1_rg04_t_c2 ;
+reg	[19:0]	blk_out1_rg05_t ;
+reg	blk_out1_rg05_t_c1 ;
+reg	blk_out1_rg05_t_c2 ;
+reg	[19:0]	blk_out1_rg06_t ;
+reg	blk_out1_rg06_t_c1 ;
+reg	blk_out1_rg06_t_c2 ;
+reg	[19:0]	blk_out1_rg07_t ;
+reg	blk_out1_rg07_t_c1 ;
+reg	blk_out1_rg07_t_c2 ;
+reg	[19:0]	blk_out1_rg08_t ;
+reg	blk_out1_rg08_t_c1 ;
+reg	blk_out1_rg08_t_c2 ;
+reg	[19:0]	blk_out1_rg09_t ;
+reg	blk_out1_rg09_t_c1 ;
+reg	blk_out1_rg09_t_c2 ;
+reg	[19:0]	blk_out1_rg10_t ;
+reg	blk_out1_rg10_t_c1 ;
+reg	blk_out1_rg10_t_c2 ;
+reg	[19:0]	blk_out1_rg11_t ;
+reg	blk_out1_rg11_t_c1 ;
+reg	blk_out1_rg11_t_c2 ;
+reg	[19:0]	blk_out1_rg12_t ;
+reg	blk_out1_rg12_t_c1 ;
+reg	blk_out1_rg12_t_c2 ;
+reg	[19:0]	blk_out1_rg13_t ;
+reg	blk_out1_rg13_t_c1 ;
+reg	blk_out1_rg13_t_c2 ;
+reg	[19:0]	blk_out1_rg14_t ;
+reg	blk_out1_rg14_t_c1 ;
+reg	blk_out1_rg14_t_c2 ;
+reg	[19:0]	blk_out1_rg15_t ;
+reg	blk_out1_rg15_t_c1 ;
+reg	blk_out1_rg15_t_c2 ;
+reg	[19:0]	blk_out1_rg16_t ;
+reg	blk_out1_rg16_t_c1 ;
+reg	blk_out1_rg16_t_c2 ;
+reg	[19:0]	blk_out1_rg17_t ;
+reg	blk_out1_rg17_t_c1 ;
+reg	blk_out1_rg17_t_c2 ;
+reg	[19:0]	blk_out1_rg18_t ;
+reg	blk_out1_rg18_t_c1 ;
+reg	blk_out1_rg18_t_c2 ;
+reg	[19:0]	blk_out1_rg19_t ;
+reg	blk_out1_rg19_t_c1 ;
+reg	blk_out1_rg19_t_c2 ;
+reg	[19:0]	blk_out1_rg20_t ;
+reg	blk_out1_rg20_t_c1 ;
+reg	blk_out1_rg20_t_c2 ;
+reg	[19:0]	blk_out1_rg21_t ;
+reg	blk_out1_rg21_t_c1 ;
+reg	blk_out1_rg21_t_c2 ;
+reg	[19:0]	blk_out1_rg22_t ;
+reg	blk_out1_rg22_t_c1 ;
+reg	blk_out1_rg22_t_c2 ;
+reg	[19:0]	blk_out1_rg23_t ;
+reg	blk_out1_rg23_t_c1 ;
+reg	blk_out1_rg23_t_c2 ;
+reg	[19:0]	blk_out1_rg24_t ;
+reg	blk_out1_rg24_t_c1 ;
+reg	blk_out1_rg24_t_c2 ;
+reg	[19:0]	blk_out1_rg25_t ;
+reg	blk_out1_rg25_t_c1 ;
+reg	blk_out1_rg25_t_c2 ;
+reg	[19:0]	blk_out1_rg26_t ;
+reg	blk_out1_rg26_t_c1 ;
+reg	blk_out1_rg26_t_c2 ;
+reg	[19:0]	blk_out1_rg27_t ;
+reg	blk_out1_rg27_t_c1 ;
+reg	blk_out1_rg27_t_c2 ;
+reg	[19:0]	blk_out1_rg28_t ;
+reg	blk_out1_rg28_t_c1 ;
+reg	blk_out1_rg28_t_c2 ;
+reg	[19:0]	blk_out1_rg29_t ;
+reg	blk_out1_rg29_t_c1 ;
+reg	blk_out1_rg29_t_c2 ;
+reg	[19:0]	blk_out1_rg30_t ;
+reg	blk_out1_rg30_t_c1 ;
+reg	blk_out1_rg30_t_c2 ;
+reg	[19:0]	blk_out1_rg31_t ;
+reg	blk_out1_rg31_t_c1 ;
+reg	blk_out1_rg31_t_c2 ;
+reg	[19:0]	blk_out1_rg32_t ;
+reg	blk_out1_rg32_t_c1 ;
+reg	blk_out1_rg32_t_c2 ;
+reg	[19:0]	blk_out1_rg33_t ;
+reg	blk_out1_rg33_t_c1 ;
+reg	blk_out1_rg33_t_c2 ;
+reg	[19:0]	blk_out1_rg34_t ;
+reg	blk_out1_rg34_t_c1 ;
+reg	blk_out1_rg34_t_c2 ;
+reg	[19:0]	blk_out1_rg35_t ;
+reg	blk_out1_rg35_t_c1 ;
+reg	blk_out1_rg35_t_c2 ;
+reg	[19:0]	blk_out1_rg36_t ;
+reg	blk_out1_rg36_t_c1 ;
+reg	blk_out1_rg36_t_c2 ;
+reg	[19:0]	blk_out1_rg37_t ;
+reg	blk_out1_rg37_t_c1 ;
+reg	blk_out1_rg37_t_c2 ;
+reg	[19:0]	blk_out1_rg38_t ;
+reg	blk_out1_rg38_t_c1 ;
+reg	blk_out1_rg38_t_c2 ;
+reg	[19:0]	blk_out1_rg39_t ;
+reg	blk_out1_rg39_t_c1 ;
+reg	blk_out1_rg39_t_c2 ;
+reg	[19:0]	blk_out1_rg40_t ;
+reg	blk_out1_rg40_t_c1 ;
+reg	blk_out1_rg40_t_c2 ;
+reg	[19:0]	blk_out1_rg41_t ;
+reg	blk_out1_rg41_t_c1 ;
+reg	blk_out1_rg41_t_c2 ;
+reg	[19:0]	blk_out1_rg42_t ;
+reg	blk_out1_rg42_t_c1 ;
+reg	blk_out1_rg42_t_c2 ;
+reg	[19:0]	blk_out1_rg43_t ;
+reg	blk_out1_rg43_t_c1 ;
+reg	blk_out1_rg43_t_c2 ;
+reg	[19:0]	blk_out1_rg44_t ;
+reg	blk_out1_rg44_t_c1 ;
+reg	blk_out1_rg44_t_c2 ;
+reg	[19:0]	blk_out1_rg45_t ;
+reg	blk_out1_rg45_t_c1 ;
+reg	blk_out1_rg45_t_c2 ;
+reg	[19:0]	blk_out1_rg46_t ;
+reg	blk_out1_rg46_t_c1 ;
+reg	blk_out1_rg46_t_c2 ;
+reg	[19:0]	blk_out1_rg47_t ;
+reg	blk_out1_rg47_t_c1 ;
+reg	blk_out1_rg47_t_c2 ;
+reg	[19:0]	blk_out1_rg48_t ;
+reg	blk_out1_rg48_t_c1 ;
+reg	blk_out1_rg48_t_c2 ;
+reg	[19:0]	blk_out1_rg49_t ;
+reg	blk_out1_rg49_t_c1 ;
+reg	blk_out1_rg49_t_c2 ;
+reg	[19:0]	blk_out1_rg50_t ;
+reg	blk_out1_rg50_t_c1 ;
+reg	blk_out1_rg50_t_c2 ;
+reg	[19:0]	blk_out1_rg51_t ;
+reg	blk_out1_rg51_t_c1 ;
+reg	blk_out1_rg51_t_c2 ;
+reg	[19:0]	blk_out1_rg52_t ;
+reg	blk_out1_rg52_t_c1 ;
+reg	blk_out1_rg52_t_c2 ;
+reg	[19:0]	blk_out1_rg53_t ;
+reg	blk_out1_rg53_t_c1 ;
+reg	blk_out1_rg53_t_c2 ;
+reg	[19:0]	blk_out1_rg54_t ;
+reg	blk_out1_rg54_t_c1 ;
+reg	blk_out1_rg54_t_c2 ;
+reg	[19:0]	blk_out1_rg55_t ;
+reg	blk_out1_rg55_t_c1 ;
+reg	blk_out1_rg55_t_c2 ;
+reg	[19:0]	blk_out1_rg56_t ;
+reg	blk_out1_rg56_t_c1 ;
+reg	blk_out1_rg56_t_c2 ;
+reg	[19:0]	blk_out1_rg57_t ;
+reg	blk_out1_rg57_t_c1 ;
+reg	blk_out1_rg57_t_c2 ;
+reg	[19:0]	blk_out1_rg58_t ;
+reg	blk_out1_rg58_t_c1 ;
+reg	blk_out1_rg58_t_c2 ;
+reg	[19:0]	blk_out1_rg59_t ;
+reg	blk_out1_rg59_t_c1 ;
+reg	blk_out1_rg59_t_c2 ;
+reg	[19:0]	blk_out1_rg60_t ;
+reg	blk_out1_rg60_t_c1 ;
+reg	blk_out1_rg60_t_c2 ;
+reg	[19:0]	blk_out1_rg61_t ;
+reg	blk_out1_rg61_t_c1 ;
+reg	blk_out1_rg61_t_c2 ;
+reg	[19:0]	blk_out1_rg62_t ;
+reg	blk_out1_rg62_t_c1 ;
+reg	blk_out1_rg62_t_c2 ;
+reg	[19:0]	blk_out1_rg63_t ;
+reg	blk_out1_rg63_t_c1 ;
+reg	blk_out1_rg63_t_c2 ;
 reg	take_t1 ;
-reg	TR_180 ;
+reg	TR_156 ;
 reg	[31:0]	val2_t4 ;
+reg	[13:0]	TR_157 ;
+reg	[13:0]	TR_159 ;
+reg	[13:0]	TR_163 ;
+reg	[13:0]	TR_164 ;
+reg	[13:0]	TR_165 ;
+reg	[13:0]	TR_166 ;
+reg	[13:0]	TR_167 ;
+reg	[13:0]	TR_168 ;
+reg	[2:0]	TR_52 ;
 reg	[17:0]	TR_01 ;
-reg	[31:0]	RG_addr1_next_pc_op1_PC_src_addr_t ;
-reg	RG_addr1_next_pc_op1_PC_src_addr_t_c1 ;
-reg	RG_addr1_next_pc_op1_PC_src_addr_t_c2 ;
-reg	RG_addr1_next_pc_op1_PC_src_addr_t_c3 ;
-reg	RG_addr1_next_pc_op1_PC_src_addr_t_c4 ;
-reg	RG_addr1_next_pc_op1_PC_src_addr_t_c5 ;
-reg	RG_addr1_next_pc_op1_PC_src_addr_t_c6 ;
+reg	TR_01_c1 ;
+reg	[31:0]	RL_addr1_buf_buf1_next_pc_op1_PC_t ;
+reg	RL_addr1_buf_buf1_next_pc_op1_PC_t_c1 ;
+reg	RL_addr1_buf_buf1_next_pc_op1_PC_t_c2 ;
+reg	RL_addr1_buf_buf1_next_pc_op1_PC_t_c3 ;
+reg	RL_addr1_buf_buf1_next_pc_op1_PC_t_c4 ;
+reg	RL_addr1_buf_buf1_next_pc_op1_PC_t_c5 ;
+reg	RL_addr1_buf_buf1_next_pc_op1_PC_t_c6 ;
+reg	RL_addr1_buf_buf1_next_pc_op1_PC_t_c7 ;
 reg	[15:0]	TR_02 ;
-reg	[19:0]	RG_buf_buf1_t ;
-reg	RG_buf_buf1_t_c1 ;
-reg	RG_buf_buf1_t_c2 ;
-reg	RG_buf_buf1_t_c3 ;
-reg	RG_buf_buf1_t_c4 ;
+reg	[31:0]	RG_buf_t ;
+reg	RG_buf_t_c1 ;
+reg	[13:0]	TR_03 ;
+reg	[13:0]	TR_04 ;
+reg	[31:0]	RG_buf_buf1_dst_addr_src_addr_t ;
+reg	RG_buf_buf1_dst_addr_src_addr_t_c1 ;
+reg	RG_buf_buf1_dst_addr_src_addr_t_c2 ;
+reg	[13:0]	TR_05 ;
+reg	[3:0]	TR_06 ;
+reg	[31:0]	RG_buf_buf1_src_addr_y_t ;
+reg	RG_buf_buf1_src_addr_y_t_c1 ;
+reg	RG_buf_buf1_src_addr_y_t_c2 ;
 reg	[3:0]	RG_k_t ;
 reg	RG_k_t_c1 ;
-reg	[2:0]	TR_50 ;
-reg	[3:0]	TR_04 ;
-reg	TR_04_c1 ;
-reg	[5:0]	RG_y_t ;
-reg	RG_y_t_c1 ;
 reg	FF_halt_t ;
 reg	FF_halt_t_c1 ;
-reg	[15:0]	TR_52 ;
-reg	[24:0]	TR_05 ;
-reg	TR_05_c1 ;
-reg	[31:0]	RL_addr_buf_instr_op2_result_t ;
-reg	RL_addr_buf_instr_op2_result_t_c1 ;
-reg	RL_addr_buf_instr_op2_result_t_c2 ;
-reg	RL_addr_buf_instr_op2_result_t_c3 ;
-reg	RL_addr_buf_instr_op2_result_t_c4 ;
-reg	RL_addr_buf_instr_op2_result_t_c5 ;
-reg	RL_addr_buf_instr_op2_result_t_c6 ;
-reg	RL_addr_buf_instr_op2_result_t_c7 ;
-reg	RL_addr_buf_instr_op2_result_t_c8 ;
-reg	RL_addr_buf_instr_op2_result_t_c9 ;
-reg	RL_addr_buf_instr_op2_result_t_c10 ;
-reg	RL_addr_buf_instr_op2_result_t_c11 ;
-reg	RL_addr_buf_instr_op2_result_t_c12 ;
-reg	RL_addr_buf_instr_op2_result_t_c13 ;
-reg	RL_addr_buf_instr_op2_result_t_c14 ;
-reg	RL_addr_buf_instr_op2_result_t_c15 ;
-reg	[31:0]	RG_buf_buf1_1_t ;
-reg	RG_buf_buf1_1_t_c1 ;
-reg	RG_08_t ;
-reg	[4:0]	TR_06 ;
-reg	TR_53 ;
-reg	[2:0]	TR_07 ;
-reg	TR_07_c1 ;
-reg	[5:0]	RG_rs1_rs2_t ;
-reg	RG_rs1_rs2_t_c1 ;
-reg	RG_rs1_rs2_t_c2 ;
-reg	RG_rs1_rs2_t_c3 ;
-reg	[4:0]	TR_54 ;
-reg	[15:0]	TR_08 ;
-reg	TR_08_c1 ;
-reg	[19:0]	TR_181 ;
-reg	[19:0]	TR_182 ;
-reg	[19:0]	TR_183 ;
-reg	[19:0]	TR_184 ;
-reg	[19:0]	RL_buf_buf1_coef_rs1_rs2_val1_t ;
-reg	RL_buf_buf1_coef_rs1_rs2_val1_t_c1 ;
-reg	[31:0]	RG_buf_buf1_2_t ;
-reg	RG_buf_buf1_2_t_c1 ;
-reg	[2:0]	TR_55 ;
-reg	[30:0]	TR_09 ;
+reg	[31:0]	RG_op2_result1_t ;
+reg	RG_op2_result1_t_c1 ;
+reg	RG_op2_result1_t_c2 ;
+reg	[1:0]	TR_08 ;
+reg	[3:0]	TR_09 ;
 reg	TR_09_c1 ;
-reg	[31:0]	RG_buf_buf1_funct3_imm1_next_pc_t ;
-reg	RG_buf_buf1_funct3_imm1_next_pc_t_c1 ;
-reg	RG_buf_buf1_funct3_imm1_next_pc_t_c2 ;
-reg	RG_buf_buf1_funct3_imm1_next_pc_t_c3 ;
+reg	[4:0]	RG_rs1_rs2_y_t ;
+reg	RG_rs1_rs2_y_t_c1 ;
+reg	RG_rs1_rs2_y_t_c2 ;
+reg	RG_rs1_rs2_y_t_c3 ;
+reg	[4:0]	TR_54 ;
 reg	[15:0]	TR_10 ;
-reg	[19:0]	TR_11 ;
-reg	[24:0]	RG_buf_buf1_instr_rd_word_addr_t ;
-reg	RG_buf_buf1_instr_rd_word_addr_t_c1 ;
-reg	RG_buf_buf1_instr_rd_word_addr_t_c2 ;
-reg	RG_buf_buf1_instr_rd_word_addr_t_c3 ;
-reg	RG_buf_buf1_instr_rd_word_addr_t_c4 ;
+reg	TR_10_c1 ;
+reg	[17:0]	TR_11 ;
+reg	[19:0]	RL_blk_out_buf_buf1_dst_addr_rs1_t ;
+reg	RL_blk_out_buf_buf1_dst_addr_rs1_t_c1 ;
+reg	RL_blk_out_buf_buf1_dst_addr_rs1_t_c2 ;
+reg	[2:0]	TR_12 ;
+reg	[31:0]	RG_funct3_imm1_t ;
+reg	RG_funct3_imm1_t_c1 ;
+reg	[15:0]	TR_95 ;
+reg	[17:0]	TR_55 ;
+reg	TR_55_c1 ;
+reg	[24:0]	TR_13 ;
+reg	TR_13_c1 ;
+reg	[11:0]	TR_14 ;
+reg	[31:0]	RL_buf_buf1_instr_next_pc_rd_t ;
+reg	RL_buf_buf1_instr_next_pc_rd_t_c1 ;
+reg	RL_buf_buf1_instr_next_pc_rd_t_c2 ;
 reg	FF_take_t ;
 reg	FF_take_t_c1 ;
 reg	FF_take_t_c2 ;
@@ -7665,138 +6929,163 @@ reg	FF_take_t_c8 ;
 reg	FF_take_t_c9 ;
 reg	FF_take_t_c10 ;
 reg	FF_take_t_c11 ;
-reg	FF_take_t_c12 ;
-reg	[2:0]	TR_12 ;
-reg	[19:0]	TR_185 ;
-reg	[19:0]	RG_buf_buf1_coef_y_t ;
-reg	RG_buf_buf1_coef_y_t_c1 ;
-reg	[2:0]	TR_13 ;
-reg	[15:0]	TR_14 ;
-reg	[19:0]	TR_186 ;
-reg	[19:0]	RG_buf1_coef_coef1_y_t ;
-reg	RG_buf1_coef_coef1_y_t_c1 ;
-reg	RG_buf1_coef_coef1_y_t_c2 ;
-reg	[13:0]	TR_187 ;
-reg	[13:0]	TR_188 ;
-reg	[13:0]	TR_189 ;
-reg	[13:0]	TR_190 ;
-reg	[13:0]	TR_191 ;
-reg	[13:0]	TR_192 ;
-reg	[13:0]	RG_coef1_t ;
-reg	RG_coef1_t_c1 ;
+reg	[15:0]	TR_15 ;
+reg	[31:0]	RG_result_result1_t ;
+reg	RG_result_result1_t_c1 ;
+reg	RG_result_result1_t_c2 ;
+reg	[15:0]	TR_17 ;
+reg	[31:0]	RG_result_result1_word_addr_t ;
+reg	RG_result_result1_word_addr_t_c1 ;
+reg	RG_result_result1_word_addr_t_c2 ;
+reg	RG_result_result1_word_addr_t_c3 ;
+reg	RG_result_result1_word_addr_t_c4 ;
+reg	RG_result_result1_word_addr_t_c5 ;
+reg	RG_result_result1_word_addr_t_c6 ;
+reg	RG_result_result1_word_addr_t_c7 ;
+reg	RG_result_result1_word_addr_t_c8 ;
+reg	RG_result_result1_word_addr_t_c9 ;
+reg	RG_result_result1_word_addr_t_c10 ;
+reg	[31:0]	RG_17_t ;
+reg	RG_17_t_c1 ;
+reg	[6:0]	TR_18 ;
+reg	[31:0]	RG_instr_next_pc_PC_t ;
+reg	RG_instr_next_pc_PC_t_c1 ;
+reg	[17:0]	TR_19 ;
+reg	[31:0]	RG_dst_addr_t ;
+reg	RG_dst_addr_t_c1 ;
+reg	[31:0]	RG_addr_next_pc_t ;
+reg	RG_addr_next_pc_t_c1 ;
+reg	RG_addr_next_pc_t_c2 ;
+reg	[31:0]	RG_29_t ;
+reg	[15:0]	TR_158 ;
+reg	[15:0]	TR_160 ;
+reg	[15:0]	TR_161 ;
+reg	[15:0]	TR_162 ;
+reg	[15:0]	RG_coef_t ;
+reg	RG_coef_t_c1 ;
+reg	[31:0]	RG_56_t ;
+reg	[31:0]	RG_buf1_t ;
+reg	RG_buf1_t_c1 ;
+reg	RG_buf1_t_c2 ;
+reg	[31:0]	RG_buf_buf1_t ;
+reg	RG_buf_buf1_t_c1 ;
+reg	RG_buf_buf1_t_c2 ;
+reg	[31:0]	RG_buf_buf1_val_t ;
+reg	RG_buf_buf1_val_t_c1 ;
+reg	RG_buf_buf1_val_t_c2 ;
+reg	RG_buf_buf1_val_t_c3 ;
+reg	[2:0]	RG_71_t ;
 reg	JF_02 ;
 reg	JF_10 ;
+reg	JF_62 ;
 reg	[3:0]	y11_t1 ;
-reg	y11_t1_c1 ;
-reg	[30:0]	M_1859_t ;
-reg	M_1859_t_c1 ;
+reg	[19:0]	buf_a001_t1 ;
+reg	[30:0]	M_2060_t ;
+reg	M_2060_t_c1 ;
 reg	[19:0]	add20s1i1 ;
 reg	add20s1i1_c1 ;
 reg	[19:0]	add20s1i2 ;
 reg	add20s1i2_c1 ;
 reg	add20s1i2_c2 ;
-reg	[12:0]	M_3084 ;
-reg	[30:0]	TR_15 ;
-reg	[11:0]	TR_16 ;
 reg	[31:0]	add32s1i1 ;
 reg	add32s1i1_c1 ;
 reg	add32s1i1_c2 ;
 reg	add32s1i1_c3 ;
-reg	[19:0]	TR_17 ;
-reg	[31:0]	add32s1i2 ;
+reg	[12:0]	M_2991 ;
+reg	[20:0]	add32s1i2 ;
 reg	add32s1i2_c1 ;
 reg	add32s1i2_c2 ;
 reg	[17:0]	sub20u_181i1 ;
 reg	sub20u_181i1_c1 ;
-reg	[6:0]	M_3083 ;
-reg	M_3083_c1 ;
-reg	M_3083_c2 ;
-reg	M_3083_c3 ;
-reg	M_3083_c4 ;
-reg	M_3083_c5 ;
-reg	M_3083_c6 ;
-reg	M_3083_c7 ;
-reg	M_3083_c8 ;
-reg	M_3083_c9 ;
-reg	M_3083_c10 ;
-reg	M_3083_c11 ;
-reg	M_3083_c12 ;
-reg	M_3083_c13 ;
-reg	M_3083_c14 ;
-reg	M_3083_c15 ;
-reg	M_3083_c16 ;
-reg	M_3083_c17 ;
-reg	M_3083_c18 ;
-reg	M_3083_c19 ;
-reg	M_3083_c20 ;
-reg	M_3083_c21 ;
-reg	M_3083_c22 ;
-reg	M_3083_c23 ;
-reg	M_3083_c24 ;
-reg	M_3083_c25 ;
-reg	M_3083_c26 ;
-reg	M_3083_c27 ;
-reg	M_3083_c28 ;
-reg	M_3083_c29 ;
-reg	M_3083_c30 ;
-reg	M_3083_c31 ;
-reg	M_3083_c32 ;
-reg	M_3083_c33 ;
-reg	M_3083_c34 ;
-reg	M_3083_c35 ;
-reg	M_3083_c36 ;
-reg	M_3083_c37 ;
-reg	M_3083_c38 ;
-reg	M_3083_c39 ;
-reg	M_3083_c40 ;
-reg	M_3083_c41 ;
-reg	M_3083_c42 ;
-reg	M_3083_c43 ;
-reg	M_3083_c44 ;
-reg	M_3083_c45 ;
-reg	M_3083_c46 ;
-reg	M_3083_c47 ;
-reg	M_3083_c48 ;
-reg	M_3083_c49 ;
-reg	M_3083_c50 ;
-reg	M_3083_c51 ;
-reg	M_3083_c52 ;
-reg	M_3083_c53 ;
-reg	M_3083_c54 ;
-reg	M_3083_c55 ;
-reg	M_3083_c56 ;
-reg	M_3083_c57 ;
-reg	M_3083_c58 ;
-reg	M_3083_c59 ;
-reg	M_3083_c60 ;
-reg	[1:0]	M_3082 ;
-reg	[19:0]	TR_18 ;
+reg	sub20u_181i1_c2 ;
+reg	sub20u_181i1_c3 ;
+reg	[6:0]	M_2989 ;
+reg	M_2989_c1 ;
+reg	M_2989_c2 ;
+reg	M_2989_c3 ;
+reg	M_2989_c4 ;
+reg	M_2989_c5 ;
+reg	M_2989_c6 ;
+reg	M_2989_c7 ;
+reg	M_2989_c8 ;
+reg	M_2989_c9 ;
+reg	M_2989_c10 ;
+reg	M_2989_c11 ;
+reg	M_2989_c12 ;
+reg	M_2989_c13 ;
+reg	M_2989_c14 ;
+reg	M_2989_c15 ;
+reg	M_2989_c16 ;
+reg	M_2989_c17 ;
+reg	M_2989_c18 ;
+reg	M_2989_c19 ;
+reg	M_2989_c20 ;
+reg	M_2989_c21 ;
+reg	M_2989_c22 ;
+reg	M_2989_c23 ;
+reg	M_2989_c24 ;
+reg	M_2989_c25 ;
+reg	M_2989_c26 ;
+reg	M_2989_c27 ;
+reg	M_2989_c28 ;
+reg	M_2989_c29 ;
+reg	M_2989_c30 ;
+reg	M_2989_c31 ;
+reg	M_2989_c32 ;
+reg	M_2989_c33 ;
+reg	M_2989_c34 ;
+reg	M_2989_c35 ;
+reg	M_2989_c36 ;
+reg	M_2989_c37 ;
+reg	M_2989_c38 ;
+reg	M_2989_c39 ;
+reg	M_2989_c40 ;
+reg	M_2989_c41 ;
+reg	M_2989_c42 ;
+reg	M_2989_c43 ;
+reg	M_2989_c44 ;
+reg	M_2989_c45 ;
+reg	M_2989_c46 ;
+reg	M_2989_c47 ;
+reg	M_2989_c48 ;
+reg	M_2989_c49 ;
+reg	M_2989_c50 ;
+reg	M_2989_c51 ;
+reg	M_2989_c52 ;
+reg	M_2989_c53 ;
+reg	M_2989_c54 ;
+reg	M_2989_c55 ;
+reg	M_2989_c56 ;
+reg	M_2989_c57 ;
+reg	M_2989_c58 ;
+reg	M_2989_c59 ;
+reg	M_2989_c60 ;
+reg	[17:0]	sub20u_182i1 ;
+reg	[5:0]	M_2988 ;
+reg	[19:0]	TR_21 ;
 reg	[19:0]	sub24s_231i2 ;
+reg	[13:0]	mul20s1i2 ;
 reg	[31:0]	mul32s1i1 ;
 reg	mul32s1i1_c1 ;
-reg	TR_19 ;
-reg	TR_20 ;
-reg	TR_21 ;
+reg	mul32s1i1_c2 ;
+reg	mul32s1i1_c3 ;
+reg	mul32s1i1_c4 ;
 reg	[13:0]	mul32s1i2 ;
 reg	mul32s1i2_c1 ;
 reg	mul32s1i2_c2 ;
-reg	mul32s1i2_c3 ;
 reg	[7:0]	TR_57 ;
 reg	[7:0]	TR_58 ;
 reg	[31:0]	lsft32u1i1 ;
+reg	lsft32u1i1_c1 ;
 reg	[4:0]	lsft32u1i2 ;
 reg	lsft32u1i2_c1 ;
 reg	[31:0]	rsft32u1i1 ;
 reg	rsft32u1i1_c1 ;
+reg	rsft32u1i1_c2 ;
 reg	[4:0]	rsft32u1i2 ;
 reg	rsft32u1i2_c1 ;
 reg	[31:0]	rsft32s1i1 ;
 reg	[4:0]	rsft32s1i2 ;
-reg	[2:0]	incr3u1i1 ;
-reg	incr3u1i1_c1 ;
-reg	incr3u1i1_c2 ;
-reg	incr3u1i1_c3 ;
-reg	[5:0]	incr8s_61i1 ;
 reg	[1:0]	addsub3s1_f ;
 reg	addsub3s1_f_c1 ;
 reg	[5:0]	addsub8u_71i1 ;
@@ -7807,155 +7096,32 @@ reg	addsub32u1i1_c1 ;
 reg	addsub32u1i1_c2 ;
 reg	addsub32u1i1_c3 ;
 reg	[19:0]	TR_59 ;
-reg	[20:0]	M_3085 ;
-reg	M_3085_c1 ;
+reg	[20:0]	M_2992 ;
+reg	M_2992_c1 ;
 reg	[31:0]	addsub32u1i2 ;
 reg	addsub32u1i2_c1 ;
 reg	addsub32u1i2_c2 ;
 reg	[1:0]	addsub32u1_f ;
 reg	addsub32u1_f_c1 ;
 reg	[2:0]	TR_27 ;
-reg	[1:0]	TR_60 ;
+reg	[3:0]	C_q2i1 ;
+reg	C_q2i1_c1 ;
 reg	[2:0]	TR_28 ;
-reg	TR_28_c1 ;
-reg	[3:0]	C_q1i1 ;
-reg	C_q1i1_c1 ;
-reg	C_q1i1_c2 ;
-reg	[5:0]	add8s_7_61i1 ;
-reg	add8s_7_61i1_c1 ;
-reg	[1:0]	TR_63 ;
-reg	TR_63_c1 ;
-reg	[2:0]	TR_31 ;
-reg	TR_31_c1 ;
-reg	[3:0]	M_3081 ;
-reg	M_3081_c1 ;
-reg	M_3081_c2 ;
+reg	[1:0]	TR_29 ;
+reg	[2:0]	TR_30 ;
+reg	[3:0]	C_q3i1 ;
+reg	C_q3i1_c1 ;
+reg	C_q3i1_c2 ;
 reg	[1:0]	addsub8u_7_61_f ;
+reg	addsub8u_7_61_f_c1 ;
 reg	[31:0]	dmem_arg_MEMB32W65536_WD2 ;
-reg	dmem_arg_MEMB32W65536_WD2_c1 ;
 reg	[15:0]	dmem_arg_MEMB32W65536_RA1 ;
 reg	dmem_arg_MEMB32W65536_RA1_c1 ;
 reg	dmem_arg_MEMB32W65536_RA1_c2 ;
 reg	dmem_arg_MEMB32W65536_RA1_c3 ;
 reg	[15:0]	dmem_arg_MEMB32W65536_WA2 ;
 reg	dmem_arg_MEMB32W65536_WA2_c1 ;
-reg	[1:0]	TR_65 ;
-reg	TR_65_c1 ;
-reg	[1:0]	TR_67 ;
-reg	TR_67_c1 ;
-reg	[2:0]	TR_32 ;
-reg	TR_32_c1 ;
-reg	TR_32_c2 ;
-reg	[1:0]	TR_143 ;
-reg	TR_143_c1 ;
-reg	[1:0]	TR_145 ;
-reg	TR_145_c1 ;
-reg	[2:0]	TR_104 ;
-reg	TR_104_c1 ;
-reg	TR_104_c2 ;
-reg	[3:0]	TR_68 ;
-reg	TR_68_c1 ;
-reg	[1:0]	TR_106 ;
-reg	TR_106_c1 ;
-reg	[1:0]	TR_108 ;
-reg	TR_108_c1 ;
-reg	[2:0]	TR_69 ;
-reg	TR_69_c1 ;
-reg	TR_69_c2 ;
-reg	[1:0]	TR_149 ;
-reg	TR_149_c1 ;
-reg	[1:0]	TR_151 ;
-reg	TR_151_c1 ;
-reg	[2:0]	TR_109 ;
-reg	TR_109_c1 ;
-reg	TR_109_c2 ;
-reg	[3:0]	TR_70 ;
-reg	TR_70_c1 ;
-reg	[4:0]	TR_33 ;
-reg	TR_33_c1 ;
-reg	TR_33_c2 ;
-reg	[1:0]	TR_72 ;
-reg	TR_72_c1 ;
-reg	[1:0]	TR_74 ;
-reg	TR_74_c1 ;
-reg	[2:0]	TR_34 ;
-reg	TR_34_c1 ;
-reg	TR_34_c2 ;
-reg	[1:0]	TR_153 ;
-reg	TR_153_c1 ;
-reg	[1:0]	TR_155 ;
-reg	TR_155_c1 ;
-reg	[2:0]	TR_112 ;
-reg	TR_112_c1 ;
-reg	TR_112_c2 ;
-reg	[3:0]	TR_75 ;
-reg	TR_75_c1 ;
-reg	[1:0]	TR_114 ;
-reg	TR_114_c1 ;
-reg	[1:0]	TR_116 ;
-reg	TR_116_c1 ;
-reg	[2:0]	TR_76 ;
-reg	TR_76_c1 ;
-reg	TR_76_c2 ;
-reg	[1:0]	TR_159 ;
-reg	TR_159_c1 ;
-reg	[1:0]	TR_161 ;
-reg	TR_161_c1 ;
-reg	[2:0]	TR_117 ;
-reg	TR_117_c1 ;
-reg	TR_117_c2 ;
-reg	[3:0]	TR_77 ;
-reg	TR_77_c1 ;
-reg	[4:0]	TR_35 ;
-reg	TR_35_c1 ;
-reg	TR_35_c2 ;
-reg	[5:0]	blk_out_RA1 ;
-reg	blk_out_RA1_c1 ;
-reg	blk_out_RA1_c2 ;
-reg	[2:0]	TR_36 ;
-reg	[2:0]	TR_118 ;
-reg	[3:0]	TR_78 ;
-reg	TR_78_c1 ;
-reg	[2:0]	TR_79 ;
-reg	[2:0]	TR_119 ;
-reg	[3:0]	TR_80 ;
-reg	TR_80_c1 ;
-reg	[4:0]	TR_37 ;
-reg	TR_37_c1 ;
-reg	TR_37_c2 ;
-reg	[2:0]	TR_38 ;
-reg	[2:0]	TR_120 ;
-reg	[3:0]	TR_81 ;
-reg	TR_81_c1 ;
-reg	[2:0]	TR_82 ;
-reg	[2:0]	TR_121 ;
-reg	[3:0]	TR_83 ;
-reg	TR_83_c1 ;
-reg	[4:0]	TR_39 ;
-reg	TR_39_c1 ;
-reg	TR_39_c2 ;
-reg	[5:0]	blk_out_WA2 ;
-reg	blk_out_WA2_c1 ;
-reg	blk_out_WA2_c2 ;
-reg	blk_out_WA2_c3 ;
-reg	blk_out_WA2_c4 ;
-reg	[18:0]	TR_40 ;
-reg	[31:0]	blk_out_WD2 ;
-reg	blk_out_WD2_c1 ;
-reg	blk_out_WD2_c2 ;
-reg	blk_out_WD2_c3 ;
-reg	blk_out_WD2_c4 ;
-reg	blk_out_WD2_c5 ;
-reg	blk_out_WD2_c6 ;
-reg	blk_out_WD2_c7 ;
-reg	blk_out_WD2_c8 ;
-reg	TR_84 ;
-reg	[2:0]	TR_41 ;
-reg	TR_41_c1 ;
-reg	[5:0]	blk_in_RA1 ;
-reg	blk_in_RA1_c1 ;
-reg	blk_in_RA1_c2 ;
-reg	[5:0]	blk_in_WA2 ;
+reg	dmem_arg_MEMB32W65536_WA2_c2 ;
 reg	[4:0]	regs_ad00 ;	// line#=computer.cpp:19
 reg	regs_ad00_c1 ;
 reg	[4:0]	regs_ad01 ;	// line#=computer.cpp:19
@@ -7963,83 +7129,191 @@ reg	regs_ad01_c1 ;
 reg	[31:0]	regs_wd04 ;	// line#=computer.cpp:19
 reg	regs_wd04_c1 ;
 reg	regs_wd04_c2 ;
+reg	TR_60 ;
+reg	[2:0]	TR_31 ;
+reg	TR_31_c1 ;
+reg	TR_31_c2 ;
+reg	[1:0]	TR_33 ;
+reg	TR_33_c1 ;
+reg	[1:0]	TR_63 ;
+reg	TR_63_c1 ;
+reg	[2:0]	TR_34 ;
+reg	TR_34_c1 ;
+reg	TR_34_c2 ;
+reg	[1:0]	TR_36 ;
+reg	TR_36_c1 ;
+reg	[1:0]	TR_66 ;
+reg	TR_66_c1 ;
+reg	[2:0]	TR_37 ;
+reg	TR_37_c1 ;
+reg	[1:0]	TR_39 ;
+reg	TR_39_c1 ;
+reg	[1:0]	TR_69 ;
+reg	TR_69_c1 ;
+reg	[2:0]	TR_40 ;
+reg	TR_40_c1 ;
+reg	[5:0]	blk_out1_ad01 ;	// line#=computer.cpp:306
+reg	blk_out1_ad01_c1 ;
+reg	[19:0]	blk_out1_wd01 ;	// line#=computer.cpp:306
+reg	blk_out1_wd01_c1 ;
+reg	blk_out1_wd01_c2 ;
+reg	blk_out1_wd01_c3 ;
+reg	blk_out1_wd01_c4 ;
+reg	blk_out1_wd01_c5 ;
+reg	blk_out1_wd01_c6 ;
+reg	blk_out1_wd01_c7 ;
 
 computer_comp32s_1_1 INST_comp32s_1_1_1 ( .i1(comp32s_1_11i1) ,.i2(comp32s_1_11i2) ,
-	.o1(comp32s_1_11ot) );	// line#=computer.cpp:592
+	.o1(comp32s_1_11ot) );	// line#=computer.cpp:599
 computer_addsub8u_7_6 INST_addsub8u_7_6_1 ( .i1(addsub8u_7_61i1) ,.i2(addsub8u_7_61i2) ,
-	.i3(addsub8u_7_61_f) ,.o1(addsub8u_7_61ot) );	// line#=computer.cpp:330,364
-computer_add8s_7_6 INST_add8s_7_6_1 ( .i1(add8s_7_61i1) ,.i2(add8s_7_61i2) ,.o1(add8s_7_61ot) );	// line#=computer.cpp:289,332,337
-always @ ( C_q1i1 )	// line#=computer.cpp:331,365
+	.i3(addsub8u_7_61_f) ,.o1(addsub8u_7_61ot) );	// line#=computer.cpp:337,371
+always @ ( C_q1i1 )	// line#=computer.cpp:338
 	case ( C_q1i1 )
 	4'h0 :
-		C_q1ot = 14'h1000 ;	// line#=computer.cpp:295
+		C_q1ot = 14'h1000 ;	// line#=computer.cpp:302
 	4'h1 :
-		C_q1ot = 14'h0fb1 ;	// line#=computer.cpp:295
+		C_q1ot = 14'h0fb1 ;	// line#=computer.cpp:302
 	4'h2 :
-		C_q1ot = 14'h0ec8 ;	// line#=computer.cpp:295
+		C_q1ot = 14'h0ec8 ;	// line#=computer.cpp:302
 	4'h3 :
-		C_q1ot = 14'h0d4d ;	// line#=computer.cpp:295
+		C_q1ot = 14'h0d4d ;	// line#=computer.cpp:302
 	4'h4 :
-		C_q1ot = 14'h0b50 ;	// line#=computer.cpp:295
+		C_q1ot = 14'h0b50 ;	// line#=computer.cpp:302
 	4'h5 :
-		C_q1ot = 14'h08e3 ;	// line#=computer.cpp:295
+		C_q1ot = 14'h08e3 ;	// line#=computer.cpp:302
 	4'h6 :
-		C_q1ot = 14'h061f ;	// line#=computer.cpp:295
+		C_q1ot = 14'h061f ;	// line#=computer.cpp:302
 	4'h7 :
-		C_q1ot = 14'h031f ;	// line#=computer.cpp:295
+		C_q1ot = 14'h031f ;	// line#=computer.cpp:302
 	4'h8 :
-		C_q1ot = 14'h0000 ;	// line#=computer.cpp:295
+		C_q1ot = 14'h0000 ;	// line#=computer.cpp:302
 	4'h9 :
-		C_q1ot = 14'h3ce0 ;	// line#=computer.cpp:295
+		C_q1ot = 14'h3ce0 ;	// line#=computer.cpp:302
 	4'ha :
-		C_q1ot = 14'h39e0 ;	// line#=computer.cpp:295
+		C_q1ot = 14'h39e0 ;	// line#=computer.cpp:302
 	4'hb :
-		C_q1ot = 14'h371c ;	// line#=computer.cpp:295
+		C_q1ot = 14'h371c ;	// line#=computer.cpp:302
 	4'hc :
-		C_q1ot = 14'h34af ;	// line#=computer.cpp:295
+		C_q1ot = 14'h34af ;	// line#=computer.cpp:302
 	4'hd :
-		C_q1ot = 14'h32b2 ;	// line#=computer.cpp:295
+		C_q1ot = 14'h32b2 ;	// line#=computer.cpp:302
 	4'he :
-		C_q1ot = 14'h3137 ;	// line#=computer.cpp:295
+		C_q1ot = 14'h3137 ;	// line#=computer.cpp:302
 	4'hf :
-		C_q1ot = 14'h304e ;	// line#=computer.cpp:295
+		C_q1ot = 14'h304e ;	// line#=computer.cpp:302
 	default :
 		C_q1ot = 14'hx ;
 	endcase
-computer_comp32s_1 INST_comp32s_1_1 ( .i1(comp32s_11i1) ,.i2(comp32s_11i2) ,.o1(comp32s_11ot) );	// line#=computer.cpp:643
-computer_comp32s_1 INST_comp32s_1_2 ( .i1(comp32s_12i1) ,.i2(comp32s_12i2) ,.o1(comp32s_12ot) );	// line#=computer.cpp:515,518
-computer_comp32u_1 INST_comp32u_1_1 ( .i1(comp32u_11i1) ,.i2(comp32u_11i2) ,.o1(comp32u_11ot) );	// line#=computer.cpp:521,524
-computer_comp32u_1 INST_comp32u_1_2 ( .i1(comp32u_12i1) ,.i2(comp32u_12i2) ,.o1(comp32u_12ot) );	// line#=computer.cpp:646
-computer_comp32u_1 INST_comp32u_1_3 ( .i1(comp32u_13i1) ,.i2(comp32u_13i2) ,.o1(comp32u_13ot) );	// line#=computer.cpp:595
+always @ ( C_q2i1 )	// line#=computer.cpp:338
+	case ( C_q2i1 )
+	4'h0 :
+		C_q2ot = 14'h1000 ;	// line#=computer.cpp:302
+	4'h1 :
+		C_q2ot = 14'h0fb1 ;	// line#=computer.cpp:302
+	4'h2 :
+		C_q2ot = 14'h0ec8 ;	// line#=computer.cpp:302
+	4'h3 :
+		C_q2ot = 14'h0d4d ;	// line#=computer.cpp:302
+	4'h4 :
+		C_q2ot = 14'h0b50 ;	// line#=computer.cpp:302
+	4'h5 :
+		C_q2ot = 14'h08e3 ;	// line#=computer.cpp:302
+	4'h6 :
+		C_q2ot = 14'h061f ;	// line#=computer.cpp:302
+	4'h7 :
+		C_q2ot = 14'h031f ;	// line#=computer.cpp:302
+	4'h8 :
+		C_q2ot = 14'h0000 ;	// line#=computer.cpp:302
+	4'h9 :
+		C_q2ot = 14'h3ce0 ;	// line#=computer.cpp:302
+	4'ha :
+		C_q2ot = 14'h39e0 ;	// line#=computer.cpp:302
+	4'hb :
+		C_q2ot = 14'h371c ;	// line#=computer.cpp:302
+	4'hc :
+		C_q2ot = 14'h34af ;	// line#=computer.cpp:302
+	4'hd :
+		C_q2ot = 14'h32b2 ;	// line#=computer.cpp:302
+	4'he :
+		C_q2ot = 14'h3137 ;	// line#=computer.cpp:302
+	4'hf :
+		C_q2ot = 14'h304e ;	// line#=computer.cpp:302
+	default :
+		C_q2ot = 14'hx ;
+	endcase
+always @ ( C_q3i1 )	// line#=computer.cpp:338,372
+	case ( C_q3i1 )
+	4'h0 :
+		C_q3ot = 14'h1000 ;	// line#=computer.cpp:302
+	4'h1 :
+		C_q3ot = 14'h0fb1 ;	// line#=computer.cpp:302
+	4'h2 :
+		C_q3ot = 14'h0ec8 ;	// line#=computer.cpp:302
+	4'h3 :
+		C_q3ot = 14'h0d4d ;	// line#=computer.cpp:302
+	4'h4 :
+		C_q3ot = 14'h0b50 ;	// line#=computer.cpp:302
+	4'h5 :
+		C_q3ot = 14'h08e3 ;	// line#=computer.cpp:302
+	4'h6 :
+		C_q3ot = 14'h061f ;	// line#=computer.cpp:302
+	4'h7 :
+		C_q3ot = 14'h031f ;	// line#=computer.cpp:302
+	4'h8 :
+		C_q3ot = 14'h0000 ;	// line#=computer.cpp:302
+	4'h9 :
+		C_q3ot = 14'h3ce0 ;	// line#=computer.cpp:302
+	4'ha :
+		C_q3ot = 14'h39e0 ;	// line#=computer.cpp:302
+	4'hb :
+		C_q3ot = 14'h371c ;	// line#=computer.cpp:302
+	4'hc :
+		C_q3ot = 14'h34af ;	// line#=computer.cpp:302
+	4'hd :
+		C_q3ot = 14'h32b2 ;	// line#=computer.cpp:302
+	4'he :
+		C_q3ot = 14'h3137 ;	// line#=computer.cpp:302
+	4'hf :
+		C_q3ot = 14'h304e ;	// line#=computer.cpp:302
+	default :
+		C_q3ot = 14'hx ;
+	endcase
+computer_comp32s_1 INST_comp32s_1_1 ( .i1(comp32s_11i1) ,.i2(comp32s_11i2) ,.o1(comp32s_11ot) );	// line#=computer.cpp:650
+computer_comp32s_1 INST_comp32s_1_2 ( .i1(comp32s_12i1) ,.i2(comp32s_12i2) ,.o1(comp32s_12ot) );	// line#=computer.cpp:522,525
+computer_comp32u_1 INST_comp32u_1_1 ( .i1(comp32u_11i1) ,.i2(comp32u_11i2) ,.o1(comp32u_11ot) );	// line#=computer.cpp:528,531
+computer_comp32u_1 INST_comp32u_1_2 ( .i1(comp32u_12i1) ,.i2(comp32u_12i2) ,.o1(comp32u_12ot) );	// line#=computer.cpp:653
+computer_comp32u_1 INST_comp32u_1_3 ( .i1(comp32u_13i1) ,.i2(comp32u_13i2) ,.o1(comp32u_13ot) );	// line#=computer.cpp:602
 computer_addsub32u INST_addsub32u_1 ( .i1(addsub32u1i1) ,.i2(addsub32u1i2) ,.i3(addsub32u1_f) ,
 	.o1(addsub32u1ot) );	// line#=computer.cpp:110,131,148,180,199
-				// ,458,476,634,636
+				// ,465,483,641,643
 computer_addsub8u_7 INST_addsub8u_7_1 ( .i1(addsub8u_71i1) ,.i2(addsub8u_71i2) ,
-	.i3(addsub8u_71_f) ,.o1(addsub8u_71ot) );	// line#=computer.cpp:330,364
+	.i3(addsub8u_71_f) ,.o1(addsub8u_71ot) );	// line#=computer.cpp:337,371
 computer_addsub3s INST_addsub3s_1 ( .i1(addsub3s1i1) ,.i2(addsub3s1i2) ,.i3(addsub3s1_f) ,
-	.o1(addsub3s1ot) );	// line#=computer.cpp:332
-computer_decr3s INST_decr3s_1 ( .i1(decr3s1i1) ,.o1(decr3s1ot) );	// line#=computer.cpp:332
-computer_incr8s_6 INST_incr8s_6_1 ( .i1(incr8s_61i1) ,.o1(incr8s_61ot) );	// line#=computer.cpp:289,330,337,364
-computer_incr4s INST_incr4s_1 ( .i1(incr4s1i1) ,.o1(incr4s1ot) );	// line#=computer.cpp:329
-computer_incr3s INST_incr3s_1 ( .i1(incr3s1i1) ,.o1(incr3s1ot) );	// line#=computer.cpp:332
-computer_incr3u INST_incr3u_1 ( .i1(incr3u1i1) ,.o1(incr3u1ot) );	// line#=computer.cpp:329,363
-computer_rsft32s INST_rsft32s_1 ( .i1(rsft32s1i1) ,.i2(rsft32s1i2) ,.o1(rsft32s1ot) );	// line#=computer.cpp:612,653
-computer_rsft32u INST_rsft32u_1 ( .i1(rsft32u1i1) ,.i2(rsft32u1i2) ,.o1(rsft32u1ot) );	// line#=computer.cpp:141,142,158,159,540
-											// ,543,549,552,615,655
+	.o1(addsub3s1ot) );	// line#=computer.cpp:339
+computer_decr3s INST_decr3s_1 ( .i1(decr3s1i1) ,.o1(decr3s1ot) );	// line#=computer.cpp:339
+computer_incr8s_6 INST_incr8s_6_1 ( .i1(incr8s_61i1) ,.o1(incr8s_61ot) );	// line#=computer.cpp:337,371
+computer_incr4s INST_incr4s_1 ( .i1(incr4s1i1) ,.o1(incr4s1ot) );	// line#=computer.cpp:336
+computer_incr3s INST_incr3s_1 ( .i1(incr3s1i1) ,.o1(incr3s1ot) );	// line#=computer.cpp:339
+computer_incr3u INST_incr3u_1 ( .i1(incr3u1i1) ,.o1(incr3u1ot) );	// line#=computer.cpp:336,370
+computer_rsft32s INST_rsft32s_1 ( .i1(rsft32s1i1) ,.i2(rsft32s1i2) ,.o1(rsft32s1ot) );	// line#=computer.cpp:619,660
+computer_rsft32u INST_rsft32u_1 ( .i1(rsft32u1i1) ,.i2(rsft32u1i2) ,.o1(rsft32u1ot) );	// line#=computer.cpp:141,142,158,159,547
+											// ,550,556,559,622,662
 computer_lsft32u INST_lsft32u_1 ( .i1(lsft32u1i1) ,.i2(lsft32u1i2) ,.o1(lsft32u1ot) );	// line#=computer.cpp:191,192,193,210,211
-											// ,212,568,571,607,640
-computer_mul32s INST_mul32s_1 ( .i1(mul32s1i1) ,.i2(mul32s1i2) ,.o1(mul32s1ot) );	// line#=computer.cpp:332,366
-computer_sub28s_27 INST_sub28s_27_1 ( .i1(sub28s_271i1) ,.i2(sub28s_271i2) ,.o1(sub28s_271ot) );	// line#=computer.cpp:335,369
-computer_sub24s_23 INST_sub24s_23_1 ( .i1(sub24s_231i1) ,.i2(sub24s_231i2) ,.o1(sub24s_231ot) );	// line#=computer.cpp:335,369
-computer_sub20u_18 INST_sub20u_18_1 ( .i1(sub20u_181i1) ,.i2(sub20u_181i2) ,.o1(sub20u_181ot) );	// line#=computer.cpp:165,218,304,305,377
-													// ,378
-computer_sub20u_18 INST_sub20u_18_2 ( .i1(sub20u_182i1) ,.i2(sub20u_182i2) ,.o1(sub20u_182ot) );	// line#=computer.cpp:165,304,305
-computer_sub16s_13 INST_sub16s_13_1 ( .i1(sub16s_131i1) ,.i2(sub16s_131i2) ,.o1(sub16s_131ot) );	// line#=computer.cpp:331,365
-computer_add32s INST_add32s_1 ( .i1(add32s1i1) ,.i2(add32s1i2) ,.o1(add32s1ot) );	// line#=computer.cpp:86,91,97,118,335
-											// ,369,486,494,528,536,564,589
-computer_add20s INST_add20s_1 ( .i1(add20s1i1) ,.i2(add20s1i2) ,.o1(add20s1ot) );	// line#=computer.cpp:332,366
-computer_add8s_7 INST_add8s_7_1 ( .i1(add8s_71i1) ,.i2(add8s_71i2) ,.o1(add8s_71ot) );	// line#=computer.cpp:330,364
-assign	computer_ret = computer_ret_r ;	// line#=computer.cpp:431
+											// ,212,575,578,614,647
+computer_mul32s INST_mul32s_1 ( .i1(mul32s1i1) ,.i2(mul32s1i2) ,.o1(mul32s1ot) );	// line#=computer.cpp:339
+computer_mul20s INST_mul20s_1 ( .i1(mul20s1i1) ,.i2(mul20s1i2) ,.o1(mul20s1ot) );	// line#=computer.cpp:373
+computer_sub28s_27 INST_sub28s_27_1 ( .i1(sub28s_271i1) ,.i2(sub28s_271i2) ,.o1(sub28s_271ot) );	// line#=computer.cpp:342,376
+computer_sub24s_23 INST_sub24s_23_1 ( .i1(sub24s_231i1) ,.i2(sub24s_231i2) ,.o1(sub24s_231ot) );	// line#=computer.cpp:342,376
+computer_sub20u_18 INST_sub20u_18_1 ( .i1(sub20u_181i1) ,.i2(sub20u_181i2) ,.o1(sub20u_181ot) );	// line#=computer.cpp:165,218,311,312,384
+													// ,385
+computer_sub20u_18 INST_sub20u_18_2 ( .i1(sub20u_182i1) ,.i2(sub20u_182i2) ,.o1(sub20u_182ot) );	// line#=computer.cpp:165,311,312
+computer_sub16s_13 INST_sub16s_13_1 ( .i1(sub16s_131i1) ,.i2(sub16s_131i2) ,.o1(sub16s_131ot) );	// line#=computer.cpp:338
+computer_sub16s_13 INST_sub16s_13_2 ( .i1(sub16s_132i1) ,.i2(sub16s_132i2) ,.o1(sub16s_132ot) );	// line#=computer.cpp:338,372
+computer_add32s INST_add32s_1 ( .i1(add32s1i1) ,.i2(add32s1i2) ,.o1(add32s1ot) );	// line#=computer.cpp:86,91,97,118,342
+											// ,376,493,501,535,543,571,596
+computer_add20s INST_add20s_1 ( .i1(add20s1i1) ,.i2(add20s1i2) ,.o1(add20s1ot) );	// line#=computer.cpp:339,373
+computer_add8s_7 INST_add8s_7_1 ( .i1(add8s_71i1) ,.i2(add8s_71i2) ,.o1(add8s_71ot) );	// line#=computer.cpp:337,371
+assign	computer_ret = computer_ret_r ;	// line#=computer.cpp:438
 computer_decoder_5to32 INST_decoder_5to32_1 ( .DECODER_in(regs_ad04) ,.DECODER_out(regs_d04) );	// line#=computer.cpp:19
 always @ ( regs_rg31 or regs_rg30 or regs_rg29 or regs_rg28 or regs_rg27 or regs_rg26 or 
 	regs_rg25 or regs_rg24 or regs_rg23 or regs_rg22 or regs_rg21 or regs_rg20 or 
@@ -8194,8 +7468,8 @@ always @ ( regs_rg31 or regs_rg30 or regs_rg29 or regs_rg28 or regs_rg27 or regs
 	regs_rg19 or regs_rg18 or regs_rg17 or regs_rg16 or regs_rg15 or regs_rg14 or 
 	regs_rg13 or regs_rg12 or regs_rg11 or regs_rg10 or regs_rg09 or regs_rg08 or 
 	regs_rg07 or regs_rg06 or regs_rg05 or regs_rg04 or regs_rg03 or regs_rg02 or 
-	regs_rg01 or regs_rg00 or RL_buf_buf1_coef_rs1_rs2_val1 )	// line#=computer.cpp:19
-	case ( RL_buf_buf1_coef_rs1_rs2_val1 [4:0] )
+	regs_rg01 or regs_rg00 or RL_blk_out_buf_buf1_dst_addr_rs1 )	// line#=computer.cpp:19
+	case ( RL_blk_out_buf_buf1_dst_addr_rs1 [4:0] )
 	5'h00 :
 		regs_rd02 = regs_rg00 ;
 	5'h01 :
@@ -8268,8 +7542,8 @@ always @ ( regs_rg31 or regs_rg30 or regs_rg29 or regs_rg28 or regs_rg27 or regs
 	regs_rg19 or regs_rg18 or regs_rg17 or regs_rg16 or regs_rg15 or regs_rg14 or 
 	regs_rg13 or regs_rg12 or regs_rg11 or regs_rg10 or regs_rg09 or regs_rg08 or 
 	regs_rg07 or regs_rg06 or regs_rg05 or regs_rg04 or regs_rg03 or regs_rg02 or 
-	regs_rg01 or regs_rg00 or RG_rs1_rs2 )	// line#=computer.cpp:19
-	case ( RG_rs1_rs2 [4:0] )
+	regs_rg01 or regs_rg00 or RG_rs1_rs2_y )	// line#=computer.cpp:19
+	case ( RG_rs1_rs2_y )
 	5'h00 :
 		regs_rd03 = regs_rg00 ;
 	5'h01 :
@@ -8529,41 +7803,1358 @@ always @ ( posedge CLOCK )	// line#=computer.cpp:19
 		regs_rg31 <= 32'h00000000 ;
 	else if ( regs_rg31_en )
 		regs_rg31 <= regs_wd04 ;
-assign	CT_01 = ( ( ~FF_halt ) & ( ~|RG_addr1_next_pc_op1_PC_src_addr [31:18] ) ) ;	// line#=computer.cpp:440
-assign	CT_01_port = CT_01 ;
-assign	CT_02 = ( ( ~|imem_arg_MEMB32W65536_RD1 [14:12] ) & ( ~|imem_arg_MEMB32W65536_RD1 [31:25] ) ) ;	// line#=computer.cpp:442,455,683
-assign	TR_179 = ( RG_buf_buf1_2 == 32'h0000000b ) ;	// line#=computer.cpp:461
-assign	CT_15 = |RG_buf_buf1_instr_rd_word_addr [4:0] ;	// line#=computer.cpp:451,466,475,484,495
-							// ,555,619,665
-assign	CT_15_port = CT_15 ;
-always @ ( FF_take or RG_buf_buf1_funct3_imm1_next_pc )	// line#=computer.cpp:507
-	case ( RG_buf_buf1_funct3_imm1_next_pc )
-	32'h00000000 :
-		take_t1 = FF_take ;	// line#=computer.cpp:509
-	32'h00000001 :
-		take_t1 = FF_take ;	// line#=computer.cpp:512
-	32'h00000004 :
-		take_t1 = FF_take ;	// line#=computer.cpp:515
-	32'h00000005 :
-		take_t1 = FF_take ;	// line#=computer.cpp:518
-	32'h00000006 :
-		take_t1 = FF_take ;	// line#=computer.cpp:521
-	32'h00000007 :
-		take_t1 = FF_take ;	// line#=computer.cpp:524
+always @ ( blk_in_rg63 or blk_in_rg62 or blk_in_rg61 or blk_in_rg60 or blk_in_rg59 or 
+	blk_in_rg58 or blk_in_rg57 or blk_in_rg56 or blk_in_rg55 or blk_in_rg54 or 
+	blk_in_rg53 or blk_in_rg52 or blk_in_rg51 or blk_in_rg50 or blk_in_rg49 or 
+	blk_in_rg48 or blk_in_rg47 or blk_in_rg46 or blk_in_rg45 or blk_in_rg44 or 
+	blk_in_rg43 or blk_in_rg42 or blk_in_rg41 or blk_in_rg40 or blk_in_rg39 or 
+	blk_in_rg38 or blk_in_rg37 or blk_in_rg36 or blk_in_rg35 or blk_in_rg34 or 
+	blk_in_rg33 or blk_in_rg32 or blk_in_rg31 or blk_in_rg30 or blk_in_rg29 or 
+	blk_in_rg28 or blk_in_rg27 or blk_in_rg26 or blk_in_rg25 or blk_in_rg24 or 
+	blk_in_rg23 or blk_in_rg22 or blk_in_rg21 or blk_in_rg20 or blk_in_rg19 or 
+	blk_in_rg18 or blk_in_rg17 or blk_in_rg16 or blk_in_rg15 or blk_in_rg14 or 
+	blk_in_rg13 or blk_in_rg12 or blk_in_rg11 or blk_in_rg10 or blk_in_rg09 or 
+	blk_in_rg08 or blk_in_rg07 or blk_in_rg06 or blk_in_rg05 or blk_in_rg04 or 
+	blk_in_rg03 or blk_in_rg02 or blk_in_rg01 or blk_in_rg00 or RG_rs1_rs2_y or 
+	TR_31 )	// line#=computer.cpp:305
+	case ( { TR_31 , RG_rs1_rs2_y [2:0] } )
+	6'h00 :
+		blk_in_rd00 = blk_in_rg00 ;
+	6'h01 :
+		blk_in_rd00 = blk_in_rg01 ;
+	6'h02 :
+		blk_in_rd00 = blk_in_rg02 ;
+	6'h03 :
+		blk_in_rd00 = blk_in_rg03 ;
+	6'h04 :
+		blk_in_rd00 = blk_in_rg04 ;
+	6'h05 :
+		blk_in_rd00 = blk_in_rg05 ;
+	6'h06 :
+		blk_in_rd00 = blk_in_rg06 ;
+	6'h07 :
+		blk_in_rd00 = blk_in_rg07 ;
+	6'h08 :
+		blk_in_rd00 = blk_in_rg08 ;
+	6'h09 :
+		blk_in_rd00 = blk_in_rg09 ;
+	6'h0a :
+		blk_in_rd00 = blk_in_rg10 ;
+	6'h0b :
+		blk_in_rd00 = blk_in_rg11 ;
+	6'h0c :
+		blk_in_rd00 = blk_in_rg12 ;
+	6'h0d :
+		blk_in_rd00 = blk_in_rg13 ;
+	6'h0e :
+		blk_in_rd00 = blk_in_rg14 ;
+	6'h0f :
+		blk_in_rd00 = blk_in_rg15 ;
+	6'h10 :
+		blk_in_rd00 = blk_in_rg16 ;
+	6'h11 :
+		blk_in_rd00 = blk_in_rg17 ;
+	6'h12 :
+		blk_in_rd00 = blk_in_rg18 ;
+	6'h13 :
+		blk_in_rd00 = blk_in_rg19 ;
+	6'h14 :
+		blk_in_rd00 = blk_in_rg20 ;
+	6'h15 :
+		blk_in_rd00 = blk_in_rg21 ;
+	6'h16 :
+		blk_in_rd00 = blk_in_rg22 ;
+	6'h17 :
+		blk_in_rd00 = blk_in_rg23 ;
+	6'h18 :
+		blk_in_rd00 = blk_in_rg24 ;
+	6'h19 :
+		blk_in_rd00 = blk_in_rg25 ;
+	6'h1a :
+		blk_in_rd00 = blk_in_rg26 ;
+	6'h1b :
+		blk_in_rd00 = blk_in_rg27 ;
+	6'h1c :
+		blk_in_rd00 = blk_in_rg28 ;
+	6'h1d :
+		blk_in_rd00 = blk_in_rg29 ;
+	6'h1e :
+		blk_in_rd00 = blk_in_rg30 ;
+	6'h1f :
+		blk_in_rd00 = blk_in_rg31 ;
+	6'h20 :
+		blk_in_rd00 = blk_in_rg32 ;
+	6'h21 :
+		blk_in_rd00 = blk_in_rg33 ;
+	6'h22 :
+		blk_in_rd00 = blk_in_rg34 ;
+	6'h23 :
+		blk_in_rd00 = blk_in_rg35 ;
+	6'h24 :
+		blk_in_rd00 = blk_in_rg36 ;
+	6'h25 :
+		blk_in_rd00 = blk_in_rg37 ;
+	6'h26 :
+		blk_in_rd00 = blk_in_rg38 ;
+	6'h27 :
+		blk_in_rd00 = blk_in_rg39 ;
+	6'h28 :
+		blk_in_rd00 = blk_in_rg40 ;
+	6'h29 :
+		blk_in_rd00 = blk_in_rg41 ;
+	6'h2a :
+		blk_in_rd00 = blk_in_rg42 ;
+	6'h2b :
+		blk_in_rd00 = blk_in_rg43 ;
+	6'h2c :
+		blk_in_rd00 = blk_in_rg44 ;
+	6'h2d :
+		blk_in_rd00 = blk_in_rg45 ;
+	6'h2e :
+		blk_in_rd00 = blk_in_rg46 ;
+	6'h2f :
+		blk_in_rd00 = blk_in_rg47 ;
+	6'h30 :
+		blk_in_rd00 = blk_in_rg48 ;
+	6'h31 :
+		blk_in_rd00 = blk_in_rg49 ;
+	6'h32 :
+		blk_in_rd00 = blk_in_rg50 ;
+	6'h33 :
+		blk_in_rd00 = blk_in_rg51 ;
+	6'h34 :
+		blk_in_rd00 = blk_in_rg52 ;
+	6'h35 :
+		blk_in_rd00 = blk_in_rg53 ;
+	6'h36 :
+		blk_in_rd00 = blk_in_rg54 ;
+	6'h37 :
+		blk_in_rd00 = blk_in_rg55 ;
+	6'h38 :
+		blk_in_rd00 = blk_in_rg56 ;
+	6'h39 :
+		blk_in_rd00 = blk_in_rg57 ;
+	6'h3a :
+		blk_in_rd00 = blk_in_rg58 ;
+	6'h3b :
+		blk_in_rd00 = blk_in_rg59 ;
+	6'h3c :
+		blk_in_rd00 = blk_in_rg60 ;
+	6'h3d :
+		blk_in_rd00 = blk_in_rg61 ;
+	6'h3e :
+		blk_in_rd00 = blk_in_rg62 ;
+	6'h3f :
+		blk_in_rd00 = blk_in_rg63 ;
 	default :
-		take_t1 = 1'h0 ;	// line#=computer.cpp:506
+		blk_in_rd00 = 32'hx ;
 	endcase
-always @ ( FF_take )	// line#=computer.cpp:592
+computer_decoder_6to64 INST_decoder_6to64_1 ( .DECODER_in(blk_out1_ad01) ,.DECODER_out(blk_out1_d01) );	// line#=computer.cpp:306
+always @ ( blk_out1_rg63 or blk_out1_rg62 or blk_out1_rg61 or blk_out1_rg60 or blk_out1_rg59 or 
+	blk_out1_rg58 or blk_out1_rg57 or blk_out1_rg56 or blk_out1_rg55 or blk_out1_rg54 or 
+	blk_out1_rg53 or blk_out1_rg52 or blk_out1_rg51 or blk_out1_rg50 or blk_out1_rg49 or 
+	blk_out1_rg48 or blk_out1_rg47 or blk_out1_rg46 or blk_out1_rg45 or blk_out1_rg44 or 
+	blk_out1_rg43 or blk_out1_rg42 or blk_out1_rg41 or blk_out1_rg40 or blk_out1_rg39 or 
+	blk_out1_rg38 or blk_out1_rg37 or blk_out1_rg36 or blk_out1_rg35 or blk_out1_rg34 or 
+	blk_out1_rg33 or blk_out1_rg32 or blk_out1_rg31 or blk_out1_rg30 or blk_out1_rg29 or 
+	blk_out1_rg28 or blk_out1_rg27 or blk_out1_rg26 or blk_out1_rg25 or blk_out1_rg24 or 
+	blk_out1_rg23 or blk_out1_rg22 or blk_out1_rg21 or blk_out1_rg20 or blk_out1_rg19 or 
+	blk_out1_rg18 or blk_out1_rg17 or blk_out1_rg16 or blk_out1_rg15 or blk_out1_rg14 or 
+	blk_out1_rg13 or blk_out1_rg12 or blk_out1_rg11 or blk_out1_rg10 or blk_out1_rg09 or 
+	blk_out1_rg08 or blk_out1_rg07 or blk_out1_rg06 or blk_out1_rg05 or blk_out1_rg04 or 
+	blk_out1_rg03 or blk_out1_rg02 or blk_out1_rg01 or blk_out1_rg00 or TR_34 or 
+	RG_rs1_rs2_y )	// line#=computer.cpp:306
+	case ( { RG_rs1_rs2_y [2:0] , TR_34 } )
+	6'h00 :
+		blk_out1_rd00 = blk_out1_rg00 ;
+	6'h01 :
+		blk_out1_rd00 = blk_out1_rg01 ;
+	6'h02 :
+		blk_out1_rd00 = blk_out1_rg02 ;
+	6'h03 :
+		blk_out1_rd00 = blk_out1_rg03 ;
+	6'h04 :
+		blk_out1_rd00 = blk_out1_rg04 ;
+	6'h05 :
+		blk_out1_rd00 = blk_out1_rg05 ;
+	6'h06 :
+		blk_out1_rd00 = blk_out1_rg06 ;
+	6'h07 :
+		blk_out1_rd00 = blk_out1_rg07 ;
+	6'h08 :
+		blk_out1_rd00 = blk_out1_rg08 ;
+	6'h09 :
+		blk_out1_rd00 = blk_out1_rg09 ;
+	6'h0a :
+		blk_out1_rd00 = blk_out1_rg10 ;
+	6'h0b :
+		blk_out1_rd00 = blk_out1_rg11 ;
+	6'h0c :
+		blk_out1_rd00 = blk_out1_rg12 ;
+	6'h0d :
+		blk_out1_rd00 = blk_out1_rg13 ;
+	6'h0e :
+		blk_out1_rd00 = blk_out1_rg14 ;
+	6'h0f :
+		blk_out1_rd00 = blk_out1_rg15 ;
+	6'h10 :
+		blk_out1_rd00 = blk_out1_rg16 ;
+	6'h11 :
+		blk_out1_rd00 = blk_out1_rg17 ;
+	6'h12 :
+		blk_out1_rd00 = blk_out1_rg18 ;
+	6'h13 :
+		blk_out1_rd00 = blk_out1_rg19 ;
+	6'h14 :
+		blk_out1_rd00 = blk_out1_rg20 ;
+	6'h15 :
+		blk_out1_rd00 = blk_out1_rg21 ;
+	6'h16 :
+		blk_out1_rd00 = blk_out1_rg22 ;
+	6'h17 :
+		blk_out1_rd00 = blk_out1_rg23 ;
+	6'h18 :
+		blk_out1_rd00 = blk_out1_rg24 ;
+	6'h19 :
+		blk_out1_rd00 = blk_out1_rg25 ;
+	6'h1a :
+		blk_out1_rd00 = blk_out1_rg26 ;
+	6'h1b :
+		blk_out1_rd00 = blk_out1_rg27 ;
+	6'h1c :
+		blk_out1_rd00 = blk_out1_rg28 ;
+	6'h1d :
+		blk_out1_rd00 = blk_out1_rg29 ;
+	6'h1e :
+		blk_out1_rd00 = blk_out1_rg30 ;
+	6'h1f :
+		blk_out1_rd00 = blk_out1_rg31 ;
+	6'h20 :
+		blk_out1_rd00 = blk_out1_rg32 ;
+	6'h21 :
+		blk_out1_rd00 = blk_out1_rg33 ;
+	6'h22 :
+		blk_out1_rd00 = blk_out1_rg34 ;
+	6'h23 :
+		blk_out1_rd00 = blk_out1_rg35 ;
+	6'h24 :
+		blk_out1_rd00 = blk_out1_rg36 ;
+	6'h25 :
+		blk_out1_rd00 = blk_out1_rg37 ;
+	6'h26 :
+		blk_out1_rd00 = blk_out1_rg38 ;
+	6'h27 :
+		blk_out1_rd00 = blk_out1_rg39 ;
+	6'h28 :
+		blk_out1_rd00 = blk_out1_rg40 ;
+	6'h29 :
+		blk_out1_rd00 = blk_out1_rg41 ;
+	6'h2a :
+		blk_out1_rd00 = blk_out1_rg42 ;
+	6'h2b :
+		blk_out1_rd00 = blk_out1_rg43 ;
+	6'h2c :
+		blk_out1_rd00 = blk_out1_rg44 ;
+	6'h2d :
+		blk_out1_rd00 = blk_out1_rg45 ;
+	6'h2e :
+		blk_out1_rd00 = blk_out1_rg46 ;
+	6'h2f :
+		blk_out1_rd00 = blk_out1_rg47 ;
+	6'h30 :
+		blk_out1_rd00 = blk_out1_rg48 ;
+	6'h31 :
+		blk_out1_rd00 = blk_out1_rg49 ;
+	6'h32 :
+		blk_out1_rd00 = blk_out1_rg50 ;
+	6'h33 :
+		blk_out1_rd00 = blk_out1_rg51 ;
+	6'h34 :
+		blk_out1_rd00 = blk_out1_rg52 ;
+	6'h35 :
+		blk_out1_rd00 = blk_out1_rg53 ;
+	6'h36 :
+		blk_out1_rd00 = blk_out1_rg54 ;
+	6'h37 :
+		blk_out1_rd00 = blk_out1_rg55 ;
+	6'h38 :
+		blk_out1_rd00 = blk_out1_rg56 ;
+	6'h39 :
+		blk_out1_rd00 = blk_out1_rg57 ;
+	6'h3a :
+		blk_out1_rd00 = blk_out1_rg58 ;
+	6'h3b :
+		blk_out1_rd00 = blk_out1_rg59 ;
+	6'h3c :
+		blk_out1_rd00 = blk_out1_rg60 ;
+	6'h3d :
+		blk_out1_rd00 = blk_out1_rg61 ;
+	6'h3e :
+		blk_out1_rd00 = blk_out1_rg62 ;
+	6'h3f :
+		blk_out1_rd00 = blk_out1_rg63 ;
+	default :
+		blk_out1_rd00 = 20'hx ;
+	endcase
+assign	M_01 = ~( blk_out1_we01 & blk_out1_d01 [63] ) ;
+always @ ( add32s1ot or M_01 or U_1178 or blk_out1_wd01 or blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg00_t_c1 = ( blk_out1_we01 & blk_out1_d01 [63] ) ;
+	blk_out1_rg00_t_c2 = ( U_1178 & M_01 ) ;	// line#=computer.cpp:296,376
+	blk_out1_rg00_t = ( ( { 20{ blk_out1_rg00_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg00_t_c2 } } & add32s1ot [28:9] )	// line#=computer.cpp:296,376
+		) ;
+	end
+assign	blk_out1_rg00_en = ( blk_out1_rg00_t_c1 | blk_out1_rg00_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg00 <= 20'h00000 ;
+	else if ( blk_out1_rg00_en )
+		blk_out1_rg00 <= blk_out1_rg00_t ;	// line#=computer.cpp:296,306,376
+assign	M_02 = ~( blk_out1_we01 & blk_out1_d01 [62] ) ;
+always @ ( add32s1ot or M_02 or U_1222 or blk_out1_wd01 or blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg01_t_c1 = ( blk_out1_we01 & blk_out1_d01 [62] ) ;
+	blk_out1_rg01_t_c2 = ( U_1222 & M_02 ) ;	// line#=computer.cpp:296,376
+	blk_out1_rg01_t = ( ( { 20{ blk_out1_rg01_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg01_t_c2 } } & add32s1ot [28:9] )	// line#=computer.cpp:296,376
+		) ;
+	end
+assign	blk_out1_rg01_en = ( blk_out1_rg01_t_c1 | blk_out1_rg01_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg01 <= 20'h00000 ;
+	else if ( blk_out1_rg01_en )
+		blk_out1_rg01 <= blk_out1_rg01_t ;	// line#=computer.cpp:296,306,376
+assign	M_03 = ~( blk_out1_we01 & blk_out1_d01 [61] ) ;
+always @ ( add32s1ot or M_03 or U_1266 or blk_out1_wd01 or blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg02_t_c1 = ( blk_out1_we01 & blk_out1_d01 [61] ) ;
+	blk_out1_rg02_t_c2 = ( U_1266 & M_03 ) ;	// line#=computer.cpp:296,376
+	blk_out1_rg02_t = ( ( { 20{ blk_out1_rg02_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg02_t_c2 } } & add32s1ot [28:9] )	// line#=computer.cpp:296,376
+		) ;
+	end
+assign	blk_out1_rg02_en = ( blk_out1_rg02_t_c1 | blk_out1_rg02_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg02 <= 20'h00000 ;
+	else if ( blk_out1_rg02_en )
+		blk_out1_rg02 <= blk_out1_rg02_t ;	// line#=computer.cpp:296,306,376
+assign	M_04 = ~( blk_out1_we01 & blk_out1_d01 [60] ) ;
+always @ ( add32s1ot or M_04 or U_1310 or blk_out1_wd01 or blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg03_t_c1 = ( blk_out1_we01 & blk_out1_d01 [60] ) ;
+	blk_out1_rg03_t_c2 = ( U_1310 & M_04 ) ;	// line#=computer.cpp:296,376
+	blk_out1_rg03_t = ( ( { 20{ blk_out1_rg03_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg03_t_c2 } } & add32s1ot [28:9] )	// line#=computer.cpp:296,376
+		) ;
+	end
+assign	blk_out1_rg03_en = ( blk_out1_rg03_t_c1 | blk_out1_rg03_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg03 <= 20'h00000 ;
+	else if ( blk_out1_rg03_en )
+		blk_out1_rg03 <= blk_out1_rg03_t ;	// line#=computer.cpp:296,306,376
+assign	M_05 = ~( blk_out1_we01 & blk_out1_d01 [59] ) ;
+always @ ( add32s1ot or M_05 or U_1354 or blk_out1_wd01 or blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg04_t_c1 = ( blk_out1_we01 & blk_out1_d01 [59] ) ;
+	blk_out1_rg04_t_c2 = ( U_1354 & M_05 ) ;	// line#=computer.cpp:296,376
+	blk_out1_rg04_t = ( ( { 20{ blk_out1_rg04_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg04_t_c2 } } & add32s1ot [28:9] )	// line#=computer.cpp:296,376
+		) ;
+	end
+assign	blk_out1_rg04_en = ( blk_out1_rg04_t_c1 | blk_out1_rg04_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg04 <= 20'h00000 ;
+	else if ( blk_out1_rg04_en )
+		blk_out1_rg04 <= blk_out1_rg04_t ;	// line#=computer.cpp:296,306,376
+assign	M_06 = ~( blk_out1_we01 & blk_out1_d01 [58] ) ;
+always @ ( add32s1ot or M_06 or U_1398 or blk_out1_wd01 or blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg05_t_c1 = ( blk_out1_we01 & blk_out1_d01 [58] ) ;
+	blk_out1_rg05_t_c2 = ( U_1398 & M_06 ) ;	// line#=computer.cpp:296,376
+	blk_out1_rg05_t = ( ( { 20{ blk_out1_rg05_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg05_t_c2 } } & add32s1ot [28:9] )	// line#=computer.cpp:296,376
+		) ;
+	end
+assign	blk_out1_rg05_en = ( blk_out1_rg05_t_c1 | blk_out1_rg05_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg05 <= 20'h00000 ;
+	else if ( blk_out1_rg05_en )
+		blk_out1_rg05 <= blk_out1_rg05_t ;	// line#=computer.cpp:296,306,376
+assign	M_07 = ~( blk_out1_we01 & blk_out1_d01 [57] ) ;
+always @ ( add32s1ot or M_07 or U_1442 or blk_out1_wd01 or blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg06_t_c1 = ( blk_out1_we01 & blk_out1_d01 [57] ) ;
+	blk_out1_rg06_t_c2 = ( U_1442 & M_07 ) ;	// line#=computer.cpp:296,376
+	blk_out1_rg06_t = ( ( { 20{ blk_out1_rg06_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg06_t_c2 } } & add32s1ot [28:9] )	// line#=computer.cpp:296,376
+		) ;
+	end
+assign	blk_out1_rg06_en = ( blk_out1_rg06_t_c1 | blk_out1_rg06_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg06 <= 20'h00000 ;
+	else if ( blk_out1_rg06_en )
+		blk_out1_rg06 <= blk_out1_rg06_t ;	// line#=computer.cpp:296,306,376
+assign	M_08 = ~( blk_out1_we01 & blk_out1_d01 [56] ) ;
+always @ ( add32s1ot or M_08 or U_1486 or blk_out1_wd01 or blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg07_t_c1 = ( blk_out1_we01 & blk_out1_d01 [56] ) ;
+	blk_out1_rg07_t_c2 = ( U_1486 & M_08 ) ;	// line#=computer.cpp:296,376
+	blk_out1_rg07_t = ( ( { 20{ blk_out1_rg07_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg07_t_c2 } } & add32s1ot [28:9] )	// line#=computer.cpp:296,376
+		) ;
+	end
+assign	blk_out1_rg07_en = ( blk_out1_rg07_t_c1 | blk_out1_rg07_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg07 <= 20'h00000 ;
+	else if ( blk_out1_rg07_en )
+		blk_out1_rg07 <= blk_out1_rg07_t ;	// line#=computer.cpp:296,306,376
+assign	M_09 = ~( blk_out1_we01 & blk_out1_d01 [55] ) ;
+always @ ( RG_buf_buf1_src_addr_y or M_09 or U_1178 or blk_out1_wd01 or blk_out1_d01 or 
+	blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg08_t_c1 = ( blk_out1_we01 & blk_out1_d01 [55] ) ;
+	blk_out1_rg08_t_c2 = ( U_1178 & M_09 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg08_t = ( ( { 20{ blk_out1_rg08_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg08_t_c2 } } & { RG_buf_buf1_src_addr_y [19] , 
+			RG_buf_buf1_src_addr_y [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg08_en = ( blk_out1_rg08_t_c1 | blk_out1_rg08_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg08 <= 20'h00000 ;
+	else if ( blk_out1_rg08_en )
+		blk_out1_rg08 <= blk_out1_rg08_t ;	// line#=computer.cpp:296,306,378
+assign	M_10 = ~( blk_out1_we01 & blk_out1_d01 [54] ) ;
+always @ ( RG_buf_buf1_src_addr_y or M_10 or U_1222 or blk_out1_wd01 or blk_out1_d01 or 
+	blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg09_t_c1 = ( blk_out1_we01 & blk_out1_d01 [54] ) ;
+	blk_out1_rg09_t_c2 = ( U_1222 & M_10 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg09_t = ( ( { 20{ blk_out1_rg09_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg09_t_c2 } } & { RG_buf_buf1_src_addr_y [19] , 
+			RG_buf_buf1_src_addr_y [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg09_en = ( blk_out1_rg09_t_c1 | blk_out1_rg09_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg09 <= 20'h00000 ;
+	else if ( blk_out1_rg09_en )
+		blk_out1_rg09 <= blk_out1_rg09_t ;	// line#=computer.cpp:296,306,378
+assign	M_11 = ~( blk_out1_we01 & blk_out1_d01 [53] ) ;
+always @ ( RG_buf_buf1_src_addr_y or M_11 or U_1266 or blk_out1_wd01 or blk_out1_d01 or 
+	blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg10_t_c1 = ( blk_out1_we01 & blk_out1_d01 [53] ) ;
+	blk_out1_rg10_t_c2 = ( U_1266 & M_11 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg10_t = ( ( { 20{ blk_out1_rg10_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg10_t_c2 } } & { RG_buf_buf1_src_addr_y [19] , 
+			RG_buf_buf1_src_addr_y [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg10_en = ( blk_out1_rg10_t_c1 | blk_out1_rg10_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg10 <= 20'h00000 ;
+	else if ( blk_out1_rg10_en )
+		blk_out1_rg10 <= blk_out1_rg10_t ;	// line#=computer.cpp:296,306,378
+assign	M_12 = ~( blk_out1_we01 & blk_out1_d01 [52] ) ;
+always @ ( RG_buf_buf1_src_addr_y or M_12 or U_1310 or blk_out1_wd01 or blk_out1_d01 or 
+	blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg11_t_c1 = ( blk_out1_we01 & blk_out1_d01 [52] ) ;
+	blk_out1_rg11_t_c2 = ( U_1310 & M_12 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg11_t = ( ( { 20{ blk_out1_rg11_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg11_t_c2 } } & { RG_buf_buf1_src_addr_y [19] , 
+			RG_buf_buf1_src_addr_y [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg11_en = ( blk_out1_rg11_t_c1 | blk_out1_rg11_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg11 <= 20'h00000 ;
+	else if ( blk_out1_rg11_en )
+		blk_out1_rg11 <= blk_out1_rg11_t ;	// line#=computer.cpp:296,306,378
+assign	M_13 = ~( blk_out1_we01 & blk_out1_d01 [51] ) ;
+always @ ( RG_buf_buf1_src_addr_y or M_13 or U_1354 or blk_out1_wd01 or blk_out1_d01 or 
+	blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg12_t_c1 = ( blk_out1_we01 & blk_out1_d01 [51] ) ;
+	blk_out1_rg12_t_c2 = ( U_1354 & M_13 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg12_t = ( ( { 20{ blk_out1_rg12_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg12_t_c2 } } & { RG_buf_buf1_src_addr_y [19] , 
+			RG_buf_buf1_src_addr_y [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg12_en = ( blk_out1_rg12_t_c1 | blk_out1_rg12_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg12 <= 20'h00000 ;
+	else if ( blk_out1_rg12_en )
+		blk_out1_rg12 <= blk_out1_rg12_t ;	// line#=computer.cpp:296,306,378
+assign	M_14 = ~( blk_out1_we01 & blk_out1_d01 [50] ) ;
+always @ ( RG_buf_buf1_src_addr_y or M_14 or U_1398 or blk_out1_wd01 or blk_out1_d01 or 
+	blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg13_t_c1 = ( blk_out1_we01 & blk_out1_d01 [50] ) ;
+	blk_out1_rg13_t_c2 = ( U_1398 & M_14 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg13_t = ( ( { 20{ blk_out1_rg13_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg13_t_c2 } } & { RG_buf_buf1_src_addr_y [19] , 
+			RG_buf_buf1_src_addr_y [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg13_en = ( blk_out1_rg13_t_c1 | blk_out1_rg13_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg13 <= 20'h00000 ;
+	else if ( blk_out1_rg13_en )
+		blk_out1_rg13 <= blk_out1_rg13_t ;	// line#=computer.cpp:296,306,378
+assign	M_15 = ~( blk_out1_we01 & blk_out1_d01 [49] ) ;
+always @ ( RG_buf_buf1_src_addr_y or M_15 or U_1442 or blk_out1_wd01 or blk_out1_d01 or 
+	blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg14_t_c1 = ( blk_out1_we01 & blk_out1_d01 [49] ) ;
+	blk_out1_rg14_t_c2 = ( U_1442 & M_15 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg14_t = ( ( { 20{ blk_out1_rg14_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg14_t_c2 } } & { RG_buf_buf1_src_addr_y [19] , 
+			RG_buf_buf1_src_addr_y [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg14_en = ( blk_out1_rg14_t_c1 | blk_out1_rg14_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg14 <= 20'h00000 ;
+	else if ( blk_out1_rg14_en )
+		blk_out1_rg14 <= blk_out1_rg14_t ;	// line#=computer.cpp:296,306,378
+assign	M_16 = ~( blk_out1_we01 & blk_out1_d01 [48] ) ;
+always @ ( RG_buf_buf1_src_addr_y or M_16 or U_1486 or blk_out1_wd01 or blk_out1_d01 or 
+	blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg15_t_c1 = ( blk_out1_we01 & blk_out1_d01 [48] ) ;
+	blk_out1_rg15_t_c2 = ( U_1486 & M_16 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg15_t = ( ( { 20{ blk_out1_rg15_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg15_t_c2 } } & { RG_buf_buf1_src_addr_y [19] , 
+			RG_buf_buf1_src_addr_y [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg15_en = ( blk_out1_rg15_t_c1 | blk_out1_rg15_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg15 <= 20'h00000 ;
+	else if ( blk_out1_rg15_en )
+		blk_out1_rg15 <= blk_out1_rg15_t ;	// line#=computer.cpp:296,306,378
+assign	M_17 = ~( blk_out1_we01 & blk_out1_d01 [47] ) ;
+always @ ( RG_buf_buf1 or M_17 or U_1178 or blk_out1_wd01 or blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg16_t_c1 = ( blk_out1_we01 & blk_out1_d01 [47] ) ;
+	blk_out1_rg16_t_c2 = ( U_1178 & M_17 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg16_t = ( ( { 20{ blk_out1_rg16_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg16_t_c2 } } & { RG_buf_buf1 [19] , RG_buf_buf1 [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg16_en = ( blk_out1_rg16_t_c1 | blk_out1_rg16_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg16 <= 20'h00000 ;
+	else if ( blk_out1_rg16_en )
+		blk_out1_rg16 <= blk_out1_rg16_t ;	// line#=computer.cpp:296,306,378
+assign	M_18 = ~( blk_out1_we01 & blk_out1_d01 [46] ) ;
+always @ ( RG_buf_buf1 or M_18 or U_1222 or blk_out1_wd01 or blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg17_t_c1 = ( blk_out1_we01 & blk_out1_d01 [46] ) ;
+	blk_out1_rg17_t_c2 = ( U_1222 & M_18 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg17_t = ( ( { 20{ blk_out1_rg17_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg17_t_c2 } } & { RG_buf_buf1 [19] , RG_buf_buf1 [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg17_en = ( blk_out1_rg17_t_c1 | blk_out1_rg17_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg17 <= 20'h00000 ;
+	else if ( blk_out1_rg17_en )
+		blk_out1_rg17 <= blk_out1_rg17_t ;	// line#=computer.cpp:296,306,378
+assign	M_19 = ~( blk_out1_we01 & blk_out1_d01 [45] ) ;
+always @ ( RG_buf_buf1 or M_19 or U_1266 or blk_out1_wd01 or blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg18_t_c1 = ( blk_out1_we01 & blk_out1_d01 [45] ) ;
+	blk_out1_rg18_t_c2 = ( U_1266 & M_19 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg18_t = ( ( { 20{ blk_out1_rg18_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg18_t_c2 } } & { RG_buf_buf1 [19] , RG_buf_buf1 [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg18_en = ( blk_out1_rg18_t_c1 | blk_out1_rg18_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg18 <= 20'h00000 ;
+	else if ( blk_out1_rg18_en )
+		blk_out1_rg18 <= blk_out1_rg18_t ;	// line#=computer.cpp:296,306,378
+assign	M_20 = ~( blk_out1_we01 & blk_out1_d01 [44] ) ;
+always @ ( RG_buf_buf1 or M_20 or U_1310 or blk_out1_wd01 or blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg19_t_c1 = ( blk_out1_we01 & blk_out1_d01 [44] ) ;
+	blk_out1_rg19_t_c2 = ( U_1310 & M_20 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg19_t = ( ( { 20{ blk_out1_rg19_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg19_t_c2 } } & { RG_buf_buf1 [19] , RG_buf_buf1 [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg19_en = ( blk_out1_rg19_t_c1 | blk_out1_rg19_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg19 <= 20'h00000 ;
+	else if ( blk_out1_rg19_en )
+		blk_out1_rg19 <= blk_out1_rg19_t ;	// line#=computer.cpp:296,306,378
+assign	M_21 = ~( blk_out1_we01 & blk_out1_d01 [43] ) ;
+always @ ( RG_buf_buf1 or M_21 or U_1354 or blk_out1_wd01 or blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg20_t_c1 = ( blk_out1_we01 & blk_out1_d01 [43] ) ;
+	blk_out1_rg20_t_c2 = ( U_1354 & M_21 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg20_t = ( ( { 20{ blk_out1_rg20_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg20_t_c2 } } & { RG_buf_buf1 [19] , RG_buf_buf1 [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg20_en = ( blk_out1_rg20_t_c1 | blk_out1_rg20_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg20 <= 20'h00000 ;
+	else if ( blk_out1_rg20_en )
+		blk_out1_rg20 <= blk_out1_rg20_t ;	// line#=computer.cpp:296,306,378
+assign	M_22 = ~( blk_out1_we01 & blk_out1_d01 [42] ) ;
+always @ ( RG_buf_buf1 or M_22 or U_1398 or blk_out1_wd01 or blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg21_t_c1 = ( blk_out1_we01 & blk_out1_d01 [42] ) ;
+	blk_out1_rg21_t_c2 = ( U_1398 & M_22 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg21_t = ( ( { 20{ blk_out1_rg21_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg21_t_c2 } } & { RG_buf_buf1 [19] , RG_buf_buf1 [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg21_en = ( blk_out1_rg21_t_c1 | blk_out1_rg21_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg21 <= 20'h00000 ;
+	else if ( blk_out1_rg21_en )
+		blk_out1_rg21 <= blk_out1_rg21_t ;	// line#=computer.cpp:296,306,378
+assign	M_23 = ~( blk_out1_we01 & blk_out1_d01 [41] ) ;
+always @ ( RG_buf_buf1 or M_23 or U_1442 or blk_out1_wd01 or blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg22_t_c1 = ( blk_out1_we01 & blk_out1_d01 [41] ) ;
+	blk_out1_rg22_t_c2 = ( U_1442 & M_23 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg22_t = ( ( { 20{ blk_out1_rg22_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg22_t_c2 } } & { RG_buf_buf1 [19] , RG_buf_buf1 [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg22_en = ( blk_out1_rg22_t_c1 | blk_out1_rg22_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg22 <= 20'h00000 ;
+	else if ( blk_out1_rg22_en )
+		blk_out1_rg22 <= blk_out1_rg22_t ;	// line#=computer.cpp:296,306,378
+assign	M_24 = ~( blk_out1_we01 & blk_out1_d01 [40] ) ;
+always @ ( RG_buf_buf1 or M_24 or U_1486 or blk_out1_wd01 or blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg23_t_c1 = ( blk_out1_we01 & blk_out1_d01 [40] ) ;
+	blk_out1_rg23_t_c2 = ( U_1486 & M_24 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg23_t = ( ( { 20{ blk_out1_rg23_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg23_t_c2 } } & { RG_buf_buf1 [19] , RG_buf_buf1 [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg23_en = ( blk_out1_rg23_t_c1 | blk_out1_rg23_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg23 <= 20'h00000 ;
+	else if ( blk_out1_rg23_en )
+		blk_out1_rg23 <= blk_out1_rg23_t ;	// line#=computer.cpp:296,306,378
+assign	M_25 = ~( blk_out1_we01 & blk_out1_d01 [39] ) ;
+always @ ( RL_buf_buf1_instr_next_pc_rd or M_25 or U_1178 or blk_out1_wd01 or blk_out1_d01 or 
+	blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg24_t_c1 = ( blk_out1_we01 & blk_out1_d01 [39] ) ;
+	blk_out1_rg24_t_c2 = ( U_1178 & M_25 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg24_t = ( ( { 20{ blk_out1_rg24_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg24_t_c2 } } & { RL_buf_buf1_instr_next_pc_rd [19] , 
+			RL_buf_buf1_instr_next_pc_rd [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg24_en = ( blk_out1_rg24_t_c1 | blk_out1_rg24_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg24 <= 20'h00000 ;
+	else if ( blk_out1_rg24_en )
+		blk_out1_rg24 <= blk_out1_rg24_t ;	// line#=computer.cpp:296,306,378
+assign	M_26 = ~( blk_out1_we01 & blk_out1_d01 [38] ) ;
+always @ ( RL_buf_buf1_instr_next_pc_rd or M_26 or U_1222 or blk_out1_wd01 or blk_out1_d01 or 
+	blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg25_t_c1 = ( blk_out1_we01 & blk_out1_d01 [38] ) ;
+	blk_out1_rg25_t_c2 = ( U_1222 & M_26 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg25_t = ( ( { 20{ blk_out1_rg25_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg25_t_c2 } } & { RL_buf_buf1_instr_next_pc_rd [19] , 
+			RL_buf_buf1_instr_next_pc_rd [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg25_en = ( blk_out1_rg25_t_c1 | blk_out1_rg25_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg25 <= 20'h00000 ;
+	else if ( blk_out1_rg25_en )
+		blk_out1_rg25 <= blk_out1_rg25_t ;	// line#=computer.cpp:296,306,378
+assign	M_27 = ~( blk_out1_we01 & blk_out1_d01 [37] ) ;
+always @ ( RL_buf_buf1_instr_next_pc_rd or M_27 or U_1266 or blk_out1_wd01 or blk_out1_d01 or 
+	blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg26_t_c1 = ( blk_out1_we01 & blk_out1_d01 [37] ) ;
+	blk_out1_rg26_t_c2 = ( U_1266 & M_27 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg26_t = ( ( { 20{ blk_out1_rg26_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg26_t_c2 } } & { RL_buf_buf1_instr_next_pc_rd [19] , 
+			RL_buf_buf1_instr_next_pc_rd [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg26_en = ( blk_out1_rg26_t_c1 | blk_out1_rg26_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg26 <= 20'h00000 ;
+	else if ( blk_out1_rg26_en )
+		blk_out1_rg26 <= blk_out1_rg26_t ;	// line#=computer.cpp:296,306,378
+assign	M_28 = ~( blk_out1_we01 & blk_out1_d01 [36] ) ;
+always @ ( RL_buf_buf1_instr_next_pc_rd or M_28 or U_1310 or blk_out1_wd01 or blk_out1_d01 or 
+	blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg27_t_c1 = ( blk_out1_we01 & blk_out1_d01 [36] ) ;
+	blk_out1_rg27_t_c2 = ( U_1310 & M_28 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg27_t = ( ( { 20{ blk_out1_rg27_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg27_t_c2 } } & { RL_buf_buf1_instr_next_pc_rd [19] , 
+			RL_buf_buf1_instr_next_pc_rd [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg27_en = ( blk_out1_rg27_t_c1 | blk_out1_rg27_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg27 <= 20'h00000 ;
+	else if ( blk_out1_rg27_en )
+		blk_out1_rg27 <= blk_out1_rg27_t ;	// line#=computer.cpp:296,306,378
+assign	M_29 = ~( blk_out1_we01 & blk_out1_d01 [35] ) ;
+always @ ( RL_buf_buf1_instr_next_pc_rd or M_29 or U_1354 or blk_out1_wd01 or blk_out1_d01 or 
+	blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg28_t_c1 = ( blk_out1_we01 & blk_out1_d01 [35] ) ;
+	blk_out1_rg28_t_c2 = ( U_1354 & M_29 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg28_t = ( ( { 20{ blk_out1_rg28_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg28_t_c2 } } & { RL_buf_buf1_instr_next_pc_rd [19] , 
+			RL_buf_buf1_instr_next_pc_rd [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg28_en = ( blk_out1_rg28_t_c1 | blk_out1_rg28_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg28 <= 20'h00000 ;
+	else if ( blk_out1_rg28_en )
+		blk_out1_rg28 <= blk_out1_rg28_t ;	// line#=computer.cpp:296,306,378
+assign	M_30 = ~( blk_out1_we01 & blk_out1_d01 [34] ) ;
+always @ ( RL_buf_buf1_instr_next_pc_rd or M_30 or U_1398 or blk_out1_wd01 or blk_out1_d01 or 
+	blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg29_t_c1 = ( blk_out1_we01 & blk_out1_d01 [34] ) ;
+	blk_out1_rg29_t_c2 = ( U_1398 & M_30 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg29_t = ( ( { 20{ blk_out1_rg29_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg29_t_c2 } } & { RL_buf_buf1_instr_next_pc_rd [19] , 
+			RL_buf_buf1_instr_next_pc_rd [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg29_en = ( blk_out1_rg29_t_c1 | blk_out1_rg29_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg29 <= 20'h00000 ;
+	else if ( blk_out1_rg29_en )
+		blk_out1_rg29 <= blk_out1_rg29_t ;	// line#=computer.cpp:296,306,378
+assign	M_31 = ~( blk_out1_we01 & blk_out1_d01 [33] ) ;
+always @ ( RL_buf_buf1_instr_next_pc_rd or M_31 or U_1442 or blk_out1_wd01 or blk_out1_d01 or 
+	blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg30_t_c1 = ( blk_out1_we01 & blk_out1_d01 [33] ) ;
+	blk_out1_rg30_t_c2 = ( U_1442 & M_31 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg30_t = ( ( { 20{ blk_out1_rg30_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg30_t_c2 } } & { RL_buf_buf1_instr_next_pc_rd [19] , 
+			RL_buf_buf1_instr_next_pc_rd [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg30_en = ( blk_out1_rg30_t_c1 | blk_out1_rg30_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg30 <= 20'h00000 ;
+	else if ( blk_out1_rg30_en )
+		blk_out1_rg30 <= blk_out1_rg30_t ;	// line#=computer.cpp:296,306,378
+assign	M_32 = ~( blk_out1_we01 & blk_out1_d01 [32] ) ;
+always @ ( RL_buf_buf1_instr_next_pc_rd or M_32 or U_1486 or blk_out1_wd01 or blk_out1_d01 or 
+	blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg31_t_c1 = ( blk_out1_we01 & blk_out1_d01 [32] ) ;
+	blk_out1_rg31_t_c2 = ( U_1486 & M_32 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg31_t = ( ( { 20{ blk_out1_rg31_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg31_t_c2 } } & { RL_buf_buf1_instr_next_pc_rd [19] , 
+			RL_buf_buf1_instr_next_pc_rd [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg31_en = ( blk_out1_rg31_t_c1 | blk_out1_rg31_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg31 <= 20'h00000 ;
+	else if ( blk_out1_rg31_en )
+		blk_out1_rg31 <= blk_out1_rg31_t ;	// line#=computer.cpp:296,306,378
+assign	M_33 = ~( blk_out1_we01 & blk_out1_d01 [31] ) ;
+always @ ( RG_buf_buf1_dst_addr_src_addr or M_33 or U_1178 or blk_out1_wd01 or blk_out1_d01 or 
+	blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg32_t_c1 = ( blk_out1_we01 & blk_out1_d01 [31] ) ;
+	blk_out1_rg32_t_c2 = ( U_1178 & M_33 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg32_t = ( ( { 20{ blk_out1_rg32_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg32_t_c2 } } & { RG_buf_buf1_dst_addr_src_addr [19] , 
+			RG_buf_buf1_dst_addr_src_addr [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg32_en = ( blk_out1_rg32_t_c1 | blk_out1_rg32_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg32 <= 20'h00000 ;
+	else if ( blk_out1_rg32_en )
+		blk_out1_rg32 <= blk_out1_rg32_t ;	// line#=computer.cpp:296,306,378
+assign	M_34 = ~( blk_out1_we01 & blk_out1_d01 [30] ) ;
+always @ ( RG_buf_buf1_dst_addr_src_addr or M_34 or U_1222 or blk_out1_wd01 or blk_out1_d01 or 
+	blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg33_t_c1 = ( blk_out1_we01 & blk_out1_d01 [30] ) ;
+	blk_out1_rg33_t_c2 = ( U_1222 & M_34 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg33_t = ( ( { 20{ blk_out1_rg33_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg33_t_c2 } } & { RG_buf_buf1_dst_addr_src_addr [19] , 
+			RG_buf_buf1_dst_addr_src_addr [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg33_en = ( blk_out1_rg33_t_c1 | blk_out1_rg33_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg33 <= 20'h00000 ;
+	else if ( blk_out1_rg33_en )
+		blk_out1_rg33 <= blk_out1_rg33_t ;	// line#=computer.cpp:296,306,378
+assign	M_35 = ~( blk_out1_we01 & blk_out1_d01 [29] ) ;
+always @ ( RG_buf_buf1_dst_addr_src_addr or M_35 or U_1266 or blk_out1_wd01 or blk_out1_d01 or 
+	blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg34_t_c1 = ( blk_out1_we01 & blk_out1_d01 [29] ) ;
+	blk_out1_rg34_t_c2 = ( U_1266 & M_35 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg34_t = ( ( { 20{ blk_out1_rg34_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg34_t_c2 } } & { RG_buf_buf1_dst_addr_src_addr [19] , 
+			RG_buf_buf1_dst_addr_src_addr [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg34_en = ( blk_out1_rg34_t_c1 | blk_out1_rg34_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg34 <= 20'h00000 ;
+	else if ( blk_out1_rg34_en )
+		blk_out1_rg34 <= blk_out1_rg34_t ;	// line#=computer.cpp:296,306,378
+assign	M_36 = ~( blk_out1_we01 & blk_out1_d01 [28] ) ;
+always @ ( RG_buf_buf1_dst_addr_src_addr or M_36 or U_1310 or blk_out1_wd01 or blk_out1_d01 or 
+	blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg35_t_c1 = ( blk_out1_we01 & blk_out1_d01 [28] ) ;
+	blk_out1_rg35_t_c2 = ( U_1310 & M_36 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg35_t = ( ( { 20{ blk_out1_rg35_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg35_t_c2 } } & { RG_buf_buf1_dst_addr_src_addr [19] , 
+			RG_buf_buf1_dst_addr_src_addr [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg35_en = ( blk_out1_rg35_t_c1 | blk_out1_rg35_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg35 <= 20'h00000 ;
+	else if ( blk_out1_rg35_en )
+		blk_out1_rg35 <= blk_out1_rg35_t ;	// line#=computer.cpp:296,306,378
+assign	M_37 = ~( blk_out1_we01 & blk_out1_d01 [27] ) ;
+always @ ( RG_buf_buf1_dst_addr_src_addr or M_37 or U_1354 or blk_out1_wd01 or blk_out1_d01 or 
+	blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg36_t_c1 = ( blk_out1_we01 & blk_out1_d01 [27] ) ;
+	blk_out1_rg36_t_c2 = ( U_1354 & M_37 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg36_t = ( ( { 20{ blk_out1_rg36_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg36_t_c2 } } & { RG_buf_buf1_dst_addr_src_addr [19] , 
+			RG_buf_buf1_dst_addr_src_addr [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg36_en = ( blk_out1_rg36_t_c1 | blk_out1_rg36_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg36 <= 20'h00000 ;
+	else if ( blk_out1_rg36_en )
+		blk_out1_rg36 <= blk_out1_rg36_t ;	// line#=computer.cpp:296,306,378
+assign	M_38 = ~( blk_out1_we01 & blk_out1_d01 [26] ) ;
+always @ ( RG_buf_buf1_dst_addr_src_addr or M_38 or U_1398 or blk_out1_wd01 or blk_out1_d01 or 
+	blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg37_t_c1 = ( blk_out1_we01 & blk_out1_d01 [26] ) ;
+	blk_out1_rg37_t_c2 = ( U_1398 & M_38 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg37_t = ( ( { 20{ blk_out1_rg37_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg37_t_c2 } } & { RG_buf_buf1_dst_addr_src_addr [19] , 
+			RG_buf_buf1_dst_addr_src_addr [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg37_en = ( blk_out1_rg37_t_c1 | blk_out1_rg37_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg37 <= 20'h00000 ;
+	else if ( blk_out1_rg37_en )
+		blk_out1_rg37 <= blk_out1_rg37_t ;	// line#=computer.cpp:296,306,378
+assign	M_39 = ~( blk_out1_we01 & blk_out1_d01 [25] ) ;
+always @ ( RG_buf_buf1_dst_addr_src_addr or M_39 or U_1442 or blk_out1_wd01 or blk_out1_d01 or 
+	blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg38_t_c1 = ( blk_out1_we01 & blk_out1_d01 [25] ) ;
+	blk_out1_rg38_t_c2 = ( U_1442 & M_39 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg38_t = ( ( { 20{ blk_out1_rg38_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg38_t_c2 } } & { RG_buf_buf1_dst_addr_src_addr [19] , 
+			RG_buf_buf1_dst_addr_src_addr [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg38_en = ( blk_out1_rg38_t_c1 | blk_out1_rg38_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg38 <= 20'h00000 ;
+	else if ( blk_out1_rg38_en )
+		blk_out1_rg38 <= blk_out1_rg38_t ;	// line#=computer.cpp:296,306,378
+assign	M_40 = ~( blk_out1_we01 & blk_out1_d01 [24] ) ;
+always @ ( RG_buf_buf1_dst_addr_src_addr or M_40 or U_1486 or blk_out1_wd01 or blk_out1_d01 or 
+	blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg39_t_c1 = ( blk_out1_we01 & blk_out1_d01 [24] ) ;
+	blk_out1_rg39_t_c2 = ( U_1486 & M_40 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg39_t = ( ( { 20{ blk_out1_rg39_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg39_t_c2 } } & { RG_buf_buf1_dst_addr_src_addr [19] , 
+			RG_buf_buf1_dst_addr_src_addr [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg39_en = ( blk_out1_rg39_t_c1 | blk_out1_rg39_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg39 <= 20'h00000 ;
+	else if ( blk_out1_rg39_en )
+		blk_out1_rg39 <= blk_out1_rg39_t ;	// line#=computer.cpp:296,306,378
+assign	M_41 = ~( blk_out1_we01 & blk_out1_d01 [23] ) ;
+always @ ( RL_addr1_buf_buf1_next_pc_op1_PC or M_41 or U_1178 or blk_out1_wd01 or 
+	blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg40_t_c1 = ( blk_out1_we01 & blk_out1_d01 [23] ) ;
+	blk_out1_rg40_t_c2 = ( U_1178 & M_41 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg40_t = ( ( { 20{ blk_out1_rg40_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg40_t_c2 } } & { RL_addr1_buf_buf1_next_pc_op1_PC [19] , 
+			RL_addr1_buf_buf1_next_pc_op1_PC [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg40_en = ( blk_out1_rg40_t_c1 | blk_out1_rg40_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg40 <= 20'h00000 ;
+	else if ( blk_out1_rg40_en )
+		blk_out1_rg40 <= blk_out1_rg40_t ;	// line#=computer.cpp:296,306,378
+assign	M_42 = ~( blk_out1_we01 & blk_out1_d01 [22] ) ;
+always @ ( RL_addr1_buf_buf1_next_pc_op1_PC or M_42 or U_1222 or blk_out1_wd01 or 
+	blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg41_t_c1 = ( blk_out1_we01 & blk_out1_d01 [22] ) ;
+	blk_out1_rg41_t_c2 = ( U_1222 & M_42 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg41_t = ( ( { 20{ blk_out1_rg41_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg41_t_c2 } } & { RL_addr1_buf_buf1_next_pc_op1_PC [19] , 
+			RL_addr1_buf_buf1_next_pc_op1_PC [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg41_en = ( blk_out1_rg41_t_c1 | blk_out1_rg41_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg41 <= 20'h00000 ;
+	else if ( blk_out1_rg41_en )
+		blk_out1_rg41 <= blk_out1_rg41_t ;	// line#=computer.cpp:296,306,378
+assign	M_43 = ~( blk_out1_we01 & blk_out1_d01 [21] ) ;
+always @ ( RL_addr1_buf_buf1_next_pc_op1_PC or M_43 or U_1266 or blk_out1_wd01 or 
+	blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg42_t_c1 = ( blk_out1_we01 & blk_out1_d01 [21] ) ;
+	blk_out1_rg42_t_c2 = ( U_1266 & M_43 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg42_t = ( ( { 20{ blk_out1_rg42_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg42_t_c2 } } & { RL_addr1_buf_buf1_next_pc_op1_PC [19] , 
+			RL_addr1_buf_buf1_next_pc_op1_PC [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg42_en = ( blk_out1_rg42_t_c1 | blk_out1_rg42_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg42 <= 20'h00000 ;
+	else if ( blk_out1_rg42_en )
+		blk_out1_rg42 <= blk_out1_rg42_t ;	// line#=computer.cpp:296,306,378
+assign	M_44 = ~( blk_out1_we01 & blk_out1_d01 [20] ) ;
+always @ ( RL_addr1_buf_buf1_next_pc_op1_PC or M_44 or U_1310 or blk_out1_wd01 or 
+	blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg43_t_c1 = ( blk_out1_we01 & blk_out1_d01 [20] ) ;
+	blk_out1_rg43_t_c2 = ( U_1310 & M_44 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg43_t = ( ( { 20{ blk_out1_rg43_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg43_t_c2 } } & { RL_addr1_buf_buf1_next_pc_op1_PC [19] , 
+			RL_addr1_buf_buf1_next_pc_op1_PC [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg43_en = ( blk_out1_rg43_t_c1 | blk_out1_rg43_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg43 <= 20'h00000 ;
+	else if ( blk_out1_rg43_en )
+		blk_out1_rg43 <= blk_out1_rg43_t ;	// line#=computer.cpp:296,306,378
+assign	M_45 = ~( blk_out1_we01 & blk_out1_d01 [19] ) ;
+always @ ( RL_addr1_buf_buf1_next_pc_op1_PC or M_45 or U_1354 or blk_out1_wd01 or 
+	blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg44_t_c1 = ( blk_out1_we01 & blk_out1_d01 [19] ) ;
+	blk_out1_rg44_t_c2 = ( U_1354 & M_45 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg44_t = ( ( { 20{ blk_out1_rg44_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg44_t_c2 } } & { RL_addr1_buf_buf1_next_pc_op1_PC [19] , 
+			RL_addr1_buf_buf1_next_pc_op1_PC [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg44_en = ( blk_out1_rg44_t_c1 | blk_out1_rg44_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg44 <= 20'h00000 ;
+	else if ( blk_out1_rg44_en )
+		blk_out1_rg44 <= blk_out1_rg44_t ;	// line#=computer.cpp:296,306,378
+assign	M_46 = ~( blk_out1_we01 & blk_out1_d01 [18] ) ;
+always @ ( RL_addr1_buf_buf1_next_pc_op1_PC or M_46 or U_1398 or blk_out1_wd01 or 
+	blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg45_t_c1 = ( blk_out1_we01 & blk_out1_d01 [18] ) ;
+	blk_out1_rg45_t_c2 = ( U_1398 & M_46 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg45_t = ( ( { 20{ blk_out1_rg45_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg45_t_c2 } } & { RL_addr1_buf_buf1_next_pc_op1_PC [19] , 
+			RL_addr1_buf_buf1_next_pc_op1_PC [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg45_en = ( blk_out1_rg45_t_c1 | blk_out1_rg45_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg45 <= 20'h00000 ;
+	else if ( blk_out1_rg45_en )
+		blk_out1_rg45 <= blk_out1_rg45_t ;	// line#=computer.cpp:296,306,378
+assign	M_47 = ~( blk_out1_we01 & blk_out1_d01 [17] ) ;
+always @ ( RL_addr1_buf_buf1_next_pc_op1_PC or M_47 or U_1442 or blk_out1_wd01 or 
+	blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg46_t_c1 = ( blk_out1_we01 & blk_out1_d01 [17] ) ;
+	blk_out1_rg46_t_c2 = ( U_1442 & M_47 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg46_t = ( ( { 20{ blk_out1_rg46_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg46_t_c2 } } & { RL_addr1_buf_buf1_next_pc_op1_PC [19] , 
+			RL_addr1_buf_buf1_next_pc_op1_PC [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg46_en = ( blk_out1_rg46_t_c1 | blk_out1_rg46_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg46 <= 20'h00000 ;
+	else if ( blk_out1_rg46_en )
+		blk_out1_rg46 <= blk_out1_rg46_t ;	// line#=computer.cpp:296,306,378
+assign	M_48 = ~( blk_out1_we01 & blk_out1_d01 [16] ) ;
+always @ ( RL_addr1_buf_buf1_next_pc_op1_PC or M_48 or U_1486 or blk_out1_wd01 or 
+	blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg47_t_c1 = ( blk_out1_we01 & blk_out1_d01 [16] ) ;
+	blk_out1_rg47_t_c2 = ( U_1486 & M_48 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg47_t = ( ( { 20{ blk_out1_rg47_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg47_t_c2 } } & { RL_addr1_buf_buf1_next_pc_op1_PC [19] , 
+			RL_addr1_buf_buf1_next_pc_op1_PC [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg47_en = ( blk_out1_rg47_t_c1 | blk_out1_rg47_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg47 <= 20'h00000 ;
+	else if ( blk_out1_rg47_en )
+		blk_out1_rg47 <= blk_out1_rg47_t ;	// line#=computer.cpp:296,306,378
+assign	M_49 = ~( blk_out1_we01 & blk_out1_d01 [15] ) ;
+always @ ( RG_buf1 or M_49 or U_1178 or blk_out1_wd01 or blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg48_t_c1 = ( blk_out1_we01 & blk_out1_d01 [15] ) ;
+	blk_out1_rg48_t_c2 = ( U_1178 & M_49 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg48_t = ( ( { 20{ blk_out1_rg48_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg48_t_c2 } } & { RG_buf1 [19] , RG_buf1 [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg48_en = ( blk_out1_rg48_t_c1 | blk_out1_rg48_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg48 <= 20'h00000 ;
+	else if ( blk_out1_rg48_en )
+		blk_out1_rg48 <= blk_out1_rg48_t ;	// line#=computer.cpp:296,306,378
+assign	M_50 = ~( blk_out1_we01 & blk_out1_d01 [14] ) ;
+always @ ( RG_buf1 or M_50 or U_1222 or blk_out1_wd01 or blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg49_t_c1 = ( blk_out1_we01 & blk_out1_d01 [14] ) ;
+	blk_out1_rg49_t_c2 = ( U_1222 & M_50 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg49_t = ( ( { 20{ blk_out1_rg49_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg49_t_c2 } } & { RG_buf1 [19] , RG_buf1 [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg49_en = ( blk_out1_rg49_t_c1 | blk_out1_rg49_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg49 <= 20'h00000 ;
+	else if ( blk_out1_rg49_en )
+		blk_out1_rg49 <= blk_out1_rg49_t ;	// line#=computer.cpp:296,306,378
+assign	M_51 = ~( blk_out1_we01 & blk_out1_d01 [13] ) ;
+always @ ( RG_buf1 or M_51 or U_1266 or blk_out1_wd01 or blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg50_t_c1 = ( blk_out1_we01 & blk_out1_d01 [13] ) ;
+	blk_out1_rg50_t_c2 = ( U_1266 & M_51 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg50_t = ( ( { 20{ blk_out1_rg50_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg50_t_c2 } } & { RG_buf1 [19] , RG_buf1 [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg50_en = ( blk_out1_rg50_t_c1 | blk_out1_rg50_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg50 <= 20'h00000 ;
+	else if ( blk_out1_rg50_en )
+		blk_out1_rg50 <= blk_out1_rg50_t ;	// line#=computer.cpp:296,306,378
+assign	M_52 = ~( blk_out1_we01 & blk_out1_d01 [12] ) ;
+always @ ( RG_buf1 or M_52 or U_1310 or blk_out1_wd01 or blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg51_t_c1 = ( blk_out1_we01 & blk_out1_d01 [12] ) ;
+	blk_out1_rg51_t_c2 = ( U_1310 & M_52 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg51_t = ( ( { 20{ blk_out1_rg51_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg51_t_c2 } } & { RG_buf1 [19] , RG_buf1 [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg51_en = ( blk_out1_rg51_t_c1 | blk_out1_rg51_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg51 <= 20'h00000 ;
+	else if ( blk_out1_rg51_en )
+		blk_out1_rg51 <= blk_out1_rg51_t ;	// line#=computer.cpp:296,306,378
+assign	M_53 = ~( blk_out1_we01 & blk_out1_d01 [11] ) ;
+always @ ( RG_buf1 or M_53 or U_1354 or blk_out1_wd01 or blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg52_t_c1 = ( blk_out1_we01 & blk_out1_d01 [11] ) ;
+	blk_out1_rg52_t_c2 = ( U_1354 & M_53 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg52_t = ( ( { 20{ blk_out1_rg52_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg52_t_c2 } } & { RG_buf1 [19] , RG_buf1 [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg52_en = ( blk_out1_rg52_t_c1 | blk_out1_rg52_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg52 <= 20'h00000 ;
+	else if ( blk_out1_rg52_en )
+		blk_out1_rg52 <= blk_out1_rg52_t ;	// line#=computer.cpp:296,306,378
+assign	M_54 = ~( blk_out1_we01 & blk_out1_d01 [10] ) ;
+always @ ( RG_buf1 or M_54 or U_1398 or blk_out1_wd01 or blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg53_t_c1 = ( blk_out1_we01 & blk_out1_d01 [10] ) ;
+	blk_out1_rg53_t_c2 = ( U_1398 & M_54 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg53_t = ( ( { 20{ blk_out1_rg53_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg53_t_c2 } } & { RG_buf1 [19] , RG_buf1 [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg53_en = ( blk_out1_rg53_t_c1 | blk_out1_rg53_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg53 <= 20'h00000 ;
+	else if ( blk_out1_rg53_en )
+		blk_out1_rg53 <= blk_out1_rg53_t ;	// line#=computer.cpp:296,306,378
+assign	M_55 = ~( blk_out1_we01 & blk_out1_d01 [9] ) ;
+always @ ( RG_buf1 or M_55 or U_1442 or blk_out1_wd01 or blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg54_t_c1 = ( blk_out1_we01 & blk_out1_d01 [9] ) ;
+	blk_out1_rg54_t_c2 = ( U_1442 & M_55 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg54_t = ( ( { 20{ blk_out1_rg54_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg54_t_c2 } } & { RG_buf1 [19] , RG_buf1 [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg54_en = ( blk_out1_rg54_t_c1 | blk_out1_rg54_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg54 <= 20'h00000 ;
+	else if ( blk_out1_rg54_en )
+		blk_out1_rg54 <= blk_out1_rg54_t ;	// line#=computer.cpp:296,306,378
+assign	M_56 = ~( blk_out1_we01 & blk_out1_d01 [8] ) ;
+always @ ( RG_buf1 or M_56 or U_1486 or blk_out1_wd01 or blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg55_t_c1 = ( blk_out1_we01 & blk_out1_d01 [8] ) ;
+	blk_out1_rg55_t_c2 = ( U_1486 & M_56 ) ;	// line#=computer.cpp:296,378
+	blk_out1_rg55_t = ( ( { 20{ blk_out1_rg55_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg55_t_c2 } } & { RG_buf1 [19] , RG_buf1 [19:1] } )	// line#=computer.cpp:296,378
+		) ;
+	end
+assign	blk_out1_rg55_en = ( blk_out1_rg55_t_c1 | blk_out1_rg55_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg55 <= 20'h00000 ;
+	else if ( blk_out1_rg55_en )
+		blk_out1_rg55 <= blk_out1_rg55_t ;	// line#=computer.cpp:296,306,378
+assign	M_57 = ~( blk_out1_we01 & blk_out1_d01 [7] ) ;
+always @ ( add20s1ot or M_57 or U_1178 or blk_out1_wd01 or blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg56_t_c1 = ( blk_out1_we01 & blk_out1_d01 [7] ) ;
+	blk_out1_rg56_t_c2 = ( U_1178 & M_57 ) ;	// line#=computer.cpp:296,373,378
+	blk_out1_rg56_t = ( ( { 20{ blk_out1_rg56_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg56_t_c2 } } & { add20s1ot [19] , add20s1ot [19:1] } )	// line#=computer.cpp:296,373,378
+		) ;
+	end
+assign	blk_out1_rg56_en = ( blk_out1_rg56_t_c1 | blk_out1_rg56_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg56 <= 20'h00000 ;
+	else if ( blk_out1_rg56_en )
+		blk_out1_rg56 <= blk_out1_rg56_t ;	// line#=computer.cpp:296,306,373,378
+assign	M_58 = ~( blk_out1_we01 & blk_out1_d01 [6] ) ;
+always @ ( add20s1ot or M_58 or U_1222 or blk_out1_wd01 or blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg57_t_c1 = ( blk_out1_we01 & blk_out1_d01 [6] ) ;
+	blk_out1_rg57_t_c2 = ( U_1222 & M_58 ) ;	// line#=computer.cpp:296,373,378
+	blk_out1_rg57_t = ( ( { 20{ blk_out1_rg57_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg57_t_c2 } } & { add20s1ot [19] , add20s1ot [19:1] } )	// line#=computer.cpp:296,373,378
+		) ;
+	end
+assign	blk_out1_rg57_en = ( blk_out1_rg57_t_c1 | blk_out1_rg57_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg57 <= 20'h00000 ;
+	else if ( blk_out1_rg57_en )
+		blk_out1_rg57 <= blk_out1_rg57_t ;	// line#=computer.cpp:296,306,373,378
+assign	M_59 = ~( blk_out1_we01 & blk_out1_d01 [5] ) ;
+always @ ( add20s1ot or M_59 or U_1266 or blk_out1_wd01 or blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg58_t_c1 = ( blk_out1_we01 & blk_out1_d01 [5] ) ;
+	blk_out1_rg58_t_c2 = ( U_1266 & M_59 ) ;	// line#=computer.cpp:296,373,378
+	blk_out1_rg58_t = ( ( { 20{ blk_out1_rg58_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg58_t_c2 } } & { add20s1ot [19] , add20s1ot [19:1] } )	// line#=computer.cpp:296,373,378
+		) ;
+	end
+assign	blk_out1_rg58_en = ( blk_out1_rg58_t_c1 | blk_out1_rg58_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg58 <= 20'h00000 ;
+	else if ( blk_out1_rg58_en )
+		blk_out1_rg58 <= blk_out1_rg58_t ;	// line#=computer.cpp:296,306,373,378
+assign	M_60 = ~( blk_out1_we01 & blk_out1_d01 [4] ) ;
+always @ ( add20s1ot or M_60 or U_1310 or blk_out1_wd01 or blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg59_t_c1 = ( blk_out1_we01 & blk_out1_d01 [4] ) ;
+	blk_out1_rg59_t_c2 = ( U_1310 & M_60 ) ;	// line#=computer.cpp:296,373,378
+	blk_out1_rg59_t = ( ( { 20{ blk_out1_rg59_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg59_t_c2 } } & { add20s1ot [19] , add20s1ot [19:1] } )	// line#=computer.cpp:296,373,378
+		) ;
+	end
+assign	blk_out1_rg59_en = ( blk_out1_rg59_t_c1 | blk_out1_rg59_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg59 <= 20'h00000 ;
+	else if ( blk_out1_rg59_en )
+		blk_out1_rg59 <= blk_out1_rg59_t ;	// line#=computer.cpp:296,306,373,378
+assign	M_61 = ~( blk_out1_we01 & blk_out1_d01 [3] ) ;
+always @ ( add20s1ot or M_61 or U_1354 or blk_out1_wd01 or blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg60_t_c1 = ( blk_out1_we01 & blk_out1_d01 [3] ) ;
+	blk_out1_rg60_t_c2 = ( U_1354 & M_61 ) ;	// line#=computer.cpp:296,373,378
+	blk_out1_rg60_t = ( ( { 20{ blk_out1_rg60_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg60_t_c2 } } & { add20s1ot [19] , add20s1ot [19:1] } )	// line#=computer.cpp:296,373,378
+		) ;
+	end
+assign	blk_out1_rg60_en = ( blk_out1_rg60_t_c1 | blk_out1_rg60_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg60 <= 20'h00000 ;
+	else if ( blk_out1_rg60_en )
+		blk_out1_rg60 <= blk_out1_rg60_t ;	// line#=computer.cpp:296,306,373,378
+assign	M_62 = ~( blk_out1_we01 & blk_out1_d01 [2] ) ;
+always @ ( add20s1ot or M_62 or U_1398 or blk_out1_wd01 or blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg61_t_c1 = ( blk_out1_we01 & blk_out1_d01 [2] ) ;
+	blk_out1_rg61_t_c2 = ( U_1398 & M_62 ) ;	// line#=computer.cpp:296,373,378
+	blk_out1_rg61_t = ( ( { 20{ blk_out1_rg61_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg61_t_c2 } } & { add20s1ot [19] , add20s1ot [19:1] } )	// line#=computer.cpp:296,373,378
+		) ;
+	end
+assign	blk_out1_rg61_en = ( blk_out1_rg61_t_c1 | blk_out1_rg61_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg61 <= 20'h00000 ;
+	else if ( blk_out1_rg61_en )
+		blk_out1_rg61 <= blk_out1_rg61_t ;	// line#=computer.cpp:296,306,373,378
+assign	M_63 = ~( blk_out1_we01 & blk_out1_d01 [1] ) ;
+always @ ( add20s1ot or M_63 or U_1442 or blk_out1_wd01 or blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg62_t_c1 = ( blk_out1_we01 & blk_out1_d01 [1] ) ;
+	blk_out1_rg62_t_c2 = ( U_1442 & M_63 ) ;	// line#=computer.cpp:296,373,378
+	blk_out1_rg62_t = ( ( { 20{ blk_out1_rg62_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg62_t_c2 } } & { add20s1ot [19] , add20s1ot [19:1] } )	// line#=computer.cpp:296,373,378
+		) ;
+	end
+assign	blk_out1_rg62_en = ( blk_out1_rg62_t_c1 | blk_out1_rg62_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg62 <= 20'h00000 ;
+	else if ( blk_out1_rg62_en )
+		blk_out1_rg62 <= blk_out1_rg62_t ;	// line#=computer.cpp:296,306,373,378
+assign	M_64 = ~( blk_out1_we01 & blk_out1_d01 [0] ) ;
+always @ ( add20s1ot or M_64 or U_1486 or blk_out1_wd01 or blk_out1_d01 or blk_out1_we01 )	// line#=computer.cpp:306
+	begin
+	blk_out1_rg63_t_c1 = ( blk_out1_we01 & blk_out1_d01 [0] ) ;
+	blk_out1_rg63_t_c2 = ( U_1486 & M_64 ) ;	// line#=computer.cpp:296,373,378
+	blk_out1_rg63_t = ( ( { 20{ blk_out1_rg63_t_c1 } } & blk_out1_wd01 )
+		| ( { 20{ blk_out1_rg63_t_c2 } } & { add20s1ot [19] , add20s1ot [19:1] } )	// line#=computer.cpp:296,373,378
+		) ;
+	end
+assign	blk_out1_rg63_en = ( blk_out1_rg63_t_c1 | blk_out1_rg63_t_c2 ) ;	// line#=computer.cpp:306
+always @ ( posedge CLOCK )	// line#=computer.cpp:306
+	if ( RESET )
+		blk_out1_rg63 <= 20'h00000 ;
+	else if ( blk_out1_rg63_en )
+		blk_out1_rg63 <= blk_out1_rg63_t ;	// line#=computer.cpp:296,306,373,378
+assign	CT_01 = ( ( ~FF_halt ) & ( ~|RL_addr1_buf_buf1_next_pc_op1_PC [31:18] ) ) ;	// line#=computer.cpp:447
+assign	CT_01_port = CT_01 ;
+assign	CT_02 = ( ( ~|imem_arg_MEMB32W65536_RD1 [14:12] ) & ( ~|imem_arg_MEMB32W65536_RD1 [31:25] ) ) ;	// line#=computer.cpp:449,462,690
+assign	TR_155 = ( RG_11 == 32'h0000000b ) ;	// line#=computer.cpp:468
+assign	CT_15 = |RL_buf_buf1_instr_next_pc_rd [4:0] ;	// line#=computer.cpp:458,473,482,491,502
+							// ,562,626,672
+assign	CT_15_port = CT_15 ;
+always @ ( FF_take or RG_funct3_imm1 )	// line#=computer.cpp:514
+	case ( RG_funct3_imm1 )
+	32'h00000000 :
+		take_t1 = FF_take ;	// line#=computer.cpp:516
+	32'h00000001 :
+		take_t1 = FF_take ;	// line#=computer.cpp:519
+	32'h00000004 :
+		take_t1 = FF_take ;	// line#=computer.cpp:522
+	32'h00000005 :
+		take_t1 = FF_take ;	// line#=computer.cpp:525
+	32'h00000006 :
+		take_t1 = FF_take ;	// line#=computer.cpp:528
+	32'h00000007 :
+		take_t1 = FF_take ;	// line#=computer.cpp:531
+	default :
+		take_t1 = 1'h0 ;	// line#=computer.cpp:513
+	endcase
+always @ ( FF_take )	// line#=computer.cpp:599
 	case ( FF_take )
 	1'h1 :
-		TR_180 = 1'h1 ;
+		TR_156 = 1'h1 ;
 	1'h0 :
-		TR_180 = 1'h0 ;
+		TR_156 = 1'h0 ;
 	default :
-		TR_180 = 1'hx ;
+		TR_156 = 1'hx ;
 	endcase
-always @ ( RL_addr_buf_instr_op2_result or rsft32u1ot or RG_buf_buf1_funct3_imm1_next_pc )	// line#=computer.cpp:538
-	case ( RG_buf_buf1_funct3_imm1_next_pc )
+always @ ( RG_result_result1 or RG_buf_buf1_val or rsft32u1ot or RG_funct3_imm1 )	// line#=computer.cpp:545
+	case ( RG_funct3_imm1 )
 	32'h00000000 :
 		val2_t4 = { rsft32u1ot [7] , rsft32u1ot [7] , rsft32u1ot [7] , rsft32u1ot [7] , 
 		rsft32u1ot [7] , rsft32u1ot [7] , rsft32u1ot [7] , rsft32u1ot [7] , 
@@ -8571,28 +9162,100 @@ always @ ( RL_addr_buf_instr_op2_result or rsft32u1ot or RG_buf_buf1_funct3_imm1
 		rsft32u1ot [7] , rsft32u1ot [7] , rsft32u1ot [7] , rsft32u1ot [7] , 
 		rsft32u1ot [7] , rsft32u1ot [7] , rsft32u1ot [7] , rsft32u1ot [7] , 
 		rsft32u1ot [7] , rsft32u1ot [7] , rsft32u1ot [7] , rsft32u1ot [7] , 
-		rsft32u1ot [7:0] } ;	// line#=computer.cpp:86,141,142,540
+		rsft32u1ot [7:0] } ;	// line#=computer.cpp:86,141,142,547
 	32'h00000001 :
 		val2_t4 = { rsft32u1ot [15] , rsft32u1ot [15] , rsft32u1ot [15] , 
 		rsft32u1ot [15] , rsft32u1ot [15] , rsft32u1ot [15] , rsft32u1ot [15] , 
 		rsft32u1ot [15] , rsft32u1ot [15] , rsft32u1ot [15] , rsft32u1ot [15] , 
 		rsft32u1ot [15] , rsft32u1ot [15] , rsft32u1ot [15] , rsft32u1ot [15] , 
-		rsft32u1ot [15] , rsft32u1ot [15:0] } ;	// line#=computer.cpp:86,158,159,543
+		rsft32u1ot [15] , rsft32u1ot [15:0] } ;	// line#=computer.cpp:86,158,159,550
 	32'h00000002 :
-		val2_t4 = RL_addr_buf_instr_op2_result ;	// line#=computer.cpp:174,546
+		val2_t4 = RG_buf_buf1_val ;	// line#=computer.cpp:174,553
 	32'h00000004 :
-		val2_t4 = { 24'h000000 , rsft32u1ot [7:0] } ;	// line#=computer.cpp:141,142,549
+		val2_t4 = { 24'h000000 , rsft32u1ot [7:0] } ;	// line#=computer.cpp:141,142,556
 	32'h00000005 :
-		val2_t4 = { 16'h0000 , RL_addr_buf_instr_op2_result [15:0] } ;	// line#=computer.cpp:159,552
+		val2_t4 = { 16'h0000 , RG_result_result1 [15:0] } ;	// line#=computer.cpp:159,559
 	default :
-		val2_t4 = 32'h00000000 ;	// line#=computer.cpp:537
+		val2_t4 = 32'h00000000 ;	// line#=computer.cpp:544
 	endcase
-assign	incr3s1i1 = RG_k [2:0] ;	// line#=computer.cpp:332
-assign	incr4s1i1 = RG_y [3:0] ;	// line#=computer.cpp:329
-assign	decr3s1i1 = RG_k [2:0] ;	// line#=computer.cpp:332
-assign	comp32u_12i1 = regs_rd01 ;	// line#=computer.cpp:628,646
-assign	comp32u_12i2 = regs_rd00 ;	// line#=computer.cpp:629,646
-assign	comp32u_13i1 = regs_rd00 ;	// line#=computer.cpp:595
+always @ ( C_q2ot or sub16s_131ot or RG_rs1_rs2_y )	// line#=computer.cpp:338
+	case ( RG_rs1_rs2_y [2] )
+	1'h1 :
+		TR_157 = { sub16s_131ot [12] , sub16s_131ot } ;	// line#=computer.cpp:338
+	1'h0 :
+		TR_157 = C_q2ot ;	// line#=computer.cpp:338
+	default :
+		TR_157 = 14'hx ;
+	endcase
+always @ ( C_q2ot or sub16s_131ot or RG_rs1_rs2_y )	// line#=computer.cpp:338
+	case ( RG_rs1_rs2_y [1] )
+	1'h1 :
+		TR_159 = { sub16s_131ot [12] , sub16s_131ot } ;	// line#=computer.cpp:338
+	1'h0 :
+		TR_159 = C_q2ot ;	// line#=computer.cpp:338
+	default :
+		TR_159 = 14'hx ;
+	endcase
+always @ ( C_q3ot or sub16s_132ot or RG_rs1_rs2_y )	// line#=computer.cpp:372
+	case ( RG_rs1_rs2_y [2] )
+	1'h1 :
+		TR_163 = { sub16s_132ot [12] , sub16s_132ot } ;	// line#=computer.cpp:372
+	1'h0 :
+		TR_163 = C_q3ot ;	// line#=computer.cpp:372
+	default :
+		TR_163 = 14'hx ;
+	endcase
+always @ ( C_q3ot or sub16s_132ot or incr8s_61ot )	// line#=computer.cpp:371,372
+	case ( incr8s_61ot [3] )
+	1'h1 :
+		TR_164 = { sub16s_132ot [12] , sub16s_132ot } ;	// line#=computer.cpp:372
+	1'h0 :
+		TR_164 = C_q3ot ;	// line#=computer.cpp:372
+	default :
+		TR_164 = 14'hx ;
+	endcase
+always @ ( C_q3ot or sub16s_132ot or RG_rs1_rs2_y )	// line#=computer.cpp:372
+	case ( RG_rs1_rs2_y [1] )
+	1'h1 :
+		TR_165 = { sub16s_132ot [12] , sub16s_132ot } ;	// line#=computer.cpp:372
+	1'h0 :
+		TR_165 = C_q3ot ;	// line#=computer.cpp:372
+	default :
+		TR_165 = 14'hx ;
+	endcase
+always @ ( C_q3ot or sub16s_132ot or addsub8u_71ot )	// line#=computer.cpp:371,372
+	case ( addsub8u_71ot [3] )
+	1'h1 :
+		TR_166 = { sub16s_132ot [12] , sub16s_132ot } ;	// line#=computer.cpp:372
+	1'h0 :
+		TR_166 = C_q3ot ;	// line#=computer.cpp:372
+	default :
+		TR_166 = 14'hx ;
+	endcase
+always @ ( C_q3ot or sub16s_132ot or incr8s_61ot )	// line#=computer.cpp:371,372
+	case ( incr8s_61ot [2] )
+	1'h1 :
+		TR_167 = { sub16s_132ot [12] , sub16s_132ot } ;	// line#=computer.cpp:372
+	1'h0 :
+		TR_167 = C_q3ot ;	// line#=computer.cpp:372
+	default :
+		TR_167 = 14'hx ;
+	endcase
+always @ ( C_q3ot or sub16s_132ot or add8s_71ot )	// line#=computer.cpp:371,372
+	case ( add8s_71ot [3] )
+	1'h1 :
+		TR_168 = { sub16s_132ot [12] , sub16s_132ot } ;	// line#=computer.cpp:372
+	1'h0 :
+		TR_168 = C_q3ot ;	// line#=computer.cpp:372
+	default :
+		TR_168 = 14'hx ;
+	endcase
+assign	incr3s1i1 = RG_k [2:0] ;	// line#=computer.cpp:339
+assign	incr4s1i1 = RG_rs1_rs2_y [3:0] ;	// line#=computer.cpp:336
+assign	decr3s1i1 = RG_k [2:0] ;	// line#=computer.cpp:339
+assign	comp32u_12i1 = regs_rd01 ;	// line#=computer.cpp:635,653
+assign	comp32u_12i2 = regs_rd00 ;	// line#=computer.cpp:636,653
+assign	comp32u_13i1 = regs_rd00 ;	// line#=computer.cpp:602
 assign	comp32u_13i2 = { imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31] , 
 	imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31] , 
 	imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31] , 
@@ -8600,919 +9263,721 @@ assign	comp32u_13i2 = { imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_R
 	imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31] , 
 	imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31] , 
 	imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31] , 
-	imem_arg_MEMB32W65536_RD1 [31:20] } ;	// line#=computer.cpp:86,91,442,584,595
-assign	comp32s_11i1 = regs_rd01 ;	// line#=computer.cpp:628,643
-assign	comp32s_11i2 = regs_rd00 ;	// line#=computer.cpp:629,643
-assign	comp32s_1_11i1 = regs_rd00 ;	// line#=computer.cpp:592
-assign	comp32s_1_11i2 = imem_arg_MEMB32W65536_RD1 [31:20] ;	// line#=computer.cpp:86,91,442,584,592
-assign	imem_arg_MEMB32W65536_RA1 = RG_addr1_next_pc_op1_PC_src_addr [17:2] ;	// line#=computer.cpp:442
-assign	U_01 = ( ST1_02d & CT_01 ) ;	// line#=computer.cpp:440
-assign	U_09 = ( ST1_03d & M_2874 ) ;	// line#=computer.cpp:442,450,461
-assign	U_10 = ( ST1_03d & M_2853 ) ;	// line#=computer.cpp:442,450,461
-assign	U_11 = ( ST1_03d & M_2866 ) ;	// line#=computer.cpp:442,450,461
-assign	U_12 = ( ST1_03d & M_2858 ) ;	// line#=computer.cpp:442,450,461
+	imem_arg_MEMB32W65536_RD1 [31:20] } ;	// line#=computer.cpp:86,91,449,591,602
+assign	comp32s_11i1 = regs_rd01 ;	// line#=computer.cpp:635,650
+assign	comp32s_11i2 = regs_rd00 ;	// line#=computer.cpp:636,650
+assign	comp32s_1_11i1 = regs_rd00 ;	// line#=computer.cpp:599
+assign	comp32s_1_11i2 = imem_arg_MEMB32W65536_RD1 [31:20] ;	// line#=computer.cpp:86,91,449,591,599
+assign	imem_arg_MEMB32W65536_RA1 = RL_addr1_buf_buf1_next_pc_op1_PC [17:2] ;	// line#=computer.cpp:449
+assign	U_01 = ( ST1_02d & CT_01 ) ;	// line#=computer.cpp:447
+assign	U_09 = ( ST1_03d & M_2784 ) ;	// line#=computer.cpp:449,457,468
+assign	U_10 = ( ST1_03d & M_2763 ) ;	// line#=computer.cpp:449,457,468
+assign	U_11 = ( ST1_03d & M_2774 ) ;	// line#=computer.cpp:449,457,468
+assign	U_12 = ( ST1_03d & M_2768 ) ;	// line#=computer.cpp:449,457,468
 assign	U_12_port = U_12 ;
-assign	U_13 = ( ST1_03d & M_2864 ) ;	// line#=computer.cpp:442,450,461
-assign	U_15 = ( ST1_03d & M_2847 ) ;	// line#=computer.cpp:442,450,461
-assign	M_2831 = ~|( { 25'h0000000 , imem_arg_MEMB32W65536_RD1 [6:0] } ^ 32'h0000000f ) ;	// line#=computer.cpp:442,450,461,683
-assign	M_2847 = ~|( { 25'h0000000 , imem_arg_MEMB32W65536_RD1 [6:0] } ^ 32'h0000000b ) ;	// line#=computer.cpp:442,450,461,683
-assign	M_2853 = ~|( { 25'h0000000 , imem_arg_MEMB32W65536_RD1 [6:0] } ^ 32'h00000003 ) ;	// line#=computer.cpp:442,450,461,683
-assign	M_2853_port = M_2853 ;
-assign	M_2858 = ~|( { 25'h0000000 , imem_arg_MEMB32W65536_RD1 [6:0] } ^ 32'h00000013 ) ;	// line#=computer.cpp:442,450,461,683
-assign	M_2862 = ~|( { 25'h0000000 , imem_arg_MEMB32W65536_RD1 [6:0] } ^ 32'h00000037 ) ;	// line#=computer.cpp:442,450,461,683
-assign	M_2864 = ~|( { 25'h0000000 , imem_arg_MEMB32W65536_RD1 [6:0] } ^ 32'h00000033 ) ;	// line#=computer.cpp:442,450,461,683
-assign	M_2866 = ~|( { 25'h0000000 , imem_arg_MEMB32W65536_RD1 [6:0] } ^ 32'h00000023 ) ;	// line#=computer.cpp:442,450,461,683
-assign	M_2868 = ~|( { 25'h0000000 , imem_arg_MEMB32W65536_RD1 [6:0] } ^ 32'h00000017 ) ;	// line#=computer.cpp:442,450,461,683
-assign	M_2870 = ~|( { 25'h0000000 , imem_arg_MEMB32W65536_RD1 [6:0] } ^ 32'h0000006f ) ;	// line#=computer.cpp:442,450,461,683
-assign	M_2872 = ~|( { 25'h0000000 , imem_arg_MEMB32W65536_RD1 [6:0] } ^ 32'h00000067 ) ;	// line#=computer.cpp:442,450,461,683
-assign	M_2872_port = M_2872 ;
-assign	M_2874 = ~|( { 25'h0000000 , imem_arg_MEMB32W65536_RD1 [6:0] } ^ 32'h00000063 ) ;	// line#=computer.cpp:442,450,461,683
-assign	M_2876 = ~|( { 25'h0000000 , imem_arg_MEMB32W65536_RD1 [6:0] } ^ 32'h00000073 ) ;	// line#=computer.cpp:442,450,461,683
-assign	M_2815 = ~|{ 29'h00000000 , imem_arg_MEMB32W65536_RD1 [14:12] } ;	// line#=computer.cpp:442,507,566,587,631
-assign	M_2829 = ~|( { 29'h00000000 , imem_arg_MEMB32W65536_RD1 [14:12] } ^ 32'h00000007 ) ;	// line#=computer.cpp:442,507,587,631
-assign	M_2833 = ~|( { 29'h00000000 , imem_arg_MEMB32W65536_RD1 [14:12] } ^ 32'h00000004 ) ;	// line#=computer.cpp:442,507,587,631
-assign	M_2837 = ~|( { 29'h00000000 , imem_arg_MEMB32W65536_RD1 [14:12] } ^ 32'h00000001 ) ;	// line#=computer.cpp:442,507,566,587,631
-assign	M_2849 = ~|( { 29'h00000000 , imem_arg_MEMB32W65536_RD1 [14:12] } ^ 32'h00000005 ) ;	// line#=computer.cpp:442,507,587,631
-assign	M_2860 = ~|( { 29'h00000000 , imem_arg_MEMB32W65536_RD1 [14:12] } ^ 32'h00000006 ) ;	// line#=computer.cpp:442,507,587,631
-assign	U_25 = ( U_11 & M_2815 ) ;	// line#=computer.cpp:442,566
-assign	M_2825 = ~|( { 29'h00000000 , imem_arg_MEMB32W65536_RD1 [14:12] } ^ 32'h00000002 ) ;	// line#=computer.cpp:442,566,587,631
-assign	U_45 = ( U_15 & CT_02 ) ;	// line#=computer.cpp:683
-assign	U_67 = ( ST1_04d & M_2867 ) ;	// line#=computer.cpp:461
-assign	U_71 = ( ST1_04d & M_2848 ) ;	// line#=computer.cpp:461
-assign	M_2832 = ~|( RG_buf_buf1_2 ^ 32'h0000000f ) ;	// line#=computer.cpp:461,466,475,484,495
-assign	M_2848 = ~|( RG_buf_buf1_2 ^ 32'h0000000b ) ;	// line#=computer.cpp:461,466,475,484,495
-assign	M_2848_port = M_2848 ;
-assign	M_2854 = ~|( RG_buf_buf1_2 ^ 32'h00000003 ) ;	// line#=computer.cpp:461,466,475,484,495
-assign	M_2854_port = M_2854 ;
-assign	M_2859 = ~|( RG_buf_buf1_2 ^ 32'h00000013 ) ;	// line#=computer.cpp:461,466,475,484,495
-							// ,538,566,587,631
-assign	M_2859_port = M_2859 ;
-assign	M_2863 = ~|( RG_buf_buf1_2 ^ 32'h00000037 ) ;	// line#=computer.cpp:461,466,475,484,495
-assign	M_2863_port = M_2863 ;
-assign	M_2865 = ~|( RG_buf_buf1_2 ^ 32'h00000033 ) ;	// line#=computer.cpp:461,466,475,484,495
-assign	M_2865_port = M_2865 ;
-assign	M_2867 = ~|( RG_buf_buf1_2 ^ 32'h00000023 ) ;	// line#=computer.cpp:461,466,475,484,495
-assign	M_2869 = ~|( RG_buf_buf1_2 ^ 32'h00000017 ) ;	// line#=computer.cpp:461,466,475,484,495
-assign	M_2871 = ~|( RG_buf_buf1_2 ^ 32'h0000006f ) ;	// line#=computer.cpp:461,466,475,484,495
-assign	M_2871_port = M_2871 ;
-assign	M_2873 = ~|( RG_buf_buf1_2 ^ 32'h00000067 ) ;	// line#=computer.cpp:461,466,475,484,495
-assign	M_2875 = ~|( RG_buf_buf1_2 ^ 32'h00000063 ) ;	// line#=computer.cpp:461,466,475,484,495
-assign	M_2875_port = M_2875 ;
-assign	M_2877 = ~|( RG_buf_buf1_2 ^ 32'h00000073 ) ;	// line#=computer.cpp:461,466,475,484,495
-assign	U_75 = ( U_67 & M_2838 ) ;	// line#=computer.cpp:566
-assign	M_2816 = ~|RG_buf_buf1_funct3_imm1_next_pc ;	// line#=computer.cpp:538,566,631,633
-assign	M_2826 = ~|( RG_buf_buf1_funct3_imm1_next_pc ^ 32'h00000002 ) ;	// line#=computer.cpp:461,538,566,587,631
-assign	M_2838 = ~|( RG_buf_buf1_funct3_imm1_next_pc ^ 32'h00000001 ) ;	// line#=computer.cpp:461,538,566,587,631
-assign	U_84 = ( ST1_05d & M_2867 ) ;	// line#=computer.cpp:461
-assign	U_88 = ( ST1_05d & M_2848 ) ;	// line#=computer.cpp:461
-assign	M_3038 = ~( ( M_3040 | M_2848 ) | M_2877 ) ;	// line#=computer.cpp:461,466,475,484,495
-assign	U_93 = ( U_84 & M_2826 ) ;	// line#=computer.cpp:566
-assign	U_109 = ( ST1_06d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_121 = ( ST1_07d & M_2859 ) ;	// line#=computer.cpp:461
-assign	U_124 = ( ST1_07d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_147 = ( ST1_08d & M_2865 ) ;	// line#=computer.cpp:461
-assign	U_149 = ( ST1_08d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_152 = ( U_147 & RG_buf_buf1_instr_rd_word_addr [23] ) ;	// line#=computer.cpp:633
-assign	U_163 = ( ST1_09d & M_2865 ) ;	// line#=computer.cpp:461
-assign	U_165 = ( ST1_09d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_168 = ( U_163 & RG_buf_buf1_instr_rd_word_addr [23] ) ;	// line#=computer.cpp:652
-assign	U_179 = ( ST1_10d & M_2865 ) ;	// line#=computer.cpp:461
-assign	U_181 = ( ST1_10d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_196 = ( ST1_11d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_208 = ( ST1_12d & M_2859 ) ;	// line#=computer.cpp:461
-assign	U_211 = ( ST1_12d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_230 = ( ST1_13d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_245 = ( ST1_14d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_260 = ( ST1_15d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_275 = ( ST1_16d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_279 = ( ST1_17d & M_2869 ) ;	// line#=computer.cpp:461
-assign	U_283 = ( ST1_17d & M_2854 ) ;	// line#=computer.cpp:461
-assign	U_285 = ( ST1_17d & M_2859 ) ;	// line#=computer.cpp:461
-assign	U_286 = ( ST1_17d & M_2865 ) ;	// line#=computer.cpp:461
-assign	U_288 = ( ST1_17d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_291 = ( U_279 & CT_15 ) ;	// line#=computer.cpp:475
-assign	U_300 = ( U_285 & ( ~|( RG_addr1_next_pc_op1_PC_src_addr ^ 32'h00000005 ) ) ) ;	// line#=computer.cpp:587
-assign	U_349 = ( ST1_18d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_364 = ( ST1_19d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_371 = ( ST1_20d & M_2863 ) ;	// line#=computer.cpp:461
-assign	U_381 = ( ST1_20d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_390 = ( ST1_21d & M_2875 ) ;	// line#=computer.cpp:461
-assign	U_396 = ( ST1_21d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_399 = ( U_390 & take_t1 ) ;	// line#=computer.cpp:527
-assign	U_412 = ( ST1_22d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_423 = ( ST1_48d & M_2867 ) ;	// line#=computer.cpp:461
-assign	U_427 = ( ST1_48d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_434 = ( ST1_49d & M_2871 ) ;	// line#=computer.cpp:461
-assign	U_442 = ( ST1_49d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_451 = ( ST1_50d & M_2871 ) ;	// line#=computer.cpp:461
-assign	U_459 = ( ST1_50d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_467 = ( ST1_51d & M_2873 ) ;	// line#=computer.cpp:461
-assign	U_474 = ( ST1_51d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_484 = ( ST1_52d & M_2873 ) ;	// line#=computer.cpp:461
-assign	U_491 = ( ST1_52d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_497 = ( ST1_53d & M_2869 ) ;	// line#=computer.cpp:461
-assign	U_506 = ( ST1_53d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_521 = ( ST1_54d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_533 = ( ST1_55d & M_2859 ) ;	// line#=computer.cpp:461
-assign	U_536 = ( ST1_55d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_548 = ( ST1_56d & M_2859 ) ;	// line#=computer.cpp:461
-assign	U_551 = ( ST1_56d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_563 = ( ST1_57d & M_2859 ) ;	// line#=computer.cpp:461
-assign	U_566 = ( ST1_57d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_576 = ( ST1_58d & M_2859 ) ;	// line#=computer.cpp:461
-assign	U_576_port = U_576 ;
-assign	U_579 = ( ST1_58d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_582 = ( U_576 & ( ~|RG_addr1_next_pc_op1_PC_src_addr ) ) ;	// line#=computer.cpp:587
-assign	U_601 = ( ST1_59d & M_2859 ) ;	// line#=computer.cpp:461
-assign	U_604 = ( ST1_59d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_617 = ( ST1_60d & M_2865 ) ;	// line#=computer.cpp:461
-assign	U_619 = ( ST1_60d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_630 = ( ST1_61d & M_2865 ) ;	// line#=computer.cpp:461
-assign	U_630_port = U_630 ;
-assign	U_632 = ( ST1_61d & M_2848 ) ;	// line#=computer.cpp:461
-assign	M_2851 = ~|( RG_buf_buf1_funct3_imm1_next_pc ^ 32'h00000005 ) ;	// line#=computer.cpp:538,631
-assign	U_643 = ( ( U_630 & M_2816 ) & ( ~FF_take ) ) ;	// line#=computer.cpp:631,633
-assign	U_656 = ( ST1_62d & M_2865 ) ;	// line#=computer.cpp:461
-assign	U_658 = ( ST1_62d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_669 = ( ST1_63d & M_2867 ) ;	// line#=computer.cpp:461
-assign	U_673 = ( ST1_63d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_683 = ( ST1_64d & M_2854 ) ;	// line#=computer.cpp:461
-assign	U_683_port = U_683 ;
-assign	U_688 = ( ST1_64d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_691 = ( U_683 & ( ~|{ 29'h00000000 , RG_buf_buf1_funct3_imm1_next_pc [2:0] } ) ) ;	// line#=computer.cpp:538
-assign	U_692 = ( U_683 & ( ~|( { 29'h00000000 , RG_buf_buf1_funct3_imm1_next_pc [2:0] } ^ 
-	32'h00000001 ) ) ) ;	// line#=computer.cpp:538
-assign	U_693 = ( U_683 & ( ~|( { 29'h00000000 , RG_buf_buf1_funct3_imm1_next_pc [2:0] } ^ 
-	32'h00000002 ) ) ) ;	// line#=computer.cpp:538
-assign	U_694 = ( U_683 & ( ~|( { 29'h00000000 , RG_buf_buf1_funct3_imm1_next_pc [2:0] } ^ 
-	32'h00000004 ) ) ) ;	// line#=computer.cpp:538
-assign	U_695 = ( U_683 & ( ~|( { 29'h00000000 , RG_buf_buf1_funct3_imm1_next_pc [2:0] } ^ 
-	32'h00000005 ) ) ) ;	// line#=computer.cpp:538
-assign	U_704 = ( ST1_65d & M_2854 ) ;	// line#=computer.cpp:461
-assign	U_704_port = U_704 ;
-assign	U_709 = ( ST1_65d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_713 = ( U_704 & M_2838 ) ;	// line#=computer.cpp:538
-assign	U_714 = ( U_704 & M_2826 ) ;	// line#=computer.cpp:538
-assign	U_715 = ( U_704 & M_2835 ) ;	// line#=computer.cpp:538
-assign	U_716 = ( U_704 & M_2851 ) ;	// line#=computer.cpp:538
-assign	M_2835 = ~|( RG_buf_buf1_funct3_imm1_next_pc ^ 32'h00000004 ) ;	// line#=computer.cpp:461,538,566,587,631
-assign	U_725 = ( ST1_66d & M_2854 ) ;	// line#=computer.cpp:461
-assign	U_726 = ( ST1_66d & M_2867 ) ;	// line#=computer.cpp:461
-assign	U_730 = ( ST1_66d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_736 = ( U_725 & M_2835 ) ;	// line#=computer.cpp:538
-assign	U_737 = ( U_725 & M_2851 ) ;	// line#=computer.cpp:538
-assign	U_741 = ( ST1_67d & M_2871 ) ;	// line#=computer.cpp:461
-assign	U_742 = ( ST1_67d & M_2873 ) ;	// line#=computer.cpp:461
-assign	U_743 = ( ST1_67d & M_2875 ) ;	// line#=computer.cpp:461
-assign	U_744 = ( ST1_67d & M_2854 ) ;	// line#=computer.cpp:461
-assign	U_745 = ( ST1_67d & M_2867 ) ;	// line#=computer.cpp:461
-assign	U_746 = ( ST1_67d & M_2859 ) ;	// line#=computer.cpp:461
-assign	U_747 = ( ST1_67d & M_2865 ) ;	// line#=computer.cpp:461
-assign	U_748 = ( ST1_67d & M_2832 ) ;	// line#=computer.cpp:461
-assign	U_749 = ( ST1_67d & M_2848 ) ;	// line#=computer.cpp:461
-assign	U_750 = ( ST1_67d & M_2877 ) ;	// line#=computer.cpp:461
-assign	U_751 = ( ST1_67d & M_3038 ) ;	// line#=computer.cpp:461
-assign	U_754 = ( U_744 & M_2816 ) ;	// line#=computer.cpp:538
-assign	U_755 = ( U_744 & M_2838 ) ;	// line#=computer.cpp:538
-assign	U_760 = ( U_744 & CT_15 ) ;	// line#=computer.cpp:466,484,495,555,619
-					// ,665
-assign	U_762 = ( U_745 & M_2838 ) ;	// line#=computer.cpp:566
-assign	U_765 = ( U_749 & FF_take ) ;	// line#=computer.cpp:683
-assign	U_766 = ( U_749 & ( ~FF_take ) ) ;	// line#=computer.cpp:683
-assign	U_776 = ( ST1_71d & RG_y [3] ) ;	// line#=computer.cpp:329
-assign	U_810 = ( ST1_82d & incr3u1ot [3] ) ;	// line#=computer.cpp:329
-assign	U_814 = ( ST1_83d & ( ~FF_take ) ) ;	// line#=computer.cpp:329
-assign	U_833 = ( ST1_97d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:329
-assign	U_834 = ( ST1_97d & RG_y [3] ) ;	// line#=computer.cpp:329
-assign	U_839 = ( ST1_99d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:329
-assign	U_840 = ( ST1_99d & RG_y [3] ) ;	// line#=computer.cpp:329
-assign	U_845 = ( ST1_101d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:329
-assign	U_846 = ( ST1_101d & RG_y [3] ) ;	// line#=computer.cpp:329
-assign	U_851 = ( ST1_103d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:329
-assign	U_852 = ( ST1_103d & RG_y [3] ) ;	// line#=computer.cpp:329
-assign	U_856 = ( ST1_104d & incr3u1ot [3] ) ;	// line#=computer.cpp:329
-assign	U_860 = ( ST1_105d & ( ~FF_take ) ) ;	// line#=computer.cpp:329
-assign	U_879 = ( ST1_119d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:329
-assign	U_880 = ( ST1_119d & RG_y [3] ) ;	// line#=computer.cpp:329
-assign	U_885 = ( ST1_121d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:329
-assign	U_886 = ( ST1_121d & RG_y [3] ) ;	// line#=computer.cpp:329
-assign	U_891 = ( ST1_123d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:329
-assign	U_892 = ( ST1_123d & RG_y [3] ) ;	// line#=computer.cpp:329
-assign	U_897 = ( ST1_125d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:329
-assign	U_898 = ( ST1_125d & RG_y [3] ) ;	// line#=computer.cpp:329
-assign	U_902 = ( ST1_126d & incr3u1ot [3] ) ;	// line#=computer.cpp:329
-assign	U_906 = ( ST1_127d & ( ~FF_take ) ) ;	// line#=computer.cpp:329
-assign	U_925 = ( ST1_141d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:329
-assign	U_926 = ( ST1_141d & RG_y [3] ) ;	// line#=computer.cpp:329
-assign	U_931 = ( ST1_143d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:329
-assign	U_932 = ( ST1_143d & RG_y [3] ) ;	// line#=computer.cpp:329
-assign	U_937 = ( ST1_145d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:329
-assign	U_938 = ( ST1_145d & RG_y [3] ) ;	// line#=computer.cpp:329
-assign	U_943 = ( ST1_147d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:329
-assign	U_944 = ( ST1_147d & RG_y [3] ) ;	// line#=computer.cpp:329
-assign	U_948 = ( ST1_148d & incr3u1ot [3] ) ;	// line#=computer.cpp:329
-assign	U_952 = ( ST1_149d & ( ~FF_take ) ) ;	// line#=computer.cpp:329
-assign	U_971 = ( ST1_163d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:329
-assign	U_972 = ( ST1_163d & RG_y [3] ) ;	// line#=computer.cpp:329
-assign	U_977 = ( ST1_165d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:329
-assign	U_978 = ( ST1_165d & RG_y [3] ) ;	// line#=computer.cpp:329
-assign	U_983 = ( ST1_167d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:329
-assign	U_984 = ( ST1_167d & RG_y [3] ) ;	// line#=computer.cpp:329
-assign	U_989 = ( ST1_169d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:329
-assign	U_990 = ( ST1_169d & RG_y [3] ) ;	// line#=computer.cpp:329
-assign	U_994 = ( ST1_170d & incr3u1ot [3] ) ;	// line#=computer.cpp:329
-assign	U_998 = ( ST1_171d & ( ~FF_take ) ) ;	// line#=computer.cpp:329
-assign	U_1017 = ( ST1_185d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:329
-assign	U_1018 = ( ST1_185d & RG_y [3] ) ;	// line#=computer.cpp:329
-assign	U_1023 = ( ST1_187d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:329
-assign	U_1024 = ( ST1_187d & RG_y [3] ) ;	// line#=computer.cpp:329
-assign	U_1029 = ( ST1_189d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:329
-assign	U_1030 = ( ST1_189d & RG_y [3] ) ;	// line#=computer.cpp:329
-assign	U_1035 = ( ST1_191d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:329
-assign	U_1036 = ( ST1_191d & RG_y [3] ) ;	// line#=computer.cpp:329
-assign	U_1040 = ( ST1_192d & incr3u1ot [3] ) ;	// line#=computer.cpp:329
-assign	U_1044 = ( ST1_193d & ( ~FF_take ) ) ;	// line#=computer.cpp:329
-assign	U_1063 = ( ST1_207d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:329
-assign	U_1064 = ( ST1_207d & RG_y [3] ) ;	// line#=computer.cpp:329
-assign	U_1069 = ( ST1_209d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:329
-assign	U_1070 = ( ST1_209d & RG_y [3] ) ;	// line#=computer.cpp:329
-assign	U_1075 = ( ST1_211d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:329
-assign	U_1076 = ( ST1_211d & RG_y [3] ) ;	// line#=computer.cpp:329
-assign	U_1081 = ( ST1_213d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:329
-assign	U_1082 = ( ST1_213d & RG_y [3] ) ;	// line#=computer.cpp:329
-assign	U_1086 = ( ST1_214d & incr3u1ot [3] ) ;	// line#=computer.cpp:329
-assign	U_1090 = ( ST1_215d & ( ~FF_take ) ) ;	// line#=computer.cpp:329
-assign	U_1109 = ( ST1_229d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:329
-assign	U_1110 = ( ST1_229d & RG_y [3] ) ;	// line#=computer.cpp:329
-assign	U_1115 = ( ST1_231d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:329
-assign	U_1116 = ( ST1_231d & RG_y [3] ) ;	// line#=computer.cpp:329
-assign	U_1121 = ( ST1_233d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:329
-assign	U_1122 = ( ST1_233d & RG_y [3] ) ;	// line#=computer.cpp:329
-assign	U_1127 = ( ST1_235d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:329
-assign	U_1128 = ( ST1_235d & RG_y [3] ) ;	// line#=computer.cpp:329
-assign	U_1132 = ( ST1_236d & incr3u1ot [3] ) ;	// line#=computer.cpp:329
-assign	U_1136 = ( ST1_237d & ( ~FF_take ) ) ;	// line#=computer.cpp:329
-assign	U_1159 = ( ST1_251d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:363
-assign	U_1160 = ( ST1_251d & RG_y [3] ) ;	// line#=computer.cpp:363
-assign	U_1165 = ( ST1_253d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:363
-assign	U_1166 = ( ST1_253d & RG_y [3] ) ;	// line#=computer.cpp:363
-assign	U_1171 = ( ST1_255d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:363
-assign	U_1172 = ( ST1_255d & RG_y [3] ) ;	// line#=computer.cpp:363
-assign	U_1185 = ( ST1_259d & ( ~FF_take ) ) ;	// line#=computer.cpp:363
-assign	U_1210 = ( ST1_276d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:363
-assign	U_1211 = ( ST1_276d & RG_y [3] ) ;	// line#=computer.cpp:363
-assign	U_1216 = ( ST1_278d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:363
-assign	U_1217 = ( ST1_278d & RG_y [3] ) ;	// line#=computer.cpp:363
-assign	U_1222 = ( ST1_280d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:363
-assign	U_1223 = ( ST1_280d & RG_y [3] ) ;	// line#=computer.cpp:363
-assign	U_1230 = ( ST1_282d & ( ~FF_take ) ) ;	// line#=computer.cpp:363
-assign	U_1255 = ( ST1_299d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:363
-assign	U_1256 = ( ST1_299d & RG_y [3] ) ;	// line#=computer.cpp:363
-assign	U_1261 = ( ST1_301d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:363
-assign	U_1262 = ( ST1_301d & RG_y [3] ) ;	// line#=computer.cpp:363
-assign	U_1267 = ( ST1_303d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:363
-assign	U_1268 = ( ST1_303d & RG_y [3] ) ;	// line#=computer.cpp:363
-assign	U_1275 = ( ST1_305d & ( ~FF_take ) ) ;	// line#=computer.cpp:363
-assign	U_1300 = ( ST1_322d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:363
-assign	U_1301 = ( ST1_322d & RG_y [3] ) ;	// line#=computer.cpp:363
-assign	U_1306 = ( ST1_324d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:363
-assign	U_1307 = ( ST1_324d & RG_y [3] ) ;	// line#=computer.cpp:363
-assign	U_1312 = ( ST1_326d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:363
-assign	U_1313 = ( ST1_326d & RG_y [3] ) ;	// line#=computer.cpp:363
-assign	U_1320 = ( ST1_328d & ( ~FF_take ) ) ;	// line#=computer.cpp:363
-assign	U_1345 = ( ST1_345d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:363
-assign	U_1346 = ( ST1_345d & RG_y [3] ) ;	// line#=computer.cpp:363
-assign	U_1351 = ( ST1_347d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:363
-assign	U_1352 = ( ST1_347d & RG_y [3] ) ;	// line#=computer.cpp:363
-assign	U_1357 = ( ST1_349d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:363
-assign	U_1358 = ( ST1_349d & RG_y [3] ) ;	// line#=computer.cpp:363
-assign	U_1365 = ( ST1_351d & ( ~FF_take ) ) ;	// line#=computer.cpp:363
-assign	U_1390 = ( ST1_368d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:363
-assign	U_1391 = ( ST1_368d & RG_y [3] ) ;	// line#=computer.cpp:363
-assign	U_1396 = ( ST1_370d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:363
-assign	U_1397 = ( ST1_370d & RG_y [3] ) ;	// line#=computer.cpp:363
-assign	U_1402 = ( ST1_372d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:363
-assign	U_1403 = ( ST1_372d & RG_y [3] ) ;	// line#=computer.cpp:363
-assign	U_1410 = ( ST1_374d & ( ~FF_take ) ) ;	// line#=computer.cpp:363
-assign	U_1435 = ( ST1_391d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:363
-assign	U_1436 = ( ST1_391d & RG_y [3] ) ;	// line#=computer.cpp:363
-assign	U_1441 = ( ST1_393d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:363
-assign	U_1442 = ( ST1_393d & RG_y [3] ) ;	// line#=computer.cpp:363
-assign	U_1447 = ( ST1_395d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:363
-assign	U_1448 = ( ST1_395d & RG_y [3] ) ;	// line#=computer.cpp:363
-assign	U_1455 = ( ST1_397d & ( ~FF_take ) ) ;	// line#=computer.cpp:363
-assign	U_1480 = ( ST1_414d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:363
-assign	U_1481 = ( ST1_414d & RG_y [3] ) ;	// line#=computer.cpp:363
-assign	U_1486 = ( ST1_416d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:363
-assign	U_1487 = ( ST1_416d & RG_y [3] ) ;	// line#=computer.cpp:363
-assign	U_1492 = ( ST1_418d & ( ~RG_y [3] ) ) ;	// line#=computer.cpp:363
-assign	U_1493 = ( ST1_418d & RG_y [3] ) ;	// line#=computer.cpp:363
-assign	U_1500 = ( ST1_420d & ( ~FF_take ) ) ;	// line#=computer.cpp:363
-always @ ( regs_rd00 or M_2847 or imem_arg_MEMB32W65536_RD1 or M_2858 )
-	TR_01 = ( ( { 18{ M_2858 } } & { 15'h0000 , imem_arg_MEMB32W65536_RD1 [14:12] } )	// line#=computer.cpp:442,587
-		| ( { 18{ M_2847 } } & regs_rd00 [17:0] )					// line#=computer.cpp:684
-		) ;
-always @ ( RG_addr1_next_pc_op1_PC_src_addr or M_1859_t or U_743 or U_742 or RG_buf_buf1_funct3_imm1_next_pc or 
-	U_741 or RG_buf_buf1_1 or U_751 or U_750 or U_749 or U_748 or U_747 or U_746 or 
-	U_745 or U_744 or M_3022 or ST1_67d or dmem_arg_MEMB32W65536_RD1 or M_2838 or 
-	U_725 or U_704 or TR_01 or U_15 or U_12 or add32s1ot or U_11 or regs_rd01 or 
-	U_13 )	// line#=computer.cpp:538
+assign	U_13 = ( ST1_03d & M_2776 ) ;	// line#=computer.cpp:449,457,468
+assign	U_15 = ( ST1_03d & M_2757 ) ;	// line#=computer.cpp:449,457,468
+assign	M_2741 = ~|( { 25'h0000000 , imem_arg_MEMB32W65536_RD1 [6:0] } ^ 32'h0000000f ) ;	// line#=computer.cpp:449,457,468,690
+assign	M_2757 = ~|( { 25'h0000000 , imem_arg_MEMB32W65536_RD1 [6:0] } ^ 32'h0000000b ) ;	// line#=computer.cpp:449,457,468,690
+assign	M_2763 = ~|( { 25'h0000000 , imem_arg_MEMB32W65536_RD1 [6:0] } ^ 32'h00000003 ) ;	// line#=computer.cpp:449,457,468,690
+assign	M_2763_port = M_2763 ;
+assign	M_2768 = ~|( { 25'h0000000 , imem_arg_MEMB32W65536_RD1 [6:0] } ^ 32'h00000013 ) ;	// line#=computer.cpp:449,457,468,690
+assign	M_2772 = ~|( { 25'h0000000 , imem_arg_MEMB32W65536_RD1 [6:0] } ^ 32'h00000017 ) ;	// line#=computer.cpp:449,457,468,690
+assign	M_2774 = ~|( { 25'h0000000 , imem_arg_MEMB32W65536_RD1 [6:0] } ^ 32'h00000023 ) ;	// line#=computer.cpp:449,457,468,690
+assign	M_2776 = ~|( { 25'h0000000 , imem_arg_MEMB32W65536_RD1 [6:0] } ^ 32'h00000033 ) ;	// line#=computer.cpp:449,457,468,690
+assign	M_2778 = ~|( { 25'h0000000 , imem_arg_MEMB32W65536_RD1 [6:0] } ^ 32'h00000037 ) ;	// line#=computer.cpp:449,457,468,690
+assign	M_2780 = ~|( { 25'h0000000 , imem_arg_MEMB32W65536_RD1 [6:0] } ^ 32'h0000006f ) ;	// line#=computer.cpp:449,457,468,690
+assign	M_2782 = ~|( { 25'h0000000 , imem_arg_MEMB32W65536_RD1 [6:0] } ^ 32'h00000067 ) ;	// line#=computer.cpp:449,457,468,690
+assign	M_2782_port = M_2782 ;
+assign	M_2784 = ~|( { 25'h0000000 , imem_arg_MEMB32W65536_RD1 [6:0] } ^ 32'h00000063 ) ;	// line#=computer.cpp:449,457,468,690
+assign	M_2786 = ~|( { 25'h0000000 , imem_arg_MEMB32W65536_RD1 [6:0] } ^ 32'h00000073 ) ;	// line#=computer.cpp:449,457,468,690
+assign	M_2725 = ~|{ 29'h00000000 , imem_arg_MEMB32W65536_RD1 [14:12] } ;	// line#=computer.cpp:449,514,573,594,638
+assign	M_2739 = ~|( { 29'h00000000 , imem_arg_MEMB32W65536_RD1 [14:12] } ^ 32'h00000007 ) ;	// line#=computer.cpp:449,514,594,638
+assign	M_2743 = ~|( { 29'h00000000 , imem_arg_MEMB32W65536_RD1 [14:12] } ^ 32'h00000004 ) ;	// line#=computer.cpp:449,514,594,638
+assign	M_2747 = ~|( { 29'h00000000 , imem_arg_MEMB32W65536_RD1 [14:12] } ^ 32'h00000001 ) ;	// line#=computer.cpp:449,514,573,594,638
+assign	M_2759 = ~|( { 29'h00000000 , imem_arg_MEMB32W65536_RD1 [14:12] } ^ 32'h00000005 ) ;	// line#=computer.cpp:449,514,594,638
+assign	M_2770 = ~|( { 29'h00000000 , imem_arg_MEMB32W65536_RD1 [14:12] } ^ 32'h00000006 ) ;	// line#=computer.cpp:449,514,594,638
+assign	U_25 = ( U_11 & M_2725 ) ;	// line#=computer.cpp:449,573
+assign	M_2735 = ~|( { 29'h00000000 , imem_arg_MEMB32W65536_RD1 [14:12] } ^ 32'h00000002 ) ;	// line#=computer.cpp:449,573,594,638
+assign	U_45 = ( U_15 & CT_02 ) ;	// line#=computer.cpp:690
+assign	U_67 = ( ST1_04d & M_2775 ) ;	// line#=computer.cpp:468
+assign	U_71 = ( ST1_04d & M_2758 ) ;	// line#=computer.cpp:468
+assign	M_2742 = ~|( RG_11 ^ 32'h0000000f ) ;	// line#=computer.cpp:468,473,482,491,502
+						// ,690
+assign	M_2758 = ~|( RG_11 ^ 32'h0000000b ) ;	// line#=computer.cpp:468,473,482,491,502
+						// ,690
+assign	M_2758_port = M_2758 ;
+assign	M_2764 = ~|( RG_11 ^ 32'h00000003 ) ;	// line#=computer.cpp:468,473,482,491,502
+						// ,690
+assign	M_2764_port = M_2764 ;
+assign	M_2769 = ~|( RG_11 ^ 32'h00000013 ) ;	// line#=computer.cpp:468,473,482,491,502
+						// ,690
+assign	M_2769_port = M_2769 ;
+assign	M_2773 = ~|( RG_11 ^ 32'h00000017 ) ;	// line#=computer.cpp:468,473,482,491,502
+						// ,690
+assign	M_2775 = ~|( RG_11 ^ 32'h00000023 ) ;	// line#=computer.cpp:468,473,482,491,502
+						// ,690
+assign	M_2777 = ~|( RG_11 ^ 32'h00000033 ) ;	// line#=computer.cpp:468,473,482,491,502
+						// ,690
+assign	M_2777_port = M_2777 ;
+assign	M_2779 = ~|( RG_11 ^ 32'h00000037 ) ;	// line#=computer.cpp:468,473,482,491,502
+						// ,690
+assign	M_2781 = ~|( RG_11 ^ 32'h0000006f ) ;	// line#=computer.cpp:468,473,482,491,502
+						// ,690
+assign	M_2781_port = M_2781 ;
+assign	M_2783 = ~|( RG_11 ^ 32'h00000067 ) ;	// line#=computer.cpp:468,473,482,491,502
+						// ,690
+assign	M_2783_port = M_2783 ;
+assign	M_2785 = ~|( RG_11 ^ 32'h00000063 ) ;	// line#=computer.cpp:468,473,482,491,502
+						// ,690
+assign	M_2785_port = M_2785 ;
+assign	M_2787 = ~|( RG_11 ^ 32'h00000073 ) ;	// line#=computer.cpp:468,473,482,491,502
+						// ,690
+assign	U_75 = ( U_67 & M_2748 ) ;	// line#=computer.cpp:573
+assign	M_2726 = ~|RG_funct3_imm1 ;	// line#=computer.cpp:545,573,638
+assign	M_2736 = ~|( RG_funct3_imm1 ^ 32'h00000002 ) ;	// line#=computer.cpp:545,573,594,638,640
+assign	M_2748 = ~|( RG_funct3_imm1 ^ 32'h00000001 ) ;	// line#=computer.cpp:545,573,638
+assign	U_84 = ( ST1_05d & M_2775 ) ;	// line#=computer.cpp:468
+assign	U_88 = ( ST1_05d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_93 = ( U_84 & M_2736 ) ;	// line#=computer.cpp:573
+assign	U_103 = ( ST1_06d & M_2775 ) ;	// line#=computer.cpp:468
+assign	U_107 = ( ST1_06d & M_2758 ) ;	// line#=computer.cpp:468
+assign	M_2943 = ~( ( M_2944 | M_2758 ) | M_2787 ) ;	// line#=computer.cpp:468,473,482,491,502
+							// ,690
+assign	U_119 = ( ST1_07d & M_2769 ) ;	// line#=computer.cpp:468
+assign	U_122 = ( ST1_07d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_145 = ( ST1_08d & M_2777 ) ;	// line#=computer.cpp:468
+assign	U_147 = ( ST1_08d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_150 = ( U_145 & RL_buf_buf1_instr_next_pc_rd [23] ) ;	// line#=computer.cpp:640
+assign	U_161 = ( ST1_09d & M_2777 ) ;	// line#=computer.cpp:468
+assign	U_163 = ( ST1_09d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_166 = ( U_161 & RL_buf_buf1_instr_next_pc_rd [23] ) ;	// line#=computer.cpp:659
+assign	U_177 = ( ST1_10d & M_2777 ) ;	// line#=computer.cpp:468
+assign	U_179 = ( ST1_10d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_194 = ( ST1_11d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_206 = ( ST1_12d & M_2769 ) ;	// line#=computer.cpp:468
+assign	U_209 = ( ST1_12d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_228 = ( ST1_13d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_243 = ( ST1_14d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_258 = ( ST1_15d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_273 = ( ST1_16d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_277 = ( ST1_17d & M_2773 ) ;	// line#=computer.cpp:468
+assign	U_281 = ( ST1_17d & M_2764 ) ;	// line#=computer.cpp:468
+assign	U_286 = ( ST1_17d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_289 = ( U_277 & CT_15 ) ;	// line#=computer.cpp:482
+assign	U_302 = ( ST1_18d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_305 = ( ST1_19d & M_2779 ) ;	// line#=computer.cpp:468
+assign	U_312 = ( ST1_19d & M_2769 ) ;	// line#=computer.cpp:468
+assign	U_313 = ( ST1_19d & M_2777 ) ;	// line#=computer.cpp:468
+assign	U_315 = ( ST1_19d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_329 = ( U_312 & M_2762 ) ;	// line#=computer.cpp:594
+assign	U_342 = ( U_315 & FF_take ) ;	// line#=computer.cpp:690
+assign	U_374 = ( ST1_20d & M_2779 ) ;	// line#=computer.cpp:468
+assign	U_384 = ( ST1_20d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_393 = ( ST1_21d & M_2785 ) ;	// line#=computer.cpp:468
+assign	U_399 = ( ST1_21d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_402 = ( U_393 & take_t1 ) ;	// line#=computer.cpp:534
+assign	U_411 = ( ST1_22d & M_2775 ) ;	// line#=computer.cpp:468
+assign	U_415 = ( ST1_22d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_426 = ( ST1_48d & M_2775 ) ;	// line#=computer.cpp:468
+assign	U_430 = ( ST1_48d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_437 = ( ST1_49d & M_2781 ) ;	// line#=computer.cpp:468
+assign	U_445 = ( ST1_49d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_454 = ( ST1_50d & M_2781 ) ;	// line#=computer.cpp:468
+assign	U_462 = ( ST1_50d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_470 = ( ST1_51d & M_2783 ) ;	// line#=computer.cpp:468
+assign	U_477 = ( ST1_51d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_487 = ( ST1_52d & M_2783 ) ;	// line#=computer.cpp:468
+assign	U_494 = ( ST1_52d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_500 = ( ST1_53d & M_2773 ) ;	// line#=computer.cpp:468
+assign	U_509 = ( ST1_53d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_524 = ( ST1_54d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_536 = ( ST1_55d & M_2769 ) ;	// line#=computer.cpp:468
+assign	U_539 = ( ST1_55d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_551 = ( ST1_56d & M_2769 ) ;	// line#=computer.cpp:468
+assign	U_554 = ( ST1_56d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_566 = ( ST1_57d & M_2769 ) ;	// line#=computer.cpp:468
+assign	U_569 = ( ST1_57d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_579 = ( ST1_58d & M_2769 ) ;	// line#=computer.cpp:468
+assign	U_579_port = U_579 ;
+assign	U_582 = ( ST1_58d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_585 = ( U_579 & ( ~|RL_addr1_buf_buf1_next_pc_op1_PC ) ) ;	// line#=computer.cpp:594
+assign	U_604 = ( ST1_59d & M_2769 ) ;	// line#=computer.cpp:468
+assign	U_607 = ( ST1_59d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_620 = ( ST1_60d & M_2777 ) ;	// line#=computer.cpp:468
+assign	U_622 = ( ST1_60d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_633 = ( ST1_61d & M_2777 ) ;	// line#=computer.cpp:468
+assign	U_633_port = U_633 ;
+assign	U_635 = ( ST1_61d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_638 = ( U_633 & M_2726 ) ;	// line#=computer.cpp:638
+assign	U_647 = ( U_638 & ( ~FF_take ) ) ;	// line#=computer.cpp:640
+assign	U_660 = ( ST1_62d & M_2777 ) ;	// line#=computer.cpp:468
+assign	U_662 = ( ST1_62d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_673 = ( ST1_63d & M_2775 ) ;	// line#=computer.cpp:468
+assign	U_677 = ( ST1_63d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_687 = ( ST1_64d & M_2764 ) ;	// line#=computer.cpp:468
+assign	U_692 = ( ST1_64d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_695 = ( U_687 & ( ~|{ 29'h00000000 , RG_funct3_imm1 [2:0] } ) ) ;	// line#=computer.cpp:545
+assign	U_696 = ( U_687 & ( ~|( { 29'h00000000 , RG_funct3_imm1 [2:0] } ^ 32'h00000001 ) ) ) ;	// line#=computer.cpp:545
+assign	U_697 = ( U_687 & ( ~|( { 29'h00000000 , RG_funct3_imm1 [2:0] } ^ 32'h00000002 ) ) ) ;	// line#=computer.cpp:545
+assign	U_698 = ( U_687 & ( ~|( { 29'h00000000 , RG_funct3_imm1 [2:0] } ^ 32'h00000004 ) ) ) ;	// line#=computer.cpp:545
+assign	U_699 = ( U_687 & ( ~|( { 29'h00000000 , RG_funct3_imm1 [2:0] } ^ 32'h00000005 ) ) ) ;	// line#=computer.cpp:545
+assign	U_706 = ( ST1_65d & M_2764 ) ;	// line#=computer.cpp:468
+assign	U_706_port = U_706 ;
+assign	U_711 = ( ST1_65d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_715 = ( U_706 & M_2748 ) ;	// line#=computer.cpp:545
+assign	U_716 = ( U_706 & M_2736 ) ;	// line#=computer.cpp:545
+assign	U_717 = ( U_706 & M_2745 ) ;	// line#=computer.cpp:545
+assign	M_2761 = ~|( RG_funct3_imm1 ^ 32'h00000005 ) ;	// line#=computer.cpp:545,594,638,640
+assign	U_718 = ( U_706 & M_2761 ) ;	// line#=computer.cpp:545
+assign	M_2745 = ~|( RG_funct3_imm1 ^ 32'h00000004 ) ;	// line#=computer.cpp:545,594,638,640
+assign	U_720 = ( U_711 & FF_take ) ;	// line#=computer.cpp:690
+assign	U_729 = ( ST1_66d & M_2764 ) ;	// line#=computer.cpp:468
+assign	U_730 = ( ST1_66d & M_2775 ) ;	// line#=computer.cpp:468
+assign	U_734 = ( ST1_66d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_740 = ( U_729 & M_2745 ) ;	// line#=computer.cpp:545
+assign	U_741 = ( U_729 & M_2761 ) ;	// line#=computer.cpp:545
+assign	U_748 = ( ST1_67d & M_2764 ) ;	// line#=computer.cpp:468
+assign	U_749 = ( ST1_67d & M_2775 ) ;	// line#=computer.cpp:468
+assign	U_753 = ( ST1_67d & M_2758 ) ;	// line#=computer.cpp:468
+assign	U_754 = ( ST1_67d & M_2787 ) ;	// line#=computer.cpp:468
+assign	U_755 = ( ST1_67d & M_2943 ) ;	// line#=computer.cpp:468
+assign	U_758 = ( U_748 & M_2726 ) ;	// line#=computer.cpp:545
+assign	U_759 = ( U_748 & M_2748 ) ;	// line#=computer.cpp:545
+assign	U_761 = ( U_748 & M_2745 ) ;	// line#=computer.cpp:545
+assign	U_764 = ( U_748 & CT_15 ) ;	// line#=computer.cpp:473,491,502,562,626
+					// ,672
+assign	U_766 = ( U_749 & M_2748 ) ;	// line#=computer.cpp:573
+assign	U_769 = ( U_753 & FF_take ) ;	// line#=computer.cpp:690
+assign	U_775 = ( ST1_68d & ( ~incr4s1ot [3] ) ) ;	// line#=computer.cpp:336
+assign	U_780 = ( ST1_69d & incr3u1ot [3] ) ;	// line#=computer.cpp:336
+assign	U_784 = ( ST1_70d & incr3u1ot [3] ) ;	// line#=computer.cpp:336
+assign	U_792 = ( ST1_72d & RG_rs1_rs2_y [3] ) ;	// line#=computer.cpp:336
+assign	U_796 = ( ST1_73d & incr3u1ot [3] ) ;	// line#=computer.cpp:336
+assign	U_803 = ( ST1_75d & ( ~RG_rs1_rs2_y [3] ) ) ;	// line#=computer.cpp:336
+assign	U_804 = ( ST1_75d & RG_rs1_rs2_y [3] ) ;	// line#=computer.cpp:336
+assign	U_809 = ( ST1_77d & ( ~RG_rs1_rs2_y [3] ) ) ;	// line#=computer.cpp:336
+assign	U_810 = ( ST1_77d & RG_rs1_rs2_y [3] ) ;	// line#=computer.cpp:336
+assign	U_813 = ( ST1_78d & incr3u1ot [3] ) ;	// line#=computer.cpp:336
+assign	U_817 = ( ST1_79d & ( ~FF_take ) ) ;	// line#=computer.cpp:336
+assign	U_829 = ( ST1_88d & incr3u1ot [3] ) ;	// line#=computer.cpp:336
+assign	U_841 = ( ST1_91d & incr3u1ot [3] ) ;	// line#=computer.cpp:336
+assign	U_849 = ( ST1_93d & RG_rs1_rs2_y [3] ) ;	// line#=computer.cpp:336
+assign	U_855 = ( ST1_95d & RG_rs1_rs2_y [3] ) ;	// line#=computer.cpp:336
+assign	U_858 = ( ST1_96d & incr3u1ot [3] ) ;	// line#=computer.cpp:336
+assign	U_862 = ( ST1_97d & ( ~FF_take ) ) ;	// line#=computer.cpp:336
+assign	U_874 = ( ST1_106d & incr3u1ot [3] ) ;	// line#=computer.cpp:336
+assign	U_886 = ( ST1_109d & incr3u1ot [3] ) ;	// line#=computer.cpp:336
+assign	U_894 = ( ST1_111d & RG_rs1_rs2_y [3] ) ;	// line#=computer.cpp:336
+assign	U_900 = ( ST1_113d & RG_rs1_rs2_y [3] ) ;	// line#=computer.cpp:336
+assign	U_903 = ( ST1_114d & incr3u1ot [3] ) ;	// line#=computer.cpp:336
+assign	U_907 = ( ST1_115d & ( ~FF_take ) ) ;	// line#=computer.cpp:336
+assign	U_919 = ( ST1_124d & incr3u1ot [3] ) ;	// line#=computer.cpp:336
+assign	U_931 = ( ST1_127d & incr3u1ot [3] ) ;	// line#=computer.cpp:336
+assign	U_939 = ( ST1_129d & RG_rs1_rs2_y [3] ) ;	// line#=computer.cpp:336
+assign	U_945 = ( ST1_131d & RG_rs1_rs2_y [3] ) ;	// line#=computer.cpp:336
+assign	U_948 = ( ST1_132d & incr3u1ot [3] ) ;	// line#=computer.cpp:336
+assign	U_952 = ( ST1_133d & ( ~FF_take ) ) ;	// line#=computer.cpp:336
+assign	U_964 = ( ST1_142d & incr3u1ot [3] ) ;	// line#=computer.cpp:336
+assign	U_976 = ( ST1_145d & incr3u1ot [3] ) ;	// line#=computer.cpp:336
+assign	U_984 = ( ST1_147d & RG_rs1_rs2_y [3] ) ;	// line#=computer.cpp:336
+assign	U_990 = ( ST1_149d & RG_rs1_rs2_y [3] ) ;	// line#=computer.cpp:336
+assign	U_993 = ( ST1_150d & incr3u1ot [3] ) ;	// line#=computer.cpp:336
+assign	U_997 = ( ST1_151d & ( ~FF_take ) ) ;	// line#=computer.cpp:336
+assign	U_1009 = ( ST1_160d & incr3u1ot [3] ) ;	// line#=computer.cpp:336
+assign	U_1021 = ( ST1_163d & incr3u1ot [3] ) ;	// line#=computer.cpp:336
+assign	U_1029 = ( ST1_165d & RG_rs1_rs2_y [3] ) ;	// line#=computer.cpp:336
+assign	U_1035 = ( ST1_167d & RG_rs1_rs2_y [3] ) ;	// line#=computer.cpp:336
+assign	U_1038 = ( ST1_168d & incr3u1ot [3] ) ;	// line#=computer.cpp:336
+assign	U_1042 = ( ST1_169d & ( ~FF_take ) ) ;	// line#=computer.cpp:336
+assign	U_1054 = ( ST1_178d & incr3u1ot [3] ) ;	// line#=computer.cpp:336
+assign	U_1066 = ( ST1_181d & incr3u1ot [3] ) ;	// line#=computer.cpp:336
+assign	U_1074 = ( ST1_183d & RG_rs1_rs2_y [3] ) ;	// line#=computer.cpp:336
+assign	U_1080 = ( ST1_185d & RG_rs1_rs2_y [3] ) ;	// line#=computer.cpp:336
+assign	U_1083 = ( ST1_186d & incr3u1ot [3] ) ;	// line#=computer.cpp:336
+assign	U_1087 = ( ST1_187d & ( ~FF_take ) ) ;	// line#=computer.cpp:336
+assign	U_1099 = ( ST1_196d & incr3u1ot [3] ) ;	// line#=computer.cpp:336
+assign	U_1111 = ( ST1_199d & incr3u1ot [3] ) ;	// line#=computer.cpp:336
+assign	U_1119 = ( ST1_201d & RG_rs1_rs2_y [3] ) ;	// line#=computer.cpp:336
+assign	U_1125 = ( ST1_203d & RG_rs1_rs2_y [3] ) ;	// line#=computer.cpp:336
+assign	U_1128 = ( ST1_204d & incr3u1ot [3] ) ;	// line#=computer.cpp:336
+assign	U_1132 = ( ST1_205d & ( ~FF_take ) ) ;	// line#=computer.cpp:336
+assign	U_1135 = ( ST1_211d & RG_k [3] ) ;	// line#=computer.cpp:315
+assign	U_1144 = ( ST1_213d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1154 = ( ST1_215d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1160 = ( ST1_216d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1166 = ( ST1_217d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1171 = ( ST1_218d & ( ~incr3u1ot [3] ) ) ;	// line#=computer.cpp:370
+assign	U_1172 = ( ST1_218d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1177 = ( ST1_219d & ( ~incr3u1ot [3] ) ) ;	// line#=computer.cpp:370
+assign	U_1178 = ( ST1_219d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1188 = ( ST1_221d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1198 = ( ST1_223d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1204 = ( ST1_224d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1210 = ( ST1_225d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1215 = ( ST1_226d & ( ~incr3u1ot [3] ) ) ;	// line#=computer.cpp:370
+assign	U_1216 = ( ST1_226d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1221 = ( ST1_227d & ( ~incr3u1ot [3] ) ) ;	// line#=computer.cpp:370
+assign	U_1222 = ( ST1_227d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1232 = ( ST1_229d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1242 = ( ST1_231d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1248 = ( ST1_232d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1254 = ( ST1_233d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1259 = ( ST1_234d & ( ~incr3u1ot [3] ) ) ;	// line#=computer.cpp:370
+assign	U_1260 = ( ST1_234d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1265 = ( ST1_235d & ( ~incr3u1ot [3] ) ) ;	// line#=computer.cpp:370
+assign	U_1266 = ( ST1_235d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1276 = ( ST1_237d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1286 = ( ST1_239d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1292 = ( ST1_240d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1298 = ( ST1_241d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1303 = ( ST1_242d & ( ~incr3u1ot [3] ) ) ;	// line#=computer.cpp:370
+assign	U_1304 = ( ST1_242d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1309 = ( ST1_243d & ( ~incr3u1ot [3] ) ) ;	// line#=computer.cpp:370
+assign	U_1310 = ( ST1_243d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1320 = ( ST1_245d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1330 = ( ST1_247d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1336 = ( ST1_248d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1342 = ( ST1_249d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1347 = ( ST1_250d & ( ~incr3u1ot [3] ) ) ;	// line#=computer.cpp:370
+assign	U_1348 = ( ST1_250d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1353 = ( ST1_251d & ( ~incr3u1ot [3] ) ) ;	// line#=computer.cpp:370
+assign	U_1354 = ( ST1_251d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1364 = ( ST1_253d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1374 = ( ST1_255d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1380 = ( ST1_256d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1386 = ( ST1_257d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1391 = ( ST1_258d & ( ~incr3u1ot [3] ) ) ;	// line#=computer.cpp:370
+assign	U_1392 = ( ST1_258d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1397 = ( ST1_259d & ( ~incr3u1ot [3] ) ) ;	// line#=computer.cpp:370
+assign	U_1398 = ( ST1_259d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1408 = ( ST1_261d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1418 = ( ST1_263d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1424 = ( ST1_264d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1430 = ( ST1_265d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1435 = ( ST1_266d & ( ~incr3u1ot [3] ) ) ;	// line#=computer.cpp:370
+assign	U_1436 = ( ST1_266d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1441 = ( ST1_267d & ( ~incr3u1ot [3] ) ) ;	// line#=computer.cpp:370
+assign	U_1442 = ( ST1_267d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1452 = ( ST1_269d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1462 = ( ST1_271d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1468 = ( ST1_272d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1474 = ( ST1_273d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1479 = ( ST1_274d & ( ~incr3u1ot [3] ) ) ;	// line#=computer.cpp:370
+assign	U_1480 = ( ST1_274d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+assign	U_1485 = ( ST1_275d & ( ~incr3u1ot [3] ) ) ;	// line#=computer.cpp:370
+assign	U_1486 = ( ST1_275d & incr3u1ot [3] ) ;	// line#=computer.cpp:370
+always @ ( imem_arg_MEMB32W65536_RD1 or U_12 )
+	TR_52 = ( { 3{ U_12 } } & imem_arg_MEMB32W65536_RD1 [14:12] )	// line#=computer.cpp:449,594
+		 ;	// line#=computer.cpp:326,360
+assign	M_2857 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( U_780 | 
+	U_792 ) | ST1_90d ) | U_849 ) | ST1_108d ) | U_894 ) | ST1_126d ) | U_939 ) | 
+	ST1_144d ) | U_984 ) | ST1_162d ) | U_1029 ) | ST1_180d ) | U_1074 ) | ST1_198d ) | 
+	U_1119 ) | ST1_214d ) | U_1160 ) | ST1_222d ) | U_1204 ) | ST1_230d ) | U_1248 ) | 
+	ST1_238d ) | U_1292 ) | ST1_246d ) | U_1336 ) | ST1_254d ) | U_1380 ) | ST1_262d ) | 
+	U_1424 ) | ST1_270d ) | U_1468 ) ;
+always @ ( regs_rd00 or U_15 or TR_52 or M_2857 or U_12 )
 	begin
-	RG_addr1_next_pc_op1_PC_src_addr_t_c1 = ( U_12 | U_15 ) ;	// line#=computer.cpp:442,587,684
-	RG_addr1_next_pc_op1_PC_src_addr_t_c2 = ( U_704 | ( U_725 & M_2838 ) ) ;	// line#=computer.cpp:142,159,540,543
-	RG_addr1_next_pc_op1_PC_src_addr_t_c3 = ( ST1_67d & ( ( ( ( ( ( ( ( M_3022 | 
-		U_744 ) | U_745 ) | U_746 ) | U_747 ) | U_748 ) | U_749 ) | U_750 ) | 
-		U_751 ) ) ;	// line#=computer.cpp:458
-	RG_addr1_next_pc_op1_PC_src_addr_t_c4 = ( ST1_67d & U_741 ) ;	// line#=computer.cpp:86,118,486
-	RG_addr1_next_pc_op1_PC_src_addr_t_c5 = ( ST1_67d & U_742 ) ;	// line#=computer.cpp:86,91,494,497
-	RG_addr1_next_pc_op1_PC_src_addr_t_c6 = ( ST1_67d & U_743 ) ;
-	RG_addr1_next_pc_op1_PC_src_addr_t = ( ( { 32{ U_13 } } & regs_rd01 )				// line#=computer.cpp:628
-		| ( { 32{ U_11 } } & add32s1ot )							// line#=computer.cpp:86,97,564
-		| ( { 32{ RG_addr1_next_pc_op1_PC_src_addr_t_c1 } } & { 14'h0000 , 
-			TR_01 } )									// line#=computer.cpp:442,587,684
-		| ( { 32{ RG_addr1_next_pc_op1_PC_src_addr_t_c2 } } & dmem_arg_MEMB32W65536_RD1 )	// line#=computer.cpp:142,159,540,543
-		| ( { 32{ RG_addr1_next_pc_op1_PC_src_addr_t_c3 } } & RG_buf_buf1_1 )			// line#=computer.cpp:458
-		| ( { 32{ RG_addr1_next_pc_op1_PC_src_addr_t_c4 } } & RG_buf_buf1_funct3_imm1_next_pc )	// line#=computer.cpp:86,118,486
-		| ( { 32{ RG_addr1_next_pc_op1_PC_src_addr_t_c5 } } & { RG_buf_buf1_funct3_imm1_next_pc [30:0] , 
-			1'h0 } )									// line#=computer.cpp:86,91,494,497
-		| ( { 32{ RG_addr1_next_pc_op1_PC_src_addr_t_c6 } } & { M_1859_t , 
-			RG_addr1_next_pc_op1_PC_src_addr [0] } ) ) ;
+	TR_01_c1 = ( U_12 | M_2857 ) ;	// line#=computer.cpp:326,360,449,594
+	TR_01 = ( ( { 18{ TR_01_c1 } } & { 15'h0000 , TR_52 } )	// line#=computer.cpp:326,360,449,594
+		| ( { 18{ U_15 } } & regs_rd00 [17:0] )		// line#=computer.cpp:691
+		) ;
 	end
-assign	RG_addr1_next_pc_op1_PC_src_addr_en = ( U_13 | U_11 | RG_addr1_next_pc_op1_PC_src_addr_t_c1 | 
-	RG_addr1_next_pc_op1_PC_src_addr_t_c2 | RG_addr1_next_pc_op1_PC_src_addr_t_c3 | 
-	RG_addr1_next_pc_op1_PC_src_addr_t_c4 | RG_addr1_next_pc_op1_PC_src_addr_t_c5 | 
-	RG_addr1_next_pc_op1_PC_src_addr_t_c6 ) ;	// line#=computer.cpp:538
-always @ ( posedge CLOCK )	// line#=computer.cpp:538
+always @ ( RG_instr_next_pc_PC or ST1_339d or ST1_211d or add20s1ot or M_2837 or 
+	RL_addr1_buf_buf1_next_pc_op1_PC or M_2060_t or M_2785 or M_2783 or RG_addr_next_pc or 
+	M_2781 or RG_07 or U_755 or U_754 or U_753 or M_2742 or M_2777 or M_2769 or 
+	U_749 or U_748 or M_2773 or M_2779 or ST1_67d or dmem_arg_MEMB32W65536_RD1 or 
+	U_711 or U_677 or U_147 or U_122 or U_107 or TR_01 or M_2857 or U_15 or 
+	U_12 or add32s1ot or U_11 or regs_rd01 or U_13 )	// line#=computer.cpp:468
+	begin
+	RL_addr1_buf_buf1_next_pc_op1_PC_t_c1 = ( ( U_12 | U_15 ) | M_2857 ) ;	// line#=computer.cpp:326,360,449,594,691
+	RL_addr1_buf_buf1_next_pc_op1_PC_t_c2 = ( ( ( ( U_107 | U_122 ) | U_147 ) | 
+		U_677 ) | U_711 ) ;	// line#=computer.cpp:174,311,312
+	RL_addr1_buf_buf1_next_pc_op1_PC_t_c3 = ( ST1_67d & ( ( ( ( ( ( ( ( ( ( ST1_67d & 
+		M_2779 ) | ( ST1_67d & M_2773 ) ) | U_748 ) | U_749 ) | ( ST1_67d & 
+		M_2769 ) ) | ( ST1_67d & M_2777 ) ) | ( ST1_67d & M_2742 ) ) | U_753 ) | 
+		U_754 ) | U_755 ) ) ;	// line#=computer.cpp:465
+	RL_addr1_buf_buf1_next_pc_op1_PC_t_c4 = ( ST1_67d & ( ST1_67d & M_2781 ) ) ;	// line#=computer.cpp:86,118,493
+	RL_addr1_buf_buf1_next_pc_op1_PC_t_c5 = ( ST1_67d & ( ST1_67d & M_2783 ) ) ;	// line#=computer.cpp:86,91,501,504
+	RL_addr1_buf_buf1_next_pc_op1_PC_t_c6 = ( ST1_67d & ( ST1_67d & M_2785 ) ) ;
+	RL_addr1_buf_buf1_next_pc_op1_PC_t_c7 = ( ST1_211d | ST1_339d ) ;	// line#=computer.cpp:718
+	RL_addr1_buf_buf1_next_pc_op1_PC_t = ( ( { 32{ U_13 } } & regs_rd01 )				// line#=computer.cpp:635
+		| ( { 32{ U_11 } } & add32s1ot )							// line#=computer.cpp:86,97,571
+		| ( { 32{ RL_addr1_buf_buf1_next_pc_op1_PC_t_c1 } } & { 14'h0000 , 
+			TR_01 } )									// line#=computer.cpp:326,360,449,594,691
+		| ( { 32{ RL_addr1_buf_buf1_next_pc_op1_PC_t_c2 } } & dmem_arg_MEMB32W65536_RD1 )	// line#=computer.cpp:174,311,312
+		| ( { 32{ RL_addr1_buf_buf1_next_pc_op1_PC_t_c3 } } & RG_07 )				// line#=computer.cpp:465
+		| ( { 32{ RL_addr1_buf_buf1_next_pc_op1_PC_t_c4 } } & RG_addr_next_pc )			// line#=computer.cpp:86,118,493
+		| ( { 32{ RL_addr1_buf_buf1_next_pc_op1_PC_t_c5 } } & { RG_addr_next_pc [30:0] , 
+			1'h0 } )									// line#=computer.cpp:86,91,501,504
+		| ( { 32{ RL_addr1_buf_buf1_next_pc_op1_PC_t_c6 } } & { M_2060_t , 
+			RL_addr1_buf_buf1_next_pc_op1_PC [0] } )
+		| ( { 32{ M_2837 } } & { add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , 
+			add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , 
+			add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , 
+			add20s1ot [19] , add20s1ot } )							// line#=computer.cpp:296,339,373
+		| ( { 32{ RL_addr1_buf_buf1_next_pc_op1_PC_t_c7 } } & RG_instr_next_pc_PC )		// line#=computer.cpp:718
+		) ;
+	end
+assign	RL_addr1_buf_buf1_next_pc_op1_PC_en = ( U_13 | U_11 | RL_addr1_buf_buf1_next_pc_op1_PC_t_c1 | 
+	RL_addr1_buf_buf1_next_pc_op1_PC_t_c2 | RL_addr1_buf_buf1_next_pc_op1_PC_t_c3 | 
+	RL_addr1_buf_buf1_next_pc_op1_PC_t_c4 | RL_addr1_buf_buf1_next_pc_op1_PC_t_c5 | 
+	RL_addr1_buf_buf1_next_pc_op1_PC_t_c6 | M_2837 | RL_addr1_buf_buf1_next_pc_op1_PC_t_c7 ) ;	// line#=computer.cpp:468
+always @ ( posedge CLOCK )	// line#=computer.cpp:468
 	if ( RESET )
-		RG_addr1_next_pc_op1_PC_src_addr <= 32'h00000000 ;
-	else if ( RG_addr1_next_pc_op1_PC_src_addr_en )
-		RG_addr1_next_pc_op1_PC_src_addr <= RG_addr1_next_pc_op1_PC_src_addr_t ;	// line#=computer.cpp:86,91,97,118,142
-												// ,159,442,458,486,494,497,538,540
-												// ,543,564,587,628,684
-assign	M_2948 = ( M_2923 | ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-	( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-	( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( M_3023 | ST1_89d ) | ST1_95d ) | U_834 ) | 
-	U_840 ) | U_846 ) | U_852 ) | ST1_111d ) | ST1_117d ) | U_880 ) | U_886 ) | 
-	U_892 ) | U_898 ) | ST1_133d ) | ST1_139d ) | U_926 ) | U_932 ) | U_938 ) | 
-	U_944 ) | ST1_155d ) | ST1_161d ) | U_972 ) | U_978 ) | U_984 ) | U_990 ) | 
-	ST1_177d ) | ST1_183d ) | U_1018 ) | U_1024 ) | U_1030 ) | U_1036 ) | ST1_199d ) | 
-	ST1_205d ) | U_1064 ) | U_1070 ) | U_1076 ) | U_1082 ) | ST1_221d ) | ST1_227d ) | 
-	U_1110 ) | U_1116 ) | U_1122 ) | U_1128 ) | ST1_243d ) | ST1_249d ) | U_1160 ) | 
-	U_1166 ) | U_1172 ) | ST1_266d ) | ST1_274d ) | U_1211 ) | U_1217 ) | U_1223 ) | 
-	ST1_289d ) | ST1_297d ) | U_1256 ) | U_1262 ) | U_1268 ) | ST1_312d ) | ST1_320d ) | 
-	U_1301 ) | U_1307 ) | U_1313 ) | ST1_335d ) | ST1_343d ) | U_1346 ) | U_1352 ) | 
-	U_1358 ) | ST1_358d ) | ST1_366d ) | U_1391 ) | U_1397 ) | U_1403 ) | ST1_381d ) | 
-	ST1_389d ) | U_1436 ) | U_1442 ) | U_1448 ) | ST1_404d ) | ST1_412d ) | U_1481 ) | 
-	U_1487 ) | U_1493 ) | ST1_427d ) ) ;
-always @ ( sub20u_182ot or U_71 )
-	TR_02 = ( { 16{ U_71 } } & sub20u_182ot [17:2] )	// line#=computer.cpp:165,174,304,305
-		 ;	// line#=computer.cpp:319,353
-assign	M_3022 = ( ( ST1_67d & M_2863 ) | ( ST1_67d & M_2869 ) ) ;	// line#=computer.cpp:461,538
-always @ ( RL_addr_buf_instr_op2_result or ST1_492d or ST1_420d or U_1492 or U_1486 or 
-	U_1480 or ST1_397d or U_1447 or U_1441 or U_1435 or ST1_374d or U_1402 or 
-	U_1396 or U_1390 or ST1_351d or U_1357 or U_1351 or U_1345 or ST1_328d or 
-	U_1312 or U_1306 or U_1300 or ST1_305d or U_1267 or U_1261 or U_1255 or 
-	ST1_282d or U_1222 or U_1216 or U_1210 or ST1_257d or U_1171 or U_1165 or 
-	U_1159 or ST1_237d or U_1127 or U_1121 or U_1115 or U_1109 or ST1_215d or 
-	U_1081 or U_1075 or U_1069 or U_1063 or ST1_193d or U_1035 or U_1029 or 
-	U_1023 or U_1017 or ST1_171d or U_989 or U_983 or U_977 or U_971 or ST1_149d or 
-	U_943 or U_937 or U_931 or U_925 or ST1_127d or U_897 or U_891 or U_885 or 
-	U_879 or ST1_105d or U_851 or U_845 or U_839 or U_833 or ST1_79d or M_3024 or 
-	add20s1ot or ST1_406d or ST1_383d or ST1_360d or ST1_337d or ST1_314d or 
-	ST1_291d or ST1_268d or ST1_245d or ST1_223d or ST1_201d or ST1_179d or 
-	ST1_157d or ST1_135d or ST1_113d or ST1_91d or RG_y or ST1_69d or RG_buf_buf1 or 
-	U_751 or U_750 or U_766 or U_748 or U_747 or U_746 or U_745 or U_744 or 
-	U_743 or U_742 or U_741 or M_3022 or ST1_67d or TR_02 or M_2948 or U_71 )	// line#=computer.cpp:329
+		RL_addr1_buf_buf1_next_pc_op1_PC <= 32'h00000000 ;
+	else if ( RL_addr1_buf_buf1_next_pc_op1_PC_en )
+		RL_addr1_buf_buf1_next_pc_op1_PC <= RL_addr1_buf_buf1_next_pc_op1_PC_t ;	// line#=computer.cpp:86,91,97,118,174
+												// ,296,311,312,326,339,360,373,449
+												// ,465,468,493,501,504,571,594,635
+												// ,691,718
+assign	M_2935 = ( M_2853 | U_1135 ) ;
+always @ ( sub20u_181ot or U_71 )
+	TR_02 = ( { 16{ U_71 } } & sub20u_181ot [17:2] )	// line#=computer.cpp:165,174,311,312
+		 ;	// line#=computer.cpp:326
+always @ ( add20s1ot or M_2832 or buf_a001_t1 or ST1_67d or dmem_arg_MEMB32W65536_RD1 or 
+	U_692 or TR_02 or M_2935 or U_71 )
 	begin
-	RG_buf_buf1_t_c1 = ( U_71 | M_2948 ) ;	// line#=computer.cpp:165,174,304,305,319
-						// ,353
-	RG_buf_buf1_t_c2 = ( ST1_67d & ( ( ( ( ( ( ( ( ( ( ( M_3022 | U_741 ) | U_742 ) | 
-		U_743 ) | U_744 ) | U_745 ) | U_746 ) | U_747 ) | U_748 ) | U_766 ) | 
-		U_750 ) | U_751 ) ) ;
-	RG_buf_buf1_t_c3 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_69d & ( ~RG_y [3] ) ) | 
-		ST1_91d ) | ST1_113d ) | ST1_135d ) | ST1_157d ) | ST1_179d ) | ST1_201d ) | 
-		ST1_223d ) | ST1_245d ) | ST1_268d ) | ST1_291d ) | ST1_314d ) | 
-		ST1_337d ) | ST1_360d ) | ST1_383d ) | ST1_406d ) ;	// line#=computer.cpp:289,332,366
-	RG_buf_buf1_t_c4 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-		( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-		( ( ( ( ( ( ( ( M_3024 | ST1_79d ) | U_833 ) | U_839 ) | U_845 ) | 
-		U_851 ) | ST1_105d ) | U_879 ) | U_885 ) | U_891 ) | U_897 ) | ST1_127d ) | 
-		U_925 ) | U_931 ) | U_937 ) | U_943 ) | ST1_149d ) | U_971 ) | U_977 ) | 
-		U_983 ) | U_989 ) | ST1_171d ) | U_1017 ) | U_1023 ) | U_1029 ) | 
-		U_1035 ) | ST1_193d ) | U_1063 ) | U_1069 ) | U_1075 ) | U_1081 ) | 
-		ST1_215d ) | U_1109 ) | U_1115 ) | U_1121 ) | U_1127 ) | ST1_237d ) | 
-		U_1159 ) | U_1165 ) | U_1171 ) | ST1_257d ) | U_1210 ) | U_1216 ) | 
-		U_1222 ) | ST1_282d ) | U_1255 ) | U_1261 ) | U_1267 ) | ST1_305d ) | 
-		U_1300 ) | U_1306 ) | U_1312 ) | ST1_328d ) | U_1345 ) | U_1351 ) | 
-		U_1357 ) | ST1_351d ) | U_1390 ) | U_1396 ) | U_1402 ) | ST1_374d ) | 
-		U_1435 ) | U_1441 ) | U_1447 ) | ST1_397d ) | U_1480 ) | U_1486 ) | 
-		U_1492 ) | ST1_420d ) ;	// line#=computer.cpp:289,332,366
-	RG_buf_buf1_t = ( ( { 20{ RG_buf_buf1_t_c1 } } & { 4'h0 , TR_02 } )	// line#=computer.cpp:165,174,304,305,319
-										// ,353
-		| ( { 20{ RG_buf_buf1_t_c2 } } & RG_buf_buf1 )
-		| ( { 20{ RG_buf_buf1_t_c3 } } & add20s1ot )			// line#=computer.cpp:289,332,366
-		| ( { 20{ RG_buf_buf1_t_c4 } } & add20s1ot )			// line#=computer.cpp:289,332,366
-		| ( { 20{ ST1_492d } } & RL_addr_buf_instr_op2_result [19:0] ) ) ;
-	end
-assign	RG_buf_buf1_en = ( RG_buf_buf1_t_c1 | RG_buf_buf1_t_c2 | RG_buf_buf1_t_c3 | 
-	RG_buf_buf1_t_c4 | ST1_492d ) ;	// line#=computer.cpp:329
-always @ ( posedge CLOCK )	// line#=computer.cpp:329
-	if ( RG_buf_buf1_en )
-		RG_buf_buf1 <= RG_buf_buf1_t ;	// line#=computer.cpp:165,174,289,304,305
-						// ,319,329,332,353,366
-assign	RG_dst_addr_en = U_364 ;
-always @ ( posedge CLOCK )	// line#=computer.cpp:684
-	if ( RG_dst_addr_en )
-		RG_dst_addr <= regs_rd03 [17:0] ;
-assign	M_2923 = ( ST1_67d & U_765 ) ;
-always @ ( RG_k or ST1_243d or ST1_492d or M_2923 )
-	begin
-	RG_k_t_c1 = ( M_2923 | ST1_492d ) ;	// line#=computer.cpp:308,342
-	RG_k_t = ( ( { 4{ RG_k_t_c1 } } & { ST1_492d , 3'h0 } )		// line#=computer.cpp:308,342
-		| ( { 4{ ST1_243d } } & { ~RG_k [3] , RG_k [2:0] } )	// line#=computer.cpp:308
+	RG_buf_t_c1 = ( U_71 | M_2935 ) ;	// line#=computer.cpp:165,174,311,312,326
+	RG_buf_t = ( ( { 32{ RG_buf_t_c1 } } & { 16'h0000 , TR_02 } )	// line#=computer.cpp:165,174,311,312,326
+		| ( { 32{ U_692 } } & dmem_arg_MEMB32W65536_RD1 )	// line#=computer.cpp:174,311,312
+		| ( { 32{ ST1_67d } } & { buf_a001_t1 [19] , buf_a001_t1 [19] , buf_a001_t1 [19] , 
+			buf_a001_t1 [19] , buf_a001_t1 [19] , buf_a001_t1 [19] , 
+			buf_a001_t1 [19] , buf_a001_t1 [19] , buf_a001_t1 [19] , 
+			buf_a001_t1 [19] , buf_a001_t1 [19] , buf_a001_t1 [19] , 
+			buf_a001_t1 } )
+		| ( { 32{ M_2832 } } & { add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , 
+			add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , 
+			add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , 
+			add20s1ot [19] , add20s1ot } )			// line#=computer.cpp:296,339
 		) ;
 	end
-assign	RG_k_en = ( RG_k_t_c1 | ST1_243d ) ;
+assign	RG_buf_en = ( RG_buf_t_c1 | U_692 | ST1_67d | M_2832 ) ;
+always @ ( posedge CLOCK )
+	if ( RG_buf_en )
+		RG_buf <= RG_buf_t ;	// line#=computer.cpp:165,174,296,311,312
+					// ,326,339
+assign	M_2828 = ( ( U_147 | ST1_63d ) | ST1_65d ) ;
+always @ ( RL_buf_buf1_instr_next_pc_rd or M_2828 )
+	TR_03 = ( { 14{ M_2828 } } & RL_buf_buf1_instr_next_pc_rd [31:18] )
+		 ;	// line#=computer.cpp:691
+assign	M_2830 = ( ST1_67d | ST1_70d ) ;
+assign	M_2856 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( U_796 | ST1_88d ) | ST1_113d ) | ST1_131d ) | 
+	ST1_149d ) | ST1_167d ) | ST1_185d ) | ST1_203d ) | ST1_217d ) | ST1_225d ) | 
+	ST1_233d ) | ST1_241d ) | ST1_249d ) | ST1_257d ) | ST1_265d ) | ST1_273d ) ;
+always @ ( RL_blk_out_buf_buf1_dst_addr_rs1 or M_2856 )
+	TR_04 = ( { 14{ M_2856 } } & { RL_blk_out_buf_buf1_dst_addr_rs1 [19] , RL_blk_out_buf_buf1_dst_addr_rs1 [19] , 
+			RL_blk_out_buf_buf1_dst_addr_rs1 [19] , RL_blk_out_buf_buf1_dst_addr_rs1 [19] , 
+			RL_blk_out_buf_buf1_dst_addr_rs1 [19] , RL_blk_out_buf_buf1_dst_addr_rs1 [19] , 
+			RL_blk_out_buf_buf1_dst_addr_rs1 [19] , RL_blk_out_buf_buf1_dst_addr_rs1 [19] , 
+			RL_blk_out_buf_buf1_dst_addr_rs1 [19] , RL_blk_out_buf_buf1_dst_addr_rs1 [19] , 
+			RL_blk_out_buf_buf1_dst_addr_rs1 [19] , RL_blk_out_buf_buf1_dst_addr_rs1 [19] , 
+			RL_blk_out_buf_buf1_dst_addr_rs1 [19:18] } )
+		 ;
+always @ ( RG_dst_addr or ST1_339d or RL_blk_out_buf_buf1_dst_addr_rs1 or TR_04 or 
+	M_2856 or M_2830 or RL_buf_buf1_instr_next_pc_rd or TR_03 or M_2828 or U_122 )
+	begin
+	RG_buf_buf1_dst_addr_src_addr_t_c1 = ( U_122 | M_2828 ) ;	// line#=computer.cpp:691
+	RG_buf_buf1_dst_addr_src_addr_t_c2 = ( M_2830 | M_2856 ) ;
+	RG_buf_buf1_dst_addr_src_addr_t = ( ( { 32{ RG_buf_buf1_dst_addr_src_addr_t_c1 } } & 
+			{ TR_03 , RL_buf_buf1_instr_next_pc_rd [17:0] } )	// line#=computer.cpp:691
+		| ( { 32{ RG_buf_buf1_dst_addr_src_addr_t_c2 } } & { TR_04 , RL_blk_out_buf_buf1_dst_addr_rs1 [17:0] } )
+		| ( { 32{ ST1_339d } } & { 14'h0000 , RG_dst_addr [17:0] } ) ) ;
+	end
+assign	RG_buf_buf1_dst_addr_src_addr_en = ( RG_buf_buf1_dst_addr_src_addr_t_c1 | 
+	RG_buf_buf1_dst_addr_src_addr_t_c2 | ST1_339d ) ;
+always @ ( posedge CLOCK )
+	if ( RG_buf_buf1_dst_addr_src_addr_en )
+		RG_buf_buf1_dst_addr_src_addr <= RG_buf_buf1_dst_addr_src_addr_t ;	// line#=computer.cpp:691
+always @ ( RG_buf_buf1_dst_addr_src_addr or ST1_63d )
+	TR_05 = ( { 14{ ST1_63d } } & RG_buf_buf1_dst_addr_src_addr [31:18] )
+		 ;	// line#=computer.cpp:691
+assign	M_2833 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_68d | ST1_87d ) | ST1_105d ) | 
+	ST1_123d ) | ST1_141d ) | ST1_159d ) | ST1_177d ) | ST1_195d ) | ST1_212d ) | 
+	ST1_220d ) | ST1_228d ) | ST1_236d ) | ST1_244d ) | ST1_252d ) | ST1_260d ) | 
+	ST1_268d ) ;
+always @ ( RG_rs1_rs2_y or ST1_339d or y11_t1 or ST1_67d )
+	TR_06 = ( ( { 4{ ST1_67d } } & y11_t1 )
+		| ( { 4{ ST1_339d } } & RG_rs1_rs2_y [3:0] ) ) ;	// line#=computer.cpp:326,360
+always @ ( add20s1ot or M_2835 or TR_06 or ST1_339d or M_2833 or ST1_67d or RG_buf_buf1_dst_addr_src_addr or 
+	TR_05 or U_677 or U_147 )
+	begin
+	RG_buf_buf1_src_addr_y_t_c1 = ( U_147 | U_677 ) ;	// line#=computer.cpp:691
+	RG_buf_buf1_src_addr_y_t_c2 = ( ( ST1_67d | M_2833 ) | ST1_339d ) ;	// line#=computer.cpp:326,360
+	RG_buf_buf1_src_addr_y_t = ( ( { 32{ RG_buf_buf1_src_addr_y_t_c1 } } & { 
+			TR_05 , RG_buf_buf1_dst_addr_src_addr [17:0] } )		// line#=computer.cpp:691
+		| ( { 32{ RG_buf_buf1_src_addr_y_t_c2 } } & { 28'h0000000 , TR_06 } )	// line#=computer.cpp:326,360
+		| ( { 32{ M_2835 } } & { add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , 
+			add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , 
+			add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , 
+			add20s1ot [19] , add20s1ot } )					// line#=computer.cpp:296,339,373
+		) ;
+	end
+assign	RG_buf_buf1_src_addr_y_en = ( RG_buf_buf1_src_addr_y_t_c1 | RG_buf_buf1_src_addr_y_t_c2 | 
+	M_2835 ) ;
+always @ ( posedge CLOCK )
+	if ( RG_buf_buf1_src_addr_y_en )
+		RG_buf_buf1_src_addr_y <= RG_buf_buf1_src_addr_y_t ;	// line#=computer.cpp:296,326,339,360,373
+									// ,691
+always @ ( RG_k or ST1_211d or ST1_339d or U_769 or ST1_67d )
+	begin
+	RG_k_t_c1 = ( ( ST1_67d & U_769 ) | ST1_339d ) ;	// line#=computer.cpp:315,349
+	RG_k_t = ( ( { 4{ RG_k_t_c1 } } & { ST1_339d , 3'h0 } )		// line#=computer.cpp:315,349
+		| ( { 4{ ST1_211d } } & { ~RG_k [3] , RG_k [2:0] } )	// line#=computer.cpp:315
+		) ;
+	end
+assign	RG_k_en = ( RG_k_t_c1 | ST1_211d ) ;
 always @ ( posedge CLOCK )
 	if ( RG_k_en )
-		RG_k <= RG_k_t ;	// line#=computer.cpp:308,342
+		RG_k <= RG_k_t ;	// line#=computer.cpp:315,349
 assign	RG_k_port = RG_k ;
-always @ ( incr3u1ot or M_2906 or RG_y or M_3025 )
-	TR_50 = ( ( { 3{ M_3025 } } & RG_y [2:0] )
-		| ( { 3{ M_2906 } } & incr3u1ot [2:0] )	// line#=computer.cpp:329,363
-		) ;	// line#=computer.cpp:329,363
-assign	M_2906 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_82d & ( ~incr3u1ot [3] ) ) | ( 
-	ST1_104d & ( ~incr3u1ot [3] ) ) ) | ( ST1_126d & ( ~incr3u1ot [3] ) ) ) | 
-	( ST1_148d & ( ~incr3u1ot [3] ) ) ) | ( ST1_170d & ( ~incr3u1ot [3] ) ) ) | 
-	( ST1_192d & ( ~incr3u1ot [3] ) ) ) | ( ST1_214d & ( ~incr3u1ot [3] ) ) ) | 
-	( ST1_236d & ( ~incr3u1ot [3] ) ) ) | ST1_258d ) | ST1_281d ) | ST1_304d ) | 
-	ST1_327d ) | ST1_350d ) | ST1_373d ) | ST1_396d ) ;	// line#=computer.cpp:329
-assign	M_2950 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-	( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-	( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-	M_2926 | ST1_90d ) | ST1_92d ) | ST1_94d ) | ST1_96d ) | ST1_98d ) | ST1_100d ) | 
-	ST1_102d ) | ST1_112d ) | ST1_114d ) | ST1_116d ) | ST1_118d ) | ST1_120d ) | 
-	ST1_122d ) | ST1_124d ) | ST1_134d ) | ST1_136d ) | ST1_138d ) | ST1_140d ) | 
-	ST1_142d ) | ST1_144d ) | ST1_146d ) | ST1_156d ) | ST1_158d ) | ST1_160d ) | 
-	ST1_162d ) | ST1_164d ) | ST1_166d ) | ST1_168d ) | ST1_178d ) | ST1_180d ) | 
-	ST1_182d ) | ST1_184d ) | ST1_186d ) | ST1_188d ) | ST1_190d ) | ST1_200d ) | 
-	ST1_202d ) | ST1_204d ) | ST1_206d ) | ST1_208d ) | ST1_210d ) | ST1_212d ) | 
-	ST1_222d ) | ST1_224d ) | ST1_226d ) | ST1_228d ) | ST1_230d ) | ST1_232d ) | 
-	ST1_234d ) | ST1_244d ) | ST1_246d ) | ST1_248d ) | ST1_250d ) | ST1_252d ) | 
-	ST1_254d ) | ST1_256d ) | ST1_267d ) | ST1_269d ) | ST1_271d ) | ST1_273d ) | 
-	ST1_275d ) | ST1_277d ) | ST1_279d ) | ST1_290d ) | ST1_292d ) | ST1_294d ) | 
-	ST1_296d ) | ST1_298d ) | ST1_300d ) | ST1_302d ) | ST1_313d ) | ST1_315d ) | 
-	ST1_317d ) | ST1_319d ) | ST1_321d ) | ST1_323d ) | ST1_325d ) | ST1_336d ) | 
-	ST1_338d ) | ST1_340d ) | ST1_342d ) | ST1_344d ) | ST1_346d ) | ST1_348d ) | 
-	ST1_359d ) | ST1_361d ) | ST1_363d ) | ST1_365d ) | ST1_367d ) | ST1_369d ) | 
-	ST1_371d ) | ST1_382d ) | ST1_384d ) | ST1_386d ) | ST1_388d ) | ST1_390d ) | 
-	ST1_392d ) | ST1_394d ) | ST1_405d ) | ST1_407d ) | ST1_409d ) | ST1_411d ) | 
-	ST1_413d ) | ST1_415d ) | ST1_417d ) | ST1_419d ) ;	// line#=computer.cpp:329
-assign	M_3023 = ( ( ( ( ( ST1_69d & RG_y [3] ) | U_776 ) | ( ST1_73d & RG_y [3] ) ) | 
-	( ST1_75d & RG_y [3] ) ) | ( ST1_77d & RG_y [3] ) ) ;	// line#=computer.cpp:329
-assign	M_2951 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-	( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-	( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-	( ( M_3023 | ( ST1_79d & RG_y [3] ) ) | ( ST1_81d & RG_y [3] ) ) | ST1_91d ) | 
-	( ST1_93d & RG_y [3] ) ) | ( ST1_95d & RG_y [3] ) ) | U_834 ) | U_840 ) | 
-	U_846 ) | U_852 ) | ST1_113d ) | ( ST1_115d & RG_y [3] ) ) | ( ST1_117d & 
-	RG_y [3] ) ) | U_880 ) | U_886 ) | U_892 ) | U_898 ) | ST1_135d ) | ( ST1_137d & 
-	RG_y [3] ) ) | ( ST1_139d & RG_y [3] ) ) | U_926 ) | U_932 ) | U_938 ) | 
-	U_944 ) | ST1_157d ) | ( ST1_159d & RG_y [3] ) ) | ( ST1_161d & RG_y [3] ) ) | 
-	U_972 ) | U_978 ) | U_984 ) | U_990 ) | ST1_179d ) | ( ST1_181d & RG_y [3] ) ) | 
-	( ST1_183d & RG_y [3] ) ) | U_1018 ) | U_1024 ) | U_1030 ) | U_1036 ) | ST1_201d ) | 
-	( ST1_203d & RG_y [3] ) ) | ( ST1_205d & RG_y [3] ) ) | U_1064 ) | U_1070 ) | 
-	U_1076 ) | U_1082 ) | ST1_223d ) | ( ST1_225d & RG_y [3] ) ) | ( ST1_227d & 
-	RG_y [3] ) ) | U_1110 ) | U_1116 ) | U_1122 ) | U_1128 ) | ST1_243d ) | ST1_245d ) | 
-	( ST1_247d & RG_y [3] ) ) | ( ST1_249d & RG_y [3] ) ) | U_1160 ) | U_1166 ) | 
-	U_1172 ) | ( ST1_257d & RG_y [3] ) ) | ST1_268d ) | ( ST1_270d & RG_y [3] ) ) | 
-	( ST1_272d & RG_y [3] ) ) | ( ST1_274d & RG_y [3] ) ) | U_1211 ) | U_1217 ) | 
-	U_1223 ) | ST1_291d ) | ( ST1_293d & RG_y [3] ) ) | ( ST1_295d & RG_y [3] ) ) | 
-	( ST1_297d & RG_y [3] ) ) | U_1256 ) | U_1262 ) | U_1268 ) | ST1_314d ) | 
-	( ST1_316d & RG_y [3] ) ) | ( ST1_318d & RG_y [3] ) ) | ( ST1_320d & RG_y [3] ) ) | 
-	U_1301 ) | U_1307 ) | U_1313 ) | ST1_337d ) | ( ST1_339d & RG_y [3] ) ) | 
-	( ST1_341d & RG_y [3] ) ) | ( ST1_343d & RG_y [3] ) ) | U_1346 ) | U_1352 ) | 
-	U_1358 ) | ST1_360d ) | ( ST1_362d & RG_y [3] ) ) | ( ST1_364d & RG_y [3] ) ) | 
-	( ST1_366d & RG_y [3] ) ) | U_1391 ) | U_1397 ) | U_1403 ) | ST1_383d ) | 
-	( ST1_385d & RG_y [3] ) ) | ( ST1_387d & RG_y [3] ) ) | ( ST1_389d & RG_y [3] ) ) | 
-	U_1436 ) | U_1442 ) | U_1448 ) | ST1_406d ) | ( ST1_408d & RG_y [3] ) ) | 
-	( ST1_410d & RG_y [3] ) ) | ( ST1_412d & RG_y [3] ) ) | U_1481 ) | U_1487 ) | 
-	U_1493 ) ;	// line#=computer.cpp:329,363
-assign	M_3025 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-	( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-	( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( M_3024 | ( ST1_79d & ( ~RG_y [3] ) ) ) | 
-	( ST1_81d & ( ~RG_y [3] ) ) ) | ( ST1_93d & ( ~RG_y [3] ) ) ) | ( ST1_95d & ( 
-	~RG_y [3] ) ) ) | U_833 ) | U_839 ) | U_845 ) | U_851 ) | ( ST1_115d & ( 
-	~RG_y [3] ) ) ) | ( ST1_117d & ( ~RG_y [3] ) ) ) | U_879 ) | U_885 ) | U_891 ) | 
-	U_897 ) | ( ST1_137d & ( ~RG_y [3] ) ) ) | ( ST1_139d & ( ~RG_y [3] ) ) ) | 
-	U_925 ) | U_931 ) | U_937 ) | U_943 ) | ( ST1_159d & ( ~RG_y [3] ) ) ) | 
-	( ST1_161d & ( ~RG_y [3] ) ) ) | U_971 ) | U_977 ) | U_983 ) | U_989 ) | 
-	( ST1_181d & ( ~RG_y [3] ) ) ) | ( ST1_183d & ( ~RG_y [3] ) ) ) | U_1017 ) | 
-	U_1023 ) | U_1029 ) | U_1035 ) | ( ST1_203d & ( ~RG_y [3] ) ) ) | ( ST1_205d & ( 
-	~RG_y [3] ) ) ) | U_1063 ) | U_1069 ) | U_1075 ) | U_1081 ) | ( ST1_225d & ( 
-	~RG_y [3] ) ) ) | ( ST1_227d & ( ~RG_y [3] ) ) ) | U_1109 ) | U_1115 ) | 
-	U_1121 ) | U_1127 ) | ( ST1_247d & ( ~RG_y [3] ) ) ) | ( ST1_249d & ( ~RG_y [3] ) ) ) | 
-	U_1159 ) | U_1165 ) | U_1171 ) | ( ST1_257d & ( ~RG_y [3] ) ) ) | ( ST1_270d & ( 
-	~RG_y [3] ) ) ) | ( ST1_272d & ( ~RG_y [3] ) ) ) | ( ST1_274d & ( ~RG_y [3] ) ) ) | 
-	U_1210 ) | U_1216 ) | U_1222 ) | ( ST1_293d & ( ~RG_y [3] ) ) ) | ( ST1_295d & ( 
-	~RG_y [3] ) ) ) | ( ST1_297d & ( ~RG_y [3] ) ) ) | U_1255 ) | U_1261 ) | 
-	U_1267 ) | ( ST1_316d & ( ~RG_y [3] ) ) ) | ( ST1_318d & ( ~RG_y [3] ) ) ) | 
-	( ST1_320d & ( ~RG_y [3] ) ) ) | U_1300 ) | U_1306 ) | U_1312 ) | ( ST1_339d & ( 
-	~RG_y [3] ) ) ) | ( ST1_341d & ( ~RG_y [3] ) ) ) | ( ST1_343d & ( ~RG_y [3] ) ) ) | 
-	U_1345 ) | U_1351 ) | U_1357 ) | ( ST1_362d & ( ~RG_y [3] ) ) ) | ( ST1_364d & ( 
-	~RG_y [3] ) ) ) | ( ST1_366d & ( ~RG_y [3] ) ) ) | U_1390 ) | U_1396 ) | 
-	U_1402 ) | ( ST1_385d & ( ~RG_y [3] ) ) ) | ( ST1_387d & ( ~RG_y [3] ) ) ) | 
-	( ST1_389d & ( ~RG_y [3] ) ) ) | U_1435 ) | U_1441 ) | U_1447 ) | ( ST1_408d & ( 
-	~RG_y [3] ) ) ) | ( ST1_410d & ( ~RG_y [3] ) ) ) | ( ST1_412d & ( ~RG_y [3] ) ) ) | 
-	U_1480 ) | U_1486 ) | U_1492 ) | ( ST1_420d & FF_take ) ) ;	// line#=computer.cpp:329,363
-always @ ( incr3u1ot or M_2950 or TR_50 or M_2906 or M_3025 or M_2951 or incr4s1ot or 
-	ST1_68d or y11_t1 or ST1_67d )
+always @ ( U_755 or U_754 or FF_take or U_753 or ST1_67d )	// line#=computer.cpp:690
 	begin
-	TR_04_c1 = ( ( M_2951 | M_3025 ) | M_2906 ) ;	// line#=computer.cpp:329,363
-	TR_04 = ( ( { 4{ ST1_67d } } & y11_t1 )
-		| ( { 4{ ST1_68d } } & incr4s1ot )		// line#=computer.cpp:329
-		| ( { 4{ TR_04_c1 } } & { 1'h0 , TR_50 } )	// line#=computer.cpp:329,363
-		| ( { 4{ M_2950 } } & incr3u1ot )		// line#=computer.cpp:329,363
-		) ;
+	FF_halt_t_c1 = ( ST1_67d & ( ( ( U_753 & ( ~FF_take ) ) | U_754 ) | U_755 ) ) ;	// line#=computer.cpp:693,704,713
+	FF_halt_t = ( { 1{ FF_halt_t_c1 } } & 1'h1 )	// line#=computer.cpp:693,704,713
+		 ;	// line#=computer.cpp:445
 	end
-assign	M_3024 = ( ( ( ( ST1_71d & ( ~RG_y [3] ) ) | ( ST1_73d & ( ~RG_y [3] ) ) ) | 
-	( ST1_75d & ( ~RG_y [3] ) ) ) | ( ST1_77d & ( ~RG_y [3] ) ) ) ;	// line#=computer.cpp:329
-always @ ( incr8s_61ot or M_3026 or TR_04 or M_2906 or M_3025 or M_2950 or M_2951 or 
-	ST1_68d or ST1_67d )	// line#=computer.cpp:329
-	begin
-	RG_y_t_c1 = ( ( ( ( ( ST1_67d | ST1_68d ) | M_2951 ) | M_2950 ) | M_3025 ) | 
-		M_2906 ) ;	// line#=computer.cpp:329,363
-	RG_y_t = ( ( { 6{ RG_y_t_c1 } } & { 2'h0 , TR_04 } )	// line#=computer.cpp:329,363
-		| ( { 6{ M_3026 } } & incr8s_61ot )		// line#=computer.cpp:289,337
-		) ;
-	end
-assign	RG_y_en = ( RG_y_t_c1 | M_3026 ) ;	// line#=computer.cpp:329
-always @ ( posedge CLOCK )	// line#=computer.cpp:329
-	if ( RG_y_en )
-		RG_y <= RG_y_t ;	// line#=computer.cpp:289,329,337,363
-always @ ( U_751 or U_750 or U_766 or ST1_67d )
-	begin
-	FF_halt_t_c1 = ( ST1_67d & ( ( U_766 | U_750 ) | U_751 ) ) ;	// line#=computer.cpp:686,697,706
-	FF_halt_t = ( { 1{ FF_halt_t_c1 } } & 1'h1 )	// line#=computer.cpp:686,697,706
-		 ;	// line#=computer.cpp:438
-	end
-assign	FF_halt_en = ( ST1_01d | FF_halt_t_c1 ) ;
-always @ ( posedge CLOCK )
+assign	FF_halt_en = ( ST1_01d | FF_halt_t_c1 ) ;	// line#=computer.cpp:690
+always @ ( posedge CLOCK )	// line#=computer.cpp:690
 	if ( FF_halt_en )
-		FF_halt <= FF_halt_t ;	// line#=computer.cpp:438,686,697,706
-assign	M_3052 = ( ( ( M_3016 | M_3017 ) | M_3018 ) | M_2857 ) ;
-always @ ( rsft32u1ot or U_737 or TR_180 or M_3052 )
-	TR_52 = ( ( { 16{ M_3052 } } & { 15'h0000 , TR_180 } )
-		| ( { 16{ U_737 } } & rsft32u1ot [15:0] )	// line#=computer.cpp:158,159,552
-		) ;
-assign	M_2857 = ( U_630 & ( ~|( RG_buf_buf1_funct3_imm1_next_pc ^ 32'h00000003 ) ) ) ;	// line#=computer.cpp:461,538,566,587,631
-assign	M_3010 = ( ( M_3011 | ( ST1_17d & M_2875 ) ) | U_283 ) ;	// line#=computer.cpp:461,538,566,587,631
-assign	M_3016 = ( U_576 & ( ~|( RG_addr1_next_pc_op1_PC_src_addr ^ 32'h00000002 ) ) ) ;	// line#=computer.cpp:461,538,566,587,631
-assign	M_3017 = ( U_576 & ( ~|( RG_addr1_next_pc_op1_PC_src_addr ^ 32'h00000003 ) ) ) ;	// line#=computer.cpp:461,538,566,587,631
-assign	M_3018 = ( U_630 & M_2826 ) ;	// line#=computer.cpp:461,538,566,587,631
-always @ ( TR_52 or U_737 or M_3052 or RG_buf_buf1_instr_rd_word_addr or M_3010 )
+		FF_halt <= FF_halt_t ;	// line#=computer.cpp:445,690,693,704,713
+always @ ( addsub32u1ot or U_277 or U_150 or M_2788 or U_103 or dmem_arg_MEMB32W65536_RD1 or 
+	ST1_66d or M_2748 or U_84 or U_71 or U_67 or regs_rd00 or ST1_03d )	// line#=computer.cpp:573
 	begin
-	TR_05_c1 = ( M_3052 | U_737 ) ;	// line#=computer.cpp:158,159,552
-	TR_05 = ( ( { 25{ M_3010 } } & RG_buf_buf1_instr_rd_word_addr )
-		| ( { 25{ TR_05_c1 } } & { 9'h000 , TR_52 } )	// line#=computer.cpp:158,159,552
+	RG_op2_result1_t_c1 = ( ( U_67 | ( U_71 | ( U_84 & M_2748 ) ) ) | ST1_66d ) ;	// line#=computer.cpp:174,192,193,211,212
+											// ,311,312
+	RG_op2_result1_t_c2 = ( U_150 | U_277 ) ;	// line#=computer.cpp:110,483,641
+	RG_op2_result1_t = ( ( { 32{ ST1_03d } } & regs_rd00 )			// line#=computer.cpp:636
+		| ( { 32{ RG_op2_result1_t_c1 } } & dmem_arg_MEMB32W65536_RD1 )	// line#=computer.cpp:174,192,193,211,212
+										// ,311,312
+		| ( { 32{ U_103 } } & M_2788 )					// line#=computer.cpp:191,192,193
+		| ( { 32{ RG_op2_result1_t_c2 } } & addsub32u1ot )		// line#=computer.cpp:110,483,641
 		) ;
 	end
-assign	M_2861 = ~|( RG_addr1_next_pc_op1_PC_src_addr ^ 32'h00000006 ) ;	// line#=computer.cpp:461,538,566,587,631
-always @ ( RG_buf_buf1_instr_rd_word_addr or ST1_229d or ST1_207d or ST1_185d or 
-	ST1_163d or ST1_141d or ST1_119d or ST1_97d or ST1_71d or M_2835 or U_630 or 
-	M_2861 or RG_buf_buf1_funct3_imm1_next_pc or RG_addr1_next_pc_op1_PC_src_addr or 
-	U_576 or add32s1ot or U_683 or U_582 or rsft32u1ot or U_617 or U_563 or 
-	M_3015 or TR_05 or U_737 or M_2857 or M_3018 or M_3017 or M_3016 or M_3010 or 
-	regs_rd02 or U_208 or ST1_54d or ST1_16d or ST1_15d or ST1_14d or ST1_13d or 
-	M_2859 or ST1_11d or U_548 or U_179 or rsft32s1ot or U_533 or U_168 or addsub32u1ot or 
-	U_279 or U_643 or U_152 or lsft32u1ot or RL_addr_buf_instr_op2_result or 
-	M_3007 or dmem_arg_MEMB32W65536_RD1 or M_2826 or U_725 or M_2838 or U_84 or 
-	U_67 or regs_rd00 or ST1_03d )	// line#=computer.cpp:461,538,566,587,631
+assign	RG_op2_result1_en = ( ST1_03d | RG_op2_result1_t_c1 | U_103 | RG_op2_result1_t_c2 ) ;	// line#=computer.cpp:573
+always @ ( posedge CLOCK )	// line#=computer.cpp:573
+	if ( RG_op2_result1_en )
+		RG_op2_result1 <= RG_op2_result1_t ;	// line#=computer.cpp:110,174,191,192,193
+							// ,211,212,311,312,483,573,636,641
+assign	RG_07_en = ST1_02d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:465
+	if ( RG_07_en )
+		RG_07 <= addsub32u1ot ;
+assign	M_2990 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
+	( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
+	( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
+	( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_68d & incr4s1ot [3] ) | U_780 ) | 
+	U_784 ) | U_792 ) | U_796 ) | U_804 ) | U_810 ) | ST1_85d ) | ( ST1_86d & 
+	incr3u1ot [3] ) ) | ( ST1_87d & incr3u1ot [3] ) ) | U_829 ) | ( ST1_90d & 
+	RG_rs1_rs2_y [3] ) ) | U_841 ) | U_849 ) | U_855 ) | ST1_103d ) | ( ST1_104d & 
+	incr3u1ot [3] ) ) | ( ST1_105d & incr3u1ot [3] ) ) | U_874 ) | ( ST1_108d & 
+	RG_rs1_rs2_y [3] ) ) | U_886 ) | U_894 ) | U_900 ) | ST1_121d ) | ( ST1_122d & 
+	incr3u1ot [3] ) ) | ( ST1_123d & incr3u1ot [3] ) ) | U_919 ) | ( ST1_126d & 
+	RG_rs1_rs2_y [3] ) ) | U_931 ) | U_939 ) | U_945 ) | ST1_139d ) | ( ST1_140d & 
+	incr3u1ot [3] ) ) | ( ST1_141d & incr3u1ot [3] ) ) | U_964 ) | ( ST1_144d & 
+	RG_rs1_rs2_y [3] ) ) | U_976 ) | U_984 ) | U_990 ) | ST1_157d ) | ( ST1_158d & 
+	incr3u1ot [3] ) ) | ( ST1_159d & incr3u1ot [3] ) ) | U_1009 ) | ( ST1_162d & 
+	RG_rs1_rs2_y [3] ) ) | U_1021 ) | U_1029 ) | U_1035 ) | ST1_175d ) | ( ST1_176d & 
+	incr3u1ot [3] ) ) | ( ST1_177d & incr3u1ot [3] ) ) | U_1054 ) | ( ST1_180d & 
+	RG_rs1_rs2_y [3] ) ) | U_1066 ) | U_1074 ) | U_1080 ) | ST1_193d ) | ( ST1_194d & 
+	incr3u1ot [3] ) ) | ( ST1_195d & incr3u1ot [3] ) ) | U_1099 ) | ( ST1_198d & 
+	RG_rs1_rs2_y [3] ) ) | U_1111 ) | U_1119 ) | U_1125 ) | ST1_211d ) | ( ST1_212d & 
+	incr3u1ot [3] ) ) | U_1144 ) | ( ST1_214d & incr3u1ot [3] ) ) | U_1154 ) | 
+	U_1160 ) | U_1166 ) | U_1172 ) | U_1178 ) | ( ST1_220d & incr3u1ot [3] ) ) | 
+	U_1188 ) | ( ST1_222d & incr3u1ot [3] ) ) | U_1198 ) | U_1204 ) | U_1210 ) | 
+	U_1216 ) | U_1222 ) | ( ST1_228d & incr3u1ot [3] ) ) | U_1232 ) | ( ST1_230d & 
+	incr3u1ot [3] ) ) | U_1242 ) | U_1248 ) | U_1254 ) | U_1260 ) | U_1266 ) | 
+	( ST1_236d & incr3u1ot [3] ) ) | U_1276 ) | ( ST1_238d & incr3u1ot [3] ) ) | 
+	U_1286 ) | U_1292 ) | U_1298 ) | U_1304 ) | U_1310 ) | ( ST1_244d & incr3u1ot [3] ) ) | 
+	U_1320 ) | ( ST1_246d & incr3u1ot [3] ) ) | U_1330 ) | U_1336 ) | U_1342 ) | 
+	U_1348 ) | U_1354 ) | ( ST1_252d & incr3u1ot [3] ) ) | U_1364 ) | ( ST1_254d & 
+	incr3u1ot [3] ) ) | U_1374 ) | U_1380 ) | U_1386 ) | U_1392 ) | U_1398 ) | 
+	( ST1_260d & incr3u1ot [3] ) ) | U_1408 ) | ( ST1_262d & incr3u1ot [3] ) ) | 
+	U_1418 ) | U_1424 ) | U_1430 ) | U_1436 ) | U_1442 ) | ( ST1_268d & incr3u1ot [3] ) ) | 
+	U_1452 ) | ( ST1_270d & incr3u1ot [3] ) ) | U_1462 ) | U_1468 ) | U_1474 ) | 
+	U_1480 ) ;	// line#=computer.cpp:336,370
+always @ ( RL_addr1_buf_buf1_next_pc_op1_PC or M_2918 )
+	TR_08 = ( { 2{ M_2918 } } & RL_addr1_buf_buf1_next_pc_op1_PC [1:0] )	// line#=computer.cpp:190,191,209,210
+		 ;	// line#=computer.cpp:336,370
+assign	M_2845 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( M_2839 | ST1_76d ) | 
+	ST1_89d ) | ST1_92d ) | ST1_94d ) | ST1_107d ) | ST1_110d ) | ST1_112d ) | 
+	ST1_125d ) | ST1_128d ) | ST1_130d ) | ST1_143d ) | ST1_146d ) | ST1_148d ) | 
+	ST1_161d ) | ST1_164d ) | ST1_166d ) | ST1_179d ) | ST1_182d ) | ST1_184d ) | 
+	ST1_197d ) | ST1_200d ) | ST1_202d ) | U_1486 ) ;
+assign	M_2849 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
+	( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
+	( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_69d & ( 
+	~incr3u1ot [3] ) ) | ( ST1_70d & ( ~incr3u1ot [3] ) ) ) | ( ST1_73d & ( ~
+	incr3u1ot [3] ) ) ) | ST1_78d ) | ( ST1_86d & ( ~incr3u1ot [3] ) ) ) | ( 
+	ST1_87d & ( ~incr3u1ot [3] ) ) ) | ( ST1_88d & ( ~incr3u1ot [3] ) ) ) | ( 
+	ST1_91d & ( ~incr3u1ot [3] ) ) ) | ST1_96d ) | ( ST1_104d & ( ~incr3u1ot [3] ) ) ) | 
+	( ST1_105d & ( ~incr3u1ot [3] ) ) ) | ( ST1_106d & ( ~incr3u1ot [3] ) ) ) | 
+	( ST1_109d & ( ~incr3u1ot [3] ) ) ) | ST1_114d ) | ( ST1_122d & ( ~incr3u1ot [3] ) ) ) | 
+	( ST1_123d & ( ~incr3u1ot [3] ) ) ) | ( ST1_124d & ( ~incr3u1ot [3] ) ) ) | 
+	( ST1_127d & ( ~incr3u1ot [3] ) ) ) | ST1_132d ) | ( ST1_140d & ( ~incr3u1ot [3] ) ) ) | 
+	( ST1_141d & ( ~incr3u1ot [3] ) ) ) | ( ST1_142d & ( ~incr3u1ot [3] ) ) ) | 
+	( ST1_145d & ( ~incr3u1ot [3] ) ) ) | ST1_150d ) | ( ST1_158d & ( ~incr3u1ot [3] ) ) ) | 
+	( ST1_159d & ( ~incr3u1ot [3] ) ) ) | ( ST1_160d & ( ~incr3u1ot [3] ) ) ) | 
+	( ST1_163d & ( ~incr3u1ot [3] ) ) ) | ST1_168d ) | ( ST1_176d & ( ~incr3u1ot [3] ) ) ) | 
+	( ST1_177d & ( ~incr3u1ot [3] ) ) ) | ( ST1_178d & ( ~incr3u1ot [3] ) ) ) | 
+	( ST1_181d & ( ~incr3u1ot [3] ) ) ) | ST1_186d ) | ( ST1_194d & ( ~incr3u1ot [3] ) ) ) | 
+	( ST1_195d & ( ~incr3u1ot [3] ) ) ) | ( ST1_196d & ( ~incr3u1ot [3] ) ) ) | 
+	( ST1_199d & ( ~incr3u1ot [3] ) ) ) | ST1_204d ) | ( ST1_212d & ( ~incr3u1ot [3] ) ) ) | 
+	( ST1_213d & ( ~incr3u1ot [3] ) ) ) | ( ST1_214d & ( ~incr3u1ot [3] ) ) ) | 
+	( ST1_215d & ( ~incr3u1ot [3] ) ) ) | ( ST1_216d & ( ~incr3u1ot [3] ) ) ) | 
+	( ST1_217d & ( ~incr3u1ot [3] ) ) ) | U_1171 ) | U_1177 ) | ( ST1_220d & ( 
+	~incr3u1ot [3] ) ) ) | ( ST1_221d & ( ~incr3u1ot [3] ) ) ) | ( ST1_222d & ( 
+	~incr3u1ot [3] ) ) ) | ( ST1_223d & ( ~incr3u1ot [3] ) ) ) | ( ST1_224d & ( 
+	~incr3u1ot [3] ) ) ) | ( ST1_225d & ( ~incr3u1ot [3] ) ) ) | U_1215 ) | U_1221 ) | 
+	( ST1_228d & ( ~incr3u1ot [3] ) ) ) | ( ST1_229d & ( ~incr3u1ot [3] ) ) ) | 
+	( ST1_230d & ( ~incr3u1ot [3] ) ) ) | ( ST1_231d & ( ~incr3u1ot [3] ) ) ) | 
+	( ST1_232d & ( ~incr3u1ot [3] ) ) ) | ( ST1_233d & ( ~incr3u1ot [3] ) ) ) | 
+	U_1259 ) | U_1265 ) | ( ST1_236d & ( ~incr3u1ot [3] ) ) ) | ( ST1_237d & ( 
+	~incr3u1ot [3] ) ) ) | ( ST1_238d & ( ~incr3u1ot [3] ) ) ) | ( ST1_239d & ( 
+	~incr3u1ot [3] ) ) ) | ( ST1_240d & ( ~incr3u1ot [3] ) ) ) | ( ST1_241d & ( 
+	~incr3u1ot [3] ) ) ) | U_1303 ) | U_1309 ) | ( ST1_244d & ( ~incr3u1ot [3] ) ) ) | 
+	( ST1_245d & ( ~incr3u1ot [3] ) ) ) | ( ST1_246d & ( ~incr3u1ot [3] ) ) ) | 
+	( ST1_247d & ( ~incr3u1ot [3] ) ) ) | ( ST1_248d & ( ~incr3u1ot [3] ) ) ) | 
+	( ST1_249d & ( ~incr3u1ot [3] ) ) ) | U_1347 ) | U_1353 ) | ( ST1_252d & ( 
+	~incr3u1ot [3] ) ) ) | ( ST1_253d & ( ~incr3u1ot [3] ) ) ) | ( ST1_254d & ( 
+	~incr3u1ot [3] ) ) ) | ( ST1_255d & ( ~incr3u1ot [3] ) ) ) | ( ST1_256d & ( 
+	~incr3u1ot [3] ) ) ) | ( ST1_257d & ( ~incr3u1ot [3] ) ) ) | U_1391 ) | U_1397 ) | 
+	( ST1_260d & ( ~incr3u1ot [3] ) ) ) | ( ST1_261d & ( ~incr3u1ot [3] ) ) ) | 
+	( ST1_262d & ( ~incr3u1ot [3] ) ) ) | ( ST1_263d & ( ~incr3u1ot [3] ) ) ) | 
+	( ST1_264d & ( ~incr3u1ot [3] ) ) ) | ( ST1_265d & ( ~incr3u1ot [3] ) ) ) | 
+	U_1435 ) | U_1441 ) | ( ST1_268d & ( ~incr3u1ot [3] ) ) ) | ( ST1_269d & ( 
+	~incr3u1ot [3] ) ) ) | ( ST1_270d & ( ~incr3u1ot [3] ) ) ) | ( ST1_271d & ( 
+	~incr3u1ot [3] ) ) ) | ( ST1_272d & ( ~incr3u1ot [3] ) ) ) | ( ST1_273d & ( 
+	~incr3u1ot [3] ) ) ) | U_1479 ) | U_1485 ) ;	// line#=computer.cpp:336,370
+assign	M_2930 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_72d & ( ~RG_rs1_rs2_y [3] ) ) | 
+	U_803 ) | U_809 ) | ( ST1_90d & ( ~RG_rs1_rs2_y [3] ) ) ) | ( ST1_93d & ( 
+	~RG_rs1_rs2_y [3] ) ) ) | ( ST1_95d & ( ~RG_rs1_rs2_y [3] ) ) ) | ( ST1_108d & ( 
+	~RG_rs1_rs2_y [3] ) ) ) | ( ST1_111d & ( ~RG_rs1_rs2_y [3] ) ) ) | ( ST1_113d & ( 
+	~RG_rs1_rs2_y [3] ) ) ) | ( ST1_126d & ( ~RG_rs1_rs2_y [3] ) ) ) | ( ST1_129d & ( 
+	~RG_rs1_rs2_y [3] ) ) ) | ( ST1_131d & ( ~RG_rs1_rs2_y [3] ) ) ) | ( ST1_144d & ( 
+	~RG_rs1_rs2_y [3] ) ) ) | ( ST1_147d & ( ~RG_rs1_rs2_y [3] ) ) ) | ( ST1_149d & ( 
+	~RG_rs1_rs2_y [3] ) ) ) | ( ST1_162d & ( ~RG_rs1_rs2_y [3] ) ) ) | ( ST1_165d & ( 
+	~RG_rs1_rs2_y [3] ) ) ) | ( ST1_167d & ( ~RG_rs1_rs2_y [3] ) ) ) | ( ST1_180d & ( 
+	~RG_rs1_rs2_y [3] ) ) ) | ( ST1_183d & ( ~RG_rs1_rs2_y [3] ) ) ) | ( ST1_185d & ( 
+	~RG_rs1_rs2_y [3] ) ) ) | ( ST1_198d & ( ~RG_rs1_rs2_y [3] ) ) ) | ( ST1_201d & ( 
+	~RG_rs1_rs2_y [3] ) ) ) | ( ST1_203d & ( ~RG_rs1_rs2_y [3] ) ) ) ;	// line#=computer.cpp:336
+always @ ( RG_rs1_rs2_y or M_2930 or incr3u1ot or M_2845 or M_2849 or incr4s1ot or 
+	U_775 or y11_t1 or ST1_67d )
 	begin
-	RL_addr_buf_instr_op2_result_t_c1 = ( U_67 | ( ( U_84 & M_2838 ) | ( U_725 & 
-		M_2826 ) ) ) ;	// line#=computer.cpp:174,192,193,211,212
-				// ,546
-	RL_addr_buf_instr_op2_result_t_c2 = ( ( U_152 | U_643 ) | U_279 ) ;	// line#=computer.cpp:110,476,634,636
-	RL_addr_buf_instr_op2_result_t_c3 = ( U_168 | U_533 ) ;	// line#=computer.cpp:612,653
-	RL_addr_buf_instr_op2_result_t_c4 = ( U_179 | U_548 ) ;	// line#=computer.cpp:607,640
-	RL_addr_buf_instr_op2_result_t_c5 = ( ( ( ( ( ( ( ST1_11d & M_2859 ) | ( 
-		ST1_13d & M_2859 ) ) | ( ST1_14d & M_2859 ) ) | ( ST1_15d & M_2859 ) ) | 
-		( ST1_16d & M_2859 ) ) | ( ST1_54d & M_2859 ) ) | U_208 ) ;	// line#=computer.cpp:589,598,601,604,607
-										// ,612,615
-	RL_addr_buf_instr_op2_result_t_c6 = ( ( ( ( ( M_3010 | M_3016 ) | M_3017 ) | 
-		M_3018 ) | M_2857 ) | U_737 ) ;	// line#=computer.cpp:158,159,552
-	RL_addr_buf_instr_op2_result_t_c7 = ( U_563 | U_617 ) ;	// line#=computer.cpp:615,655
-	RL_addr_buf_instr_op2_result_t_c8 = ( U_582 | U_683 ) ;	// line#=computer.cpp:86,91,536,589
-	RL_addr_buf_instr_op2_result_t_c9 = ( U_576 & ( ~|( RG_addr1_next_pc_op1_PC_src_addr ^ 
-		32'h00000004 ) ) ) ;	// line#=computer.cpp:598
-	RL_addr_buf_instr_op2_result_t_c10 = ( U_576 & M_2861 ) ;	// line#=computer.cpp:601
-	RL_addr_buf_instr_op2_result_t_c11 = ( U_576 & ( ~|( RG_addr1_next_pc_op1_PC_src_addr ^ 
-		32'h00000007 ) ) ) ;	// line#=computer.cpp:604
-	RL_addr_buf_instr_op2_result_t_c12 = ( U_630 & M_2835 ) ;	// line#=computer.cpp:649
-	RL_addr_buf_instr_op2_result_t_c13 = ( U_630 & ( ~|( RG_buf_buf1_funct3_imm1_next_pc ^ 
-		32'h00000006 ) ) ) ;	// line#=computer.cpp:659
-	RL_addr_buf_instr_op2_result_t_c14 = ( U_630 & ( ~|( RG_buf_buf1_funct3_imm1_next_pc ^ 
-		32'h00000007 ) ) ) ;	// line#=computer.cpp:662
-	RL_addr_buf_instr_op2_result_t_c15 = ( ( ( ( ( ( ( ST1_71d | ST1_97d ) | 
-		ST1_119d ) | ST1_141d ) | ST1_163d ) | ST1_185d ) | ST1_207d ) | 
-		ST1_229d ) ;
-	RL_addr_buf_instr_op2_result_t = ( ( { 32{ ST1_03d } } & regs_rd00 )			// line#=computer.cpp:629
-		| ( { 32{ RL_addr_buf_instr_op2_result_t_c1 } } & dmem_arg_MEMB32W65536_RD1 )	// line#=computer.cpp:174,192,193,211,212
-												// ,546
-		| ( { 32{ M_3007 } } & ( RL_addr_buf_instr_op2_result & ( ~lsft32u1ot ) ) )	// line#=computer.cpp:191,192,193,210,211
-												// ,212
-		| ( { 32{ RL_addr_buf_instr_op2_result_t_c2 } } & addsub32u1ot )		// line#=computer.cpp:110,476,634,636
-		| ( { 32{ RL_addr_buf_instr_op2_result_t_c3 } } & rsft32s1ot )			// line#=computer.cpp:612,653
-		| ( { 32{ RL_addr_buf_instr_op2_result_t_c4 } } & lsft32u1ot )			// line#=computer.cpp:607,640
-		| ( { 32{ RL_addr_buf_instr_op2_result_t_c5 } } & regs_rd02 )			// line#=computer.cpp:589,598,601,604,607
-												// ,612,615
-		| ( { 32{ RL_addr_buf_instr_op2_result_t_c6 } } & { 7'h00 , TR_05 } )		// line#=computer.cpp:158,159,552
-		| ( { 32{ M_3015 } } & ( RL_addr_buf_instr_op2_result | lsft32u1ot ) )		// line#=computer.cpp:192,193,211,212,568
-												// ,571
-		| ( { 32{ RL_addr_buf_instr_op2_result_t_c7 } } & rsft32u1ot )			// line#=computer.cpp:615,655
-		| ( { 32{ RL_addr_buf_instr_op2_result_t_c8 } } & add32s1ot )			// line#=computer.cpp:86,91,536,589
-		| ( { 32{ RL_addr_buf_instr_op2_result_t_c9 } } & ( RL_addr_buf_instr_op2_result ^ 
-			{ RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11:0] } ) )				// line#=computer.cpp:598
-		| ( { 32{ RL_addr_buf_instr_op2_result_t_c10 } } & ( RL_addr_buf_instr_op2_result | 
-			{ RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11:0] } ) )				// line#=computer.cpp:601
-		| ( { 32{ RL_addr_buf_instr_op2_result_t_c11 } } & ( RL_addr_buf_instr_op2_result & 
-			{ RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11:0] } ) )				// line#=computer.cpp:604
-		| ( { 32{ RL_addr_buf_instr_op2_result_t_c12 } } & ( RG_addr1_next_pc_op1_PC_src_addr ^ 
-			RL_addr_buf_instr_op2_result ) )					// line#=computer.cpp:649
-		| ( { 32{ RL_addr_buf_instr_op2_result_t_c13 } } & ( RG_addr1_next_pc_op1_PC_src_addr | 
-			RL_addr_buf_instr_op2_result ) )					// line#=computer.cpp:659
-		| ( { 32{ RL_addr_buf_instr_op2_result_t_c14 } } & ( RG_addr1_next_pc_op1_PC_src_addr & 
-			RL_addr_buf_instr_op2_result ) )					// line#=computer.cpp:662
-		| ( { 32{ RL_addr_buf_instr_op2_result_t_c15 } } & { RG_buf_buf1_instr_rd_word_addr [19] , 
-			RG_buf_buf1_instr_rd_word_addr [19] , RG_buf_buf1_instr_rd_word_addr [19] , 
-			RG_buf_buf1_instr_rd_word_addr [19] , RG_buf_buf1_instr_rd_word_addr [19] , 
-			RG_buf_buf1_instr_rd_word_addr [19] , RG_buf_buf1_instr_rd_word_addr [19] , 
-			RG_buf_buf1_instr_rd_word_addr [19] , RG_buf_buf1_instr_rd_word_addr [19] , 
-			RG_buf_buf1_instr_rd_word_addr [19] , RG_buf_buf1_instr_rd_word_addr [19] , 
-			RG_buf_buf1_instr_rd_word_addr [19] , RG_buf_buf1_instr_rd_word_addr [19:0] } ) ) ;
+	TR_09_c1 = ( M_2849 | M_2845 ) ;	// line#=computer.cpp:336,370
+	TR_09 = ( ( { 4{ ST1_67d } } & y11_t1 )
+		| ( { 4{ U_775 } } & incr4s1ot )						// line#=computer.cpp:336
+		| ( { 4{ TR_09_c1 } } & { ( M_2845 & incr3u1ot [3] ) , incr3u1ot [2:0] } )	// line#=computer.cpp:336,370
+		| ( { 4{ M_2930 } } & { 1'h0 , RG_rs1_rs2_y [2:0] } ) ) ;
 	end
-assign	RL_addr_buf_instr_op2_result_en = ( ST1_03d | RL_addr_buf_instr_op2_result_t_c1 | 
-	M_3007 | RL_addr_buf_instr_op2_result_t_c2 | RL_addr_buf_instr_op2_result_t_c3 | 
-	RL_addr_buf_instr_op2_result_t_c4 | RL_addr_buf_instr_op2_result_t_c5 | RL_addr_buf_instr_op2_result_t_c6 | 
-	M_3015 | RL_addr_buf_instr_op2_result_t_c7 | RL_addr_buf_instr_op2_result_t_c8 | 
-	RL_addr_buf_instr_op2_result_t_c9 | RL_addr_buf_instr_op2_result_t_c10 | 
-	RL_addr_buf_instr_op2_result_t_c11 | RL_addr_buf_instr_op2_result_t_c12 | 
-	RL_addr_buf_instr_op2_result_t_c13 | RL_addr_buf_instr_op2_result_t_c14 | 
-	RL_addr_buf_instr_op2_result_t_c15 ) ;	// line#=computer.cpp:461,538,566,587,631
-always @ ( posedge CLOCK )	// line#=computer.cpp:461,538,566,587,631
-	if ( RL_addr_buf_instr_op2_result_en )
-		RL_addr_buf_instr_op2_result <= RL_addr_buf_instr_op2_result_t ;	// line#=computer.cpp:86,91,110,158,159
-											// ,174,191,192,193,210,211,212,461
-											// ,476,536,538,546,552,566,568,571
-											// ,587,589,598,601,604,607,612,615
-											// ,629,631,634,636,640,649,653,655
-											// ,659,662
-always @ ( add20s1ot or ST1_418d or ST1_395d or ST1_372d or ST1_349d or ST1_326d or 
-	ST1_303d or ST1_280d or ST1_255d or ST1_235d or ST1_213d or ST1_191d or 
-	ST1_169d or ST1_147d or ST1_125d or ST1_103d or ST1_77d or addsub32u1ot or 
-	ST1_02d )
-	begin
-	RG_buf_buf1_1_t_c1 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_77d | ST1_103d ) | 
-		ST1_125d ) | ST1_147d ) | ST1_169d ) | ST1_191d ) | ST1_213d ) | 
-		ST1_235d ) | ST1_255d ) | ST1_280d ) | ST1_303d ) | ST1_326d ) | 
-		ST1_349d ) | ST1_372d ) | ST1_395d ) | ST1_418d ) ;	// line#=computer.cpp:289,332,366
-	RG_buf_buf1_1_t = ( ( { 32{ ST1_02d } } & addsub32u1ot )	// line#=computer.cpp:458
-		| ( { 32{ RG_buf_buf1_1_t_c1 } } & { add20s1ot [19] , add20s1ot [19] , 
-			add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , 
-			add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , 
-			add20s1ot [19] , add20s1ot [19] , add20s1ot } )	// line#=computer.cpp:289,332,366
-		) ;
-	end
-assign	RG_buf_buf1_1_en = ( ST1_02d | RG_buf_buf1_1_t_c1 ) ;
-always @ ( posedge CLOCK )
-	if ( RG_buf_buf1_1_en )
-		RG_buf_buf1_1 <= RG_buf_buf1_1_t ;	// line#=computer.cpp:289,332,366,458
-always @ ( CT_01 or ST1_02d )
-	RG_08_t = ( { 1{ ST1_02d } } & CT_01 )	// line#=computer.cpp:440
-		 ;	// line#=computer.cpp:342
-assign	RG_08_en = ( ST1_02d | ST1_421d ) ;
-always @ ( posedge CLOCK )
-	if ( RG_08_en )
-		RG_08 <= RG_08_t ;	// line#=computer.cpp:342,440
-assign	M_3009 = ( U_124 | U_121 ) ;
-always @ ( RL_buf_buf1_coef_rs1_rs2_val1 or M_3009 or RG_addr1_next_pc_op1_PC_src_addr or 
-	M_3007 or imem_arg_MEMB32W65536_RD1 or ST1_03d )
-	TR_06 = ( ( { 5{ ST1_03d } } & imem_arg_MEMB32W65536_RD1 [19:15] )	// line#=computer.cpp:442,453
-		| ( { 5{ M_3007 } } & { RG_addr1_next_pc_op1_PC_src_addr [1:0] , 
-			3'h0 } )						// line#=computer.cpp:190,191,209,210
-		| ( { 5{ M_3009 } } & RL_buf_buf1_coef_rs1_rs2_val1 [4:0] ) ) ;
-always @ ( ST1_157d or RG_k or ST1_68d )
-	TR_53 = ( ( { 1{ ST1_68d } } & RG_k [2] )	// line#=computer.cpp:332
-		| ( { 1{ ST1_157d } } & ( ~RG_k [2] ) )	// line#=computer.cpp:332
-		) ;
-assign	M_2952 = ( ( ( ( ( ST1_91d | ST1_113d ) | ST1_135d ) | ST1_179d ) | ST1_201d ) | 
-	ST1_223d ) ;
-always @ ( RG_rs1_rs2 or M_2952 or RG_k or TR_53 or ST1_157d or ST1_68d )
-	begin
-	TR_07_c1 = ( ST1_68d | ST1_157d ) ;	// line#=computer.cpp:332
-	TR_07 = ( ( { 3{ TR_07_c1 } } & { TR_53 , RG_k [1:0] } )	// line#=computer.cpp:332
-		| ( { 3{ M_2952 } } & RG_rs1_rs2 [2:0] )		// line#=computer.cpp:332
-		) ;
-	end
-assign	M_3007 = ( ( ST1_06d & M_2867 ) | ( ST1_22d & M_2867 ) ) ;	// line#=computer.cpp:461,538,566,587,631
-always @ ( decr3s1ot or ST1_222d or addsub3s1ot or ST1_200d or ST1_178d or M_2956 or 
-	incr3s1ot or ST1_90d or TR_07 or ST1_157d or M_2952 or ST1_68d or TR_06 or 
-	M_3009 or M_3007 or ST1_03d )
-	begin
-	RG_rs1_rs2_t_c1 = ( ( ST1_03d | M_3007 ) | M_3009 ) ;	// line#=computer.cpp:190,191,209,210,442
-								// ,453
-	RG_rs1_rs2_t_c2 = ( ( ST1_68d | M_2952 ) | ST1_157d ) ;	// line#=computer.cpp:332
-	RG_rs1_rs2_t_c3 = ( ( M_2956 | ST1_178d ) | ST1_200d ) ;	// line#=computer.cpp:332
-	RG_rs1_rs2_t = ( ( { 6{ RG_rs1_rs2_t_c1 } } & { 1'h0 , TR_06 } )	// line#=computer.cpp:190,191,209,210,442
-										// ,453
-		| ( { 6{ RG_rs1_rs2_t_c2 } } & { TR_07 , 3'h0 } )		// line#=computer.cpp:332
-		| ( { 6{ ST1_90d } } & { incr3s1ot [2] , incr3s1ot [2] , incr3s1ot [2] , 
-			incr3s1ot } )						// line#=computer.cpp:332
-		| ( { 6{ RG_rs1_rs2_t_c3 } } & { addsub3s1ot [2] , addsub3s1ot [2] , 
-			addsub3s1ot [2] , addsub3s1ot } )			// line#=computer.cpp:332
-		| ( { 6{ ST1_222d } } & { decr3s1ot [2] , decr3s1ot [2] , decr3s1ot [2] , 
-			decr3s1ot } )						// line#=computer.cpp:332
-		) ;
-	end
-assign	RG_rs1_rs2_en = ( RG_rs1_rs2_t_c1 | RG_rs1_rs2_t_c2 | ST1_90d | RG_rs1_rs2_t_c3 | 
-	ST1_222d ) ;
-always @ ( posedge CLOCK )
-	if ( RG_rs1_rs2_en )
-		RG_rs1_rs2 <= RG_rs1_rs2_t ;	// line#=computer.cpp:190,191,209,210,332
-						// ,442,453
-always @ ( RG_rs1_rs2 or M_3008 or imem_arg_MEMB32W65536_RD1 or ST1_03d )
-	TR_54 = ( ( { 5{ ST1_03d } } & imem_arg_MEMB32W65536_RD1 [24:20] )	// line#=computer.cpp:442,454
-		| ( { 5{ M_3008 } } & RG_rs1_rs2 [4:0] ) ) ;	// line#=computer.cpp:319,353
-assign	M_2935 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_79d | ST1_93d ) | ST1_115d ) | 
-	ST1_137d ) | ST1_159d ) | ST1_181d ) | ST1_203d ) | ST1_225d ) | ST1_247d ) | 
-	ST1_272d ) | ST1_295d ) | ST1_318d ) | ST1_341d ) | ST1_364d ) | ST1_387d ) | 
-	ST1_410d ) ;
-assign	M_3008 = ( ( U_121 | ( ST1_07d & M_2873 ) ) | ( ST1_07d & M_2854 ) ) ;	// line#=computer.cpp:461
-always @ ( addsub32u1ot or ST1_65d or sub20u_182ot or U_124 or regs_rd02 or U_84 or 
-	TR_54 or M_2935 or M_3008 or ST1_03d )
-	begin
-	TR_08_c1 = ( ( ST1_03d | M_3008 ) | M_2935 ) ;	// line#=computer.cpp:319,353,442,454
-	TR_08 = ( ( { 16{ TR_08_c1 } } & { 11'h000 , TR_54 } )	// line#=computer.cpp:319,353,442,454
-		| ( { 16{ U_84 } } & regs_rd02 [15:0] )		// line#=computer.cpp:565
-		| ( { 16{ U_124 } } & sub20u_182ot [17:2] )	// line#=computer.cpp:165,174,304,305
-		| ( { 16{ ST1_65d } } & addsub32u1ot [17:2] )	// line#=computer.cpp:131,140
-		) ;
-	end
-always @ ( C_q1ot or sub16s_131ot or RG_y )	// line#=computer.cpp:331
-	case ( RG_y [2] )
-	1'h1 :
-		TR_181 = { sub16s_131ot [12] , sub16s_131ot [12] , sub16s_131ot [12] , 
-		sub16s_131ot [12] , sub16s_131ot [12] , sub16s_131ot [12] , sub16s_131ot [12] , 
-		sub16s_131ot } ;	// line#=computer.cpp:331
-	1'h0 :
-		TR_181 = { C_q1ot [13] , C_q1ot [13] , C_q1ot [13] , C_q1ot [13] , 
-		C_q1ot [13] , C_q1ot [13] , C_q1ot } ;	// line#=computer.cpp:331
-	default :
-		TR_181 = 20'hx ;
-	endcase
-always @ ( C_q1ot or sub16s_131ot or incr8s_61ot )	// line#=computer.cpp:330,331
-	case ( incr8s_61ot [3] )
-	1'h1 :
-		TR_182 = { sub16s_131ot [12] , sub16s_131ot [12] , sub16s_131ot [12] , 
-		sub16s_131ot [12] , sub16s_131ot [12] , sub16s_131ot [12] , sub16s_131ot [12] , 
-		sub16s_131ot } ;	// line#=computer.cpp:331
-	1'h0 :
-		TR_182 = { C_q1ot [13] , C_q1ot [13] , C_q1ot [13] , C_q1ot [13] , 
-		C_q1ot [13] , C_q1ot [13] , C_q1ot } ;	// line#=computer.cpp:331
-	default :
-		TR_182 = 20'hx ;
-	endcase
-always @ ( C_q1ot or sub16s_131ot or RG_y )	// line#=computer.cpp:331
-	case ( RG_y [1] )
-	1'h1 :
-		TR_183 = { sub16s_131ot [12] , sub16s_131ot [12] , sub16s_131ot [12] , 
-		sub16s_131ot [12] , sub16s_131ot [12] , sub16s_131ot [12] , sub16s_131ot [12] , 
-		sub16s_131ot } ;	// line#=computer.cpp:331
-	1'h0 :
-		TR_183 = { C_q1ot [13] , C_q1ot [13] , C_q1ot [13] , C_q1ot [13] , 
-		C_q1ot [13] , C_q1ot [13] , C_q1ot } ;	// line#=computer.cpp:331
-	default :
-		TR_183 = 20'hx ;
-	endcase
-always @ ( C_q1ot or sub16s_131ot or addsub8u_71ot )	// line#=computer.cpp:330,331
-	case ( addsub8u_71ot [3] )
-	1'h1 :
-		TR_184 = { sub16s_131ot [12] , sub16s_131ot [12] , sub16s_131ot [12] , 
-		sub16s_131ot [12] , sub16s_131ot [12] , sub16s_131ot [12] , sub16s_131ot [12] , 
-		sub16s_131ot } ;	// line#=computer.cpp:331
-	1'h0 :
-		TR_184 = { C_q1ot [13] , C_q1ot [13] , C_q1ot [13] , C_q1ot [13] , 
-		C_q1ot [13] , C_q1ot [13] , C_q1ot } ;	// line#=computer.cpp:331
-	default :
-		TR_184 = 20'hx ;
-	endcase
-always @ ( TR_184 or ST1_78d or TR_183 or ST1_76d or TR_182 or ST1_74d or TR_181 or 
-	ST1_72d or add20s1ot or M_2937 or C_q1ot or ST1_70d or TR_08 or M_2935 or 
-	ST1_65d or U_124 or M_3008 or U_84 or ST1_03d )
-	begin
-	RL_buf_buf1_coef_rs1_rs2_val1_t_c1 = ( ( ( ( ( ST1_03d | U_84 ) | M_3008 ) | 
-		U_124 ) | ST1_65d ) | M_2935 ) ;	// line#=computer.cpp:131,140,165,174,304
-							// ,305,319,353,442,454,565
-	RL_buf_buf1_coef_rs1_rs2_val1_t = ( ( { 20{ RL_buf_buf1_coef_rs1_rs2_val1_t_c1 } } & 
-			{ 4'h0 , TR_08 } )								// line#=computer.cpp:131,140,165,174,304
-													// ,305,319,353,442,454,565
-		| ( { 20{ ST1_70d } } & { C_q1ot [12] , C_q1ot [12] , C_q1ot [12] , 
-			C_q1ot [12] , C_q1ot [12] , C_q1ot [12] , C_q1ot [12] , C_q1ot [12:0] } )	// line#=computer.cpp:331
-		| ( { 20{ M_2937 } } & add20s1ot )							// line#=computer.cpp:289,332,366
-		| ( { 20{ ST1_72d } } & TR_181 )							// line#=computer.cpp:331
-		| ( { 20{ ST1_74d } } & TR_182 )							// line#=computer.cpp:330,331
-		| ( { 20{ ST1_76d } } & TR_183 )							// line#=computer.cpp:331
-		| ( { 20{ ST1_78d } } & TR_184 )							// line#=computer.cpp:330,331
-		) ;
-	end
-assign	RL_buf_buf1_coef_rs1_rs2_val1_en = ( RL_buf_buf1_coef_rs1_rs2_val1_t_c1 | 
-	ST1_70d | M_2937 | ST1_72d | ST1_74d | ST1_76d | ST1_78d ) ;
-always @ ( posedge CLOCK )
-	if ( RL_buf_buf1_coef_rs1_rs2_val1_en )
-		RL_buf_buf1_coef_rs1_rs2_val1 <= RL_buf_buf1_coef_rs1_rs2_val1_t ;	// line#=computer.cpp:131,140,165,174,289
-											// ,304,305,319,330,331,332,353,366
-											// ,442,454,565
-always @ ( add20s1ot or ST1_416d or ST1_393d or ST1_370d or ST1_347d or ST1_324d or 
-	ST1_301d or ST1_278d or ST1_253d or ST1_233d or ST1_211d or ST1_189d or 
-	ST1_167d or ST1_145d or ST1_123d or ST1_101d or ST1_75d or imem_arg_MEMB32W65536_RD1 or 
+always @ ( TR_09 or M_2930 or M_2845 or M_2849 or U_775 or ST1_67d or RL_blk_out_buf_buf1_dst_addr_rs1 or 
+	U_119 or U_122 or TR_08 or M_2990 or M_2918 or imem_arg_MEMB32W65536_RD1 or 
 	ST1_03d )
 	begin
-	RG_buf_buf1_2_t_c1 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_75d | ST1_101d ) | 
-		ST1_123d ) | ST1_145d ) | ST1_167d ) | ST1_189d ) | ST1_211d ) | 
-		ST1_233d ) | ST1_253d ) | ST1_278d ) | ST1_301d ) | ST1_324d ) | 
-		ST1_347d ) | ST1_370d ) | ST1_393d ) | ST1_416d ) ;	// line#=computer.cpp:289,332,366
-	RG_buf_buf1_2_t = ( ( { 32{ ST1_03d } } & { 25'h0000000 , imem_arg_MEMB32W65536_RD1 [6:0] } )	// line#=computer.cpp:442,450,461
-		| ( { 32{ RG_buf_buf1_2_t_c1 } } & { add20s1ot [19] , add20s1ot [19] , 
-			add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , 
-			add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , 
-			add20s1ot [19] , add20s1ot [19] , add20s1ot } )					// line#=computer.cpp:289,332,366
+	RG_rs1_rs2_y_t_c1 = ( M_2918 | M_2990 ) ;	// line#=computer.cpp:190,191,209,210,336
+							// ,370
+	RG_rs1_rs2_y_t_c2 = ( U_122 | U_119 ) ;
+	RG_rs1_rs2_y_t_c3 = ( ( ( ( ST1_67d | U_775 ) | M_2849 ) | M_2845 ) | M_2930 ) ;	// line#=computer.cpp:336,370
+	RG_rs1_rs2_y_t = ( ( { 5{ ST1_03d } } & imem_arg_MEMB32W65536_RD1 [19:15] )	// line#=computer.cpp:449,460
+		| ( { 5{ RG_rs1_rs2_y_t_c1 } } & { TR_08 , 3'h0 } )			// line#=computer.cpp:190,191,209,210,336
+											// ,370
+		| ( { 5{ RG_rs1_rs2_y_t_c2 } } & RL_blk_out_buf_buf1_dst_addr_rs1 [4:0] )
+		| ( { 5{ RG_rs1_rs2_y_t_c3 } } & { 1'h0 , TR_09 } )			// line#=computer.cpp:336,370
 		) ;
 	end
-assign	RG_buf_buf1_2_en = ( ST1_03d | RG_buf_buf1_2_t_c1 ) ;
+assign	RG_rs1_rs2_y_en = ( ST1_03d | RG_rs1_rs2_y_t_c1 | RG_rs1_rs2_y_t_c2 | RG_rs1_rs2_y_t_c3 ) ;
 always @ ( posedge CLOCK )
-	if ( RG_buf_buf1_2_en )
-		RG_buf_buf1_2 <= RG_buf_buf1_2_t ;	// line#=computer.cpp:289,332,366,442,450
-							// ,461
-always @ ( RG_buf_buf1_funct3_imm1_next_pc or U_683 or imem_arg_MEMB32W65536_RD1 or 
-	M_3004 )
-	TR_55 = ( ( { 3{ M_3004 } } & imem_arg_MEMB32W65536_RD1 [14:12] )	// line#=computer.cpp:442,452,507,566,631
-		| ( { 3{ U_683 } } & RG_buf_buf1_funct3_imm1_next_pc [2:0] )	// line#=computer.cpp:538
-		) ;
-assign	M_3004 = ( ( ( U_09 | U_10 ) | U_11 ) | U_13 ) ;	// line#=computer.cpp:461
-assign	M_3013 = ( U_390 | U_467 ) ;	// line#=computer.cpp:461
-always @ ( add32s1ot or M_3013 or TR_55 or U_683 or M_3004 )
+	if ( RG_rs1_rs2_y_en )
+		RG_rs1_rs2_y <= RG_rs1_rs2_y_t ;	// line#=computer.cpp:190,191,209,210,336
+							// ,370,449,460
+assign	M_2855 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
+	( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
+	( ( ( U_784 | U_796 ) | U_804 ) | U_810 ) | ST1_86d ) | U_829 ) | U_841 ) | 
+	U_855 ) | ST1_104d ) | U_874 ) | U_886 ) | U_900 ) | ST1_122d ) | U_919 ) | 
+	U_931 ) | U_945 ) | ST1_140d ) | U_964 ) | U_976 ) | U_990 ) | ST1_158d ) | 
+	U_1009 ) | U_1021 ) | U_1035 ) | ST1_176d ) | U_1054 ) | U_1066 ) | U_1080 ) | 
+	ST1_194d ) | U_1099 ) | U_1111 ) | U_1125 ) | ( ST1_211d & ( ~RG_k [3] ) ) ) | 
+	U_1144 ) | U_1154 ) | U_1166 ) | U_1172 ) | U_1178 ) | U_1188 ) | U_1198 ) | 
+	U_1210 ) | U_1216 ) | U_1222 ) | U_1232 ) | U_1242 ) | U_1254 ) | U_1260 ) | 
+	U_1266 ) | U_1276 ) | U_1286 ) | U_1298 ) | U_1304 ) | U_1310 ) | U_1320 ) | 
+	U_1330 ) | U_1342 ) | U_1348 ) | U_1354 ) | U_1364 ) | U_1374 ) | U_1386 ) | 
+	U_1392 ) | U_1398 ) | U_1408 ) | U_1418 ) | U_1430 ) | U_1436 ) | U_1442 ) | 
+	U_1452 ) | U_1462 ) | U_1474 ) | U_1480 ) | U_1486 ) ;	// line#=computer.cpp:315
+assign	M_2919 = ( ( U_119 | ( ST1_07d & M_2783 ) ) | ( ST1_07d & M_2764 ) ) ;	// line#=computer.cpp:468
+always @ ( RG_rs1_rs2_y or M_2919 or imem_arg_MEMB32W65536_RD1 or ST1_03d )
+	TR_54 = ( ( { 5{ ST1_03d } } & imem_arg_MEMB32W65536_RD1 [24:20] )	// line#=computer.cpp:449,461
+		| ( { 5{ M_2919 } } & RG_rs1_rs2_y ) ) ;	// line#=computer.cpp:326,360
+always @ ( sub20u_182ot or U_122 or regs_rd02 or U_84 or TR_54 or M_2855 or M_2919 or 
+	ST1_03d )
 	begin
-	TR_09_c1 = ( M_3004 | U_683 ) ;	// line#=computer.cpp:442,452,507,538,566
-					// ,631
-	TR_09 = ( ( { 31{ TR_09_c1 } } & { 28'h0000000 , TR_55 } )	// line#=computer.cpp:442,452,507,538,566
-									// ,631
-		| ( { 31{ M_3013 } } & add32s1ot [31:1] )		// line#=computer.cpp:86,91,494,528
+	TR_10_c1 = ( ( ST1_03d | M_2919 ) | M_2855 ) ;	// line#=computer.cpp:326,360,449,461
+	TR_10 = ( ( { 16{ TR_10_c1 } } & { 11'h000 , TR_54 } )	// line#=computer.cpp:326,360,449,461
+		| ( { 16{ U_84 } } & regs_rd02 [15:0] )		// line#=computer.cpp:572
+		| ( { 16{ U_122 } } & sub20u_182ot [17:2] )	// line#=computer.cpp:165,174,311,312
 		) ;
 	end
-always @ ( add20s1ot or ST1_414d or ST1_391d or ST1_368d or ST1_345d or ST1_322d or 
-	ST1_299d or ST1_276d or ST1_251d or ST1_231d or ST1_209d or ST1_187d or 
-	ST1_165d or ST1_143d or ST1_121d or ST1_99d or ST1_73d or add32s1ot or U_434 or 
-	regs_rd02 or M_2873 or ST1_18d or TR_09 or U_683 or M_3013 or M_3004 or 
-	imem_arg_MEMB32W65536_RD1 or U_12 )	// line#=computer.cpp:461
+assign	M_2818 = ( ( ( ( ST1_03d | U_84 ) | M_2919 ) | U_122 ) | M_2855 ) ;
+assign	M_2829 = ( ST1_65d | U_1135 ) ;
+always @ ( RG_dst_addr or M_2829 or TR_10 or M_2818 )
+	TR_11 = ( ( { 18{ M_2818 } } & { 2'h0 , TR_10 } )	// line#=computer.cpp:165,174,311,312,326
+								// ,360,449,461,572
+		| ( { 18{ M_2829 } } & RG_dst_addr [17:0] ) ) ;
+always @ ( blk_out1_rg01 or ST1_276d or M_2868 or add20s1ot or U_1485 or U_1479 or 
+	ST1_272d or ST1_270d or U_1441 or U_1435 or ST1_264d or ST1_262d or U_1397 or 
+	U_1391 or ST1_256d or ST1_254d or U_1353 or U_1347 or ST1_248d or ST1_246d or 
+	U_1309 or U_1303 or ST1_240d or ST1_238d or U_1265 or U_1259 or ST1_232d or 
+	ST1_230d or U_1221 or U_1215 or ST1_224d or ST1_222d or U_1177 or U_1171 or 
+	ST1_216d or ST1_214d or ST1_205d or ST1_201d or ST1_198d or ST1_195d or 
+	ST1_187d or ST1_183d or ST1_180d or ST1_177d or ST1_169d or ST1_165d or 
+	ST1_162d or ST1_159d or ST1_151d or ST1_147d or ST1_144d or ST1_141d or 
+	ST1_133d or ST1_129d or ST1_126d or ST1_123d or ST1_115d or ST1_111d or 
+	ST1_108d or ST1_105d or ST1_97d or ST1_93d or ST1_90d or ST1_87d or ST1_79d or 
+	U_809 or U_803 or ST1_72d or TR_11 or M_2829 or M_2818 )
 	begin
-	RG_buf_buf1_funct3_imm1_next_pc_t_c1 = ( ( M_3004 | M_3013 ) | U_683 ) ;	// line#=computer.cpp:86,91,442,452,494
-											// ,507,528,538,566,631
-	RG_buf_buf1_funct3_imm1_next_pc_t_c2 = ( ST1_18d & M_2873 ) ;	// line#=computer.cpp:86,91,494
-	RG_buf_buf1_funct3_imm1_next_pc_t_c3 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_73d | 
-		ST1_99d ) | ST1_121d ) | ST1_143d ) | ST1_165d ) | ST1_187d ) | ST1_209d ) | 
-		ST1_231d ) | ST1_251d ) | ST1_276d ) | ST1_299d ) | ST1_322d ) | 
-		ST1_345d ) | ST1_368d ) | ST1_391d ) | ST1_414d ) ;	// line#=computer.cpp:289,332,366
-	RG_buf_buf1_funct3_imm1_next_pc_t = ( ( { 32{ U_12 } } & { imem_arg_MEMB32W65536_RD1 [31] , 
+	RL_blk_out_buf_buf1_dst_addr_rs1_t_c1 = ( M_2818 | M_2829 ) ;	// line#=computer.cpp:165,174,311,312,326
+									// ,360,449,461,572
+	RL_blk_out_buf_buf1_dst_addr_rs1_t_c2 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
+		( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
+		( ( ( ( ( ( ( ( ( ( ( ( ( ST1_72d | U_803 ) | U_809 ) | ST1_79d ) | 
+		ST1_87d ) | ST1_90d ) | ST1_93d ) | ST1_97d ) | ST1_105d ) | ST1_108d ) | 
+		ST1_111d ) | ST1_115d ) | ST1_123d ) | ST1_126d ) | ST1_129d ) | 
+		ST1_133d ) | ST1_141d ) | ST1_144d ) | ST1_147d ) | ST1_151d ) | 
+		ST1_159d ) | ST1_162d ) | ST1_165d ) | ST1_169d ) | ST1_177d ) | 
+		ST1_180d ) | ST1_183d ) | ST1_187d ) | ST1_195d ) | ST1_198d ) | 
+		ST1_201d ) | ST1_205d ) | ST1_214d ) | ST1_216d ) | U_1171 ) | U_1177 ) | 
+		ST1_222d ) | ST1_224d ) | U_1215 ) | U_1221 ) | ST1_230d ) | ST1_232d ) | 
+		U_1259 ) | U_1265 ) | ST1_238d ) | ST1_240d ) | U_1303 ) | U_1309 ) | 
+		ST1_246d ) | ST1_248d ) | U_1347 ) | U_1353 ) | ST1_254d ) | ST1_256d ) | 
+		U_1391 ) | U_1397 ) | ST1_262d ) | ST1_264d ) | U_1435 ) | U_1441 ) | 
+		ST1_270d ) | ST1_272d ) | U_1479 ) | U_1485 ) ;	// line#=computer.cpp:296,339,373
+	RL_blk_out_buf_buf1_dst_addr_rs1_t = ( ( { 20{ RL_blk_out_buf_buf1_dst_addr_rs1_t_c1 } } & 
+			{ 2'h0 , TR_11 } )						// line#=computer.cpp:165,174,311,312,326
+											// ,360,449,461,572
+		| ( { 20{ RL_blk_out_buf_buf1_dst_addr_rs1_t_c2 } } & add20s1ot )	// line#=computer.cpp:296,339,373
+		| ( { 20{ M_2868 } } & add20s1ot )					// line#=computer.cpp:296,373
+		| ( { 20{ ST1_276d } } & blk_out1_rg01 ) ) ;
+	end
+assign	RL_blk_out_buf_buf1_dst_addr_rs1_en = ( RL_blk_out_buf_buf1_dst_addr_rs1_t_c1 | 
+	RL_blk_out_buf_buf1_dst_addr_rs1_t_c2 | M_2868 | ST1_276d ) ;
+always @ ( posedge CLOCK )
+	if ( RL_blk_out_buf_buf1_dst_addr_rs1_en )
+		RL_blk_out_buf_buf1_dst_addr_rs1 <= RL_blk_out_buf_buf1_dst_addr_rs1_t ;	// line#=computer.cpp:165,174,296,311,312
+												// ,326,339,360,373,449,461,572
+assign	RG_11_en = ST1_03d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:449,457,468
+	if ( RG_11_en )
+		RG_11 <= { 25'h0000000 , imem_arg_MEMB32W65536_RD1 [6:0] } ;
+assign	M_2915 = ( ( ( U_09 | U_10 ) | U_11 ) | U_13 ) ;
+always @ ( RG_funct3_imm1 or U_687 or imem_arg_MEMB32W65536_RD1 or M_2915 )
+	TR_12 = ( ( { 3{ M_2915 } } & imem_arg_MEMB32W65536_RD1 [14:12] )	// line#=computer.cpp:449,459,514,573,638
+		| ( { 3{ U_687 } } & RG_funct3_imm1 [2:0] )			// line#=computer.cpp:545
+		) ;
+always @ ( dmem_arg_MEMB32W65536_RD1 or U_88 or TR_12 or U_687 or M_2915 or imem_arg_MEMB32W65536_RD1 or 
+	U_12 )
+	begin
+	RG_funct3_imm1_t_c1 = ( M_2915 | U_687 ) ;	// line#=computer.cpp:449,459,514,545,573
+							// ,638
+	RG_funct3_imm1_t = ( ( { 32{ U_12 } } & { imem_arg_MEMB32W65536_RD1 [31] , 
 			imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31] , 
 			imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31] , 
 			imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31] , 
@@ -9522,2567 +9987,2857 @@ always @ ( add20s1ot or ST1_414d or ST1_391d or ST1_368d or ST1_345d or ST1_322d
 			imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31] , 
 			imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31] , 
 			imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31] , 
-			imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31:20] } )	// line#=computer.cpp:86,91,442,584
-		| ( { 32{ RG_buf_buf1_funct3_imm1_next_pc_t_c1 } } & { 1'h0 , TR_09 } )		// line#=computer.cpp:86,91,442,452,494
-												// ,507,528,538,566,631
-		| ( { 32{ RG_buf_buf1_funct3_imm1_next_pc_t_c2 } } & regs_rd02 )		// line#=computer.cpp:86,91,494
-		| ( { 32{ U_434 } } & add32s1ot )						// line#=computer.cpp:86,118,486
-		| ( { 32{ RG_buf_buf1_funct3_imm1_next_pc_t_c3 } } & { add20s1ot [19] , 
-			add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , 
-			add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , 
-			add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , add20s1ot } )	// line#=computer.cpp:289,332,366
+			imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31:20] } )	// line#=computer.cpp:86,91,449,591
+		| ( { 32{ RG_funct3_imm1_t_c1 } } & { 29'h00000000 , TR_12 } )			// line#=computer.cpp:449,459,514,545,573
+												// ,638
+		| ( { 32{ U_88 } } & dmem_arg_MEMB32W65536_RD1 )				// line#=computer.cpp:174,311,312
 		) ;
 	end
-assign	RG_buf_buf1_funct3_imm1_next_pc_en = ( U_12 | RG_buf_buf1_funct3_imm1_next_pc_t_c1 | 
-	RG_buf_buf1_funct3_imm1_next_pc_t_c2 | U_434 | RG_buf_buf1_funct3_imm1_next_pc_t_c3 ) ;	// line#=computer.cpp:461
-always @ ( posedge CLOCK )	// line#=computer.cpp:461
-	if ( RG_buf_buf1_funct3_imm1_next_pc_en )
-		RG_buf_buf1_funct3_imm1_next_pc <= RG_buf_buf1_funct3_imm1_next_pc_t ;	// line#=computer.cpp:86,91,118,289,332
-											// ,366,442,452,461,486,494,507,528
-											// ,538,566,584,631
-assign	RG_buf_buf1_funct3_imm1_next_pc_port = RG_buf_buf1_funct3_imm1_next_pc ;
-assign	M_3011 = ( ( ( ST1_17d & M_2863 ) | ( ST1_17d & M_2871 ) ) | ( ST1_17d & 
-	M_2873 ) ) ;	// line#=computer.cpp:461,538,566,587,631
-always @ ( sub20u_182ot or ST1_47d or RG_buf_buf1_instr_rd_word_addr or M_3012 or 
-	addsub32u1ot or M_3005 )
-	TR_10 = ( ( { 16{ M_3005 } } & addsub32u1ot [17:2] )					// line#=computer.cpp:180,189,199,208
-		| ( { 16{ M_3012 } } & { 11'h000 , RG_buf_buf1_instr_rd_word_addr [4:0] } )	// line#=computer.cpp:451
-		| ( { 16{ ST1_47d } } & sub20u_182ot [17:2] )					// line#=computer.cpp:165,174,304,305
+assign	RG_funct3_imm1_en = ( U_12 | RG_funct3_imm1_t_c1 | U_88 ) ;
+always @ ( posedge CLOCK )
+	if ( RG_funct3_imm1_en )
+		RG_funct3_imm1 <= RG_funct3_imm1_t ;	// line#=computer.cpp:86,91,174,311,312
+							// ,449,459,514,545,573,591,638
+assign	RG_funct3_imm1_port = RG_funct3_imm1 ;
+always @ ( RL_buf_buf1_instr_next_pc_rd or M_2922 or addsub32u1ot or M_2916 )
+	TR_95 = ( ( { 16{ M_2916 } } & addsub32u1ot [17:2] )					// line#=computer.cpp:180,189,199,208
+		| ( { 16{ M_2922 } } & { 11'h000 , RL_buf_buf1_instr_next_pc_rd [4:0] } )	// line#=computer.cpp:458
 		) ;
-assign	M_3005 = ( U_11 | U_75 ) ;
-assign	M_3012 = ( ( ( ( M_3011 | U_283 ) | U_285 ) | U_286 ) | U_279 ) ;
-assign	M_2922 = ( ( M_3005 | M_3012 ) | ST1_47d ) ;
-always @ ( add32s1ot or M_3028 or TR_10 or M_2922 )
-	TR_11 = ( ( { 20{ M_2922 } } & { 4'h0 , TR_10 } )	// line#=computer.cpp:165,174,180,189,199
-								// ,208,304,305,451
-		| ( { 20{ M_3028 } } & add32s1ot [28:9] )	// line#=computer.cpp:369
-		) ;
-always @ ( U_1110 or U_1064 or U_1018 or U_972 or U_926 or U_880 or U_834 or U_776 or 
-	add20s1ot or ST1_406d or ST1_383d or ST1_360d or ST1_337d or ST1_314d or 
-	ST1_291d or ST1_268d or ST1_245d or M_2925 or TR_11 or M_3028 or M_2922 or 
-	imem_arg_MEMB32W65536_RD1 or U_13 or U_12 or U_10 or U_09 or M_2872 or M_2870 or 
-	M_2868 or M_2862 or ST1_03d )	// line#=computer.cpp:442,450,461
+always @ ( RL_addr1_buf_buf1_next_pc_op1_PC or U_107 or TR_95 or M_2922 or M_2916 )
 	begin
-	RG_buf_buf1_instr_rd_word_addr_t_c1 = ( ( ( ( ( ( ( ( ST1_03d & M_2862 ) | 
-		( ST1_03d & M_2868 ) ) | ( ST1_03d & M_2870 ) ) | ( ST1_03d & M_2872 ) ) | 
-		U_09 ) | U_10 ) | U_12 ) | U_13 ) ;	// line#=computer.cpp:442
-	RG_buf_buf1_instr_rd_word_addr_t_c2 = ( M_2922 | M_3028 ) ;	// line#=computer.cpp:165,174,180,189,199
-									// ,208,304,305,369,451
-	RG_buf_buf1_instr_rd_word_addr_t_c3 = ( ( ( ( ( ( ( ( M_2925 | ST1_245d ) | 
-		ST1_268d ) | ST1_291d ) | ST1_314d ) | ST1_337d ) | ST1_360d ) | 
-		ST1_383d ) | ST1_406d ) ;	// line#=computer.cpp:289,332,366
-	RG_buf_buf1_instr_rd_word_addr_t_c4 = ( ( ( ( ( ( ( U_776 | U_834 ) | U_880 ) | 
-		U_926 ) | U_972 ) | U_1018 ) | U_1064 ) | U_1110 ) ;	// line#=computer.cpp:289,332
-	RG_buf_buf1_instr_rd_word_addr_t = ( ( { 25{ RG_buf_buf1_instr_rd_word_addr_t_c1 } } & 
-			imem_arg_MEMB32W65536_RD1 [31:7] )				// line#=computer.cpp:442
-		| ( { 25{ RG_buf_buf1_instr_rd_word_addr_t_c2 } } & { 5'h00 , TR_11 } )	// line#=computer.cpp:165,174,180,189,199
-											// ,208,304,305,369,451
-		| ( { 25{ RG_buf_buf1_instr_rd_word_addr_t_c3 } } & { add20s1ot [19] , 
-			add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , 
-			add20s1ot } )							// line#=computer.cpp:289,332,366
-		| ( { 25{ RG_buf_buf1_instr_rd_word_addr_t_c4 } } & { add20s1ot [19] , 
-			add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , 
-			add20s1ot } )							// line#=computer.cpp:289,332
+	TR_55_c1 = ( M_2916 | M_2922 ) ;	// line#=computer.cpp:180,189,199,208,458
+	TR_55 = ( ( { 18{ TR_55_c1 } } & { 2'h0 , TR_95 } )			// line#=computer.cpp:180,189,199,208,458
+		| ( { 18{ U_107 } } & RL_addr1_buf_buf1_next_pc_op1_PC [17:0] )	// line#=computer.cpp:691
 		) ;
 	end
-assign	RG_buf_buf1_instr_rd_word_addr_en = ( RG_buf_buf1_instr_rd_word_addr_t_c1 | 
-	RG_buf_buf1_instr_rd_word_addr_t_c2 | RG_buf_buf1_instr_rd_word_addr_t_c3 | 
-	RG_buf_buf1_instr_rd_word_addr_t_c4 ) ;	// line#=computer.cpp:442,450,461
-always @ ( posedge CLOCK )	// line#=computer.cpp:442,450,461
-	if ( RG_buf_buf1_instr_rd_word_addr_en )
-		RG_buf_buf1_instr_rd_word_addr <= RG_buf_buf1_instr_rd_word_addr_t ;	// line#=computer.cpp:165,174,180,189,199
-											// ,208,289,304,305,332,366,369,442
-											// ,450,451,461
-assign	M_2855 = ~|( { 29'h00000000 , imem_arg_MEMB32W65536_RD1 [14:12] } ^ 32'h00000003 ) ;	// line#=computer.cpp:442,587,631
-assign	M_2907 = ( regs_rd00 ^ regs_rd01 ) ;	// line#=computer.cpp:509,512
-always @ ( ST1_419d or ST1_396d or ST1_373d or ST1_350d or ST1_327d or ST1_304d or 
-	ST1_281d or ST1_258d or ST1_236d or ST1_214d or ST1_192d or ST1_170d or 
-	ST1_148d or ST1_126d or ST1_104d or incr3u1ot or ST1_82d or U_630 or U_576 or 
-	U_467 or U_434 or take_t1 or U_390 or M_2863 or ST1_19d or CT_15 or U_279 or 
-	RG_buf_buf1_instr_rd_word_addr or U_208 or U_163 or U_147 or CT_02 or U_15 or 
-	comp32u_12ot or comp32s_11ot or U_13 or comp32u_13ot or M_2855 or comp32s_1_11ot or 
-	M_2825 or U_12 or M_2829 or comp32u_11ot or M_2860 or M_2849 or comp32s_12ot or 
-	M_2833 or M_2837 or M_2907 or M_2815 or U_09 )	// line#=computer.cpp:442,461,507,587,631
+assign	M_2914 = ( ( ( ( ( ( ( ( ST1_03d & M_2778 ) | ( ST1_03d & M_2772 ) ) | ( 
+	ST1_03d & M_2780 ) ) | ( ST1_03d & M_2782 ) ) | U_09 ) | U_10 ) | U_12 ) | 
+	U_13 ) ;	// line#=computer.cpp:449,457,468
+assign	M_2916 = ( U_11 | U_75 ) ;
+assign	M_2922 = ( ( ( ( M_2921 | U_281 ) | ( ST1_17d & M_2769 ) ) | ( ST1_17d & 
+	M_2777 ) ) | U_277 ) ;	// line#=computer.cpp:468
+always @ ( TR_55 or M_2922 or U_107 or M_2916 or imem_arg_MEMB32W65536_RD1 or M_2914 )
 	begin
-	FF_take_t_c1 = ( U_09 & M_2815 ) ;	// line#=computer.cpp:509
-	FF_take_t_c2 = ( U_09 & M_2837 ) ;	// line#=computer.cpp:512
-	FF_take_t_c3 = ( U_09 & M_2833 ) ;	// line#=computer.cpp:515
-	FF_take_t_c4 = ( U_09 & M_2849 ) ;	// line#=computer.cpp:518
-	FF_take_t_c5 = ( U_09 & M_2860 ) ;	// line#=computer.cpp:521
-	FF_take_t_c6 = ( U_09 & M_2829 ) ;	// line#=computer.cpp:524
-	FF_take_t_c7 = ( U_12 & M_2825 ) ;	// line#=computer.cpp:592
-	FF_take_t_c8 = ( U_12 & M_2855 ) ;	// line#=computer.cpp:595
-	FF_take_t_c9 = ( U_13 & M_2825 ) ;	// line#=computer.cpp:643
-	FF_take_t_c10 = ( U_13 & M_2855 ) ;	// line#=computer.cpp:646
-	FF_take_t_c11 = ( ( U_147 | U_163 ) | U_208 ) ;	// line#=computer.cpp:610,633,652
-	FF_take_t_c12 = ( ST1_19d & M_2863 ) ;	// line#=computer.cpp:466,484,495,555,619
-						// ,665
-	FF_take_t = ( ( { 1{ FF_take_t_c1 } } & ( ~|M_2907 ) )				// line#=computer.cpp:509
-		| ( { 1{ FF_take_t_c2 } } & ( |M_2907 ) )				// line#=computer.cpp:512
-		| ( { 1{ FF_take_t_c3 } } & comp32s_12ot [3] )				// line#=computer.cpp:515
-		| ( { 1{ FF_take_t_c4 } } & comp32s_12ot [0] )				// line#=computer.cpp:518
-		| ( { 1{ FF_take_t_c5 } } & comp32u_11ot [3] )				// line#=computer.cpp:521
-		| ( { 1{ FF_take_t_c6 } } & comp32u_11ot [0] )				// line#=computer.cpp:524
-		| ( { 1{ FF_take_t_c7 } } & comp32s_1_11ot [3] )			// line#=computer.cpp:592
-		| ( { 1{ FF_take_t_c8 } } & comp32u_13ot [3] )				// line#=computer.cpp:595
-		| ( { 1{ FF_take_t_c9 } } & comp32s_11ot [3] )				// line#=computer.cpp:643
-		| ( { 1{ FF_take_t_c10 } } & comp32u_12ot [3] )				// line#=computer.cpp:646
-		| ( { 1{ U_15 } } & CT_02 )						// line#=computer.cpp:683
-		| ( { 1{ FF_take_t_c11 } } & RG_buf_buf1_instr_rd_word_addr [23] )	// line#=computer.cpp:610,633,652
-		| ( { 1{ U_279 } } & CT_15 )						// line#=computer.cpp:475
-		| ( { 1{ FF_take_t_c12 } } & CT_15 )					// line#=computer.cpp:466,484,495,555,619
-											// ,665
-		| ( { 1{ U_390 } } & take_t1 )						// line#=computer.cpp:527
-		| ( { 1{ U_434 } } & CT_15 )						// line#=computer.cpp:466,484,495,555,619
-											// ,665
-		| ( { 1{ U_467 } } & CT_15 )						// line#=computer.cpp:466,484,495,555,619
-											// ,665
-		| ( { 1{ U_576 } } & CT_15 )						// line#=computer.cpp:466,484,495,555,619
-											// ,665
-		| ( { 1{ U_630 } } & CT_15 )						// line#=computer.cpp:466,484,495,555,619
-											// ,665
-		| ( { 1{ ST1_82d } } & ( ~incr3u1ot [3] ) )				// line#=computer.cpp:329
-		| ( { 1{ ST1_104d } } & ( ~incr3u1ot [3] ) )				// line#=computer.cpp:329
-		| ( { 1{ ST1_126d } } & ( ~incr3u1ot [3] ) )				// line#=computer.cpp:329
-		| ( { 1{ ST1_148d } } & ( ~incr3u1ot [3] ) )				// line#=computer.cpp:329
-		| ( { 1{ ST1_170d } } & ( ~incr3u1ot [3] ) )				// line#=computer.cpp:329
-		| ( { 1{ ST1_192d } } & ( ~incr3u1ot [3] ) )				// line#=computer.cpp:329
-		| ( { 1{ ST1_214d } } & ( ~incr3u1ot [3] ) )				// line#=computer.cpp:329
-		| ( { 1{ ST1_236d } } & ( ~incr3u1ot [3] ) )				// line#=computer.cpp:329
-		| ( { 1{ ST1_258d } } & ( ~incr3u1ot [3] ) )				// line#=computer.cpp:363
-		| ( { 1{ ST1_281d } } & ( ~incr3u1ot [3] ) )				// line#=computer.cpp:363
-		| ( { 1{ ST1_304d } } & ( ~incr3u1ot [3] ) )				// line#=computer.cpp:363
-		| ( { 1{ ST1_327d } } & ( ~incr3u1ot [3] ) )				// line#=computer.cpp:363
-		| ( { 1{ ST1_350d } } & ( ~incr3u1ot [3] ) )				// line#=computer.cpp:363
-		| ( { 1{ ST1_373d } } & ( ~incr3u1ot [3] ) )				// line#=computer.cpp:363
-		| ( { 1{ ST1_396d } } & ( ~incr3u1ot [3] ) )				// line#=computer.cpp:363
-		| ( { 1{ ST1_419d } } & ( ~incr3u1ot [3] ) )				// line#=computer.cpp:363
+	TR_13_c1 = ( ( M_2916 | U_107 ) | M_2922 ) ;	// line#=computer.cpp:180,189,199,208,458
+							// ,691
+	TR_13 = ( ( { 25{ M_2914 } } & imem_arg_MEMB32W65536_RD1 [31:7] )	// line#=computer.cpp:449
+		| ( { 25{ TR_13_c1 } } & { 7'h00 , TR_55 } )			// line#=computer.cpp:180,189,199,208,458
+										// ,691
 		) ;
+	end
+assign	M_2858 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( U_792 | ST1_93d ) | ST1_111d ) | ST1_129d ) | 
+	ST1_147d ) | ST1_165d ) | ST1_183d ) | ST1_201d ) | ST1_216d ) | ST1_224d ) | 
+	ST1_232d ) | ST1_240d ) | ST1_248d ) | ST1_256d ) | ST1_264d ) | ST1_272d ) ;
+assign	M_2920 = ( ( ( U_122 | U_147 ) | U_677 ) | U_711 ) ;
+always @ ( M_2858 or RL_addr1_buf_buf1_next_pc_op1_PC or M_2920 )
+	TR_14 = ( ( { 12{ M_2920 } } & RL_addr1_buf_buf1_next_pc_op1_PC [31:20] )
+		| ( { 12{ M_2858 } } & { RL_addr1_buf_buf1_next_pc_op1_PC [19] , 
+			RL_addr1_buf_buf1_next_pc_op1_PC [19] , RL_addr1_buf_buf1_next_pc_op1_PC [19] , 
+			RL_addr1_buf_buf1_next_pc_op1_PC [19] , RL_addr1_buf_buf1_next_pc_op1_PC [19] , 
+			RL_addr1_buf_buf1_next_pc_op1_PC [19] , RL_addr1_buf_buf1_next_pc_op1_PC [19] , 
+			RL_addr1_buf_buf1_next_pc_op1_PC [19] , RL_addr1_buf_buf1_next_pc_op1_PC [19] , 
+			RL_addr1_buf_buf1_next_pc_op1_PC [19] , RL_addr1_buf_buf1_next_pc_op1_PC [19] , 
+			RL_addr1_buf_buf1_next_pc_op1_PC [19] } ) ) ;
+always @ ( ST1_69d or RL_addr1_buf_buf1_next_pc_op1_PC or TR_14 or M_2858 or M_2920 or 
+	TR_13 or M_2922 or U_107 or M_2916 or M_2914 )
+	begin
+	RL_buf_buf1_instr_next_pc_rd_t_c1 = ( ( ( M_2914 | M_2916 ) | U_107 ) | M_2922 ) ;	// line#=computer.cpp:180,189,199,208,449
+												// ,458,691
+	RL_buf_buf1_instr_next_pc_rd_t_c2 = ( M_2920 | M_2858 ) ;
+	RL_buf_buf1_instr_next_pc_rd_t = ( ( { 32{ RL_buf_buf1_instr_next_pc_rd_t_c1 } } & 
+			{ 7'h00 , TR_13 } )	// line#=computer.cpp:180,189,199,208,449
+						// ,458,691
+		| ( { 32{ RL_buf_buf1_instr_next_pc_rd_t_c2 } } & { TR_14 , RL_addr1_buf_buf1_next_pc_op1_PC [19:0] } )
+		| ( { 32{ ST1_69d } } & RL_addr1_buf_buf1_next_pc_op1_PC ) ) ;
+	end
+assign	RL_buf_buf1_instr_next_pc_rd_en = ( RL_buf_buf1_instr_next_pc_rd_t_c1 | RL_buf_buf1_instr_next_pc_rd_t_c2 | 
+	ST1_69d ) ;
+always @ ( posedge CLOCK )
+	if ( RL_buf_buf1_instr_next_pc_rd_en )
+		RL_buf_buf1_instr_next_pc_rd <= RL_buf_buf1_instr_next_pc_rd_t ;	// line#=computer.cpp:180,189,199,208,449
+											// ,458,691
+assign	M_2765 = ~|( { 29'h00000000 , imem_arg_MEMB32W65536_RD1 [14:12] } ^ 32'h00000003 ) ;	// line#=computer.cpp:449,594,638
+assign	M_2817 = ( regs_rd00 ^ regs_rd01 ) ;	// line#=computer.cpp:516,519
+always @ ( ST1_204d or ST1_186d or ST1_168d or ST1_150d or ST1_132d or ST1_114d or 
+	ST1_96d or incr3u1ot or ST1_78d or U_633 or U_579 or U_470 or U_437 or take_t1 or 
+	U_393 or U_305 or CT_15 or U_277 or RL_buf_buf1_instr_next_pc_rd or U_206 or 
+	U_161 or U_145 or CT_02 or U_15 or comp32u_12ot or comp32s_11ot or U_13 or 
+	comp32u_13ot or M_2765 or comp32s_1_11ot or M_2735 or U_12 or M_2739 or 
+	comp32u_11ot or M_2770 or M_2759 or comp32s_12ot or M_2743 or M_2747 or 
+	M_2817 or M_2725 or U_09 )	// line#=computer.cpp:449,514,594,638
+	begin
+	FF_take_t_c1 = ( U_09 & M_2725 ) ;	// line#=computer.cpp:516
+	FF_take_t_c2 = ( U_09 & M_2747 ) ;	// line#=computer.cpp:519
+	FF_take_t_c3 = ( U_09 & M_2743 ) ;	// line#=computer.cpp:522
+	FF_take_t_c4 = ( U_09 & M_2759 ) ;	// line#=computer.cpp:525
+	FF_take_t_c5 = ( U_09 & M_2770 ) ;	// line#=computer.cpp:528
+	FF_take_t_c6 = ( U_09 & M_2739 ) ;	// line#=computer.cpp:531
+	FF_take_t_c7 = ( U_12 & M_2735 ) ;	// line#=computer.cpp:599
+	FF_take_t_c8 = ( U_12 & M_2765 ) ;	// line#=computer.cpp:602
+	FF_take_t_c9 = ( U_13 & M_2735 ) ;	// line#=computer.cpp:650
+	FF_take_t_c10 = ( U_13 & M_2765 ) ;	// line#=computer.cpp:653
+	FF_take_t_c11 = ( ( U_145 | U_161 ) | U_206 ) ;	// line#=computer.cpp:617,640,659
+	FF_take_t = ( ( { 1{ FF_take_t_c1 } } & ( ~|M_2817 ) )				// line#=computer.cpp:516
+		| ( { 1{ FF_take_t_c2 } } & ( |M_2817 ) )				// line#=computer.cpp:519
+		| ( { 1{ FF_take_t_c3 } } & comp32s_12ot [3] )				// line#=computer.cpp:522
+		| ( { 1{ FF_take_t_c4 } } & comp32s_12ot [0] )				// line#=computer.cpp:525
+		| ( { 1{ FF_take_t_c5 } } & comp32u_11ot [3] )				// line#=computer.cpp:528
+		| ( { 1{ FF_take_t_c6 } } & comp32u_11ot [0] )				// line#=computer.cpp:531
+		| ( { 1{ FF_take_t_c7 } } & comp32s_1_11ot [3] )			// line#=computer.cpp:599
+		| ( { 1{ FF_take_t_c8 } } & comp32u_13ot [3] )				// line#=computer.cpp:602
+		| ( { 1{ FF_take_t_c9 } } & comp32s_11ot [3] )				// line#=computer.cpp:650
+		| ( { 1{ FF_take_t_c10 } } & comp32u_12ot [3] )				// line#=computer.cpp:653
+		| ( { 1{ U_15 } } & CT_02 )						// line#=computer.cpp:690
+		| ( { 1{ FF_take_t_c11 } } & RL_buf_buf1_instr_next_pc_rd [23] )	// line#=computer.cpp:617,640,659
+		| ( { 1{ U_277 } } & CT_15 )						// line#=computer.cpp:482
+		| ( { 1{ U_305 } } & CT_15 )						// line#=computer.cpp:473,491,502,562,626
+											// ,672
+		| ( { 1{ U_393 } } & take_t1 )						// line#=computer.cpp:534
+		| ( { 1{ U_437 } } & CT_15 )						// line#=computer.cpp:473,491,502,562,626
+											// ,672
+		| ( { 1{ U_470 } } & CT_15 )						// line#=computer.cpp:473,491,502,562,626
+											// ,672
+		| ( { 1{ U_579 } } & CT_15 )						// line#=computer.cpp:473,491,502,562,626
+											// ,672
+		| ( { 1{ U_633 } } & CT_15 )						// line#=computer.cpp:473,491,502,562,626
+											// ,672
+		| ( { 1{ ST1_78d } } & ( ~incr3u1ot [3] ) )				// line#=computer.cpp:336
+		| ( { 1{ ST1_96d } } & ( ~incr3u1ot [3] ) )				// line#=computer.cpp:336
+		| ( { 1{ ST1_114d } } & ( ~incr3u1ot [3] ) )				// line#=computer.cpp:336
+		| ( { 1{ ST1_132d } } & ( ~incr3u1ot [3] ) )				// line#=computer.cpp:336
+		| ( { 1{ ST1_150d } } & ( ~incr3u1ot [3] ) )				// line#=computer.cpp:336
+		| ( { 1{ ST1_168d } } & ( ~incr3u1ot [3] ) )				// line#=computer.cpp:336
+		| ( { 1{ ST1_186d } } & ( ~incr3u1ot [3] ) )				// line#=computer.cpp:336
+		| ( { 1{ ST1_204d } } & ( ~incr3u1ot [3] ) )				// line#=computer.cpp:336
+		) ;	// line#=computer.cpp:349
 	end
 assign	FF_take_en = ( FF_take_t_c1 | FF_take_t_c2 | FF_take_t_c3 | FF_take_t_c4 | 
 	FF_take_t_c5 | FF_take_t_c6 | FF_take_t_c7 | FF_take_t_c8 | FF_take_t_c9 | 
-	FF_take_t_c10 | U_15 | FF_take_t_c11 | U_279 | FF_take_t_c12 | U_390 | U_434 | 
-	U_467 | U_576 | U_630 | ST1_82d | ST1_104d | ST1_126d | ST1_148d | ST1_170d | 
-	ST1_192d | ST1_214d | ST1_236d | ST1_258d | ST1_281d | ST1_304d | ST1_327d | 
-	ST1_350d | ST1_373d | ST1_396d | ST1_419d ) ;	// line#=computer.cpp:442,461,507,587,631
-always @ ( posedge CLOCK )	// line#=computer.cpp:442,461,507,587,631
+	FF_take_t_c10 | U_15 | FF_take_t_c11 | U_277 | U_305 | U_393 | U_437 | U_470 | 
+	U_579 | U_633 | ST1_78d | ST1_96d | ST1_114d | ST1_132d | ST1_150d | ST1_168d | 
+	ST1_186d | ST1_204d | ST1_275d ) ;	// line#=computer.cpp:449,514,594,638
+always @ ( posedge CLOCK )	// line#=computer.cpp:449,514,594,638
 	if ( FF_take_en )
-		FF_take <= FF_take_t ;	// line#=computer.cpp:329,363,442,461,466
-					// ,475,484,495,507,509,512,515,518
-					// ,521,524,527,555,587,592,595,610
-					// ,619,631,633,643,646,652,665,683
+		FF_take <= FF_take_t ;	// line#=computer.cpp:336,349,449,473,482
+					// ,491,502,514,516,519,522,525,528
+					// ,531,534,562,594,599,602,617,626
+					// ,638,640,650,653,659,672,690
 assign	FF_take_port = FF_take ;
-assign	M_2938 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_81d | ST1_89d ) | 
-	( ST1_91d & RG_y [3] ) ) | ST1_111d ) | ( ST1_113d & RG_y [3] ) ) | ST1_133d ) | 
-	( ST1_135d & RG_y [3] ) ) | ST1_155d ) | ( ST1_157d & RG_y [3] ) ) | ST1_177d ) | 
-	( ST1_179d & RG_y [3] ) ) | ST1_199d ) | ( ST1_201d & RG_y [3] ) ) | ST1_221d ) | 
-	( ST1_223d & RG_y [3] ) ) | ST1_243d ) | ( ST1_245d & RG_y [3] ) ) | ST1_270d ) | 
-	ST1_293d ) | ST1_316d ) | ST1_339d ) | ST1_362d ) | ST1_385d ) | ST1_408d ) | 
-	ST1_427d ) ;	// line#=computer.cpp:329,363
-assign	M_3027 = ( ( ( ( ( ( ( ( ST1_91d & ( ~RG_y [3] ) ) | ( ST1_113d & ( ~RG_y [3] ) ) ) | 
-	( ST1_135d & ( ~RG_y [3] ) ) ) | ( ST1_157d & ( ~RG_y [3] ) ) ) | ( ST1_179d & ( 
-	~RG_y [3] ) ) ) | ( ST1_201d & ( ~RG_y [3] ) ) ) | ( ST1_223d & ( ~RG_y [3] ) ) ) | 
-	( ST1_245d & ( ~RG_y [3] ) ) ) ;	// line#=computer.cpp:329,363
-always @ ( RG_y or M_3027 )
-	TR_12 = ( { 3{ M_3027 } } & RG_y [2:0] )
-		 ;	// line#=computer.cpp:319,329,353,363
-always @ ( C_q1ot or sub16s_131ot or incr8s_61ot )	// line#=computer.cpp:330,331
-	case ( incr8s_61ot [2] )
-	1'h1 :
-		TR_185 = { sub16s_131ot [12] , sub16s_131ot [12] , sub16s_131ot [12] , 
-		sub16s_131ot [12] , sub16s_131ot [12] , sub16s_131ot [12] , sub16s_131ot [12] , 
-		sub16s_131ot } ;	// line#=computer.cpp:331
-	1'h0 :
-		TR_185 = { C_q1ot [13] , C_q1ot [13] , C_q1ot [13] , C_q1ot [13] , 
-		C_q1ot [13] , C_q1ot [13] , C_q1ot } ;	// line#=computer.cpp:331
-	default :
-		TR_185 = 20'hx ;
-	endcase
-always @ ( TR_185 or ST1_80d or add20s1ot or M_2941 or TR_12 or M_3027 or M_2938 )
+assign	M_2925 = ( U_566 | U_620 ) ;
+always @ ( rsft32u1ot or M_2925 )
+	TR_15 = ( { 16{ M_2925 } } & rsft32u1ot [31:16] )	// line#=computer.cpp:622,662
+		 ;	// line#=computer.cpp:158,159,559
+always @ ( rsft32u1ot or TR_15 or U_729 or M_2925 or dmem_arg_MEMB32W65536_RD1 or 
+	U_163 or rsft32s1ot or U_536 or U_161 )
 	begin
-	RG_buf_buf1_coef_y_t_c1 = ( M_2938 | M_3027 ) ;	// line#=computer.cpp:319,329,353,363
-	RG_buf_buf1_coef_y_t = ( ( { 20{ RG_buf_buf1_coef_y_t_c1 } } & { 17'h00000 , 
-			TR_12 } )			// line#=computer.cpp:319,329,353,363
-		| ( { 20{ M_2941 } } & add20s1ot )	// line#=computer.cpp:289,332,366
-		| ( { 20{ ST1_80d } } & TR_185 )	// line#=computer.cpp:330,331
+	RG_result_result1_t_c1 = ( U_161 | U_536 ) ;	// line#=computer.cpp:619,660
+	RG_result_result1_t_c2 = ( M_2925 | U_729 ) ;	// line#=computer.cpp:158,159,559,622,662
+	RG_result_result1_t = ( ( { 32{ RG_result_result1_t_c1 } } & rsft32s1ot )	// line#=computer.cpp:619,660
+		| ( { 32{ U_163 } } & dmem_arg_MEMB32W65536_RD1 )			// line#=computer.cpp:174,311,312
+		| ( { 32{ RG_result_result1_t_c2 } } & { TR_15 , rsft32u1ot [15:0] } )	// line#=computer.cpp:158,159,559,622,662
 		) ;
 	end
-assign	RG_buf_buf1_coef_y_en = ( RG_buf_buf1_coef_y_t_c1 | M_2941 | ST1_80d ) ;
+assign	RG_result_result1_en = ( RG_result_result1_t_c1 | U_163 | RG_result_result1_t_c2 ) ;
 always @ ( posedge CLOCK )
-	if ( RG_buf_buf1_coef_y_en )
-		RG_buf_buf1_coef_y <= RG_buf_buf1_coef_y_t ;	// line#=computer.cpp:289,319,329,330,331
-								// ,332,353,363,366
-assign	M_2968 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_257d | ST1_266d ) | ( ST1_268d & 
-	RG_y [3] ) ) | ST1_289d ) | ( ST1_291d & RG_y [3] ) ) | ST1_312d ) | ( ST1_314d & 
-	RG_y [3] ) ) | ST1_335d ) | ( ST1_337d & RG_y [3] ) ) | ST1_358d ) | ( ST1_360d & 
-	RG_y [3] ) ) | ST1_381d ) | ( ST1_383d & RG_y [3] ) ) | ST1_404d ) | ( ST1_406d & 
-	RG_y [3] ) ) ;	// line#=computer.cpp:363
-assign	M_3030 = ( ( ( ( ( ( ( ST1_268d & ( ~RG_y [3] ) ) | ( ST1_291d & ( ~RG_y [3] ) ) ) | 
-	( ST1_314d & ( ~RG_y [3] ) ) ) | ( ST1_337d & ( ~RG_y [3] ) ) ) | ( ST1_360d & ( 
-	~RG_y [3] ) ) ) | ( ST1_383d & ( ~RG_y [3] ) ) ) | ( ST1_406d & ( ~RG_y [3] ) ) ) ;	// line#=computer.cpp:363
-always @ ( RG_y or M_3030 )
-	TR_13 = ( { 3{ M_3030 } } & RG_y [2:0] )
-		 ;	// line#=computer.cpp:353,363
-assign	M_3064 = ( M_2968 | M_3030 ) ;
-always @ ( sub20u_181ot or ST1_421d or TR_13 or M_3064 )
-	TR_14 = ( ( { 16{ M_3064 } } & { 13'h0000 , TR_13 } )	// line#=computer.cpp:353,363
-		| ( { 16{ ST1_421d } } & sub20u_181ot [17:2] )	// line#=computer.cpp:218,227,377,378
+	if ( RG_result_result1_en )
+		RG_result_result1 <= RG_result_result1_t ;	// line#=computer.cpp:158,159,174,311,312
+								// ,559,619,622,660,662
+assign	M_2959 = ( ( ( ( U_579 & ( ~|( RL_addr1_buf_buf1_next_pc_op1_PC ^ 32'h00000002 ) ) ) | 
+	( U_579 & ( ~|( RL_addr1_buf_buf1_next_pc_op1_PC ^ 32'h00000003 ) ) ) ) | 
+	( U_633 & M_2736 ) ) | ( U_633 & ( ~|( RG_funct3_imm1 ^ 32'h00000003 ) ) ) ) ;	// line#=computer.cpp:594,638,640
+always @ ( addsub32u1ot or U_706 or TR_156 or M_2959 )
+	TR_17 = ( ( { 16{ M_2959 } } & { 15'h0000 , TR_156 } )
+		| ( { 16{ U_706 } } & addsub32u1ot [17:2] )	// line#=computer.cpp:131,140
 		) ;
-always @ ( C_q1ot or sub16s_131ot or add8s_71ot )	// line#=computer.cpp:330,331
-	case ( add8s_71ot [3] )
-	1'h1 :
-		TR_186 = { sub16s_131ot [12] , sub16s_131ot [12] , sub16s_131ot [12] , 
-		sub16s_131ot [12] , sub16s_131ot [12] , sub16s_131ot [12] , sub16s_131ot [12] , 
-		sub16s_131ot } ;	// line#=computer.cpp:331
-	1'h0 :
-		TR_186 = { C_q1ot [13] , C_q1ot [13] , C_q1ot [13] , C_q1ot [13] , 
-		C_q1ot [13] , C_q1ot [13] , C_q1ot } ;	// line#=computer.cpp:331
-	default :
-		TR_186 = 20'hx ;
-	endcase
-always @ ( ST1_256d or ST1_254d or ST1_252d or ST1_250d or ST1_248d or ST1_236d or 
-	ST1_234d or ST1_232d or ST1_230d or ST1_228d or ST1_226d or ST1_214d or 
-	ST1_212d or ST1_210d or ST1_208d or ST1_206d or ST1_204d or ST1_192d or 
-	ST1_190d or ST1_188d or ST1_186d or ST1_184d or ST1_182d or ST1_170d or 
-	ST1_168d or ST1_166d or ST1_164d or ST1_162d or ST1_160d or ST1_148d or 
-	ST1_146d or ST1_144d or ST1_142d or ST1_140d or ST1_138d or ST1_126d or 
-	ST1_124d or ST1_122d or ST1_120d or ST1_118d or ST1_116d or ST1_104d or 
-	TR_185 or ST1_102d or TR_184 or ST1_100d or TR_183 or ST1_98d or TR_182 or 
-	ST1_96d or TR_181 or ST1_94d or TR_186 or ST1_82d or add20s1ot or M_2970 or 
-	TR_14 or ST1_421d or M_3064 or C_q1ot or ST1_246d or ST1_224d or ST1_202d or 
-	ST1_180d or ST1_158d or ST1_136d or ST1_114d or ST1_92d )
+assign	M_2762 = ~|( RL_addr1_buf_buf1_next_pc_op1_PC ^ 32'h00000005 ) ;	// line#=computer.cpp:594,638,640
+assign	M_2771 = ~|( RL_addr1_buf_buf1_next_pc_op1_PC ^ 32'h00000006 ) ;	// line#=computer.cpp:594,638,640
+always @ ( M_2745 or addsub32u1ot or U_647 or RG_op2_result1 or FF_take or U_638 or 
+	RG_result_result1 or M_2761 or U_633 or M_2762 or M_2771 or RG_funct3_imm1 or 
+	RG_17 or RL_addr1_buf_buf1_next_pc_op1_PC or U_579 or TR_17 or U_706 or 
+	M_2959 or add32s1ot or U_585 or dmem_arg_MEMB32W65536_RD1 or U_179 or lsft32u1ot or 
+	U_551 or U_177 )	// line#=computer.cpp:594,638,640
 	begin
-	RG_buf1_coef_coef1_y_t_c1 = ( ( ( ( ( ( ( ST1_92d | ST1_114d ) | ST1_136d ) | 
-		ST1_158d ) | ST1_180d ) | ST1_202d ) | ST1_224d ) | ST1_246d ) ;	// line#=computer.cpp:331,365
-	RG_buf1_coef_coef1_y_t_c2 = ( M_3064 | ST1_421d ) ;	// line#=computer.cpp:218,227,353,363,377
-								// ,378
-	RG_buf1_coef_coef1_y_t = ( ( { 20{ RG_buf1_coef_coef1_y_t_c1 } } & { C_q1ot [12] , 
-			C_q1ot [12] , C_q1ot [12] , C_q1ot [12] , C_q1ot [12] , C_q1ot [12] , 
-			C_q1ot [12] , C_q1ot [12:0] } )				// line#=computer.cpp:331,365
-		| ( { 20{ RG_buf1_coef_coef1_y_t_c2 } } & { 4'h0 , TR_14 } )	// line#=computer.cpp:218,227,353,363,377
-										// ,378
-		| ( { 20{ M_2970 } } & add20s1ot )				// line#=computer.cpp:289,366
-		| ( { 20{ ST1_82d } } & TR_186 )				// line#=computer.cpp:330,331
-		| ( { 20{ ST1_94d } } & TR_181 )				// line#=computer.cpp:331
-		| ( { 20{ ST1_96d } } & TR_182 )				// line#=computer.cpp:330,331
-		| ( { 20{ ST1_98d } } & TR_183 )				// line#=computer.cpp:331
-		| ( { 20{ ST1_100d } } & TR_184 )				// line#=computer.cpp:330,331
-		| ( { 20{ ST1_102d } } & TR_185 )				// line#=computer.cpp:330,331
-		| ( { 20{ ST1_104d } } & TR_186 )				// line#=computer.cpp:330,331
-		| ( { 20{ ST1_116d } } & TR_181 )				// line#=computer.cpp:331
-		| ( { 20{ ST1_118d } } & TR_182 )				// line#=computer.cpp:330,331
-		| ( { 20{ ST1_120d } } & TR_183 )				// line#=computer.cpp:331
-		| ( { 20{ ST1_122d } } & TR_184 )				// line#=computer.cpp:330,331
-		| ( { 20{ ST1_124d } } & TR_185 )				// line#=computer.cpp:330,331
-		| ( { 20{ ST1_126d } } & TR_186 )				// line#=computer.cpp:330,331
-		| ( { 20{ ST1_138d } } & TR_181 )				// line#=computer.cpp:331
-		| ( { 20{ ST1_140d } } & TR_182 )				// line#=computer.cpp:330,331
-		| ( { 20{ ST1_142d } } & TR_183 )				// line#=computer.cpp:331
-		| ( { 20{ ST1_144d } } & TR_184 )				// line#=computer.cpp:330,331
-		| ( { 20{ ST1_146d } } & TR_185 )				// line#=computer.cpp:330,331
-		| ( { 20{ ST1_148d } } & TR_186 )				// line#=computer.cpp:330,331
-		| ( { 20{ ST1_160d } } & TR_181 )				// line#=computer.cpp:331
-		| ( { 20{ ST1_162d } } & TR_182 )				// line#=computer.cpp:330,331
-		| ( { 20{ ST1_164d } } & TR_183 )				// line#=computer.cpp:331
-		| ( { 20{ ST1_166d } } & TR_184 )				// line#=computer.cpp:330,331
-		| ( { 20{ ST1_168d } } & TR_185 )				// line#=computer.cpp:330,331
-		| ( { 20{ ST1_170d } } & TR_186 )				// line#=computer.cpp:330,331
-		| ( { 20{ ST1_182d } } & TR_181 )				// line#=computer.cpp:331
-		| ( { 20{ ST1_184d } } & TR_182 )				// line#=computer.cpp:330,331
-		| ( { 20{ ST1_186d } } & TR_183 )				// line#=computer.cpp:331
-		| ( { 20{ ST1_188d } } & TR_184 )				// line#=computer.cpp:330,331
-		| ( { 20{ ST1_190d } } & TR_185 )				// line#=computer.cpp:330,331
-		| ( { 20{ ST1_192d } } & TR_186 )				// line#=computer.cpp:330,331
-		| ( { 20{ ST1_204d } } & TR_181 )				// line#=computer.cpp:331
-		| ( { 20{ ST1_206d } } & TR_182 )				// line#=computer.cpp:330,331
-		| ( { 20{ ST1_208d } } & TR_183 )				// line#=computer.cpp:331
-		| ( { 20{ ST1_210d } } & TR_184 )				// line#=computer.cpp:330,331
-		| ( { 20{ ST1_212d } } & TR_185 )				// line#=computer.cpp:330,331
-		| ( { 20{ ST1_214d } } & TR_186 )				// line#=computer.cpp:330,331
-		| ( { 20{ ST1_226d } } & TR_181 )				// line#=computer.cpp:331
-		| ( { 20{ ST1_228d } } & TR_182 )				// line#=computer.cpp:330,331
-		| ( { 20{ ST1_230d } } & TR_183 )				// line#=computer.cpp:331
-		| ( { 20{ ST1_232d } } & TR_184 )				// line#=computer.cpp:330,331
-		| ( { 20{ ST1_234d } } & TR_185 )				// line#=computer.cpp:330,331
-		| ( { 20{ ST1_236d } } & TR_186 )				// line#=computer.cpp:330,331
-		| ( { 20{ ST1_248d } } & TR_181 )				// line#=computer.cpp:365
-		| ( { 20{ ST1_250d } } & TR_182 )				// line#=computer.cpp:364,365
-		| ( { 20{ ST1_252d } } & TR_183 )				// line#=computer.cpp:365
-		| ( { 20{ ST1_254d } } & TR_184 )				// line#=computer.cpp:364,365
-		| ( { 20{ ST1_256d } } & TR_185 )				// line#=computer.cpp:364,365
+	RG_result_result1_word_addr_t_c1 = ( U_177 | U_551 ) ;	// line#=computer.cpp:614,647
+	RG_result_result1_word_addr_t_c2 = ( M_2959 | U_706 ) ;	// line#=computer.cpp:131,140
+	RG_result_result1_word_addr_t_c3 = ( U_579 & ( ~|( RL_addr1_buf_buf1_next_pc_op1_PC ^ 
+		32'h00000004 ) ) ) ;	// line#=computer.cpp:605
+	RG_result_result1_word_addr_t_c4 = ( U_579 & M_2771 ) ;	// line#=computer.cpp:608
+	RG_result_result1_word_addr_t_c5 = ( U_579 & ( ~|( RL_addr1_buf_buf1_next_pc_op1_PC ^ 
+		32'h00000007 ) ) ) ;	// line#=computer.cpp:611
+	RG_result_result1_word_addr_t_c6 = ( ( U_579 & M_2762 ) | ( U_633 & M_2761 ) ) ;
+	RG_result_result1_word_addr_t_c7 = ( U_638 & FF_take ) ;	// line#=computer.cpp:641
+	RG_result_result1_word_addr_t_c8 = ( U_633 & M_2745 ) ;	// line#=computer.cpp:656
+	RG_result_result1_word_addr_t_c9 = ( U_633 & ( ~|( RG_funct3_imm1 ^ 32'h00000006 ) ) ) ;	// line#=computer.cpp:666
+	RG_result_result1_word_addr_t_c10 = ( U_633 & ( ~|( RG_funct3_imm1 ^ 32'h00000007 ) ) ) ;	// line#=computer.cpp:669
+	RG_result_result1_word_addr_t = ( ( { 32{ RG_result_result1_word_addr_t_c1 } } & 
+			lsft32u1ot )							// line#=computer.cpp:614,647
+		| ( { 32{ U_179 } } & dmem_arg_MEMB32W65536_RD1 )			// line#=computer.cpp:174,311,312
+		| ( { 32{ U_585 } } & add32s1ot )					// line#=computer.cpp:596
+		| ( { 32{ RG_result_result1_word_addr_t_c2 } } & { 16'h0000 , TR_17 } )	// line#=computer.cpp:131,140
+		| ( { 32{ RG_result_result1_word_addr_t_c3 } } & ( RG_17 ^ { RG_funct3_imm1 [11] , 
+			RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , 
+			RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , 
+			RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , 
+			RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , 
+			RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , 
+			RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , 
+			RG_funct3_imm1 [11] , RG_funct3_imm1 [11:0] } ) )		// line#=computer.cpp:605
+		| ( { 32{ RG_result_result1_word_addr_t_c4 } } & ( RG_17 | { RG_funct3_imm1 [11] , 
+			RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , 
+			RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , 
+			RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , 
+			RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , 
+			RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , 
+			RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , 
+			RG_funct3_imm1 [11] , RG_funct3_imm1 [11:0] } ) )		// line#=computer.cpp:608
+		| ( { 32{ RG_result_result1_word_addr_t_c5 } } & ( RG_17 & { RG_funct3_imm1 [11] , 
+			RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , 
+			RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , 
+			RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , 
+			RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , 
+			RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , 
+			RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , 
+			RG_funct3_imm1 [11] , RG_funct3_imm1 [11:0] } ) )		// line#=computer.cpp:611
+		| ( { 32{ RG_result_result1_word_addr_t_c6 } } & RG_result_result1 )
+		| ( { 32{ RG_result_result1_word_addr_t_c7 } } & RG_op2_result1 )	// line#=computer.cpp:641
+		| ( { 32{ U_647 } } & addsub32u1ot )					// line#=computer.cpp:643
+		| ( { 32{ RG_result_result1_word_addr_t_c8 } } & ( RL_addr1_buf_buf1_next_pc_op1_PC ^ 
+			RG_op2_result1 ) )						// line#=computer.cpp:656
+		| ( { 32{ RG_result_result1_word_addr_t_c9 } } & ( RL_addr1_buf_buf1_next_pc_op1_PC | 
+			RG_op2_result1 ) )						// line#=computer.cpp:666
+		| ( { 32{ RG_result_result1_word_addr_t_c10 } } & ( RL_addr1_buf_buf1_next_pc_op1_PC & 
+			RG_op2_result1 ) )						// line#=computer.cpp:669
 		) ;
 	end
-assign	RG_buf1_coef_coef1_y_en = ( RG_buf1_coef_coef1_y_t_c1 | RG_buf1_coef_coef1_y_t_c2 | 
-	M_2970 | ST1_82d | ST1_94d | ST1_96d | ST1_98d | ST1_100d | ST1_102d | ST1_104d | 
-	ST1_116d | ST1_118d | ST1_120d | ST1_122d | ST1_124d | ST1_126d | ST1_138d | 
-	ST1_140d | ST1_142d | ST1_144d | ST1_146d | ST1_148d | ST1_160d | ST1_162d | 
-	ST1_164d | ST1_166d | ST1_168d | ST1_170d | ST1_182d | ST1_184d | ST1_186d | 
-	ST1_188d | ST1_190d | ST1_192d | ST1_204d | ST1_206d | ST1_208d | ST1_210d | 
-	ST1_212d | ST1_214d | ST1_226d | ST1_228d | ST1_230d | ST1_232d | ST1_234d | 
-	ST1_236d | ST1_248d | ST1_250d | ST1_252d | ST1_254d | ST1_256d ) ;
+assign	RG_result_result1_word_addr_en = ( RG_result_result1_word_addr_t_c1 | U_179 | 
+	U_585 | RG_result_result1_word_addr_t_c2 | RG_result_result1_word_addr_t_c3 | 
+	RG_result_result1_word_addr_t_c4 | RG_result_result1_word_addr_t_c5 | RG_result_result1_word_addr_t_c6 | 
+	RG_result_result1_word_addr_t_c7 | U_647 | RG_result_result1_word_addr_t_c8 | 
+	RG_result_result1_word_addr_t_c9 | RG_result_result1_word_addr_t_c10 ) ;	// line#=computer.cpp:594,638,640
+always @ ( posedge CLOCK )	// line#=computer.cpp:594,638,640
+	if ( RG_result_result1_word_addr_en )
+		RG_result_result1_word_addr <= RG_result_result1_word_addr_t ;	// line#=computer.cpp:131,140,174,311,312
+										// ,594,596,605,608,611,614,638,640
+										// ,641,643,647,656,666,669
+always @ ( dmem_arg_MEMB32W65536_RD1 or U_194 or regs_rd02 or U_206 or ST1_54d or 
+	M_2783 or ST1_18d or ST1_16d or ST1_15d or ST1_14d or ST1_13d or M_2769 or 
+	ST1_11d )	// line#=computer.cpp:468
+	begin
+	RG_17_t_c1 = ( ( ( ( ( ( ( ( ST1_11d & M_2769 ) | ( ST1_13d & M_2769 ) ) | 
+		( ST1_14d & M_2769 ) ) | ( ST1_15d & M_2769 ) ) | ( ST1_16d & M_2769 ) ) | 
+		( ST1_18d & M_2783 ) ) | ( ST1_54d & M_2769 ) ) | U_206 ) ;	// line#=computer.cpp:86,91,501,596,605
+										// ,608,611,614,619,622
+	RG_17_t = ( ( { 32{ RG_17_t_c1 } } & regs_rd02 )		// line#=computer.cpp:86,91,501,596,605
+									// ,608,611,614,619,622
+		| ( { 32{ U_194 } } & dmem_arg_MEMB32W65536_RD1 )	// line#=computer.cpp:174,311,312
+		) ;
+	end
+assign	RG_17_en = ( RG_17_t_c1 | U_194 ) ;	// line#=computer.cpp:468
+always @ ( posedge CLOCK )	// line#=computer.cpp:468
+	if ( RG_17_en )
+		RG_17 <= RG_17_t ;	// line#=computer.cpp:86,91,174,311,312
+					// ,468,501,596,605,608,611,614,619
+					// ,622
+assign	RG_18_en = ST1_12d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_18_en )
+		RG_18 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_19_en = ST1_13d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_19_en )
+		RG_19 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_20_en = ST1_14d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_20_en )
+		RG_20 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_21_en = ST1_15d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_21_en )
+		RG_21 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_22_en = ST1_16d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_22_en )
+		RG_22 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	M_2923 = ( ( M_2921 | ( ST1_17d & M_2785 ) ) | U_281 ) ;	// line#=computer.cpp:468
+always @ ( RL_buf_buf1_instr_next_pc_rd or ST1_72d )
+	TR_18 = ( { 7{ ST1_72d } } & RL_buf_buf1_instr_next_pc_rd [31:25] )
+		 ;
+assign	M_2921 = ( ( ( ST1_17d & M_2779 ) | ( ST1_17d & M_2781 ) ) | ( ST1_17d & 
+	M_2783 ) ) ;	// line#=computer.cpp:468
+always @ ( dmem_arg_MEMB32W65536_RD1 or U_286 or RL_buf_buf1_instr_next_pc_rd or 
+	TR_18 or ST1_72d or M_2923 )
+	begin
+	RG_instr_next_pc_PC_t_c1 = ( M_2923 | ST1_72d ) ;
+	RG_instr_next_pc_PC_t = ( ( { 32{ RG_instr_next_pc_PC_t_c1 } } & { TR_18 , 
+			RL_buf_buf1_instr_next_pc_rd [24:0] } )
+		| ( { 32{ U_286 } } & dmem_arg_MEMB32W65536_RD1 )	// line#=computer.cpp:174,311,312
+		) ;
+	end
+assign	RG_instr_next_pc_PC_en = ( RG_instr_next_pc_PC_t_c1 | U_286 ) ;
 always @ ( posedge CLOCK )
-	if ( RG_buf1_coef_coef1_y_en )
-		RG_buf1_coef_coef1_y <= RG_buf1_coef_coef1_y_t ;	// line#=computer.cpp:218,227,289,330,331
-									// ,353,363,364,365,366,377,378
-always @ ( C_q1ot or sub16s_131ot or add8s_71ot )	// line#=computer.cpp:364,365
-	case ( add8s_71ot [3] )
-	1'h1 :
-		TR_187 = { sub16s_131ot [12] , sub16s_131ot } ;	// line#=computer.cpp:365
-	1'h0 :
-		TR_187 = C_q1ot ;	// line#=computer.cpp:365
-	default :
-		TR_187 = 14'hx ;
-	endcase
-always @ ( C_q1ot or sub16s_131ot or RG_y )	// line#=computer.cpp:365
-	case ( RG_y [2] )
-	1'h1 :
-		TR_188 = { sub16s_131ot [12] , sub16s_131ot } ;	// line#=computer.cpp:365
-	1'h0 :
-		TR_188 = C_q1ot ;	// line#=computer.cpp:365
-	default :
-		TR_188 = 14'hx ;
-	endcase
-always @ ( C_q1ot or sub16s_131ot or incr8s_61ot )	// line#=computer.cpp:364,365
+	if ( RG_instr_next_pc_PC_en )
+		RG_instr_next_pc_PC <= RG_instr_next_pc_PC_t ;	// line#=computer.cpp:174,311,312
+assign	RG_24_en = ST1_18d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_24_en )
+		RG_24 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_25_en = ST1_19d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_25_en )
+		RG_25 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	M_2842 = ( ( ( ( ( ( ( ( ( ( ( ( ( U_305 | ( ST1_19d & M_2773 ) ) | ( ST1_19d & 
+	M_2781 ) ) | ( ST1_19d & M_2783 ) ) | ( ST1_19d & M_2785 ) ) | ( ST1_19d & 
+	M_2764 ) ) | ( ST1_19d & M_2775 ) ) | U_312 ) | U_313 ) | ( ST1_19d & M_2742 ) ) | 
+	( U_315 & ( ~FF_take ) ) ) | ( ST1_19d & M_2787 ) ) | ( ST1_19d & M_2943 ) ) | 
+	ST1_73d ) ;	// line#=computer.cpp:468,690
+always @ ( regs_rd03 or U_342 or RG_buf_buf1_dst_addr_src_addr or M_2842 )
+	TR_19 = ( ( { 18{ M_2842 } } & RG_buf_buf1_dst_addr_src_addr [17:0] )
+		| ( { 18{ U_342 } } & regs_rd03 [17:0] )	// line#=computer.cpp:691
+		) ;
+always @ ( RG_buf_buf1_dst_addr_src_addr or ST1_65d or TR_19 or U_342 or M_2842 )
+	begin
+	RG_dst_addr_t_c1 = ( M_2842 | U_342 ) ;	// line#=computer.cpp:691
+	RG_dst_addr_t = ( ( { 32{ RG_dst_addr_t_c1 } } & { 14'h0000 , TR_19 } )	// line#=computer.cpp:691
+		| ( { 32{ ST1_65d } } & RG_buf_buf1_dst_addr_src_addr ) ) ;
+	end
+assign	RG_dst_addr_en = ( RG_dst_addr_t_c1 | ST1_65d ) ;
+always @ ( posedge CLOCK )
+	if ( RG_dst_addr_en )
+		RG_dst_addr <= RG_dst_addr_t ;	// line#=computer.cpp:691
+assign	RG_27_en = ST1_20d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_27_en )
+		RG_27 <= dmem_arg_MEMB32W65536_RD1 ;
+always @ ( U_687 or U_437 or add32s1ot or U_470 or U_393 or dmem_arg_MEMB32W65536_RD1 or 
+	U_399 )
+	begin
+	RG_addr_next_pc_t_c1 = ( U_393 | U_470 ) ;	// line#=computer.cpp:86,91,501,535
+	RG_addr_next_pc_t_c2 = ( U_437 | U_687 ) ;	// line#=computer.cpp:86,91,118,493,543
+	RG_addr_next_pc_t = ( ( { 32{ U_399 } } & dmem_arg_MEMB32W65536_RD1 )		// line#=computer.cpp:174,311,312
+		| ( { 32{ RG_addr_next_pc_t_c1 } } & { 1'h0 , add32s1ot [31:1] } )	// line#=computer.cpp:86,91,501,535
+		| ( { 32{ RG_addr_next_pc_t_c2 } } & add32s1ot )			// line#=computer.cpp:86,91,118,493,543
+		) ;
+	end
+assign	RG_addr_next_pc_en = ( U_399 | RG_addr_next_pc_t_c1 | RG_addr_next_pc_t_c2 ) ;
+always @ ( posedge CLOCK )
+	if ( RG_addr_next_pc_en )
+		RG_addr_next_pc <= RG_addr_next_pc_t ;	// line#=computer.cpp:86,91,118,174,311
+							// ,312,493,501,535,543
+assign	M_2788 = ( RG_op2_result1 & ( ~lsft32u1ot ) ) ;	// line#=computer.cpp:191,192,193,210,211
+							// ,212
+always @ ( dmem_arg_MEMB32W65536_RD1 or U_415 or M_2788 or U_411 )
+	RG_29_t = ( ( { 32{ U_411 } } & M_2788 )			// line#=computer.cpp:210,211,212
+		| ( { 32{ U_415 } } & dmem_arg_MEMB32W65536_RD1 )	// line#=computer.cpp:174,311,312
+		) ;
+assign	RG_29_en = ( U_411 | U_415 ) ;
+always @ ( posedge CLOCK )
+	if ( RG_29_en )
+		RG_29 <= RG_29_t ;	// line#=computer.cpp:174,210,211,212,311
+					// ,312
+assign	RG_30_en = ST1_23d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_30_en )
+		RG_30 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_31_en = ST1_24d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_31_en )
+		RG_31 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_32_en = ST1_25d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_32_en )
+		RG_32 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_33_en = ST1_26d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_33_en )
+		RG_33 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_34_en = ST1_27d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_34_en )
+		RG_34 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_35_en = ST1_28d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_35_en )
+		RG_35 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_36_en = ST1_29d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_36_en )
+		RG_36 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_37_en = ST1_30d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_37_en )
+		RG_37 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_38_en = ST1_31d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_38_en )
+		RG_38 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_39_en = ST1_32d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_39_en )
+		RG_39 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_40_en = ST1_33d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_40_en )
+		RG_40 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_41_en = ST1_34d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_41_en )
+		RG_41 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_42_en = ST1_35d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_42_en )
+		RG_42 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_43_en = ST1_36d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_43_en )
+		RG_43 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_44_en = ST1_37d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_44_en )
+		RG_44 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_45_en = ST1_38d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_45_en )
+		RG_45 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_46_en = ST1_39d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_46_en )
+		RG_46 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_47_en = ST1_40d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_47_en )
+		RG_47 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_48_en = ST1_41d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_48_en )
+		RG_48 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_49_en = ST1_42d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_49_en )
+		RG_49 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_50_en = ST1_43d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_50_en )
+		RG_50 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_51_en = ST1_44d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_51_en )
+		RG_51 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_52_en = ST1_45d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_52_en )
+		RG_52 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_53_en = ST1_46d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_53_en )
+		RG_53 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_54_en = ST1_47d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_54_en )
+		RG_54 <= dmem_arg_MEMB32W65536_RD1 ;
+always @ ( C_q3ot or sub16s_132ot or incr8s_61ot )	// line#=computer.cpp:337,338
 	case ( incr8s_61ot [3] )
 	1'h1 :
-		TR_189 = { sub16s_131ot [12] , sub16s_131ot } ;	// line#=computer.cpp:365
+		TR_158 = { sub16s_132ot [12] , sub16s_132ot [12] , sub16s_132ot [12] , 
+		sub16s_132ot } ;	// line#=computer.cpp:338
 	1'h0 :
-		TR_189 = C_q1ot ;	// line#=computer.cpp:365
+		TR_158 = { C_q3ot [13] , C_q3ot [13] , C_q3ot } ;	// line#=computer.cpp:338
 	default :
-		TR_189 = 14'hx ;
+		TR_158 = 16'hx ;
 	endcase
-always @ ( C_q1ot or sub16s_131ot or RG_y )	// line#=computer.cpp:365
-	case ( RG_y [1] )
-	1'h1 :
-		TR_190 = { sub16s_131ot [12] , sub16s_131ot } ;	// line#=computer.cpp:365
-	1'h0 :
-		TR_190 = C_q1ot ;	// line#=computer.cpp:365
-	default :
-		TR_190 = 14'hx ;
-	endcase
-always @ ( C_q1ot or sub16s_131ot or addsub8u_71ot )	// line#=computer.cpp:364,365
+always @ ( C_q3ot or sub16s_132ot or addsub8u_71ot )	// line#=computer.cpp:337,338
 	case ( addsub8u_71ot [3] )
 	1'h1 :
-		TR_191 = { sub16s_131ot [12] , sub16s_131ot } ;	// line#=computer.cpp:365
+		TR_160 = { sub16s_132ot [12] , sub16s_132ot [12] , sub16s_132ot [12] , 
+		sub16s_132ot } ;	// line#=computer.cpp:338
 	1'h0 :
-		TR_191 = C_q1ot ;	// line#=computer.cpp:365
+		TR_160 = { C_q3ot [13] , C_q3ot [13] , C_q3ot } ;	// line#=computer.cpp:338
 	default :
-		TR_191 = 14'hx ;
+		TR_160 = 16'hx ;
 	endcase
-always @ ( C_q1ot or sub16s_131ot or incr8s_61ot )	// line#=computer.cpp:364,365
+always @ ( C_q3ot or sub16s_132ot or incr8s_61ot )	// line#=computer.cpp:337,338
 	case ( incr8s_61ot [2] )
 	1'h1 :
-		TR_192 = { sub16s_131ot [12] , sub16s_131ot } ;	// line#=computer.cpp:365
+		TR_161 = { sub16s_132ot [12] , sub16s_132ot [12] , sub16s_132ot [12] , 
+		sub16s_132ot } ;	// line#=computer.cpp:338
 	1'h0 :
-		TR_192 = C_q1ot ;	// line#=computer.cpp:365
+		TR_161 = { C_q3ot [13] , C_q3ot [13] , C_q3ot } ;	// line#=computer.cpp:338
 	default :
-		TR_192 = 14'hx ;
+		TR_161 = 16'hx ;
 	endcase
-always @ ( ST1_419d or ST1_417d or ST1_415d or ST1_413d or ST1_411d or ST1_409d or 
-	ST1_396d or ST1_394d or ST1_392d or ST1_390d or ST1_388d or ST1_386d or 
-	ST1_373d or ST1_371d or ST1_369d or ST1_367d or ST1_365d or ST1_363d or 
-	ST1_350d or ST1_348d or ST1_346d or ST1_344d or ST1_342d or ST1_340d or 
-	ST1_327d or ST1_325d or ST1_323d or ST1_321d or ST1_319d or ST1_317d or 
-	ST1_304d or ST1_302d or ST1_300d or ST1_298d or ST1_296d or ST1_294d or 
-	ST1_281d or TR_192 or ST1_279d or TR_191 or ST1_277d or TR_190 or ST1_275d or 
-	TR_189 or ST1_273d or TR_188 or ST1_271d or TR_187 or ST1_258d or C_q1ot or 
-	ST1_407d or ST1_384d or ST1_361d or ST1_338d or ST1_315d or ST1_292d or 
-	ST1_269d )
+always @ ( C_q3ot or sub16s_132ot or add8s_71ot )	// line#=computer.cpp:337,338
+	case ( add8s_71ot [3] )
+	1'h1 :
+		TR_162 = { sub16s_132ot [12] , sub16s_132ot [12] , sub16s_132ot [12] , 
+		sub16s_132ot } ;	// line#=computer.cpp:338
+	1'h0 :
+		TR_162 = { C_q3ot [13] , C_q3ot [13] , C_q3ot } ;	// line#=computer.cpp:338
+	default :
+		TR_162 = 16'hx ;
+	endcase
+always @ ( ST1_204d or ST1_202d or ST1_200d or ST1_197d or ST1_186d or ST1_184d or 
+	ST1_182d or ST1_179d or ST1_168d or ST1_166d or ST1_164d or ST1_161d or 
+	ST1_150d or ST1_148d or ST1_146d or ST1_143d or ST1_132d or ST1_130d or 
+	ST1_128d or ST1_125d or ST1_114d or ST1_112d or ST1_110d or ST1_107d or 
+	ST1_96d or ST1_94d or ST1_92d or ST1_89d or TR_162 or ST1_78d or TR_161 or 
+	ST1_76d or TR_160 or ST1_74d or TR_158 or ST1_71d or sub20u_181ot or ST1_276d or 
+	ST1_47d )
 	begin
-	RG_coef1_t_c1 = ( ( ( ( ( ( ST1_269d | ST1_292d ) | ST1_315d ) | ST1_338d ) | 
-		ST1_361d ) | ST1_384d ) | ST1_407d ) ;	// line#=computer.cpp:365
-	RG_coef1_t = ( ( { 14{ RG_coef1_t_c1 } } & { C_q1ot [12] , C_q1ot [12:0] } )	// line#=computer.cpp:365
-		| ( { 14{ ST1_258d } } & TR_187 )					// line#=computer.cpp:364,365
-		| ( { 14{ ST1_271d } } & TR_188 )					// line#=computer.cpp:365
-		| ( { 14{ ST1_273d } } & TR_189 )					// line#=computer.cpp:364,365
-		| ( { 14{ ST1_275d } } & TR_190 )					// line#=computer.cpp:365
-		| ( { 14{ ST1_277d } } & TR_191 )					// line#=computer.cpp:364,365
-		| ( { 14{ ST1_279d } } & TR_192 )					// line#=computer.cpp:364,365
-		| ( { 14{ ST1_281d } } & TR_187 )					// line#=computer.cpp:364,365
-		| ( { 14{ ST1_294d } } & TR_188 )					// line#=computer.cpp:365
-		| ( { 14{ ST1_296d } } & TR_189 )					// line#=computer.cpp:364,365
-		| ( { 14{ ST1_298d } } & TR_190 )					// line#=computer.cpp:365
-		| ( { 14{ ST1_300d } } & TR_191 )					// line#=computer.cpp:364,365
-		| ( { 14{ ST1_302d } } & TR_192 )					// line#=computer.cpp:364,365
-		| ( { 14{ ST1_304d } } & TR_187 )					// line#=computer.cpp:364,365
-		| ( { 14{ ST1_317d } } & TR_188 )					// line#=computer.cpp:365
-		| ( { 14{ ST1_319d } } & TR_189 )					// line#=computer.cpp:364,365
-		| ( { 14{ ST1_321d } } & TR_190 )					// line#=computer.cpp:365
-		| ( { 14{ ST1_323d } } & TR_191 )					// line#=computer.cpp:364,365
-		| ( { 14{ ST1_325d } } & TR_192 )					// line#=computer.cpp:364,365
-		| ( { 14{ ST1_327d } } & TR_187 )					// line#=computer.cpp:364,365
-		| ( { 14{ ST1_340d } } & TR_188 )					// line#=computer.cpp:365
-		| ( { 14{ ST1_342d } } & TR_189 )					// line#=computer.cpp:364,365
-		| ( { 14{ ST1_344d } } & TR_190 )					// line#=computer.cpp:365
-		| ( { 14{ ST1_346d } } & TR_191 )					// line#=computer.cpp:364,365
-		| ( { 14{ ST1_348d } } & TR_192 )					// line#=computer.cpp:364,365
-		| ( { 14{ ST1_350d } } & TR_187 )					// line#=computer.cpp:364,365
-		| ( { 14{ ST1_363d } } & TR_188 )					// line#=computer.cpp:365
-		| ( { 14{ ST1_365d } } & TR_189 )					// line#=computer.cpp:364,365
-		| ( { 14{ ST1_367d } } & TR_190 )					// line#=computer.cpp:365
-		| ( { 14{ ST1_369d } } & TR_191 )					// line#=computer.cpp:364,365
-		| ( { 14{ ST1_371d } } & TR_192 )					// line#=computer.cpp:364,365
-		| ( { 14{ ST1_373d } } & TR_187 )					// line#=computer.cpp:364,365
-		| ( { 14{ ST1_386d } } & TR_188 )					// line#=computer.cpp:365
-		| ( { 14{ ST1_388d } } & TR_189 )					// line#=computer.cpp:364,365
-		| ( { 14{ ST1_390d } } & TR_190 )					// line#=computer.cpp:365
-		| ( { 14{ ST1_392d } } & TR_191 )					// line#=computer.cpp:364,365
-		| ( { 14{ ST1_394d } } & TR_192 )					// line#=computer.cpp:364,365
-		| ( { 14{ ST1_396d } } & TR_187 )					// line#=computer.cpp:364,365
-		| ( { 14{ ST1_409d } } & TR_188 )					// line#=computer.cpp:365
-		| ( { 14{ ST1_411d } } & TR_189 )					// line#=computer.cpp:364,365
-		| ( { 14{ ST1_413d } } & TR_190 )					// line#=computer.cpp:365
-		| ( { 14{ ST1_415d } } & TR_191 )					// line#=computer.cpp:364,365
-		| ( { 14{ ST1_417d } } & TR_192 )					// line#=computer.cpp:364,365
-		| ( { 14{ ST1_419d } } & TR_187 )					// line#=computer.cpp:364,365
+	RG_coef_t_c1 = ( ST1_47d | ST1_276d ) ;	// line#=computer.cpp:165,174,218,227,311
+						// ,312,384,385
+	RG_coef_t = ( ( { 16{ RG_coef_t_c1 } } & sub20u_181ot [17:2] )	// line#=computer.cpp:165,174,218,227,311
+									// ,312,384,385
+		| ( { 16{ ST1_71d } } & TR_158 )			// line#=computer.cpp:337,338
+		| ( { 16{ ST1_74d } } & TR_160 )			// line#=computer.cpp:337,338
+		| ( { 16{ ST1_76d } } & TR_161 )			// line#=computer.cpp:337,338
+		| ( { 16{ ST1_78d } } & TR_162 )			// line#=computer.cpp:337,338
+		| ( { 16{ ST1_89d } } & TR_158 )			// line#=computer.cpp:337,338
+		| ( { 16{ ST1_92d } } & TR_160 )			// line#=computer.cpp:337,338
+		| ( { 16{ ST1_94d } } & TR_161 )			// line#=computer.cpp:337,338
+		| ( { 16{ ST1_96d } } & TR_162 )			// line#=computer.cpp:337,338
+		| ( { 16{ ST1_107d } } & TR_158 )			// line#=computer.cpp:337,338
+		| ( { 16{ ST1_110d } } & TR_160 )			// line#=computer.cpp:337,338
+		| ( { 16{ ST1_112d } } & TR_161 )			// line#=computer.cpp:337,338
+		| ( { 16{ ST1_114d } } & TR_162 )			// line#=computer.cpp:337,338
+		| ( { 16{ ST1_125d } } & TR_158 )			// line#=computer.cpp:337,338
+		| ( { 16{ ST1_128d } } & TR_160 )			// line#=computer.cpp:337,338
+		| ( { 16{ ST1_130d } } & TR_161 )			// line#=computer.cpp:337,338
+		| ( { 16{ ST1_132d } } & TR_162 )			// line#=computer.cpp:337,338
+		| ( { 16{ ST1_143d } } & TR_158 )			// line#=computer.cpp:337,338
+		| ( { 16{ ST1_146d } } & TR_160 )			// line#=computer.cpp:337,338
+		| ( { 16{ ST1_148d } } & TR_161 )			// line#=computer.cpp:337,338
+		| ( { 16{ ST1_150d } } & TR_162 )			// line#=computer.cpp:337,338
+		| ( { 16{ ST1_161d } } & TR_158 )			// line#=computer.cpp:337,338
+		| ( { 16{ ST1_164d } } & TR_160 )			// line#=computer.cpp:337,338
+		| ( { 16{ ST1_166d } } & TR_161 )			// line#=computer.cpp:337,338
+		| ( { 16{ ST1_168d } } & TR_162 )			// line#=computer.cpp:337,338
+		| ( { 16{ ST1_179d } } & TR_158 )			// line#=computer.cpp:337,338
+		| ( { 16{ ST1_182d } } & TR_160 )			// line#=computer.cpp:337,338
+		| ( { 16{ ST1_184d } } & TR_161 )			// line#=computer.cpp:337,338
+		| ( { 16{ ST1_186d } } & TR_162 )			// line#=computer.cpp:337,338
+		| ( { 16{ ST1_197d } } & TR_158 )			// line#=computer.cpp:337,338
+		| ( { 16{ ST1_200d } } & TR_160 )			// line#=computer.cpp:337,338
+		| ( { 16{ ST1_202d } } & TR_161 )			// line#=computer.cpp:337,338
+		| ( { 16{ ST1_204d } } & TR_162 )			// line#=computer.cpp:337,338
 		) ;
 	end
+assign	RG_coef_en = ( RG_coef_t_c1 | ST1_71d | ST1_74d | ST1_76d | ST1_78d | ST1_89d | 
+	ST1_92d | ST1_94d | ST1_96d | ST1_107d | ST1_110d | ST1_112d | ST1_114d | 
+	ST1_125d | ST1_128d | ST1_130d | ST1_132d | ST1_143d | ST1_146d | ST1_148d | 
+	ST1_150d | ST1_161d | ST1_164d | ST1_166d | ST1_168d | ST1_179d | ST1_182d | 
+	ST1_184d | ST1_186d | ST1_197d | ST1_200d | ST1_202d | ST1_204d ) ;
 always @ ( posedge CLOCK )
-	RG_coef1 <= RG_coef1_t ;	// line#=computer.cpp:364,365
-always @ ( imem_arg_MEMB32W65536_RD1 or M_2866 or M_2879 )	// line#=computer.cpp:442,450,461,683
-	JF_02 = ( ( { 1{ M_2879 } } & 1'h1 )
-		| ( { 1{ M_2866 } } & ( ( imem_arg_MEMB32W65536_RD1 [14:12] == 3'h0 ) | 
-			( imem_arg_MEMB32W65536_RD1 [14:12] == 3'h1 ) ) )	// line#=computer.cpp:442,566
+	if ( RG_coef_en )
+		RG_coef <= RG_coef_t ;	// line#=computer.cpp:165,174,218,227,311
+					// ,312,337,338,384,385
+always @ ( dmem_arg_MEMB32W65536_RD1 or U_430 or lsft32u1ot or RG_29 or U_426 )
+	RG_56_t = ( ( { 32{ U_426 } } & ( RG_29 | lsft32u1ot ) )	// line#=computer.cpp:211,212,578
+		| ( { 32{ U_430 } } & dmem_arg_MEMB32W65536_RD1 )	// line#=computer.cpp:174,311,312
 		) ;
-assign	M_3055 = ( ( M_2862 | M_2868 ) | M_2870 ) ;	// line#=computer.cpp:442,450,461,683
-assign	M_3049 = ( ( ( M_3055 | M_2872 ) | M_2874 ) | M_2853 ) ;	// line#=computer.cpp:442,450,461,683
-assign	JF_03 = ( M_2866 & ( ~( ( imem_arg_MEMB32W65536_RD1 [14:12] == 3'h0 ) | ( 
-	imem_arg_MEMB32W65536_RD1 [14:12] == 3'h1 ) ) ) ) ;	// line#=computer.cpp:442,566
-assign	JF_06 = ( U_13 & ( imem_arg_MEMB32W65536_RD1 [14:12] == 3'h0 ) ) ;	// line#=computer.cpp:442,631
-assign	JF_07 = ( U_13 & ( imem_arg_MEMB32W65536_RD1 [14:12] == 3'h5 ) ) ;	// line#=computer.cpp:442,631
-assign	JF_08 = ( U_13 & ( imem_arg_MEMB32W65536_RD1 [14:12] == 3'h1 ) ) ;	// line#=computer.cpp:442,631
-assign	JF_09 = ( ( ( M_3055 | M_2874 ) | M_2858 ) | M_2864 ) ;
-always @ ( RG_buf_buf1_funct3_imm1_next_pc or M_2867 or M_2848 )
-	JF_10 = ( ( { 1{ M_2848 } } & 1'h1 )
-		| ( { 1{ M_2867 } } & ( RG_buf_buf1_funct3_imm1_next_pc == 32'h00000000 ) )	// line#=computer.cpp:566
+assign	RG_56_en = ( U_426 | U_430 ) ;
+always @ ( posedge CLOCK )
+	if ( RG_56_en )
+		RG_56 <= RG_56_t ;	// line#=computer.cpp:174,211,212,311,312
+					// ,578
+assign	RG_57_en = ST1_49d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_57_en )
+		RG_57 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_58_en = ST1_50d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_58_en )
+		RG_58 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_59_en = ST1_51d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_59_en )
+		RG_59 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_60_en = ST1_52d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_60_en )
+		RG_60 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_61_en = ST1_53d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_61_en )
+		RG_61 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_62_en = ST1_54d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_62_en )
+		RG_62 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_63_en = ST1_55d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_63_en )
+		RG_63 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_64_en = ST1_56d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_64_en )
+		RG_64 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_65_en = ST1_57d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_65_en )
+		RG_65 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_66_en = ST1_58d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_66_en )
+		RG_66 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	RG_67_en = ST1_59d ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RG_67_en )
+		RG_67 <= dmem_arg_MEMB32W65536_RD1 ;
+always @ ( add20s1ot or ST1_274d or ST1_266d or ST1_258d or ST1_250d or ST1_242d or 
+	ST1_234d or ST1_226d or ST1_218d or blk_in_rd00 or ST1_204d or ST1_202d or 
+	ST1_200d or ST1_186d or ST1_184d or ST1_182d or ST1_168d or ST1_166d or 
+	ST1_164d or ST1_150d or ST1_148d or ST1_146d or ST1_132d or ST1_130d or 
+	ST1_128d or ST1_114d or ST1_112d or ST1_110d or M_2848 or dmem_arg_MEMB32W65536_RD1 or 
+	ST1_60d )
+	begin
+	RG_buf1_t_c1 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( M_2848 | ST1_110d ) | 
+		ST1_112d ) | ST1_114d ) | ST1_128d ) | ST1_130d ) | ST1_132d ) | 
+		ST1_146d ) | ST1_148d ) | ST1_150d ) | ST1_164d ) | ST1_166d ) | 
+		ST1_168d ) | ST1_182d ) | ST1_184d ) | ST1_186d ) | ST1_200d ) | 
+		ST1_202d ) | ST1_204d ) ;	// line#=computer.cpp:339
+	RG_buf1_t_c2 = ( ( ( ( ( ( ( ST1_218d | ST1_226d ) | ST1_234d ) | ST1_242d ) | 
+		ST1_250d ) | ST1_258d ) | ST1_266d ) | ST1_274d ) ;	// line#=computer.cpp:296,373
+	RG_buf1_t = ( ( { 32{ ST1_60d } } & dmem_arg_MEMB32W65536_RD1 )	// line#=computer.cpp:174,311,312
+		| ( { 32{ RG_buf1_t_c1 } } & blk_in_rd00 )		// line#=computer.cpp:339
+		| ( { 32{ RG_buf1_t_c2 } } & { add20s1ot [19] , add20s1ot [19] , 
+			add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , 
+			add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , 
+			add20s1ot [19] , add20s1ot [19] , add20s1ot } )	// line#=computer.cpp:296,373
 		) ;
-assign	M_3051 = ( ( ( ( ( M_2863 | M_2869 ) | M_2871 ) | M_2873 ) | M_2875 ) | M_2854 ) ;	// line#=computer.cpp:461,466,475,484,495
-assign	JF_11 = ( M_2867 & ( RG_buf_buf1_funct3_imm1_next_pc == 32'h00000001 ) ) ;	// line#=computer.cpp:566
-assign	M_3040 = ( ( ( ( M_3051 | M_2867 ) | M_2859 ) | M_2865 ) | M_2832 ) ;	// line#=computer.cpp:461,466,475,484,495
-assign	JF_14 = ( U_121 & ( RG_addr1_next_pc_op1_PC_src_addr == 32'h00000000 ) ) ;	// line#=computer.cpp:587
-assign	JF_15 = ( U_121 & ( RG_addr1_next_pc_op1_PC_src_addr == 32'h00000005 ) ) ;	// line#=computer.cpp:587
-assign	JF_16 = ( U_121 & ( RG_addr1_next_pc_op1_PC_src_addr == 32'h00000001 ) ) ;	// line#=computer.cpp:587
-assign	JF_17 = ( U_121 & ( RG_addr1_next_pc_op1_PC_src_addr == 32'h00000007 ) ) ;	// line#=computer.cpp:587
-assign	JF_18 = ( U_121 & ( RG_addr1_next_pc_op1_PC_src_addr == 32'h00000004 ) ) ;	// line#=computer.cpp:587
-assign	JF_24 = ( U_208 & RG_buf_buf1_instr_rd_word_addr [23] ) ;	// line#=computer.cpp:610
-assign	JF_28 = ( M_2873 | M_2848 ) ;	// line#=computer.cpp:461,466,475,484,495
-assign	JF_32 = ( M_2869 & CT_15 ) ;	// line#=computer.cpp:461,466,475,484,495
-assign	JF_33 = ( U_285 & M_2861 ) ;	// line#=computer.cpp:587
-assign	JF_34 = ( U_300 & FF_take ) ;	// line#=computer.cpp:610
-assign	JF_35 = ( U_285 & ( ~|( RG_addr1_next_pc_op1_PC_src_addr ^ 32'h00000001 ) ) ) ;	// line#=computer.cpp:587
-assign	JF_36 = ( U_300 & ( ~FF_take ) ) ;	// line#=computer.cpp:610
-assign	JF_38 = ( ( U_286 & M_2851 ) & ( ~FF_take ) ) ;	// line#=computer.cpp:631,652
-assign	JF_42 = ( ( M_2863 & CT_15 ) | M_2848 ) ;	// line#=computer.cpp:461,466,475,484,495
-							// ,555,619,665
-assign	JF_47 = ( ( M_2871 & CT_15 ) | M_2848 ) ;	// line#=computer.cpp:461,466,475,484,495
-							// ,555,619,665
-assign	JF_49 = ( ( M_2873 & CT_15 ) | M_2848 ) ;	// line#=computer.cpp:461,466,475,484,495
-							// ,555,619,665
-assign	M_2878 = ( M_2848 & FF_take ) ;
-always @ ( RG_y or M_3038 or M_2877 or FF_take or M_2848 or M_3040 )	// line#=computer.cpp:461,466,475,484,495
-	begin
-	y11_t1_c1 = ( ( ( M_3040 | ( M_2848 & ( ~FF_take ) ) ) | M_2877 ) | M_3038 ) ;
-	y11_t1 = ( { 4{ y11_t1_c1 } } & RG_y [3:0] )
-		 ;	// line#=computer.cpp:329
 	end
-always @ ( RG_addr1_next_pc_op1_PC_src_addr or RG_buf_buf1_1 or RG_buf_buf1_funct3_imm1_next_pc or 
-	FF_take )	// line#=computer.cpp:527
+assign	RG_buf1_en = ( ST1_60d | RG_buf1_t_c1 | RG_buf1_t_c2 ) ;
+always @ ( posedge CLOCK )
+	if ( RG_buf1_en )
+		RG_buf1 <= RG_buf1_t ;	// line#=computer.cpp:174,296,311,312,339
+					// ,373
+always @ ( RL_blk_out_buf_buf1_dst_addr_rs1 or ST1_271d or ST1_263d or ST1_255d or 
+	ST1_247d or ST1_239d or ST1_231d or ST1_223d or ST1_215d or ST1_199d or 
+	ST1_181d or ST1_163d or ST1_145d or ST1_127d or ST1_109d or ST1_95d or add20s1ot or 
+	ST1_77d or blk_in_rd00 or ST1_197d or ST1_179d or ST1_161d or ST1_143d or 
+	ST1_125d or ST1_107d or ST1_94d or ST1_92d or ST1_76d or dmem_arg_MEMB32W65536_RD1 or 
+	ST1_61d )
 	begin
-	M_1859_t_c1 = ~FF_take ;
-	M_1859_t = ( ( { 31{ FF_take } } & RG_buf_buf1_funct3_imm1_next_pc [30:0] )
-		| ( { 31{ M_1859_t_c1 } } & { RG_buf_buf1_1 [31:2] , RG_addr1_next_pc_op1_PC_src_addr [1] } ) ) ;
+	RG_buf_buf1_t_c1 = ( ( ( ( ( ( ( ( ST1_76d | ST1_92d ) | ST1_94d ) | ST1_107d ) | 
+		ST1_125d ) | ST1_143d ) | ST1_161d ) | ST1_179d ) | ST1_197d ) ;	// line#=computer.cpp:339
+	RG_buf_buf1_t_c2 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_95d | ST1_109d ) | ST1_127d ) | 
+		ST1_145d ) | ST1_163d ) | ST1_181d ) | ST1_199d ) | ST1_215d ) | 
+		ST1_223d ) | ST1_231d ) | ST1_239d ) | ST1_247d ) | ST1_255d ) | 
+		ST1_263d ) | ST1_271d ) ;
+	RG_buf_buf1_t = ( ( { 32{ ST1_61d } } & dmem_arg_MEMB32W65536_RD1 )	// line#=computer.cpp:174,311,312
+		| ( { 32{ RG_buf_buf1_t_c1 } } & blk_in_rd00 )			// line#=computer.cpp:339
+		| ( { 32{ ST1_77d } } & { add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , 
+			add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , 
+			add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , 
+			add20s1ot [19] , add20s1ot } )				// line#=computer.cpp:296,339
+		| ( { 32{ RG_buf_buf1_t_c2 } } & { RL_blk_out_buf_buf1_dst_addr_rs1 [19] , 
+			RL_blk_out_buf_buf1_dst_addr_rs1 [19] , RL_blk_out_buf_buf1_dst_addr_rs1 [19] , 
+			RL_blk_out_buf_buf1_dst_addr_rs1 [19] , RL_blk_out_buf_buf1_dst_addr_rs1 [19] , 
+			RL_blk_out_buf_buf1_dst_addr_rs1 [19] , RL_blk_out_buf_buf1_dst_addr_rs1 [19] , 
+			RL_blk_out_buf_buf1_dst_addr_rs1 [19] , RL_blk_out_buf_buf1_dst_addr_rs1 [19] , 
+			RL_blk_out_buf_buf1_dst_addr_rs1 [19] , RL_blk_out_buf_buf1_dst_addr_rs1 [19] , 
+			RL_blk_out_buf_buf1_dst_addr_rs1 [19] , RL_blk_out_buf_buf1_dst_addr_rs1 } ) ) ;
 	end
-assign	JF_66 = ~M_2878 ;
-assign	JF_67 = ~RG_y [3] ;
-assign	JF_68 = ~RG_y [3] ;
-assign	JF_69 = ~RG_y [3] ;
-assign	JF_70 = ~RG_y [3] ;
-assign	JF_71 = ~RG_y [3] ;
-assign	JF_72 = ~RG_y [3] ;
-assign	JF_73 = ~RG_y [3] ;
-assign	JF_75 = ~RG_y [3] ;
-assign	JF_76 = ~RG_y [3] ;
-assign	JF_77 = ~RG_y [3] ;
-assign	JF_78 = ~RG_y [3] ;
-assign	JF_79 = ~RG_y [3] ;
-assign	JF_80 = ~RG_y [3] ;
-assign	JF_81 = ~RG_y [3] ;
-assign	JF_83 = ~RG_y [3] ;
-assign	JF_84 = ~RG_y [3] ;
-assign	JF_85 = ~RG_y [3] ;
-assign	JF_86 = ~RG_y [3] ;
-assign	JF_87 = ~RG_y [3] ;
-assign	JF_88 = ~RG_y [3] ;
-assign	JF_89 = ~RG_y [3] ;
-assign	JF_91 = ~RG_y [3] ;
-assign	JF_92 = ~RG_y [3] ;
-assign	JF_93 = ~RG_y [3] ;
-assign	JF_94 = ~RG_y [3] ;
-assign	JF_95 = ~RG_y [3] ;
-assign	JF_96 = ~RG_y [3] ;
-assign	JF_97 = ~RG_y [3] ;
-assign	JF_99 = ~RG_y [3] ;
-assign	JF_100 = ~RG_y [3] ;
-assign	JF_101 = ~RG_y [3] ;
-assign	JF_102 = ~RG_y [3] ;
-assign	JF_103 = ~RG_y [3] ;
-assign	JF_104 = ~RG_y [3] ;
-assign	JF_105 = ~RG_y [3] ;
-assign	JF_107 = ~RG_y [3] ;
-assign	JF_108 = ~RG_y [3] ;
-assign	JF_109 = ~RG_y [3] ;
-assign	JF_110 = ~RG_y [3] ;
-assign	JF_111 = ~RG_y [3] ;
-assign	JF_112 = ~RG_y [3] ;
-assign	JF_113 = ~RG_y [3] ;
-assign	JF_115 = ~RG_y [3] ;
-assign	JF_116 = ~RG_y [3] ;
-assign	JF_117 = ~RG_y [3] ;
-assign	JF_118 = ~RG_y [3] ;
-assign	JF_119 = ~RG_y [3] ;
-assign	JF_120 = ~RG_y [3] ;
-assign	JF_121 = ~RG_y [3] ;
-assign	JF_123 = ~RG_y [3] ;
-assign	JF_124 = ~RG_y [3] ;
-assign	JF_125 = ~RG_y [3] ;
-assign	JF_126 = ~RG_y [3] ;
-assign	JF_127 = ~RG_y [3] ;
-assign	JF_128 = ~RG_y [3] ;
-assign	JF_129 = ~RG_y [3] ;
-assign	JF_132 = ~RG_y [3] ;
-assign	JF_133 = ~RG_y [3] ;
-assign	JF_134 = ~RG_y [3] ;
-assign	JF_135 = ~RG_y [3] ;
-assign	JF_136 = ~RG_y [3] ;
-assign	JF_137 = ~RG_y [3] ;
-assign	JF_138 = ~RG_y [3] ;
-assign	JF_140 = ~RG_y [3] ;
-assign	JF_141 = ~RG_y [3] ;
-assign	JF_142 = ~RG_y [3] ;
-assign	JF_143 = ~RG_y [3] ;
-assign	JF_144 = ~RG_y [3] ;
-assign	JF_145 = ~RG_y [3] ;
-assign	JF_146 = ~RG_y [3] ;
-assign	JF_148 = ~RG_y [3] ;
-assign	JF_149 = ~RG_y [3] ;
-assign	JF_150 = ~RG_y [3] ;
-assign	JF_151 = ~RG_y [3] ;
-assign	JF_152 = ~RG_y [3] ;
-assign	JF_153 = ~RG_y [3] ;
-assign	JF_154 = ~RG_y [3] ;
-assign	JF_156 = ~RG_y [3] ;
-assign	JF_157 = ~RG_y [3] ;
-assign	JF_158 = ~RG_y [3] ;
-assign	JF_159 = ~RG_y [3] ;
-assign	JF_160 = ~RG_y [3] ;
-assign	JF_161 = ~RG_y [3] ;
-assign	JF_162 = ~RG_y [3] ;
-assign	JF_164 = ~RG_y [3] ;
-assign	JF_165 = ~RG_y [3] ;
-assign	JF_166 = ~RG_y [3] ;
-assign	JF_167 = ~RG_y [3] ;
-assign	JF_168 = ~RG_y [3] ;
-assign	JF_169 = ~RG_y [3] ;
-assign	JF_170 = ~RG_y [3] ;
-assign	JF_172 = ~RG_y [3] ;
-assign	JF_173 = ~RG_y [3] ;
-assign	JF_174 = ~RG_y [3] ;
-assign	JF_175 = ~RG_y [3] ;
-assign	JF_176 = ~RG_y [3] ;
-assign	JF_177 = ~RG_y [3] ;
-assign	JF_178 = ~RG_y [3] ;
-assign	JF_180 = ~RG_y [3] ;
-assign	JF_181 = ~RG_y [3] ;
-assign	JF_182 = ~RG_y [3] ;
-assign	JF_183 = ~RG_y [3] ;
-assign	JF_184 = ~RG_y [3] ;
-assign	JF_185 = ~RG_y [3] ;
-assign	JF_186 = ~RG_y [3] ;
-assign	JF_188 = ~RG_y [3] ;
-assign	JF_189 = ~RG_y [3] ;
-assign	JF_190 = ~RG_y [3] ;
-assign	JF_191 = ~RG_y [3] ;
-assign	JF_192 = ~RG_y [3] ;
-assign	JF_193 = ~RG_y [3] ;
-assign	JF_194 = ~RG_y [3] ;
+assign	RG_buf_buf1_en = ( ST1_61d | RG_buf_buf1_t_c1 | ST1_77d | RG_buf_buf1_t_c2 ) ;
+always @ ( posedge CLOCK )
+	if ( RG_buf_buf1_en )
+		RG_buf_buf1 <= RG_buf_buf1_t ;	// line#=computer.cpp:174,296,311,312,339
+assign	M_2839 = ( ST1_71d | ST1_74d ) ;	// line#=computer.cpp:545
+always @ ( RL_blk_out_buf_buf1_dst_addr_rs1 or ST1_269d or ST1_261d or ST1_253d or 
+	ST1_245d or ST1_237d or ST1_229d or ST1_221d or ST1_213d or ST1_196d or 
+	ST1_178d or ST1_160d or ST1_142d or ST1_124d or ST1_106d or ST1_91d or add20s1ot or 
+	ST1_75d or blk_in_rd00 or ST1_89d or M_2839 or lsft32u1ot or RG_op2_result1 or 
+	U_673 or dmem_arg_MEMB32W65536_RD1 or M_2736 or M_2748 or U_729 or U_706 or 
+	ST1_62d )	// line#=computer.cpp:545
+	begin
+	RG_buf_buf1_val_t_c1 = ( ( ST1_62d | U_706 ) | ( ( U_729 & M_2748 ) | ( U_729 & 
+		M_2736 ) ) ) ;	// line#=computer.cpp:142,159,174,311,312
+				// ,547,550,553
+	RG_buf_buf1_val_t_c2 = ( M_2839 | ST1_89d ) ;	// line#=computer.cpp:339
+	RG_buf_buf1_val_t_c3 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_91d | ST1_106d ) | 
+		ST1_124d ) | ST1_142d ) | ST1_160d ) | ST1_178d ) | ST1_196d ) | 
+		ST1_213d ) | ST1_221d ) | ST1_229d ) | ST1_237d ) | ST1_245d ) | 
+		ST1_253d ) | ST1_261d ) | ST1_269d ) ;
+	RG_buf_buf1_val_t = ( ( { 32{ RG_buf_buf1_val_t_c1 } } & dmem_arg_MEMB32W65536_RD1 )	// line#=computer.cpp:142,159,174,311,312
+												// ,547,550,553
+		| ( { 32{ U_673 } } & ( RG_op2_result1 | lsft32u1ot ) )				// line#=computer.cpp:192,193,575
+		| ( { 32{ RG_buf_buf1_val_t_c2 } } & blk_in_rd00 )				// line#=computer.cpp:339
+		| ( { 32{ ST1_75d } } & { add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , 
+			add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , 
+			add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , add20s1ot [19] , 
+			add20s1ot [19] , add20s1ot } )						// line#=computer.cpp:296,339
+		| ( { 32{ RG_buf_buf1_val_t_c3 } } & { RL_blk_out_buf_buf1_dst_addr_rs1 [19] , 
+			RL_blk_out_buf_buf1_dst_addr_rs1 [19] , RL_blk_out_buf_buf1_dst_addr_rs1 [19] , 
+			RL_blk_out_buf_buf1_dst_addr_rs1 [19] , RL_blk_out_buf_buf1_dst_addr_rs1 [19] , 
+			RL_blk_out_buf_buf1_dst_addr_rs1 [19] , RL_blk_out_buf_buf1_dst_addr_rs1 [19] , 
+			RL_blk_out_buf_buf1_dst_addr_rs1 [19] , RL_blk_out_buf_buf1_dst_addr_rs1 [19] , 
+			RL_blk_out_buf_buf1_dst_addr_rs1 [19] , RL_blk_out_buf_buf1_dst_addr_rs1 [19] , 
+			RL_blk_out_buf_buf1_dst_addr_rs1 [19] , RL_blk_out_buf_buf1_dst_addr_rs1 } ) ) ;
+	end
+assign	RG_buf_buf1_val_en = ( RG_buf_buf1_val_t_c1 | U_673 | RG_buf_buf1_val_t_c2 | 
+	ST1_75d | RG_buf_buf1_val_t_c3 ) ;	// line#=computer.cpp:545
+always @ ( posedge CLOCK )	// line#=computer.cpp:545
+	if ( RG_buf_buf1_val_en )
+		RG_buf_buf1_val <= RG_buf_buf1_val_t ;	// line#=computer.cpp:142,159,174,192,193
+							// ,296,311,312,339,545,547,550,553
+							// ,575
+always @ ( decr3s1ot or ST1_194d or RG_k or ST1_140d or addsub3s1ot or M_2867 or 
+	incr3s1ot or ST1_86d )
+	RG_71_t = ( ( { 3{ ST1_86d } } & incr3s1ot )			// line#=computer.cpp:339
+		| ( { 3{ M_2867 } } & addsub3s1ot )			// line#=computer.cpp:339
+		| ( { 3{ ST1_140d } } & { ~RG_k [2] , RG_k [1:0] } )	// line#=computer.cpp:339
+		| ( { 3{ ST1_194d } } & decr3s1ot )			// line#=computer.cpp:339
+		) ;
+assign	RG_71_en = ( ST1_86d | M_2867 | ST1_140d | ST1_194d ) ;
+always @ ( posedge CLOCK )
+	if ( RG_71_en )
+		RG_71 <= RG_71_t ;	// line#=computer.cpp:339
+always @ ( imem_arg_MEMB32W65536_RD1 or M_2774 or M_2790 )	// line#=computer.cpp:449,457,468,690
+	JF_02 = ( ( { 1{ M_2790 } } & 1'h1 )
+		| ( { 1{ M_2774 } } & ( ( imem_arg_MEMB32W65536_RD1 [14:12] == 3'h0 ) | 
+			( imem_arg_MEMB32W65536_RD1 [14:12] == 3'h1 ) ) )	// line#=computer.cpp:449,573
+		) ;
+assign	M_2963 = ( ( M_2778 | M_2772 ) | M_2780 ) ;	// line#=computer.cpp:449,457,468,690
+assign	M_2956 = ( ( ( M_2963 | M_2782 ) | M_2784 ) | M_2763 ) ;	// line#=computer.cpp:449,457,468,690
+assign	JF_03 = ( M_2774 & ( ~( ( imem_arg_MEMB32W65536_RD1 [14:12] == 3'h0 ) | ( 
+	imem_arg_MEMB32W65536_RD1 [14:12] == 3'h1 ) ) ) ) ;	// line#=computer.cpp:449,573
+assign	JF_06 = ( U_13 & ( imem_arg_MEMB32W65536_RD1 [14:12] == 3'h0 ) ) ;	// line#=computer.cpp:449,638
+assign	JF_07 = ( U_13 & ( imem_arg_MEMB32W65536_RD1 [14:12] == 3'h5 ) ) ;	// line#=computer.cpp:449,638
+assign	JF_08 = ( U_13 & ( imem_arg_MEMB32W65536_RD1 [14:12] == 3'h1 ) ) ;	// line#=computer.cpp:449,638
+assign	JF_09 = ( ( ( M_2963 | M_2784 ) | M_2768 ) | M_2776 ) ;
+assign	TR_154 = ( RG_funct3_imm1 == 32'h00000000 ) ;	// line#=computer.cpp:573
+always @ ( TR_154 or M_2775 or M_2758 )	// line#=computer.cpp:468
+	JF_10 = ( ( { 1{ M_2758 } } & 1'h1 )
+		| ( { 1{ M_2775 } } & TR_154 )	// line#=computer.cpp:573
+		) ;
+assign	M_2944 = ( ( ( ( M_2958 | M_2775 ) | M_2769 ) | M_2777 ) | M_2742 ) ;	// line#=computer.cpp:468,473,482,491,502
+										// ,690
+assign	JF_13 = ( U_119 & ( RL_addr1_buf_buf1_next_pc_op1_PC == 32'h00000000 ) ) ;	// line#=computer.cpp:594
+assign	JF_14 = ( U_119 & ( RL_addr1_buf_buf1_next_pc_op1_PC == 32'h00000005 ) ) ;	// line#=computer.cpp:594
+assign	JF_15 = ( U_119 & ( RL_addr1_buf_buf1_next_pc_op1_PC == 32'h00000001 ) ) ;	// line#=computer.cpp:594
+assign	JF_16 = ( U_119 & ( RL_addr1_buf_buf1_next_pc_op1_PC == 32'h00000007 ) ) ;	// line#=computer.cpp:594
+assign	JF_17 = ( U_119 & ( RL_addr1_buf_buf1_next_pc_op1_PC == 32'h00000004 ) ) ;	// line#=computer.cpp:594
+assign	JF_23 = ( U_206 & RL_buf_buf1_instr_next_pc_rd [23] ) ;	// line#=computer.cpp:617
+assign	JF_27 = ( M_2783 | M_2758 ) ;	// line#=computer.cpp:468,473,482,491,502
+					// ,690
+assign	JF_28 = ( ( M_2779 & CT_15 ) | M_2789 ) ;	// line#=computer.cpp:468,473,482,491,502
+							// ,562,626,672,690
+assign	M_2958 = ( ( ( ( ( M_2779 | M_2773 ) | M_2781 ) | M_2783 ) | M_2785 ) | M_2764 ) ;	// line#=computer.cpp:468,473,482,491,502
+												// ,690
+assign	M_2945 = ( ( ( M_2958 | M_2769 ) | M_2777 ) | M_2742 ) ;	// line#=computer.cpp:468,690
+assign	JF_30 = ( M_2775 & ( RG_funct3_imm1 == 32'h00000001 ) ) ;	// line#=computer.cpp:573
+assign	JF_33 = ( M_2773 & FF_take ) ;	// line#=computer.cpp:468,473,482,491,502
+					// ,690
+assign	JF_34 = ( U_312 & M_2771 ) ;	// line#=computer.cpp:594
+assign	JF_35 = ( U_329 & FF_take ) ;	// line#=computer.cpp:617
+assign	JF_36 = ( U_312 & ( ~|( RL_addr1_buf_buf1_next_pc_op1_PC ^ 32'h00000001 ) ) ) ;	// line#=computer.cpp:594
+assign	JF_37 = ( U_329 & ( ~FF_take ) ) ;	// line#=computer.cpp:617
+assign	JF_39 = ( ( U_313 & M_2761 ) & ( ~FF_take ) ) ;	// line#=computer.cpp:638,659
+assign	JF_41 = ( M_2775 & TR_154 ) ;	// line#=computer.cpp:573
+assign	JF_47 = ( ( M_2781 & CT_15 ) | M_2758 ) ;	// line#=computer.cpp:468,473,482,491,502
+							// ,562,626,672,690
+assign	JF_49 = ( ( M_2783 & CT_15 ) | M_2758 ) ;	// line#=computer.cpp:468,473,482,491,502
+							// ,562,626,672,690
+assign	M_2789 = ( M_2758 & FF_take ) ;	// line#=computer.cpp:468,473,690
+assign	M_2953 = ( M_2758 & ( ~FF_take ) ) ;	// line#=computer.cpp:468,473,690
+always @ ( TR_154 or M_2775 or M_2789 )	// line#=computer.cpp:468,473,482,491,502
+					// ,690
+	JF_62 = ( ( { 1{ M_2789 } } & 1'h1 )
+		| ( { 1{ M_2775 } } & TR_154 )	// line#=computer.cpp:573
+		) ;
+assign	M_2969 = ( ( ( M_2944 | M_2953 ) | M_2787 ) | M_2943 ) ;	// line#=computer.cpp:468,473,482,491,502
+									// ,690
+always @ ( RG_buf_buf1_src_addr_y or M_2969 )
+	y11_t1 = ( { 4{ M_2969 } } & RG_buf_buf1_src_addr_y [3:0] )
+		 ;	// line#=computer.cpp:336
+always @ ( RG_buf or M_2969 )
+	buf_a001_t1 = ( { 20{ M_2969 } } & RG_buf [19:0] )
+		 ;	// line#=computer.cpp:326
+always @ ( RL_addr1_buf_buf1_next_pc_op1_PC or RG_07 or RG_addr_next_pc or FF_take )	// line#=computer.cpp:534
+	begin
+	M_2060_t_c1 = ~FF_take ;
+	M_2060_t = ( ( { 31{ FF_take } } & RG_addr_next_pc [30:0] )
+		| ( { 31{ M_2060_t_c1 } } & { RG_07 [31:2] , RL_addr1_buf_buf1_next_pc_op1_PC [1] } ) ) ;
+	end
+assign	JF_64 = ~M_2789 ;
+assign	JF_65 = ~incr4s1ot [3] ;
+assign	JF_66 = ~incr3u1ot [3] ;
+assign	JF_67 = ~incr3u1ot [3] ;
+assign	JF_68 = ~RG_rs1_rs2_y [3] ;
+assign	JF_69 = ~incr3u1ot [3] ;
+assign	JF_70 = ~RG_rs1_rs2_y [3] ;
+assign	JF_71 = ~RG_rs1_rs2_y [3] ;
+assign	JF_73 = ~incr3u1ot [3] ;
+assign	JF_74 = ~incr3u1ot [3] ;
+assign	JF_75 = ~incr3u1ot [3] ;
+assign	JF_76 = ~RG_rs1_rs2_y [3] ;
+assign	JF_77 = ~incr3u1ot [3] ;
+assign	JF_78 = ~RG_rs1_rs2_y [3] ;
+assign	JF_79 = ~RG_rs1_rs2_y [3] ;
+assign	JF_81 = ~incr3u1ot [3] ;
+assign	JF_82 = ~incr3u1ot [3] ;
+assign	JF_83 = ~incr3u1ot [3] ;
+assign	JF_84 = ~RG_rs1_rs2_y [3] ;
+assign	JF_85 = ~incr3u1ot [3] ;
+assign	JF_86 = ~RG_rs1_rs2_y [3] ;
+assign	JF_87 = ~RG_rs1_rs2_y [3] ;
+assign	JF_89 = ~incr3u1ot [3] ;
+assign	JF_90 = ~incr3u1ot [3] ;
+assign	JF_91 = ~incr3u1ot [3] ;
+assign	JF_92 = ~RG_rs1_rs2_y [3] ;
+assign	JF_93 = ~incr3u1ot [3] ;
+assign	JF_94 = ~RG_rs1_rs2_y [3] ;
+assign	JF_95 = ~RG_rs1_rs2_y [3] ;
+assign	JF_97 = ~incr3u1ot [3] ;
+assign	JF_98 = ~incr3u1ot [3] ;
+assign	JF_99 = ~incr3u1ot [3] ;
+assign	JF_100 = ~RG_rs1_rs2_y [3] ;
+assign	JF_101 = ~incr3u1ot [3] ;
+assign	JF_102 = ~RG_rs1_rs2_y [3] ;
+assign	JF_103 = ~RG_rs1_rs2_y [3] ;
+assign	JF_105 = ~incr3u1ot [3] ;
+assign	JF_106 = ~incr3u1ot [3] ;
+assign	JF_107 = ~incr3u1ot [3] ;
+assign	JF_108 = ~RG_rs1_rs2_y [3] ;
+assign	JF_109 = ~incr3u1ot [3] ;
+assign	JF_110 = ~RG_rs1_rs2_y [3] ;
+assign	JF_111 = ~RG_rs1_rs2_y [3] ;
+assign	JF_113 = ~incr3u1ot [3] ;
+assign	JF_114 = ~incr3u1ot [3] ;
+assign	JF_115 = ~incr3u1ot [3] ;
+assign	JF_116 = ~RG_rs1_rs2_y [3] ;
+assign	JF_117 = ~incr3u1ot [3] ;
+assign	JF_118 = ~RG_rs1_rs2_y [3] ;
+assign	JF_119 = ~RG_rs1_rs2_y [3] ;
+assign	JF_121 = ~incr3u1ot [3] ;
+assign	JF_122 = ~incr3u1ot [3] ;
+assign	JF_123 = ~incr3u1ot [3] ;
+assign	JF_124 = ~RG_rs1_rs2_y [3] ;
+assign	JF_125 = ~incr3u1ot [3] ;
+assign	JF_126 = ~RG_rs1_rs2_y [3] ;
+assign	JF_127 = ~RG_rs1_rs2_y [3] ;
+assign	JF_130 = ~incr3u1ot [3] ;
+assign	JF_131 = ~incr3u1ot [3] ;
+assign	JF_132 = ~incr3u1ot [3] ;
+assign	JF_133 = ~incr3u1ot [3] ;
+assign	JF_134 = ~incr3u1ot [3] ;
+assign	JF_135 = ~incr3u1ot [3] ;
+assign	JF_136 = ~incr3u1ot [3] ;
+assign	JF_137 = ~incr3u1ot [3] ;
+assign	JF_138 = ~incr3u1ot [3] ;
+assign	JF_139 = ~incr3u1ot [3] ;
+assign	JF_140 = ~incr3u1ot [3] ;
+assign	JF_141 = ~incr3u1ot [3] ;
+assign	JF_142 = ~incr3u1ot [3] ;
+assign	JF_143 = ~incr3u1ot [3] ;
+assign	JF_144 = ~incr3u1ot [3] ;
+assign	JF_145 = ~incr3u1ot [3] ;
+assign	JF_146 = ~incr3u1ot [3] ;
+assign	JF_147 = ~incr3u1ot [3] ;
+assign	JF_148 = ~incr3u1ot [3] ;
+assign	JF_149 = ~incr3u1ot [3] ;
+assign	JF_150 = ~incr3u1ot [3] ;
+assign	JF_151 = ~incr3u1ot [3] ;
+assign	JF_152 = ~incr3u1ot [3] ;
+assign	JF_153 = ~incr3u1ot [3] ;
+assign	JF_154 = ~incr3u1ot [3] ;
+assign	JF_155 = ~incr3u1ot [3] ;
+assign	JF_156 = ~incr3u1ot [3] ;
+assign	JF_157 = ~incr3u1ot [3] ;
+assign	JF_158 = ~incr3u1ot [3] ;
+assign	JF_159 = ~incr3u1ot [3] ;
+assign	JF_160 = ~incr3u1ot [3] ;
+assign	JF_161 = ~incr3u1ot [3] ;
+assign	JF_162 = ~incr3u1ot [3] ;
+assign	JF_163 = ~incr3u1ot [3] ;
+assign	JF_164 = ~incr3u1ot [3] ;
+assign	JF_165 = ~incr3u1ot [3] ;
+assign	JF_166 = ~incr3u1ot [3] ;
+assign	JF_167 = ~incr3u1ot [3] ;
+assign	JF_168 = ~incr3u1ot [3] ;
+assign	JF_169 = ~incr3u1ot [3] ;
+assign	JF_170 = ~incr3u1ot [3] ;
+assign	JF_171 = ~incr3u1ot [3] ;
+assign	JF_172 = ~incr3u1ot [3] ;
+assign	JF_173 = ~incr3u1ot [3] ;
+assign	JF_174 = ~incr3u1ot [3] ;
+assign	JF_175 = ~incr3u1ot [3] ;
+assign	JF_176 = ~incr3u1ot [3] ;
+assign	JF_177 = ~incr3u1ot [3] ;
+assign	JF_178 = ~incr3u1ot [3] ;
+assign	JF_179 = ~incr3u1ot [3] ;
+assign	JF_180 = ~incr3u1ot [3] ;
+assign	JF_181 = ~incr3u1ot [3] ;
+assign	JF_182 = ~incr3u1ot [3] ;
+assign	JF_183 = ~incr3u1ot [3] ;
+assign	JF_184 = ~incr3u1ot [3] ;
+assign	JF_185 = ~incr3u1ot [3] ;
+assign	JF_186 = ~incr3u1ot [3] ;
+assign	JF_187 = ~incr3u1ot [3] ;
+assign	JF_188 = ~incr3u1ot [3] ;
+assign	JF_189 = ~incr3u1ot [3] ;
+assign	JF_190 = ~incr3u1ot [3] ;
+assign	JF_191 = ~incr3u1ot [3] ;
+assign	JF_192 = ~incr3u1ot [3] ;
+assign	JF_193 = ~incr3u1ot [3] ;
 assign	computer_ret_r_en = ( ST1_02d & ( ~CT_01 ) ) ;
-always @ ( posedge CLOCK )	// line#=computer.cpp:440,716
+always @ ( posedge CLOCK )	// line#=computer.cpp:447,723
 	if ( RESET )
 		computer_ret_r <= 1'h0 ;
 	else if ( computer_ret_r_en )
 		computer_ret_r <= FF_halt ;
-assign	add8s_71i1 = addsub8u_71ot ;	// line#=computer.cpp:330,364
-assign	add8s_71i2 = 7'h03 ;	// line#=computer.cpp:330,364
-assign	M_2937 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_81d | ST1_95d ) | ST1_117d ) | 
-	ST1_139d ) | ST1_161d ) | ST1_183d ) | ST1_205d ) | ST1_227d ) | ST1_249d ) | 
-	ST1_274d ) | ST1_297d ) | ST1_320d ) | ST1_343d ) | ST1_366d ) | ST1_389d ) | 
-	ST1_412d ) ;
-assign	M_2941 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_83d | ST1_93d ) | ST1_115d ) | 
-	ST1_137d ) | ST1_159d ) | ST1_181d ) | ST1_203d ) | ST1_225d ) | ST1_247d ) | 
-	ST1_272d ) | ST1_295d ) | ST1_318d ) | ST1_341d ) | ST1_364d ) | ST1_387d ) | 
-	ST1_410d ) ;
-assign	M_2970 = ( ( ( ( ( ( ( ST1_259d | ST1_270d ) | ST1_293d ) | ST1_316d ) | 
-	ST1_339d ) | ST1_362d ) | ST1_385d ) | ST1_408d ) ;
-always @ ( RG_buf1_coef_coef1_y or M_2970 or RG_buf_buf1_coef_y or M_2941 or RL_buf_buf1_coef_rs1_rs2_val1 or 
-	M_2937 or RG_buf_buf1 or ST1_420d or ST1_418d or ST1_416d or ST1_414d or 
-	ST1_406d or ST1_397d or ST1_395d or ST1_393d or ST1_391d or ST1_383d or 
-	ST1_374d or ST1_372d or ST1_370d or ST1_368d or ST1_360d or ST1_351d or 
-	ST1_349d or ST1_347d or ST1_345d or ST1_337d or ST1_328d or ST1_326d or 
-	ST1_324d or ST1_322d or ST1_314d or ST1_305d or ST1_303d or ST1_301d or 
-	ST1_299d or ST1_291d or ST1_282d or ST1_280d or ST1_278d or ST1_276d or 
-	ST1_268d or ST1_257d or ST1_255d or ST1_253d or ST1_251d or ST1_245d or 
-	ST1_237d or ST1_235d or ST1_233d or ST1_231d or ST1_229d or ST1_223d or 
-	ST1_215d or ST1_213d or ST1_211d or ST1_209d or ST1_207d or ST1_201d or 
-	ST1_193d or ST1_191d or ST1_189d or ST1_187d or ST1_185d or ST1_179d or 
-	ST1_171d or ST1_169d or ST1_167d or ST1_165d or ST1_163d or ST1_157d or 
-	ST1_149d or ST1_147d or ST1_145d or ST1_143d or ST1_141d or ST1_135d or 
-	ST1_127d or ST1_125d or ST1_123d or ST1_121d or ST1_119d or ST1_113d or 
-	ST1_105d or ST1_103d or ST1_101d or ST1_99d or ST1_97d or ST1_91d or ST1_79d or 
-	ST1_77d or ST1_75d or ST1_73d or ST1_71d or ST1_69d )
+assign	add8s_71i1 = addsub8u_71ot ;	// line#=computer.cpp:337,371
+assign	add8s_71i2 = 7'h03 ;	// line#=computer.cpp:337,371
+assign	M_2832 = ( ( ( ( ( ( ( ST1_68d | ST1_86d ) | ST1_104d ) | ST1_122d ) | ST1_140d ) | 
+	ST1_158d ) | ST1_176d ) | ST1_194d ) ;
+assign	M_2835 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_69d | ST1_88d ) | ST1_106d ) | 
+	ST1_124d ) | ST1_142d ) | ST1_160d ) | ST1_178d ) | ST1_196d ) | ST1_213d ) | 
+	ST1_221d ) | ST1_229d ) | ST1_237d ) | ST1_245d ) | ST1_253d ) | ST1_261d ) | 
+	ST1_269d ) ;
+assign	M_2837 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_70d | 
+	ST1_73d ) | ST1_91d ) | ST1_95d ) | ST1_109d ) | ST1_113d ) | ST1_127d ) | 
+	ST1_131d ) | ST1_145d ) | ST1_149d ) | ST1_163d ) | ST1_167d ) | ST1_181d ) | 
+	ST1_185d ) | ST1_199d ) | ST1_203d ) | ST1_215d ) | ST1_217d ) | ST1_223d ) | 
+	ST1_225d ) | ST1_231d ) | ST1_233d ) | ST1_239d ) | ST1_241d ) | ST1_247d ) | 
+	ST1_249d ) | ST1_255d ) | ST1_257d ) | ST1_263d ) | ST1_265d ) | ST1_271d ) | 
+	ST1_273d ) ;
+always @ ( RL_blk_out_buf_buf1_dst_addr_rs1 or ST1_275d or ST1_274d or ST1_272d or 
+	ST1_270d or ST1_268d or ST1_267d or ST1_266d or ST1_264d or ST1_262d or 
+	ST1_260d or ST1_259d or ST1_258d or ST1_256d or ST1_254d or ST1_252d or 
+	ST1_251d or ST1_250d or ST1_248d or ST1_246d or ST1_244d or ST1_243d or 
+	ST1_242d or ST1_240d or ST1_238d or ST1_236d or ST1_235d or ST1_234d or 
+	ST1_232d or ST1_230d or ST1_228d or ST1_227d or ST1_226d or ST1_224d or 
+	ST1_222d or ST1_220d or ST1_219d or ST1_218d or ST1_216d or ST1_214d or 
+	ST1_212d or ST1_205d or ST1_201d or ST1_198d or ST1_195d or ST1_187d or 
+	ST1_183d or ST1_180d or ST1_177d or ST1_169d or ST1_165d or ST1_162d or 
+	ST1_159d or ST1_151d or ST1_147d or ST1_144d or ST1_141d or ST1_133d or 
+	ST1_129d or ST1_126d or ST1_123d or ST1_115d or ST1_111d or ST1_108d or 
+	ST1_105d or ST1_97d or ST1_93d or ST1_90d or ST1_87d or M_2847 or RL_addr1_buf_buf1_next_pc_op1_PC or 
+	M_2837 or RG_buf_buf1_src_addr_y or M_2835 or RG_buf or M_2832 )
 	begin
 	add20s1i1_c1 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
 		( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-		( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_69d | ST1_71d ) | 
-		ST1_73d ) | ST1_75d ) | ST1_77d ) | ST1_79d ) | ST1_91d ) | ST1_97d ) | 
-		ST1_99d ) | ST1_101d ) | ST1_103d ) | ST1_105d ) | ST1_113d ) | ST1_119d ) | 
-		ST1_121d ) | ST1_123d ) | ST1_125d ) | ST1_127d ) | ST1_135d ) | 
-		ST1_141d ) | ST1_143d ) | ST1_145d ) | ST1_147d ) | ST1_149d ) | 
-		ST1_157d ) | ST1_163d ) | ST1_165d ) | ST1_167d ) | ST1_169d ) | 
-		ST1_171d ) | ST1_179d ) | ST1_185d ) | ST1_187d ) | ST1_189d ) | 
-		ST1_191d ) | ST1_193d ) | ST1_201d ) | ST1_207d ) | ST1_209d ) | 
-		ST1_211d ) | ST1_213d ) | ST1_215d ) | ST1_223d ) | ST1_229d ) | 
-		ST1_231d ) | ST1_233d ) | ST1_235d ) | ST1_237d ) | ST1_245d ) | 
-		ST1_251d ) | ST1_253d ) | ST1_255d ) | ST1_257d ) | ST1_268d ) | 
-		ST1_276d ) | ST1_278d ) | ST1_280d ) | ST1_282d ) | ST1_291d ) | 
-		ST1_299d ) | ST1_301d ) | ST1_303d ) | ST1_305d ) | ST1_314d ) | 
-		ST1_322d ) | ST1_324d ) | ST1_326d ) | ST1_328d ) | ST1_337d ) | 
-		ST1_345d ) | ST1_347d ) | ST1_349d ) | ST1_351d ) | ST1_360d ) | 
-		ST1_368d ) | ST1_370d ) | ST1_372d ) | ST1_374d ) | ST1_383d ) | 
-		ST1_391d ) | ST1_393d ) | ST1_395d ) | ST1_397d ) | ST1_406d ) | 
-		ST1_414d ) | ST1_416d ) | ST1_418d ) | ST1_420d ) ;	// line#=computer.cpp:332,366
-	add20s1i1 = ( ( { 20{ add20s1i1_c1 } } & RG_buf_buf1 )		// line#=computer.cpp:332,366
-		| ( { 20{ M_2937 } } & RL_buf_buf1_coef_rs1_rs2_val1 )	// line#=computer.cpp:332,366
-		| ( { 20{ M_2941 } } & RG_buf_buf1_coef_y )		// line#=computer.cpp:332,366
-		| ( { 20{ M_2970 } } & RG_buf1_coef_coef1_y )		// line#=computer.cpp:366
+		( ( ( ( ( ( M_2847 | ST1_87d ) | ST1_90d ) | ST1_93d ) | ST1_97d ) | 
+		ST1_105d ) | ST1_108d ) | ST1_111d ) | ST1_115d ) | ST1_123d ) | 
+		ST1_126d ) | ST1_129d ) | ST1_133d ) | ST1_141d ) | ST1_144d ) | 
+		ST1_147d ) | ST1_151d ) | ST1_159d ) | ST1_162d ) | ST1_165d ) | 
+		ST1_169d ) | ST1_177d ) | ST1_180d ) | ST1_183d ) | ST1_187d ) | 
+		ST1_195d ) | ST1_198d ) | ST1_201d ) | ST1_205d ) | ST1_212d ) | 
+		ST1_214d ) | ST1_216d ) | ST1_218d ) | ST1_219d ) | ST1_220d ) | 
+		ST1_222d ) | ST1_224d ) | ST1_226d ) | ST1_227d ) | ST1_228d ) | 
+		ST1_230d ) | ST1_232d ) | ST1_234d ) | ST1_235d ) | ST1_236d ) | 
+		ST1_238d ) | ST1_240d ) | ST1_242d ) | ST1_243d ) | ST1_244d ) | 
+		ST1_246d ) | ST1_248d ) | ST1_250d ) | ST1_251d ) | ST1_252d ) | 
+		ST1_254d ) | ST1_256d ) | ST1_258d ) | ST1_259d ) | ST1_260d ) | 
+		ST1_262d ) | ST1_264d ) | ST1_266d ) | ST1_267d ) | ST1_268d ) | 
+		ST1_270d ) | ST1_272d ) | ST1_274d ) | ST1_275d ) ;	// line#=computer.cpp:339,373
+	add20s1i1 = ( ( { 20{ M_2832 } } & RG_buf [19:0] )				// line#=computer.cpp:339
+		| ( { 20{ M_2835 } } & RG_buf_buf1_src_addr_y [19:0] )			// line#=computer.cpp:339,373
+		| ( { 20{ M_2837 } } & RL_addr1_buf_buf1_next_pc_op1_PC [19:0] )	// line#=computer.cpp:339,373
+		| ( { 20{ add20s1i1_c1 } } & RL_blk_out_buf_buf1_dst_addr_rs1 )		// line#=computer.cpp:339,373
 		) ;
 	end
-assign	M_2925 = ( ( ( ( ( ( ( ST1_69d | ST1_91d ) | ST1_113d ) | ST1_135d ) | ST1_157d ) | 
-	ST1_179d ) | ST1_201d ) | ST1_223d ) ;
-MEMB32W64 blk_out ( .RA1(blk_out_RA1) ,.RD1(blk_out_RD1) ,.RE1(blk_out_RE1) ,.RCLK1(CLOCK) ,
-	.WA2(blk_out_WA2) ,.WD2(blk_out_WD2) ,.WE2(blk_out_WE2) ,.WCLK2(CLOCK) );	// line#=computer.cpp:299
-MEMB32W64 blk_in ( .RA1(blk_in_RA1) ,.RD1(blk_in_RD1) ,.RE1(blk_in_RE1) ,.RCLK1(CLOCK) ,
-	.WA2(blk_in_WA2) ,.WD2(dmem_arg_MEMB32W65536_RD1) ,.WE2(blk_in_WE2) ,.WCLK2(CLOCK) );	// line#=computer.cpp:298
-always @ ( blk_out_RD1 or ST1_406d or ST1_383d or ST1_360d or ST1_337d or ST1_314d or 
-	ST1_291d or ST1_268d or ST1_245d or mul32s1ot or ST1_420d or ST1_418d or 
-	ST1_416d or ST1_414d or ST1_412d or ST1_410d or ST1_408d or ST1_397d or 
-	ST1_395d or ST1_393d or ST1_391d or ST1_389d or ST1_387d or ST1_385d or 
-	ST1_374d or ST1_372d or ST1_370d or ST1_368d or ST1_366d or ST1_364d or 
-	ST1_362d or ST1_351d or ST1_349d or ST1_347d or ST1_345d or ST1_343d or 
-	ST1_341d or ST1_339d or ST1_328d or ST1_326d or ST1_324d or ST1_322d or 
-	ST1_320d or ST1_318d or ST1_316d or ST1_305d or ST1_303d or ST1_301d or 
-	ST1_299d or ST1_297d or ST1_295d or ST1_293d or ST1_282d or ST1_280d or 
-	ST1_278d or ST1_276d or ST1_274d or ST1_272d or ST1_270d or ST1_259d or 
-	ST1_257d or ST1_255d or ST1_253d or ST1_251d or ST1_249d or ST1_247d or 
-	M_2928 or blk_in_RD1 or M_2925 )
+assign	M_2868 = ( ( ( ( ( ( ( ST1_212d | ST1_220d ) | ST1_228d ) | ST1_236d ) | 
+	ST1_244d ) | ST1_252d ) | ST1_260d ) | ST1_268d ) ;
+always @ ( mul20s1ot or ST1_275d or ST1_274d or ST1_273d or ST1_272d or ST1_271d or 
+	ST1_270d or ST1_269d or ST1_267d or ST1_266d or ST1_265d or ST1_264d or 
+	ST1_263d or ST1_262d or ST1_261d or ST1_259d or ST1_258d or ST1_257d or 
+	ST1_256d or ST1_255d or ST1_254d or ST1_253d or ST1_251d or ST1_250d or 
+	ST1_249d or ST1_248d or ST1_247d or ST1_246d or ST1_245d or ST1_243d or 
+	ST1_242d or ST1_241d or ST1_240d or ST1_239d or ST1_238d or ST1_237d or 
+	ST1_235d or ST1_234d or ST1_233d or ST1_232d or ST1_231d or ST1_230d or 
+	ST1_229d or ST1_227d or ST1_226d or ST1_225d or ST1_224d or ST1_223d or 
+	ST1_222d or ST1_221d or ST1_219d or ST1_218d or ST1_217d or ST1_216d or 
+	ST1_215d or ST1_214d or ST1_213d or blk_out1_rd00 or M_2868 or mul32s1ot or 
+	ST1_205d or ST1_203d or ST1_201d or ST1_199d or ST1_198d or ST1_196d or 
+	ST1_195d or ST1_187d or ST1_185d or ST1_183d or ST1_181d or ST1_180d or 
+	ST1_178d or ST1_177d or ST1_169d or ST1_167d or ST1_165d or ST1_163d or 
+	ST1_162d or ST1_160d or ST1_159d or ST1_151d or ST1_149d or ST1_147d or 
+	ST1_145d or ST1_144d or ST1_142d or ST1_141d or ST1_133d or ST1_131d or 
+	ST1_129d or ST1_127d or ST1_126d or ST1_124d or ST1_123d or ST1_115d or 
+	ST1_113d or ST1_111d or ST1_109d or ST1_108d or ST1_106d or ST1_105d or 
+	ST1_97d or ST1_95d or ST1_93d or ST1_91d or ST1_90d or ST1_88d or ST1_87d or 
+	ST1_79d or ST1_77d or ST1_75d or ST1_73d or ST1_72d or M_2836 or blk_in_rd00 or 
+	M_2832 )
 	begin
 	add20s1i2_c1 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-		( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( M_2928 | ST1_247d ) | 
-		ST1_249d ) | ST1_251d ) | ST1_253d ) | ST1_255d ) | ST1_257d ) | 
-		ST1_259d ) | ST1_270d ) | ST1_272d ) | ST1_274d ) | ST1_276d ) | 
-		ST1_278d ) | ST1_280d ) | ST1_282d ) | ST1_293d ) | ST1_295d ) | 
-		ST1_297d ) | ST1_299d ) | ST1_301d ) | ST1_303d ) | ST1_305d ) | 
-		ST1_316d ) | ST1_318d ) | ST1_320d ) | ST1_322d ) | ST1_324d ) | 
-		ST1_326d ) | ST1_328d ) | ST1_339d ) | ST1_341d ) | ST1_343d ) | 
-		ST1_345d ) | ST1_347d ) | ST1_349d ) | ST1_351d ) | ST1_362d ) | 
-		ST1_364d ) | ST1_366d ) | ST1_368d ) | ST1_370d ) | ST1_372d ) | 
-		ST1_374d ) | ST1_385d ) | ST1_387d ) | ST1_389d ) | ST1_391d ) | 
-		ST1_393d ) | ST1_395d ) | ST1_397d ) | ST1_408d ) | ST1_410d ) | 
-		ST1_412d ) | ST1_414d ) | ST1_416d ) | ST1_418d ) | ST1_420d ) ;	// line#=computer.cpp:332,366
-	add20s1i2_c2 = ( ( ( ( ( ( ( ST1_245d | ST1_268d ) | ST1_291d ) | ST1_314d ) | 
-		ST1_337d ) | ST1_360d ) | ST1_383d ) | ST1_406d ) ;	// line#=computer.cpp:366
-	add20s1i2 = ( ( { 20{ M_2925 } } & blk_in_RD1 [19:0] )		// line#=computer.cpp:332
-		| ( { 20{ add20s1i2_c1 } } & mul32s1ot [31:12] )	// line#=computer.cpp:332,366
-		| ( { 20{ add20s1i2_c2 } } & blk_out_RD1 [19:0] )	// line#=computer.cpp:366
+		( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( M_2836 | ST1_72d ) | 
+		ST1_73d ) | ST1_75d ) | ST1_77d ) | ST1_79d ) | ST1_87d ) | ST1_88d ) | 
+		ST1_90d ) | ST1_91d ) | ST1_93d ) | ST1_95d ) | ST1_97d ) | ST1_105d ) | 
+		ST1_106d ) | ST1_108d ) | ST1_109d ) | ST1_111d ) | ST1_113d ) | 
+		ST1_115d ) | ST1_123d ) | ST1_124d ) | ST1_126d ) | ST1_127d ) | 
+		ST1_129d ) | ST1_131d ) | ST1_133d ) | ST1_141d ) | ST1_142d ) | 
+		ST1_144d ) | ST1_145d ) | ST1_147d ) | ST1_149d ) | ST1_151d ) | 
+		ST1_159d ) | ST1_160d ) | ST1_162d ) | ST1_163d ) | ST1_165d ) | 
+		ST1_167d ) | ST1_169d ) | ST1_177d ) | ST1_178d ) | ST1_180d ) | 
+		ST1_181d ) | ST1_183d ) | ST1_185d ) | ST1_187d ) | ST1_195d ) | 
+		ST1_196d ) | ST1_198d ) | ST1_199d ) | ST1_201d ) | ST1_203d ) | 
+		ST1_205d ) ;	// line#=computer.cpp:339
+	add20s1i2_c2 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
+		( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_213d | ST1_214d ) | 
+		ST1_215d ) | ST1_216d ) | ST1_217d ) | ST1_218d ) | ST1_219d ) | 
+		ST1_221d ) | ST1_222d ) | ST1_223d ) | ST1_224d ) | ST1_225d ) | 
+		ST1_226d ) | ST1_227d ) | ST1_229d ) | ST1_230d ) | ST1_231d ) | 
+		ST1_232d ) | ST1_233d ) | ST1_234d ) | ST1_235d ) | ST1_237d ) | 
+		ST1_238d ) | ST1_239d ) | ST1_240d ) | ST1_241d ) | ST1_242d ) | 
+		ST1_243d ) | ST1_245d ) | ST1_246d ) | ST1_247d ) | ST1_248d ) | 
+		ST1_249d ) | ST1_250d ) | ST1_251d ) | ST1_253d ) | ST1_254d ) | 
+		ST1_255d ) | ST1_256d ) | ST1_257d ) | ST1_258d ) | ST1_259d ) | 
+		ST1_261d ) | ST1_262d ) | ST1_263d ) | ST1_264d ) | ST1_265d ) | 
+		ST1_266d ) | ST1_267d ) | ST1_269d ) | ST1_270d ) | ST1_271d ) | 
+		ST1_272d ) | ST1_273d ) | ST1_274d ) | ST1_275d ) ;	// line#=computer.cpp:373
+	add20s1i2 = ( ( { 20{ M_2832 } } & blk_in_rd00 [19:0] )		// line#=computer.cpp:339
+		| ( { 20{ add20s1i2_c1 } } & mul32s1ot [31:12] )	// line#=computer.cpp:339
+		| ( { 20{ M_2868 } } & blk_out1_rd00 )			// line#=computer.cpp:373
+		| ( { 20{ add20s1i2_c2 } } & mul20s1ot [31:12] )	// line#=computer.cpp:373
 		) ;
 	end
-always @ ( U_434 or RL_addr_buf_instr_op2_result or U_399 )
-	M_3084 = ( ( { 13{ U_399 } } & { RL_addr_buf_instr_op2_result [24] , RL_addr_buf_instr_op2_result [24] , 
-			RL_addr_buf_instr_op2_result [24] , RL_addr_buf_instr_op2_result [24] , 
-			RL_addr_buf_instr_op2_result [24] , RL_addr_buf_instr_op2_result [24] , 
-			RL_addr_buf_instr_op2_result [24] , RL_addr_buf_instr_op2_result [24] , 
-			RL_addr_buf_instr_op2_result [0] , RL_addr_buf_instr_op2_result [4:1] } )	// line#=computer.cpp:86,102,103,104,105
-													// ,106,455,505,528
-		| ( { 13{ U_434 } } & { RL_addr_buf_instr_op2_result [12:5] , RL_addr_buf_instr_op2_result [13] , 
-			RL_addr_buf_instr_op2_result [17:14] } )					// line#=computer.cpp:86,114,115,116,117
-													// ,118,452,454,486
-		) ;
-always @ ( sub28s_271ot or M_3028 or M_3084 or RL_addr_buf_instr_op2_result or M_3014 )
-	TR_15 = ( ( { 31{ M_3014 } } & { RL_addr_buf_instr_op2_result [24] , RL_addr_buf_instr_op2_result [24] , 
-			RL_addr_buf_instr_op2_result [24] , RL_addr_buf_instr_op2_result [24] , 
-			RL_addr_buf_instr_op2_result [24] , RL_addr_buf_instr_op2_result [24] , 
-			RL_addr_buf_instr_op2_result [24] , RL_addr_buf_instr_op2_result [24] , 
-			RL_addr_buf_instr_op2_result [24] , RL_addr_buf_instr_op2_result [24] , 
-			RL_addr_buf_instr_op2_result [24] , RL_addr_buf_instr_op2_result [24] , 
-			M_3084 [12:4] , RL_addr_buf_instr_op2_result [23:18] , M_3084 [3:0] } )	// line#=computer.cpp:86,102,103,104,105
-												// ,106,114,115,116,117,118,452,454
-												// ,455,486,505,528
-		| ( { 31{ M_3028 } } & { sub28s_271ot [26] , sub28s_271ot [26] , 
-			sub28s_271ot [26] , sub28s_271ot , 1'h0 } )				// line#=computer.cpp:369
-		) ;
-always @ ( M_3026 or RL_addr_buf_instr_op2_result or U_582 )
-	TR_16 = ( ( { 12{ U_582 } } & RL_addr_buf_instr_op2_result [31:20] )				// line#=computer.cpp:589
-		| ( { 12{ M_3026 } } & { RL_addr_buf_instr_op2_result [19] , RL_addr_buf_instr_op2_result [19] , 
-			RL_addr_buf_instr_op2_result [19] , RL_addr_buf_instr_op2_result [19] , 
-			RL_addr_buf_instr_op2_result [19] , RL_addr_buf_instr_op2_result [19] , 
-			RL_addr_buf_instr_op2_result [19] , RL_addr_buf_instr_op2_result [19] , 
-			RL_addr_buf_instr_op2_result [19] , RL_addr_buf_instr_op2_result [19] , 
-			RL_addr_buf_instr_op2_result [19] , RL_addr_buf_instr_op2_result [19] } )	// line#=computer.cpp:335
-		) ;
-assign	M_3026 = ( ( ( ( ( ( ( U_810 | U_856 ) | U_902 ) | U_948 ) | U_994 ) | U_1040 ) | 
-	U_1086 ) | U_1132 ) ;	// line#=computer.cpp:329
-assign	M_3028 = ( ( ( ( ( ( ( ( ST1_258d & incr3u1ot [3] ) | ( ST1_281d & incr3u1ot [3] ) ) | 
-	( ST1_304d & incr3u1ot [3] ) ) | ( ST1_327d & incr3u1ot [3] ) ) | ( ST1_350d & 
-	incr3u1ot [3] ) ) | ( ST1_373d & incr3u1ot [3] ) ) | ( ST1_396d & incr3u1ot [3] ) ) | 
-	( ST1_419d & incr3u1ot [3] ) ) ;	// line#=computer.cpp:363
-always @ ( TR_16 or M_3026 or U_582 or RL_addr_buf_instr_op2_result or U_695 or 
-	U_694 or U_693 or U_692 or U_691 or U_467 or TR_15 or M_3028 or M_3014 or 
-	imem_arg_MEMB32W65536_RD1 or U_11 )
+always @ ( sub28s_271ot or U_1486 or U_1442 or U_1398 or U_1354 or U_1310 or U_1266 or 
+	U_1222 or U_1178 or M_2931 or regs_rd02 or U_699 or U_698 or U_697 or U_696 or 
+	U_695 or RG_17 or U_585 or U_470 or RL_addr1_buf_buf1_next_pc_op1_PC or 
+	M_2924 or regs_rd00 or U_11 )
 	begin
-	add32s1i1_c1 = ( M_3014 | M_3028 ) ;	// line#=computer.cpp:86,102,103,104,105
-						// ,106,114,115,116,117,118,369,452
-						// ,454,455,486,505,528
-	add32s1i1_c2 = ( ( ( ( ( U_467 | U_691 ) | U_692 ) | U_693 ) | U_694 ) | 
-		U_695 ) ;	// line#=computer.cpp:86,91,454,494,536
-	add32s1i1_c3 = ( U_582 | M_3026 ) ;	// line#=computer.cpp:335,589
-	add32s1i1 = ( ( { 32{ U_11 } } & { imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31] , 
-			imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31] , 
-			imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31] , 
-			imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31] , 
-			imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31] , 
-			imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31] , 
-			imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31] , 
-			imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31] , 
-			imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31] , 
-			imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31] , 
-			imem_arg_MEMB32W65536_RD1 [31:25] , imem_arg_MEMB32W65536_RD1 [11:7] } )	// line#=computer.cpp:86,96,97,442,451
-													// ,455,564
-		| ( { 32{ add32s1i1_c1 } } & { TR_15 , 1'h0 } )						// line#=computer.cpp:86,102,103,104,105
-													// ,106,114,115,116,117,118,369,452
-													// ,454,455,486,505,528
-		| ( { 32{ add32s1i1_c2 } } & { RL_addr_buf_instr_op2_result [24] , 
-			RL_addr_buf_instr_op2_result [24] , RL_addr_buf_instr_op2_result [24] , 
-			RL_addr_buf_instr_op2_result [24] , RL_addr_buf_instr_op2_result [24] , 
-			RL_addr_buf_instr_op2_result [24] , RL_addr_buf_instr_op2_result [24] , 
-			RL_addr_buf_instr_op2_result [24] , RL_addr_buf_instr_op2_result [24] , 
-			RL_addr_buf_instr_op2_result [24] , RL_addr_buf_instr_op2_result [24] , 
-			RL_addr_buf_instr_op2_result [24] , RL_addr_buf_instr_op2_result [24] , 
-			RL_addr_buf_instr_op2_result [24] , RL_addr_buf_instr_op2_result [24] , 
-			RL_addr_buf_instr_op2_result [24] , RL_addr_buf_instr_op2_result [24] , 
-			RL_addr_buf_instr_op2_result [24] , RL_addr_buf_instr_op2_result [24] , 
-			RL_addr_buf_instr_op2_result [24] , RL_addr_buf_instr_op2_result [24:13] } )	// line#=computer.cpp:86,91,454,494,536
-		| ( { 32{ add32s1i1_c3 } } & { TR_16 , RL_addr_buf_instr_op2_result [19:0] } )		// line#=computer.cpp:335,589
+	add32s1i1_c1 = ( U_470 | U_585 ) ;	// line#=computer.cpp:86,91,501,596
+	add32s1i1_c2 = ( ( ( ( U_695 | U_696 ) | U_697 ) | U_698 ) | U_699 ) ;	// line#=computer.cpp:86,91,543
+	add32s1i1_c3 = ( ( ( ( ( ( ( ( M_2931 | U_1178 ) | U_1222 ) | U_1266 ) | 
+		U_1310 ) | U_1354 ) | U_1398 ) | U_1442 ) | U_1486 ) ;	// line#=computer.cpp:342,376
+	add32s1i1 = ( ( { 32{ U_11 } } & regs_rd00 )				// line#=computer.cpp:86,97,571
+		| ( { 32{ M_2924 } } & RL_addr1_buf_buf1_next_pc_op1_PC )	// line#=computer.cpp:86,118,493,535
+		| ( { 32{ add32s1i1_c1 } } & RG_17 )				// line#=computer.cpp:86,91,501,596
+		| ( { 32{ add32s1i1_c2 } } & regs_rd02 )			// line#=computer.cpp:86,91,543
+		| ( { 32{ add32s1i1_c3 } } & { sub28s_271ot [26] , sub28s_271ot [26] , 
+			sub28s_271ot [26] , sub28s_271ot , 2'h0 } )		// line#=computer.cpp:342,376
 		) ;
 	end
-always @ ( U_582 or RG_buf_buf1_funct3_imm1_next_pc or U_467 )
-	TR_17 = ( ( { 20{ U_467 } } & RG_buf_buf1_funct3_imm1_next_pc [31:12] )				// line#=computer.cpp:86,91,494
-		| ( { 20{ U_582 } } & { RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] , 
-			RG_buf_buf1_funct3_imm1_next_pc [11] , RG_buf_buf1_funct3_imm1_next_pc [11] } )	// line#=computer.cpp:589
+always @ ( U_437 or RG_instr_next_pc_PC or U_402 )
+	M_2991 = ( ( { 13{ U_402 } } & { RG_instr_next_pc_PC [24] , RG_instr_next_pc_PC [24] , 
+			RG_instr_next_pc_PC [24] , RG_instr_next_pc_PC [24] , RG_instr_next_pc_PC [24] , 
+			RG_instr_next_pc_PC [24] , RG_instr_next_pc_PC [24] , RG_instr_next_pc_PC [24] , 
+			RG_instr_next_pc_PC [0] , RG_instr_next_pc_PC [4:1] } )	// line#=computer.cpp:86,102,103,104,105
+										// ,106,462,512,535
+		| ( { 13{ U_437 } } & { RG_instr_next_pc_PC [12:5] , RG_instr_next_pc_PC [13] , 
+			RG_instr_next_pc_PC [17:14] } )				// line#=computer.cpp:86,114,115,116,117
+										// ,118,459,461,493
 		) ;
-assign	M_3014 = ( U_399 | U_434 ) ;
-always @ ( RG_buf_buf1_instr_rd_word_addr or M_3028 or sub28s_271ot or M_3026 or 
-	regs_rd02 or U_695 or U_694 or U_693 or U_692 or U_691 or RG_buf_buf1_funct3_imm1_next_pc or 
-	TR_17 or U_582 or U_467 or RG_addr1_next_pc_op1_PC_src_addr or M_3014 or 
-	regs_rd00 or U_11 )
+assign	M_2924 = ( U_402 | U_437 ) ;
+assign	M_2931 = ( ( ( ( ( ( ( U_813 | U_858 ) | U_903 ) | U_948 ) | U_993 ) | U_1038 ) | 
+	U_1083 ) | U_1128 ) ;
+always @ ( RG_buf_buf1_val or U_1486 or U_1442 or U_1398 or U_1354 or U_1310 or 
+	U_1266 or U_1222 or U_1178 or RG_buf or M_2931 or RG_funct3_imm1 or U_585 or 
+	U_699 or U_698 or U_697 or U_696 or U_695 or U_470 or M_2991 or RG_instr_next_pc_PC or 
+	M_2924 or imem_arg_MEMB32W65536_RD1 or U_11 )
 	begin
-	add32s1i2_c1 = ( U_467 | U_582 ) ;	// line#=computer.cpp:86,91,494,589
-	add32s1i2_c2 = ( ( ( ( U_691 | U_692 ) | U_693 ) | U_694 ) | U_695 ) ;	// line#=computer.cpp:86,91,536
-	add32s1i2 = ( ( { 32{ U_11 } } & regs_rd00 )							// line#=computer.cpp:86,97,564
-		| ( { 32{ M_3014 } } & RG_addr1_next_pc_op1_PC_src_addr )				// line#=computer.cpp:86,118,486,528
-		| ( { 32{ add32s1i2_c1 } } & { TR_17 , RG_buf_buf1_funct3_imm1_next_pc [11:0] } )	// line#=computer.cpp:86,91,494,589
-		| ( { 32{ add32s1i2_c2 } } & regs_rd02 )						// line#=computer.cpp:86,91,536
-		| ( { 32{ M_3026 } } & { sub28s_271ot [26] , sub28s_271ot [26] , 
-			sub28s_271ot [26] , sub28s_271ot , 2'h0 } )					// line#=computer.cpp:335
-		| ( { 32{ M_3028 } } & { RG_buf_buf1_instr_rd_word_addr [19] , RG_buf_buf1_instr_rd_word_addr [19] , 
-			RG_buf_buf1_instr_rd_word_addr [19] , RG_buf_buf1_instr_rd_word_addr [19] , 
-			RG_buf_buf1_instr_rd_word_addr [19] , RG_buf_buf1_instr_rd_word_addr [19] , 
-			RG_buf_buf1_instr_rd_word_addr [19] , RG_buf_buf1_instr_rd_word_addr [19] , 
-			RG_buf_buf1_instr_rd_word_addr [19] , RG_buf_buf1_instr_rd_word_addr [19] , 
-			RG_buf_buf1_instr_rd_word_addr [19] , RG_buf_buf1_instr_rd_word_addr [19] , 
-			RG_buf_buf1_instr_rd_word_addr [19:0] } )					// line#=computer.cpp:369
+	add32s1i2_c1 = ( ( ( ( ( U_470 | U_695 ) | U_696 ) | U_697 ) | U_698 ) | 
+		U_699 ) ;	// line#=computer.cpp:86,91,461,501,543
+	add32s1i2_c2 = ( ( ( ( ( ( ( U_1178 | U_1222 ) | U_1266 ) | U_1310 ) | U_1354 ) | 
+		U_1398 ) | U_1442 ) | U_1486 ) ;	// line#=computer.cpp:376
+	add32s1i2 = ( ( { 21{ U_11 } } & { imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31] , 
+			imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31] , 
+			imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31] , 
+			imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31] , 
+			imem_arg_MEMB32W65536_RD1 [31] , imem_arg_MEMB32W65536_RD1 [31:25] , 
+			imem_arg_MEMB32W65536_RD1 [11:7] } )						// line#=computer.cpp:86,96,97,449,458
+													// ,462,571
+		| ( { 21{ M_2924 } } & { RG_instr_next_pc_PC [24] , M_2991 [12:4] , 
+			RG_instr_next_pc_PC [23:18] , M_2991 [3:0] , 1'h0 } )				// line#=computer.cpp:86,102,103,104,105
+													// ,106,114,115,116,117,118,459,461
+													// ,462,493,512,535
+		| ( { 21{ add32s1i2_c1 } } & { RG_instr_next_pc_PC [24] , RG_instr_next_pc_PC [24] , 
+			RG_instr_next_pc_PC [24] , RG_instr_next_pc_PC [24] , RG_instr_next_pc_PC [24] , 
+			RG_instr_next_pc_PC [24] , RG_instr_next_pc_PC [24] , RG_instr_next_pc_PC [24] , 
+			RG_instr_next_pc_PC [24] , RG_instr_next_pc_PC [24:13] } )			// line#=computer.cpp:86,91,461,501,543
+		| ( { 21{ U_585 } } & { RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , 
+			RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , 
+			RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , RG_funct3_imm1 [11] , 
+			RG_funct3_imm1 [11] , RG_funct3_imm1 [11:0] } )					// line#=computer.cpp:596
+		| ( { 21{ M_2931 } } & { RG_buf [19] , RG_buf [19:0] } )				// line#=computer.cpp:342
+		| ( { 21{ add32s1i2_c2 } } & { RG_buf_buf1_val [19] , RG_buf_buf1_val [19:0] } )	// line#=computer.cpp:376
 		) ;
 	end
-assign	sub16s_131i1 = 2'h0 ;	// line#=computer.cpp:331,365
-assign	sub16s_131i2 = C_q1ot ;	// line#=computer.cpp:331,365
-always @ ( RG_dst_addr or ST1_492d or ST1_491d or ST1_490d or ST1_489d or ST1_488d or 
-	ST1_487d or ST1_486d or ST1_485d or ST1_484d or ST1_483d or ST1_482d or 
-	ST1_481d or ST1_480d or ST1_479d or ST1_478d or ST1_477d or ST1_476d or 
-	ST1_475d or ST1_474d or ST1_473d or ST1_472d or ST1_471d or ST1_470d or 
-	ST1_469d or ST1_468d or ST1_467d or ST1_466d or ST1_465d or ST1_464d or 
-	ST1_463d or ST1_462d or ST1_461d or ST1_460d or ST1_459d or ST1_458d or 
-	ST1_457d or ST1_456d or ST1_455d or ST1_454d or ST1_453d or ST1_452d or 
-	ST1_451d or ST1_450d or ST1_449d or ST1_448d or ST1_447d or ST1_446d or 
-	ST1_445d or ST1_444d or ST1_443d or ST1_442d or ST1_441d or ST1_440d or 
-	ST1_439d or ST1_438d or ST1_437d or ST1_436d or ST1_435d or ST1_434d or 
-	ST1_433d or ST1_432d or ST1_431d or ST1_421d or RG_addr1_next_pc_op1_PC_src_addr or 
-	M_2910 )
+assign	sub16s_131i1 = 2'h0 ;	// line#=computer.cpp:338
+assign	sub16s_131i2 = C_q2ot ;	// line#=computer.cpp:338
+assign	sub16s_132i1 = 2'h0 ;	// line#=computer.cpp:338,372
+assign	sub16s_132i2 = C_q3ot ;	// line#=computer.cpp:338,372
+always @ ( RG_dst_addr or ST1_339d or ST1_338d or ST1_337d or ST1_336d or ST1_335d or 
+	ST1_334d or ST1_333d or ST1_332d or ST1_331d or ST1_330d or ST1_329d or 
+	ST1_328d or ST1_327d or ST1_326d or ST1_325d or ST1_324d or ST1_323d or 
+	ST1_322d or ST1_321d or ST1_320d or ST1_319d or ST1_318d or ST1_317d or 
+	ST1_316d or ST1_315d or ST1_314d or ST1_313d or ST1_312d or ST1_311d or 
+	ST1_310d or ST1_309d or ST1_308d or ST1_307d or ST1_306d or ST1_305d or 
+	ST1_304d or ST1_303d or ST1_302d or ST1_301d or ST1_300d or ST1_299d or 
+	ST1_298d or ST1_297d or ST1_296d or ST1_295d or ST1_294d or ST1_293d or 
+	ST1_292d or ST1_291d or ST1_290d or ST1_289d or ST1_288d or ST1_287d or 
+	ST1_286d or ST1_285d or ST1_284d or ST1_283d or ST1_282d or ST1_281d or 
+	ST1_280d or ST1_279d or ST1_278d or ST1_276d or RG_buf_buf1_src_addr_y or 
+	U_677 or U_662 or U_635 or U_622 or U_607 or U_582 or U_569 or U_554 or 
+	U_539 or U_524 or U_509 or U_494 or U_477 or U_462 or U_445 or U_430 or 
+	ST1_47d or ST1_46d or ST1_45d or ST1_44d or ST1_43d or ST1_42d or ST1_41d or 
+	ST1_40d or ST1_39d or ST1_38d or ST1_37d or ST1_36d or ST1_35d or ST1_34d or 
+	ST1_33d or ST1_32d or ST1_31d or ST1_30d or ST1_29d or ST1_28d or ST1_27d or 
+	ST1_26d or ST1_25d or ST1_24d or ST1_23d or U_415 or U_399 or U_384 or U_342 or 
+	U_302 or U_286 or U_273 or U_258 or U_243 or U_228 or U_209 or U_194 or 
+	U_179 or U_163 or RG_buf_buf1_dst_addr_src_addr or U_147 or RL_buf_buf1_instr_next_pc_rd or 
+	U_122 or RL_addr1_buf_buf1_next_pc_op1_PC or U_107 or U_88 or U_71 )
 	begin
-	sub20u_181i1_c1 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
+	sub20u_181i1_c1 = ( ( U_71 | U_88 ) | U_107 ) ;	// line#=computer.cpp:165,311,312
+	sub20u_181i1_c2 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
+		( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( U_163 | U_179 ) | 
+		U_194 ) | U_209 ) | U_228 ) | U_243 ) | U_258 ) | U_273 ) | U_286 ) | 
+		U_302 ) | U_342 ) | U_384 ) | U_399 ) | U_415 ) | ST1_23d ) | ST1_24d ) | 
+		ST1_25d ) | ST1_26d ) | ST1_27d ) | ST1_28d ) | ST1_29d ) | ST1_30d ) | 
+		ST1_31d ) | ST1_32d ) | ST1_33d ) | ST1_34d ) | ST1_35d ) | ST1_36d ) | 
+		ST1_37d ) | ST1_38d ) | ST1_39d ) | ST1_40d ) | ST1_41d ) | ST1_42d ) | 
+		ST1_43d ) | ST1_44d ) | ST1_45d ) | ST1_46d ) | ST1_47d ) | U_430 ) | 
+		U_445 ) | U_462 ) | U_477 ) | U_494 ) | U_509 ) | U_524 ) | U_539 ) | 
+		U_554 ) | U_569 ) | U_582 ) | U_607 ) | U_622 ) | U_635 ) | U_662 ) | 
+		U_677 ) ;	// line#=computer.cpp:165,311,312
+	sub20u_181i1_c3 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
 		( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-		( ST1_421d | ST1_431d ) | ST1_432d ) | ST1_433d ) | ST1_434d ) | 
-		ST1_435d ) | ST1_436d ) | ST1_437d ) | ST1_438d ) | ST1_439d ) | 
-		ST1_440d ) | ST1_441d ) | ST1_442d ) | ST1_443d ) | ST1_444d ) | 
-		ST1_445d ) | ST1_446d ) | ST1_447d ) | ST1_448d ) | ST1_449d ) | 
-		ST1_450d ) | ST1_451d ) | ST1_452d ) | ST1_453d ) | ST1_454d ) | 
-		ST1_455d ) | ST1_456d ) | ST1_457d ) | ST1_458d ) | ST1_459d ) | 
-		ST1_460d ) | ST1_461d ) | ST1_462d ) | ST1_463d ) | ST1_464d ) | 
-		ST1_465d ) | ST1_466d ) | ST1_467d ) | ST1_468d ) | ST1_469d ) | 
-		ST1_470d ) | ST1_471d ) | ST1_472d ) | ST1_473d ) | ST1_474d ) | 
-		ST1_475d ) | ST1_476d ) | ST1_477d ) | ST1_478d ) | ST1_479d ) | 
-		ST1_480d ) | ST1_481d ) | ST1_482d ) | ST1_483d ) | ST1_484d ) | 
-		ST1_485d ) | ST1_486d ) | ST1_487d ) | ST1_488d ) | ST1_489d ) | 
-		ST1_490d ) | ST1_491d ) | ST1_492d ) ;	// line#=computer.cpp:218,377,378
-	sub20u_181i1 = ( ( { 18{ M_2910 } } & RG_addr1_next_pc_op1_PC_src_addr [17:0] )	// line#=computer.cpp:165,304,305
-		| ( { 18{ sub20u_181i1_c1 } } & RG_dst_addr )				// line#=computer.cpp:218,377,378
+		( ST1_276d | ST1_278d ) | ST1_279d ) | ST1_280d ) | ST1_281d ) | 
+		ST1_282d ) | ST1_283d ) | ST1_284d ) | ST1_285d ) | ST1_286d ) | 
+		ST1_287d ) | ST1_288d ) | ST1_289d ) | ST1_290d ) | ST1_291d ) | 
+		ST1_292d ) | ST1_293d ) | ST1_294d ) | ST1_295d ) | ST1_296d ) | 
+		ST1_297d ) | ST1_298d ) | ST1_299d ) | ST1_300d ) | ST1_301d ) | 
+		ST1_302d ) | ST1_303d ) | ST1_304d ) | ST1_305d ) | ST1_306d ) | 
+		ST1_307d ) | ST1_308d ) | ST1_309d ) | ST1_310d ) | ST1_311d ) | 
+		ST1_312d ) | ST1_313d ) | ST1_314d ) | ST1_315d ) | ST1_316d ) | 
+		ST1_317d ) | ST1_318d ) | ST1_319d ) | ST1_320d ) | ST1_321d ) | 
+		ST1_322d ) | ST1_323d ) | ST1_324d ) | ST1_325d ) | ST1_326d ) | 
+		ST1_327d ) | ST1_328d ) | ST1_329d ) | ST1_330d ) | ST1_331d ) | 
+		ST1_332d ) | ST1_333d ) | ST1_334d ) | ST1_335d ) | ST1_336d ) | 
+		ST1_337d ) | ST1_338d ) | ST1_339d ) ;	// line#=computer.cpp:218,384,385
+	sub20u_181i1 = ( ( { 18{ sub20u_181i1_c1 } } & RL_addr1_buf_buf1_next_pc_op1_PC [17:0] )	// line#=computer.cpp:165,311,312
+		| ( { 18{ U_122 } } & RL_buf_buf1_instr_next_pc_rd [17:0] )				// line#=computer.cpp:165,311,312
+		| ( { 18{ U_147 } } & RG_buf_buf1_dst_addr_src_addr [17:0] )				// line#=computer.cpp:165,311,312
+		| ( { 18{ sub20u_181i1_c2 } } & RG_buf_buf1_src_addr_y [17:0] )				// line#=computer.cpp:165,311,312
+		| ( { 18{ sub20u_181i1_c3 } } & RG_dst_addr [17:0] )					// line#=computer.cpp:218,384,385
 		) ;
 	end
-always @ ( ST1_492d or ST1_491d or ST1_490d or ST1_489d or U_673 or ST1_488d or 
-	U_658 or ST1_487d or U_632 or ST1_486d or U_619 or ST1_485d or U_604 or 
-	ST1_484d or U_579 or ST1_483d or U_566 or ST1_482d or U_551 or ST1_481d or 
-	U_536 or ST1_480d or U_521 or ST1_479d or U_506 or ST1_478d or U_491 or 
-	ST1_477d or U_474 or ST1_476d or U_459 or ST1_475d or U_442 or ST1_474d or 
-	U_427 or ST1_473d or ST1_47d or ST1_472d or ST1_46d or ST1_471d or ST1_45d or 
-	ST1_470d or ST1_44d or ST1_469d or ST1_43d or ST1_468d or ST1_42d or ST1_467d or 
-	ST1_41d or ST1_466d or ST1_40d or ST1_465d or ST1_39d or ST1_464d or ST1_38d or 
-	ST1_463d or ST1_37d or ST1_462d or ST1_36d or ST1_461d or ST1_35d or ST1_460d or 
-	ST1_34d or ST1_459d or ST1_33d or ST1_458d or ST1_32d or ST1_457d or ST1_31d or 
-	ST1_456d or ST1_30d or ST1_455d or ST1_29d or ST1_454d or ST1_28d or ST1_453d or 
-	ST1_27d or ST1_452d or ST1_26d or ST1_451d or ST1_25d or ST1_450d or ST1_24d or 
-	ST1_449d or ST1_23d or ST1_448d or U_412 or ST1_447d or U_396 or ST1_446d or 
-	U_381 or ST1_445d or U_364 or ST1_444d or U_349 or ST1_443d or U_288 or 
-	ST1_442d or U_275 or ST1_441d or U_260 or ST1_440d or U_245 or ST1_439d or 
-	U_230 or ST1_438d or U_211 or ST1_437d or U_196 or ST1_436d or U_181 or 
-	ST1_435d or U_165 or ST1_434d or U_149 or ST1_433d or U_124 or ST1_432d or 
-	U_109 or ST1_431d or U_88 or ST1_421d or U_71 )
+always @ ( ST1_338d or ST1_320d or ST1_276d or ST1_336d or U_677 or ST1_335d or 
+	U_662 or ST1_334d or U_635 or ST1_333d or U_622 or ST1_332d or U_607 or 
+	ST1_331d or U_582 or ST1_330d or U_569 or ST1_329d or U_554 or ST1_328d or 
+	U_539 or ST1_327d or U_524 or ST1_326d or U_509 or ST1_325d or U_494 or 
+	ST1_324d or U_477 or ST1_323d or U_462 or ST1_322d or U_445 or ST1_321d or 
+	U_430 or ST1_339d or ST1_47d or ST1_319d or ST1_46d or ST1_318d or ST1_45d or 
+	ST1_317d or ST1_44d or ST1_316d or ST1_43d or ST1_315d or ST1_42d or ST1_314d or 
+	ST1_41d or ST1_313d or ST1_40d or ST1_312d or ST1_39d or ST1_311d or ST1_38d or 
+	ST1_310d or ST1_37d or ST1_309d or ST1_36d or ST1_308d or ST1_35d or ST1_307d or 
+	ST1_34d or ST1_306d or ST1_33d or ST1_305d or ST1_32d or ST1_304d or ST1_31d or 
+	ST1_303d or ST1_30d or ST1_302d or ST1_29d or ST1_301d or ST1_28d or ST1_300d or 
+	ST1_27d or ST1_299d or ST1_26d or ST1_298d or ST1_25d or ST1_297d or ST1_24d or 
+	ST1_296d or ST1_23d or ST1_295d or U_415 or ST1_294d or U_399 or ST1_293d or 
+	U_384 or ST1_292d or U_342 or ST1_291d or U_302 or ST1_290d or U_286 or 
+	ST1_289d or U_273 or ST1_288d or U_258 or ST1_287d or U_243 or ST1_286d or 
+	U_228 or ST1_285d or U_209 or ST1_284d or U_194 or ST1_283d or U_179 or 
+	ST1_282d or U_163 or ST1_281d or U_147 or ST1_280d or U_122 or ST1_279d or 
+	U_107 or ST1_278d or U_88 or ST1_337d or U_71 )
 	begin
-	M_3083_c1 = ( U_71 | ST1_421d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c2 = ( U_88 | ST1_431d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c3 = ( U_109 | ST1_432d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c4 = ( U_124 | ST1_433d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c5 = ( U_149 | ST1_434d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c6 = ( U_165 | ST1_435d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c7 = ( U_181 | ST1_436d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c8 = ( U_196 | ST1_437d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c9 = ( U_211 | ST1_438d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c10 = ( U_230 | ST1_439d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c11 = ( U_245 | ST1_440d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c12 = ( U_260 | ST1_441d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c13 = ( U_275 | ST1_442d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c14 = ( U_288 | ST1_443d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c15 = ( U_349 | ST1_444d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c16 = ( U_364 | ST1_445d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c17 = ( U_381 | ST1_446d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c18 = ( U_396 | ST1_447d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c19 = ( U_412 | ST1_448d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c20 = ( ST1_23d | ST1_449d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c21 = ( ST1_24d | ST1_450d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c22 = ( ST1_25d | ST1_451d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c23 = ( ST1_26d | ST1_452d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c24 = ( ST1_27d | ST1_453d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c25 = ( ST1_28d | ST1_454d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c26 = ( ST1_29d | ST1_455d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c27 = ( ST1_30d | ST1_456d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c28 = ( ST1_31d | ST1_457d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c29 = ( ST1_32d | ST1_458d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c30 = ( ST1_33d | ST1_459d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c31 = ( ST1_34d | ST1_460d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c32 = ( ST1_35d | ST1_461d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c33 = ( ST1_36d | ST1_462d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c34 = ( ST1_37d | ST1_463d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c35 = ( ST1_38d | ST1_464d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c36 = ( ST1_39d | ST1_465d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c37 = ( ST1_40d | ST1_466d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c38 = ( ST1_41d | ST1_467d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c39 = ( ST1_42d | ST1_468d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c40 = ( ST1_43d | ST1_469d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c41 = ( ST1_44d | ST1_470d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c42 = ( ST1_45d | ST1_471d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c43 = ( ST1_46d | ST1_472d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c44 = ( ST1_47d | ST1_473d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c45 = ( U_427 | ST1_474d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c46 = ( U_442 | ST1_475d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c47 = ( U_459 | ST1_476d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c48 = ( U_474 | ST1_477d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c49 = ( U_491 | ST1_478d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c50 = ( U_506 | ST1_479d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c51 = ( U_521 | ST1_480d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c52 = ( U_536 | ST1_481d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c53 = ( U_551 | ST1_482d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c54 = ( U_566 | ST1_483d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c55 = ( U_579 | ST1_484d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c56 = ( U_604 | ST1_485d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c57 = ( U_619 | ST1_486d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c58 = ( U_632 | ST1_487d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c59 = ( U_658 | ST1_488d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083_c60 = ( U_673 | ST1_489d ) ;	// line#=computer.cpp:165,218,304,305,377
-						// ,378
-	M_3083 = ( ( { 7{ M_3083_c1 } } & 7'h7f )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c2 } } & 7'h7e )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c3 } } & 7'h7d )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c4 } } & 7'h7c )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c5 } } & 7'h7b )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c6 } } & 7'h7a )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c7 } } & 7'h79 )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c8 } } & 7'h70 )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c9 } } & 7'h6f )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c10 } } & 7'h6e )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c11 } } & 7'h6d )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c12 } } & 7'h6c )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c13 } } & 7'h6b )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c14 } } & 7'h6a )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c15 } } & 7'h69 )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c16 } } & 7'h60 )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c17 } } & 7'h5f )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c18 } } & 7'h5e )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c19 } } & 7'h5d )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c20 } } & 7'h5c )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c21 } } & 7'h5b )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c22 } } & 7'h5a )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c23 } } & 7'h59 )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c24 } } & 7'h50 )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c25 } } & 7'h4f )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c26 } } & 7'h4e )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c27 } } & 7'h4d )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c28 } } & 7'h4c )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c29 } } & 7'h4b )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c30 } } & 7'h4a )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c31 } } & 7'h49 )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c32 } } & 7'h40 )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c33 } } & 7'h3f )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c34 } } & 7'h3e )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c35 } } & 7'h3d )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c36 } } & 7'h3c )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c37 } } & 7'h3b )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c38 } } & 7'h3a )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c39 } } & 7'h39 )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c40 } } & 7'h30 )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c41 } } & 7'h2f )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c42 } } & 7'h2e )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c43 } } & 7'h2d )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c44 } } & 7'h2c )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c45 } } & 7'h2b )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c46 } } & 7'h2a )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c47 } } & 7'h29 )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c48 } } & 7'h20 )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c49 } } & 7'h1f )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c50 } } & 7'h1e )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c51 } } & 7'h1d )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c52 } } & 7'h1c )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c53 } } & 7'h1b )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c54 } } & 7'h1a )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c55 } } & 7'h19 )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c56 } } & 7'h10 )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c57 } } & 7'h0f )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c58 } } & 7'h0e )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c59 } } & 7'h0d )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ M_3083_c60 } } & 7'h0c )	// line#=computer.cpp:165,218,304,305,377
-							// ,378
-		| ( { 7{ ST1_490d } } & 7'h0b )		// line#=computer.cpp:218,377,378
-		| ( { 7{ ST1_491d } } & 7'h0a )		// line#=computer.cpp:218,377,378
-		| ( { 7{ ST1_492d } } & 7'h09 )		// line#=computer.cpp:218,377,378
+	M_2989_c1 = ( U_71 | ST1_337d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c2 = ( U_88 | ST1_278d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c3 = ( U_107 | ST1_279d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c4 = ( U_122 | ST1_280d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c5 = ( U_147 | ST1_281d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c6 = ( U_163 | ST1_282d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c7 = ( U_179 | ST1_283d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c8 = ( U_194 | ST1_284d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c9 = ( U_209 | ST1_285d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c10 = ( U_228 | ST1_286d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c11 = ( U_243 | ST1_287d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c12 = ( U_258 | ST1_288d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c13 = ( U_273 | ST1_289d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c14 = ( U_286 | ST1_290d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c15 = ( U_302 | ST1_291d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c16 = ( U_342 | ST1_292d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c17 = ( U_384 | ST1_293d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c18 = ( U_399 | ST1_294d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c19 = ( U_415 | ST1_295d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c20 = ( ST1_23d | ST1_296d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c21 = ( ST1_24d | ST1_297d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c22 = ( ST1_25d | ST1_298d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c23 = ( ST1_26d | ST1_299d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c24 = ( ST1_27d | ST1_300d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c25 = ( ST1_28d | ST1_301d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c26 = ( ST1_29d | ST1_302d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c27 = ( ST1_30d | ST1_303d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c28 = ( ST1_31d | ST1_304d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c29 = ( ST1_32d | ST1_305d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c30 = ( ST1_33d | ST1_306d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c31 = ( ST1_34d | ST1_307d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c32 = ( ST1_35d | ST1_308d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c33 = ( ST1_36d | ST1_309d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c34 = ( ST1_37d | ST1_310d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c35 = ( ST1_38d | ST1_311d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c36 = ( ST1_39d | ST1_312d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c37 = ( ST1_40d | ST1_313d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c38 = ( ST1_41d | ST1_314d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c39 = ( ST1_42d | ST1_315d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c40 = ( ST1_43d | ST1_316d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c41 = ( ST1_44d | ST1_317d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c42 = ( ST1_45d | ST1_318d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c43 = ( ST1_46d | ST1_319d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c44 = ( ST1_47d | ST1_339d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c45 = ( U_430 | ST1_321d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c46 = ( U_445 | ST1_322d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c47 = ( U_462 | ST1_323d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c48 = ( U_477 | ST1_324d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c49 = ( U_494 | ST1_325d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c50 = ( U_509 | ST1_326d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c51 = ( U_524 | ST1_327d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c52 = ( U_539 | ST1_328d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c53 = ( U_554 | ST1_329d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c54 = ( U_569 | ST1_330d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c55 = ( U_582 | ST1_331d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c56 = ( U_607 | ST1_332d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c57 = ( U_622 | ST1_333d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c58 = ( U_635 | ST1_334d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c59 = ( U_662 | ST1_335d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989_c60 = ( U_677 | ST1_336d ) ;	// line#=computer.cpp:165,218,311,312,384
+						// ,385
+	M_2989 = ( ( { 7{ M_2989_c1 } } & 7'h0b )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c2 } } & 7'h7e )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c3 } } & 7'h7d )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c4 } } & 7'h7c )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c5 } } & 7'h7b )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c6 } } & 7'h7a )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c7 } } & 7'h79 )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c8 } } & 7'h70 )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c9 } } & 7'h6f )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c10 } } & 7'h6e )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c11 } } & 7'h6d )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c12 } } & 7'h6c )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c13 } } & 7'h6b )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c14 } } & 7'h6a )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c15 } } & 7'h69 )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c16 } } & 7'h60 )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c17 } } & 7'h5f )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c18 } } & 7'h5e )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c19 } } & 7'h5d )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c20 } } & 7'h5c )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c21 } } & 7'h5b )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c22 } } & 7'h5a )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c23 } } & 7'h59 )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c24 } } & 7'h50 )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c25 } } & 7'h4f )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c26 } } & 7'h4e )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c27 } } & 7'h4d )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c28 } } & 7'h4c )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c29 } } & 7'h4b )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c30 } } & 7'h4a )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c31 } } & 7'h49 )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c32 } } & 7'h40 )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c33 } } & 7'h3f )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c34 } } & 7'h3e )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c35 } } & 7'h3d )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c36 } } & 7'h3c )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c37 } } & 7'h3b )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c38 } } & 7'h3a )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c39 } } & 7'h39 )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c40 } } & 7'h30 )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c41 } } & 7'h2f )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c42 } } & 7'h2e )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c43 } } & 7'h2d )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c44 } } & 7'h09 )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c45 } } & 7'h2b )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c46 } } & 7'h2a )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c47 } } & 7'h29 )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c48 } } & 7'h20 )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c49 } } & 7'h1f )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c50 } } & 7'h1e )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c51 } } & 7'h1d )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c52 } } & 7'h1c )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c53 } } & 7'h1b )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c54 } } & 7'h1a )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c55 } } & 7'h19 )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c56 } } & 7'h10 )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c57 } } & 7'h0f )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c58 } } & 7'h0e )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c59 } } & 7'h0d )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ M_2989_c60 } } & 7'h0c )	// line#=computer.cpp:165,218,311,312,384
+							// ,385
+		| ( { 7{ ST1_276d } } & 7'h7f )		// line#=computer.cpp:218,384,385
+		| ( { 7{ ST1_320d } } & 7'h2c )		// line#=computer.cpp:218,384,385
+		| ( { 7{ ST1_338d } } & 7'h0a )		// line#=computer.cpp:218,384,385
 		) ;
 	end
-assign	sub20u_181i2 = { 9'h1ff , M_3083 , 2'h0 } ;
-assign	sub20u_182i1 = RG_addr1_next_pc_op1_PC_src_addr [17:0] ;	// line#=computer.cpp:165,304,305
-always @ ( ST1_47d or U_124 or U_71 )
-	M_3082 = ( ( { 2{ U_71 } } & 2'h3 )	// line#=computer.cpp:165,304,305
-		| ( { 2{ U_124 } } & 2'h2 )	// line#=computer.cpp:165,304,305
-		| ( { 2{ ST1_47d } } & 2'h1 )	// line#=computer.cpp:165,304,305
+assign	sub20u_181i2 = { 9'h1ff , M_2989 , 2'h0 } ;
+always @ ( RG_buf_buf1_src_addr_y or ST1_47d or RL_buf_buf1_instr_next_pc_rd or 
+	U_122 or RL_addr1_buf_buf1_next_pc_op1_PC or U_71 )
+	sub20u_182i1 = ( ( { 18{ U_71 } } & RL_addr1_buf_buf1_next_pc_op1_PC [17:0] )	// line#=computer.cpp:165,311,312
+		| ( { 18{ U_122 } } & RL_buf_buf1_instr_next_pc_rd [17:0] )		// line#=computer.cpp:165,311,312
+		| ( { 18{ ST1_47d } } & RG_buf_buf1_src_addr_y [17:0] )			// line#=computer.cpp:165,311,312
 		) ;
-assign	sub20u_182i2 = { 14'h3fe2 , M_3082 , 2'h0 } ;
-always @ ( RG_buf_buf1_instr_rd_word_addr or M_3028 or RL_addr_buf_instr_op2_result or 
-	M_2939 )
-	TR_18 = ( ( { 20{ M_2939 } } & RL_addr_buf_instr_op2_result [19:0] )	// line#=computer.cpp:335
-		| ( { 20{ M_3028 } } & RG_buf_buf1_instr_rd_word_addr [19:0] )	// line#=computer.cpp:369
+always @ ( ST1_47d or U_122 or U_71 )
+	M_2988 = ( ( { 6{ U_71 } } & 6'h3f )	// line#=computer.cpp:165,311,312
+		| ( { 6{ U_122 } } & 6'h02 )	// line#=computer.cpp:165,311,312
+		| ( { 6{ ST1_47d } } & 6'h14 )	// line#=computer.cpp:165,311,312
 		) ;
-assign	sub24s_231i1 = { TR_18 , 2'h0 } ;	// line#=computer.cpp:335,369
-always @ ( RG_buf_buf1_instr_rd_word_addr or M_3028 or RL_addr_buf_instr_op2_result or 
-	M_2939 )
-	sub24s_231i2 = ( ( { 20{ M_2939 } } & RL_addr_buf_instr_op2_result [19:0] )	// line#=computer.cpp:335
-		| ( { 20{ M_3028 } } & RG_buf_buf1_instr_rd_word_addr [19:0] )		// line#=computer.cpp:369
+assign	sub20u_182i2 = { 9'h1ff , M_2988 [5:3] , 1'h1 , M_2988 [2:0] , 2'h0 } ;
+assign	M_2874 = ( ( ( ( ( ( ( ST1_219d | ST1_227d ) | ST1_235d ) | ST1_243d ) | 
+	ST1_251d ) | ST1_259d ) | ST1_267d ) | ST1_275d ) ;
+always @ ( RG_buf_buf1_val or M_2874 or RG_buf or M_2866 )
+	TR_21 = ( ( { 20{ M_2866 } } & RG_buf [19:0] )		// line#=computer.cpp:342
+		| ( { 20{ M_2874 } } & RG_buf_buf1_val [19:0] )	// line#=computer.cpp:376
 		) ;
-assign	sub28s_271i1 = { sub24s_231ot , 4'h0 } ;	// line#=computer.cpp:335,369
-assign	sub28s_271i2 = sub24s_231ot ;	// line#=computer.cpp:335,369
-assign	M_2928 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-	( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_71d | ST1_73d ) | ST1_75d ) | 
-	ST1_77d ) | ST1_79d ) | ST1_81d ) | ST1_83d ) | ST1_93d ) | ST1_95d ) | ST1_97d ) | 
-	ST1_99d ) | ST1_101d ) | ST1_103d ) | ST1_105d ) | ST1_115d ) | ST1_117d ) | 
-	ST1_119d ) | ST1_121d ) | ST1_123d ) | ST1_125d ) | ST1_127d ) | ST1_137d ) | 
-	ST1_139d ) | ST1_141d ) | ST1_143d ) | ST1_145d ) | ST1_147d ) | ST1_149d ) | 
-	ST1_159d ) | ST1_161d ) | ST1_163d ) | ST1_165d ) | ST1_167d ) | ST1_169d ) | 
-	ST1_171d ) | ST1_181d ) | ST1_183d ) | ST1_185d ) | ST1_187d ) | ST1_189d ) | 
-	ST1_191d ) | ST1_193d ) | ST1_203d ) | ST1_205d ) | ST1_207d ) | ST1_209d ) | 
-	ST1_211d ) | ST1_213d ) | ST1_215d ) | ST1_225d ) | ST1_227d ) | ST1_229d ) | 
-	ST1_231d ) | ST1_233d ) | ST1_235d ) | ST1_237d ) ;
-always @ ( blk_out_RD1 or ST1_420d or ST1_418d or ST1_416d or ST1_414d or ST1_412d or 
-	ST1_410d or ST1_408d or ST1_397d or ST1_395d or ST1_393d or ST1_391d or 
-	ST1_389d or ST1_387d or ST1_385d or ST1_374d or ST1_372d or ST1_370d or 
-	ST1_368d or ST1_366d or ST1_364d or ST1_362d or ST1_351d or ST1_349d or 
-	ST1_347d or ST1_345d or ST1_343d or ST1_341d or ST1_339d or ST1_328d or 
-	ST1_326d or ST1_324d or ST1_322d or ST1_320d or ST1_318d or ST1_316d or 
-	ST1_305d or ST1_303d or ST1_301d or ST1_299d or ST1_297d or ST1_295d or 
-	ST1_293d or ST1_282d or ST1_280d or ST1_278d or ST1_276d or ST1_274d or 
-	ST1_272d or ST1_270d or ST1_259d or ST1_257d or ST1_255d or ST1_253d or 
-	ST1_251d or ST1_249d or ST1_247d or blk_in_RD1 or M_2928 )
+assign	sub24s_231i1 = { TR_21 , 2'h0 } ;	// line#=computer.cpp:342,376
+assign	M_2848 = ( ST1_78d | ST1_96d ) ;
+always @ ( RG_buf_buf1_val or M_2874 or RG_buf or M_2866 )
+	sub24s_231i2 = ( ( { 20{ M_2866 } } & RG_buf [19:0] )	// line#=computer.cpp:342
+		| ( { 20{ M_2874 } } & RG_buf_buf1_val [19:0] )	// line#=computer.cpp:376
+		) ;
+assign	sub28s_271i1 = { sub24s_231ot , 4'h0 } ;	// line#=computer.cpp:342,376
+assign	sub28s_271i2 = sub24s_231ot ;	// line#=computer.cpp:342,376
+assign	mul20s1i1 = blk_out1_rd00 ;	// line#=computer.cpp:373
+always @ ( ST1_275d or ST1_274d or ST1_273d or ST1_272d or ST1_271d or ST1_270d or 
+	ST1_267d or ST1_266d or ST1_265d or ST1_264d or ST1_263d or ST1_262d or 
+	ST1_259d or ST1_258d or ST1_257d or ST1_256d or ST1_255d or ST1_254d or 
+	ST1_251d or ST1_250d or ST1_249d or ST1_248d or ST1_247d or ST1_246d or 
+	ST1_243d or ST1_242d or ST1_241d or ST1_240d or ST1_239d or ST1_238d or 
+	ST1_235d or ST1_234d or ST1_233d or ST1_232d or ST1_231d or ST1_230d or 
+	ST1_227d or ST1_226d or ST1_225d or ST1_224d or ST1_223d or ST1_222d or 
+	TR_168 or ST1_219d or TR_167 or ST1_218d or TR_166 or ST1_217d or TR_165 or 
+	ST1_216d or TR_164 or ST1_215d or TR_163 or ST1_214d or C_q3ot or M_2870 )
+	mul20s1i2 = ( ( { 14{ M_2870 } } & { C_q3ot [12] , C_q3ot [12:0] } )	// line#=computer.cpp:372,373
+		| ( { 14{ ST1_214d } } & TR_163 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_215d } } & TR_164 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_216d } } & TR_165 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_217d } } & TR_166 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_218d } } & TR_167 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_219d } } & TR_168 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_222d } } & TR_163 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_223d } } & TR_164 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_224d } } & TR_165 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_225d } } & TR_166 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_226d } } & TR_167 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_227d } } & TR_168 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_230d } } & TR_163 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_231d } } & TR_164 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_232d } } & TR_165 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_233d } } & TR_166 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_234d } } & TR_167 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_235d } } & TR_168 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_238d } } & TR_163 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_239d } } & TR_164 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_240d } } & TR_165 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_241d } } & TR_166 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_242d } } & TR_167 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_243d } } & TR_168 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_246d } } & TR_163 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_247d } } & TR_164 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_248d } } & TR_165 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_249d } } & TR_166 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_250d } } & TR_167 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_251d } } & TR_168 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_254d } } & TR_163 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_255d } } & TR_164 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_256d } } & TR_165 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_257d } } & TR_166 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_258d } } & TR_167 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_259d } } & TR_168 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_262d } } & TR_163 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_263d } } & TR_164 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_264d } } & TR_165 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_265d } } & TR_166 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_266d } } & TR_167 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_267d } } & TR_168 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_270d } } & TR_163 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_271d } } & TR_164 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_272d } } & TR_165 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_273d } } & TR_166 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_274d } } & TR_167 )				// line#=computer.cpp:373
+		| ( { 14{ ST1_275d } } & TR_168 )				// line#=computer.cpp:373
+		) ;
+assign	M_2836 = ( ST1_69d | ST1_70d ) ;
+assign	M_2841 = ( ST1_72d | ST1_75d ) ;
+always @ ( RG_buf1 or ST1_205d or ST1_203d or ST1_201d or ST1_187d or ST1_185d or 
+	ST1_183d or ST1_169d or ST1_167d or ST1_165d or ST1_151d or ST1_149d or 
+	ST1_147d or ST1_133d or ST1_131d or ST1_129d or ST1_115d or ST1_113d or 
+	ST1_111d or ST1_97d or ST1_79d or RG_buf_buf1 or ST1_198d or ST1_180d or 
+	ST1_162d or ST1_144d or ST1_126d or ST1_108d or ST1_95d or ST1_93d or ST1_77d or 
+	RG_buf_buf1_val or ST1_90d or M_2841 or blk_in_rd00 or ST1_199d or ST1_196d or 
+	ST1_195d or ST1_181d or ST1_178d or ST1_177d or ST1_163d or ST1_160d or 
+	ST1_159d or ST1_145d or ST1_142d or ST1_141d or ST1_127d or ST1_124d or 
+	ST1_123d or ST1_109d or ST1_106d or ST1_105d or ST1_91d or ST1_88d or ST1_87d or 
+	ST1_73d or M_2836 )
 	begin
-	mul32s1i1_c1 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-		( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_247d | ST1_249d ) | 
-		ST1_251d ) | ST1_253d ) | ST1_255d ) | ST1_257d ) | ST1_259d ) | 
-		ST1_270d ) | ST1_272d ) | ST1_274d ) | ST1_276d ) | ST1_278d ) | 
-		ST1_280d ) | ST1_282d ) | ST1_293d ) | ST1_295d ) | ST1_297d ) | 
-		ST1_299d ) | ST1_301d ) | ST1_303d ) | ST1_305d ) | ST1_316d ) | 
-		ST1_318d ) | ST1_320d ) | ST1_322d ) | ST1_324d ) | ST1_326d ) | 
-		ST1_328d ) | ST1_339d ) | ST1_341d ) | ST1_343d ) | ST1_345d ) | 
-		ST1_347d ) | ST1_349d ) | ST1_351d ) | ST1_362d ) | ST1_364d ) | 
-		ST1_366d ) | ST1_368d ) | ST1_370d ) | ST1_372d ) | ST1_374d ) | 
-		ST1_385d ) | ST1_387d ) | ST1_389d ) | ST1_391d ) | ST1_393d ) | 
-		ST1_395d ) | ST1_397d ) | ST1_408d ) | ST1_410d ) | ST1_412d ) | 
-		ST1_414d ) | ST1_416d ) | ST1_418d ) | ST1_420d ) ;	// line#=computer.cpp:366
-	mul32s1i1 = ( ( { 32{ M_2928 } } & blk_in_RD1 )		// line#=computer.cpp:332
-		| ( { 32{ mul32s1i1_c1 } } & blk_out_RD1 )	// line#=computer.cpp:366
+	mul32s1i1_c1 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( M_2836 | ST1_73d ) | 
+		ST1_87d ) | ST1_88d ) | ST1_91d ) | ST1_105d ) | ST1_106d ) | ST1_109d ) | 
+		ST1_123d ) | ST1_124d ) | ST1_127d ) | ST1_141d ) | ST1_142d ) | 
+		ST1_145d ) | ST1_159d ) | ST1_160d ) | ST1_163d ) | ST1_177d ) | 
+		ST1_178d ) | ST1_181d ) | ST1_195d ) | ST1_196d ) | ST1_199d ) ;	// line#=computer.cpp:339
+	mul32s1i1_c2 = ( M_2841 | ST1_90d ) ;	// line#=computer.cpp:339
+	mul32s1i1_c3 = ( ( ( ( ( ( ( ( ST1_77d | ST1_93d ) | ST1_95d ) | ST1_108d ) | 
+		ST1_126d ) | ST1_144d ) | ST1_162d ) | ST1_180d ) | ST1_198d ) ;	// line#=computer.cpp:339
+	mul32s1i1_c4 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_79d | ST1_97d ) | 
+		ST1_111d ) | ST1_113d ) | ST1_115d ) | ST1_129d ) | ST1_131d ) | 
+		ST1_133d ) | ST1_147d ) | ST1_149d ) | ST1_151d ) | ST1_165d ) | 
+		ST1_167d ) | ST1_169d ) | ST1_183d ) | ST1_185d ) | ST1_187d ) | 
+		ST1_201d ) | ST1_203d ) | ST1_205d ) ;	// line#=computer.cpp:339
+	mul32s1i1 = ( ( { 32{ mul32s1i1_c1 } } & blk_in_rd00 )	// line#=computer.cpp:339
+		| ( { 32{ mul32s1i1_c2 } } & RG_buf_buf1_val )	// line#=computer.cpp:339
+		| ( { 32{ mul32s1i1_c3 } } & RG_buf_buf1 )	// line#=computer.cpp:339
+		| ( { 32{ mul32s1i1_c4 } } & RG_buf1 )		// line#=computer.cpp:339
 		) ;
 	end
-assign	M_2930 = ( ( ( ST1_73d | ST1_75d ) | ST1_77d ) | ST1_79d ) ;
-always @ ( M_2930 or RL_buf_buf1_coef_rs1_rs2_val1 or ST1_71d )
-	TR_19 = ( ( { 1{ ST1_71d } } & RL_buf_buf1_coef_rs1_rs2_val1 [12] )	// line#=computer.cpp:332
-		| ( { 1{ M_2930 } } & RL_buf_buf1_coef_rs1_rs2_val1 [13] )	// line#=computer.cpp:332
-		) ;
-assign	M_2942 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-	( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_83d | ST1_95d ) | ST1_97d ) | ST1_99d ) | 
-	ST1_101d ) | ST1_103d ) | ST1_105d ) | ST1_117d ) | ST1_119d ) | ST1_121d ) | 
-	ST1_123d ) | ST1_125d ) | ST1_127d ) | ST1_139d ) | ST1_141d ) | ST1_143d ) | 
-	ST1_145d ) | ST1_147d ) | ST1_149d ) | ST1_161d ) | ST1_163d ) | ST1_165d ) | 
-	ST1_167d ) | ST1_169d ) | ST1_171d ) | ST1_183d ) | ST1_185d ) | ST1_187d ) | 
-	ST1_189d ) | ST1_191d ) | ST1_193d ) | ST1_205d ) | ST1_207d ) | ST1_209d ) | 
-	ST1_211d ) | ST1_213d ) | ST1_215d ) | ST1_227d ) | ST1_229d ) | ST1_231d ) | 
-	ST1_233d ) | ST1_235d ) | ST1_237d ) | ST1_249d ) | ST1_251d ) | ST1_253d ) | 
-	ST1_255d ) | ST1_257d ) ;
-assign	M_2954 = ( ( ( ( ( ( ( ST1_93d | ST1_115d ) | ST1_137d ) | ST1_159d ) | ST1_181d ) | 
-	ST1_203d ) | ST1_225d ) | ST1_247d ) ;
-always @ ( M_2954 or RG_buf1_coef_coef1_y or M_2942 )
-	TR_20 = ( ( { 1{ M_2942 } } & RG_buf1_coef_coef1_y [13] )	// line#=computer.cpp:332,366
-		| ( { 1{ M_2954 } } & RG_buf1_coef_coef1_y [12] )	// line#=computer.cpp:332,366
-		) ;
-assign	M_2971 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-	( ( ( ( ( ( ( ( ( ( ST1_259d | ST1_272d ) | ST1_274d ) | ST1_276d ) | ST1_278d ) | 
-	ST1_280d ) | ST1_282d ) | ST1_295d ) | ST1_297d ) | ST1_299d ) | ST1_301d ) | 
-	ST1_303d ) | ST1_305d ) | ST1_318d ) | ST1_320d ) | ST1_322d ) | ST1_324d ) | 
-	ST1_326d ) | ST1_328d ) | ST1_341d ) | ST1_343d ) | ST1_345d ) | ST1_347d ) | 
-	ST1_349d ) | ST1_351d ) | ST1_364d ) | ST1_366d ) | ST1_368d ) | ST1_370d ) | 
-	ST1_372d ) | ST1_374d ) | ST1_387d ) | ST1_389d ) | ST1_391d ) | ST1_393d ) | 
-	ST1_395d ) | ST1_397d ) | ST1_410d ) | ST1_412d ) | ST1_414d ) | ST1_416d ) | 
-	ST1_418d ) | ST1_420d ) ;
-assign	M_2975 = ( ( ( ( ( ( ST1_270d | ST1_293d ) | ST1_316d ) | ST1_339d ) | ST1_362d ) | 
-	ST1_385d ) | ST1_408d ) ;
-always @ ( M_2975 or RG_coef1 or M_2971 )
-	TR_21 = ( ( { 1{ M_2971 } } & RG_coef1 [13] )	// line#=computer.cpp:366
-		| ( { 1{ M_2975 } } & RG_coef1 [12] )	// line#=computer.cpp:366
-		) ;
-always @ ( RG_coef1 or TR_21 or M_2975 or M_2971 or RG_buf1_coef_coef1_y or TR_20 or 
-	M_2954 or M_2942 or RG_buf_buf1_coef_y or ST1_81d or RL_buf_buf1_coef_rs1_rs2_val1 or 
-	TR_19 or M_2930 or ST1_71d )
+assign	M_2847 = ( ( M_2841 | ST1_77d ) | ST1_79d ) ;
+always @ ( ST1_199d or ST1_196d or C_q2ot or ST1_195d or ST1_181d or ST1_178d or 
+	ST1_163d or ST1_160d or ST1_145d or ST1_142d or ST1_127d or ST1_124d or 
+	ST1_109d or ST1_106d or ST1_91d or ST1_88d or TR_159 or ST1_73d or RG_coef or 
+	ST1_205d or ST1_203d or ST1_201d or ST1_198d or ST1_187d or ST1_185d or 
+	ST1_183d or ST1_180d or ST1_169d or ST1_167d or ST1_165d or ST1_162d or 
+	ST1_151d or ST1_149d or ST1_147d or ST1_144d or ST1_133d or ST1_131d or 
+	ST1_129d or ST1_126d or ST1_115d or ST1_113d or ST1_111d or ST1_108d or 
+	ST1_97d or ST1_95d or ST1_93d or ST1_90d or M_2847 or TR_157 or ST1_70d or 
+	C_q1ot or ST1_177d or ST1_159d or ST1_141d or ST1_123d or ST1_105d or ST1_87d or 
+	ST1_69d )
 	begin
-	mul32s1i2_c1 = ( ST1_71d | M_2930 ) ;	// line#=computer.cpp:332
-	mul32s1i2_c2 = ( M_2942 | M_2954 ) ;	// line#=computer.cpp:332,366
-	mul32s1i2_c3 = ( M_2971 | M_2975 ) ;	// line#=computer.cpp:366
-	mul32s1i2 = ( ( { 14{ mul32s1i2_c1 } } & { TR_19 , RL_buf_buf1_coef_rs1_rs2_val1 [12:0] } )	// line#=computer.cpp:332
-		| ( { 14{ ST1_81d } } & RG_buf_buf1_coef_y [13:0] )					// line#=computer.cpp:332
-		| ( { 14{ mul32s1i2_c2 } } & { TR_20 , RG_buf1_coef_coef1_y [12:0] } )			// line#=computer.cpp:332,366
-		| ( { 14{ mul32s1i2_c3 } } & { TR_21 , RG_coef1 [12:0] } )				// line#=computer.cpp:366
+	mul32s1i2_c1 = ( ( ( ( ( ( ST1_69d | ST1_87d ) | ST1_105d ) | ST1_123d ) | 
+		ST1_141d ) | ST1_159d ) | ST1_177d ) ;	// line#=computer.cpp:338,339
+	mul32s1i2_c2 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( M_2847 | 
+		ST1_90d ) | ST1_93d ) | ST1_95d ) | ST1_97d ) | ST1_108d ) | ST1_111d ) | 
+		ST1_113d ) | ST1_115d ) | ST1_126d ) | ST1_129d ) | ST1_131d ) | 
+		ST1_133d ) | ST1_144d ) | ST1_147d ) | ST1_149d ) | ST1_151d ) | 
+		ST1_162d ) | ST1_165d ) | ST1_167d ) | ST1_169d ) | ST1_180d ) | 
+		ST1_183d ) | ST1_185d ) | ST1_187d ) | ST1_198d ) | ST1_201d ) | 
+		ST1_203d ) | ST1_205d ) ;	// line#=computer.cpp:339
+	mul32s1i2 = ( ( { 14{ mul32s1i2_c1 } } & { C_q1ot [12] , C_q1ot [12:0] } )	// line#=computer.cpp:338,339
+		| ( { 14{ ST1_70d } } & TR_157 )					// line#=computer.cpp:339
+		| ( { 14{ mul32s1i2_c2 } } & RG_coef [13:0] )				// line#=computer.cpp:339
+		| ( { 14{ ST1_73d } } & TR_159 )					// line#=computer.cpp:339
+		| ( { 14{ ST1_88d } } & TR_157 )					// line#=computer.cpp:339
+		| ( { 14{ ST1_91d } } & TR_159 )					// line#=computer.cpp:339
+		| ( { 14{ ST1_106d } } & TR_157 )					// line#=computer.cpp:339
+		| ( { 14{ ST1_109d } } & TR_159 )					// line#=computer.cpp:339
+		| ( { 14{ ST1_124d } } & TR_157 )					// line#=computer.cpp:339
+		| ( { 14{ ST1_127d } } & TR_159 )					// line#=computer.cpp:339
+		| ( { 14{ ST1_142d } } & TR_157 )					// line#=computer.cpp:339
+		| ( { 14{ ST1_145d } } & TR_159 )					// line#=computer.cpp:339
+		| ( { 14{ ST1_160d } } & TR_157 )					// line#=computer.cpp:339
+		| ( { 14{ ST1_163d } } & TR_159 )					// line#=computer.cpp:339
+		| ( { 14{ ST1_178d } } & TR_157 )					// line#=computer.cpp:339
+		| ( { 14{ ST1_181d } } & TR_159 )					// line#=computer.cpp:339
+		| ( { 14{ ST1_195d } } & { C_q2ot [12] , C_q2ot [12:0] } )		// line#=computer.cpp:338,339
+		| ( { 14{ ST1_196d } } & TR_157 )					// line#=computer.cpp:339
+		| ( { 14{ ST1_199d } } & TR_159 )					// line#=computer.cpp:339
 		) ;
 	end
 always @ ( ST1_22d )
 	TR_57 = ( { 8{ ST1_22d } } & 8'hff )	// line#=computer.cpp:210
 		 ;	// line#=computer.cpp:191
-always @ ( RL_buf_buf1_coef_rs1_rs2_val1 or ST1_48d )
-	TR_58 = ( { 8{ ST1_48d } } & RL_buf_buf1_coef_rs1_rs2_val1 [15:8] )	// line#=computer.cpp:211,212,571
-		 ;	// line#=computer.cpp:192,193,568
-assign	M_3015 = ( U_423 | U_669 ) ;	// line#=computer.cpp:461,538,566,587,631
-always @ ( RL_addr_buf_instr_op2_result or U_548 or RL_buf_buf1_coef_rs1_rs2_val1 or 
-	TR_58 or M_3015 or RG_addr1_next_pc_op1_PC_src_addr or U_179 or TR_57 or 
-	M_3007 )
-	lsft32u1i1 = ( ( { 32{ M_3007 } } & { 16'h0000 , TR_57 , 8'hff } )				// line#=computer.cpp:191,210
-		| ( { 32{ U_179 } } & RG_addr1_next_pc_op1_PC_src_addr )				// line#=computer.cpp:640
-		| ( { 32{ M_3015 } } & { 16'h0000 , TR_58 , RL_buf_buf1_coef_rs1_rs2_val1 [7:0] } )	// line#=computer.cpp:192,193,211,212,568
-													// ,571
-		| ( { 32{ U_548 } } & RL_addr_buf_instr_op2_result )					// line#=computer.cpp:607
-		) ;
-always @ ( RG_rs1_rs2 or U_669 or U_548 or U_423 or RL_addr_buf_instr_op2_result or 
-	U_179 or RG_addr1_next_pc_op1_PC_src_addr or M_3007 )
+always @ ( RL_blk_out_buf_buf1_dst_addr_rs1 or ST1_48d )
+	TR_58 = ( { 8{ ST1_48d } } & RL_blk_out_buf_buf1_dst_addr_rs1 [15:8] )	// line#=computer.cpp:211,212,578
+		 ;	// line#=computer.cpp:192,193,575
+assign	M_2918 = ( U_103 | U_411 ) ;
+always @ ( RG_17 or U_551 or RL_blk_out_buf_buf1_dst_addr_rs1 or TR_58 or U_673 or 
+	U_426 or RL_addr1_buf_buf1_next_pc_op1_PC or U_177 or TR_57 or M_2918 )
 	begin
-	lsft32u1i2_c1 = ( ( U_423 | U_548 ) | U_669 ) ;	// line#=computer.cpp:192,193,211,212,568
-							// ,571,607
-	lsft32u1i2 = ( ( { 5{ M_3007 } } & { RG_addr1_next_pc_op1_PC_src_addr [1:0] , 
-			3'h0 } )						// line#=computer.cpp:190,191,209,210
-		| ( { 5{ U_179 } } & RL_addr_buf_instr_op2_result [4:0] )	// line#=computer.cpp:640
-		| ( { 5{ lsft32u1i2_c1 } } & RG_rs1_rs2 [4:0] )			// line#=computer.cpp:192,193,211,212,568
-										// ,571,607
+	lsft32u1i1_c1 = ( U_426 | U_673 ) ;	// line#=computer.cpp:192,193,211,212,575
+						// ,578
+	lsft32u1i1 = ( ( { 32{ M_2918 } } & { 16'h0000 , TR_57 , 8'hff } )					// line#=computer.cpp:191,210
+		| ( { 32{ U_177 } } & RL_addr1_buf_buf1_next_pc_op1_PC )					// line#=computer.cpp:647
+		| ( { 32{ lsft32u1i1_c1 } } & { 16'h0000 , TR_58 , RL_blk_out_buf_buf1_dst_addr_rs1 [7:0] } )	// line#=computer.cpp:192,193,211,212,575
+														// ,578
+		| ( { 32{ U_551 } } & RG_17 )									// line#=computer.cpp:614
 		) ;
 	end
-always @ ( dmem_arg_MEMB32W65536_RD1 or M_3021 or RG_addr1_next_pc_op1_PC_src_addr or 
-	U_754 or U_755 or U_617 or RL_addr_buf_instr_op2_result or U_563 )
+always @ ( RG_rs1_rs2_y or U_673 or U_551 or U_426 or RG_op2_result1 or U_177 or 
+	RL_addr1_buf_buf1_next_pc_op1_PC or M_2918 )
 	begin
-	rsft32u1i1_c1 = ( ( U_617 | U_755 ) | U_754 ) ;	// line#=computer.cpp:141,142,158,159,540
-							// ,543,655
-	rsft32u1i1 = ( ( { 32{ U_563 } } & RL_addr_buf_instr_op2_result )		// line#=computer.cpp:615
-		| ( { 32{ rsft32u1i1_c1 } } & RG_addr1_next_pc_op1_PC_src_addr )	// line#=computer.cpp:141,142,158,159,540
-											// ,543,655
-		| ( { 32{ M_3021 } } & dmem_arg_MEMB32W65536_RD1 )			// line#=computer.cpp:141,142,158,159,549
-											// ,552
+	lsft32u1i2_c1 = ( ( U_426 | U_551 ) | U_673 ) ;	// line#=computer.cpp:192,193,211,212,575
+							// ,578,614
+	lsft32u1i2 = ( ( { 5{ M_2918 } } & { RL_addr1_buf_buf1_next_pc_op1_PC [1:0] , 
+			3'h0 } )				// line#=computer.cpp:190,191,209,210
+		| ( { 5{ U_177 } } & RG_op2_result1 [4:0] )	// line#=computer.cpp:647
+		| ( { 5{ lsft32u1i2_c1 } } & RG_rs1_rs2_y )	// line#=computer.cpp:192,193,211,212,575
+								// ,578,614
 		) ;
 	end
-assign	M_3021 = ( U_737 | ( U_744 & M_2835 ) ) ;	// line#=computer.cpp:538
-always @ ( U_754 or U_755 or M_3021 or RL_addr_buf_instr_op2_result or U_617 or 
-	RG_rs1_rs2 or U_563 )
+always @ ( RG_buf_buf1_val or U_758 or U_759 or dmem_arg_MEMB32W65536_RD1 or U_741 or 
+	U_761 or RL_addr1_buf_buf1_next_pc_op1_PC or U_620 or RG_17 or U_566 )
 	begin
-	rsft32u1i2_c1 = ( ( M_3021 | U_755 ) | U_754 ) ;	// line#=computer.cpp:141,142,158,159,540
-								// ,543,549,552
-	rsft32u1i2 = ( ( { 5{ U_563 } } & RG_rs1_rs2 [4:0] )			// line#=computer.cpp:615
-		| ( { 5{ U_617 } } & RL_addr_buf_instr_op2_result [4:0] )	// line#=computer.cpp:655
-		| ( { 5{ rsft32u1i2_c1 } } & { RL_addr_buf_instr_op2_result [1:0] , 
-			3'h0 } )						// line#=computer.cpp:141,142,158,159,540
-										// ,543,549,552
+	rsft32u1i1_c1 = ( U_761 | U_741 ) ;	// line#=computer.cpp:141,142,158,159,556
+						// ,559
+	rsft32u1i1_c2 = ( U_759 | U_758 ) ;	// line#=computer.cpp:141,142,158,159,547
+						// ,550
+	rsft32u1i1 = ( ( { 32{ U_566 } } & RG_17 )				// line#=computer.cpp:622
+		| ( { 32{ U_620 } } & RL_addr1_buf_buf1_next_pc_op1_PC )	// line#=computer.cpp:662
+		| ( { 32{ rsft32u1i1_c1 } } & dmem_arg_MEMB32W65536_RD1 )	// line#=computer.cpp:141,142,158,159,556
+										// ,559
+		| ( { 32{ rsft32u1i1_c2 } } & RG_buf_buf1_val )			// line#=computer.cpp:141,142,158,159,547
+										// ,550
 		) ;
 	end
-always @ ( RL_addr_buf_instr_op2_result or U_533 or RG_addr1_next_pc_op1_PC_src_addr or 
-	U_168 )
-	rsft32s1i1 = ( ( { 32{ U_168 } } & RG_addr1_next_pc_op1_PC_src_addr )	// line#=computer.cpp:653
-		| ( { 32{ U_533 } } & RL_addr_buf_instr_op2_result )		// line#=computer.cpp:612
-		) ;
-always @ ( RG_rs1_rs2 or U_533 or RL_addr_buf_instr_op2_result or U_168 )
-	rsft32s1i2 = ( ( { 5{ U_168 } } & RL_addr_buf_instr_op2_result [4:0] )	// line#=computer.cpp:653
-		| ( { 5{ U_533 } } & RG_rs1_rs2 [4:0] )				// line#=computer.cpp:612
-		) ;
-assign	M_2926 = ( ( ( ( ( ST1_70d | ST1_72d ) | ST1_74d ) | ST1_76d ) | ST1_78d ) | 
-	ST1_80d ) ;	// line#=computer.cpp:329
-always @ ( RG_buf1_coef_coef1_y or ST1_405d or ST1_382d or ST1_359d or ST1_336d or 
-	ST1_313d or ST1_290d or ST1_267d or RG_buf_buf1_coef_y or ST1_244d or ST1_222d or 
-	ST1_200d or ST1_178d or ST1_156d or ST1_134d or ST1_112d or ST1_90d or RG_y or 
-	ST1_419d or ST1_417d or ST1_415d or ST1_413d or ST1_411d or ST1_409d or 
-	ST1_407d or ST1_396d or ST1_394d or ST1_392d or ST1_390d or ST1_388d or 
-	ST1_386d or ST1_384d or ST1_373d or ST1_371d or ST1_369d or ST1_367d or 
-	ST1_365d or ST1_363d or ST1_361d or ST1_350d or ST1_348d or ST1_346d or 
-	ST1_344d or ST1_342d or ST1_340d or ST1_338d or ST1_327d or ST1_325d or 
-	ST1_323d or ST1_321d or ST1_319d or ST1_317d or ST1_315d or ST1_304d or 
-	ST1_302d or ST1_300d or ST1_298d or ST1_296d or ST1_294d or ST1_292d or 
-	ST1_281d or ST1_279d or ST1_277d or ST1_275d or ST1_273d or ST1_271d or 
-	ST1_269d or ST1_258d or ST1_256d or ST1_254d or ST1_252d or ST1_250d or 
-	ST1_248d or ST1_246d or M_2953 )
+always @ ( RG_addr_next_pc or U_741 or U_758 or U_759 or U_761 or RG_op2_result1 or 
+	U_620 or RG_rs1_rs2_y or U_566 )
 	begin
-	incr3u1i1_c1 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-		( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( M_2953 | ST1_246d ) | 
-		ST1_248d ) | ST1_250d ) | ST1_252d ) | ST1_254d ) | ST1_256d ) | 
-		ST1_258d ) | ST1_269d ) | ST1_271d ) | ST1_273d ) | ST1_275d ) | 
-		ST1_277d ) | ST1_279d ) | ST1_281d ) | ST1_292d ) | ST1_294d ) | 
-		ST1_296d ) | ST1_298d ) | ST1_300d ) | ST1_302d ) | ST1_304d ) | 
-		ST1_315d ) | ST1_317d ) | ST1_319d ) | ST1_321d ) | ST1_323d ) | 
-		ST1_325d ) | ST1_327d ) | ST1_338d ) | ST1_340d ) | ST1_342d ) | 
-		ST1_344d ) | ST1_346d ) | ST1_348d ) | ST1_350d ) | ST1_361d ) | 
-		ST1_363d ) | ST1_365d ) | ST1_367d ) | ST1_369d ) | ST1_371d ) | 
-		ST1_373d ) | ST1_384d ) | ST1_386d ) | ST1_388d ) | ST1_390d ) | 
-		ST1_392d ) | ST1_394d ) | ST1_396d ) | ST1_407d ) | ST1_409d ) | 
-		ST1_411d ) | ST1_413d ) | ST1_415d ) | ST1_417d ) | ST1_419d ) ;	// line#=computer.cpp:329,363
-	incr3u1i1_c2 = ( ( ( ( ( ( ( ST1_90d | ST1_112d ) | ST1_134d ) | ST1_156d ) | 
-		ST1_178d ) | ST1_200d ) | ST1_222d ) | ST1_244d ) ;	// line#=computer.cpp:329,363
-	incr3u1i1_c3 = ( ( ( ( ( ( ST1_267d | ST1_290d ) | ST1_313d ) | ST1_336d ) | 
-		ST1_359d ) | ST1_382d ) | ST1_405d ) ;	// line#=computer.cpp:363
-	incr3u1i1 = ( ( { 3{ incr3u1i1_c1 } } & RG_y [2:0] )			// line#=computer.cpp:329,363
-		| ( { 3{ incr3u1i1_c2 } } & RG_buf_buf1_coef_y [2:0] )		// line#=computer.cpp:329,363
-		| ( { 3{ incr3u1i1_c3 } } & RG_buf1_coef_coef1_y [2:0] )	// line#=computer.cpp:363
+	rsft32u1i2_c1 = ( ( ( U_761 | U_759 ) | U_758 ) | U_741 ) ;	// line#=computer.cpp:141,142,158,159,547
+									// ,550,556,559
+	rsft32u1i2 = ( ( { 5{ U_566 } } & RG_rs1_rs2_y )			// line#=computer.cpp:622
+		| ( { 5{ U_620 } } & RG_op2_result1 [4:0] )			// line#=computer.cpp:662
+		| ( { 5{ rsft32u1i2_c1 } } & { RG_addr_next_pc [1:0] , 3'h0 } )	// line#=computer.cpp:141,142,158,159,547
+										// ,550,556,559
 		) ;
 	end
-always @ ( RG_rs1_rs2 or M_3026 or addsub8u_7_61ot or M_2931 )
-	incr8s_61i1 = ( ( { 6{ M_2931 } } & addsub8u_7_61ot )	// line#=computer.cpp:330,364
-		| ( { 6{ M_3026 } } & RG_rs1_rs2 )		// line#=computer.cpp:289,337
+always @ ( RL_addr1_buf_buf1_next_pc_op1_PC or U_166 or RG_17 or U_536 )
+	rsft32s1i1 = ( ( { 32{ U_536 } } & RG_17 )				// line#=computer.cpp:619
+		| ( { 32{ U_166 } } & RL_addr1_buf_buf1_next_pc_op1_PC )	// line#=computer.cpp:660
 		) ;
-assign	addsub3s1i1 = RG_k [2:0] ;	// line#=computer.cpp:332
-assign	M_2957 = ( ST1_112d | ST1_200d ) ;
-assign	M_2962 = ( ST1_134d | ST1_178d ) ;
-assign	addsub3s1i2 = { 2'h1 , M_2962 } ;	// line#=computer.cpp:332
-assign	M_2956 = ( ST1_112d | ST1_134d ) ;
-always @ ( ST1_200d or ST1_178d or M_2956 )
+always @ ( RG_op2_result1 or U_166 or RG_rs1_rs2_y or U_536 )
+	rsft32s1i2 = ( ( { 5{ U_536 } } & RG_rs1_rs2_y )	// line#=computer.cpp:619
+		| ( { 5{ U_166 } } & RG_op2_result1 [4:0] )	// line#=computer.cpp:660
+		) ;
+assign	incr3u1i1 = RG_rs1_rs2_y [2:0] ;	// line#=computer.cpp:336,370
+assign	incr8s_61i1 = addsub8u_7_61ot ;	// line#=computer.cpp:337,371
+assign	addsub3s1i1 = RG_k [2:0] ;	// line#=computer.cpp:339
+assign	addsub3s1i2 = { 2'h1 , ( ST1_122d | ST1_158d ) } ;	// line#=computer.cpp:339
+assign	M_2865 = ( ST1_104d | ST1_122d ) ;
+always @ ( ST1_176d or ST1_158d or M_2865 )
 	begin
-	addsub3s1_f_c1 = ( ST1_178d | ST1_200d ) ;
-	addsub3s1_f = ( ( { 2{ M_2956 } } & 2'h1 )
+	addsub3s1_f_c1 = ( ST1_158d | ST1_176d ) ;
+	addsub3s1_f = ( ( { 2{ M_2865 } } & 2'h1 )
 		| ( { 2{ addsub3s1_f_c1 } } & 2'h2 ) ) ;
 	end
-assign	M_2939 = ( ( ( ( ( ( ( ST1_82d | ST1_104d ) | ST1_126d ) | ST1_148d ) | ST1_170d ) | 
-	ST1_192d ) | ST1_214d ) | ST1_236d ) ;
-always @ ( M_2969 or RG_y or addsub8u_7_61ot or M_2934 )
-	addsub8u_71i1 = ( ( { 6{ M_2934 } } & { addsub8u_7_61ot [5:2] , RG_y [1:0] } )	// line#=computer.cpp:330,364
-		| ( { 6{ M_2969 } } & { RG_y [2:0] , 3'h0 } )				// line#=computer.cpp:330,364
+assign	M_2866 = ( ( ( ( ( ( M_2848 | ST1_114d ) | ST1_132d ) | ST1_150d ) | ST1_168d ) | 
+	ST1_186d ) | ST1_204d ) ;
+always @ ( M_2873 or RG_rs1_rs2_y or addsub8u_7_61ot or M_2844 )
+	addsub8u_71i1 = ( ( { 6{ M_2844 } } & { addsub8u_7_61ot [5:2] , RG_rs1_rs2_y [1:0] } )	// line#=computer.cpp:337,371
+		| ( { 6{ M_2873 } } & { RG_rs1_rs2_y [2:0] , 3'h0 } )				// line#=computer.cpp:337,371
 		) ;
-always @ ( RG_y or M_2969 or M_2934 )
-	TR_25 = ( ( { 3{ M_2934 } } & 3'h2 )		// line#=computer.cpp:330,364
-		| ( { 3{ M_2969 } } & RG_y [2:0] )	// line#=computer.cpp:330,364
+always @ ( RG_rs1_rs2_y or M_2873 or M_2844 )
+	TR_25 = ( ( { 3{ M_2844 } } & 3'h2 )			// line#=computer.cpp:337,371
+		| ( { 3{ M_2873 } } & RG_rs1_rs2_y [2:0] )	// line#=computer.cpp:337,371
 		) ;
-assign	addsub8u_71i2 = { 3'h0 , TR_25 } ;	// line#=computer.cpp:330,364
-assign	M_2934 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_78d | ST1_100d ) | ST1_122d ) | 
-	ST1_144d ) | ST1_166d ) | ST1_188d ) | ST1_210d ) | ST1_232d ) | ST1_254d ) | 
-	ST1_277d ) | ST1_300d ) | ST1_323d ) | ST1_346d ) | ST1_369d ) | ST1_392d ) | 
-	ST1_415d ) ;
-assign	M_2969 = ( ( ( ( ( ( ( ( M_2939 | ST1_258d ) | ST1_281d ) | ST1_304d ) | 
-	ST1_327d ) | ST1_350d ) | ST1_373d ) | ST1_396d ) | ST1_419d ) ;
-always @ ( M_2969 or M_2934 )
-	addsub8u_71_f = ( ( { 2{ M_2934 } } & 2'h1 )
-		| ( { 2{ M_2969 } } & 2'h2 ) ) ;
-always @ ( RL_addr_buf_instr_op2_result or U_713 or U_715 or U_716 or add32s1ot or 
-	U_691 or U_25 or RG_addr1_next_pc_op1_PC_src_addr or U_152 or U_75 or M_3003 )
+assign	addsub8u_71i2 = { 3'h0 , TR_25 } ;	// line#=computer.cpp:337,371
+assign	M_2844 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_74d | ST1_92d ) | ST1_110d ) | 
+	ST1_128d ) | ST1_146d ) | ST1_164d ) | ST1_182d ) | ST1_200d ) | ST1_217d ) | 
+	ST1_225d ) | ST1_233d ) | ST1_241d ) | ST1_249d ) | ST1_257d ) | ST1_265d ) | 
+	ST1_273d ) ;
+assign	M_2873 = ( ( ( ( ( ( ( ( M_2866 | ST1_219d ) | ST1_227d ) | ST1_235d ) | 
+	ST1_243d ) | ST1_251d ) | ST1_259d ) | ST1_267d ) | ST1_275d ) ;
+always @ ( M_2873 or M_2844 )
+	addsub8u_71_f = ( ( { 2{ M_2844 } } & 2'h1 )
+		| ( { 2{ M_2873 } } & 2'h2 ) ) ;
+always @ ( RG_addr_next_pc or U_715 or U_717 or U_718 or add32s1ot or U_695 or U_25 or 
+	RL_addr1_buf_buf1_next_pc_op1_PC or U_150 or U_75 or M_2913 )
 	begin
-	addsub32u1i1_c1 = ( ( M_3003 | U_75 ) | U_152 ) ;	// line#=computer.cpp:110,199,458,476,634
-								// ,636
-	addsub32u1i1_c2 = ( U_25 | U_691 ) ;	// line#=computer.cpp:86,91,97,131,180
-						// ,536,564
-	addsub32u1i1_c3 = ( ( U_716 | U_715 ) | U_713 ) ;	// line#=computer.cpp:131,148
-	addsub32u1i1 = ( ( { 32{ addsub32u1i1_c1 } } & RG_addr1_next_pc_op1_PC_src_addr )	// line#=computer.cpp:110,199,458,476,634
-												// ,636
+	addsub32u1i1_c1 = ( ( M_2913 | U_75 ) | U_150 ) ;	// line#=computer.cpp:110,199,465,483,641
+								// ,643
+	addsub32u1i1_c2 = ( U_25 | U_695 ) ;	// line#=computer.cpp:86,91,97,131,180
+						// ,543,571
+	addsub32u1i1_c3 = ( ( U_718 | U_717 ) | U_715 ) ;	// line#=computer.cpp:131,148
+	addsub32u1i1 = ( ( { 32{ addsub32u1i1_c1 } } & RL_addr1_buf_buf1_next_pc_op1_PC )	// line#=computer.cpp:110,199,465,483,641
+												// ,643
 		| ( { 32{ addsub32u1i1_c2 } } & add32s1ot )					// line#=computer.cpp:86,91,97,131,180
-												// ,536,564
-		| ( { 32{ addsub32u1i1_c3 } } & RL_addr_buf_instr_op2_result )			// line#=computer.cpp:131,148
+												// ,543,571
+		| ( { 32{ addsub32u1i1_c3 } } & RG_addr_next_pc )				// line#=computer.cpp:131,148
 		) ;
 	end
-always @ ( M_3019 or RG_buf_buf1_instr_rd_word_addr or U_291 )
-	TR_59 = ( ( { 20{ U_291 } } & RG_buf_buf1_instr_rd_word_addr [24:5] )	// line#=computer.cpp:110,476
-		| ( { 20{ M_3019 } } & 20'h00040 )				// line#=computer.cpp:131,148,180,199
+always @ ( M_2929 or RL_buf_buf1_instr_next_pc_rd or U_289 )
+	TR_59 = ( ( { 20{ U_289 } } & RL_buf_buf1_instr_next_pc_rd [24:5] )	// line#=computer.cpp:110,483
+		| ( { 20{ M_2929 } } & 20'h00040 )				// line#=computer.cpp:131,148,180,199
 		) ;
-assign	M_3019 = ( ( ( ( M_3006 | U_691 ) | U_716 ) | U_715 ) | U_713 ) ;
-always @ ( U_01 or TR_59 or M_3019 or U_291 )
+assign	M_2929 = ( ( ( ( M_2917 | U_695 ) | U_718 ) | U_717 ) | U_715 ) ;
+always @ ( U_01 or TR_59 or M_2929 or U_289 )
 	begin
-	M_3085_c1 = ( U_291 | M_3019 ) ;	// line#=computer.cpp:110,131,148,180,199
-						// ,476
-	M_3085 = ( ( { 21{ M_3085_c1 } } & { TR_59 , 1'h0 } )	// line#=computer.cpp:110,131,148,180,199
-								// ,476
-		| ( { 21{ U_01 } } & 21'h000001 )		// line#=computer.cpp:458
-		) ;
-	end
-always @ ( M_3085 or M_3019 or U_01 or U_291 or RL_addr_buf_instr_op2_result or 
-	U_152 or U_643 )
-	begin
-	addsub32u1i2_c1 = ( U_643 | U_152 ) ;	// line#=computer.cpp:634,636
-	addsub32u1i2_c2 = ( ( U_291 | U_01 ) | M_3019 ) ;	// line#=computer.cpp:110,131,148,180,199
-								// ,458,476
-	addsub32u1i2 = ( ( { 32{ addsub32u1i2_c1 } } & RL_addr_buf_instr_op2_result )	// line#=computer.cpp:634,636
-		| ( { 32{ addsub32u1i2_c2 } } & { M_3085 [20:1] , 9'h000 , M_3085 [0] , 
-			2'h0 } )							// line#=computer.cpp:110,131,148,180,199
-											// ,458,476
+	M_2992_c1 = ( U_289 | M_2929 ) ;	// line#=computer.cpp:110,131,148,180,199
+						// ,483
+	M_2992 = ( ( { 21{ M_2992_c1 } } & { TR_59 , 1'h0 } )	// line#=computer.cpp:110,131,148,180,199
+								// ,483
+		| ( { 21{ U_01 } } & 21'h000001 )		// line#=computer.cpp:465
 		) ;
 	end
-assign	M_3003 = ( ( U_643 | U_291 ) | U_01 ) ;
-assign	M_3006 = ( U_25 | U_75 ) ;
-always @ ( U_713 or U_715 or U_716 or U_691 or U_152 or M_3006 or M_3003 )
+always @ ( M_2992 or M_2929 or U_01 or U_289 or RG_op2_result1 or U_150 or U_647 )
 	begin
-	addsub32u1_f_c1 = ( ( ( ( ( M_3006 | U_152 ) | U_691 ) | U_716 ) | U_715 ) | 
-		U_713 ) ;
-	addsub32u1_f = ( ( { 2{ M_3003 } } & 2'h1 )
+	addsub32u1i2_c1 = ( U_647 | U_150 ) ;	// line#=computer.cpp:641,643
+	addsub32u1i2_c2 = ( ( U_289 | U_01 ) | M_2929 ) ;	// line#=computer.cpp:110,131,148,180,199
+								// ,465,483
+	addsub32u1i2 = ( ( { 32{ addsub32u1i2_c1 } } & RG_op2_result1 )	// line#=computer.cpp:641,643
+		| ( { 32{ addsub32u1i2_c2 } } & { M_2992 [20:1] , 9'h000 , M_2992 [0] , 
+			2'h0 } )					// line#=computer.cpp:110,131,148,180,199
+									// ,465,483
+		) ;
+	end
+assign	M_2913 = ( ( U_647 | U_289 ) | U_01 ) ;
+assign	M_2917 = ( U_25 | U_75 ) ;
+always @ ( U_715 or U_717 or U_718 or U_695 or U_150 or M_2917 or M_2913 )
+	begin
+	addsub32u1_f_c1 = ( ( ( ( ( M_2917 | U_150 ) | U_695 ) | U_718 ) | U_717 ) | 
+		U_715 ) ;
+	addsub32u1_f = ( ( { 2{ M_2913 } } & 2'h1 )
 		| ( { 2{ addsub32u1_f_c1 } } & 2'h2 ) ) ;
 	end
-assign	comp32u_11i1 = regs_rd00 ;	// line#=computer.cpp:521,524
-assign	comp32u_11i2 = regs_rd01 ;	// line#=computer.cpp:521,524
-assign	comp32s_12i1 = regs_rd00 ;	// line#=computer.cpp:515,518
-assign	comp32s_12i2 = regs_rd01 ;	// line#=computer.cpp:515,518
-assign	M_2927 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_70d | ST1_92d ) | ST1_114d ) | 
-	ST1_136d ) | ST1_158d ) | ST1_180d ) | ST1_202d ) | ST1_224d ) | ST1_246d ) | 
-	ST1_269d ) | ST1_292d ) | ST1_315d ) | ST1_338d ) | ST1_361d ) | ST1_384d ) | 
-	ST1_407d ) ;
-assign	M_2932 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_74d | ST1_96d ) | ST1_118d ) | 
-	ST1_140d ) | ST1_162d ) | ST1_184d ) | ST1_206d ) | ST1_228d ) | ST1_250d ) | 
-	ST1_273d ) | ST1_296d ) | ST1_319d ) | ST1_342d ) | ST1_365d ) | ST1_388d ) | 
-	ST1_411d ) ;
-always @ ( add8s_71ot or M_2969 or addsub8u_71ot or M_2934 or incr8s_61ot or M_2932 or 
-	RG_y or M_2927 )
-	TR_27 = ( ( { 3{ M_2927 } } & RG_y [2:0] )		// line#=computer.cpp:330,331,364,365
-		| ( { 3{ M_2932 } } & incr8s_61ot [2:0] )	// line#=computer.cpp:330,331,364,365
-		| ( { 3{ M_2934 } } & addsub8u_71ot [2:0] )	// line#=computer.cpp:330,331,364,365
-		| ( { 3{ M_2969 } } & add8s_71ot [2:0] )	// line#=computer.cpp:330,331,364,365
+assign	comp32u_11i1 = regs_rd00 ;	// line#=computer.cpp:528,531
+assign	comp32u_11i2 = regs_rd01 ;	// line#=computer.cpp:528,531
+assign	comp32s_12i1 = regs_rd00 ;	// line#=computer.cpp:522,525
+assign	comp32s_12i2 = regs_rd01 ;	// line#=computer.cpp:522,525
+assign	C_q1i1 = { RG_rs1_rs2_y [2:0] , 1'h1 } ;	// line#=computer.cpp:337,338
+assign	M_2838 = ( ( ( ( ( ( ( ST1_70d | ST1_88d ) | ST1_106d ) | ST1_124d ) | ST1_142d ) | 
+	ST1_160d ) | ST1_178d ) | ST1_196d ) ;
+assign	M_2843 = ( ( ( ( ( ( ( ST1_73d | ST1_91d ) | ST1_109d ) | ST1_127d ) | ST1_145d ) | 
+	ST1_163d ) | ST1_181d ) | ST1_199d ) ;
+always @ ( M_2843 or RG_rs1_rs2_y or M_2838 )
+	TR_27 = ( ( { 3{ M_2838 } } & { RG_rs1_rs2_y [1:0] , 1'h1 } )	// line#=computer.cpp:337,338
+		| ( { 3{ M_2843 } } & { RG_rs1_rs2_y [0] , 2'h2 } )	// line#=computer.cpp:337,338
 		) ;
-always @ ( incr8s_61ot or M_2936 or RG_y or M_2929 )
-	TR_60 = ( ( { 2{ M_2929 } } & RG_y [1:0] )		// line#=computer.cpp:330,331,364,365
-		| ( { 2{ M_2936 } } & incr8s_61ot [1:0] )	// line#=computer.cpp:330,331,364,365
-		) ;
-assign	M_2929 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_72d | ST1_94d ) | ST1_116d ) | 
-	ST1_138d ) | ST1_160d ) | ST1_182d ) | ST1_204d ) | ST1_226d ) | ST1_248d ) | 
-	ST1_271d ) | ST1_294d ) | ST1_317d ) | ST1_340d ) | ST1_363d ) | ST1_386d ) | 
-	ST1_409d ) ;
-assign	M_2933 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_76d | ST1_98d ) | ST1_120d ) | 
-	ST1_142d ) | ST1_164d ) | ST1_186d ) | ST1_208d ) | ST1_230d ) | ST1_252d ) | 
-	ST1_275d ) | ST1_298d ) | ST1_321d ) | ST1_344d ) | ST1_367d ) | ST1_390d ) | 
-	ST1_413d ) ;
-assign	M_2936 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_80d | ST1_102d ) | ST1_124d ) | 
-	ST1_146d ) | ST1_168d ) | ST1_190d ) | ST1_212d ) | ST1_234d ) | ST1_256d ) | 
-	ST1_279d ) | ST1_302d ) | ST1_325d ) | ST1_348d ) | ST1_371d ) | ST1_394d ) | 
-	ST1_417d ) ;
-always @ ( RG_y or M_2933 or TR_60 or M_2936 or M_2929 )
+always @ ( TR_27 or M_2843 or M_2838 or RG_rs1_rs2_y or ST1_195d )
 	begin
-	TR_28_c1 = ( M_2929 | M_2936 ) ;	// line#=computer.cpp:330,331,364,365
-	TR_28 = ( ( { 3{ TR_28_c1 } } & { TR_60 , 1'h1 } )	// line#=computer.cpp:330,331,364,365
-		| ( { 3{ M_2933 } } & { RG_y [0] , 2'h2 } )	// line#=computer.cpp:330,331,364,365
+	C_q2i1_c1 = ( M_2838 | M_2843 ) ;	// line#=computer.cpp:337,338
+	C_q2i1 = ( ( { 4{ ST1_195d } } & { RG_rs1_rs2_y [2:0] , 1'h1 } )	// line#=computer.cpp:337,338
+		| ( { 4{ C_q2i1_c1 } } & { TR_27 , 1'h0 } )			// line#=computer.cpp:337,338
 		) ;
 	end
-always @ ( TR_28 or M_2936 or M_2933 or M_2929 or TR_27 or M_2969 or M_2934 or M_2932 or 
-	M_2927 )
+assign	M_2840 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_71d | ST1_89d ) | ST1_107d ) | 
+	ST1_125d ) | ST1_143d ) | ST1_161d ) | ST1_179d ) | ST1_197d ) | ST1_215d ) | 
+	ST1_223d ) | ST1_231d ) | ST1_239d ) | ST1_247d ) | ST1_255d ) | ST1_263d ) | 
+	ST1_271d ) ;
+always @ ( add8s_71ot or M_2873 or addsub8u_71ot or M_2844 or incr8s_61ot or M_2840 or 
+	RG_rs1_rs2_y or M_2870 )
+	TR_28 = ( ( { 3{ M_2870 } } & RG_rs1_rs2_y [2:0] )	// line#=computer.cpp:371,372
+		| ( { 3{ M_2840 } } & incr8s_61ot [2:0] )	// line#=computer.cpp:337,338,371,372
+		| ( { 3{ M_2844 } } & addsub8u_71ot [2:0] )	// line#=computer.cpp:337,338,371,372
+		| ( { 3{ M_2873 } } & add8s_71ot [2:0] )	// line#=computer.cpp:337,338,371,372
+		) ;
+assign	M_2846 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_76d | ST1_94d ) | ST1_112d ) | 
+	ST1_130d ) | ST1_148d ) | ST1_166d ) | ST1_184d ) | ST1_202d ) | ST1_218d ) | 
+	ST1_226d ) | ST1_234d ) | ST1_242d ) | ST1_250d ) | ST1_258d ) | ST1_266d ) | 
+	ST1_274d ) ;
+assign	M_2871 = ( ( ( ( ( ( ( ST1_214d | ST1_222d ) | ST1_230d ) | ST1_238d ) | 
+	ST1_246d ) | ST1_254d ) | ST1_262d ) | ST1_270d ) ;
+always @ ( RG_rs1_rs2_y or M_2871 or incr8s_61ot or M_2846 )
+	TR_29 = ( ( { 2{ M_2846 } } & incr8s_61ot [1:0] )	// line#=computer.cpp:337,338,371,372
+		| ( { 2{ M_2871 } } & RG_rs1_rs2_y [1:0] )	// line#=computer.cpp:371,372
+		) ;
+assign	M_2872 = ( ( ( ( ( ( ( ST1_216d | ST1_224d ) | ST1_232d ) | ST1_240d ) | 
+	ST1_248d ) | ST1_256d ) | ST1_264d ) | ST1_272d ) ;
+assign	M_2971 = ( M_2846 | M_2871 ) ;
+always @ ( RG_rs1_rs2_y or M_2872 or TR_29 or M_2971 )
+	TR_30 = ( ( { 3{ M_2971 } } & { TR_29 , 1'h1 } )		// line#=computer.cpp:337,338,371,372
+		| ( { 3{ M_2872 } } & { RG_rs1_rs2_y [0] , 2'h2 } )	// line#=computer.cpp:371,372
+		) ;
+assign	M_2870 = ( ( ( ( ( ( ( ST1_213d | ST1_221d ) | ST1_229d ) | ST1_237d ) | 
+	ST1_245d ) | ST1_253d ) | ST1_261d ) | ST1_269d ) ;
+always @ ( TR_30 or M_2872 or M_2971 or TR_28 or M_2873 or M_2844 or M_2840 or M_2870 )
 	begin
-	C_q1i1_c1 = ( ( ( M_2927 | M_2932 ) | M_2934 ) | M_2969 ) ;	// line#=computer.cpp:330,331,364,365
-	C_q1i1_c2 = ( ( M_2929 | M_2933 ) | M_2936 ) ;	// line#=computer.cpp:330,331,364,365
-	C_q1i1 = ( ( { 4{ C_q1i1_c1 } } & { TR_27 , 1'h1 } )	// line#=computer.cpp:330,331,364,365
-		| ( { 4{ C_q1i1_c2 } } & { TR_28 , 1'h0 } )	// line#=computer.cpp:330,331,364,365
+	C_q3i1_c1 = ( ( ( M_2870 | M_2840 ) | M_2844 ) | M_2873 ) ;	// line#=computer.cpp:337,338,371,372
+	C_q3i1_c2 = ( M_2971 | M_2872 ) ;	// line#=computer.cpp:337,338,371,372
+	C_q3i1 = ( ( { 4{ C_q3i1_c1 } } & { TR_28 , 1'h1 } )	// line#=computer.cpp:337,338,371,372
+		| ( { 4{ C_q3i1_c2 } } & { TR_30 , 1'h0 } )	// line#=computer.cpp:337,338,371,372
 		) ;
 	end
-assign	M_2940 = ( M_2926 | ST1_82d ) ;
-always @ ( RG_rs1_rs2 or ST1_243d or ST1_242d or ST1_241d or ST1_240d or ST1_239d or 
-	ST1_238d or ST1_236d or ST1_234d or ST1_232d or ST1_230d or ST1_228d or 
-	ST1_226d or ST1_224d or ST1_221d or ST1_220d or ST1_219d or ST1_218d or 
-	ST1_217d or ST1_216d or ST1_214d or ST1_212d or ST1_210d or ST1_208d or 
-	ST1_206d or ST1_204d or ST1_202d or ST1_199d or ST1_198d or ST1_197d or 
-	ST1_196d or ST1_195d or ST1_194d or ST1_192d or ST1_190d or ST1_188d or 
-	ST1_186d or ST1_184d or ST1_182d or ST1_180d or ST1_177d or ST1_176d or 
-	ST1_175d or ST1_174d or ST1_173d or ST1_172d or ST1_170d or ST1_168d or 
-	ST1_166d or ST1_164d or ST1_162d or ST1_160d or ST1_158d or ST1_155d or 
-	ST1_154d or ST1_153d or ST1_152d or ST1_151d or ST1_150d or ST1_148d or 
-	ST1_146d or ST1_144d or ST1_142d or ST1_140d or ST1_138d or ST1_136d or 
-	ST1_133d or ST1_132d or ST1_131d or ST1_130d or ST1_129d or ST1_128d or 
-	ST1_126d or ST1_124d or ST1_122d or ST1_120d or ST1_118d or ST1_116d or 
-	ST1_114d or ST1_111d or ST1_110d or ST1_109d or ST1_108d or ST1_107d or 
-	ST1_106d or ST1_104d or ST1_102d or ST1_100d or ST1_98d or ST1_96d or ST1_94d or 
-	ST1_92d or ST1_89d or ST1_88d or ST1_87d or ST1_86d or ST1_85d or ST1_84d or 
-	M_2940 or RG_k or ST1_68d )
+assign	addsub8u_7_61i1 = { RG_rs1_rs2_y [2:0] , 2'h0 } ;	// line#=computer.cpp:337,371
+assign	addsub8u_7_61i2 = RG_rs1_rs2_y [2:0] ;	// line#=computer.cpp:337,371
+always @ ( ST1_274d or ST1_271d or ST1_266d or ST1_263d or ST1_258d or ST1_255d or 
+	ST1_250d or ST1_247d or ST1_242d or ST1_239d or ST1_234d or ST1_231d or 
+	ST1_226d or ST1_223d or ST1_218d or ST1_215d or ST1_202d or ST1_197d or 
+	ST1_184d or ST1_179d or ST1_166d or ST1_161d or ST1_148d or ST1_143d or 
+	ST1_130d or ST1_125d or ST1_112d or ST1_107d or ST1_94d or ST1_89d or ST1_76d or 
+	ST1_71d or M_2844 )
 	begin
-	add8s_7_61i1_c1 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-		( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-		( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-		( ( ( M_2940 | ST1_84d ) | ST1_85d ) | ST1_86d ) | ST1_87d ) | ST1_88d ) | 
-		ST1_89d ) | ST1_92d ) | ST1_94d ) | ST1_96d ) | ST1_98d ) | ST1_100d ) | 
-		ST1_102d ) | ST1_104d ) | ST1_106d ) | ST1_107d ) | ST1_108d ) | 
-		ST1_109d ) | ST1_110d ) | ST1_111d ) | ST1_114d ) | ST1_116d ) | 
-		ST1_118d ) | ST1_120d ) | ST1_122d ) | ST1_124d ) | ST1_126d ) | 
-		ST1_128d ) | ST1_129d ) | ST1_130d ) | ST1_131d ) | ST1_132d ) | 
-		ST1_133d ) | ST1_136d ) | ST1_138d ) | ST1_140d ) | ST1_142d ) | 
-		ST1_144d ) | ST1_146d ) | ST1_148d ) | ST1_150d ) | ST1_151d ) | 
-		ST1_152d ) | ST1_153d ) | ST1_154d ) | ST1_155d ) | ST1_158d ) | 
-		ST1_160d ) | ST1_162d ) | ST1_164d ) | ST1_166d ) | ST1_168d ) | 
-		ST1_170d ) | ST1_172d ) | ST1_173d ) | ST1_174d ) | ST1_175d ) | 
-		ST1_176d ) | ST1_177d ) | ST1_180d ) | ST1_182d ) | ST1_184d ) | 
-		ST1_186d ) | ST1_188d ) | ST1_190d ) | ST1_192d ) | ST1_194d ) | 
-		ST1_195d ) | ST1_196d ) | ST1_197d ) | ST1_198d ) | ST1_199d ) | 
-		ST1_202d ) | ST1_204d ) | ST1_206d ) | ST1_208d ) | ST1_210d ) | 
-		ST1_212d ) | ST1_214d ) | ST1_216d ) | ST1_217d ) | ST1_218d ) | 
-		ST1_219d ) | ST1_220d ) | ST1_221d ) | ST1_224d ) | ST1_226d ) | 
-		ST1_228d ) | ST1_230d ) | ST1_232d ) | ST1_234d ) | ST1_236d ) | 
-		ST1_238d ) | ST1_239d ) | ST1_240d ) | ST1_241d ) | ST1_242d ) | 
-		ST1_243d ) ;	// line#=computer.cpp:289,332,337
-	add8s_7_61i1 = ( ( { 6{ ST1_68d } } & { RG_k [2:0] , 3'h0 } )	// line#=computer.cpp:332
-		| ( { 6{ add8s_7_61i1_c1 } } & RG_rs1_rs2 )		// line#=computer.cpp:289,332,337
-		) ;
+	addsub8u_7_61_f_c1 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
+		( ( ( ( ( ST1_71d | ST1_76d ) | ST1_89d ) | ST1_94d ) | ST1_107d ) | 
+		ST1_112d ) | ST1_125d ) | ST1_130d ) | ST1_143d ) | ST1_148d ) | 
+		ST1_161d ) | ST1_166d ) | ST1_179d ) | ST1_184d ) | ST1_197d ) | 
+		ST1_202d ) | ST1_215d ) | ST1_218d ) | ST1_223d ) | ST1_226d ) | 
+		ST1_231d ) | ST1_234d ) | ST1_239d ) | ST1_242d ) | ST1_247d ) | 
+		ST1_250d ) | ST1_255d ) | ST1_258d ) | ST1_263d ) | ST1_266d ) | 
+		ST1_271d ) | ST1_274d ) ;
+	addsub8u_7_61_f = ( ( { 2{ M_2844 } } & 2'h1 )
+		| ( { 2{ addsub8u_7_61_f_c1 } } & 2'h2 ) ) ;
 	end
-assign	M_2944 = ( ( ( ( ( ( ( ST1_85d | ST1_107d ) | ST1_129d ) | ST1_151d ) | ST1_173d ) | 
-	ST1_195d ) | ST1_217d ) | ST1_239d ) ;
-assign	M_3063 = ( M_2945 | M_2946 ) ;
-always @ ( M_2949 or M_2947 or M_2946 or M_3063 )
-	begin
-	TR_63_c1 = ( M_2947 | M_2949 ) ;	// line#=computer.cpp:289,337
-	TR_63 = ( ( { 2{ M_3063 } } & { 1'h0 , M_2946 } )	// line#=computer.cpp:289,337
-		| ( { 2{ TR_63_c1 } } & { 1'h1 , M_2949 } )	// line#=computer.cpp:289,337
+always @ ( blk_out1_rg63 or ST1_339d or blk_out1_rg62 or ST1_338d or blk_out1_rg61 or 
+	ST1_337d or blk_out1_rg60 or ST1_336d or blk_out1_rg59 or ST1_335d or blk_out1_rg58 or 
+	ST1_334d or blk_out1_rg57 or ST1_333d or blk_out1_rg56 or ST1_332d or blk_out1_rg55 or 
+	ST1_331d or blk_out1_rg54 or ST1_330d or blk_out1_rg53 or ST1_329d or blk_out1_rg52 or 
+	ST1_328d or blk_out1_rg51 or ST1_327d or blk_out1_rg50 or ST1_326d or blk_out1_rg49 or 
+	ST1_325d or blk_out1_rg48 or ST1_324d or blk_out1_rg47 or ST1_323d or blk_out1_rg46 or 
+	ST1_322d or blk_out1_rg45 or ST1_321d or blk_out1_rg44 or ST1_320d or blk_out1_rg43 or 
+	ST1_319d or blk_out1_rg42 or ST1_318d or blk_out1_rg41 or ST1_317d or blk_out1_rg40 or 
+	ST1_316d or blk_out1_rg39 or ST1_315d or blk_out1_rg38 or ST1_314d or blk_out1_rg37 or 
+	ST1_313d or blk_out1_rg36 or ST1_312d or blk_out1_rg35 or ST1_311d or blk_out1_rg34 or 
+	ST1_310d or blk_out1_rg33 or ST1_309d or blk_out1_rg32 or ST1_308d or blk_out1_rg31 or 
+	ST1_307d or blk_out1_rg30 or ST1_306d or blk_out1_rg29 or ST1_305d or blk_out1_rg28 or 
+	ST1_304d or blk_out1_rg27 or ST1_303d or blk_out1_rg26 or ST1_302d or blk_out1_rg25 or 
+	ST1_301d or blk_out1_rg24 or ST1_300d or blk_out1_rg23 or ST1_299d or blk_out1_rg22 or 
+	ST1_298d or blk_out1_rg21 or ST1_297d or blk_out1_rg20 or ST1_296d or blk_out1_rg19 or 
+	ST1_295d or blk_out1_rg18 or ST1_294d or blk_out1_rg17 or ST1_293d or blk_out1_rg16 or 
+	ST1_292d or blk_out1_rg15 or ST1_291d or blk_out1_rg14 or ST1_290d or blk_out1_rg13 or 
+	ST1_289d or blk_out1_rg12 or ST1_288d or blk_out1_rg11 or ST1_287d or blk_out1_rg10 or 
+	ST1_286d or blk_out1_rg09 or ST1_285d or blk_out1_rg08 or ST1_284d or blk_out1_rg07 or 
+	ST1_283d or blk_out1_rg06 or ST1_282d or blk_out1_rg05 or ST1_281d or blk_out1_rg04 or 
+	ST1_280d or blk_out1_rg03 or ST1_279d or blk_out1_rg02 or ST1_278d or RL_blk_out_buf_buf1_dst_addr_rs1 or 
+	ST1_277d or blk_out1_rg00 or ST1_276d or RG_56 or U_766 or RG_buf_buf1_val or 
+	U_730 or regs_rd02 or U_93 )
+	dmem_arg_MEMB32W65536_WD2 = ( ( { 32{ U_93 } } & regs_rd02 )					// line#=computer.cpp:227,572
+		| ( { 32{ U_730 } } & RG_buf_buf1_val )							// line#=computer.cpp:192,193
+		| ( { 32{ U_766 } } & RG_56 )								// line#=computer.cpp:211,212
+		| ( { 32{ ST1_276d } } & { blk_out1_rg00 [19] , blk_out1_rg00 [19] , 
+			blk_out1_rg00 [19] , blk_out1_rg00 [19] , blk_out1_rg00 [19] , 
+			blk_out1_rg00 [19] , blk_out1_rg00 [19] , blk_out1_rg00 [19] , 
+			blk_out1_rg00 [19] , blk_out1_rg00 [19] , blk_out1_rg00 [19] , 
+			blk_out1_rg00 [19] , blk_out1_rg00 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_277d } } & { RL_blk_out_buf_buf1_dst_addr_rs1 [19] , 
+			RL_blk_out_buf_buf1_dst_addr_rs1 [19] , RL_blk_out_buf_buf1_dst_addr_rs1 [19] , 
+			RL_blk_out_buf_buf1_dst_addr_rs1 [19] , RL_blk_out_buf_buf1_dst_addr_rs1 [19] , 
+			RL_blk_out_buf_buf1_dst_addr_rs1 [19] , RL_blk_out_buf_buf1_dst_addr_rs1 [19] , 
+			RL_blk_out_buf_buf1_dst_addr_rs1 [19] , RL_blk_out_buf_buf1_dst_addr_rs1 [19] , 
+			RL_blk_out_buf_buf1_dst_addr_rs1 [19] , RL_blk_out_buf_buf1_dst_addr_rs1 [19] , 
+			RL_blk_out_buf_buf1_dst_addr_rs1 [19] , RL_blk_out_buf_buf1_dst_addr_rs1 } )	// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_278d } } & { blk_out1_rg02 [19] , blk_out1_rg02 [19] , 
+			blk_out1_rg02 [19] , blk_out1_rg02 [19] , blk_out1_rg02 [19] , 
+			blk_out1_rg02 [19] , blk_out1_rg02 [19] , blk_out1_rg02 [19] , 
+			blk_out1_rg02 [19] , blk_out1_rg02 [19] , blk_out1_rg02 [19] , 
+			blk_out1_rg02 [19] , blk_out1_rg02 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_279d } } & { blk_out1_rg03 [19] , blk_out1_rg03 [19] , 
+			blk_out1_rg03 [19] , blk_out1_rg03 [19] , blk_out1_rg03 [19] , 
+			blk_out1_rg03 [19] , blk_out1_rg03 [19] , blk_out1_rg03 [19] , 
+			blk_out1_rg03 [19] , blk_out1_rg03 [19] , blk_out1_rg03 [19] , 
+			blk_out1_rg03 [19] , blk_out1_rg03 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_280d } } & { blk_out1_rg04 [19] , blk_out1_rg04 [19] , 
+			blk_out1_rg04 [19] , blk_out1_rg04 [19] , blk_out1_rg04 [19] , 
+			blk_out1_rg04 [19] , blk_out1_rg04 [19] , blk_out1_rg04 [19] , 
+			blk_out1_rg04 [19] , blk_out1_rg04 [19] , blk_out1_rg04 [19] , 
+			blk_out1_rg04 [19] , blk_out1_rg04 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_281d } } & { blk_out1_rg05 [19] , blk_out1_rg05 [19] , 
+			blk_out1_rg05 [19] , blk_out1_rg05 [19] , blk_out1_rg05 [19] , 
+			blk_out1_rg05 [19] , blk_out1_rg05 [19] , blk_out1_rg05 [19] , 
+			blk_out1_rg05 [19] , blk_out1_rg05 [19] , blk_out1_rg05 [19] , 
+			blk_out1_rg05 [19] , blk_out1_rg05 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_282d } } & { blk_out1_rg06 [19] , blk_out1_rg06 [19] , 
+			blk_out1_rg06 [19] , blk_out1_rg06 [19] , blk_out1_rg06 [19] , 
+			blk_out1_rg06 [19] , blk_out1_rg06 [19] , blk_out1_rg06 [19] , 
+			blk_out1_rg06 [19] , blk_out1_rg06 [19] , blk_out1_rg06 [19] , 
+			blk_out1_rg06 [19] , blk_out1_rg06 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_283d } } & { blk_out1_rg07 [19] , blk_out1_rg07 [19] , 
+			blk_out1_rg07 [19] , blk_out1_rg07 [19] , blk_out1_rg07 [19] , 
+			blk_out1_rg07 [19] , blk_out1_rg07 [19] , blk_out1_rg07 [19] , 
+			blk_out1_rg07 [19] , blk_out1_rg07 [19] , blk_out1_rg07 [19] , 
+			blk_out1_rg07 [19] , blk_out1_rg07 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_284d } } & { blk_out1_rg08 [19] , blk_out1_rg08 [19] , 
+			blk_out1_rg08 [19] , blk_out1_rg08 [19] , blk_out1_rg08 [19] , 
+			blk_out1_rg08 [19] , blk_out1_rg08 [19] , blk_out1_rg08 [19] , 
+			blk_out1_rg08 [19] , blk_out1_rg08 [19] , blk_out1_rg08 [19] , 
+			blk_out1_rg08 [19] , blk_out1_rg08 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_285d } } & { blk_out1_rg09 [19] , blk_out1_rg09 [19] , 
+			blk_out1_rg09 [19] , blk_out1_rg09 [19] , blk_out1_rg09 [19] , 
+			blk_out1_rg09 [19] , blk_out1_rg09 [19] , blk_out1_rg09 [19] , 
+			blk_out1_rg09 [19] , blk_out1_rg09 [19] , blk_out1_rg09 [19] , 
+			blk_out1_rg09 [19] , blk_out1_rg09 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_286d } } & { blk_out1_rg10 [19] , blk_out1_rg10 [19] , 
+			blk_out1_rg10 [19] , blk_out1_rg10 [19] , blk_out1_rg10 [19] , 
+			blk_out1_rg10 [19] , blk_out1_rg10 [19] , blk_out1_rg10 [19] , 
+			blk_out1_rg10 [19] , blk_out1_rg10 [19] , blk_out1_rg10 [19] , 
+			blk_out1_rg10 [19] , blk_out1_rg10 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_287d } } & { blk_out1_rg11 [19] , blk_out1_rg11 [19] , 
+			blk_out1_rg11 [19] , blk_out1_rg11 [19] , blk_out1_rg11 [19] , 
+			blk_out1_rg11 [19] , blk_out1_rg11 [19] , blk_out1_rg11 [19] , 
+			blk_out1_rg11 [19] , blk_out1_rg11 [19] , blk_out1_rg11 [19] , 
+			blk_out1_rg11 [19] , blk_out1_rg11 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_288d } } & { blk_out1_rg12 [19] , blk_out1_rg12 [19] , 
+			blk_out1_rg12 [19] , blk_out1_rg12 [19] , blk_out1_rg12 [19] , 
+			blk_out1_rg12 [19] , blk_out1_rg12 [19] , blk_out1_rg12 [19] , 
+			blk_out1_rg12 [19] , blk_out1_rg12 [19] , blk_out1_rg12 [19] , 
+			blk_out1_rg12 [19] , blk_out1_rg12 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_289d } } & { blk_out1_rg13 [19] , blk_out1_rg13 [19] , 
+			blk_out1_rg13 [19] , blk_out1_rg13 [19] , blk_out1_rg13 [19] , 
+			blk_out1_rg13 [19] , blk_out1_rg13 [19] , blk_out1_rg13 [19] , 
+			blk_out1_rg13 [19] , blk_out1_rg13 [19] , blk_out1_rg13 [19] , 
+			blk_out1_rg13 [19] , blk_out1_rg13 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_290d } } & { blk_out1_rg14 [19] , blk_out1_rg14 [19] , 
+			blk_out1_rg14 [19] , blk_out1_rg14 [19] , blk_out1_rg14 [19] , 
+			blk_out1_rg14 [19] , blk_out1_rg14 [19] , blk_out1_rg14 [19] , 
+			blk_out1_rg14 [19] , blk_out1_rg14 [19] , blk_out1_rg14 [19] , 
+			blk_out1_rg14 [19] , blk_out1_rg14 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_291d } } & { blk_out1_rg15 [19] , blk_out1_rg15 [19] , 
+			blk_out1_rg15 [19] , blk_out1_rg15 [19] , blk_out1_rg15 [19] , 
+			blk_out1_rg15 [19] , blk_out1_rg15 [19] , blk_out1_rg15 [19] , 
+			blk_out1_rg15 [19] , blk_out1_rg15 [19] , blk_out1_rg15 [19] , 
+			blk_out1_rg15 [19] , blk_out1_rg15 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_292d } } & { blk_out1_rg16 [19] , blk_out1_rg16 [19] , 
+			blk_out1_rg16 [19] , blk_out1_rg16 [19] , blk_out1_rg16 [19] , 
+			blk_out1_rg16 [19] , blk_out1_rg16 [19] , blk_out1_rg16 [19] , 
+			blk_out1_rg16 [19] , blk_out1_rg16 [19] , blk_out1_rg16 [19] , 
+			blk_out1_rg16 [19] , blk_out1_rg16 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_293d } } & { blk_out1_rg17 [19] , blk_out1_rg17 [19] , 
+			blk_out1_rg17 [19] , blk_out1_rg17 [19] , blk_out1_rg17 [19] , 
+			blk_out1_rg17 [19] , blk_out1_rg17 [19] , blk_out1_rg17 [19] , 
+			blk_out1_rg17 [19] , blk_out1_rg17 [19] , blk_out1_rg17 [19] , 
+			blk_out1_rg17 [19] , blk_out1_rg17 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_294d } } & { blk_out1_rg18 [19] , blk_out1_rg18 [19] , 
+			blk_out1_rg18 [19] , blk_out1_rg18 [19] , blk_out1_rg18 [19] , 
+			blk_out1_rg18 [19] , blk_out1_rg18 [19] , blk_out1_rg18 [19] , 
+			blk_out1_rg18 [19] , blk_out1_rg18 [19] , blk_out1_rg18 [19] , 
+			blk_out1_rg18 [19] , blk_out1_rg18 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_295d } } & { blk_out1_rg19 [19] , blk_out1_rg19 [19] , 
+			blk_out1_rg19 [19] , blk_out1_rg19 [19] , blk_out1_rg19 [19] , 
+			blk_out1_rg19 [19] , blk_out1_rg19 [19] , blk_out1_rg19 [19] , 
+			blk_out1_rg19 [19] , blk_out1_rg19 [19] , blk_out1_rg19 [19] , 
+			blk_out1_rg19 [19] , blk_out1_rg19 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_296d } } & { blk_out1_rg20 [19] , blk_out1_rg20 [19] , 
+			blk_out1_rg20 [19] , blk_out1_rg20 [19] , blk_out1_rg20 [19] , 
+			blk_out1_rg20 [19] , blk_out1_rg20 [19] , blk_out1_rg20 [19] , 
+			blk_out1_rg20 [19] , blk_out1_rg20 [19] , blk_out1_rg20 [19] , 
+			blk_out1_rg20 [19] , blk_out1_rg20 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_297d } } & { blk_out1_rg21 [19] , blk_out1_rg21 [19] , 
+			blk_out1_rg21 [19] , blk_out1_rg21 [19] , blk_out1_rg21 [19] , 
+			blk_out1_rg21 [19] , blk_out1_rg21 [19] , blk_out1_rg21 [19] , 
+			blk_out1_rg21 [19] , blk_out1_rg21 [19] , blk_out1_rg21 [19] , 
+			blk_out1_rg21 [19] , blk_out1_rg21 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_298d } } & { blk_out1_rg22 [19] , blk_out1_rg22 [19] , 
+			blk_out1_rg22 [19] , blk_out1_rg22 [19] , blk_out1_rg22 [19] , 
+			blk_out1_rg22 [19] , blk_out1_rg22 [19] , blk_out1_rg22 [19] , 
+			blk_out1_rg22 [19] , blk_out1_rg22 [19] , blk_out1_rg22 [19] , 
+			blk_out1_rg22 [19] , blk_out1_rg22 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_299d } } & { blk_out1_rg23 [19] , blk_out1_rg23 [19] , 
+			blk_out1_rg23 [19] , blk_out1_rg23 [19] , blk_out1_rg23 [19] , 
+			blk_out1_rg23 [19] , blk_out1_rg23 [19] , blk_out1_rg23 [19] , 
+			blk_out1_rg23 [19] , blk_out1_rg23 [19] , blk_out1_rg23 [19] , 
+			blk_out1_rg23 [19] , blk_out1_rg23 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_300d } } & { blk_out1_rg24 [19] , blk_out1_rg24 [19] , 
+			blk_out1_rg24 [19] , blk_out1_rg24 [19] , blk_out1_rg24 [19] , 
+			blk_out1_rg24 [19] , blk_out1_rg24 [19] , blk_out1_rg24 [19] , 
+			blk_out1_rg24 [19] , blk_out1_rg24 [19] , blk_out1_rg24 [19] , 
+			blk_out1_rg24 [19] , blk_out1_rg24 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_301d } } & { blk_out1_rg25 [19] , blk_out1_rg25 [19] , 
+			blk_out1_rg25 [19] , blk_out1_rg25 [19] , blk_out1_rg25 [19] , 
+			blk_out1_rg25 [19] , blk_out1_rg25 [19] , blk_out1_rg25 [19] , 
+			blk_out1_rg25 [19] , blk_out1_rg25 [19] , blk_out1_rg25 [19] , 
+			blk_out1_rg25 [19] , blk_out1_rg25 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_302d } } & { blk_out1_rg26 [19] , blk_out1_rg26 [19] , 
+			blk_out1_rg26 [19] , blk_out1_rg26 [19] , blk_out1_rg26 [19] , 
+			blk_out1_rg26 [19] , blk_out1_rg26 [19] , blk_out1_rg26 [19] , 
+			blk_out1_rg26 [19] , blk_out1_rg26 [19] , blk_out1_rg26 [19] , 
+			blk_out1_rg26 [19] , blk_out1_rg26 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_303d } } & { blk_out1_rg27 [19] , blk_out1_rg27 [19] , 
+			blk_out1_rg27 [19] , blk_out1_rg27 [19] , blk_out1_rg27 [19] , 
+			blk_out1_rg27 [19] , blk_out1_rg27 [19] , blk_out1_rg27 [19] , 
+			blk_out1_rg27 [19] , blk_out1_rg27 [19] , blk_out1_rg27 [19] , 
+			blk_out1_rg27 [19] , blk_out1_rg27 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_304d } } & { blk_out1_rg28 [19] , blk_out1_rg28 [19] , 
+			blk_out1_rg28 [19] , blk_out1_rg28 [19] , blk_out1_rg28 [19] , 
+			blk_out1_rg28 [19] , blk_out1_rg28 [19] , blk_out1_rg28 [19] , 
+			blk_out1_rg28 [19] , blk_out1_rg28 [19] , blk_out1_rg28 [19] , 
+			blk_out1_rg28 [19] , blk_out1_rg28 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_305d } } & { blk_out1_rg29 [19] , blk_out1_rg29 [19] , 
+			blk_out1_rg29 [19] , blk_out1_rg29 [19] , blk_out1_rg29 [19] , 
+			blk_out1_rg29 [19] , blk_out1_rg29 [19] , blk_out1_rg29 [19] , 
+			blk_out1_rg29 [19] , blk_out1_rg29 [19] , blk_out1_rg29 [19] , 
+			blk_out1_rg29 [19] , blk_out1_rg29 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_306d } } & { blk_out1_rg30 [19] , blk_out1_rg30 [19] , 
+			blk_out1_rg30 [19] , blk_out1_rg30 [19] , blk_out1_rg30 [19] , 
+			blk_out1_rg30 [19] , blk_out1_rg30 [19] , blk_out1_rg30 [19] , 
+			blk_out1_rg30 [19] , blk_out1_rg30 [19] , blk_out1_rg30 [19] , 
+			blk_out1_rg30 [19] , blk_out1_rg30 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_307d } } & { blk_out1_rg31 [19] , blk_out1_rg31 [19] , 
+			blk_out1_rg31 [19] , blk_out1_rg31 [19] , blk_out1_rg31 [19] , 
+			blk_out1_rg31 [19] , blk_out1_rg31 [19] , blk_out1_rg31 [19] , 
+			blk_out1_rg31 [19] , blk_out1_rg31 [19] , blk_out1_rg31 [19] , 
+			blk_out1_rg31 [19] , blk_out1_rg31 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_308d } } & { blk_out1_rg32 [19] , blk_out1_rg32 [19] , 
+			blk_out1_rg32 [19] , blk_out1_rg32 [19] , blk_out1_rg32 [19] , 
+			blk_out1_rg32 [19] , blk_out1_rg32 [19] , blk_out1_rg32 [19] , 
+			blk_out1_rg32 [19] , blk_out1_rg32 [19] , blk_out1_rg32 [19] , 
+			blk_out1_rg32 [19] , blk_out1_rg32 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_309d } } & { blk_out1_rg33 [19] , blk_out1_rg33 [19] , 
+			blk_out1_rg33 [19] , blk_out1_rg33 [19] , blk_out1_rg33 [19] , 
+			blk_out1_rg33 [19] , blk_out1_rg33 [19] , blk_out1_rg33 [19] , 
+			blk_out1_rg33 [19] , blk_out1_rg33 [19] , blk_out1_rg33 [19] , 
+			blk_out1_rg33 [19] , blk_out1_rg33 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_310d } } & { blk_out1_rg34 [19] , blk_out1_rg34 [19] , 
+			blk_out1_rg34 [19] , blk_out1_rg34 [19] , blk_out1_rg34 [19] , 
+			blk_out1_rg34 [19] , blk_out1_rg34 [19] , blk_out1_rg34 [19] , 
+			blk_out1_rg34 [19] , blk_out1_rg34 [19] , blk_out1_rg34 [19] , 
+			blk_out1_rg34 [19] , blk_out1_rg34 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_311d } } & { blk_out1_rg35 [19] , blk_out1_rg35 [19] , 
+			blk_out1_rg35 [19] , blk_out1_rg35 [19] , blk_out1_rg35 [19] , 
+			blk_out1_rg35 [19] , blk_out1_rg35 [19] , blk_out1_rg35 [19] , 
+			blk_out1_rg35 [19] , blk_out1_rg35 [19] , blk_out1_rg35 [19] , 
+			blk_out1_rg35 [19] , blk_out1_rg35 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_312d } } & { blk_out1_rg36 [19] , blk_out1_rg36 [19] , 
+			blk_out1_rg36 [19] , blk_out1_rg36 [19] , blk_out1_rg36 [19] , 
+			blk_out1_rg36 [19] , blk_out1_rg36 [19] , blk_out1_rg36 [19] , 
+			blk_out1_rg36 [19] , blk_out1_rg36 [19] , blk_out1_rg36 [19] , 
+			blk_out1_rg36 [19] , blk_out1_rg36 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_313d } } & { blk_out1_rg37 [19] , blk_out1_rg37 [19] , 
+			blk_out1_rg37 [19] , blk_out1_rg37 [19] , blk_out1_rg37 [19] , 
+			blk_out1_rg37 [19] , blk_out1_rg37 [19] , blk_out1_rg37 [19] , 
+			blk_out1_rg37 [19] , blk_out1_rg37 [19] , blk_out1_rg37 [19] , 
+			blk_out1_rg37 [19] , blk_out1_rg37 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_314d } } & { blk_out1_rg38 [19] , blk_out1_rg38 [19] , 
+			blk_out1_rg38 [19] , blk_out1_rg38 [19] , blk_out1_rg38 [19] , 
+			blk_out1_rg38 [19] , blk_out1_rg38 [19] , blk_out1_rg38 [19] , 
+			blk_out1_rg38 [19] , blk_out1_rg38 [19] , blk_out1_rg38 [19] , 
+			blk_out1_rg38 [19] , blk_out1_rg38 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_315d } } & { blk_out1_rg39 [19] , blk_out1_rg39 [19] , 
+			blk_out1_rg39 [19] , blk_out1_rg39 [19] , blk_out1_rg39 [19] , 
+			blk_out1_rg39 [19] , blk_out1_rg39 [19] , blk_out1_rg39 [19] , 
+			blk_out1_rg39 [19] , blk_out1_rg39 [19] , blk_out1_rg39 [19] , 
+			blk_out1_rg39 [19] , blk_out1_rg39 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_316d } } & { blk_out1_rg40 [19] , blk_out1_rg40 [19] , 
+			blk_out1_rg40 [19] , blk_out1_rg40 [19] , blk_out1_rg40 [19] , 
+			blk_out1_rg40 [19] , blk_out1_rg40 [19] , blk_out1_rg40 [19] , 
+			blk_out1_rg40 [19] , blk_out1_rg40 [19] , blk_out1_rg40 [19] , 
+			blk_out1_rg40 [19] , blk_out1_rg40 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_317d } } & { blk_out1_rg41 [19] , blk_out1_rg41 [19] , 
+			blk_out1_rg41 [19] , blk_out1_rg41 [19] , blk_out1_rg41 [19] , 
+			blk_out1_rg41 [19] , blk_out1_rg41 [19] , blk_out1_rg41 [19] , 
+			blk_out1_rg41 [19] , blk_out1_rg41 [19] , blk_out1_rg41 [19] , 
+			blk_out1_rg41 [19] , blk_out1_rg41 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_318d } } & { blk_out1_rg42 [19] , blk_out1_rg42 [19] , 
+			blk_out1_rg42 [19] , blk_out1_rg42 [19] , blk_out1_rg42 [19] , 
+			blk_out1_rg42 [19] , blk_out1_rg42 [19] , blk_out1_rg42 [19] , 
+			blk_out1_rg42 [19] , blk_out1_rg42 [19] , blk_out1_rg42 [19] , 
+			blk_out1_rg42 [19] , blk_out1_rg42 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_319d } } & { blk_out1_rg43 [19] , blk_out1_rg43 [19] , 
+			blk_out1_rg43 [19] , blk_out1_rg43 [19] , blk_out1_rg43 [19] , 
+			blk_out1_rg43 [19] , blk_out1_rg43 [19] , blk_out1_rg43 [19] , 
+			blk_out1_rg43 [19] , blk_out1_rg43 [19] , blk_out1_rg43 [19] , 
+			blk_out1_rg43 [19] , blk_out1_rg43 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_320d } } & { blk_out1_rg44 [19] , blk_out1_rg44 [19] , 
+			blk_out1_rg44 [19] , blk_out1_rg44 [19] , blk_out1_rg44 [19] , 
+			blk_out1_rg44 [19] , blk_out1_rg44 [19] , blk_out1_rg44 [19] , 
+			blk_out1_rg44 [19] , blk_out1_rg44 [19] , blk_out1_rg44 [19] , 
+			blk_out1_rg44 [19] , blk_out1_rg44 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_321d } } & { blk_out1_rg45 [19] , blk_out1_rg45 [19] , 
+			blk_out1_rg45 [19] , blk_out1_rg45 [19] , blk_out1_rg45 [19] , 
+			blk_out1_rg45 [19] , blk_out1_rg45 [19] , blk_out1_rg45 [19] , 
+			blk_out1_rg45 [19] , blk_out1_rg45 [19] , blk_out1_rg45 [19] , 
+			blk_out1_rg45 [19] , blk_out1_rg45 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_322d } } & { blk_out1_rg46 [19] , blk_out1_rg46 [19] , 
+			blk_out1_rg46 [19] , blk_out1_rg46 [19] , blk_out1_rg46 [19] , 
+			blk_out1_rg46 [19] , blk_out1_rg46 [19] , blk_out1_rg46 [19] , 
+			blk_out1_rg46 [19] , blk_out1_rg46 [19] , blk_out1_rg46 [19] , 
+			blk_out1_rg46 [19] , blk_out1_rg46 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_323d } } & { blk_out1_rg47 [19] , blk_out1_rg47 [19] , 
+			blk_out1_rg47 [19] , blk_out1_rg47 [19] , blk_out1_rg47 [19] , 
+			blk_out1_rg47 [19] , blk_out1_rg47 [19] , blk_out1_rg47 [19] , 
+			blk_out1_rg47 [19] , blk_out1_rg47 [19] , blk_out1_rg47 [19] , 
+			blk_out1_rg47 [19] , blk_out1_rg47 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_324d } } & { blk_out1_rg48 [19] , blk_out1_rg48 [19] , 
+			blk_out1_rg48 [19] , blk_out1_rg48 [19] , blk_out1_rg48 [19] , 
+			blk_out1_rg48 [19] , blk_out1_rg48 [19] , blk_out1_rg48 [19] , 
+			blk_out1_rg48 [19] , blk_out1_rg48 [19] , blk_out1_rg48 [19] , 
+			blk_out1_rg48 [19] , blk_out1_rg48 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_325d } } & { blk_out1_rg49 [19] , blk_out1_rg49 [19] , 
+			blk_out1_rg49 [19] , blk_out1_rg49 [19] , blk_out1_rg49 [19] , 
+			blk_out1_rg49 [19] , blk_out1_rg49 [19] , blk_out1_rg49 [19] , 
+			blk_out1_rg49 [19] , blk_out1_rg49 [19] , blk_out1_rg49 [19] , 
+			blk_out1_rg49 [19] , blk_out1_rg49 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_326d } } & { blk_out1_rg50 [19] , blk_out1_rg50 [19] , 
+			blk_out1_rg50 [19] , blk_out1_rg50 [19] , blk_out1_rg50 [19] , 
+			blk_out1_rg50 [19] , blk_out1_rg50 [19] , blk_out1_rg50 [19] , 
+			blk_out1_rg50 [19] , blk_out1_rg50 [19] , blk_out1_rg50 [19] , 
+			blk_out1_rg50 [19] , blk_out1_rg50 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_327d } } & { blk_out1_rg51 [19] , blk_out1_rg51 [19] , 
+			blk_out1_rg51 [19] , blk_out1_rg51 [19] , blk_out1_rg51 [19] , 
+			blk_out1_rg51 [19] , blk_out1_rg51 [19] , blk_out1_rg51 [19] , 
+			blk_out1_rg51 [19] , blk_out1_rg51 [19] , blk_out1_rg51 [19] , 
+			blk_out1_rg51 [19] , blk_out1_rg51 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_328d } } & { blk_out1_rg52 [19] , blk_out1_rg52 [19] , 
+			blk_out1_rg52 [19] , blk_out1_rg52 [19] , blk_out1_rg52 [19] , 
+			blk_out1_rg52 [19] , blk_out1_rg52 [19] , blk_out1_rg52 [19] , 
+			blk_out1_rg52 [19] , blk_out1_rg52 [19] , blk_out1_rg52 [19] , 
+			blk_out1_rg52 [19] , blk_out1_rg52 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_329d } } & { blk_out1_rg53 [19] , blk_out1_rg53 [19] , 
+			blk_out1_rg53 [19] , blk_out1_rg53 [19] , blk_out1_rg53 [19] , 
+			blk_out1_rg53 [19] , blk_out1_rg53 [19] , blk_out1_rg53 [19] , 
+			blk_out1_rg53 [19] , blk_out1_rg53 [19] , blk_out1_rg53 [19] , 
+			blk_out1_rg53 [19] , blk_out1_rg53 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_330d } } & { blk_out1_rg54 [19] , blk_out1_rg54 [19] , 
+			blk_out1_rg54 [19] , blk_out1_rg54 [19] , blk_out1_rg54 [19] , 
+			blk_out1_rg54 [19] , blk_out1_rg54 [19] , blk_out1_rg54 [19] , 
+			blk_out1_rg54 [19] , blk_out1_rg54 [19] , blk_out1_rg54 [19] , 
+			blk_out1_rg54 [19] , blk_out1_rg54 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_331d } } & { blk_out1_rg55 [19] , blk_out1_rg55 [19] , 
+			blk_out1_rg55 [19] , blk_out1_rg55 [19] , blk_out1_rg55 [19] , 
+			blk_out1_rg55 [19] , blk_out1_rg55 [19] , blk_out1_rg55 [19] , 
+			blk_out1_rg55 [19] , blk_out1_rg55 [19] , blk_out1_rg55 [19] , 
+			blk_out1_rg55 [19] , blk_out1_rg55 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_332d } } & { blk_out1_rg56 [19] , blk_out1_rg56 [19] , 
+			blk_out1_rg56 [19] , blk_out1_rg56 [19] , blk_out1_rg56 [19] , 
+			blk_out1_rg56 [19] , blk_out1_rg56 [19] , blk_out1_rg56 [19] , 
+			blk_out1_rg56 [19] , blk_out1_rg56 [19] , blk_out1_rg56 [19] , 
+			blk_out1_rg56 [19] , blk_out1_rg56 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_333d } } & { blk_out1_rg57 [19] , blk_out1_rg57 [19] , 
+			blk_out1_rg57 [19] , blk_out1_rg57 [19] , blk_out1_rg57 [19] , 
+			blk_out1_rg57 [19] , blk_out1_rg57 [19] , blk_out1_rg57 [19] , 
+			blk_out1_rg57 [19] , blk_out1_rg57 [19] , blk_out1_rg57 [19] , 
+			blk_out1_rg57 [19] , blk_out1_rg57 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_334d } } & { blk_out1_rg58 [19] , blk_out1_rg58 [19] , 
+			blk_out1_rg58 [19] , blk_out1_rg58 [19] , blk_out1_rg58 [19] , 
+			blk_out1_rg58 [19] , blk_out1_rg58 [19] , blk_out1_rg58 [19] , 
+			blk_out1_rg58 [19] , blk_out1_rg58 [19] , blk_out1_rg58 [19] , 
+			blk_out1_rg58 [19] , blk_out1_rg58 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_335d } } & { blk_out1_rg59 [19] , blk_out1_rg59 [19] , 
+			blk_out1_rg59 [19] , blk_out1_rg59 [19] , blk_out1_rg59 [19] , 
+			blk_out1_rg59 [19] , blk_out1_rg59 [19] , blk_out1_rg59 [19] , 
+			blk_out1_rg59 [19] , blk_out1_rg59 [19] , blk_out1_rg59 [19] , 
+			blk_out1_rg59 [19] , blk_out1_rg59 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_336d } } & { blk_out1_rg60 [19] , blk_out1_rg60 [19] , 
+			blk_out1_rg60 [19] , blk_out1_rg60 [19] , blk_out1_rg60 [19] , 
+			blk_out1_rg60 [19] , blk_out1_rg60 [19] , blk_out1_rg60 [19] , 
+			blk_out1_rg60 [19] , blk_out1_rg60 [19] , blk_out1_rg60 [19] , 
+			blk_out1_rg60 [19] , blk_out1_rg60 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_337d } } & { blk_out1_rg61 [19] , blk_out1_rg61 [19] , 
+			blk_out1_rg61 [19] , blk_out1_rg61 [19] , blk_out1_rg61 [19] , 
+			blk_out1_rg61 [19] , blk_out1_rg61 [19] , blk_out1_rg61 [19] , 
+			blk_out1_rg61 [19] , blk_out1_rg61 [19] , blk_out1_rg61 [19] , 
+			blk_out1_rg61 [19] , blk_out1_rg61 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_338d } } & { blk_out1_rg62 [19] , blk_out1_rg62 [19] , 
+			blk_out1_rg62 [19] , blk_out1_rg62 [19] , blk_out1_rg62 [19] , 
+			blk_out1_rg62 [19] , blk_out1_rg62 [19] , blk_out1_rg62 [19] , 
+			blk_out1_rg62 [19] , blk_out1_rg62 [19] , blk_out1_rg62 [19] , 
+			blk_out1_rg62 [19] , blk_out1_rg62 } )						// line#=computer.cpp:227,384,385
+		| ( { 32{ ST1_339d } } & { blk_out1_rg63 [19] , blk_out1_rg63 [19] , 
+			blk_out1_rg63 [19] , blk_out1_rg63 [19] , blk_out1_rg63 [19] , 
+			blk_out1_rg63 [19] , blk_out1_rg63 [19] , blk_out1_rg63 [19] , 
+			blk_out1_rg63 [19] , blk_out1_rg63 [19] , blk_out1_rg63 [19] , 
+			blk_out1_rg63 [19] , blk_out1_rg63 } )						// line#=computer.cpp:227,384,385
 		) ;
-	end
-assign	M_2945 = ( ( ( ( ( ( ( ST1_86d | ST1_108d ) | ST1_130d ) | ST1_152d ) | ST1_174d ) | 
-	ST1_196d ) | ST1_218d ) | ST1_240d ) ;
-assign	M_2946 = ( ( ( ( ( ( ( ST1_87d | ST1_109d ) | ST1_131d ) | ST1_153d ) | ST1_175d ) | 
-	ST1_197d ) | ST1_219d ) | ST1_241d ) ;
-assign	M_2947 = ( ( ( ( ( ( ( ST1_88d | ST1_110d ) | ST1_132d ) | ST1_154d ) | ST1_176d ) | 
-	ST1_198d ) | ST1_220d ) | ST1_242d ) ;
-assign	M_2949 = ( ( ( ( ( ( ( ST1_89d | ST1_111d ) | ST1_133d ) | ST1_155d ) | ST1_177d ) | 
-	ST1_199d ) | ST1_221d ) | ST1_243d ) ;
-assign	M_3062 = ( ( ( ( ( ( ( ( ST1_84d | ST1_106d ) | ST1_128d ) | ST1_150d ) | 
-	ST1_172d ) | ST1_194d ) | ST1_216d ) | ST1_238d ) | M_2944 ) ;
-always @ ( TR_63 or M_2949 or M_2947 or M_3063 or M_2944 or M_3062 )
-	begin
-	TR_31_c1 = ( ( M_3063 | M_2947 ) | M_2949 ) ;	// line#=computer.cpp:289,337
-	TR_31 = ( ( { 3{ M_3062 } } & { 2'h1 , M_2944 } )	// line#=computer.cpp:289,337
-		| ( { 3{ TR_31_c1 } } & { 1'h1 , TR_63 } )	// line#=computer.cpp:289,337
-		) ;
-	end
-assign	M_2953 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-	( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( M_2940 | ST1_92d ) | ST1_94d ) | ST1_96d ) | 
-	ST1_98d ) | ST1_100d ) | ST1_102d ) | ST1_104d ) | ST1_114d ) | ST1_116d ) | 
-	ST1_118d ) | ST1_120d ) | ST1_122d ) | ST1_124d ) | ST1_126d ) | ST1_136d ) | 
-	ST1_138d ) | ST1_140d ) | ST1_142d ) | ST1_144d ) | ST1_146d ) | ST1_148d ) | 
-	ST1_158d ) | ST1_160d ) | ST1_162d ) | ST1_164d ) | ST1_166d ) | ST1_168d ) | 
-	ST1_170d ) | ST1_180d ) | ST1_182d ) | ST1_184d ) | ST1_186d ) | ST1_188d ) | 
-	ST1_190d ) | ST1_192d ) | ST1_202d ) | ST1_204d ) | ST1_206d ) | ST1_208d ) | 
-	ST1_210d ) | ST1_212d ) | ST1_214d ) | ST1_224d ) | ST1_226d ) | ST1_228d ) | 
-	ST1_230d ) | ST1_232d ) | ST1_234d ) | ST1_236d ) ;
-always @ ( TR_31 or M_2949 or M_2947 or M_2946 or M_2945 or M_3062 or RG_y or M_2953 or 
-	ST1_68d )
-	begin
-	M_3081_c1 = ( ST1_68d | M_2953 ) ;	// line#=computer.cpp:332
-	M_3081_c2 = ( ( ( ( M_3062 | M_2945 ) | M_2946 ) | M_2947 ) | M_2949 ) ;	// line#=computer.cpp:289,337
-	M_3081 = ( ( { 4{ M_3081_c1 } } & { ( ST1_68d & RG_y [3] ) , RG_y [2:0] } )	// line#=computer.cpp:332
-		| ( { 4{ M_3081_c2 } } & { 1'h0 , TR_31 } )				// line#=computer.cpp:289,337
-		) ;
-	end
-assign	add8s_7_61i2 = { 1'h0 , M_3081 } ;
-assign	addsub8u_7_61i1 = { RG_y [2:0] , 2'h0 } ;	// line#=computer.cpp:330,364
-assign	addsub8u_7_61i2 = RG_y [2:0] ;	// line#=computer.cpp:330,364
-assign	M_2931 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_74d | 
-	ST1_80d ) | ST1_96d ) | ST1_102d ) | ST1_118d ) | ST1_124d ) | ST1_140d ) | 
-	ST1_146d ) | ST1_162d ) | ST1_168d ) | ST1_184d ) | ST1_190d ) | ST1_206d ) | 
-	ST1_212d ) | ST1_228d ) | ST1_234d ) | ST1_250d ) | ST1_256d ) | ST1_273d ) | 
-	ST1_279d ) | ST1_296d ) | ST1_302d ) | ST1_319d ) | ST1_325d ) | ST1_342d ) | 
-	ST1_348d ) | ST1_365d ) | ST1_371d ) | ST1_388d ) | ST1_394d ) | ST1_411d ) | 
-	ST1_417d ) ;
-always @ ( M_2931 or M_2934 )
-	addsub8u_7_61_f = ( ( { 2{ M_2934 } } & 2'h1 )
-		| ( { 2{ M_2931 } } & 2'h2 ) ) ;
-always @ ( blk_out_RD1 or ST1_492d or ST1_491d or ST1_490d or ST1_489d or ST1_488d or 
-	ST1_487d or ST1_486d or ST1_485d or ST1_484d or ST1_483d or ST1_482d or 
-	ST1_481d or ST1_480d or ST1_479d or ST1_478d or ST1_477d or ST1_476d or 
-	ST1_475d or ST1_474d or ST1_473d or ST1_472d or ST1_471d or ST1_470d or 
-	ST1_469d or ST1_468d or ST1_467d or ST1_466d or ST1_465d or ST1_464d or 
-	ST1_463d or ST1_462d or ST1_461d or ST1_460d or ST1_459d or ST1_458d or 
-	ST1_457d or ST1_456d or ST1_455d or ST1_454d or ST1_453d or ST1_452d or 
-	ST1_451d or ST1_450d or ST1_449d or ST1_448d or ST1_447d or ST1_446d or 
-	ST1_445d or ST1_444d or ST1_443d or ST1_442d or ST1_441d or ST1_440d or 
-	ST1_439d or ST1_438d or ST1_437d or ST1_436d or ST1_435d or ST1_434d or 
-	ST1_433d or ST1_432d or ST1_431d or ST1_430d or ST1_429d or RL_addr_buf_instr_op2_result or 
-	M_3020 or regs_rd02 or U_93 )
-	begin
-	dmem_arg_MEMB32W65536_WD2_c1 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-		( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-		( ( ( ( ( ( ( ( ( ST1_429d | ST1_430d ) | ST1_431d ) | ST1_432d ) | 
-		ST1_433d ) | ST1_434d ) | ST1_435d ) | ST1_436d ) | ST1_437d ) | 
-		ST1_438d ) | ST1_439d ) | ST1_440d ) | ST1_441d ) | ST1_442d ) | 
-		ST1_443d ) | ST1_444d ) | ST1_445d ) | ST1_446d ) | ST1_447d ) | 
-		ST1_448d ) | ST1_449d ) | ST1_450d ) | ST1_451d ) | ST1_452d ) | 
-		ST1_453d ) | ST1_454d ) | ST1_455d ) | ST1_456d ) | ST1_457d ) | 
-		ST1_458d ) | ST1_459d ) | ST1_460d ) | ST1_461d ) | ST1_462d ) | 
-		ST1_463d ) | ST1_464d ) | ST1_465d ) | ST1_466d ) | ST1_467d ) | 
-		ST1_468d ) | ST1_469d ) | ST1_470d ) | ST1_471d ) | ST1_472d ) | 
-		ST1_473d ) | ST1_474d ) | ST1_475d ) | ST1_476d ) | ST1_477d ) | 
-		ST1_478d ) | ST1_479d ) | ST1_480d ) | ST1_481d ) | ST1_482d ) | 
-		ST1_483d ) | ST1_484d ) | ST1_485d ) | ST1_486d ) | ST1_487d ) | 
-		ST1_488d ) | ST1_489d ) | ST1_490d ) | ST1_491d ) | ST1_492d ) ;	// line#=computer.cpp:227,377,378
-	dmem_arg_MEMB32W65536_WD2 = ( ( { 32{ U_93 } } & regs_rd02 )		// line#=computer.cpp:227,565
-		| ( { 32{ M_3020 } } & RL_addr_buf_instr_op2_result )		// line#=computer.cpp:192,193,211,212
-		| ( { 32{ dmem_arg_MEMB32W65536_WD2_c1 } } & blk_out_RD1 )	// line#=computer.cpp:227,377,378
-		) ;
-	end
-always @ ( addsub32u1ot or U_75 or U_25 or U_716 or U_713 or U_691 or RG_buf_buf1_instr_rd_word_addr or 
-	U_730 or RL_buf_buf1_coef_rs1_rs2_val1 or U_736 or U_709 or RG_buf_buf1 or 
-	U_688 or regs_rd00 or U_45 or RL_addr_buf_instr_op2_result or U_714 or sub20u_181ot or 
-	U_673 or U_658 or U_632 or U_619 or U_604 or U_579 or U_566 or U_551 or 
-	U_536 or U_521 or U_506 or U_491 or U_474 or U_459 or U_442 or U_427 or 
-	U_412 or U_396 or U_381 or U_364 or U_349 or U_288 or U_275 or U_260 or 
-	U_245 or U_230 or U_211 or U_196 or U_181 or U_165 or U_149 or U_124 or 
-	U_109 or U_88 or U_71 or M_2909 )
+always @ ( RG_result_result1_word_addr or U_740 or addsub32u1ot or U_75 or U_25 or 
+	U_718 or U_715 or U_695 or RG_coef or U_734 or RL_blk_out_buf_buf1_dst_addr_rs1 or 
+	U_720 or RG_buf or U_692 or regs_rd00 or U_45 or RG_addr_next_pc or U_716 or 
+	sub20u_182ot or U_71 or ST1_47d or sub20u_181ot or U_677 or U_662 or U_635 or 
+	U_622 or U_607 or U_582 or U_569 or U_554 or U_539 or U_524 or U_509 or 
+	U_494 or U_477 or U_462 or U_445 or U_430 or U_415 or U_399 or U_384 or 
+	U_342 or U_302 or U_286 or U_273 or U_258 or U_243 or U_228 or U_209 or 
+	U_194 or U_179 or U_163 or U_147 or U_122 or U_107 or U_88 or M_2819 )
 	begin
 	dmem_arg_MEMB32W65536_RA1_c1 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-		( ( ( ( ( ( ( ( ( ( ( ( ( ( M_2909 | U_71 ) | U_88 ) | U_109 ) | 
-		U_124 ) | U_149 ) | U_165 ) | U_181 ) | U_196 ) | U_211 ) | U_230 ) | 
-		U_245 ) | U_260 ) | U_275 ) | U_288 ) | U_349 ) | U_364 ) | U_381 ) | 
-		U_396 ) | U_412 ) | U_427 ) | U_442 ) | U_459 ) | U_474 ) | U_491 ) | 
-		U_506 ) | U_521 ) | U_536 ) | U_551 ) | U_566 ) | U_579 ) | U_604 ) | 
-		U_619 ) | U_632 ) | U_658 ) | U_673 ) ;	// line#=computer.cpp:165,174,304,305
-	dmem_arg_MEMB32W65536_RA1_c2 = ( U_709 | U_736 ) ;	// line#=computer.cpp:142,174,304,305,549
-	dmem_arg_MEMB32W65536_RA1_c3 = ( ( ( ( U_691 | U_713 ) | U_716 ) | U_25 ) | 
+		( ( ( ( ( ( ( ( ( ( ( ( ( M_2819 | U_88 ) | U_107 ) | U_122 ) | U_147 ) | 
+		U_163 ) | U_179 ) | U_194 ) | U_209 ) | U_228 ) | U_243 ) | U_258 ) | 
+		U_273 ) | U_286 ) | U_302 ) | U_342 ) | U_384 ) | U_399 ) | U_415 ) | 
+		U_430 ) | U_445 ) | U_462 ) | U_477 ) | U_494 ) | U_509 ) | U_524 ) | 
+		U_539 ) | U_554 ) | U_569 ) | U_582 ) | U_607 ) | U_622 ) | U_635 ) | 
+		U_662 ) | U_677 ) ;	// line#=computer.cpp:165,174,311,312
+	dmem_arg_MEMB32W65536_RA1_c2 = ( ST1_47d | U_71 ) ;	// line#=computer.cpp:165,174,311,312
+	dmem_arg_MEMB32W65536_RA1_c3 = ( ( ( ( U_695 | U_715 ) | U_718 ) | U_25 ) | 
 		U_75 ) ;	// line#=computer.cpp:131,140,142,148,157
 				// ,159,180,189,192,193,199,208,211
-				// ,212,540,543,552
+				// ,212,547,550,559
 	dmem_arg_MEMB32W65536_RA1 = ( ( { 16{ dmem_arg_MEMB32W65536_RA1_c1 } } & 
-			sub20u_181ot [17:2] )								// line#=computer.cpp:165,174,304,305
-		| ( { 16{ U_714 } } & RL_addr_buf_instr_op2_result [17:2] )				// line#=computer.cpp:165,174,546
-		| ( { 16{ U_45 } } & regs_rd00 [17:2] )							// line#=computer.cpp:165,174,304,305,684
-		| ( { 16{ U_688 } } & RG_buf_buf1 [15:0] )						// line#=computer.cpp:174,304,305
-		| ( { 16{ dmem_arg_MEMB32W65536_RA1_c2 } } & RL_buf_buf1_coef_rs1_rs2_val1 [15:0] )	// line#=computer.cpp:142,174,304,305,549
-		| ( { 16{ U_730 } } & RG_buf_buf1_instr_rd_word_addr [15:0] )				// line#=computer.cpp:174,304,305
-		| ( { 16{ dmem_arg_MEMB32W65536_RA1_c3 } } & addsub32u1ot [17:2] )			// line#=computer.cpp:131,140,142,148,157
-													// ,159,180,189,192,193,199,208,211
-													// ,212,540,543,552
+			sub20u_181ot [17:2] )						// line#=computer.cpp:165,174,311,312
+		| ( { 16{ dmem_arg_MEMB32W65536_RA1_c2 } } & sub20u_182ot [17:2] )	// line#=computer.cpp:165,174,311,312
+		| ( { 16{ U_716 } } & RG_addr_next_pc [17:2] )				// line#=computer.cpp:165,174,553
+		| ( { 16{ U_45 } } & regs_rd00 [17:2] )					// line#=computer.cpp:165,174,311,312,691
+		| ( { 16{ U_692 } } & RG_buf [15:0] )					// line#=computer.cpp:174,311,312
+		| ( { 16{ U_720 } } & RL_blk_out_buf_buf1_dst_addr_rs1 [15:0] )		// line#=computer.cpp:174,311,312
+		| ( { 16{ U_734 } } & RG_coef )						// line#=computer.cpp:174,311,312
+		| ( { 16{ dmem_arg_MEMB32W65536_RA1_c3 } } & addsub32u1ot [17:2] )	// line#=computer.cpp:131,140,142,148,157
+											// ,159,180,189,192,193,199,208,211
+											// ,212,547,550,559
+		| ( { 16{ U_740 } } & RG_result_result1_word_addr [15:0] )		// line#=computer.cpp:142,556
 		) ;
 	end
-assign	M_3020 = ( U_726 | U_762 ) ;
-always @ ( sub20u_181ot or ST1_492d or ST1_491d or ST1_490d or ST1_489d or ST1_488d or 
-	ST1_487d or ST1_486d or ST1_485d or ST1_484d or ST1_483d or ST1_482d or 
-	ST1_481d or ST1_480d or ST1_479d or ST1_478d or ST1_477d or ST1_476d or 
-	ST1_475d or ST1_474d or ST1_473d or ST1_472d or ST1_471d or ST1_470d or 
-	ST1_469d or ST1_468d or ST1_467d or ST1_466d or ST1_465d or ST1_464d or 
-	ST1_463d or ST1_462d or ST1_461d or ST1_460d or ST1_459d or ST1_458d or 
-	ST1_457d or ST1_456d or ST1_455d or ST1_454d or ST1_453d or ST1_452d or 
-	ST1_451d or ST1_450d or ST1_449d or ST1_448d or ST1_447d or ST1_446d or 
-	ST1_445d or ST1_444d or ST1_443d or ST1_442d or ST1_441d or ST1_440d or 
-	ST1_439d or ST1_438d or ST1_437d or ST1_436d or ST1_435d or ST1_434d or 
-	ST1_433d or ST1_432d or ST1_431d or RG_buf1_coef_coef1_y or ST1_430d or 
-	RG_dst_addr or ST1_429d or RG_buf_buf1_instr_rd_word_addr or M_3020 or RG_addr1_next_pc_op1_PC_src_addr or 
+always @ ( sub20u_181ot or ST1_339d or ST1_338d or ST1_337d or ST1_336d or ST1_335d or 
+	ST1_334d or ST1_333d or ST1_332d or ST1_331d or ST1_330d or ST1_329d or 
+	ST1_328d or ST1_327d or ST1_326d or ST1_325d or ST1_324d or ST1_323d or 
+	ST1_322d or ST1_321d or ST1_320d or ST1_319d or ST1_318d or ST1_317d or 
+	ST1_316d or ST1_315d or ST1_314d or ST1_313d or ST1_312d or ST1_311d or 
+	ST1_310d or ST1_309d or ST1_308d or ST1_307d or ST1_306d or ST1_305d or 
+	ST1_304d or ST1_303d or ST1_302d or ST1_301d or ST1_300d or ST1_299d or 
+	ST1_298d or ST1_297d or ST1_296d or ST1_295d or ST1_294d or ST1_293d or 
+	ST1_292d or ST1_291d or ST1_290d or ST1_289d or ST1_288d or ST1_287d or 
+	ST1_286d or ST1_285d or ST1_284d or ST1_283d or ST1_282d or ST1_281d or 
+	ST1_280d or ST1_279d or ST1_278d or RG_coef or ST1_277d or RG_dst_addr or 
+	ST1_276d or RL_buf_buf1_instr_next_pc_rd or U_766 or U_730 or RL_addr1_buf_buf1_next_pc_op1_PC or 
 	U_93 )
 	begin
-	dmem_arg_MEMB32W65536_WA2_c1 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
+	dmem_arg_MEMB32W65536_WA2_c1 = ( U_730 | U_766 ) ;	// line#=computer.cpp:192,193,211,212
+	dmem_arg_MEMB32W65536_WA2_c2 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
 		( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-		( ( ( ( ( ( ( ST1_431d | ST1_432d ) | ST1_433d ) | ST1_434d ) | ST1_435d ) | 
-		ST1_436d ) | ST1_437d ) | ST1_438d ) | ST1_439d ) | ST1_440d ) | 
-		ST1_441d ) | ST1_442d ) | ST1_443d ) | ST1_444d ) | ST1_445d ) | 
-		ST1_446d ) | ST1_447d ) | ST1_448d ) | ST1_449d ) | ST1_450d ) | 
-		ST1_451d ) | ST1_452d ) | ST1_453d ) | ST1_454d ) | ST1_455d ) | 
-		ST1_456d ) | ST1_457d ) | ST1_458d ) | ST1_459d ) | ST1_460d ) | 
-		ST1_461d ) | ST1_462d ) | ST1_463d ) | ST1_464d ) | ST1_465d ) | 
-		ST1_466d ) | ST1_467d ) | ST1_468d ) | ST1_469d ) | ST1_470d ) | 
-		ST1_471d ) | ST1_472d ) | ST1_473d ) | ST1_474d ) | ST1_475d ) | 
-		ST1_476d ) | ST1_477d ) | ST1_478d ) | ST1_479d ) | ST1_480d ) | 
-		ST1_481d ) | ST1_482d ) | ST1_483d ) | ST1_484d ) | ST1_485d ) | 
-		ST1_486d ) | ST1_487d ) | ST1_488d ) | ST1_489d ) | ST1_490d ) | 
-		ST1_491d ) | ST1_492d ) ;	// line#=computer.cpp:218,227,377,378
-	dmem_arg_MEMB32W65536_WA2 = ( ( { 16{ U_93 } } & RG_addr1_next_pc_op1_PC_src_addr [17:2] )	// line#=computer.cpp:218,227
-		| ( { 16{ M_3020 } } & RG_buf_buf1_instr_rd_word_addr [15:0] )				// line#=computer.cpp:192,193,211,212
-		| ( { 16{ ST1_429d } } & RG_dst_addr [17:2] )						// line#=computer.cpp:218,227
-		| ( { 16{ ST1_430d } } & RG_buf1_coef_coef1_y [15:0] )					// line#=computer.cpp:227
-		| ( { 16{ dmem_arg_MEMB32W65536_WA2_c1 } } & sub20u_181ot [17:2] )			// line#=computer.cpp:218,227,377,378
+		( ( ( ( ( ( ( ST1_278d | ST1_279d ) | ST1_280d ) | ST1_281d ) | ST1_282d ) | 
+		ST1_283d ) | ST1_284d ) | ST1_285d ) | ST1_286d ) | ST1_287d ) | 
+		ST1_288d ) | ST1_289d ) | ST1_290d ) | ST1_291d ) | ST1_292d ) | 
+		ST1_293d ) | ST1_294d ) | ST1_295d ) | ST1_296d ) | ST1_297d ) | 
+		ST1_298d ) | ST1_299d ) | ST1_300d ) | ST1_301d ) | ST1_302d ) | 
+		ST1_303d ) | ST1_304d ) | ST1_305d ) | ST1_306d ) | ST1_307d ) | 
+		ST1_308d ) | ST1_309d ) | ST1_310d ) | ST1_311d ) | ST1_312d ) | 
+		ST1_313d ) | ST1_314d ) | ST1_315d ) | ST1_316d ) | ST1_317d ) | 
+		ST1_318d ) | ST1_319d ) | ST1_320d ) | ST1_321d ) | ST1_322d ) | 
+		ST1_323d ) | ST1_324d ) | ST1_325d ) | ST1_326d ) | ST1_327d ) | 
+		ST1_328d ) | ST1_329d ) | ST1_330d ) | ST1_331d ) | ST1_332d ) | 
+		ST1_333d ) | ST1_334d ) | ST1_335d ) | ST1_336d ) | ST1_337d ) | 
+		ST1_338d ) | ST1_339d ) ;	// line#=computer.cpp:218,227,384,385
+	dmem_arg_MEMB32W65536_WA2 = ( ( { 16{ U_93 } } & RL_addr1_buf_buf1_next_pc_op1_PC [17:2] )	// line#=computer.cpp:218,227
+		| ( { 16{ dmem_arg_MEMB32W65536_WA2_c1 } } & RL_buf_buf1_instr_next_pc_rd [15:0] )	// line#=computer.cpp:192,193,211,212
+		| ( { 16{ ST1_276d } } & RG_dst_addr [17:2] )						// line#=computer.cpp:218,227
+		| ( { 16{ ST1_277d } } & RG_coef )							// line#=computer.cpp:227
+		| ( { 16{ dmem_arg_MEMB32W65536_WA2_c2 } } & sub20u_181ot [17:2] )			// line#=computer.cpp:218,227,384,385
 		) ;
 	end
-assign	M_2909 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_23d | ST1_24d ) | 
+assign	M_2819 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_23d | ST1_24d ) | 
 	ST1_25d ) | ST1_26d ) | ST1_27d ) | ST1_28d ) | ST1_29d ) | ST1_30d ) | ST1_31d ) | 
 	ST1_32d ) | ST1_33d ) | ST1_34d ) | ST1_35d ) | ST1_36d ) | ST1_37d ) | ST1_38d ) | 
 	ST1_39d ) | ST1_40d ) | ST1_41d ) | ST1_42d ) | ST1_43d ) | ST1_44d ) | ST1_45d ) | 
-	ST1_46d ) | ST1_47d ) ;
+	ST1_46d ) ;
 assign	dmem_arg_MEMB32W65536_RE1 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-	( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( M_2909 | U_714 ) | U_45 ) | 
-	U_71 ) | U_88 ) | U_109 ) | U_124 ) | U_149 ) | U_165 ) | U_181 ) | U_196 ) | 
-	U_211 ) | U_230 ) | U_245 ) | U_260 ) | U_275 ) | U_288 ) | U_349 ) | U_364 ) | 
-	U_381 ) | U_396 ) | U_412 ) | U_427 ) | U_442 ) | U_459 ) | U_474 ) | U_491 ) | 
-	U_506 ) | U_521 ) | U_536 ) | U_551 ) | U_566 ) | U_579 ) | U_604 ) | U_619 ) | 
-	U_632 ) | U_658 ) | U_673 ) | U_688 ) | U_709 ) | U_730 ) | U_691 ) | U_713 ) | 
-	U_736 ) | U_716 ) | U_25 ) | U_75 ) ;	// line#=computer.cpp:142,159,174,192,193
-						// ,211,212,304,305,540,543,546,549
-						// ,552
+	( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( M_2819 | ST1_47d ) | U_716 ) | 
+	U_45 ) | U_71 ) | U_88 ) | U_107 ) | U_122 ) | U_147 ) | U_163 ) | U_179 ) | 
+	U_194 ) | U_209 ) | U_228 ) | U_243 ) | U_258 ) | U_273 ) | U_286 ) | U_302 ) | 
+	U_342 ) | U_384 ) | U_399 ) | U_415 ) | U_430 ) | U_445 ) | U_462 ) | U_477 ) | 
+	U_494 ) | U_509 ) | U_524 ) | U_539 ) | U_554 ) | U_569 ) | U_582 ) | U_607 ) | 
+	U_622 ) | U_635 ) | U_662 ) | U_677 ) | U_692 ) | U_720 ) | U_734 ) | U_695 ) | 
+	U_715 ) | U_740 ) | U_718 ) | U_25 ) | U_75 ) ;	// line#=computer.cpp:142,159,174,192,193
+							// ,211,212,311,312,547,550,553,556
+							// ,559
 assign	dmem_arg_MEMB32W65536_WE2 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
 	( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-	( ( ( ( ( ( U_93 | U_726 ) | U_762 ) | ST1_429d ) | ST1_430d ) | ST1_431d ) | 
-	ST1_432d ) | ST1_433d ) | ST1_434d ) | ST1_435d ) | ST1_436d ) | ST1_437d ) | 
-	ST1_438d ) | ST1_439d ) | ST1_440d ) | ST1_441d ) | ST1_442d ) | ST1_443d ) | 
-	ST1_444d ) | ST1_445d ) | ST1_446d ) | ST1_447d ) | ST1_448d ) | ST1_449d ) | 
-	ST1_450d ) | ST1_451d ) | ST1_452d ) | ST1_453d ) | ST1_454d ) | ST1_455d ) | 
-	ST1_456d ) | ST1_457d ) | ST1_458d ) | ST1_459d ) | ST1_460d ) | ST1_461d ) | 
-	ST1_462d ) | ST1_463d ) | ST1_464d ) | ST1_465d ) | ST1_466d ) | ST1_467d ) | 
-	ST1_468d ) | ST1_469d ) | ST1_470d ) | ST1_471d ) | ST1_472d ) | ST1_473d ) | 
-	ST1_474d ) | ST1_475d ) | ST1_476d ) | ST1_477d ) | ST1_478d ) | ST1_479d ) | 
-	ST1_480d ) | ST1_481d ) | ST1_482d ) | ST1_483d ) | ST1_484d ) | ST1_485d ) | 
-	ST1_486d ) | ST1_487d ) | ST1_488d ) | ST1_489d ) | ST1_490d ) | ST1_491d ) | 
-	ST1_492d ) ;	// line#=computer.cpp:192,193,211,212,227
-assign	imem_arg_MEMB32W65536_RE1 = U_01 ;	// line#=computer.cpp:442
-assign	M_2987 = ( ST1_428d | ST1_436d ) ;
-always @ ( ST1_452d or ST1_444d or ST1_436d or M_2987 )
+	( ( ( ( ( ( U_93 | U_730 ) | U_766 ) | ST1_276d ) | ST1_277d ) | ST1_278d ) | 
+	ST1_279d ) | ST1_280d ) | ST1_281d ) | ST1_282d ) | ST1_283d ) | ST1_284d ) | 
+	ST1_285d ) | ST1_286d ) | ST1_287d ) | ST1_288d ) | ST1_289d ) | ST1_290d ) | 
+	ST1_291d ) | ST1_292d ) | ST1_293d ) | ST1_294d ) | ST1_295d ) | ST1_296d ) | 
+	ST1_297d ) | ST1_298d ) | ST1_299d ) | ST1_300d ) | ST1_301d ) | ST1_302d ) | 
+	ST1_303d ) | ST1_304d ) | ST1_305d ) | ST1_306d ) | ST1_307d ) | ST1_308d ) | 
+	ST1_309d ) | ST1_310d ) | ST1_311d ) | ST1_312d ) | ST1_313d ) | ST1_314d ) | 
+	ST1_315d ) | ST1_316d ) | ST1_317d ) | ST1_318d ) | ST1_319d ) | ST1_320d ) | 
+	ST1_321d ) | ST1_322d ) | ST1_323d ) | ST1_324d ) | ST1_325d ) | ST1_326d ) | 
+	ST1_327d ) | ST1_328d ) | ST1_329d ) | ST1_330d ) | ST1_331d ) | ST1_332d ) | 
+	ST1_333d ) | ST1_334d ) | ST1_335d ) | ST1_336d ) | ST1_337d ) | ST1_338d ) | 
+	ST1_339d ) ;	// line#=computer.cpp:192,193,211,212,227
+assign	imem_arg_MEMB32W65536_RE1 = U_01 ;	// line#=computer.cpp:449
+assign	M_2790 = ( M_2757 & CT_02 ) ;	// line#=computer.cpp:690
+always @ ( M_2776 or imem_arg_MEMB32W65536_RD1 or M_2937 or M_2949 or M_2947 or 
+	M_2954 or M_2961 or M_2940 or M_2774 or M_2735 or M_2765 or M_2768 or M_2790 )
 	begin
-	TR_65_c1 = ( ST1_444d | ST1_452d ) ;	// line#=computer.cpp:377,378
-	TR_65 = ( ( { 2{ M_2987 } } & { 1'h0 , ST1_436d } )	// line#=computer.cpp:377,378
-		| ( { 2{ TR_65_c1 } } & { 1'h1 , ST1_452d } )	// line#=computer.cpp:377,378
+	regs_ad00_c1 = ( ( ( ( ( ( ( ( ( M_2790 | ( M_2768 & M_2765 ) ) | ( M_2768 & 
+		M_2735 ) ) | M_2774 ) | M_2940 ) | M_2961 ) | M_2954 ) | M_2947 ) | 
+		M_2949 ) | M_2937 ) ;	// line#=computer.cpp:449,460
+	regs_ad00 = ( ( { 5{ regs_ad00_c1 } } & imem_arg_MEMB32W65536_RD1 [19:15] )	// line#=computer.cpp:449,460
+		| ( { 5{ M_2776 } } & imem_arg_MEMB32W65536_RD1 [24:20] )		// line#=computer.cpp:449,461
 		) ;
 	end
-assign	M_2995 = ( ST1_460d | ST1_468d ) ;
-always @ ( ST1_484d or ST1_476d or ST1_468d or M_2995 )
+assign	M_2937 = ( M_2784 & M_2725 ) ;
+assign	M_2940 = ( M_2784 & M_2739 ) ;
+assign	M_2947 = ( M_2784 & M_2743 ) ;
+assign	M_2949 = ( M_2784 & M_2747 ) ;
+assign	M_2954 = ( M_2784 & M_2759 ) ;
+assign	M_2961 = ( M_2784 & M_2770 ) ;
+always @ ( M_2937 or M_2949 or M_2947 or M_2954 or M_2961 or M_2940 or imem_arg_MEMB32W65536_RD1 or 
+	M_2776 )
 	begin
-	TR_67_c1 = ( ST1_476d | ST1_484d ) ;	// line#=computer.cpp:377,378
-	TR_67 = ( ( { 2{ M_2995 } } & { 1'h0 , ST1_468d } )	// line#=computer.cpp:377,378
-		| ( { 2{ TR_67_c1 } } & { 1'h1 , ST1_484d } )	// line#=computer.cpp:377,378
+	regs_ad01_c1 = ( ( ( ( ( M_2940 | M_2961 ) | M_2954 ) | M_2947 ) | M_2949 ) | 
+		M_2937 ) ;	// line#=computer.cpp:449,461
+	regs_ad01 = ( ( { 5{ M_2776 } } & imem_arg_MEMB32W65536_RD1 [19:15] )	// line#=computer.cpp:449,460
+		| ( { 5{ regs_ad01_c1 } } & imem_arg_MEMB32W65536_RD1 [24:20] )	// line#=computer.cpp:449,461
 		) ;
 	end
-always @ ( TR_67 or ST1_484d or ST1_476d or M_2995 or TR_65 or ST1_452d or ST1_444d or 
-	M_2987 or RG_y or M_2967 or RG_buf_buf1_coef_y or ST1_244d )
+assign	regs_ad04 = RL_buf_buf1_instr_next_pc_rd [4:0] ;	// line#=computer.cpp:110,474,483,492,503
+								// ,563,627,673
+always @ ( val2_t4 or U_764 or RG_result_result1_word_addr or U_660 or U_604 or 
+	RG_op2_result1 or U_500 or RG_07 or U_487 or U_454 or RG_instr_next_pc_PC or 
+	U_374 )
 	begin
-	TR_32_c1 = ( ( M_2987 | ST1_444d ) | ST1_452d ) ;	// line#=computer.cpp:377,378
-	TR_32_c2 = ( ( M_2995 | ST1_476d ) | ST1_484d ) ;	// line#=computer.cpp:377,378
-	TR_32 = ( ( { 3{ ST1_244d } } & RG_buf_buf1_coef_y [2:0] )	// line#=computer.cpp:366
-		| ( { 3{ M_2967 } } & RG_y [2:0] )			// line#=computer.cpp:366
-		| ( { 3{ TR_32_c1 } } & { 1'h0 , TR_65 } )		// line#=computer.cpp:377,378
-		| ( { 3{ TR_32_c2 } } & { 1'h1 , TR_67 } )		// line#=computer.cpp:377,378
+	regs_wd04_c1 = ( U_454 | U_487 ) ;	// line#=computer.cpp:492,503
+	regs_wd04_c2 = ( U_604 | U_660 ) ;	// line#=computer.cpp:627,673
+	regs_wd04 = ( ( { 32{ U_374 } } & { RG_instr_next_pc_PC [24:5] , 12'h000 } )	// line#=computer.cpp:110,474
+		| ( { 32{ regs_wd04_c1 } } & RG_07 )					// line#=computer.cpp:492,503
+		| ( { 32{ U_500 } } & RG_op2_result1 )					// line#=computer.cpp:110,483
+		| ( { 32{ regs_wd04_c2 } } & RG_result_result1_word_addr )		// line#=computer.cpp:627,673
+		| ( { 32{ U_764 } } & val2_t4 )						// line#=computer.cpp:563
 		) ;
 	end
-assign	M_2991 = ( ST1_432d | ST1_440d ) ;
-always @ ( ST1_456d or ST1_448d or ST1_440d or M_2991 )
+assign	regs_we04 = ( ( ( ( ( ( U_374 | U_454 ) | U_487 ) | U_500 ) | U_604 ) | U_660 ) | 
+	U_764 ) ;	// line#=computer.cpp:110,474,483,492,503
+			// ,563,627,673
+assign	blk_in_rg00_en = U_734 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg00 <= 32'h00000000 ;
+	else if ( blk_in_rg00_en )
+		blk_in_rg00 <= RG_op2_result1 ;
+assign	blk_in_rg01_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg01 <= 32'h00000000 ;
+	else if ( blk_in_rg01_en )
+		blk_in_rg01 <= RG_funct3_imm1 ;
+assign	blk_in_rg02_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg02 <= 32'h00000000 ;
+	else if ( blk_in_rg02_en )
+		blk_in_rg02 <= RG_buf_buf1_src_addr_y ;
+assign	blk_in_rg03_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg03 <= 32'h00000000 ;
+	else if ( blk_in_rg03_en )
+		blk_in_rg03 <= RG_dst_addr ;
+assign	blk_in_rg04_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg04 <= 32'h00000000 ;
+	else if ( blk_in_rg04_en )
+		blk_in_rg04 <= RG_buf_buf1_dst_addr_src_addr ;
+assign	blk_in_rg05_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg05 <= 32'h00000000 ;
+	else if ( blk_in_rg05_en )
+		blk_in_rg05 <= RG_result_result1 ;
+assign	blk_in_rg06_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg06 <= 32'h00000000 ;
+	else if ( blk_in_rg06_en )
+		blk_in_rg06 <= RG_result_result1_word_addr ;
+assign	blk_in_rg07_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg07 <= 32'h00000000 ;
+	else if ( blk_in_rg07_en )
+		blk_in_rg07 <= RG_17 ;
+assign	blk_in_rg08_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg08 <= 32'h00000000 ;
+	else if ( blk_in_rg08_en )
+		blk_in_rg08 <= RG_18 ;
+assign	blk_in_rg09_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg09 <= 32'h00000000 ;
+	else if ( blk_in_rg09_en )
+		blk_in_rg09 <= RG_19 ;
+assign	blk_in_rg10_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg10 <= 32'h00000000 ;
+	else if ( blk_in_rg10_en )
+		blk_in_rg10 <= RG_20 ;
+assign	blk_in_rg11_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg11 <= 32'h00000000 ;
+	else if ( blk_in_rg11_en )
+		blk_in_rg11 <= RG_21 ;
+assign	blk_in_rg12_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg12 <= 32'h00000000 ;
+	else if ( blk_in_rg12_en )
+		blk_in_rg12 <= RG_22 ;
+assign	blk_in_rg13_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg13 <= 32'h00000000 ;
+	else if ( blk_in_rg13_en )
+		blk_in_rg13 <= RG_instr_next_pc_PC ;
+assign	blk_in_rg14_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg14 <= 32'h00000000 ;
+	else if ( blk_in_rg14_en )
+		blk_in_rg14 <= RG_24 ;
+assign	blk_in_rg15_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg15 <= 32'h00000000 ;
+	else if ( blk_in_rg15_en )
+		blk_in_rg15 <= RG_25 ;
+assign	blk_in_rg16_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg16 <= 32'h00000000 ;
+	else if ( blk_in_rg16_en )
+		blk_in_rg16 <= RG_27 ;
+assign	blk_in_rg17_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg17 <= 32'h00000000 ;
+	else if ( blk_in_rg17_en )
+		blk_in_rg17 <= RG_addr_next_pc ;
+assign	blk_in_rg18_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg18 <= 32'h00000000 ;
+	else if ( blk_in_rg18_en )
+		blk_in_rg18 <= RG_29 ;
+assign	blk_in_rg19_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg19 <= 32'h00000000 ;
+	else if ( blk_in_rg19_en )
+		blk_in_rg19 <= RG_30 ;
+assign	blk_in_rg20_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg20 <= 32'h00000000 ;
+	else if ( blk_in_rg20_en )
+		blk_in_rg20 <= RG_31 ;
+assign	blk_in_rg21_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg21 <= 32'h00000000 ;
+	else if ( blk_in_rg21_en )
+		blk_in_rg21 <= RG_32 ;
+assign	blk_in_rg22_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg22 <= 32'h00000000 ;
+	else if ( blk_in_rg22_en )
+		blk_in_rg22 <= RG_33 ;
+assign	blk_in_rg23_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg23 <= 32'h00000000 ;
+	else if ( blk_in_rg23_en )
+		blk_in_rg23 <= RG_34 ;
+assign	blk_in_rg24_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg24 <= 32'h00000000 ;
+	else if ( blk_in_rg24_en )
+		blk_in_rg24 <= RG_35 ;
+assign	blk_in_rg25_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg25 <= 32'h00000000 ;
+	else if ( blk_in_rg25_en )
+		blk_in_rg25 <= RG_36 ;
+assign	blk_in_rg26_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg26 <= 32'h00000000 ;
+	else if ( blk_in_rg26_en )
+		blk_in_rg26 <= RG_37 ;
+assign	blk_in_rg27_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg27 <= 32'h00000000 ;
+	else if ( blk_in_rg27_en )
+		blk_in_rg27 <= RG_38 ;
+assign	blk_in_rg28_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg28 <= 32'h00000000 ;
+	else if ( blk_in_rg28_en )
+		blk_in_rg28 <= RG_39 ;
+assign	blk_in_rg29_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg29 <= 32'h00000000 ;
+	else if ( blk_in_rg29_en )
+		blk_in_rg29 <= RG_40 ;
+assign	blk_in_rg30_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg30 <= 32'h00000000 ;
+	else if ( blk_in_rg30_en )
+		blk_in_rg30 <= RG_41 ;
+assign	blk_in_rg31_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg31 <= 32'h00000000 ;
+	else if ( blk_in_rg31_en )
+		blk_in_rg31 <= RG_42 ;
+assign	blk_in_rg32_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg32 <= 32'h00000000 ;
+	else if ( blk_in_rg32_en )
+		blk_in_rg32 <= RG_43 ;
+assign	blk_in_rg33_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg33 <= 32'h00000000 ;
+	else if ( blk_in_rg33_en )
+		blk_in_rg33 <= RG_44 ;
+assign	blk_in_rg34_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg34 <= 32'h00000000 ;
+	else if ( blk_in_rg34_en )
+		blk_in_rg34 <= RG_45 ;
+assign	blk_in_rg35_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg35 <= 32'h00000000 ;
+	else if ( blk_in_rg35_en )
+		blk_in_rg35 <= RG_46 ;
+assign	blk_in_rg36_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg36 <= 32'h00000000 ;
+	else if ( blk_in_rg36_en )
+		blk_in_rg36 <= RG_47 ;
+assign	blk_in_rg37_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg37 <= 32'h00000000 ;
+	else if ( blk_in_rg37_en )
+		blk_in_rg37 <= RG_48 ;
+assign	blk_in_rg38_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg38 <= 32'h00000000 ;
+	else if ( blk_in_rg38_en )
+		blk_in_rg38 <= RG_49 ;
+assign	blk_in_rg39_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg39 <= 32'h00000000 ;
+	else if ( blk_in_rg39_en )
+		blk_in_rg39 <= RG_50 ;
+assign	blk_in_rg40_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg40 <= 32'h00000000 ;
+	else if ( blk_in_rg40_en )
+		blk_in_rg40 <= RG_51 ;
+assign	blk_in_rg41_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg41 <= 32'h00000000 ;
+	else if ( blk_in_rg41_en )
+		blk_in_rg41 <= RG_52 ;
+assign	blk_in_rg42_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg42 <= 32'h00000000 ;
+	else if ( blk_in_rg42_en )
+		blk_in_rg42 <= RG_53 ;
+assign	blk_in_rg43_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg43 <= 32'h00000000 ;
+	else if ( blk_in_rg43_en )
+		blk_in_rg43 <= RG_54 ;
+assign	blk_in_rg44_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg44 <= 32'h00000000 ;
+	else if ( blk_in_rg44_en )
+		blk_in_rg44 <= RG_56 ;
+assign	blk_in_rg45_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg45 <= 32'h00000000 ;
+	else if ( blk_in_rg45_en )
+		blk_in_rg45 <= RG_57 ;
+assign	blk_in_rg46_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg46 <= 32'h00000000 ;
+	else if ( blk_in_rg46_en )
+		blk_in_rg46 <= RG_58 ;
+assign	blk_in_rg47_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg47 <= 32'h00000000 ;
+	else if ( blk_in_rg47_en )
+		blk_in_rg47 <= RG_59 ;
+assign	blk_in_rg48_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg48 <= 32'h00000000 ;
+	else if ( blk_in_rg48_en )
+		blk_in_rg48 <= RG_60 ;
+assign	blk_in_rg49_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg49 <= 32'h00000000 ;
+	else if ( blk_in_rg49_en )
+		blk_in_rg49 <= RG_61 ;
+assign	blk_in_rg50_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg50 <= 32'h00000000 ;
+	else if ( blk_in_rg50_en )
+		blk_in_rg50 <= RG_62 ;
+assign	blk_in_rg51_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg51 <= 32'h00000000 ;
+	else if ( blk_in_rg51_en )
+		blk_in_rg51 <= RG_63 ;
+assign	blk_in_rg52_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg52 <= 32'h00000000 ;
+	else if ( blk_in_rg52_en )
+		blk_in_rg52 <= RG_64 ;
+assign	blk_in_rg53_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg53 <= 32'h00000000 ;
+	else if ( blk_in_rg53_en )
+		blk_in_rg53 <= RG_65 ;
+assign	blk_in_rg54_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg54 <= 32'h00000000 ;
+	else if ( blk_in_rg54_en )
+		blk_in_rg54 <= RG_66 ;
+assign	blk_in_rg55_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg55 <= 32'h00000000 ;
+	else if ( blk_in_rg55_en )
+		blk_in_rg55 <= RG_67 ;
+assign	blk_in_rg56_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg56 <= 32'h00000000 ;
+	else if ( blk_in_rg56_en )
+		blk_in_rg56 <= RG_buf1 ;
+assign	blk_in_rg57_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg57 <= 32'h00000000 ;
+	else if ( blk_in_rg57_en )
+		blk_in_rg57 <= RG_buf_buf1 ;
+assign	blk_in_rg58_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg58 <= 32'h00000000 ;
+	else if ( blk_in_rg58_en )
+		blk_in_rg58 <= RG_buf_buf1_val ;
+assign	blk_in_rg59_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg59 <= 32'h00000000 ;
+	else if ( blk_in_rg59_en )
+		blk_in_rg59 <= RL_buf_buf1_instr_next_pc_rd ;
+assign	blk_in_rg60_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg60 <= 32'h00000000 ;
+	else if ( blk_in_rg60_en )
+		blk_in_rg60 <= RG_buf ;
+assign	blk_in_rg61_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg61 <= 32'h00000000 ;
+	else if ( blk_in_rg61_en )
+		blk_in_rg61 <= RL_addr1_buf_buf1_next_pc_op1_PC ;
+assign	blk_in_rg62_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg62 <= 32'h00000000 ;
+	else if ( blk_in_rg62_en )
+		blk_in_rg62 <= RG_op2_result1 ;
+assign	blk_in_rg63_en = U_769 ;
+always @ ( posedge CLOCK )	// line#=computer.cpp:174,311,312
+	if ( RESET )
+		blk_in_rg63 <= 32'h00000000 ;
+	else if ( blk_in_rg63_en )
+		blk_in_rg63 <= dmem_arg_MEMB32W65536_RD1 ;
+assign	M_2834 = ( ( ( ( ( ( ( ST1_68d | ST1_69d ) | ST1_70d ) | ST1_71d ) | ST1_73d ) | 
+	ST1_74d ) | ST1_76d ) | ST1_78d ) ;
+always @ ( ST1_140d or RG_k or M_2834 )
+	TR_60 = ( ( { 1{ M_2834 } } & RG_k [2] )	// line#=computer.cpp:339
+		| ( { 1{ ST1_140d } } & ( ~RG_k [2] ) )	// line#=computer.cpp:339
+		) ;
+assign	M_2867 = ( ( M_2865 | ST1_158d ) | ST1_176d ) ;
+always @ ( decr3s1ot or ST1_194d or addsub3s1ot or M_2867 or RG_71 or ST1_204d or 
+	ST1_202d or ST1_200d or ST1_199d or ST1_197d or ST1_196d or ST1_195d or 
+	ST1_186d or ST1_184d or ST1_182d or ST1_181d or ST1_179d or ST1_178d or 
+	ST1_177d or ST1_168d or ST1_166d or ST1_164d or ST1_163d or ST1_161d or 
+	ST1_160d or ST1_159d or ST1_150d or ST1_148d or ST1_146d or ST1_145d or 
+	ST1_143d or ST1_142d or ST1_141d or ST1_132d or ST1_130d or ST1_128d or 
+	ST1_127d or ST1_125d or ST1_124d or ST1_123d or ST1_114d or ST1_112d or 
+	ST1_110d or ST1_109d or ST1_107d or ST1_106d or ST1_105d or ST1_96d or ST1_94d or 
+	ST1_92d or ST1_91d or ST1_89d or ST1_88d or ST1_87d or incr3s1ot or ST1_86d or 
+	RG_k or TR_60 or ST1_140d or M_2834 )
 	begin
-	TR_143_c1 = ( ST1_448d | ST1_456d ) ;	// line#=computer.cpp:377,378
-	TR_143 = ( ( { 2{ M_2991 } } & { 1'h0 , ST1_440d } )	// line#=computer.cpp:377,378
-		| ( { 2{ TR_143_c1 } } & { 1'h1 , ST1_456d } )	// line#=computer.cpp:377,378
+	TR_31_c1 = ( M_2834 | ST1_140d ) ;	// line#=computer.cpp:339
+	TR_31_c2 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
+		( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_87d | ST1_88d ) | ST1_89d ) | 
+		ST1_91d ) | ST1_92d ) | ST1_94d ) | ST1_96d ) | ST1_105d ) | ST1_106d ) | 
+		ST1_107d ) | ST1_109d ) | ST1_110d ) | ST1_112d ) | ST1_114d ) | 
+		ST1_123d ) | ST1_124d ) | ST1_125d ) | ST1_127d ) | ST1_128d ) | 
+		ST1_130d ) | ST1_132d ) | ST1_141d ) | ST1_142d ) | ST1_143d ) | 
+		ST1_145d ) | ST1_146d ) | ST1_148d ) | ST1_150d ) | ST1_159d ) | 
+		ST1_160d ) | ST1_161d ) | ST1_163d ) | ST1_164d ) | ST1_166d ) | 
+		ST1_168d ) | ST1_177d ) | ST1_178d ) | ST1_179d ) | ST1_181d ) | 
+		ST1_182d ) | ST1_184d ) | ST1_186d ) | ST1_195d ) | ST1_196d ) | 
+		ST1_197d ) | ST1_199d ) | ST1_200d ) | ST1_202d ) | ST1_204d ) ;	// line#=computer.cpp:339
+	TR_31 = ( ( { 3{ TR_31_c1 } } & { TR_60 , RG_k [1:0] } )	// line#=computer.cpp:339
+		| ( { 3{ ST1_86d } } & incr3s1ot )			// line#=computer.cpp:339
+		| ( { 3{ TR_31_c2 } } & RG_71 )				// line#=computer.cpp:339
+		| ( { 3{ M_2867 } } & addsub3s1ot )			// line#=computer.cpp:339
+		| ( { 3{ ST1_194d } } & decr3s1ot )			// line#=computer.cpp:339
 		) ;
 	end
-assign	M_2999 = ( ST1_464d | ST1_472d ) ;
-always @ ( ST1_488d or ST1_480d or ST1_472d or M_2999 )
+assign	M_2875 = ( ( ( ( ( ( ( ST1_220d | ST1_221d ) | ST1_222d ) | ST1_223d ) | 
+	ST1_224d ) | ST1_225d ) | ST1_226d ) | ST1_227d ) ;
+always @ ( M_2877 or M_2876 or M_2875 or M_2974 )
 	begin
-	TR_145_c1 = ( ST1_480d | ST1_488d ) ;	// line#=computer.cpp:377,378
-	TR_145 = ( ( { 2{ M_2999 } } & { 1'h0 , ST1_472d } )	// line#=computer.cpp:377,378
-		| ( { 2{ TR_145_c1 } } & { 1'h1 , ST1_488d } )	// line#=computer.cpp:377,378
+	TR_33_c1 = ( M_2876 | M_2877 ) ;	// line#=computer.cpp:373
+	TR_33 = ( ( { 2{ M_2974 } } & { 1'h0 , M_2875 } )	// line#=computer.cpp:373
+		| ( { 2{ TR_33_c1 } } & { 1'h1 , M_2877 } )	// line#=computer.cpp:373
 		) ;
 	end
-always @ ( TR_145 or ST1_488d or ST1_480d or M_2999 or TR_143 or ST1_456d or ST1_448d or 
-	M_2991 or RG_y or M_2983 or RG_buf1_coef_coef1_y or ST1_336d )
+assign	M_2879 = ( ( ( ( ( ( ( ST1_252d | ST1_253d ) | ST1_254d ) | ST1_255d ) | 
+	ST1_256d ) | ST1_257d ) | ST1_258d ) | ST1_259d ) ;
+assign	M_2880 = ( ( ( ( ( ( ( ST1_260d | ST1_261d ) | ST1_262d ) | ST1_263d ) | 
+	ST1_264d ) | ST1_265d ) | ST1_266d ) | ST1_267d ) ;
+assign	M_2881 = ( ( ( ( ( ( ( ST1_268d | ST1_269d ) | ST1_270d ) | ST1_271d ) | 
+	ST1_272d ) | ST1_273d ) | ST1_274d ) | ST1_275d ) ;
+assign	M_2975 = ( ( ( ( ( ( ( ( ST1_244d | ST1_245d ) | ST1_246d ) | ST1_247d ) | 
+	ST1_248d ) | ST1_249d ) | ST1_250d ) | ST1_251d ) | M_2879 ) ;
+always @ ( M_2881 or M_2880 or M_2879 or M_2975 )
 	begin
-	TR_104_c1 = ( ( M_2991 | ST1_448d ) | ST1_456d ) ;	// line#=computer.cpp:377,378
-	TR_104_c2 = ( ( M_2999 | ST1_480d ) | ST1_488d ) ;	// line#=computer.cpp:377,378
-	TR_104 = ( ( { 3{ ST1_336d } } & RG_buf1_coef_coef1_y [2:0] )	// line#=computer.cpp:366
-		| ( { 3{ M_2983 } } & RG_y [2:0] )			// line#=computer.cpp:366
-		| ( { 3{ TR_104_c1 } } & { 1'h0 , TR_143 } )		// line#=computer.cpp:377,378
-		| ( { 3{ TR_104_c2 } } & { 1'h1 , TR_145 } )		// line#=computer.cpp:377,378
+	TR_63_c1 = ( M_2880 | M_2881 ) ;	// line#=computer.cpp:373
+	TR_63 = ( ( { 2{ M_2975 } } & { 1'h0 , M_2879 } )	// line#=computer.cpp:373
+		| ( { 2{ TR_63_c1 } } & { 1'h1 , M_2881 } )	// line#=computer.cpp:373
 		) ;
 	end
-always @ ( TR_104 or ST1_488d or ST1_480d or ST1_472d or ST1_464d or ST1_456d or 
-	ST1_448d or ST1_440d or ST1_432d or M_2983 or ST1_336d or TR_32 or M_2966 )
+assign	M_2876 = ( ( ( ( ( ( ( ST1_228d | ST1_229d ) | ST1_230d ) | ST1_231d ) | 
+	ST1_232d ) | ST1_233d ) | ST1_234d ) | ST1_235d ) ;
+assign	M_2877 = ( ( ( ( ( ( ( ST1_236d | ST1_237d ) | ST1_238d ) | ST1_239d ) | 
+	ST1_240d ) | ST1_241d ) | ST1_242d ) | ST1_243d ) ;
+assign	M_2974 = ( ( ( ( ( ( ( ( ST1_212d | ST1_213d ) | ST1_214d ) | ST1_215d ) | 
+	ST1_216d ) | ST1_217d ) | ST1_218d ) | ST1_219d ) | M_2875 ) ;
+always @ ( TR_63 or M_2881 or M_2880 or M_2975 or TR_33 or M_2877 or M_2876 or M_2974 )
 	begin
-	TR_68_c1 = ( ( ( ( ( ( ( ( ( ST1_336d | M_2983 ) | ST1_432d ) | ST1_440d ) | 
-		ST1_448d ) | ST1_456d ) | ST1_464d ) | ST1_472d ) | ST1_480d ) | 
-		ST1_488d ) ;	// line#=computer.cpp:366,377,378
-	TR_68 = ( ( { 4{ M_2966 } } & { TR_32 , 1'h0 } )	// line#=computer.cpp:366,377,378
-		| ( { 4{ TR_68_c1 } } & { TR_104 , 1'h1 } )	// line#=computer.cpp:366,377,378
+	TR_34_c1 = ( ( M_2974 | M_2876 ) | M_2877 ) ;	// line#=computer.cpp:373
+	TR_34_c2 = ( ( M_2975 | M_2880 ) | M_2881 ) ;	// line#=computer.cpp:373
+	TR_34 = ( ( { 3{ TR_34_c1 } } & { 1'h0 , TR_33 } )	// line#=computer.cpp:373
+		| ( { 3{ TR_34_c2 } } & { 1'h1 , TR_63 } )	// line#=computer.cpp:373
 		) ;
 	end
-assign	M_2989 = ( ST1_430d | ST1_438d ) ;
-always @ ( ST1_454d or ST1_446d or ST1_438d or M_2989 )
+always @ ( ST1_81d or ST1_80d or U_817 or M_2932 )
 	begin
-	TR_106_c1 = ( ST1_446d | ST1_454d ) ;	// line#=computer.cpp:377,378
-	TR_106 = ( ( { 2{ M_2989 } } & { 1'h0 , ST1_438d } )	// line#=computer.cpp:377,378
-		| ( { 2{ TR_106_c1 } } & { 1'h1 , ST1_454d } )	// line#=computer.cpp:377,378
+	TR_36_c1 = ( ST1_80d | ST1_81d ) ;	// line#=computer.cpp:296,344
+	TR_36 = ( ( { 2{ M_2932 } } & { 1'h0 , U_817 } )	// line#=computer.cpp:296,342,344
+		| ( { 2{ TR_36_c1 } } & { 1'h1 , ST1_81d } )	// line#=computer.cpp:296,344
 		) ;
 	end
-assign	M_2997 = ( ST1_462d | ST1_470d ) ;
-always @ ( ST1_486d or ST1_478d or ST1_470d or M_2997 )
+assign	M_2852 = ( ST1_82d | ST1_83d ) ;
+always @ ( ST1_85d or ST1_84d or ST1_83d or M_2852 )
 	begin
-	TR_108_c1 = ( ST1_478d | ST1_486d ) ;	// line#=computer.cpp:377,378
-	TR_108 = ( ( { 2{ M_2997 } } & { 1'h0 , ST1_470d } )	// line#=computer.cpp:377,378
-		| ( { 2{ TR_108_c1 } } & { 1'h1 , ST1_486d } )	// line#=computer.cpp:377,378
+	TR_66_c1 = ( ST1_84d | ST1_85d ) ;	// line#=computer.cpp:296,344
+	TR_66 = ( ( { 2{ M_2852 } } & { 1'h0 , ST1_83d } )	// line#=computer.cpp:296,344
+		| ( { 2{ TR_66_c1 } } & { 1'h1 , ST1_85d } )	// line#=computer.cpp:296,344
 		) ;
 	end
-assign	M_2978 = ( ( ( ( ( ( ST1_292d | ST1_294d ) | ST1_296d ) | ST1_298d ) | ST1_300d ) | 
-	ST1_302d ) | ST1_304d ) ;
-always @ ( TR_108 or ST1_486d or ST1_478d or M_2997 or TR_106 or ST1_454d or ST1_446d or 
-	M_2989 or RG_y or M_2978 or RG_buf1_coef_coef1_y or ST1_290d )
+assign	M_2932 = ( U_813 | U_817 ) ;
+assign	M_2851 = ( ( M_2932 | ST1_80d ) | ST1_81d ) ;
+always @ ( TR_66 or ST1_85d or ST1_84d or M_2852 or TR_36 or M_2851 )
 	begin
-	TR_69_c1 = ( ( M_2989 | ST1_446d ) | ST1_454d ) ;	// line#=computer.cpp:377,378
-	TR_69_c2 = ( ( M_2997 | ST1_478d ) | ST1_486d ) ;	// line#=computer.cpp:377,378
-	TR_69 = ( ( { 3{ ST1_290d } } & RG_buf1_coef_coef1_y [2:0] )	// line#=computer.cpp:366
-		| ( { 3{ M_2978 } } & RG_y [2:0] )			// line#=computer.cpp:366
-		| ( { 3{ TR_69_c1 } } & { 1'h0 , TR_106 } )		// line#=computer.cpp:377,378
-		| ( { 3{ TR_69_c2 } } & { 1'h1 , TR_108 } )		// line#=computer.cpp:377,378
+	TR_37_c1 = ( ( M_2852 | ST1_84d ) | ST1_85d ) ;	// line#=computer.cpp:296,344
+	TR_37 = ( ( { 3{ M_2851 } } & { 1'h0 , TR_36 } )	// line#=computer.cpp:296,342,344
+		| ( { 3{ TR_37_c1 } } & { 1'h1 , TR_66 } )	// line#=computer.cpp:296,344
 		) ;
 	end
-assign	M_2993 = ( ST1_434d | ST1_442d ) ;
-always @ ( ST1_458d or ST1_450d or ST1_442d or M_2993 )
+assign	M_2934 = ( ( ( ( ( ( U_862 | U_907 ) | U_952 ) | U_997 ) | U_1042 ) | U_1087 ) | 
+	U_1132 ) ;
+assign	M_2859 = ( ( ( ( ( ( ST1_98d | ST1_116d ) | ST1_134d ) | ST1_152d ) | ST1_170d ) | 
+	ST1_188d ) | ST1_206d ) ;
+assign	M_2860 = ( ( ( ( ( ( ST1_99d | ST1_117d ) | ST1_135d ) | ST1_153d ) | ST1_171d ) | 
+	ST1_189d ) | ST1_207d ) ;
+always @ ( M_2860 or M_2859 or M_2934 or M_2976 )
 	begin
-	TR_149_c1 = ( ST1_450d | ST1_458d ) ;	// line#=computer.cpp:377,378
-	TR_149 = ( ( { 2{ M_2993 } } & { 1'h0 , ST1_442d } )	// line#=computer.cpp:377,378
-		| ( { 2{ TR_149_c1 } } & { 1'h1 , ST1_458d } )	// line#=computer.cpp:377,378
+	TR_39_c1 = ( M_2859 | M_2860 ) ;	// line#=computer.cpp:296,344
+	TR_39 = ( ( { 2{ M_2976 } } & { 1'h0 , M_2934 } )	// line#=computer.cpp:296,342,344
+		| ( { 2{ TR_39_c1 } } & { 1'h1 , M_2860 } )	// line#=computer.cpp:296,344
 		) ;
 	end
-assign	M_3001 = ( ST1_466d | ST1_474d ) ;
-always @ ( ST1_490d or ST1_482d or ST1_474d or M_3001 )
+assign	M_2973 = ( M_2861 | M_2862 ) ;
+always @ ( M_2864 or M_2863 or M_2862 or M_2973 )
 	begin
-	TR_151_c1 = ( ST1_482d | ST1_490d ) ;	// line#=computer.cpp:377,378
-	TR_151 = ( ( { 2{ M_3001 } } & { 1'h0 , ST1_474d } )	// line#=computer.cpp:377,378
-		| ( { 2{ TR_151_c1 } } & { 1'h1 , ST1_490d } )	// line#=computer.cpp:377,378
+	TR_69_c1 = ( M_2863 | M_2864 ) ;	// line#=computer.cpp:296,344
+	TR_69 = ( ( { 2{ M_2973 } } & { 1'h0 , M_2862 } )	// line#=computer.cpp:296,344
+		| ( { 2{ TR_69_c1 } } & { 1'h1 , M_2864 } )	// line#=computer.cpp:296,344
 		) ;
 	end
-always @ ( TR_151 or ST1_490d or ST1_482d or M_3001 or TR_149 or ST1_458d or ST1_450d or 
-	M_2993 or RG_y or M_2985 or RG_buf1_coef_coef1_y or ST1_382d )
+assign	M_2861 = ( ( ( ( ( ( ST1_100d | ST1_118d ) | ST1_136d ) | ST1_154d ) | ST1_172d ) | 
+	ST1_190d ) | ST1_208d ) ;
+assign	M_2862 = ( ( ( ( ( ( ST1_101d | ST1_119d ) | ST1_137d ) | ST1_155d ) | ST1_173d ) | 
+	ST1_191d ) | ST1_209d ) ;
+assign	M_2863 = ( ( ( ( ( ( ST1_102d | ST1_120d ) | ST1_138d ) | ST1_156d ) | ST1_174d ) | 
+	ST1_192d ) | ST1_210d ) ;
+assign	M_2864 = ( ( ( ( ( ( ST1_103d | ST1_121d ) | ST1_139d ) | ST1_157d ) | ST1_175d ) | 
+	ST1_193d ) | ST1_211d ) ;
+assign	M_2976 = ( ( ( ( ( ( ( U_858 | U_903 ) | U_948 ) | U_993 ) | U_1038 ) | U_1083 ) | 
+	U_1128 ) | M_2934 ) ;
+assign	M_2972 = ( ( M_2976 | M_2859 ) | M_2860 ) ;
+always @ ( TR_69 or M_2864 or M_2863 or M_2973 or TR_39 or M_2972 )
 	begin
-	TR_109_c1 = ( ( M_2993 | ST1_450d ) | ST1_458d ) ;	// line#=computer.cpp:377,378
-	TR_109_c2 = ( ( M_3001 | ST1_482d ) | ST1_490d ) ;	// line#=computer.cpp:377,378
-	TR_109 = ( ( { 3{ ST1_382d } } & RG_buf1_coef_coef1_y [2:0] )	// line#=computer.cpp:366
-		| ( { 3{ M_2985 } } & RG_y [2:0] )			// line#=computer.cpp:366
-		| ( { 3{ TR_109_c1 } } & { 1'h0 , TR_149 } )		// line#=computer.cpp:377,378
-		| ( { 3{ TR_109_c2 } } & { 1'h1 , TR_151 } )		// line#=computer.cpp:377,378
+	TR_40_c1 = ( ( M_2973 | M_2863 ) | M_2864 ) ;	// line#=computer.cpp:296,344
+	TR_40 = ( ( { 3{ M_2972 } } & { 1'h0 , TR_39 } )	// line#=computer.cpp:296,342,344
+		| ( { 3{ TR_40_c1 } } & { 1'h1 , TR_69 } )	// line#=computer.cpp:296,344
 		) ;
 	end
-assign	M_2977 = ( ( ( ( ( ( ( ( ( ST1_290d | M_2978 ) | ST1_430d ) | ST1_438d ) | 
-	ST1_446d ) | ST1_454d ) | ST1_462d ) | ST1_470d ) | ST1_478d ) | ST1_486d ) ;
-always @ ( TR_109 or ST1_490d or ST1_482d or ST1_474d or ST1_466d or ST1_458d or 
-	ST1_450d or ST1_442d or ST1_434d or M_2985 or ST1_382d or TR_69 or M_2977 )
+always @ ( TR_40 or RG_71 or M_2864 or M_2863 or M_2862 or M_2861 or M_2972 or TR_37 or 
+	RG_k or M_2850 )
 	begin
-	TR_70_c1 = ( ( ( ( ( ( ( ( ( ST1_382d | M_2985 ) | ST1_434d ) | ST1_442d ) | 
-		ST1_450d ) | ST1_458d ) | ST1_466d ) | ST1_474d ) | ST1_482d ) | 
-		ST1_490d ) ;	// line#=computer.cpp:366,377,378
-	TR_70 = ( ( { 4{ M_2977 } } & { TR_69 , 1'h0 } )	// line#=computer.cpp:366,377,378
-		| ( { 4{ TR_70_c1 } } & { TR_109 , 1'h1 } )	// line#=computer.cpp:366,377,378
+	blk_out1_ad01_c1 = ( ( ( ( M_2972 | M_2861 ) | M_2862 ) | M_2863 ) | M_2864 ) ;	// line#=computer.cpp:296,342,344
+	blk_out1_ad01 = ( ( { 6{ M_2850 } } & { RG_k [2:0] , TR_37 } )	// line#=computer.cpp:296,342,344
+		| ( { 6{ blk_out1_ad01_c1 } } & { RG_71 , TR_40 } )	// line#=computer.cpp:296,342,344
 		) ;
 	end
-assign	M_2967 = ( ( ( ( ( ( ST1_246d | ST1_248d ) | ST1_250d ) | ST1_252d ) | ST1_254d ) | 
-	ST1_256d ) | ST1_258d ) ;
-assign	M_2966 = ( ( ( ( ( ( ( ( ( ST1_244d | M_2967 ) | ST1_428d ) | ST1_436d ) | 
-	ST1_444d ) | ST1_452d ) | ST1_460d ) | ST1_468d ) | ST1_476d ) | ST1_484d ) ;
-assign	M_2983 = ( ( ( ( ( ( ST1_338d | ST1_340d ) | ST1_342d ) | ST1_344d ) | ST1_346d ) | 
-	ST1_348d ) | ST1_350d ) ;
-assign	M_2985 = ( ( ( ( ( ( ST1_384d | ST1_386d ) | ST1_388d ) | ST1_390d ) | ST1_392d ) | 
-	ST1_394d ) | ST1_396d ) ;
-always @ ( TR_70 or ST1_490d or ST1_482d or ST1_474d or ST1_466d or ST1_458d or 
-	ST1_450d or ST1_442d or ST1_434d or M_2985 or ST1_382d or M_2977 or TR_68 or 
-	ST1_488d or ST1_480d or ST1_472d or ST1_464d or ST1_456d or ST1_448d or 
-	ST1_440d or ST1_432d or M_2983 or ST1_336d or M_2966 )
+assign	M_2853 = ( ( ( ( ( ( ST1_85d | ST1_103d ) | ST1_121d ) | ST1_139d ) | ST1_157d ) | 
+	ST1_175d ) | ST1_193d ) ;
+always @ ( RL_blk_out_buf_buf1_dst_addr_rs1 or ST1_211d or M_2853 or RG_buf_buf1 or 
+	ST1_207d or ST1_189d or ST1_171d or ST1_153d or ST1_135d or ST1_117d or 
+	ST1_101d or ST1_84d or RG_buf_buf1_val or U_1132 or U_1087 or U_1042 or 
+	U_997 or U_952 or U_907 or ST1_99d or ST1_83d or RL_addr1_buf_buf1_next_pc_op1_PC or 
+	ST1_210d or ST1_192d or ST1_174d or ST1_156d or ST1_138d or ST1_120d or 
+	ST1_102d or ST1_82d or RG_buf_buf1_dst_addr_src_addr or ST1_209d or ST1_191d or 
+	ST1_173d or ST1_155d or ST1_137d or ST1_119d or U_862 or ST1_81d or RL_buf_buf1_instr_next_pc_rd or 
+	ST1_208d or ST1_190d or ST1_172d or ST1_154d or ST1_136d or ST1_118d or 
+	ST1_100d or ST1_80d or RG_buf_buf1_src_addr_y or ST1_206d or ST1_188d or 
+	ST1_170d or ST1_152d or ST1_134d or ST1_116d or ST1_98d or U_817 or add32s1ot or 
+	M_2931 )
 	begin
-	TR_33_c1 = ( ( ( ( ( ( ( ( ( ( M_2966 | ST1_336d ) | M_2983 ) | ST1_432d ) | 
-		ST1_440d ) | ST1_448d ) | ST1_456d ) | ST1_464d ) | ST1_472d ) | 
-		ST1_480d ) | ST1_488d ) ;	// line#=computer.cpp:366,377,378
-	TR_33_c2 = ( ( ( ( ( ( ( ( ( ( M_2977 | ST1_382d ) | M_2985 ) | ST1_434d ) | 
-		ST1_442d ) | ST1_450d ) | ST1_458d ) | ST1_466d ) | ST1_474d ) | 
-		ST1_482d ) | ST1_490d ) ;	// line#=computer.cpp:366,377,378
-	TR_33 = ( ( { 5{ TR_33_c1 } } & { TR_68 , 1'h0 } )	// line#=computer.cpp:366,377,378
-		| ( { 5{ TR_33_c2 } } & { TR_70 , 1'h1 } )	// line#=computer.cpp:366,377,378
+	blk_out1_wd01_c1 = ( ( ( ( ( ( ( U_817 | ST1_98d ) | ST1_116d ) | ST1_134d ) | 
+		ST1_152d ) | ST1_170d ) | ST1_188d ) | ST1_206d ) ;	// line#=computer.cpp:296,344
+	blk_out1_wd01_c2 = ( ( ( ( ( ( ( ST1_80d | ST1_100d ) | ST1_118d ) | ST1_136d ) | 
+		ST1_154d ) | ST1_172d ) | ST1_190d ) | ST1_208d ) ;	// line#=computer.cpp:296,344
+	blk_out1_wd01_c3 = ( ( ( ( ( ( ( ST1_81d | U_862 ) | ST1_119d ) | ST1_137d ) | 
+		ST1_155d ) | ST1_173d ) | ST1_191d ) | ST1_209d ) ;	// line#=computer.cpp:296,344
+	blk_out1_wd01_c4 = ( ( ( ( ( ( ( ST1_82d | ST1_102d ) | ST1_120d ) | ST1_138d ) | 
+		ST1_156d ) | ST1_174d ) | ST1_192d ) | ST1_210d ) ;	// line#=computer.cpp:296,344
+	blk_out1_wd01_c5 = ( ( ( ( ( ( ( ST1_83d | ST1_99d ) | U_907 ) | U_952 ) | 
+		U_997 ) | U_1042 ) | U_1087 ) | U_1132 ) ;	// line#=computer.cpp:296,344
+	blk_out1_wd01_c6 = ( ( ( ( ( ( ( ST1_84d | ST1_101d ) | ST1_117d ) | ST1_135d ) | 
+		ST1_153d ) | ST1_171d ) | ST1_189d ) | ST1_207d ) ;	// line#=computer.cpp:296,344
+	blk_out1_wd01_c7 = ( M_2853 | ST1_211d ) ;	// line#=computer.cpp:296,344
+	blk_out1_wd01 = ( ( { 20{ M_2931 } } & add32s1ot [28:9] )					// line#=computer.cpp:296,342
+		| ( { 20{ blk_out1_wd01_c1 } } & { RG_buf_buf1_src_addr_y [19] , 
+			RG_buf_buf1_src_addr_y [19:1] } )						// line#=computer.cpp:296,344
+		| ( { 20{ blk_out1_wd01_c2 } } & { RL_buf_buf1_instr_next_pc_rd [19] , 
+			RL_buf_buf1_instr_next_pc_rd [19:1] } )						// line#=computer.cpp:296,344
+		| ( { 20{ blk_out1_wd01_c3 } } & { RG_buf_buf1_dst_addr_src_addr [19] , 
+			RG_buf_buf1_dst_addr_src_addr [19:1] } )					// line#=computer.cpp:296,344
+		| ( { 20{ blk_out1_wd01_c4 } } & { RL_addr1_buf_buf1_next_pc_op1_PC [19] , 
+			RL_addr1_buf_buf1_next_pc_op1_PC [19:1] } )					// line#=computer.cpp:296,344
+		| ( { 20{ blk_out1_wd01_c5 } } & { RG_buf_buf1_val [19] , RG_buf_buf1_val [19:1] } )	// line#=computer.cpp:296,344
+		| ( { 20{ blk_out1_wd01_c6 } } & { RG_buf_buf1 [19] , RG_buf_buf1 [19:1] } )		// line#=computer.cpp:296,344
+		| ( { 20{ blk_out1_wd01_c7 } } & { RL_blk_out_buf_buf1_dst_addr_rs1 [19] , 
+			RL_blk_out_buf_buf1_dst_addr_rs1 [19:1] } )					// line#=computer.cpp:296,344
 		) ;
 	end
-assign	M_2988 = ( ST1_429d | ST1_437d ) ;
-always @ ( ST1_453d or ST1_445d or ST1_437d or M_2988 )
-	begin
-	TR_72_c1 = ( ST1_445d | ST1_453d ) ;	// line#=computer.cpp:377,378
-	TR_72 = ( ( { 2{ M_2988 } } & { 1'h0 , ST1_437d } )	// line#=computer.cpp:377,378
-		| ( { 2{ TR_72_c1 } } & { 1'h1 , ST1_453d } )	// line#=computer.cpp:377,378
-		) ;
-	end
-assign	M_2996 = ( ST1_461d | ST1_469d ) ;
-always @ ( ST1_485d or ST1_477d or ST1_469d or M_2996 )
-	begin
-	TR_74_c1 = ( ST1_477d | ST1_485d ) ;	// line#=computer.cpp:377,378
-	TR_74 = ( ( { 2{ M_2996 } } & { 1'h0 , ST1_469d } )	// line#=computer.cpp:377,378
-		| ( { 2{ TR_74_c1 } } & { 1'h1 , ST1_485d } )	// line#=computer.cpp:377,378
-		) ;
-	end
-always @ ( TR_74 or ST1_485d or ST1_477d or M_2996 or TR_72 or ST1_453d or ST1_445d or 
-	M_2988 or RG_y or M_2974 or RG_buf1_coef_coef1_y or ST1_267d )
-	begin
-	TR_34_c1 = ( ( M_2988 | ST1_445d ) | ST1_453d ) ;	// line#=computer.cpp:377,378
-	TR_34_c2 = ( ( M_2996 | ST1_477d ) | ST1_485d ) ;	// line#=computer.cpp:377,378
-	TR_34 = ( ( { 3{ ST1_267d } } & RG_buf1_coef_coef1_y [2:0] )	// line#=computer.cpp:366
-		| ( { 3{ M_2974 } } & RG_y [2:0] )			// line#=computer.cpp:366
-		| ( { 3{ TR_34_c1 } } & { 1'h0 , TR_72 } )		// line#=computer.cpp:377,378
-		| ( { 3{ TR_34_c2 } } & { 1'h1 , TR_74 } )		// line#=computer.cpp:377,378
-		) ;
-	end
-assign	M_2992 = ( ST1_433d | ST1_441d ) ;
-always @ ( ST1_457d or ST1_449d or ST1_441d or M_2992 )
-	begin
-	TR_153_c1 = ( ST1_449d | ST1_457d ) ;	// line#=computer.cpp:377,378
-	TR_153 = ( ( { 2{ M_2992 } } & { 1'h0 , ST1_441d } )	// line#=computer.cpp:377,378
-		| ( { 2{ TR_153_c1 } } & { 1'h1 , ST1_457d } )	// line#=computer.cpp:377,378
-		) ;
-	end
-assign	M_3000 = ( ST1_465d | ST1_473d ) ;
-always @ ( ST1_489d or ST1_481d or ST1_473d or M_3000 )
-	begin
-	TR_155_c1 = ( ST1_481d | ST1_489d ) ;	// line#=computer.cpp:377,378
-	TR_155 = ( ( { 2{ M_3000 } } & { 1'h0 , ST1_473d } )	// line#=computer.cpp:377,378
-		| ( { 2{ TR_155_c1 } } & { 1'h1 , ST1_489d } )	// line#=computer.cpp:377,378
-		) ;
-	end
-always @ ( TR_155 or ST1_489d or ST1_481d or M_3000 or TR_153 or ST1_457d or ST1_449d or 
-	M_2992 or RG_y or M_2984 or RG_buf1_coef_coef1_y or ST1_359d )
-	begin
-	TR_112_c1 = ( ( M_2992 | ST1_449d ) | ST1_457d ) ;	// line#=computer.cpp:377,378
-	TR_112_c2 = ( ( M_3000 | ST1_481d ) | ST1_489d ) ;	// line#=computer.cpp:377,378
-	TR_112 = ( ( { 3{ ST1_359d } } & RG_buf1_coef_coef1_y [2:0] )	// line#=computer.cpp:366
-		| ( { 3{ M_2984 } } & RG_y [2:0] )			// line#=computer.cpp:366
-		| ( { 3{ TR_112_c1 } } & { 1'h0 , TR_153 } )		// line#=computer.cpp:377,378
-		| ( { 3{ TR_112_c2 } } & { 1'h1 , TR_155 } )		// line#=computer.cpp:377,378
-		) ;
-	end
-always @ ( TR_112 or ST1_489d or ST1_481d or ST1_473d or ST1_465d or ST1_457d or 
-	ST1_449d or ST1_441d or ST1_433d or M_2984 or ST1_359d or TR_34 or M_2973 )
-	begin
-	TR_75_c1 = ( ( ( ( ( ( ( ( ( ST1_359d | M_2984 ) | ST1_433d ) | ST1_441d ) | 
-		ST1_449d ) | ST1_457d ) | ST1_465d ) | ST1_473d ) | ST1_481d ) | 
-		ST1_489d ) ;	// line#=computer.cpp:366,377,378
-	TR_75 = ( ( { 4{ M_2973 } } & { TR_34 , 1'h0 } )	// line#=computer.cpp:366,377,378
-		| ( { 4{ TR_75_c1 } } & { TR_112 , 1'h1 } )	// line#=computer.cpp:366,377,378
-		) ;
-	end
-assign	M_2990 = ( ST1_431d | ST1_439d ) ;
-always @ ( ST1_455d or ST1_447d or ST1_439d or M_2990 )
-	begin
-	TR_114_c1 = ( ST1_447d | ST1_455d ) ;	// line#=computer.cpp:377,378
-	TR_114 = ( ( { 2{ M_2990 } } & { 1'h0 , ST1_439d } )	// line#=computer.cpp:377,378
-		| ( { 2{ TR_114_c1 } } & { 1'h1 , ST1_455d } )	// line#=computer.cpp:377,378
-		) ;
-	end
-assign	M_2998 = ( ST1_463d | ST1_471d ) ;
-always @ ( ST1_487d or ST1_479d or ST1_471d or M_2998 )
-	begin
-	TR_116_c1 = ( ST1_479d | ST1_487d ) ;	// line#=computer.cpp:377,378
-	TR_116 = ( ( { 2{ M_2998 } } & { 1'h0 , ST1_471d } )	// line#=computer.cpp:377,378
-		| ( { 2{ TR_116_c1 } } & { 1'h1 , ST1_487d } )	// line#=computer.cpp:377,378
-		) ;
-	end
-assign	M_2981 = ( ( ( ( ( ( ST1_315d | ST1_317d ) | ST1_319d ) | ST1_321d ) | ST1_323d ) | 
-	ST1_325d ) | ST1_327d ) ;
-always @ ( TR_116 or ST1_487d or ST1_479d or M_2998 or TR_114 or ST1_455d or ST1_447d or 
-	M_2990 or RG_y or M_2981 or RG_buf1_coef_coef1_y or ST1_313d )
-	begin
-	TR_76_c1 = ( ( M_2990 | ST1_447d ) | ST1_455d ) ;	// line#=computer.cpp:377,378
-	TR_76_c2 = ( ( M_2998 | ST1_479d ) | ST1_487d ) ;	// line#=computer.cpp:377,378
-	TR_76 = ( ( { 3{ ST1_313d } } & RG_buf1_coef_coef1_y [2:0] )	// line#=computer.cpp:366
-		| ( { 3{ M_2981 } } & RG_y [2:0] )			// line#=computer.cpp:366
-		| ( { 3{ TR_76_c1 } } & { 1'h0 , TR_114 } )		// line#=computer.cpp:377,378
-		| ( { 3{ TR_76_c2 } } & { 1'h1 , TR_116 } )		// line#=computer.cpp:377,378
-		) ;
-	end
-assign	M_2994 = ( ST1_435d | ST1_443d ) ;
-always @ ( ST1_459d or ST1_451d or ST1_443d or M_2994 )
-	begin
-	TR_159_c1 = ( ST1_451d | ST1_459d ) ;	// line#=computer.cpp:377,378
-	TR_159 = ( ( { 2{ M_2994 } } & { 1'h0 , ST1_443d } )	// line#=computer.cpp:377,378
-		| ( { 2{ TR_159_c1 } } & { 1'h1 , ST1_459d } )	// line#=computer.cpp:377,378
-		) ;
-	end
-assign	M_3002 = ( ST1_467d | ST1_475d ) ;
-always @ ( ST1_491d or ST1_483d or ST1_475d or M_3002 )
-	begin
-	TR_161_c1 = ( ST1_483d | ST1_491d ) ;	// line#=computer.cpp:377,378
-	TR_161 = ( ( { 2{ M_3002 } } & { 1'h0 , ST1_475d } )	// line#=computer.cpp:377,378
-		| ( { 2{ TR_161_c1 } } & { 1'h1 , ST1_491d } )	// line#=computer.cpp:377,378
-		) ;
-	end
-always @ ( TR_161 or ST1_491d or ST1_483d or M_3002 or TR_159 or ST1_459d or ST1_451d or 
-	M_2994 or RG_y or M_2986 or RG_buf1_coef_coef1_y or ST1_405d )
-	begin
-	TR_117_c1 = ( ( M_2994 | ST1_451d ) | ST1_459d ) ;	// line#=computer.cpp:377,378
-	TR_117_c2 = ( ( M_3002 | ST1_483d ) | ST1_491d ) ;	// line#=computer.cpp:377,378
-	TR_117 = ( ( { 3{ ST1_405d } } & RG_buf1_coef_coef1_y [2:0] )	// line#=computer.cpp:366
-		| ( { 3{ M_2986 } } & RG_y [2:0] )			// line#=computer.cpp:366
-		| ( { 3{ TR_117_c1 } } & { 1'h0 , TR_159 } )		// line#=computer.cpp:377,378
-		| ( { 3{ TR_117_c2 } } & { 1'h1 , TR_161 } )		// line#=computer.cpp:377,378
-		) ;
-	end
-assign	M_2980 = ( ( ( ( ( ( ( ( ( ST1_313d | M_2981 ) | ST1_431d ) | ST1_439d ) | 
-	ST1_447d ) | ST1_455d ) | ST1_463d ) | ST1_471d ) | ST1_479d ) | ST1_487d ) ;
-always @ ( TR_117 or ST1_491d or ST1_483d or ST1_475d or ST1_467d or ST1_459d or 
-	ST1_451d or ST1_443d or ST1_435d or M_2986 or ST1_405d or TR_76 or M_2980 )
-	begin
-	TR_77_c1 = ( ( ( ( ( ( ( ( ( ST1_405d | M_2986 ) | ST1_435d ) | ST1_443d ) | 
-		ST1_451d ) | ST1_459d ) | ST1_467d ) | ST1_475d ) | ST1_483d ) | 
-		ST1_491d ) ;	// line#=computer.cpp:366,377,378
-	TR_77 = ( ( { 4{ M_2980 } } & { TR_76 , 1'h0 } )	// line#=computer.cpp:366,377,378
-		| ( { 4{ TR_77_c1 } } & { TR_117 , 1'h1 } )	// line#=computer.cpp:366,377,378
-		) ;
-	end
-assign	M_2974 = ( ( ( ( ( ( ST1_269d | ST1_271d ) | ST1_273d ) | ST1_275d ) | ST1_277d ) | 
-	ST1_279d ) | ST1_281d ) ;
-assign	M_2973 = ( ( ( ( ( ( ( ( ( ST1_267d | M_2974 ) | ST1_429d ) | ST1_437d ) | 
-	ST1_445d ) | ST1_453d ) | ST1_461d ) | ST1_469d ) | ST1_477d ) | ST1_485d ) ;
-assign	M_2984 = ( ( ( ( ( ( ST1_361d | ST1_363d ) | ST1_365d ) | ST1_367d ) | ST1_369d ) | 
-	ST1_371d ) | ST1_373d ) ;
-assign	M_2986 = ( ( ( ( ( ( ST1_407d | ST1_409d ) | ST1_411d ) | ST1_413d ) | ST1_415d ) | 
-	ST1_417d ) | ST1_419d ) ;
-always @ ( TR_77 or ST1_491d or ST1_483d or ST1_475d or ST1_467d or ST1_459d or 
-	ST1_451d or ST1_443d or ST1_435d or M_2986 or ST1_405d or M_2980 or TR_75 or 
-	ST1_489d or ST1_481d or ST1_473d or ST1_465d or ST1_457d or ST1_449d or 
-	ST1_441d or ST1_433d or M_2984 or ST1_359d or M_2973 )
-	begin
-	TR_35_c1 = ( ( ( ( ( ( ( ( ( ( M_2973 | ST1_359d ) | M_2984 ) | ST1_433d ) | 
-		ST1_441d ) | ST1_449d ) | ST1_457d ) | ST1_465d ) | ST1_473d ) | 
-		ST1_481d ) | ST1_489d ) ;	// line#=computer.cpp:366,377,378
-	TR_35_c2 = ( ( ( ( ( ( ( ( ( ( M_2980 | ST1_405d ) | M_2986 ) | ST1_435d ) | 
-		ST1_443d ) | ST1_451d ) | ST1_459d ) | ST1_467d ) | ST1_475d ) | 
-		ST1_483d ) | ST1_491d ) ;	// line#=computer.cpp:366,377,378
-	TR_35 = ( ( { 5{ TR_35_c1 } } & { TR_75 , 1'h0 } )	// line#=computer.cpp:366,377,378
-		| ( { 5{ TR_35_c2 } } & { TR_77 , 1'h1 } )	// line#=computer.cpp:366,377,378
-		) ;
-	end
-always @ ( TR_35 or ST1_491d or ST1_489d or ST1_487d or ST1_483d or ST1_481d or 
-	ST1_479d or ST1_475d or ST1_473d or ST1_471d or ST1_467d or ST1_465d or 
-	ST1_463d or ST1_459d or ST1_457d or ST1_455d or ST1_451d or ST1_449d or 
-	ST1_447d or ST1_443d or ST1_441d or ST1_439d or ST1_435d or ST1_433d or 
-	ST1_431d or M_2986 or ST1_405d or M_2984 or ST1_359d or M_2981 or ST1_313d or 
-	M_2973 or TR_33 or ST1_490d or ST1_488d or ST1_486d or ST1_482d or ST1_480d or 
-	ST1_478d or ST1_474d or ST1_472d or ST1_470d or ST1_466d or ST1_464d or 
-	ST1_462d or ST1_458d or ST1_456d or ST1_454d or ST1_450d or ST1_448d or 
-	ST1_446d or ST1_442d or ST1_440d or ST1_438d or ST1_434d or ST1_432d or 
-	ST1_430d or M_2985 or ST1_382d or M_2983 or ST1_336d or M_2978 or ST1_290d or 
-	M_2966 )
-	begin
-	blk_out_RA1_c1 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-		( ( M_2966 | ST1_290d ) | M_2978 ) | ST1_336d ) | M_2983 ) | ST1_382d ) | 
-		M_2985 ) | ST1_430d ) | ST1_432d ) | ST1_434d ) | ST1_438d ) | ST1_440d ) | 
-		ST1_442d ) | ST1_446d ) | ST1_448d ) | ST1_450d ) | ST1_454d ) | 
-		ST1_456d ) | ST1_458d ) | ST1_462d ) | ST1_464d ) | ST1_466d ) | 
-		ST1_470d ) | ST1_472d ) | ST1_474d ) | ST1_478d ) | ST1_480d ) | 
-		ST1_482d ) | ST1_486d ) | ST1_488d ) | ST1_490d ) ;	// line#=computer.cpp:366,377,378
-	blk_out_RA1_c2 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-		( ( M_2973 | ST1_313d ) | M_2981 ) | ST1_359d ) | M_2984 ) | ST1_405d ) | 
-		M_2986 ) | ST1_431d ) | ST1_433d ) | ST1_435d ) | ST1_439d ) | ST1_441d ) | 
-		ST1_443d ) | ST1_447d ) | ST1_449d ) | ST1_451d ) | ST1_455d ) | 
-		ST1_457d ) | ST1_459d ) | ST1_463d ) | ST1_465d ) | ST1_467d ) | 
-		ST1_471d ) | ST1_473d ) | ST1_475d ) | ST1_479d ) | ST1_481d ) | 
-		ST1_483d ) | ST1_487d ) | ST1_489d ) | ST1_491d ) ;	// line#=computer.cpp:366,377,378
-	blk_out_RA1 = ( ( { 6{ blk_out_RA1_c1 } } & { TR_33 , 1'h0 } )	// line#=computer.cpp:366,377,378
-		| ( { 6{ blk_out_RA1_c2 } } & { TR_35 , 1'h1 } )	// line#=computer.cpp:366,377,378
-		) ;
-	end
-assign	blk_out_RE1 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-	( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-	( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-	( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_244d | ST1_246d ) | ST1_248d ) | 
-	ST1_250d ) | ST1_252d ) | ST1_254d ) | ST1_256d ) | ST1_258d ) | ST1_267d ) | 
-	ST1_269d ) | ST1_271d ) | ST1_273d ) | ST1_275d ) | ST1_277d ) | ST1_279d ) | 
-	ST1_281d ) | ST1_290d ) | ST1_292d ) | ST1_294d ) | ST1_296d ) | ST1_298d ) | 
-	ST1_300d ) | ST1_302d ) | ST1_304d ) | ST1_313d ) | ST1_315d ) | ST1_317d ) | 
-	ST1_319d ) | ST1_321d ) | ST1_323d ) | ST1_325d ) | ST1_327d ) | ST1_336d ) | 
-	ST1_338d ) | ST1_340d ) | ST1_342d ) | ST1_344d ) | ST1_346d ) | ST1_348d ) | 
-	ST1_350d ) | ST1_359d ) | ST1_361d ) | ST1_363d ) | ST1_365d ) | ST1_367d ) | 
-	ST1_369d ) | ST1_371d ) | ST1_373d ) | ST1_382d ) | ST1_384d ) | ST1_386d ) | 
-	ST1_388d ) | ST1_390d ) | ST1_392d ) | ST1_394d ) | ST1_396d ) | ST1_405d ) | 
-	ST1_407d ) | ST1_409d ) | ST1_411d ) | ST1_413d ) | ST1_415d ) | ST1_417d ) | 
-	ST1_419d ) | ST1_428d ) | ST1_429d ) | ST1_430d ) | ST1_431d ) | ST1_432d ) | 
-	ST1_433d ) | ST1_434d ) | ST1_435d ) | ST1_436d ) | ST1_437d ) | ST1_438d ) | 
-	ST1_439d ) | ST1_440d ) | ST1_441d ) | ST1_442d ) | ST1_443d ) | ST1_444d ) | 
-	ST1_445d ) | ST1_446d ) | ST1_447d ) | ST1_448d ) | ST1_449d ) | ST1_450d ) | 
-	ST1_451d ) | ST1_452d ) | ST1_453d ) | ST1_454d ) | ST1_455d ) | ST1_456d ) | 
-	ST1_457d ) | ST1_458d ) | ST1_459d ) | ST1_460d ) | ST1_461d ) | ST1_462d ) | 
-	ST1_463d ) | ST1_464d ) | ST1_465d ) | ST1_466d ) | ST1_467d ) | ST1_468d ) | 
-	ST1_469d ) | ST1_470d ) | ST1_471d ) | ST1_472d ) | ST1_473d ) | ST1_474d ) | 
-	ST1_475d ) | ST1_476d ) | ST1_477d ) | ST1_478d ) | ST1_479d ) | ST1_480d ) | 
-	ST1_481d ) | ST1_482d ) | ST1_483d ) | ST1_484d ) | ST1_485d ) | ST1_486d ) | 
-	ST1_487d ) | ST1_488d ) | ST1_489d ) | ST1_490d ) | ST1_491d ) ;
-always @ ( ST1_266d or ST1_265d or ST1_264d or ST1_263d or ST1_262d or ST1_261d or 
-	ST1_260d )
-	TR_36 = ( ( { 3{ ST1_260d } } & 3'h1 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_261d } } & 3'h2 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_262d } } & 3'h3 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_263d } } & 3'h4 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_264d } } & 3'h5 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_265d } } & 3'h6 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_266d } } & 3'h7 )	// line#=computer.cpp:289,371
-		) ;	// line#=computer.cpp:289,369
-always @ ( ST1_358d or ST1_357d or ST1_356d or ST1_355d or ST1_354d or ST1_353d or 
-	ST1_352d )
-	TR_118 = ( ( { 3{ ST1_352d } } & 3'h1 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_353d } } & 3'h2 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_354d } } & 3'h3 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_355d } } & 3'h4 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_356d } } & 3'h5 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_357d } } & 3'h6 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_358d } } & 3'h7 )	// line#=computer.cpp:289,371
-		) ;	// line#=computer.cpp:289,369
-always @ ( TR_118 or ST1_358d or ST1_357d or ST1_356d or ST1_355d or ST1_354d or 
-	ST1_353d or ST1_352d or U_1365 or TR_36 or M_2972 )
-	begin
-	TR_78_c1 = ( ( ( ( ( ( ( U_1365 | ST1_352d ) | ST1_353d ) | ST1_354d ) | 
-		ST1_355d ) | ST1_356d ) | ST1_357d ) | ST1_358d ) ;	// line#=computer.cpp:289,369,371
-	TR_78 = ( ( { 4{ M_2972 } } & { TR_36 , 1'h0 } )	// line#=computer.cpp:289,369,371
-		| ( { 4{ TR_78_c1 } } & { TR_118 , 1'h1 } )	// line#=computer.cpp:289,369,371
-		) ;
-	end
-always @ ( ST1_312d or ST1_311d or ST1_310d or ST1_309d or ST1_308d or ST1_307d or 
-	ST1_306d )
-	TR_79 = ( ( { 3{ ST1_306d } } & 3'h1 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_307d } } & 3'h2 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_308d } } & 3'h3 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_309d } } & 3'h4 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_310d } } & 3'h5 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_311d } } & 3'h6 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_312d } } & 3'h7 )	// line#=computer.cpp:289,371
-		) ;	// line#=computer.cpp:289,369
-always @ ( ST1_404d or ST1_403d or ST1_402d or ST1_401d or ST1_400d or ST1_399d or 
-	ST1_398d )
-	TR_119 = ( ( { 3{ ST1_398d } } & 3'h1 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_399d } } & 3'h2 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_400d } } & 3'h3 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_401d } } & 3'h4 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_402d } } & 3'h5 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_403d } } & 3'h6 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_404d } } & 3'h7 )	// line#=computer.cpp:289,371
-		) ;	// line#=computer.cpp:289,369
-assign	M_2979 = ( ( ( ( ( ( ( U_1275 | ST1_306d ) | ST1_307d ) | ST1_308d ) | ST1_309d ) | 
-	ST1_310d ) | ST1_311d ) | ST1_312d ) ;
-always @ ( TR_119 or ST1_404d or ST1_403d or ST1_402d or ST1_401d or ST1_400d or 
-	ST1_399d or ST1_398d or U_1455 or TR_79 or M_2979 )
-	begin
-	TR_80_c1 = ( ( ( ( ( ( ( U_1455 | ST1_398d ) | ST1_399d ) | ST1_400d ) | 
-		ST1_401d ) | ST1_402d ) | ST1_403d ) | ST1_404d ) ;	// line#=computer.cpp:289,369,371
-	TR_80 = ( ( { 4{ M_2979 } } & { TR_79 , 1'h0 } )	// line#=computer.cpp:289,369,371
-		| ( { 4{ TR_80_c1 } } & { TR_119 , 1'h1 } )	// line#=computer.cpp:289,369,371
-		) ;
-	end
-assign	M_2972 = ( ( ( ( ( ( ( U_1185 | ST1_260d ) | ST1_261d ) | ST1_262d ) | ST1_263d ) | 
-	ST1_264d ) | ST1_265d ) | ST1_266d ) ;
-always @ ( TR_80 or ST1_404d or ST1_403d or ST1_402d or ST1_401d or ST1_400d or 
-	ST1_399d or ST1_398d or U_1455 or M_2979 or TR_78 or ST1_358d or ST1_357d or 
-	ST1_356d or ST1_355d or ST1_354d or ST1_353d or ST1_352d or U_1365 or M_2972 )
-	begin
-	TR_37_c1 = ( ( ( ( ( ( ( ( M_2972 | U_1365 ) | ST1_352d ) | ST1_353d ) | 
-		ST1_354d ) | ST1_355d ) | ST1_356d ) | ST1_357d ) | ST1_358d ) ;	// line#=computer.cpp:289,369,371
-	TR_37_c2 = ( ( ( ( ( ( ( ( M_2979 | U_1455 ) | ST1_398d ) | ST1_399d ) | 
-		ST1_400d ) | ST1_401d ) | ST1_402d ) | ST1_403d ) | ST1_404d ) ;	// line#=computer.cpp:289,369,371
-	TR_37 = ( ( { 5{ TR_37_c1 } } & { TR_78 , 1'h0 } )	// line#=computer.cpp:289,369,371
-		| ( { 5{ TR_37_c2 } } & { TR_80 , 1'h1 } )	// line#=computer.cpp:289,369,371
-		) ;
-	end
-always @ ( ST1_289d or ST1_288d or ST1_287d or ST1_286d or ST1_285d or ST1_284d or 
-	ST1_283d )
-	TR_38 = ( ( { 3{ ST1_283d } } & 3'h1 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_284d } } & 3'h2 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_285d } } & 3'h3 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_286d } } & 3'h4 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_287d } } & 3'h5 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_288d } } & 3'h6 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_289d } } & 3'h7 )	// line#=computer.cpp:289,371
-		) ;	// line#=computer.cpp:289,369
-always @ ( ST1_381d or ST1_380d or ST1_379d or ST1_378d or ST1_377d or ST1_376d or 
-	ST1_375d )
-	TR_120 = ( ( { 3{ ST1_375d } } & 3'h1 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_376d } } & 3'h2 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_377d } } & 3'h3 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_378d } } & 3'h4 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_379d } } & 3'h5 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_380d } } & 3'h6 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_381d } } & 3'h7 )	// line#=computer.cpp:289,371
-		) ;	// line#=computer.cpp:289,369
-always @ ( TR_120 or ST1_381d or ST1_380d or ST1_379d or ST1_378d or ST1_377d or 
-	ST1_376d or ST1_375d or U_1410 or TR_38 or M_2976 )
-	begin
-	TR_81_c1 = ( ( ( ( ( ( ( U_1410 | ST1_375d ) | ST1_376d ) | ST1_377d ) | 
-		ST1_378d ) | ST1_379d ) | ST1_380d ) | ST1_381d ) ;	// line#=computer.cpp:289,369,371
-	TR_81 = ( ( { 4{ M_2976 } } & { TR_38 , 1'h0 } )	// line#=computer.cpp:289,369,371
-		| ( { 4{ TR_81_c1 } } & { TR_120 , 1'h1 } )	// line#=computer.cpp:289,369,371
-		) ;
-	end
-always @ ( ST1_335d or ST1_334d or ST1_333d or ST1_332d or ST1_331d or ST1_330d or 
-	ST1_329d )
-	TR_82 = ( ( { 3{ ST1_329d } } & 3'h1 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_330d } } & 3'h2 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_331d } } & 3'h3 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_332d } } & 3'h4 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_333d } } & 3'h5 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_334d } } & 3'h6 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_335d } } & 3'h7 )	// line#=computer.cpp:289,371
-		) ;	// line#=computer.cpp:289,369
-always @ ( ST1_427d or ST1_426d or ST1_425d or ST1_424d or ST1_423d or ST1_422d or 
-	ST1_421d )
-	TR_121 = ( ( { 3{ ST1_421d } } & 3'h1 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_422d } } & 3'h2 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_423d } } & 3'h3 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_424d } } & 3'h4 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_425d } } & 3'h5 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_426d } } & 3'h6 )	// line#=computer.cpp:289,371
-		| ( { 3{ ST1_427d } } & 3'h7 )	// line#=computer.cpp:289,371
-		) ;	// line#=computer.cpp:289,369
-assign	M_2982 = ( ( ( ( ( ( ( U_1320 | ST1_329d ) | ST1_330d ) | ST1_331d ) | ST1_332d ) | 
-	ST1_333d ) | ST1_334d ) | ST1_335d ) ;
-always @ ( TR_121 or ST1_427d or ST1_426d or ST1_425d or ST1_424d or ST1_423d or 
-	ST1_422d or ST1_421d or U_1500 or TR_82 or M_2982 )
-	begin
-	TR_83_c1 = ( ( ( ( ( ( ( U_1500 | ST1_421d ) | ST1_422d ) | ST1_423d ) | 
-		ST1_424d ) | ST1_425d ) | ST1_426d ) | ST1_427d ) ;	// line#=computer.cpp:289,369,371
-	TR_83 = ( ( { 4{ M_2982 } } & { TR_82 , 1'h0 } )	// line#=computer.cpp:289,369,371
-		| ( { 4{ TR_83_c1 } } & { TR_121 , 1'h1 } )	// line#=computer.cpp:289,369,371
-		) ;
-	end
-assign	M_2976 = ( ( ( ( ( ( ( U_1230 | ST1_283d ) | ST1_284d ) | ST1_285d ) | ST1_286d ) | 
-	ST1_287d ) | ST1_288d ) | ST1_289d ) ;
-always @ ( TR_83 or ST1_427d or ST1_426d or ST1_425d or ST1_424d or ST1_423d or 
-	ST1_422d or ST1_421d or U_1500 or M_2982 or TR_81 or ST1_381d or ST1_380d or 
-	ST1_379d or ST1_378d or ST1_377d or ST1_376d or ST1_375d or U_1410 or M_2976 )
-	begin
-	TR_39_c1 = ( ( ( ( ( ( ( ( M_2976 | U_1410 ) | ST1_375d ) | ST1_376d ) | 
-		ST1_377d ) | ST1_378d ) | ST1_379d ) | ST1_380d ) | ST1_381d ) ;	// line#=computer.cpp:289,369,371
-	TR_39_c2 = ( ( ( ( ( ( ( ( M_2982 | U_1500 ) | ST1_421d ) | ST1_422d ) | 
-		ST1_423d ) | ST1_424d ) | ST1_425d ) | ST1_426d ) | ST1_427d ) ;	// line#=computer.cpp:289,369,371
-	TR_39 = ( ( { 5{ TR_39_c1 } } & { TR_81 , 1'h0 } )	// line#=computer.cpp:289,369,371
-		| ( { 5{ TR_39_c2 } } & { TR_83 , 1'h1 } )	// line#=computer.cpp:289,369,371
-		) ;
-	end
-always @ ( TR_39 or ST1_427d or ST1_426d or ST1_425d or ST1_424d or ST1_423d or 
-	ST1_422d or ST1_421d or U_1500 or ST1_381d or ST1_380d or ST1_379d or ST1_378d or 
-	ST1_377d or ST1_376d or ST1_375d or U_1410 or ST1_335d or ST1_334d or ST1_333d or 
-	ST1_332d or ST1_331d or ST1_330d or ST1_329d or U_1320 or M_2976 or TR_37 or 
-	ST1_404d or ST1_403d or ST1_402d or ST1_401d or ST1_400d or ST1_399d or 
-	ST1_398d or U_1455 or ST1_358d or ST1_357d or ST1_356d or ST1_355d or ST1_354d or 
-	ST1_353d or ST1_352d or U_1365 or ST1_312d or ST1_311d or ST1_310d or ST1_309d or 
-	ST1_308d or ST1_307d or ST1_306d or U_1275 or M_2972 or add8s_7_61ot or 
-	ST1_243d or ST1_242d or ST1_241d or ST1_240d or ST1_239d or ST1_238d or 
-	ST1_221d or ST1_220d or ST1_219d or ST1_218d or ST1_217d or ST1_216d or 
-	ST1_199d or ST1_198d or ST1_197d or ST1_196d or ST1_195d or ST1_194d or 
-	ST1_177d or ST1_176d or ST1_175d or ST1_174d or ST1_173d or ST1_172d or 
-	ST1_155d or ST1_154d or ST1_153d or ST1_152d or ST1_151d or ST1_150d or 
-	ST1_133d or ST1_132d or ST1_131d or ST1_130d or ST1_129d or ST1_128d or 
-	ST1_111d or ST1_110d or ST1_109d or ST1_108d or ST1_107d or ST1_106d or 
-	ST1_89d or ST1_88d or ST1_87d or ST1_86d or ST1_85d or ST1_84d or RG_y or 
-	U_1136 or U_1090 or U_1044 or U_998 or U_952 or U_906 or U_860 or U_814 or 
-	RG_rs1_rs2 or M_3026 )
-	begin
-	blk_out_WA2_c1 = ( ( ( ( ( ( ( U_814 | U_860 ) | U_906 ) | U_952 ) | U_998 ) | 
-		U_1044 ) | U_1090 ) | U_1136 ) ;	// line#=computer.cpp:289,337
-	blk_out_WA2_c2 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-		( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_84d | ST1_85d ) | ST1_86d ) | 
-		ST1_87d ) | ST1_88d ) | ST1_89d ) | ST1_106d ) | ST1_107d ) | ST1_108d ) | 
-		ST1_109d ) | ST1_110d ) | ST1_111d ) | ST1_128d ) | ST1_129d ) | 
-		ST1_130d ) | ST1_131d ) | ST1_132d ) | ST1_133d ) | ST1_150d ) | 
-		ST1_151d ) | ST1_152d ) | ST1_153d ) | ST1_154d ) | ST1_155d ) | 
-		ST1_172d ) | ST1_173d ) | ST1_174d ) | ST1_175d ) | ST1_176d ) | 
-		ST1_177d ) | ST1_194d ) | ST1_195d ) | ST1_196d ) | ST1_197d ) | 
-		ST1_198d ) | ST1_199d ) | ST1_216d ) | ST1_217d ) | ST1_218d ) | 
-		ST1_219d ) | ST1_220d ) | ST1_221d ) | ST1_238d ) | ST1_239d ) | 
-		ST1_240d ) | ST1_241d ) | ST1_242d ) | ST1_243d ) ;	// line#=computer.cpp:289,337
-	blk_out_WA2_c3 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( M_2972 | 
-		U_1275 ) | ST1_306d ) | ST1_307d ) | ST1_308d ) | ST1_309d ) | ST1_310d ) | 
-		ST1_311d ) | ST1_312d ) | U_1365 ) | ST1_352d ) | ST1_353d ) | ST1_354d ) | 
-		ST1_355d ) | ST1_356d ) | ST1_357d ) | ST1_358d ) | U_1455 ) | ST1_398d ) | 
-		ST1_399d ) | ST1_400d ) | ST1_401d ) | ST1_402d ) | ST1_403d ) | 
-		ST1_404d ) ;	// line#=computer.cpp:289,369,371
-	blk_out_WA2_c4 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( M_2976 | 
-		U_1320 ) | ST1_329d ) | ST1_330d ) | ST1_331d ) | ST1_332d ) | ST1_333d ) | 
-		ST1_334d ) | ST1_335d ) | U_1410 ) | ST1_375d ) | ST1_376d ) | ST1_377d ) | 
-		ST1_378d ) | ST1_379d ) | ST1_380d ) | ST1_381d ) | U_1500 ) | ST1_421d ) | 
-		ST1_422d ) | ST1_423d ) | ST1_424d ) | ST1_425d ) | ST1_426d ) | 
-		ST1_427d ) ;	// line#=computer.cpp:289,369,371
-	blk_out_WA2 = ( ( { 6{ M_3026 } } & RG_rs1_rs2 )		// line#=computer.cpp:289,335
-		| ( { 6{ blk_out_WA2_c1 } } & RG_y )			// line#=computer.cpp:289,337
-		| ( { 6{ blk_out_WA2_c2 } } & add8s_7_61ot )		// line#=computer.cpp:289,337
-		| ( { 6{ blk_out_WA2_c3 } } & { TR_37 , 1'h0 } )	// line#=computer.cpp:289,369,371
-		| ( { 6{ blk_out_WA2_c4 } } & { TR_39 , 1'h1 } )	// line#=computer.cpp:289,369,371
-		) ;
-	end
-assign	M_2955 = ( ( ( ( ( ( ( U_814 | ST1_107d ) | ST1_129d ) | ST1_151d ) | ST1_173d ) | 
-	ST1_195d ) | ST1_217d ) | ST1_239d ) ;
-assign	M_3029 = ( ( ( ( ( ( ( U_1185 | U_1230 ) | U_1275 ) | U_1320 ) | U_1365 ) | 
-	U_1410 ) | U_1455 ) | U_1500 ) ;
-always @ ( M_3029 or RG_buf_buf1_instr_rd_word_addr or M_2955 )
-	TR_40 = ( ( { 19{ M_2955 } } & RG_buf_buf1_instr_rd_word_addr [19:1] )	// line#=computer.cpp:289,337
-		| ( { 19{ M_3029 } } & RG_buf_buf1_instr_rd_word_addr [18:0] )	// line#=computer.cpp:289,369
-		) ;
-always @ ( RG_buf1_coef_coef1_y or ST1_421d or ST1_398d or ST1_375d or ST1_352d or 
-	ST1_329d or ST1_306d or ST1_283d or ST1_266d or RG_buf_buf1_coef_y or ST1_422d or 
-	ST1_399d or ST1_376d or ST1_353d or ST1_330d or ST1_307d or ST1_284d or 
-	ST1_260d or U_1136 or U_1090 or U_1044 or U_998 or U_952 or U_906 or U_860 or 
-	ST1_89d or RL_buf_buf1_coef_rs1_rs2_val1 or ST1_423d or ST1_400d or ST1_377d or 
-	ST1_354d or ST1_331d or ST1_308d or ST1_285d or ST1_261d or ST1_238d or 
-	ST1_216d or ST1_194d or ST1_172d or ST1_150d or ST1_128d or ST1_106d or 
-	ST1_88d or RG_buf_buf1 or ST1_427d or ST1_404d or ST1_381d or ST1_358d or 
-	ST1_335d or ST1_312d or ST1_289d or ST1_265d or ST1_243d or ST1_221d or 
-	ST1_199d or ST1_177d or ST1_155d or ST1_133d or ST1_111d or ST1_87d or RG_buf_buf1_1 or 
-	ST1_426d or ST1_403d or ST1_380d or ST1_357d or ST1_334d or ST1_311d or 
-	ST1_288d or ST1_264d or ST1_242d or ST1_220d or ST1_198d or ST1_176d or 
-	ST1_154d or ST1_132d or ST1_110d or ST1_86d or RG_buf_buf1_2 or ST1_425d or 
-	ST1_402d or ST1_379d or ST1_356d or ST1_333d or ST1_310d or ST1_287d or 
-	ST1_263d or ST1_241d or ST1_219d or ST1_197d or ST1_175d or ST1_153d or 
-	ST1_131d or ST1_109d or ST1_85d or RG_buf_buf1_funct3_imm1_next_pc or ST1_424d or 
-	ST1_401d or ST1_378d or ST1_355d or ST1_332d or ST1_309d or ST1_286d or 
-	ST1_262d or ST1_240d or ST1_218d or ST1_196d or ST1_174d or ST1_152d or 
-	ST1_130d or ST1_108d or ST1_84d or TR_40 or RG_buf_buf1_instr_rd_word_addr or 
-	M_3029 or M_2955 or add32s1ot or M_3026 )
-	begin
-	blk_out_WD2_c1 = ( M_2955 | M_3029 ) ;	// line#=computer.cpp:289,337,369
-	blk_out_WD2_c2 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_84d | ST1_108d ) | ST1_130d ) | 
-		ST1_152d ) | ST1_174d ) | ST1_196d ) | ST1_218d ) | ST1_240d ) | 
-		ST1_262d ) | ST1_286d ) | ST1_309d ) | ST1_332d ) | ST1_355d ) | 
-		ST1_378d ) | ST1_401d ) | ST1_424d ) ;	// line#=computer.cpp:289,337,371
-	blk_out_WD2_c3 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_85d | ST1_109d ) | ST1_131d ) | 
-		ST1_153d ) | ST1_175d ) | ST1_197d ) | ST1_219d ) | ST1_241d ) | 
-		ST1_263d ) | ST1_287d ) | ST1_310d ) | ST1_333d ) | ST1_356d ) | 
-		ST1_379d ) | ST1_402d ) | ST1_425d ) ;	// line#=computer.cpp:289,337,371
-	blk_out_WD2_c4 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_86d | ST1_110d ) | ST1_132d ) | 
-		ST1_154d ) | ST1_176d ) | ST1_198d ) | ST1_220d ) | ST1_242d ) | 
-		ST1_264d ) | ST1_288d ) | ST1_311d ) | ST1_334d ) | ST1_357d ) | 
-		ST1_380d ) | ST1_403d ) | ST1_426d ) ;	// line#=computer.cpp:289,337,371
-	blk_out_WD2_c5 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_87d | ST1_111d ) | ST1_133d ) | 
-		ST1_155d ) | ST1_177d ) | ST1_199d ) | ST1_221d ) | ST1_243d ) | 
-		ST1_265d ) | ST1_289d ) | ST1_312d ) | ST1_335d ) | ST1_358d ) | 
-		ST1_381d ) | ST1_404d ) | ST1_427d ) ;	// line#=computer.cpp:289,337,371
-	blk_out_WD2_c6 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_88d | ST1_106d ) | ST1_128d ) | 
-		ST1_150d ) | ST1_172d ) | ST1_194d ) | ST1_216d ) | ST1_238d ) | 
-		ST1_261d ) | ST1_285d ) | ST1_308d ) | ST1_331d ) | ST1_354d ) | 
-		ST1_377d ) | ST1_400d ) | ST1_423d ) ;	// line#=computer.cpp:289,337,371
-	blk_out_WD2_c7 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ST1_89d | U_860 ) | U_906 ) | 
-		U_952 ) | U_998 ) | U_1044 ) | U_1090 ) | U_1136 ) | ST1_260d ) | 
-		ST1_284d ) | ST1_307d ) | ST1_330d ) | ST1_353d ) | ST1_376d ) | 
-		ST1_399d ) | ST1_422d ) ;	// line#=computer.cpp:289,337,371
-	blk_out_WD2_c8 = ( ( ( ( ( ( ( ST1_266d | ST1_283d ) | ST1_306d ) | ST1_329d ) | 
-		ST1_352d ) | ST1_375d ) | ST1_398d ) | ST1_421d ) ;	// line#=computer.cpp:289,371
-	blk_out_WD2 = ( ( { 32{ M_3026 } } & { add32s1ot [28] , add32s1ot [28] , 
-			add32s1ot [28] , add32s1ot [28] , add32s1ot [28] , add32s1ot [28] , 
-			add32s1ot [28] , add32s1ot [28] , add32s1ot [28] , add32s1ot [28] , 
-			add32s1ot [28] , add32s1ot [28] , add32s1ot [28:9] } )					// line#=computer.cpp:289,335
-		| ( { 32{ blk_out_WD2_c1 } } & { RG_buf_buf1_instr_rd_word_addr [19] , 
-			RG_buf_buf1_instr_rd_word_addr [19] , RG_buf_buf1_instr_rd_word_addr [19] , 
-			RG_buf_buf1_instr_rd_word_addr [19] , RG_buf_buf1_instr_rd_word_addr [19] , 
-			RG_buf_buf1_instr_rd_word_addr [19] , RG_buf_buf1_instr_rd_word_addr [19] , 
-			RG_buf_buf1_instr_rd_word_addr [19] , RG_buf_buf1_instr_rd_word_addr [19] , 
-			RG_buf_buf1_instr_rd_word_addr [19] , RG_buf_buf1_instr_rd_word_addr [19] , 
-			RG_buf_buf1_instr_rd_word_addr [19] , RG_buf_buf1_instr_rd_word_addr [19] , 
-			TR_40 } )										// line#=computer.cpp:289,337,369
-		| ( { 32{ blk_out_WD2_c2 } } & { RG_buf_buf1_funct3_imm1_next_pc [19] , 
-			RG_buf_buf1_funct3_imm1_next_pc [19] , RG_buf_buf1_funct3_imm1_next_pc [19] , 
-			RG_buf_buf1_funct3_imm1_next_pc [19] , RG_buf_buf1_funct3_imm1_next_pc [19] , 
-			RG_buf_buf1_funct3_imm1_next_pc [19] , RG_buf_buf1_funct3_imm1_next_pc [19] , 
-			RG_buf_buf1_funct3_imm1_next_pc [19] , RG_buf_buf1_funct3_imm1_next_pc [19] , 
-			RG_buf_buf1_funct3_imm1_next_pc [19] , RG_buf_buf1_funct3_imm1_next_pc [19] , 
-			RG_buf_buf1_funct3_imm1_next_pc [19] , RG_buf_buf1_funct3_imm1_next_pc [19] , 
-			RG_buf_buf1_funct3_imm1_next_pc [19:1] } )						// line#=computer.cpp:289,337,371
-		| ( { 32{ blk_out_WD2_c3 } } & { RG_buf_buf1_2 [19] , RG_buf_buf1_2 [19] , 
-			RG_buf_buf1_2 [19] , RG_buf_buf1_2 [19] , RG_buf_buf1_2 [19] , 
-			RG_buf_buf1_2 [19] , RG_buf_buf1_2 [19] , RG_buf_buf1_2 [19] , 
-			RG_buf_buf1_2 [19] , RG_buf_buf1_2 [19] , RG_buf_buf1_2 [19] , 
-			RG_buf_buf1_2 [19] , RG_buf_buf1_2 [19] , RG_buf_buf1_2 [19:1] } )			// line#=computer.cpp:289,337,371
-		| ( { 32{ blk_out_WD2_c4 } } & { RG_buf_buf1_1 [19] , RG_buf_buf1_1 [19] , 
-			RG_buf_buf1_1 [19] , RG_buf_buf1_1 [19] , RG_buf_buf1_1 [19] , 
-			RG_buf_buf1_1 [19] , RG_buf_buf1_1 [19] , RG_buf_buf1_1 [19] , 
-			RG_buf_buf1_1 [19] , RG_buf_buf1_1 [19] , RG_buf_buf1_1 [19] , 
-			RG_buf_buf1_1 [19] , RG_buf_buf1_1 [19] , RG_buf_buf1_1 [19:1] } )			// line#=computer.cpp:289,337,371
-		| ( { 32{ blk_out_WD2_c5 } } & { RG_buf_buf1 [19] , RG_buf_buf1 [19] , 
-			RG_buf_buf1 [19] , RG_buf_buf1 [19] , RG_buf_buf1 [19] , 
-			RG_buf_buf1 [19] , RG_buf_buf1 [19] , RG_buf_buf1 [19] , 
-			RG_buf_buf1 [19] , RG_buf_buf1 [19] , RG_buf_buf1 [19] , 
-			RG_buf_buf1 [19] , RG_buf_buf1 [19] , RG_buf_buf1 [19:1] } )				// line#=computer.cpp:289,337,371
-		| ( { 32{ blk_out_WD2_c6 } } & { RL_buf_buf1_coef_rs1_rs2_val1 [19] , 
-			RL_buf_buf1_coef_rs1_rs2_val1 [19] , RL_buf_buf1_coef_rs1_rs2_val1 [19] , 
-			RL_buf_buf1_coef_rs1_rs2_val1 [19] , RL_buf_buf1_coef_rs1_rs2_val1 [19] , 
-			RL_buf_buf1_coef_rs1_rs2_val1 [19] , RL_buf_buf1_coef_rs1_rs2_val1 [19] , 
-			RL_buf_buf1_coef_rs1_rs2_val1 [19] , RL_buf_buf1_coef_rs1_rs2_val1 [19] , 
-			RL_buf_buf1_coef_rs1_rs2_val1 [19] , RL_buf_buf1_coef_rs1_rs2_val1 [19] , 
-			RL_buf_buf1_coef_rs1_rs2_val1 [19] , RL_buf_buf1_coef_rs1_rs2_val1 [19] , 
-			RL_buf_buf1_coef_rs1_rs2_val1 [19:1] } )						// line#=computer.cpp:289,337,371
-		| ( { 32{ blk_out_WD2_c7 } } & { RG_buf_buf1_coef_y [19] , RG_buf_buf1_coef_y [19] , 
-			RG_buf_buf1_coef_y [19] , RG_buf_buf1_coef_y [19] , RG_buf_buf1_coef_y [19] , 
-			RG_buf_buf1_coef_y [19] , RG_buf_buf1_coef_y [19] , RG_buf_buf1_coef_y [19] , 
-			RG_buf_buf1_coef_y [19] , RG_buf_buf1_coef_y [19] , RG_buf_buf1_coef_y [19] , 
-			RG_buf_buf1_coef_y [19] , RG_buf_buf1_coef_y [19] , RG_buf_buf1_coef_y [19:1] } )	// line#=computer.cpp:289,337,371
-		| ( { 32{ blk_out_WD2_c8 } } & { RG_buf1_coef_coef1_y [19] , RG_buf1_coef_coef1_y [19] , 
-			RG_buf1_coef_coef1_y [19] , RG_buf1_coef_coef1_y [19] , RG_buf1_coef_coef1_y [19] , 
-			RG_buf1_coef_coef1_y [19] , RG_buf1_coef_coef1_y [19] , RG_buf1_coef_coef1_y [19] , 
-			RG_buf1_coef_coef1_y [19] , RG_buf1_coef_coef1_y [19] , RG_buf1_coef_coef1_y [19] , 
-			RG_buf1_coef_coef1_y [19] , RG_buf1_coef_coef1_y [19] , RG_buf1_coef_coef1_y [19:1] } )	// line#=computer.cpp:289,371
-		) ;
-	end
-assign	blk_out_WE2 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-	( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-	( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-	( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( U_810 | U_814 ) | ST1_84d ) | 
-	ST1_85d ) | ST1_86d ) | ST1_87d ) | ST1_88d ) | ST1_89d ) | U_856 ) | U_860 ) | 
-	ST1_106d ) | ST1_107d ) | ST1_108d ) | ST1_109d ) | ST1_110d ) | ST1_111d ) | 
-	U_902 ) | U_906 ) | ST1_128d ) | ST1_129d ) | ST1_130d ) | ST1_131d ) | ST1_132d ) | 
-	ST1_133d ) | U_948 ) | U_952 ) | ST1_150d ) | ST1_151d ) | ST1_152d ) | ST1_153d ) | 
-	ST1_154d ) | ST1_155d ) | U_994 ) | U_998 ) | ST1_172d ) | ST1_173d ) | ST1_174d ) | 
-	ST1_175d ) | ST1_176d ) | ST1_177d ) | U_1040 ) | U_1044 ) | ST1_194d ) | 
-	ST1_195d ) | ST1_196d ) | ST1_197d ) | ST1_198d ) | ST1_199d ) | U_1086 ) | 
-	U_1090 ) | ST1_216d ) | ST1_217d ) | ST1_218d ) | ST1_219d ) | ST1_220d ) | 
-	ST1_221d ) | U_1132 ) | U_1136 ) | ST1_238d ) | ST1_239d ) | ST1_240d ) | 
-	ST1_241d ) | ST1_242d ) | ST1_243d ) | U_1185 ) | ST1_260d ) | ST1_261d ) | 
-	ST1_262d ) | ST1_263d ) | ST1_264d ) | ST1_265d ) | ST1_266d ) | U_1230 ) | 
-	ST1_283d ) | ST1_284d ) | ST1_285d ) | ST1_286d ) | ST1_287d ) | ST1_288d ) | 
-	ST1_289d ) | U_1275 ) | ST1_306d ) | ST1_307d ) | ST1_308d ) | ST1_309d ) | 
-	ST1_310d ) | ST1_311d ) | ST1_312d ) | U_1320 ) | ST1_329d ) | ST1_330d ) | 
-	ST1_331d ) | ST1_332d ) | ST1_333d ) | ST1_334d ) | ST1_335d ) | U_1365 ) | 
-	ST1_352d ) | ST1_353d ) | ST1_354d ) | ST1_355d ) | ST1_356d ) | ST1_357d ) | 
-	ST1_358d ) | U_1410 ) | ST1_375d ) | ST1_376d ) | ST1_377d ) | ST1_378d ) | 
-	ST1_379d ) | ST1_380d ) | ST1_381d ) | U_1455 ) | ST1_398d ) | ST1_399d ) | 
-	ST1_400d ) | ST1_401d ) | ST1_402d ) | ST1_403d ) | ST1_404d ) | U_1500 ) | 
-	ST1_421d ) | ST1_422d ) | ST1_423d ) | ST1_424d ) | ST1_425d ) | ST1_426d ) | 
-	ST1_427d ) ;
-always @ ( addsub3s1ot or M_2962 or RG_k or M_2957 )
-	TR_84 = ( ( { 1{ M_2957 } } & RG_k [0] )	// line#=computer.cpp:332
-		| ( { 1{ M_2962 } } & addsub3s1ot [0] )	// line#=computer.cpp:332
-		) ;
-always @ ( decr3s1ot or ST1_222d or RG_k or ST1_156d or TR_84 or addsub3s1ot or 
-	M_2962 or M_2957 or incr3s1ot or ST1_90d )
-	begin
-	TR_41_c1 = ( M_2957 | M_2962 ) ;	// line#=computer.cpp:332
-	TR_41 = ( ( { 3{ ST1_90d } } & incr3s1ot )			// line#=computer.cpp:332
-		| ( { 3{ TR_41_c1 } } & { addsub3s1ot [2:1] , TR_84 } )	// line#=computer.cpp:332
-		| ( { 3{ ST1_156d } } & { ~RG_k [2] , RG_k [1:0] } )	// line#=computer.cpp:332
-		| ( { 3{ ST1_222d } } & decr3s1ot )			// line#=computer.cpp:332
-		) ;
-	end
-always @ ( RG_buf_buf1_coef_y or TR_41 or ST1_222d or ST1_156d or M_2962 or M_2957 or 
-	ST1_90d or add8s_7_61ot or ST1_236d or ST1_234d or ST1_232d or ST1_230d or 
-	ST1_228d or ST1_226d or ST1_224d or ST1_214d or ST1_212d or ST1_210d or 
-	ST1_208d or ST1_206d or ST1_204d or ST1_202d or ST1_192d or ST1_190d or 
-	ST1_188d or ST1_186d or ST1_184d or ST1_182d or ST1_180d or ST1_170d or 
-	ST1_168d or ST1_166d or ST1_164d or ST1_162d or ST1_160d or ST1_158d or 
-	ST1_148d or ST1_146d or ST1_144d or ST1_142d or ST1_140d or ST1_138d or 
-	ST1_136d or ST1_126d or ST1_124d or ST1_122d or ST1_120d or ST1_118d or 
-	ST1_116d or ST1_114d or ST1_104d or ST1_102d or ST1_100d or ST1_98d or ST1_96d or 
-	ST1_94d or ST1_92d or M_2924 )
-	begin
-	blk_in_RA1_c1 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-		( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( M_2924 | ST1_92d ) | ST1_94d ) | 
-		ST1_96d ) | ST1_98d ) | ST1_100d ) | ST1_102d ) | ST1_104d ) | ST1_114d ) | 
-		ST1_116d ) | ST1_118d ) | ST1_120d ) | ST1_122d ) | ST1_124d ) | 
-		ST1_126d ) | ST1_136d ) | ST1_138d ) | ST1_140d ) | ST1_142d ) | 
-		ST1_144d ) | ST1_146d ) | ST1_148d ) | ST1_158d ) | ST1_160d ) | 
-		ST1_162d ) | ST1_164d ) | ST1_166d ) | ST1_168d ) | ST1_170d ) | 
-		ST1_180d ) | ST1_182d ) | ST1_184d ) | ST1_186d ) | ST1_188d ) | 
-		ST1_190d ) | ST1_192d ) | ST1_202d ) | ST1_204d ) | ST1_206d ) | 
-		ST1_208d ) | ST1_210d ) | ST1_212d ) | ST1_214d ) | ST1_224d ) | 
-		ST1_226d ) | ST1_228d ) | ST1_230d ) | ST1_232d ) | ST1_234d ) | 
-		ST1_236d ) ;	// line#=computer.cpp:332
-	blk_in_RA1_c2 = ( ( ( ( ST1_90d | M_2957 ) | M_2962 ) | ST1_156d ) | ST1_222d ) ;	// line#=computer.cpp:332
-	blk_in_RA1 = ( ( { 6{ blk_in_RA1_c1 } } & add8s_7_61ot )			// line#=computer.cpp:332
-		| ( { 6{ blk_in_RA1_c2 } } & { TR_41 , RG_buf_buf1_coef_y [2:0] } )	// line#=computer.cpp:332
-		) ;
-	end
-assign	M_2924 = ( ( ( ( ( ( ( ST1_68d | ST1_70d ) | ST1_72d ) | ST1_74d ) | ST1_76d ) | 
-	ST1_78d ) | ST1_80d ) | ST1_82d ) ;
-assign	blk_in_RE1 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-	( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( M_2924 | ST1_90d ) | 
-	ST1_92d ) | ST1_94d ) | ST1_96d ) | ST1_98d ) | ST1_100d ) | ST1_102d ) | 
-	ST1_104d ) | ST1_112d ) | ST1_114d ) | ST1_116d ) | ST1_118d ) | ST1_120d ) | 
-	ST1_122d ) | ST1_124d ) | ST1_126d ) | ST1_134d ) | ST1_136d ) | ST1_138d ) | 
-	ST1_140d ) | ST1_142d ) | ST1_144d ) | ST1_146d ) | ST1_148d ) | ST1_156d ) | 
-	ST1_158d ) | ST1_160d ) | ST1_162d ) | ST1_164d ) | ST1_166d ) | ST1_168d ) | 
-	ST1_170d ) | ST1_178d ) | ST1_180d ) | ST1_182d ) | ST1_184d ) | ST1_186d ) | 
-	ST1_188d ) | ST1_190d ) | ST1_192d ) | ST1_200d ) | ST1_202d ) | ST1_204d ) | 
-	ST1_206d ) | ST1_208d ) | ST1_210d ) | ST1_212d ) | ST1_214d ) | ST1_222d ) | 
-	ST1_224d ) | ST1_226d ) | ST1_228d ) | ST1_230d ) | ST1_232d ) | ST1_234d ) | 
-	ST1_236d ) ;
-always @ ( U_765 or U_730 or U_709 or U_688 or U_673 or U_658 or U_632 or U_619 or 
-	U_604 or U_579 or U_566 or U_551 or U_536 or U_521 or U_506 or U_491 or 
-	U_474 or U_459 or U_442 or U_427 or ST1_47d or ST1_46d or ST1_45d or ST1_44d or 
-	ST1_43d or ST1_42d or ST1_41d or ST1_40d or ST1_39d or ST1_38d or ST1_37d or 
-	ST1_36d or ST1_35d or ST1_34d or ST1_33d or ST1_32d or ST1_31d or ST1_30d or 
-	ST1_29d or ST1_28d or ST1_27d or ST1_26d or ST1_25d or ST1_24d or ST1_23d or 
-	U_412 or U_396 or U_381 or U_364 or U_349 or U_288 or U_275 or U_260 or 
-	U_245 or U_230 or U_211 or U_196 or U_181 or U_165 or U_149 or U_124 or 
-	U_109 or U_88 )
-	blk_in_WA2 = ( ( { 6{ U_88 } } & 6'h01 )	// line#=computer.cpp:174,304,305
-		| ( { 6{ U_109 } } & 6'h02 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_124 } } & 6'h03 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_149 } } & 6'h04 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_165 } } & 6'h05 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_181 } } & 6'h06 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_196 } } & 6'h07 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_211 } } & 6'h08 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_230 } } & 6'h09 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_245 } } & 6'h0a )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_260 } } & 6'h0b )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_275 } } & 6'h0c )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_288 } } & 6'h0d )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_349 } } & 6'h0e )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_364 } } & 6'h0f )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_381 } } & 6'h10 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_396 } } & 6'h11 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_412 } } & 6'h12 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ ST1_23d } } & 6'h13 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ ST1_24d } } & 6'h14 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ ST1_25d } } & 6'h15 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ ST1_26d } } & 6'h16 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ ST1_27d } } & 6'h17 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ ST1_28d } } & 6'h18 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ ST1_29d } } & 6'h19 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ ST1_30d } } & 6'h1a )		// line#=computer.cpp:174,304,305
-		| ( { 6{ ST1_31d } } & 6'h1b )		// line#=computer.cpp:174,304,305
-		| ( { 6{ ST1_32d } } & 6'h1c )		// line#=computer.cpp:174,304,305
-		| ( { 6{ ST1_33d } } & 6'h1d )		// line#=computer.cpp:174,304,305
-		| ( { 6{ ST1_34d } } & 6'h1e )		// line#=computer.cpp:174,304,305
-		| ( { 6{ ST1_35d } } & 6'h1f )		// line#=computer.cpp:174,304,305
-		| ( { 6{ ST1_36d } } & 6'h20 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ ST1_37d } } & 6'h21 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ ST1_38d } } & 6'h22 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ ST1_39d } } & 6'h23 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ ST1_40d } } & 6'h24 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ ST1_41d } } & 6'h25 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ ST1_42d } } & 6'h26 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ ST1_43d } } & 6'h27 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ ST1_44d } } & 6'h28 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ ST1_45d } } & 6'h29 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ ST1_46d } } & 6'h2a )		// line#=computer.cpp:174,304,305
-		| ( { 6{ ST1_47d } } & 6'h2b )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_427 } } & 6'h2c )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_442 } } & 6'h2d )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_459 } } & 6'h2e )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_474 } } & 6'h2f )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_491 } } & 6'h30 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_506 } } & 6'h31 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_521 } } & 6'h32 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_536 } } & 6'h33 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_551 } } & 6'h34 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_566 } } & 6'h35 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_579 } } & 6'h36 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_604 } } & 6'h37 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_619 } } & 6'h38 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_632 } } & 6'h39 )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_658 } } & 6'h3a )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_673 } } & 6'h3b )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_688 } } & 6'h3c )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_709 } } & 6'h3d )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_730 } } & 6'h3e )		// line#=computer.cpp:174,304,305
-		| ( { 6{ U_765 } } & 6'h3f )		// line#=computer.cpp:174,304,305
-		) ;	// line#=computer.cpp:174,304,305
-assign	M_2910 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
-	( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( U_71 | U_88 ) | U_109 ) | 
-	U_124 ) | U_149 ) | U_165 ) | U_181 ) | U_196 ) | U_211 ) | U_230 ) | U_245 ) | 
-	U_260 ) | U_275 ) | U_288 ) | U_349 ) | U_364 ) | U_381 ) | U_396 ) | U_412 ) | 
-	ST1_23d ) | ST1_24d ) | ST1_25d ) | ST1_26d ) | ST1_27d ) | ST1_28d ) | ST1_29d ) | 
-	ST1_30d ) | ST1_31d ) | ST1_32d ) | ST1_33d ) | ST1_34d ) | ST1_35d ) | ST1_36d ) | 
-	ST1_37d ) | ST1_38d ) | ST1_39d ) | ST1_40d ) | ST1_41d ) | ST1_42d ) | ST1_43d ) | 
-	ST1_44d ) | ST1_45d ) | ST1_46d ) | ST1_47d ) | U_427 ) | U_442 ) | U_459 ) | 
-	U_474 ) | U_491 ) | U_506 ) | U_521 ) | U_536 ) | U_551 ) | U_566 ) | U_579 ) | 
-	U_604 ) | U_619 ) | U_632 ) | U_658 ) | U_673 ) ;
-assign	blk_in_WE2 = ( ( ( ( M_2910 | U_688 ) | U_709 ) | U_730 ) | U_765 ) ;
-assign	M_2879 = ( M_2847 & CT_02 ) ;	// line#=computer.cpp:683
-always @ ( M_2864 or imem_arg_MEMB32W65536_RD1 or M_3032 or M_3043 or M_3041 or 
-	M_3047 or M_3053 or M_3035 or M_2866 or M_2825 or M_2855 or M_2858 or M_2879 )
-	begin
-	regs_ad00_c1 = ( ( ( ( ( ( ( ( ( M_2879 | ( M_2858 & M_2855 ) ) | ( M_2858 & 
-		M_2825 ) ) | M_2866 ) | M_3035 ) | M_3053 ) | M_3047 ) | M_3041 ) | 
-		M_3043 ) | M_3032 ) ;	// line#=computer.cpp:442,453
-	regs_ad00 = ( ( { 5{ regs_ad00_c1 } } & imem_arg_MEMB32W65536_RD1 [19:15] )	// line#=computer.cpp:442,453
-		| ( { 5{ M_2864 } } & imem_arg_MEMB32W65536_RD1 [24:20] )		// line#=computer.cpp:442,454
-		) ;
-	end
-assign	M_3032 = ( M_2874 & M_2815 ) ;
-assign	M_3035 = ( M_2874 & M_2829 ) ;
-assign	M_3041 = ( M_2874 & M_2833 ) ;
-assign	M_3043 = ( M_2874 & M_2837 ) ;
-assign	M_3047 = ( M_2874 & M_2849 ) ;
-assign	M_3053 = ( M_2874 & M_2860 ) ;
-always @ ( M_3032 or M_3043 or M_3041 or M_3047 or M_3053 or M_3035 or imem_arg_MEMB32W65536_RD1 or 
-	M_2864 )
-	begin
-	regs_ad01_c1 = ( ( ( ( ( M_3035 | M_3053 ) | M_3047 ) | M_3041 ) | M_3043 ) | 
-		M_3032 ) ;	// line#=computer.cpp:442,454
-	regs_ad01 = ( ( { 5{ M_2864 } } & imem_arg_MEMB32W65536_RD1 [19:15] )	// line#=computer.cpp:442,453
-		| ( { 5{ regs_ad01_c1 } } & imem_arg_MEMB32W65536_RD1 [24:20] )	// line#=computer.cpp:442,454
-		) ;
-	end
-assign	regs_ad04 = RG_buf_buf1_instr_rd_word_addr [4:0] ;	// line#=computer.cpp:110,467,476,485,496
-								// ,556,620,666
-always @ ( val2_t4 or U_760 or U_656 or U_601 or U_497 or RG_buf_buf1_1 or U_484 or 
-	U_451 or RL_addr_buf_instr_op2_result or U_371 )
-	begin
-	regs_wd04_c1 = ( U_451 | U_484 ) ;	// line#=computer.cpp:485,496
-	regs_wd04_c2 = ( ( U_497 | U_601 ) | U_656 ) ;	// line#=computer.cpp:110,476,620,666
-	regs_wd04 = ( ( { 32{ U_371 } } & { RL_addr_buf_instr_op2_result [24:5] , 
-			12'h000 } )						// line#=computer.cpp:110,467
-		| ( { 32{ regs_wd04_c1 } } & RG_buf_buf1_1 )			// line#=computer.cpp:485,496
-		| ( { 32{ regs_wd04_c2 } } & RL_addr_buf_instr_op2_result )	// line#=computer.cpp:110,476,620,666
-		| ( { 32{ U_760 } } & val2_t4 )					// line#=computer.cpp:556
-		) ;
-	end
-assign	regs_we04 = ( ( ( ( ( ( U_371 | U_451 ) | U_484 ) | U_497 ) | U_601 ) | U_656 ) | 
-	U_760 ) ;	// line#=computer.cpp:110,467,476,485,496
-			// ,556,620,666
+assign	M_2850 = ( ( ( ( M_2851 | ST1_82d ) | ST1_83d ) | ST1_84d ) | ST1_85d ) ;
+assign	blk_out1_we01 = ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( 
+	( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( ( M_2850 | U_858 ) | 
+	U_862 ) | ST1_98d ) | ST1_99d ) | ST1_100d ) | ST1_101d ) | ST1_102d ) | 
+	ST1_103d ) | U_903 ) | U_907 ) | ST1_116d ) | ST1_117d ) | ST1_118d ) | ST1_119d ) | 
+	ST1_120d ) | ST1_121d ) | U_948 ) | U_952 ) | ST1_134d ) | ST1_135d ) | ST1_136d ) | 
+	ST1_137d ) | ST1_138d ) | ST1_139d ) | U_993 ) | U_997 ) | ST1_152d ) | ST1_153d ) | 
+	ST1_154d ) | ST1_155d ) | ST1_156d ) | ST1_157d ) | U_1038 ) | U_1042 ) | 
+	ST1_170d ) | ST1_171d ) | ST1_172d ) | ST1_173d ) | ST1_174d ) | ST1_175d ) | 
+	U_1083 ) | U_1087 ) | ST1_188d ) | ST1_189d ) | ST1_190d ) | ST1_191d ) | 
+	ST1_192d ) | ST1_193d ) | U_1128 ) | U_1132 ) | ST1_206d ) | ST1_207d ) | 
+	ST1_208d ) | ST1_209d ) | ST1_210d ) | ST1_211d ) ;	// line#=computer.cpp:296,342,344
 
 endmodule
 
@@ -12119,15 +12874,6 @@ always @ ( i1 or i2 or i3 )
 	t3 = i3 [1] ;
 	o1 = ( t1 + t2 + t3 ) ;
 	end
-
-endmodule
-
-module computer_add8s_7_6 ( i1 ,i2 ,o1 );
-input	[5:0]	i1 ;
-input	[4:0]	i2 ;
-output	[5:0]	o1 ;
-
-assign	o1 = ( i1 + { { 1{ i2 [4] } } , i2 } ) ;
 
 endmodule
 
@@ -12372,6 +13118,17 @@ assign	o1 = $unsigned( so1 ) ;
 
 endmodule
 
+module computer_mul20s ( i1 ,i2 ,o1 );
+input	[19:0]	i1 ;
+input	[13:0]	i2 ;
+output	[31:0]	o1 ;
+wire	signed	[31:0]	so1 ;
+
+assign	so1 = ( $signed( i1 ) * $signed( i2 ) ) ;
+assign	o1 = $unsigned( so1 ) ;
+
+endmodule
+
 module computer_sub28s_27 ( i1 ,i2 ,o1 );
 input	[26:0]	i1 ;
 input	[22:0]	i2 ;
@@ -12410,10 +13167,10 @@ endmodule
 
 module computer_add32s ( i1 ,i2 ,o1 );
 input	[31:0]	i1 ;
-input	[31:0]	i2 ;
+input	[20:0]	i2 ;
 output	[31:0]	o1 ;
 
-assign	o1 = ( i1 + i2 ) ;
+assign	o1 = ( i1 + { { 11{ i2 [20] } } , i2 } ) ;
 
 endmodule
 
@@ -12444,6 +13201,19 @@ always @ ( DECODER_in )
 	begin
 	DECODER_out = 32'h00000000 ;
 	DECODER_out [31 - DECODER_in] = 1'h1 ;
+	end
+
+endmodule
+
+module computer_decoder_6to64 ( DECODER_in ,DECODER_out );
+input	[5:0]	DECODER_in ;
+output	[63:0]	DECODER_out ;
+reg	[63:0]	DECODER_out ;
+
+always @ ( DECODER_in )
+	begin
+	DECODER_out = 64'h0000000000000000 ;
+	DECODER_out [63 - DECODER_in] = 1'h1 ;
 	end
 
 endmodule
