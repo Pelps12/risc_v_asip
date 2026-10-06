@@ -248,6 +248,13 @@ inline void mem_write_word(uint32_t dmem_arg[], uint32_t addr, uint32_t val) {
 // for the original's partition_factor=64 so the unroll knobs below parallelise
 // the arithmetic instead of queueing on the single DMEM read port.
 //
+// The staging arrays are 2-D and carry "Cyber array=REG". Without the pragma
+// CWB mapped them to single-port MEMB32W64 RAMs, which made every BD/U variant
+// port-bound (cycles within 1.4% across the sweep). Flat [64] indexing also
+// hit a CWB address-generation bug in the column pass (bd1/bd2/bd4 with the
+// tap loop fully unrolled: e.g. bit 5 of z*8+col dropped on the write), so the
+// arrays are indexed [row][col] and CWB derives the addresses itself.
+//
 // Row pass    (dct.cpp loop_3..loop_7)  : blk_in  -> blk_out
 // Column pass (dct.cpp loop_9..loop_13) : blk_out -> blk_out (in place)
 //
@@ -295,13 +302,13 @@ void accel_dct_block(uint32_t dmem_arg[], uint32_t src_addr,
   const int32_t C_q[16] = {4096,  4017,  3784,  3405,  2896,  2275,
                            1567,  799,   0,     -800,  -1568, -2276,
                            -2897, -3406, -3785, -4018};
-  int32_t blk_in[64];
-  int32_t blk_out[64];
+  int32_t blk_in[8][8] /* Cyber array=REG */;
+  int32_t blk_out[8][8] /* Cyber array=REG */;
   int r, c, k, l, m, x, y, z;
 
   for (r = 0; r < 8; r++)
     for (c = 0; c < 8; c++)
-      blk_in[r * 8 + c] = (int32_t)mem_read_word(
+      blk_in[r][c] = (int32_t)mem_read_word(
           dmem_arg, src_addr + (uint32_t)((r * DCT_STRIDE + c) << 2));
 
   // Row pass
@@ -329,12 +336,12 @@ void accel_dct_block(uint32_t dmem_arg[], uint32_t src_addr,
         for (y = 0; y < 8; y++) {
           int idx = 2 * y * x + x;
           int32_t coef = ((idx >> 4) & 1) ? -C_q[idx & 15] : C_q[idx & 15];
-          buf[x] = dct_wrap20(buf[x] + ((blk_in[(k + l) * 8 + y] * coef) >> 12));
+          buf[x] = dct_wrap20(buf[x] + ((blk_in[k + l][y] * coef) >> 12));
         }
       }
-      blk_out[(k + l) * 8] = dct_wrap20((buf[0] * DCT_C_NORM_Q) >> 12);
+      blk_out[k + l][0] = dct_wrap20((buf[0] * DCT_C_NORM_Q) >> 12);
       for (z = 1; z < 8; z++)
-        blk_out[(k + l) * 8 + z] = dct_wrap20((buf[z] * DCT_HALF_Q) >> 12);
+        blk_out[k + l][z] = dct_wrap20((buf[z] * DCT_HALF_Q) >> 12);
     }
   }
 
@@ -363,19 +370,19 @@ void accel_dct_block(uint32_t dmem_arg[], uint32_t src_addr,
         for (y = 0; y < 8; y++) {
           int idx = 2 * y * x + x;
           int32_t coef = ((idx >> 4) & 1) ? -C_q[idx & 15] : C_q[idx & 15];
-          buf[x] = dct_wrap20(buf[x] + ((blk_out[y * 8 + (k + m)] * coef) >> 12));
+          buf[x] = dct_wrap20(buf[x] + ((blk_out[y][k + m] * coef) >> 12));
         }
       }
-      blk_out[k + m] = dct_wrap20((buf[0] * DCT_C_NORM_Q) >> 12);
+      blk_out[0][k + m] = dct_wrap20((buf[0] * DCT_C_NORM_Q) >> 12);
       for (z = 1; z < 8; z++)
-        blk_out[z * 8 + (k + m)] = dct_wrap20((buf[z] * DCT_HALF_Q) >> 12);
+        blk_out[z][k + m] = dct_wrap20((buf[z] * DCT_HALF_Q) >> 12);
     }
   }
 
   for (r = 0; r < 8; r++)
     for (c = 0; c < 8; c++)
       mem_write_word(dmem_arg, dst_addr + (uint32_t)((r * DCT_STRIDE + c) << 2),
-                     (uint32_t)blk_out[r * 8 + c]);
+                     (uint32_t)blk_out[r][c]);
 }
 #endif
 
