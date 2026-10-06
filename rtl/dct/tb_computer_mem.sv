@@ -253,3 +253,24 @@ module tb_computer;
   end
 
 endmodule
+
+// CWB maps the accelerator's local blk_in/blk_out arrays (64 words each) to
+// MEMB32W64 instances but does not include the technology memory model in
+// computer_E.v.  This behavioral model is used only by the local Verilator
+// testbench (same interface as the MEMB32W256 model in rtl/blowfish/).
+module MEMB32W64 (
+  input [5:0] RA1,
+  output [31:0] RD1,
+  input RE1,
+  input RCLK1,
+  input [5:0] WA2,
+  input [31:0] WD2,
+  input WE2,
+  input WCLK2
+);
+  reg [31:0] mem [0:63];
+  reg [31:0] rd;
+  assign RD1 = rd;
+  always @(posedge RCLK1) if (RE1) rd <= mem[RA1];
+  always @(posedge WCLK2) if (WE2) mem[WA2] <= WD2;
+endmodule
