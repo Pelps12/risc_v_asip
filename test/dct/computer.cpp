@@ -248,12 +248,14 @@ inline void mem_write_word(uint32_t dmem_arg[], uint32_t addr, uint32_t val) {
 // for the original's partition_factor=64 so the unroll knobs below parallelise
 // the arithmetic instead of queueing on the single DMEM read port.
 //
-// The staging arrays are 2-D and carry "Cyber array=REG". Without the pragma
-// CWB mapped them to single-port MEMB32W64 RAMs, which made every BD/U variant
-// port-bound (cycles within 1.4% across the sweep). Flat [64] indexing also
-// hit a CWB address-generation bug in the column pass (bd1/bd2/bd4 with the
-// tap loop fully unrolled: e.g. bit 5 of z*8+col dropped on the write), so the
-// arrays are indexed [row][col] and CWB derives the addresses itself.
+// The staging arrays carry no Cyber array pragma, so CWB maps them to
+// single-port MEMB32W64 RAMs (rtl/dct/tb_computer_mem.sv supplies a behavioral
+// model). This keeps accelerator area comparable with baseline; marking them
+// "Cyber array=REG" was tried and cost 2.5-6x area and CPI 8.2 vs 6.6.
+// They are 2-D and indexed [row][col]: with flat [64] indexing CWB
+// mis-generated the column-pass write address (bd1/bd2/bd4 with the tap loop
+// fully unrolled: e.g. bit 5 of z*8+col dropped), so CWB derives the
+// addresses itself here.
 //
 // Row pass    (dct.cpp loop_3..loop_7)  : blk_in  -> blk_out
 // Column pass (dct.cpp loop_9..loop_13) : blk_out -> blk_out (in place)
@@ -302,8 +304,8 @@ void accel_dct_block(uint32_t dmem_arg[], uint32_t src_addr,
   const int32_t C_q[16] = {4096,  4017,  3784,  3405,  2896,  2275,
                            1567,  799,   0,     -800,  -1568, -2276,
                            -2897, -3406, -3785, -4018};
-  int32_t blk_in[8][8] /* Cyber array=REG */;
-  int32_t blk_out[8][8] /* Cyber array=REG */;
+  int32_t blk_in[8][8];
+  int32_t blk_out[8][8];
   int r, c, k, l, m, x, y, z;
 
   for (r = 0; r < 8; r++)
