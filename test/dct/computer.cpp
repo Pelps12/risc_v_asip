@@ -249,10 +249,11 @@ inline void mem_write_word(uint32_t dmem_arg[], uint32_t addr, uint32_t val) {
 // on the single DMEM port.
 //
 // The staging arrays are explicitly "Cyber array=RAM". With no pragma CWB
-// picked per variant: MEMB32W64 RAMs for most, per-row MEMB32W8 RAMs for a
-// fully unrolled tap loop, and plain registers for bd1_u2/u4/u8 (which were
-// both slower and 3-5x larger). Forcing RAM keeps every variant comparable
-// on area; rtl/dct/tb_computer_mem.sv supplies behavioral MEMB models.
+// picked per variant: MEMB32W64 RAMs for most, one MEMB32W8 per column of
+// blk_in for a fully unrolled tap loop, and plain registers for bd1_u2/u4/u8
+// (which were both slower and 3-5x larger). Forcing RAM keeps every variant
+// comparable on area; blk_in is split per column (expand_dim=1) in every
+// variant. rtl/dct/tb_computer_mem.sv supplies behavioral MEMB models.
 // Marking them "Cyber array=REG" was also tried: 2.5-6x area, CPI 8.2 vs 6.6.
 // They are 2-D and indexed [row][col]: with flat [64] indexing CWB
 // mis-generated the column-pass write address (bd1/bd2/bd4 with the tap loop
@@ -306,7 +307,12 @@ void accel_dct_block(uint32_t dmem_arg[], uint32_t src_addr,
   const int32_t C_q[16] = {4096,  4017,  3784,  3405,  2896,  2275,
                            1567,  799,   0,     -800,  -1568, -2276,
                            -2897, -3406, -3785, -4018};
-  int32_t blk_in[8][8] /* Cyber array=RAM */;
+  // expand_dim counts dimensions from the right (rightmost = 1): expand_dim=1
+  // gives one RAM per column of blk_in (addressed by row), so the row pass can
+  // read all 8 taps of a row in the same cycle. blk_out is written by rows
+  // and read by columns, so no single split serves both passes; it stays one
+  // 64-word RAM.
+  int32_t blk_in[8][8] /* Cyber array=RAM, expand_dim=1 */;
   int32_t blk_out[8][8] /* Cyber array=RAM */;
   int r, c, k, l, m, x, y, z;
 
