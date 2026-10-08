@@ -75,14 +75,14 @@ Loaded hex: /mnt/c/Users/EBC230001/Documents/DARClab/risc_v_asip/test/dct/accel_
     imem[0] = 0x00080137
     imem[1] = 0x00010113
     imem[2] = 0x00040537
-    imem[3] = 0x04050513
+    imem[3] = 0x44050513
     imem[4] = 0x000415b7
     imem[5] = 0x84058593
 
 === RTL Simulation Start ===
 
 === RTL Simulation Complete ===
-  Total cycles: 18570959
+  Total cycles: 14211704
   Status: HALTED (computer_ret = 1)
 
 === Register Dump ===
@@ -92,21 +92,21 @@ Loaded hex: /mnt/c/Users/EBC230001/Documents/DARClab/risc_v_asip/test/dct/accel_
   x24: 00000000 x25: 00000000 x26: 00000000 x27: 00000000 x28: 00000000 x29: 00000000 x30: 00000000 x31: 00000000 
 
 === DMEM Dump (first 8 words) ===
-  dmem[0] = 0x00001000
-  dmem[1] = 0x00000fb1
-  dmem[2] = 0x00000ec8
-  dmem[3] = 0x00000d4d
-  dmem[4] = 0x00000b50
-  dmem[5] = 0x000008e3
-  dmem[6] = 0x0000061f
-  dmem[7] = 0x0000031f
+  dmem[0] = 0xffffe000
+  dmem[1] = 0xffffe2c0
+  dmem[2] = 0xffffe580
+  dmem[3] = 0xffffe840
+  dmem[4] = 0xffffeb00
+  dmem[5] = 0xffffedc0
+  dmem[6] = 0xfffff080
+  dmem[7] = 0xfffff340
 
 Report written to: /mnt/c/Users/EBC230001/Documents/DARClab/risc_v_asip/test/dct/accel_dct_bd2_u4_no_ci/rtl/sim_rtl.rpt
 
 === Done ===
 - /mnt/c/Users/EBC230001/Documents/DARClab/risc_v_asip/scripts/../rtl/dct/tb_computer_mem.sv:252: Verilog $finish
 make: Leaving directory '/mnt/c/Users/EBC230001/Documents/DARClab/risc_v_asip/sim/verilog'
-CPI = 8.2
+CPI = 6.6
 
 === Step 7: ISS vs RTL Comparison ===
   ISS x10 = 00000000

@@ -274,3 +274,23 @@ module MEMB32W64 (
   always @(posedge RCLK1) if (RE1) rd <= mem[RA1];
   always @(posedge WCLK2) if (WE2) mem[WA2] <= WD2;
 endmodule
+
+// With 2-D [8][8] staging arrays and a fully unrolled tap loop, CWB splits
+// blk_in into one 8-word MEMB32W8 per row (blk_in_a_0..7) so a whole row can
+// be read in parallel.  Behavioral model for local Verilator simulation only.
+module MEMB32W8 (
+  input [2:0] RA1,
+  output [31:0] RD1,
+  input RE1,
+  input RCLK1,
+  input [2:0] WA2,
+  input [31:0] WD2,
+  input WE2,
+  input WCLK2
+);
+  reg [31:0] mem [0:7];
+  reg [31:0] rd;
+  assign RD1 = rd;
+  always @(posedge RCLK1) if (RE1) rd <= mem[RA1];
+  always @(posedge WCLK2) if (WE2) mem[WA2] <= WD2;
+endmodule
