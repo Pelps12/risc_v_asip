@@ -244,14 +244,16 @@ inline void mem_write_word(uint32_t dmem_arg[], uint32_t addr, uint32_t val) {
 // wraps to 20 bits (dct_wrap20).
 //
 // The block is staged into local arrays (64 DMEM reads), both passes run from
-// registers, and the result is written back (64 DMEM writes). This stands in
-// for the original's partition_factor=64 so the unroll knobs below parallelise
-// the arithmetic instead of queueing on the single DMEM read port.
+// those local arrays, and the result is written back (64 DMEM writes). This
+// stands in for the original's partition_factor=64 so the passes do not queue
+// on the single DMEM port.
 //
-// The staging arrays carry no Cyber array pragma, so CWB maps them to
-// single-port MEMB32W64 RAMs (rtl/dct/tb_computer_mem.sv supplies a behavioral
-// model). This keeps accelerator area comparable with baseline; marking them
-// "Cyber array=REG" was tried and cost 2.5-6x area and CPI 8.2 vs 6.6.
+// The staging arrays are explicitly "Cyber array=RAM". With no pragma CWB
+// picked per variant: MEMB32W64 RAMs for most, per-row MEMB32W8 RAMs for a
+// fully unrolled tap loop, and plain registers for bd1_u2/u4/u8 (which were
+// both slower and 3-5x larger). Forcing RAM keeps every variant comparable
+// on area; rtl/dct/tb_computer_mem.sv supplies behavioral MEMB models.
+// Marking them "Cyber array=REG" was also tried: 2.5-6x area, CPI 8.2 vs 6.6.
 // They are 2-D and indexed [row][col]: with flat [64] indexing CWB
 // mis-generated the column-pass write address (bd1/bd2/bd4 with the tap loop
 // fully unrolled: e.g. bit 5 of z*8+col dropped), so CWB derives the
@@ -304,8 +306,8 @@ void accel_dct_block(uint32_t dmem_arg[], uint32_t src_addr,
   const int32_t C_q[16] = {4096,  4017,  3784,  3405,  2896,  2275,
                            1567,  799,   0,     -800,  -1568, -2276,
                            -2897, -3406, -3785, -4018};
-  int32_t blk_in[8][8];
-  int32_t blk_out[8][8];
+  int32_t blk_in[8][8] /* Cyber array=RAM */;
+  int32_t blk_out[8][8] /* Cyber array=RAM */;
   int r, c, k, l, m, x, y, z;
 
   for (r = 0; r < 8; r++)
