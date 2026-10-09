@@ -252,8 +252,9 @@ inline void mem_write_word(uint32_t dmem_arg[], uint32_t addr, uint32_t val) {
 // picked per variant: MEMB32W64 RAMs for most, one MEMB32W8 per column of
 // blk_in for a fully unrolled tap loop, and plain registers for bd1_u2/u4/u8
 // (which were both slower and 3-5x larger). Forcing RAM keeps every variant
-// comparable on area; blk_in is split per column (expand_dim=1) in every
-// variant. rtl/dct/tb_computer_mem.sv supplies behavioral MEMB models.
+// comparable on area; blk_in is split per column (expand_dim=1) only when the
+// tap loop is fully unrolled (see accel_dct_block). rtl/dct/tb_computer_mem.sv
+// supplies behavioral MEMB models.
 // Marking them "Cyber array=REG" was also tried: 2.5-6x area, CPI 8.2 vs 6.6.
 // They are 2-D and indexed [row][col]: with flat [64] indexing CWB
 // mis-generated the column-pass write address (bd1/bd2/bd4 with the tap loop
@@ -309,10 +310,17 @@ void accel_dct_block(uint32_t dmem_arg[], uint32_t src_addr,
                            -2897, -3406, -3785, -4018};
   // expand_dim counts dimensions from the right (rightmost = 1): expand_dim=1
   // gives one RAM per column of blk_in (addressed by row), so the row pass can
-  // read all 8 taps of a row in the same cycle. blk_out is written by rows
-  // and read by columns, so no single split serves both passes; it stays one
-  // 64-word RAM.
+  // read all 8 taps of a row in the same cycle. That only pays off when the
+  // tap loop is fully unrolled (no U flag, or U8); for U1/U2/U4 the 8 small
+  // RAMs cost ~50% more area and ~3,400 cycles vs one 64-word RAM, so blk_in
+  // stays unsplit there. blk_out is written by rows and read by columns, so no
+  // single split serves both passes; it is never split explicitly.
+#if defined(ACCEL_DCT_U8) || \
+    !(defined(ACCEL_DCT_U1) || defined(ACCEL_DCT_U2) || defined(ACCEL_DCT_U4))
   int32_t blk_in[8][8] /* Cyber array=RAM, expand_dim=1 */;
+#else
+  int32_t blk_in[8][8] /* Cyber array=RAM */;
+#endif
   int32_t blk_out[8][8] /* Cyber array=RAM */;
   int r, c, k, l, m, x, y, z;
 
