@@ -8,18 +8,18 @@ Cyber Synthesis Report
   Module Name         : computer
   Basic Library Name  : CWBSTDBLIB
 
-  Total Area          :     48,498
-    Sequential        :     17,112
-    Combinational     :     31,386
+  Total Area          :     33,240
+    Sequential        :      8,082
+    Combinational     :     25,158
 
   Latency Index       :      2,277
   Total States        :        485
 
   Clock Period        :       10ns
-  Critical Path Delay :   8.4404ns
+  Critical Path Delay :    8.435ns
 
-  Net                 :     43,362
-  Pin Pair            :    111,434
+  Net                 :     33,414
+  Pin Pair            :     82,756
 
   Port                :        150
     In                :         66
@@ -30,14 +30,14 @@ Cyber Synthesis Report
 ========
 
   Total :
-    Total           :     48,498
+    Total           :     33,240
       Sequential    : 
-        REG         :     17,112 (35%)
-      Combinational :     31,386 (64%)
-        FU          :      6,961 (14%)
-        MUX         :     19,106 (39%)
+        REG         :      8,082 (24%)
+      Combinational :     25,158 (75%)
+        FU          :      6,961 (20%)
+        MUX         :     13,458 (40%)
         DEC         :         42 ( <1%)
-        MISC        :      5,277 (10%)
+        MISC        :      4,697 (14%)
       Memory        :          -
 
 ===================
@@ -84,49 +84,50 @@ Cyber Synthesis Report
     -------------------------------------------------
         1             1          4                  4
     -------------------------------------------------
-        3             3          2                  6
-    -------------------------------------------------
-        4             4          1                  4
+        4             4          2                  8
     -------------------------------------------------
         5             5          1                  5
     -------------------------------------------------
         9             9          1                  9
     -------------------------------------------------
-       16            16          1                 16
+       14            14          1                 14
     -------------------------------------------------
-       18            18          2                 36
+       18            18          1                 18
     -------------------------------------------------
-       20            20          1                 20
+       20            20          4                 80
     -------------------------------------------------
-       32            32         86              2,752
+       25            25          1                 25
     -------------------------------------------------
-    Total                                       2,852
+       32            32         37              1,184
+    -------------------------------------------------
+    Total                                       1,347
 
 ===============
 ; Multiplexer ;
 ===============
 
-   1 bit: (1way: 1),  2way: 8 ,  6way: 1 , 35way: 1 
-   2 bit:  2way:35 ,  3way: 2 
-   3 bit: (1way: 2),  2way:23 ,  3way: 2 ,  4way: 1 ,  5way: 8 ,  6way: 1 ,
-	  7way:17 
-   4 bit: (1way: 1),  2way:16 ,  3way: 2 ,  4way: 1 , 15way: 2 
-   5 bit:  2way:10 ,  3way: 4 ,  5way: 1 ,  6way: 1 ,  8way: 1 , 31way: 2 
-   6 bit:  2way: 2 ,  3way: 2 ,  4way: 1 
+   1 bit: (1way: 1),  2way: 9 ,  6way: 1 , 36way: 1 
+   2 bit:  2way:28 ,  3way:10 
+   3 bit: (1way: 4),  2way:12 ,  3way: 2 ,  4way:10 ,  5way: 1 ,  7way: 9 
+   4 bit:  2way:12 ,  3way: 1 ,  4way: 2 , 15way: 1 
+   5 bit:  2way:10 ,  3way: 3 ,  5way: 1 ,  6way: 1 ,  8way: 1 , 31way: 2 
+   6 bit:  2way: 4 ,  3way: 1 ,  4way: 1 , 63way: 1 
    7 bit:  3way: 2 , 63way: 1 , 82way: 1 , 87way: 1 
-   8 bit:  2way: 2 
-   9 bit: 330way: 1 
+   8 bit: (1way: 2),  2way: 1 
+   9 bit: 359way: 1 
+  12 bit:  2way: 1 
   13 bit:  2way: 1 
-  14 bit:  2way: 1 , 15way: 2 
-  16 bit: (1way: 2),  2way:10 ,  3way: 1 ,  5way: 1 ,  9way: 1 , 101way: 1 
-  18 bit:  2way: 3 ,  3way: 2 ,  4way: 1 
-  20 bit:  2way: 4 ,  6way: 1 ,  8way: 2 , 10way: 1 
+  14 bit:  2way: 6 ,  4way: 1 , 15way: 1 , 44way: 1 
+  16 bit: (1way: 1),  2way: 2 ,  3way: 1 ,  4way: 1 ,  5way: 1 ,  7way: 1 
+  18 bit:  2way: 3 
+  19 bit:  2way: 1 
+  20 bit:  2way:11 ,  3way: 1 ,  4way: 2 ,  6way: 1 ,  8way: 1 , 54way: 1 
   21 bit:  2way: 1 
-  25 bit:  2way: 1 
+  25 bit:  2way: 1 ,  5way: 1 
   31 bit:  2way: 3 
-  32 bit:  2way:40 ,  3way:42 ,  4way: 5 ,  5way: 3 ,  6way: 1 ,  7way: 3 ,
-	  8way: 9 , 10way: 3 , 12way: 1 , 32way: 4 , 57way: 1 
-   Total : 28,669 (# of Fanins)
+  32 bit:  2way: 3 ,  3way:37 ,  4way: 3 ,  5way: 1 ,  6way: 2 ,  9way: 1 ,
+	 10way: 1 , 19way: 1 , 32way: 4 
+   Total : 20,798 (# of Fanins)
 
 ===========
 ; Decoder ;
@@ -143,8 +144,7 @@ Cyber Synthesis Report
     Name                   Type   Kind     Bit  Word  Area  Count  Count
     ------------------------------------------------------------------------
     MEMB32W65536           -      R1,W1     32 65,536     -      0      2
-    MEMB32W64              -      R1,W1     32    64     -      1      0
-    MEMB32W8               -      R1,W1     32     8     -      8      0
+    MEMB32W64              -      R1,W1     32    64     -      2      0
 
 ===========
 ; Latency ;
@@ -159,17 +159,17 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : L1
-        Line          : computer.cpp:454
+        Line          : computer.cpp:462
     L1:
         Type          : S
-        Latency       : (2 + {0, {0, 1} + 1} + {{{0, {0, 1} + 1}, {{{0, {0, 1} + 1}, {0, 1} + 1 + 1}, {0, 1} + 1 + {0, 1} + 1} + 1}, {{{0, {0, 1} + 1}, {0, 1} + 1 + 1}, {0, 1} + 1 + {0, 1} + 1} + 1 + 1 + {0, 1} + 1} + 1 + {{{{{{{{{{{{0, {0, {0, {0, 1} + 1} + 1 + 34} + 1}, {{{0, 1} + {0, 1}, {0, {0, 1} + 1} + 1}, {{0, 1} + 1, {0, {0, {0, 1} + 1} + 1 + 34} + 1} + 1} + 1}, {{{0, 1} + {0, 1}, {0, {0, 1} + 1} + 1}, {{0, 1} + 1, {0, {0, {0, 1} + 1} + 1 + 34} + 1} + 1} + 1 + 1}, {{0, {0, {0, {0, 1} + 1} + 1 + 34} + 1}, {{{0, 1} + {0, 1}, {0, {0, 1} + 1} + 1}, {{0, 1} + 1, {0, {0, {0, 1} + 1} + 1 + 34} + 1} + 1} + 1 + 1} + 1}, {0, {{0, {0, {0, {0, 1} + 1} + 1 + 34} + 1}, {{{0, 1} + {0, 1}, {0, {0, 1} + 1} + 1}, {{0, 1} + 1, {0, {0, {0, 1} + 1} + 1 + 34} + 1} + 1} + 1 + 1} + 1} + 1}, {0, {{0, {0, {0, {0, 1} + 1} + 1 + 34} + 1}, {{{0, 1} + {0, 1}, {0, {0, 1} + 1} + 1}, {{0, 1} + 1, {0, {0, {0, 1} + 1} + 1 + 34} + 1} + 1} + 1 + 1} + 1} + 1 + 1}, {0, {0, {{0, {0, {0, {0, 1} + 1} + 1 + 34} + 1}, {{{0, 1} + {0, 1}, {0, {0, 1} + 1} + 1}, {{0, 1} + 1, {0, {0, {0, 1} + 1} + 1 + 34} + 1} + 1} + 1 + 1} + 1} + 1 + 1} + 1}, {0, {0, {0, {{0, {0, {0, {0, 1} + 1} + 1 + 34} + 1}, {{{0, 1} + {0, 1}, {0, {0, 1} + 1} + 1}, {{0, 1} + 1, {0, {0, {0, 1} + 1} + 1 + 34} + 1} + 1} + 1 + 1} + 1} + 1 + 1} + 1 + 1} + 2}, {{{{0, {0, {0, {0, 1} + 1} + 1 + 34} + 1}, {{{0, 1} + {0, 1}, {0, {0, 1} + 1} + 1}, {{0, 1} + 1, {0, {0, {0, 1} + 1} + 1 + 34} + 1} + 1} + 1 + 1} + 1, {0, {{0, {0, {0, {0, 1} + 1} + 1 + 34} + 1}, {{{0, 1} + {0, 1}, {0, {0, 1} + 1} + 1}, {{0, 1} + 1, {0, {0, {0, 1} + 1} + 1 + 34} + 1} + 1} + 1 + 1} + 1} + 1}, {0, {0, {0, {{0, {0, {0, {0, 1} + 1} + 1 + 34} + 1}, {{{0, 1} + {0, 1}, {0, {0, 1} + 1} + 1}, {{0, 1} + 1, {0, {0, {0, 1} + 1} + 1 + 34} + 1} + 1} + 1 + 1} + 1} + 1 + 1} + 1 + 1} + 2} + 1}, {0, {{{{0, {0, {0, {0, 1} + 1} + 1 + 34} + 1}, {{{0, 1} + {0, 1}, {0, {0, 1} + 1} + 1}, {{0, 1} + 1, {0, {0, {0, 1} + 1} + 1 + 34} + 1} + 1} + 1 + 1} + 1, {0, {{0, {0, {0, {0, 1} + 1} + 1 + 34} + 1}, {{{0, 1} + {0, 1}, {0, {0, 1} + 1} + 1}, {{0, 1} + 1, {0, {0, {0, ...
+        Latency       : (2 + {{{{{{{{{{{{{{{{{{0, {0, 1} + 1}, {{{{{{{{{0, {0, {0, 1} + 1 + 1} + 1} + {0, 1}, {0, {0, {0, {0, 1} + 1 + 1} + 1} + 1} + 1}, {0, {0, {0, {0, {0, 1} + 1 + 1} + 1} + 1} + 1} + 1}, {{0, {0, 1} + 1 + 1} + 1, {0, {0, {0, {0, {0, 1} + 1 + 1} + 1} + 1} + 1} + 1} + 1}, {{0, {0, 1} + 1 + 1} + 1, {{0, {0, 1} + 1 + 1} + 1, {0, {0, {0, {0, {0, 1} + 1 + 1} + 1} + 1} + 1} + 1} + 1} + 1}, {{0, {0, 1} + 1 + 1} + 1, {{0, {0, 1} + 1 + 1} + 1, {{0, {0, 1} + 1 + 1} + 1, {0, {0, {0, {0, {0, 1} + 1 + 1} + 1} + 1} + 1} + 1} + 1} + 1} + 1}, {{{0, {0, 1} + 1 + 1} + 1, {{0, {0, 1} + 1 + 1} + 1, {0, {0, {0, {0, {0, 1} + 1 + 1} + 1} + 1} + 1} + 1} + 1} + 1, {{0, {0, 1} + 1 + 1} + 1, {{0, {0, 1} + 1 + 1} + 1, {{0, {0, 1} + 1 + 1} + 1, {0, {0, {0, {0, {0, 1} + 1 + 1} + 1} + 1} + 1} + 1} + 1} + 1} + 1} + 1}, {{0, {0, 1} + 1 + 1} + 1, {{{0, {0, 1} + 1 + 1} + 1, {{0, {0, 1} + 1 + 1} + 1, {0, {0, {0, {0, {0, 1} + 1 + 1} + 1} + 1} + 1} + 1} + 1} + 1, {{0, {0, 1} + 1 + 1} + 1, {{0, {0, 1} + 1 + 1} + 1, {{0, {0, 1} + 1 + 1} + 1, {0, {0, {0, {0, {0, 1} + 1 + 1} + 1} + 1} + 1} + 1} + 1} + 1} + 1} + 1} + 1}, {{0, {0, 1} + 1 + 1} + 1, {{0, {0, 1} + 1 + 1} + 1, {{{0, {0, 1} + 1 + 1} + 1, {{0, {0, 1} + 1 + 1} + 1, {0, {0, {0, {0, {0, 1} + 1 + 1} + 1} + 1} + 1} + 1} + 1} + 1, {{0, {0, 1} + 1 + 1} + 1, {{0, {0, 1} + 1 + 1} + 1, {{0, {0, 1} + 1 + 1} + 1, {0, {0, {0, {0, {0, 1} + 1 + 1} + 1} + 1} + 1} + 1} + 1} + 1} + 1} + 1} + 1} + 1} + 1}, {{{{{{{{{0, {0, {0, 1} + 1 + 1} + 1} + {0, 1}, {0, {0, {0, {0, 1} + 1 + 1} + 1} + 1} + 1}, {0, {0, {0, {0, {0, 1} + 1 + 1} + 1} + 1} + 1} + 1}, {{0, {0, 1} + 1 + 1} + 1, {0, {0, {0, {0, {0, 1} + 1 + 1} + 1} + 1} + 1} + 1} + 1}, {{0, {0, 1} + 1 + 1} + 1, {{0, {0, 1} + 1 + 1} + 1, {0, {0, {0, {0, {0, 1} + 1 + 1} + 1} + 1} + 1} + 1} + 1} + 1}, {{0, {0, 1} + 1 + 1} + 1, {{0, {0, 1} + 1 + 1} + 1, {{0, {0, 1} + 1 + 1} + 1, {0, {0, {0, {0, {0, 1} + 1 + 1} + 1} + 1} + 1} + 1} + 1} + 1} + 1}, {{{0, {0, 1} + 1 + 1} + 1, {{0, {0, 1} + 1 + 1} + 1, {0, {0, {0, {0, {0, 1} + 1 + 1} + 1} + 1} + 1} + 1} + 1} + 1, {{0, {0, 1} + 1 + 1 ...
         Latency Index : 2,276
         State No.     : 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 266, 267, 268, 269, 270, 271, 272, 273, 274, 275, 276, 277, 278, 279, 280, 281, 282, 283, 284, 285, 286, 287, 288, 289, 290, 291, 292, 293, 294, 295, 296, 297, 298, 299, 300, 301, 302, 303, 304, 305, 306, 307, 308, 309, 310, 311, 312, 313, 314, 315, 316, 317, 318, 319, 320, 321, 322, 323, 324, 325, 326, 327, 328, 329, 330, 331, 332, 333, 334, 335, 336, 337, 338, 339, 340, 341, 342, 343, 344, 345, 346, 347, 348, 349, 350, 351, 352, 353, 354, 355, 356, 357, 358, 359, 360, 361, 362, 363, 364, 365, 366, 367, 368, 369, 370, 371, 372, 373, 374, 375, 376, 377, 378, 379, 380, 381, 382, 383, 384, 385, 386, 387, 388, 389, 390, 391, 392, 393, 394, 395, 396, 397, 398, 399, 400, 401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 419, 420, 421, 422, 423, 424, 425, 426, 427, 428, 429, 430, 431, 432, 433, 434, 435, 436, 437, 438, 439, 440, 441, 442, 443, 444, 445, 446, 447, 448, 449, 450, 451, 452, 453, 454, 455, 456, 457, 458, 459, 460, 461, 462, 463, 464, 465, 466, 467, 468, 469, 470, 471, 472, 473, 474, 475, 476, 477, 478, 479, 480, 481, 482, 483, 484, 485
         Folding Loop  : -
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : L2, L67
-        Line          : computer.cpp:457
+        Line          : computer.cpp:465
     L2:
         Type          : S
         Latency       : (L3 + {0, L4 + L5 + L6 + L7 + L8 + L9 + L10 + 6 + L11 + L12 + L13 + L14 + L15 + L16 + L17 + L18 + 6 + L19 + L20 + L21 + L22 + L23 + L24 + L25 + L26 + 6 + L27 + L28 + L29 + L30 + L31 + L32 + L33 + L34 + 6 + L35 + L36 + L37 + L38 + L39 + L40 + L41 + L42 + 6 + L43 + L44 + L45 + L46 + L47 + L48 + L49 + L50 + 6 + L51 + L52 + L53 + L54 + L55 + L56 + L57 + L58 + 6 + L59 + L60 + L61 + L62 + L63 + L64 + L65 + L66 + 6}) * 1 + (L3 + L4 + L5 + L6 + L7 + L8 + L9 + L10 + 6 + L11 + L12 + L13 + L14 + L15 + L16 + L17 + L18 + 6 + L19 + L20 + L21 + L22 + L23 + L24 + L25 + L26 + 6 + L27 + L28 + L29 + L30 + L31 + L32 + L33 + L34 + 6 + L35 + L36 + L37 + L38 + L39 + L40 + L41 + L42 + 6 + L43 + L44 + L45 + L46 + L47 + L48 + L49 + L50 + 6 + L51 + L52 + L53 + L54 + L55 + L56 + L57 + L58 + 6 + L59 + L60 + L61 + L62 + L63 + L64 + L65 + L66 + 6)
@@ -179,7 +179,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : L3, L4, L5, L6, L7, L8, L9, L10, L11, L12, L13, L14, L15, L16, L17, L18, L19, L20, L21, L22, L23, L24, L25, L26, L27, L28, L29, L30, L31, L32, L33, L34, L35, L36, L37, L38, L39, L40, L41, L42, L43, L44, L45, L46, L47, L48, L49, L50, L51, L52, L53, L54, L55, L56, L57, L58, L59, L60, L61, L62, L63, L64, L65, L66
-        Line          : computer.cpp:325
+        Line          : computer.cpp:333
     L3:
         Type          : S
         Latency       : 2 * 8
@@ -189,7 +189,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L4:
         Type          : S
         Latency       : 2 * 8
@@ -199,7 +199,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L5:
         Type          : S
         Latency       : 2 * 8
@@ -209,7 +209,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L6:
         Type          : S
         Latency       : 2 * 8
@@ -219,7 +219,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L7:
         Type          : S
         Latency       : 2 * 8
@@ -229,7 +229,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L8:
         Type          : S
         Latency       : 2 * 8
@@ -239,7 +239,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L9:
         Type          : S
         Latency       : 2 * 8
@@ -249,7 +249,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L10:
         Type          : S
         Latency       : 2 * 8
@@ -259,7 +259,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L11:
         Type          : S
         Latency       : 2 * 8
@@ -269,7 +269,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L12:
         Type          : S
         Latency       : 2 * 8
@@ -279,7 +279,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L13:
         Type          : S
         Latency       : 2 * 8
@@ -289,7 +289,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L14:
         Type          : S
         Latency       : 2 * 8
@@ -299,7 +299,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L15:
         Type          : S
         Latency       : 2 * 8
@@ -309,7 +309,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L16:
         Type          : S
         Latency       : 2 * 8
@@ -319,7 +319,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L17:
         Type          : S
         Latency       : 2 * 8
@@ -329,7 +329,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L18:
         Type          : S
         Latency       : 2 * 8
@@ -339,7 +339,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L19:
         Type          : S
         Latency       : 2 * 8
@@ -349,7 +349,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L20:
         Type          : S
         Latency       : 2 * 8
@@ -359,7 +359,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L21:
         Type          : S
         Latency       : 2 * 8
@@ -369,7 +369,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L22:
         Type          : S
         Latency       : 2 * 8
@@ -379,7 +379,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L23:
         Type          : S
         Latency       : 2 * 8
@@ -389,7 +389,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L24:
         Type          : S
         Latency       : 2 * 8
@@ -399,7 +399,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L25:
         Type          : S
         Latency       : 2 * 8
@@ -409,7 +409,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L26:
         Type          : S
         Latency       : 2 * 8
@@ -419,7 +419,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L27:
         Type          : S
         Latency       : 2 * 8
@@ -429,7 +429,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L28:
         Type          : S
         Latency       : 2 * 8
@@ -439,7 +439,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L29:
         Type          : S
         Latency       : 2 * 8
@@ -449,7 +449,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L30:
         Type          : S
         Latency       : 2 * 8
@@ -459,7 +459,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L31:
         Type          : S
         Latency       : 2 * 8
@@ -469,7 +469,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L32:
         Type          : S
         Latency       : 2 * 8
@@ -479,7 +479,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L33:
         Type          : S
         Latency       : 2 * 8
@@ -489,7 +489,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L34:
         Type          : S
         Latency       : 2 * 8
@@ -499,7 +499,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L35:
         Type          : S
         Latency       : 2 * 8
@@ -509,7 +509,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L36:
         Type          : S
         Latency       : 2 * 8
@@ -519,7 +519,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L37:
         Type          : S
         Latency       : 2 * 8
@@ -529,7 +529,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L38:
         Type          : S
         Latency       : 2 * 8
@@ -539,7 +539,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L39:
         Type          : S
         Latency       : 2 * 8
@@ -549,7 +549,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L40:
         Type          : S
         Latency       : 2 * 8
@@ -559,7 +559,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L41:
         Type          : S
         Latency       : 2 * 8
@@ -569,7 +569,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L42:
         Type          : S
         Latency       : 2 * 8
@@ -579,7 +579,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L43:
         Type          : S
         Latency       : 2 * 8
@@ -589,7 +589,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L44:
         Type          : S
         Latency       : 2 * 8
@@ -599,7 +599,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L45:
         Type          : S
         Latency       : 2 * 8
@@ -609,7 +609,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L46:
         Type          : S
         Latency       : 2 * 8
@@ -619,7 +619,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L47:
         Type          : S
         Latency       : 2 * 8
@@ -629,7 +629,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L48:
         Type          : S
         Latency       : 2 * 8
@@ -639,7 +639,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L49:
         Type          : S
         Latency       : 2 * 8
@@ -649,7 +649,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L50:
         Type          : S
         Latency       : 2 * 8
@@ -659,7 +659,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L51:
         Type          : S
         Latency       : 2 * 8
@@ -669,7 +669,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L52:
         Type          : S
         Latency       : 2 * 8
@@ -679,7 +679,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L53:
         Type          : S
         Latency       : 2 * 8
@@ -689,7 +689,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L54:
         Type          : S
         Latency       : 2 * 8
@@ -699,7 +699,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L55:
         Type          : S
         Latency       : 2 * 8
@@ -709,7 +709,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L56:
         Type          : S
         Latency       : 2 * 8
@@ -719,7 +719,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L57:
         Type          : S
         Latency       : 2 * 8
@@ -729,7 +729,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L58:
         Type          : S
         Latency       : 2 * 8
@@ -739,7 +739,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L59:
         Type          : S
         Latency       : 2 * 8
@@ -749,7 +749,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L60:
         Type          : S
         Latency       : 2 * 8
@@ -759,7 +759,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L61:
         Type          : S
         Latency       : 2 * 8
@@ -769,7 +769,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L62:
         Type          : S
         Latency       : 2 * 8
@@ -779,7 +779,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L63:
         Type          : S
         Latency       : 2 * 8
@@ -789,7 +789,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L64:
         Type          : S
         Latency       : 2 * 8
@@ -799,7 +799,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L65:
         Type          : S
         Latency       : 2 * 8
@@ -809,7 +809,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L66:
         Type          : S
         Latency       : 2 * 8
@@ -819,7 +819,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:346
+        Line          : computer.cpp:354
     L67:
         Type          : S
         Latency       : (L68 + {0, L69 + L70 + L71 + L72 + L73 + L74 + L75 + 7 + L76 + L77 + L78 + L79 + L80 + L81 + L82 + L83 + 7 + L84 + L85 + L86 + L87 + L88 + L89 + L90 + L91 + 7 + L92 + L93 + L94 + L95 + L96 + L97 + L98 + L99 + 7 + L100 + L101 + L102 + L103 + L104 + L105 + L106 + L107 + 7 + L108 + L109 + L110 + L111 + L112 + L113 + L114 + L115 + 7 + L116 + L117 + L118 + L119 + L120 + L121 + L122 + L123 + 7 + L124 + L125 + L126 + L127 + L128 + L129 + L130 + L131 + 7}) * 1 + (L68 + L69 + L70 + L71 + L72 + L73 + L74 + L75 + 7 + L76 + L77 + L78 + L79 + L80 + L81 + L82 + L83 + 7 + L84 + L85 + L86 + L87 + L88 + L89 + L90 + L91 + 7 + L92 + L93 + L94 + L95 + L96 + L97 + L98 + L99 + 7 + L100 + L101 + L102 + L103 + L104 + L105 + L106 + L107 + 7 + L108 + L109 + L110 + L111 + L112 + L113 + L114 + L115 + 7 + L116 + L117 + L118 + L119 + L120 + L121 + L122 + L123 + 7 + L124 + L125 + L126 + L127 + L128 + L129 + L130 + L131 + 7)
@@ -829,7 +829,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : L68, L69, L70, L71, L72, L73, L74, L75, L76, L77, L78, L79, L80, L81, L82, L83, L84, L85, L86, L87, L88, L89, L90, L91, L92, L93, L94, L95, L96, L97, L98, L99, L100, L101, L102, L103, L104, L105, L106, L107, L108, L109, L110, L111, L112, L113, L114, L115, L116, L117, L118, L119, L120, L121, L122, L123, L124, L125, L126, L127, L128, L129, L130, L131
-        Line          : computer.cpp:359
+        Line          : computer.cpp:367
     L68:
         Type          : S
         Latency       : 2 * 8
@@ -839,7 +839,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L69:
         Type          : S
         Latency       : 2 * 8
@@ -849,7 +849,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L70:
         Type          : S
         Latency       : 2 * 8
@@ -859,7 +859,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L71:
         Type          : S
         Latency       : 2 * 8
@@ -869,7 +869,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L72:
         Type          : S
         Latency       : 2 * 8
@@ -879,7 +879,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L73:
         Type          : S
         Latency       : 2 * 8
@@ -889,7 +889,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L74:
         Type          : S
         Latency       : 2 * 8
@@ -899,7 +899,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L75:
         Type          : S
         Latency       : 2 * 8
@@ -909,7 +909,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L76:
         Type          : S
         Latency       : 2 * 8
@@ -919,7 +919,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L77:
         Type          : S
         Latency       : 2 * 8
@@ -929,7 +929,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L78:
         Type          : S
         Latency       : 2 * 8
@@ -939,7 +939,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L79:
         Type          : S
         Latency       : 2 * 8
@@ -949,7 +949,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L80:
         Type          : S
         Latency       : 2 * 8
@@ -959,7 +959,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L81:
         Type          : S
         Latency       : 2 * 8
@@ -969,7 +969,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L82:
         Type          : S
         Latency       : 2 * 8
@@ -979,7 +979,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L83:
         Type          : S
         Latency       : 2 * 8
@@ -989,7 +989,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L84:
         Type          : S
         Latency       : 2 * 8
@@ -999,7 +999,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L85:
         Type          : S
         Latency       : 2 * 8
@@ -1009,7 +1009,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L86:
         Type          : S
         Latency       : 2 * 8
@@ -1019,7 +1019,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L87:
         Type          : S
         Latency       : 2 * 8
@@ -1029,7 +1029,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L88:
         Type          : S
         Latency       : 2 * 8
@@ -1039,7 +1039,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L89:
         Type          : S
         Latency       : 2 * 8
@@ -1049,7 +1049,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L90:
         Type          : S
         Latency       : 2 * 8
@@ -1059,7 +1059,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L91:
         Type          : S
         Latency       : 2 * 8
@@ -1069,7 +1069,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L92:
         Type          : S
         Latency       : 2 * 8
@@ -1079,7 +1079,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L93:
         Type          : S
         Latency       : 2 * 8
@@ -1089,7 +1089,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L94:
         Type          : S
         Latency       : 2 * 8
@@ -1099,7 +1099,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L95:
         Type          : S
         Latency       : 2 * 8
@@ -1109,7 +1109,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L96:
         Type          : S
         Latency       : 2 * 8
@@ -1119,7 +1119,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L97:
         Type          : S
         Latency       : 2 * 8
@@ -1129,7 +1129,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L98:
         Type          : S
         Latency       : 2 * 8
@@ -1139,7 +1139,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L99:
         Type          : S
         Latency       : 2 * 8
@@ -1149,7 +1149,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L100:
         Type          : S
         Latency       : 2 * 8
@@ -1159,7 +1159,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L101:
         Type          : S
         Latency       : 2 * 8
@@ -1169,7 +1169,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L102:
         Type          : S
         Latency       : 2 * 8
@@ -1179,7 +1179,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L103:
         Type          : S
         Latency       : 2 * 8
@@ -1189,7 +1189,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L104:
         Type          : S
         Latency       : 2 * 8
@@ -1199,7 +1199,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L105:
         Type          : S
         Latency       : 2 * 8
@@ -1209,7 +1209,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L106:
         Type          : S
         Latency       : 2 * 8
@@ -1219,7 +1219,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L107:
         Type          : S
         Latency       : 2 * 8
@@ -1229,7 +1229,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L108:
         Type          : S
         Latency       : 2 * 8
@@ -1239,7 +1239,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L109:
         Type          : S
         Latency       : 2 * 8
@@ -1249,7 +1249,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L110:
         Type          : S
         Latency       : 2 * 8
@@ -1259,7 +1259,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L111:
         Type          : S
         Latency       : 2 * 8
@@ -1269,7 +1269,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L112:
         Type          : S
         Latency       : 2 * 8
@@ -1279,7 +1279,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L113:
         Type          : S
         Latency       : 2 * 8
@@ -1289,7 +1289,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L114:
         Type          : S
         Latency       : 2 * 8
@@ -1299,7 +1299,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L115:
         Type          : S
         Latency       : 2 * 8
@@ -1309,7 +1309,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L116:
         Type          : S
         Latency       : 2 * 8
@@ -1319,7 +1319,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L117:
         Type          : S
         Latency       : 2 * 8
@@ -1329,7 +1329,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L118:
         Type          : S
         Latency       : 2 * 8
@@ -1339,7 +1339,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L119:
         Type          : S
         Latency       : 2 * 8
@@ -1349,7 +1349,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L120:
         Type          : S
         Latency       : 2 * 8
@@ -1359,7 +1359,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L121:
         Type          : S
         Latency       : 2 * 8
@@ -1369,7 +1369,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L122:
         Type          : S
         Latency       : 2 * 8
@@ -1379,7 +1379,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L123:
         Type          : S
         Latency       : 2 * 8
@@ -1389,7 +1389,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L124:
         Type          : S
         Latency       : 2 * 8
@@ -1399,7 +1399,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L125:
         Type          : S
         Latency       : 2 * 8
@@ -1409,7 +1409,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L126:
         Type          : S
         Latency       : 2 * 8
@@ -1419,7 +1419,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L127:
         Type          : S
         Latency       : 2 * 8
@@ -1429,7 +1429,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L128:
         Type          : S
         Latency       : 2 * 8
@@ -1439,7 +1439,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L129:
         Type          : S
         Latency       : 2 * 8
@@ -1449,7 +1449,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L130:
         Type          : S
         Latency       : 2 * 8
@@ -1459,7 +1459,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
     L131:
         Type          : S
         Latency       : 2 * 8
@@ -1469,7 +1469,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:380
+        Line          : computer.cpp:388
 
 =======
 ; FSM ;
@@ -1485,17 +1485,17 @@ Cyber Synthesis Report
 =========
 
   Clock Period        :       10ns
-  Critical Path Delay :   8.4404ns
+  Critical Path Delay :    8.435ns
 
               Subtotal
       Class       (ns)    Ratio
       -------------------------
       IN           0.00      0%
       FU           7.61     90%
-      MUX          0.83      9%
+      MUX          0.50      5%
       DEC          0.00      0%
-      MISC         0.00      0%
-      MEM          0.00     <1%
+      MISC         0.33      3%
+      MEM          0.00      0%
       -------------------------
       Total        8.44
 
@@ -1504,14 +1504,18 @@ Cyber Synthesis Report
                                                           Delay    Time Logic
       Name                 / Port [Signal              ]   (ns)   (ns)  Stage
       -----------------------------------------------------------------------
-      blk_in_a_0           / o1   [blk_in_a_0.RD1      ]   0.00    0.00     0
-      _DMUX_51835          / o1   [TR_198              ]   0.34    0.34     5
-      _NMUX_48272          / o1   [mul32s1i1           ]   0.18    0.52     8
-      mul32s@1             / o1   [mul32s1ot           ]   7.61    8.13    77
-      _NMUX_48259          / o1   [add20s1i2           ]   0.11    8.24    79
-      add20s@1             / o1   [add20s1ot           ]   0.00    8.24    79
-      _NMUX_47914          / o1   [RL_addr1_buf_buf1_next_pc_op1_PC]   0.20    8.44    82
-      RL_addr1_buf_buf1_next_pc_op1_PC / din  [                    ]      -    8.44    82
+      B01_streg            / dout [                    ]      -    0.00     0
+      _XOR_127119          / o1   [                    ]   0.00    0.00     0
+      _RNOR_101449         / o1   [ST1_420d            ]   0.16    0.16     2
+      ST1_420d             / o1   [                    ]   0.00    0.16     2
+      _OR_123309           / o1   [M_3050              ]   0.17    0.33     5
+      _NMUX_36171          / o1   [TR_20               ]   0.07    0.40     7
+      _NMUX_34227          / o1   [mul32s1i2           ]   0.08    0.48     9
+      mul32s@1             / o1   [mul32s1ot           ]   7.61    8.09    78
+      _NMUX_34213          / o1   [add20s1i2           ]   0.07    8.17    80
+      add20s@1             / o1   [add20s1ot           ]   0.00    8.17    80
+      _NMUX_33988          / o1   [RG_buf1_coef_coef1_y]   0.27    8.44    84
+      RG_buf1_coef_coef1_y / din  [                    ]      -    8.44    84
 
   False Path                    :  Unchecked
   Multi Cycle Path              :  Unchecked
@@ -1522,194 +1526,188 @@ Cyber Synthesis Report
 ; Wire ;
 ========
 
-  Total Net Count      :   43,362
-  Total Pin Pair Count :  111,434
-  Const Fanout         :   15,215
+  Total Net Count      :   33,414
+  Total Pin Pair Count :   82,756
+  Const Fanout         :   15,417
 
   Net Count :
          Bit       Net    Bit*Net
      ----------------------------
-           1     2,309      2,309
-           2        70        140
-           3        90        270
-           4        50        200
-           5        36        180
-           6        18        108
+           1     2,211      2,211
+           2        67        134
+           3        59        177
+           4        39        156
+           5        35        175
+           6        20        120
            7        17        119
-           8         7         56
-           9       642      5,778
+           8         8         64
+           9       655      5,895
+          12         1         12
           13         2         26
-          14         3         42
-          16        18        288
-          18        10        180
-          20        10        200
+          14        10        140
+          16         7        112
+          18         6        108
+          19         1         19
+          20        24        480
           21         1         21
           23         1         23
-          25         1         25
+          25         3         75
           27         1         27
           31         3         93
-          32       275      8,800
+          32       159      5,088
      ----------------------------
-       Total               18,885
+       Total               15,275
 
   Pin Pair Count :
       Fanout    Bit    Count   Subtotal
     -----------------------------------
          485      9        1      4,365
-         342      1        1        342
-         117      1        1        117
-         107      1        1        107
-          93      1        1         93
-          68      1        2        136
+         338      1        1        338
+         105      1        1        105
+          76      1        1         76
           66      1        1         66
-          64      1        8        512
-          53     32        1      1,696
-          52      1        1         52
-          49     32        1      1,568
-          43      1        1         43
-          41      1        1         41
-          38      3        1        114
+          65      1        1         65
+          63      1        2        126
+          60      1        1         60
+          56      1        2        112
+          45      1        1         45
+          38      1        1         38
+          36      2        1         72
           36      1        1         36
+          35      2        1         70
           35      1        1         35
-          34      1        1         34
           33      1        2         66
           32     32        1      1,024
-          32     17        1        544
-          32      1        4        128
-          29      1        2         58
+          32      1        1         32
+          29      1        1         29
           28      1        1         28
-          27      8        1        216
-          26     12        1        312
-          26      1        1         26
+          27      5        1        135
+          27      2        1         54
+          26     16        1        416
+          26      3        1         78
+          25     10        1        250
+          25      8        1        200
+          25      3        1         75
           25      1        1         25
-          24     20        1        480
-          24      2        1         48
+          24      1        2         48
+          23     14        1        322
           23      1        1         23
-          22      3        1         66
-          22      1        2         44
+          22      7        1        154
+          21     11        1        231
+          21      4        1         84
           21      1        1         21
-          20      1        2         40
-          19      1       16        304
-          18      1       11        198
-          17      1       26        442
-          16     16        3        768
-          16      1       12        192
-          15     16        1        240
-          15      1       13        195
-          14     32        1        448
-          14      5        1         70
-          14      1        8        112
+          20      1        1         20
+          19      1        3         57
+          18     12        1        216
+          18      7        1        126
+          18      1        1         18
+          17      1        3         51
+          16      1        3         48
+          15     18        1        270
+          15      2        1         30
+          14     13        1        182
+          14     12        1        168
+          14      1        6         84
           13      7        1         91
           13      4        1         52
-          13      1       14        182
-          12      5        1         60
-          12      1       17        204
-          11     27        1        297
-          11     19        1        209
+          13      2        1         26
+          13      1       23        299
+          12      1       20        240
           11     16        1        176
-          11     10        1        110
-          11      3        1         33
-          11      1       19        209
-          10      5        1         50
+          11     11        1        121
+          11      1       27        297
+          10     19        1        190
           10      2        1         20
-          10      1       49        490
-           9     19        1        171
-           9     18        1        162
+          10      1       39        390
+           9     20        3        540
            9     14        1        126
-           9     12        1        108
-           9      5        1         45
-           9      3        3         81
-           9      1       29        261
-           8     16        4        512
-           8     12        1         96
+           9      3        1         27
+           9      1       54        486
+           8     20        3        480
+           8     14        1        112
+           8      4        1         32
            8      3        1         24
-           8      1      158      1,264
-           7     32        1        224
-           7     18        1        126
-           7     15        1        105
-           7     12        1         84
-           7     11        1         77
+           8      1      147      1,176
+           7     19        1        133
+           7     14        5        490
            7      5        1         35
-           7      1       58        406
+           7      2        2         28
+           7      1       85        595
            6     32        1        192
-           6     20        1        120
-           6     19        1        114
-           6     16        1         96
+           6      8        1         48
            6      6        1         36
-           6      4        1         24
-           6      1       82        492
-           5     32       33      5,280
-           5     16        1         80
+           6      2        1         12
+           6      1       73        438
+           5     32       32      5,120
+           5     17        1         85
+           5     16        2        160
+           5     15        1         75
+           5     11        1         55
+           5     10        1         50
            5      7        1         35
-           5      3        1         15
-           5      1       44        220
-           4     30        1        120
-           4     20        8        640
-           4     18        3        216
-           4     16        4        256
+           5      2        1         10
+           5      1       62        310
+           4     32        1        128
+           4     16        1         64
            4     13        1         52
            4     11        1         44
-           4      9        1         36
-           4      8        1         32
-           4      7        1         28
            4      5        1         20
-           4      1       50        200
-           3     32        7        672
+           4      4        1         16
+           4      2        1          8
+           4      1       38        152
+           3     32        1         96
            3     20        1         60
-           3     18        4        216
-           3     16        2         96
-           3     14        1         42
-           3     13        2         78
-           3     12        1         36
+           3     16        3        144
            3      7        1         21
-           3      3        1          9
-           3      2        4         24
-           3      1       94        282
-           2     32       33      2,112
+           3      5        1         15
+           3      4        1         12
+           3      3        2         18
+           3      1      119        357
+           2     32        1         64
+           2     26        1         52
            2     23        1         46
            2     20        1         40
-           2     16        4        128
-           2     14        1         28
-           2     13        3         78
-           2     12        9        216
+           2     16        1         32
+           2     12        1         24
            2      5        1         10
            2      4        1          8
-           2      3        2         12
+           2      3        5         30
            2      2        1          4
-           2      1      471        942
-           1     32      163      5,216
+           2      1      398        796
+           1     32      107      3,424
            1     31        3         93
-           1     26        1         26
-           1     25        1         25
+           1     25        2         50
            1     21        1         21
-           1     20        7        140
-           1     18        6        108
-           1     16        9        144
-           1     14        1         14
-           1     13        1         13
-           1      9      641      5,769
-           1      8        7         56
+           1     20       14        280
+           1     19        1         19
+           1     18        4         72
+           1     16        8        128
+           1     14        2         28
+           1     13        2         26
+           1     12        2         24
+           1      9      654      5,886
+           1      8        8         64
            1      7       15        105
-           1      6       16         96
-           1      5       35        175
-           1      4       42        168
-           1      3       87        261
-           1      2       73        146
-           1      1    1,146      1,146
+           1      6       18        108
+           1      5       34        170
+           1      4       30        120
+           1      3       59        177
+           1      2       70        140
+           1      1    1,128      1,128
     -----------------------------------
-       Total                     48,795
+       Total                     37,362
 
   Fanout for Consts:
       Value    Fanout
-          0    10,548
-          1     4,667
+          0    10,656
+          1     4,761
     ------------------
-      Total    15,215
+      Total    15,417
 
   Clock Fanout:
       Name                         Count
       ----------------------------------
-      CLOCK(0..0)                    117
+      CLOCK(0..0)                     56
 
   Reset Fanout:
       Name                         Count
@@ -1721,30 +1719,30 @@ Cyber Synthesis Report
     Fanin: (Top 10 Registers)
       Register Name                              Cone Size
       ----------------------------------------------------
-      RL_addr1_buf_buf1_next_pc_op1_PC(31..0)           61
-      RL_instr_next_pc_PC_result1(31..0)                51
-      RG_07(31..0)                                      50
-      RG_addr_next_pc_result(31..0)                     48
-      regs_rg00(31..0)                                  47
-      regs_rg01(31..0)                                  47
-      regs_rg02(31..0)                                  47
-      regs_rg03(31..0)                                  47
-      regs_rg04(31..0)                                  47
-      regs_rg05(31..0)                                  47
+      RG_buf_buf1_1(31..0)                              52
+      RL_buf_buf1_coef_rs1_rs2_val1(19..0)              52
+      RG_buf_buf1_instr_rd_word_addr(24..0)             51
+      RG_buf_buf1_funct3_imm1_next_pc(31..0)            50
+      RL_addr_buf_instr_op2_result(31..0)               49
+      RG_addr1_next_pc_op1_PC_src_addr(31..0)           48
+      FF_take(0..0)                                     43
+      RG_dst_addr(17..0)                                37
+      RG_buf1_coef_coef1_y(19..0)                       15
+      RG_buf_buf1(19..0)                                14
 
     Fanout: (Top 10 Registers)
       Register Name                              Cone Size
       ----------------------------------------------------
-      B01_streg(8..0)                                  149
-      RG_11(31..0)                                      81
-      FF_take(0..0)                                     69
-      RL_addr1_buf_buf1_next_pc_op1_PC(31..0)           60
-      RG_rd_rs1_rs2_src_addr_val1(17..0)                52
-      RG_funct3_imm1_result(31..0)                      50
-      RG_rs1_rs2_y(4..0)                                50
-      RL_instr_next_pc_PC_result1(31..0)                45
-      regs_rg00(31..0)                                  45
-      regs_rg01(31..0)                                  45
+      B01_streg(8..0)                                   67
+      RG_buf_buf1_2(31..0)                              56
+      RG_addr1_next_pc_op1_PC_src_addr(31..0)           49
+      RG_buf_buf1_funct3_imm1_next_pc(31..0)            46
+      RG_buf_buf1_instr_rd_word_addr(24..0)             43
+      RL_addr_buf_instr_op2_result(31..0)               42
+      RG_rs1_rs2(4..0)                                  38
+      RG_buf_buf1_1(31..0)                              35
+      RG_k_y(3..0)                                      20
+      RG_y(3..0)                                        19
 
   Routability:
 
@@ -1753,60 +1751,60 @@ Cyber Synthesis Report
       Net Name                                    Total      Max
       -----------------------------------------------------------------
       B01_streg(8..0)                             4,365      485 ( 9bit)
-      dmem_arg_MEMB32W65536_RD1(31..0)            1,696       53 (32bit)
-      TR_205(31..0)                               1,568       49 (32bit)
       regs_wd04(31..0)                            1,024       32 (32bit)
-      RL_addr1_buf_buf1_next_pc_op1_PC(31..0)       958       41 ( 1bit)
-      RG_funct3_imm1_result(31..0)                  917      107 ( 1bit)
-      RG_11(31..0)                                  448       14 (32bit)
-      RG_rs1_rs2_y(4..0)                            371      342 ( 1bit)
-      RG_op2(31..0)                                 367       14 ( 5bit)
-      RL_instr_next_pc_PC_result1(31..0)            363       68 ( 1bit)
-      imem_arg_MEMB32W65536_RD1(31..0)              324       66 ( 1bit)
+      RG_buf_buf1_funct3_imm1_next_pc(31..0)        851      105 ( 1bit)
+      RL_addr_buf_instr_op2_result(31..0)           793       60 ( 1bit)
+      RG_addr1_next_pc_op1_PC_src_addr(31..0)       792       27 ( 2bit)
+      RG_buf_buf1_2(31..0)                          480       28 ( 1bit)
+      RG_y(3..0)                                    381      338 ( 1bit)
+      imem_arg_MEMB32W65536_RD1(31..0)              333       66 ( 1bit)
       regs_rd00(31..0)                              322       11 (16bit)
-      RG_buf_val(31..0)                             316       23 ( 1bit)
-      RG_addr_next_pc_result(31..0)                 272       20 ( 1bit)
-      add20s1ot(19..0)                              264       93 ( 1bit)
-      TR_200(15..0)                                 256       16 (16bit)
-      TR_203(15..0)                                 256       16 (16bit)
-      TR_204(15..0)                                 256       16 (16bit)
-      TR_202(15..0)                                 240       15 (16bit)
-      TR_198(31..0)                                 224        7 (32bit)
-      RG_buf_buf1_5(31..0)                          200       32 ( 1bit)
+      C_q1ot(13..0)                                 312       63 ( 1bit)
+      RG_buf_buf1_instr_rd_word_addr(24..0)         276       45 ( 1bit)
+      add20s1ot(19..0)                              246       56 ( 1bit)
+      sub16s_131ot(12..0)                           244       76 ( 1bit)
+      add32s1ot(31..0)                              211       19 ( 1bit)
       regs_rd01(31..0)                              192        6 (32bit)
-      add32s1ot(31..0)                              179       18 ( 1bit)
-      regs_rd03(31..0)                              176        6 (16bit)
-      RG_buf_buf1(19..0)                            172       43 ( 1bit)
+      TR_176(19..0)                                 180        9 (20bit)
+      TR_178(19..0)                                 180        9 (20bit)
+      TR_179(19..0)                                 180        9 (20bit)
+      TR_175(19..0)                                 160        8 (20bit)
+      TR_177(19..0)                                 160        8 (20bit)
+      TR_180(19..0)                                 160        8 (20bit)
+      regs_rg00(31..0)                              160        5 (32bit)
+      regs_rg01(31..0)                              160        5 (32bit)
+      regs_rg02(31..0)                              160        5 (32bit)
+      regs_rg03(31..0)                              160        5 (32bit)
 
     Top 25 Nets
     sorted by "Max" (Maximum Fanout)
       Net Name                                    Total      Max
       -----------------------------------------------------------------
       B01_streg(8..0)                             4,365      485 ( 9bit)
-      RG_rs1_rs2_y(4..0)                            371      342 ( 1bit)
-      CLOCK(0..0)                                   117      117 ( 1bit)
-      RG_funct3_imm1_result(31..0)                  917      107 ( 1bit)
-      add20s1ot(19..0)                              264       93 ( 1bit)
-      RL_instr_next_pc_PC_result1(31..0)            363       68 ( 1bit)
-      FF_take(0..0)                                  68       68 ( 1bit)
-      imem_arg_MEMB32W65536_RD1(31..0)              324       66 ( 1bit)
-      M_5282(0..0)                                   64       64 ( 1bit)
-      M_5295(0..0)                                   64       64 ( 1bit)
-      M_5298(0..0)                                   64       64 ( 1bit)
-      M_5304(0..0)                                   64       64 ( 1bit)
-      M_5310(0..0)                                   64       64 ( 1bit)
-      M_5325(0..0)                                   64       64 ( 1bit)
-      M_5329(0..0)                                   64       64 ( 1bit)
-      M_5337(0..0)                                   64       64 ( 1bit)
-      dmem_arg_MEMB32W65536_RD1(31..0)            1,696       53 (32bit)
-      M_5320(0..0)                                   52       52 ( 1bit)
-      TR_205(31..0)                               1,568       49 (32bit)
-      RG_buf_buf1(19..0)                            172       43 ( 1bit)
-      RL_addr1_buf_buf1_next_pc_op1_PC(31..0)       958       41 ( 1bit)
-      sub16s_131ot(12..0)                           144       36 ( 1bit)
+      RG_y(3..0)                                    381      338 ( 1bit)
+      RG_buf_buf1_funct3_imm1_next_pc(31..0)        851      105 ( 1bit)
+      sub16s_131ot(12..0)                           244       76 ( 1bit)
+      imem_arg_MEMB32W65536_RD1(31..0)              333       66 ( 1bit)
+      FF_take(0..0)                                  65       65 ( 1bit)
+      C_q1ot(13..0)                                 312       63 ( 1bit)
+      M_2920(0..0)                                   63       63 ( 1bit)
+      RL_addr_buf_instr_op2_result(31..0)           793       60 ( 1bit)
+      add20s1ot(19..0)                              246       56 ( 1bit)
+      CLOCK(0..0)                                    56       56 ( 1bit)
+      RG_buf_buf1_instr_rd_word_addr(24..0)         276       45 ( 1bit)
+      TR_173(0..0)                                   38       38 ( 1bit)
       RESET(0..0)                                    35       35 ( 1bit)
-      RG_coef_coef1_y(15..0)                        145       34 ( 1bit)
-      incr3u1ot(3..0)                                36       33 ( 1bit)
+      incr3u1ot(3..0)                                39       33 ( 1bit)
+      regs_wd04(31..0)                            1,024       32 (32bit)
+      regs_we04(0..0)                                32       32 ( 1bit)
+      rsft32u1ot(31..0)                             120       29 ( 1bit)
+      RG_buf_buf1_2(31..0)                          480       28 ( 1bit)
+      RG_addr1_next_pc_op1_PC_src_addr(31..0)       792       27 ( 2bit)
+      RG_k_y(3..0)                                   76       25 ( 1bit)
+      ST1_67d(0..0)                                  21       21 ( 1bit)
+      M_2931(0..0)                                   20       20 ( 1bit)
+      add32s1ot(31..0)                              211       19 ( 1bit)
+      RG_buf_buf1_1(31..0)                          158       18 ( 1bit)
 
 ================
 ; Primary Port ;
