@@ -294,3 +294,40 @@ module MEMB32W8 (
   always @(posedge RCLK1) if (RE1) rd <= mem[RA1];
   always @(posedge WCLK2) if (WE2) mem[WA2] <= WD2;
 endmodule
+
+// With blk_out forced to "Cyber array=RAM", CWB banks it to match the tap
+// unroll in bd1_u2 (2 x MEMB32W32) and bd1_u4 (4 x MEMB32W16).  Behavioral
+// models for local Verilator simulation only.
+module MEMB32W32 (
+  input [4:0] RA1,
+  output [31:0] RD1,
+  input RE1,
+  input RCLK1,
+  input [4:0] WA2,
+  input [31:0] WD2,
+  input WE2,
+  input WCLK2
+);
+  reg [31:0] mem [0:31];
+  reg [31:0] rd;
+  assign RD1 = rd;
+  always @(posedge RCLK1) if (RE1) rd <= mem[RA1];
+  always @(posedge WCLK2) if (WE2) mem[WA2] <= WD2;
+endmodule
+
+module MEMB32W16 (
+  input [3:0] RA1,
+  output [31:0] RD1,
+  input RE1,
+  input RCLK1,
+  input [3:0] WA2,
+  input [31:0] WD2,
+  input WE2,
+  input WCLK2
+);
+  reg [31:0] mem [0:15];
+  reg [31:0] rd;
+  assign RD1 = rd;
+  always @(posedge RCLK1) if (RE1) rd <= mem[RA1];
+  always @(posedge WCLK2) if (WE2) mem[WA2] <= WD2;
+endmodule
