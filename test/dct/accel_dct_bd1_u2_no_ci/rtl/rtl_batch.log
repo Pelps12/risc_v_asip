@@ -80,7 +80,7 @@ Loaded hex: /mnt/c/Users/EBC230001/Documents/DARClab/risc_v_asip/test/dct/accel_
 === RTL Simulation Start ===
 
 === RTL Simulation Complete ===
-  Total cycles: 15701016
+  Total cycles: 15194778
   Status: HALTED (computer_ret = 1)
 
 === Register Dump ===
@@ -104,7 +104,7 @@ Report written to: /mnt/c/Users/EBC230001/Documents/DARClab/risc_v_asip/test/dct
 === Done ===
 - /mnt/c/Users/EBC230001/Documents/DARClab/risc_v_asip/scripts/../rtl/dct/tb_computer_mem.sv:252: Verilog $finish
 make: Leaving directory '/mnt/c/Users/EBC230001/Documents/DARClab/risc_v_asip/sim/verilog'
-CPI = 7.2
+CPI = 7.0
 
 === Step 7: ISS vs RTL Comparison ===
   ISS x10 = 00000000

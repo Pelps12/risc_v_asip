@@ -58,10 +58,9 @@ g++   -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vl
 g++   -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable     -DVL_TIME_CONTEXT   -fcoroutines -include Vtb_computer__pch.h.slow -c -o Vtb_computer___024root__DepSet_h0d7f90bf__0__Slow.o Vtb_computer___024root__DepSet_h0d7f90bf__0__Slow.cpp
 g++   -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable     -DVL_TIME_CONTEXT   -fcoroutines -include Vtb_computer__pch.h.slow -c -o Vtb_computer___024root__DepSet_hb2b282c6__0__Slow.o Vtb_computer___024root__DepSet_hb2b282c6__0__Slow.cpp
 g++   -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable     -DVL_TIME_CONTEXT   -fcoroutines -include Vtb_computer__pch.h.slow -c -o Vtb_computer___024root__DepSet_hb2b282c6__1__Slow.o Vtb_computer___024root__DepSet_hb2b282c6__1__Slow.cpp
-g++   -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable     -DVL_TIME_CONTEXT   -fcoroutines -include Vtb_computer__pch.h.slow -c -o Vtb_computer___024root__DepSet_hb2b282c6__2__Slow.o Vtb_computer___024root__DepSet_hb2b282c6__2__Slow.cpp
 g++   -I.  -MMD -I/usr/share/verilator/include -I/usr/share/verilator/include/vltstd -DVM_COVERAGE=0 -DVM_SC=0 -DVM_TRACE=0 -DVM_TRACE_FST=0 -DVM_TRACE_VCD=0 -faligned-new -fcf-protection=none -Wno-bool-operation -Wno-overloaded-virtual -Wno-shadow -Wno-sign-compare -Wno-uninitialized -Wno-unused-but-set-parameter -Wno-unused-but-set-variable -Wno-unused-parameter -Wno-unused-variable     -DVL_TIME_CONTEXT   -fcoroutines -include Vtb_computer__pch.h.slow -c -o Vtb_computer__Syms.o Vtb_computer__Syms.cpp
 echo "" > Vtb_computer__ALL.verilator_deplist.tmp
-Archive ar -rcs Vtb_computer__ALL.a Vtb_computer.o Vtb_computer___024root__DepSet_h0d7f90bf__0.o Vtb_computer___024root__DepSet_hb2b282c6__0.o Vtb_computer___024root__DepSet_hb2b282c6__1.o Vtb_computer___024root__DepSet_hb2b282c6__2.o Vtb_computer__main.o Vtb_computer__ConstPool_0.o Vtb_computer___024root__Slow.o Vtb_computer___024root__DepSet_h0d7f90bf__0__Slow.o Vtb_computer___024root__DepSet_hb2b282c6__0__Slow.o Vtb_computer___024root__DepSet_hb2b282c6__1__Slow.o Vtb_computer___024root__DepSet_hb2b282c6__2__Slow.o Vtb_computer__Syms.o
+Archive ar -rcs Vtb_computer__ALL.a Vtb_computer.o Vtb_computer___024root__DepSet_h0d7f90bf__0.o Vtb_computer___024root__DepSet_hb2b282c6__0.o Vtb_computer___024root__DepSet_hb2b282c6__1.o Vtb_computer___024root__DepSet_hb2b282c6__2.o Vtb_computer__main.o Vtb_computer__ConstPool_0.o Vtb_computer___024root__Slow.o Vtb_computer___024root__DepSet_h0d7f90bf__0__Slow.o Vtb_computer___024root__DepSet_hb2b282c6__0__Slow.o Vtb_computer___024root__DepSet_hb2b282c6__1__Slow.o Vtb_computer__Syms.o
 g++     verilated.o verilated_timing.o verilated_threads.o Vtb_computer__ALL.a    -pthread -lpthread -latomic   -o tb_computer_sim
 rm Vtb_computer__ALL.verilator_deplist.tmp
 make[1]: Leaving directory '/mnt/c/Users/EBC230001/Documents/DARClab/risc_v_asip/test/dct/accel_dct_bd4_u1_no_ci/rtl/obj_dir'
@@ -82,7 +81,7 @@ Loaded hex: /mnt/c/Users/EBC230001/Documents/DARClab/risc_v_asip/test/dct/accel_
 === RTL Simulation Start ===
 
 === RTL Simulation Complete ===
-  Total cycles: 15695736
+  Total cycles: 14210120
   Status: HALTED (computer_ret = 1)
 
 === Register Dump ===
@@ -106,7 +105,7 @@ Report written to: /mnt/c/Users/EBC230001/Documents/DARClab/risc_v_asip/test/dct
 === Done ===
 - /mnt/c/Users/EBC230001/Documents/DARClab/risc_v_asip/scripts/../rtl/dct/tb_computer_mem.sv:252: Verilog $finish
 make: Leaving directory '/mnt/c/Users/EBC230001/Documents/DARClab/risc_v_asip/sim/verilog'
-CPI = 7.2
+CPI = 6.6
 
 === Step 7: ISS vs RTL Comparison ===
   ISS x10 = 00000000
