@@ -1,0 +1,47 @@
+Reading ACCEL flags from /home/013/o/om/oma190007/cad/fpga/risc_v_asip/scripts/../test/sha/accel_sched_phase_all/accel.conf
+  Flags: -DACCEL_SHA_SCHED -DACCEL_SHA_PHASE0 -DACCEL_SHA_PHASE1 -DACCEL_SHA_PHASE2 -DACCEL_SHA_PHASE3
+=== CWB HLS: sha/accel_sched_phase_all ===
+Source : /home/013/o/om/oma190007/cad/fpga/risc_v_asip/scripts/../test/sha/computer.cpp
+Variant: /home/013/o/om/oma190007/cad/fpga/risc_v_asip/scripts/../test/sha/accel_sched_phase_all
+RTL out: /home/013/o/om/oma190007/cad/fpga/risc_v_asip/scripts/../test/sha/accel_sched_phase_all/rtl
+Clock  : 1000 (10ns)
+
+--- Step 1: cpars ---
+Copyright (C) 1988-2018 NEC Corporation. All rights reserved.
+cpars version : 7.1.1 (Linux 64-bit) Mar 15 2018 15:30:09
+         (BIF version : 3.41A)
+         (LICflex version : 1.53 cylmd)
+         (PARSE COMMON version : 2.91)
+Create: computer.IFF
+cpars finished successfully.
+
+--- Step 2: bdltran ---
+option -EE computer.IFF -c1000 -s -Zresource_fcnt=GENERATE -Zresource_mcnt=GENERATE -Zsync -Zdup_reset=YES -Zfolding_sharing=inter_stage -lb /proj/cad/cwb-6.1/packages/asic_45.BLIB -lfl /proj/cad/cwb-6.1/packages/asic_45.FLIB -o-P
+I_BT1173: LOG file is generated. (computer.LOG.gz)
+Unable to obtain FLEXlm license.
+Because 
+Licensed number of users already reached.
+Feature:       Cyber-Synthesis
+License path:  27010@legolas2.utdallas.edu:27010@legolas1.utdallas.edu:@localhost:license.dat:*.lic:
+FlexNet Licensing error:-4,132
+For further information, refer to the FlexNet Licensing documentation,
+available at "www.flexerasoftware.com".
+
+
+F_BT1922: Acquirement of license has been failed by FLEXlm.
+ [Action] Reconsider the setting of license of FLEXlm.
+F_BT1925: Checkout of license of Enterprise Edition failed despite ASIC library "/proj/cad/cwb-6.1/packages/asic_45.BLIB" used.
+ [Action] Synthesize with license of Enterprise Edition.
+Copyright (C) 1988-2018 NEC Corporation. All rights reserved.
+bdltran version : 6.10.04 (Linux 64-bit) Thu Mar 22 14:18:17 JST 2018
+         (BIF version : 3.41F)
+         (LICflex version : 1.53 cylmd)
+         make at Thu Mar 22 14:30:59 JST 2018
+
+I_BT1190: The following ERROR/WARNING/INFO/TIPS exist.
+	 2 fatal error  exist
+	 1 information  exist
+	---> SEE computer.err FILE for DETAILS
+
+!!!!!!!!  CyberII ABNORMAL finish [computer] (pos=0)  !!!!!!!!
+
