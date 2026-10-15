@@ -14,11 +14,8 @@ using namespace std;
 
 // Constants
 const int MEM_SIZE = 65536; // 64K words (256KB)
-const int DMEM_BANK_SIZE = 2048;
-const int DMEM_BANKS = MEM_SIZE / DMEM_BANK_SIZE;
-const int DMEM_BANK_BITS = 5;
 uint32_t imem[MEM_SIZE];    // Cyber array=ROM
-uint32_t dmem[DMEM_BANKS][DMEM_BANK_SIZE];
+uint32_t dmem[MEM_SIZE];
 uint32_t regs[32] = {0};    // x0-x31 (x0 hardwired to 0)
 uint32_t PC = 0;
 
@@ -128,17 +125,8 @@ inline int32_t decode_imm_j(uint32_t instr) {
 // Memory Map
 const uint32_t DMEM_BASE = 0x40000;
 
-inline uint32_t dmem_bank(uint32_t word_addr) {
-  return word_addr & (DMEM_BANKS - 1);
-}
-
-inline uint32_t dmem_index(uint32_t word_addr) {
-  return word_addr >> DMEM_BANK_BITS;
-}
-
 // Read byte from data memory
-inline uint8_t mem_read_byte(uint32_t dmem_arg[DMEM_BANKS][DMEM_BANK_SIZE],
-                             uint32_t addr) {
+inline uint8_t mem_read_byte(uint32_t dmem_arg[MEM_SIZE], uint32_t addr) {
   // Bounds checking only for simulation
   uint32_t offset_addr = addr - DMEM_BASE;
 #ifdef C
@@ -151,13 +139,11 @@ inline uint8_t mem_read_byte(uint32_t dmem_arg[DMEM_BANKS][DMEM_BANK_SIZE],
 
   uint32_t word_addr = offset_addr >> 2;
   uint32_t byte_offset = offset_addr & 0x3;
-  return (dmem_arg[dmem_bank(word_addr)][dmem_index(word_addr)] >>
-          (byte_offset * 8)) & 0xFF;
+  return (dmem_arg[word_addr] >> (byte_offset * 8)) & 0xFF;
 }
 
 // Read halfword from data memory
-inline uint16_t mem_read_half(uint32_t dmem_arg[DMEM_BANKS][DMEM_BANK_SIZE],
-                              uint32_t addr) {
+inline uint16_t mem_read_half(uint32_t dmem_arg[MEM_SIZE], uint32_t addr) {
   // Bounds checking only for simulation
   uint32_t offset_addr = addr - DMEM_BASE;
 #ifdef C
@@ -170,13 +156,11 @@ inline uint16_t mem_read_half(uint32_t dmem_arg[DMEM_BANKS][DMEM_BANK_SIZE],
 
   uint32_t word_addr = offset_addr >> 2;
   uint32_t byte_offset = offset_addr & 0x3;
-  return (dmem_arg[dmem_bank(word_addr)][dmem_index(word_addr)] >>
-          (byte_offset * 8)) & 0xFFFF;
+  return (dmem_arg[word_addr] >> (byte_offset * 8)) & 0xFFFF;
 }
 
 // Read word from data memory
-inline uint32_t mem_read_word(uint32_t dmem_arg[DMEM_BANKS][DMEM_BANK_SIZE],
-                              uint32_t addr) {
+inline uint32_t mem_read_word(uint32_t dmem_arg[MEM_SIZE], uint32_t addr) {
   // Bounds checking only for simulation
   uint32_t offset_addr = addr - DMEM_BASE;
 #ifdef C
@@ -187,13 +171,12 @@ inline uint32_t mem_read_word(uint32_t dmem_arg[DMEM_BANKS][DMEM_BANK_SIZE],
     return 0;
 #endif
 
-  uint32_t word_addr = offset_addr >> 2;
-  return dmem_arg[dmem_bank(word_addr)][dmem_index(word_addr)];
+  return dmem_arg[offset_addr >> 2];
 }
 
 // Write byte to data memory
-inline void mem_write_byte(uint32_t dmem_arg[DMEM_BANKS][DMEM_BANK_SIZE],
-                           uint32_t addr, uint8_t val) {
+inline void mem_write_byte(uint32_t dmem_arg[MEM_SIZE], uint32_t addr,
+                           uint8_t val) {
   // Bounds checking only for simulation
   uint32_t offset_addr = addr - DMEM_BASE;
 #ifdef C
@@ -207,15 +190,13 @@ inline void mem_write_byte(uint32_t dmem_arg[DMEM_BANKS][DMEM_BANK_SIZE],
   uint32_t word_addr = offset_addr >> 2;
   uint32_t byte_offset = offset_addr & 0x3;
   uint32_t mask = ~(0xFF << (byte_offset * 8));
-  uint32_t bank = dmem_bank(word_addr);
-  uint32_t index = dmem_index(word_addr);
-  dmem_arg[bank][index] =
-      (dmem_arg[bank][index] & mask) | ((uint32_t)val << (byte_offset * 8));
+  dmem_arg[word_addr] =
+      (dmem_arg[word_addr] & mask) | ((uint32_t)val << (byte_offset * 8));
 }
 
 // Write halfword to data memory
-inline void mem_write_half(uint32_t dmem_arg[DMEM_BANKS][DMEM_BANK_SIZE],
-                           uint32_t addr, uint16_t val) {
+inline void mem_write_half(uint32_t dmem_arg[MEM_SIZE], uint32_t addr,
+                           uint16_t val) {
   // Bounds checking only for simulation
   uint32_t offset_addr = addr - DMEM_BASE;
 #ifdef C
@@ -229,15 +210,13 @@ inline void mem_write_half(uint32_t dmem_arg[DMEM_BANKS][DMEM_BANK_SIZE],
   uint32_t word_addr = offset_addr >> 2;
   uint32_t byte_offset = offset_addr & 0x3;
   uint32_t mask = ~(0xFFFF << (byte_offset * 8));
-  uint32_t bank = dmem_bank(word_addr);
-  uint32_t index = dmem_index(word_addr);
-  dmem_arg[bank][index] =
-      (dmem_arg[bank][index] & mask) | ((uint32_t)val << (byte_offset * 8));
+  dmem_arg[word_addr] =
+      (dmem_arg[word_addr] & mask) | ((uint32_t)val << (byte_offset * 8));
 }
 
 // Write word to data memory
-inline void mem_write_word(uint32_t dmem_arg[DMEM_BANKS][DMEM_BANK_SIZE],
-                           uint32_t addr, uint32_t val) {
+inline void mem_write_word(uint32_t dmem_arg[MEM_SIZE], uint32_t addr,
+                           uint32_t val) {
   // Bounds checking only for simulation
   uint32_t offset_addr = addr - DMEM_BASE;
 #ifdef C
@@ -248,15 +227,22 @@ inline void mem_write_word(uint32_t dmem_arg[DMEM_BANKS][DMEM_BANK_SIZE],
     return;
 #endif
 
-  uint32_t word_addr = offset_addr >> 2;
-  dmem_arg[dmem_bank(word_addr)][dmem_index(word_addr)] = val;
+  dmem_arg[offset_addr >> 2] = val;
 }
 
 // ============================================================================
 // SHA Transform Accelerator
 // ============================================================================
 
-#if defined(ACCEL_SHA_TRANSFORM) || defined(ACCEL_SHA_TRANSFORM_HW)
+#if defined(ACCEL_SHA_TRANSFORM) || defined(ACCEL_SHA_TRANSFORM_HW) || \
+    defined(ACCEL_SHA_PHASE0) || defined(ACCEL_SHA_PHASE0_HW) || \
+    defined(ACCEL_SHA_PHASE1) || defined(ACCEL_SHA_PHASE1_HW) || \
+    defined(ACCEL_SHA_PHASE2) || defined(ACCEL_SHA_PHASE2_HW) || \
+    defined(ACCEL_SHA_PHASE3) || defined(ACCEL_SHA_PHASE3_HW) || \
+    defined(ACCEL_SHA_ROUNDS80) || defined(ACCEL_SHA_ROUNDS80_HW) || \
+    defined(ACCEL_SHA_ROUND_REG) || defined(ACCEL_SHA_ROUND_REG_HW) || \
+    defined(ACCEL_SHA_PHASE_REG) || defined(ACCEL_SHA_PHASE_REG_HW) || \
+    defined(ACCEL_SHA_ROUNDS80_REG) || defined(ACCEL_SHA_ROUNDS80_REG_HW)
 inline uint32_t sha_rot32(uint32_t x, int n) {
   return (x << n) | (x >> (32 - n));
 }
@@ -276,6 +262,160 @@ inline uint32_t sha_f3(uint32_t x, uint32_t y, uint32_t z) {
 inline uint32_t sha_f4(uint32_t x, uint32_t y, uint32_t z) {
   return x ^ y ^ z;
 }
+#endif
+
+#if defined(ACCEL_SHA_CH) || defined(ACCEL_SHA_CH_HW) || \
+    defined(ACCEL_SHA_MAJ) || defined(ACCEL_SHA_MAJ_HW) || \
+    defined(ACCEL_SHA_PARITY) || defined(ACCEL_SHA_PARITY_HW)
+// funct3=7, funct7=4/5/6: rs1=B, rs2=C, old rd=D, new rd=f(B,C,D).
+inline uint32_t accel_sha_boolean(uint32_t b, uint32_t c, uint32_t d,
+                                  uint32_t kind) {
+  if (kind == 4) return (b & c) | (~b & d);
+  if (kind == 5) return (b & c) | (b & d) | (c & d);
+  return b ^ c ^ d;
+}
+#endif
+
+#if defined(ACCEL_SHA_ROUND_REG) || defined(ACCEL_SHA_ROUND_REG_HW) || \
+    defined(ACCEL_SHA_PHASE_REG) || defined(ACCEL_SHA_PHASE_REG_HW) || \
+    defined(ACCEL_SHA_ROUNDS80_REG) || defined(ACCEL_SHA_ROUNDS80_REG_HW)
+// a0..a4 hold A..E. One round consumes rs1=W[i], selects phase via funct7,
+// and writes the next A..E to the same five architectural registers.
+void accel_sha_round_regs(uint32_t &A, uint32_t &B, uint32_t &state_c,
+                          uint32_t &D, uint32_t &E, uint32_t word,
+                          uint32_t phase) {
+  uint32_t f = phase == 0 ? sha_f1(B, state_c, D) :
+               phase == 2 ? sha_f3(B, state_c, D) : sha_f2(B, state_c, D);
+  uint32_t k = phase == 0 ? 0x5a827999u :
+               phase == 1 ? 0x6ed9eba1u :
+               phase == 2 ? 0x8f1bbcdcu : 0xca62c1d6u;
+  uint32_t next = sha_rot32(A, 5) + f + E + word + k;
+  E = D; D = state_c; state_c = sha_rot32(B, 30); B = A; A = next;
+}
+
+// funct3=5/funct7=4..7: rs1 points at 20 W words; a0..a4 in/out.
+void accel_sha_phase_regs(uint32_t dmem_arg[MEM_SIZE], uint32_t w_addr,
+                          uint32_t &A, uint32_t &B, uint32_t &state_c,
+                          uint32_t &D, uint32_t &E, uint32_t phase) {
+#ifdef ACCEL_SHA_PHASE_REG_U20
+// Cyber unroll_times=20
+#elif defined(ACCEL_SHA_PHASE_REG_U10)
+// Cyber unroll_times=10
+#elif defined(ACCEL_SHA_PHASE_REG_U5)
+// Cyber unroll_times=5
+#elif defined(ACCEL_SHA_PHASE_REG_U4)
+// Cyber unroll_times=4
+#elif defined(ACCEL_SHA_PHASE_REG_U2)
+// Cyber unroll_times=2
+#elif defined(ACCEL_SHA_PHASE_REG_U1)
+// Cyber unroll_times=1
+#endif
+  for (int j = 0; j < 20; ++j) {
+    uint32_t word = mem_read_word(dmem_arg, w_addr + ((uint32_t)j << 2));
+    accel_sha_round_regs(A, B, state_c, D, E, word, phase);
+  }
+}
+#endif
+
+#if defined(ACCEL_SHA_PACK) || defined(ACCEL_SHA_PACK_HW)
+// funct3=1: rs1=64 source bytes, rs2=16 destination words, rd unused.
+void accel_sha_pack(uint32_t dmem_arg[MEM_SIZE], uint32_t src,
+                    uint32_t dst) {
+  // Full-block source and destination are word-aligned in this fixture.
+  // The scalar little-endian byte pack is a word copy under that precondition.
+#ifdef ACCEL_SHA_PACK_U16
+// Cyber unroll_times=16
+#elif defined(ACCEL_SHA_PACK_U8)
+// Cyber unroll_times=8
+#elif defined(ACCEL_SHA_PACK_U4)
+// Cyber unroll_times=4
+#elif defined(ACCEL_SHA_PACK_U2)
+// Cyber unroll_times=2
+#elif defined(ACCEL_SHA_PACK_U1)
+// Cyber unroll_times=1
+#endif
+  for (int i = 0; i < 16; ++i) {
+    uint32_t word = mem_read_word(dmem_arg, src + ((uint32_t)i << 2));
+    mem_write_word(dmem_arg, dst + ((uint32_t)i << 2), word);
+  }
+}
+#endif
+
+#if defined(ACCEL_SHA_SCHED) || defined(ACCEL_SHA_SCHED_HW)
+// funct3=2: rs1=W[80], rs2/rd unused; writes W[16..79].
+void accel_sha_schedule(uint32_t dmem_arg[MEM_SIZE], uint32_t w_addr) {
+#ifdef ACCEL_SHA_SCHED_U8
+// Cyber unroll_times=8
+#elif defined(ACCEL_SHA_SCHED_U4)
+// Cyber unroll_times=4
+#elif defined(ACCEL_SHA_SCHED_U2)
+// Cyber unroll_times=2
+#elif defined(ACCEL_SHA_SCHED_U1)
+// Cyber unroll_times=1
+#endif
+  for (int i = 16; i < 80; ++i) {
+    uint32_t word = mem_read_word(dmem_arg, w_addr + ((uint32_t)(i - 3) << 2)) ^
+                    mem_read_word(dmem_arg, w_addr + ((uint32_t)(i - 8) << 2)) ^
+                    mem_read_word(dmem_arg, w_addr + ((uint32_t)(i - 14) << 2)) ^
+                    mem_read_word(dmem_arg, w_addr + ((uint32_t)(i - 16) << 2));
+    mem_write_word(dmem_arg, w_addr + ((uint32_t)i << 2), word);
+  }
+}
+#endif
+
+#if defined(ACCEL_SHA_ROT) || defined(ACCEL_SHA_ROT_HW)
+// funct3=3/4: rs1=input, rd=rotate-left 5/30; no DMEM or implicit state.
+inline uint32_t accel_sha_rot5(uint32_t x) { return (x << 5) | (x >> 27); }
+inline uint32_t accel_sha_rot30(uint32_t x) { return (x << 30) | (x >> 2); }
+#endif
+
+#if defined(ACCEL_SHA_PHASE0) || defined(ACCEL_SHA_PHASE0_HW) || \
+    defined(ACCEL_SHA_PHASE1) || defined(ACCEL_SHA_PHASE1_HW) || \
+    defined(ACCEL_SHA_PHASE2) || defined(ACCEL_SHA_PHASE2_HW) || \
+    defined(ACCEL_SHA_PHASE3) || defined(ACCEL_SHA_PHASE3_HW) || \
+    defined(ACCEL_SHA_ROUNDS80) || defined(ACCEL_SHA_ROUNDS80_HW)
+// funct3=5/funct7=phase or funct3=6: rs1=W[80], rs2=state[5], rd unused.
+// Each call reads and writes explicit DMEM state; feedforward stays in software.
+void accel_sha_round_range(uint32_t dmem_arg[MEM_SIZE], uint32_t w_addr,
+                           uint32_t state_addr, int first, int phase) {
+  uint32_t A = mem_read_word(dmem_arg, state_addr);
+  uint32_t B = mem_read_word(dmem_arg, state_addr + 4);
+  uint32_t state_c = mem_read_word(dmem_arg, state_addr + 8);
+  uint32_t D = mem_read_word(dmem_arg, state_addr + 12);
+  uint32_t E = mem_read_word(dmem_arg, state_addr + 16);
+#if defined(ACCEL_SHA_ROUND_U20)
+// Cyber unroll_times=20
+#elif defined(ACCEL_SHA_ROUND_U10)
+// Cyber unroll_times=10
+#elif defined(ACCEL_SHA_ROUND_U5)
+// Cyber unroll_times=5
+#elif defined(ACCEL_SHA_ROUND_U4)
+// Cyber unroll_times=4
+#elif defined(ACCEL_SHA_ROUND_U2)
+// Cyber unroll_times=2
+#elif defined(ACCEL_SHA_ROUND_U1)
+// Cyber unroll_times=1
+#endif
+  for (int j = 0; j < 20; ++j) {
+    int i = first + j;
+    uint32_t f = phase == 0 ? sha_f1(B, state_c, D) :
+                 phase == 2 ? sha_f3(B, state_c, D) : sha_f2(B, state_c, D);
+    uint32_t k = phase == 0 ? 0x5a827999u :
+                 phase == 1 ? 0x6ed9eba1u :
+                 phase == 2 ? 0x8f1bbcdcu : 0xca62c1d6u;
+    uint32_t next = sha_rot32(A, 5) + f + E +
+                    mem_read_word(dmem_arg, w_addr + ((uint32_t)i << 2)) + k;
+    E = D; D = state_c; state_c = sha_rot32(B, 30); B = A; A = next;
+  }
+  mem_write_word(dmem_arg, state_addr, A);
+  mem_write_word(dmem_arg, state_addr + 4, B);
+  mem_write_word(dmem_arg, state_addr + 8, state_c);
+  mem_write_word(dmem_arg, state_addr + 12, D);
+  mem_write_word(dmem_arg, state_addr + 16, E);
+}
+#endif
+
+#if defined(ACCEL_SHA_TRANSFORM) || defined(ACCEL_SHA_TRANSFORM_HW)
 
 // ACCEL_SHA_TRANSFORM - one SHA block transform.
 // Encoding : .insn r 0x0B, 0, 0, x0, rs1, rs2
@@ -285,8 +425,7 @@ inline uint32_t sha_f4(uint32_t x, uint32_t y, uint32_t z) {
 //
 // Software owns byte packing, length accounting, and padding.  The accelerator
 // owns only the 512-bit block compression function.
-void accel_sha_transform(uint32_t dmem_arg[DMEM_BANKS][DMEM_BANK_SIZE],
-                         uint32_t data_addr,
+void accel_sha_transform(uint32_t dmem_arg[MEM_SIZE], uint32_t data_addr,
                          uint32_t digest_addr) {
   int i;
   uint32_t temp, A, B, state_c, D, E;
@@ -444,8 +583,7 @@ void load_program(const string &filename) {
         imem[addr] = val;
       } else if (addr >= MEM_SIZE &&
                  addr < 2 * MEM_SIZE) { // Mapping address 40000h to dmem[0]
-        uint32_t word_addr = addr - MEM_SIZE;
-        dmem[dmem_bank(word_addr)][dmem_index(word_addr)] = val;
+        dmem[addr - MEM_SIZE] = val;
       }
       addr++;
     }
@@ -471,11 +609,11 @@ void dump_regs(ofstream &rpt) {
 
 // Cyber func=process
 bool computer(uint32_t imem_arg[MEM_SIZE],
-              uint32_t dmem_arg[DMEM_BANKS][DMEM_BANK_SIZE]
+              uint32_t dmem_arg[MEM_SIZE]
 #ifdef DMEM_IMPL_RAM
-                  /* Cyber array=RAM, expand_dim=2 */
-#else
-                  /* Cyber array=REG, expand_dim=2 */
+                  /* Cyber array=RAM */
+#elif defined(DMEM_IMPL_REG)
+                  /* Cyber array=REG, rw_port=R1.W1 */
 #endif
 #ifdef C
               ,
@@ -731,11 +869,96 @@ bool computer(uint32_t imem_arg[MEM_SIZE],
       break;
     }
 
-#ifdef ACCEL_SHA_TRANSFORM
+#if defined(ACCEL_SHA_TRANSFORM) || defined(ACCEL_SHA_PACK) || \
+    defined(ACCEL_SHA_SCHED) || defined(ACCEL_SHA_ROT) || \
+    defined(ACCEL_SHA_PHASE0) || defined(ACCEL_SHA_PHASE1) || \
+    defined(ACCEL_SHA_PHASE2) || defined(ACCEL_SHA_PHASE3) || \
+    defined(ACCEL_SHA_ROUNDS80) || defined(ACCEL_SHA_CH) || \
+    defined(ACCEL_SHA_MAJ) || defined(ACCEL_SHA_PARITY) || \
+    defined(ACCEL_SHA_ROUND_REG) || defined(ACCEL_SHA_PHASE_REG) || \
+    defined(ACCEL_SHA_ROUNDS80_REG)
     case 0x0B: {
+#ifdef ACCEL_SHA_TRANSFORM
       if (funct3 == 0 && funct7 == 0) {
         accel_sha_transform(dmem_arg, regs[rs1], regs[rs2]);
       }
+#endif
+#ifdef ACCEL_SHA_PACK
+      if (funct3 == 1 && funct7 == 0)
+        accel_sha_pack(dmem_arg, regs[rs1], regs[rs2]);
+#endif
+#ifdef ACCEL_SHA_SCHED
+      if (funct3 == 2 && funct7 == 0)
+        accel_sha_schedule(dmem_arg, regs[rs1]);
+#endif
+#ifdef ACCEL_SHA_ROT
+      if (funct3 == 3 && funct7 == 0 && rd != 0)
+        regs[rd] = accel_sha_rot5(regs[rs1]);
+      if (funct3 == 4 && funct7 == 0 && rd != 0)
+        regs[rd] = accel_sha_rot30(regs[rs1]);
+#endif
+#ifdef ACCEL_SHA_PHASE0
+      if (funct3 == 5 && funct7 == 0)
+        accel_sha_round_range(dmem_arg, regs[rs1], regs[rs2], 0, 0);
+#endif
+#ifdef ACCEL_SHA_PHASE1
+      if (funct3 == 5 && funct7 == 1)
+        accel_sha_round_range(dmem_arg, regs[rs1], regs[rs2], 20, 1);
+#endif
+#ifdef ACCEL_SHA_PHASE2
+      if (funct3 == 5 && funct7 == 2)
+        accel_sha_round_range(dmem_arg, regs[rs1], regs[rs2], 40, 2);
+#endif
+#ifdef ACCEL_SHA_PHASE3
+      if (funct3 == 5 && funct7 == 3)
+        accel_sha_round_range(dmem_arg, regs[rs1], regs[rs2], 60, 3);
+#endif
+#ifdef ACCEL_SHA_ROUNDS80
+      if (funct3 == 6 && funct7 == 0) {
+        accel_sha_round_range(dmem_arg, regs[rs1], regs[rs2], 0, 0);
+        accel_sha_round_range(dmem_arg, regs[rs1], regs[rs2], 20, 1);
+        accel_sha_round_range(dmem_arg, regs[rs1], regs[rs2], 40, 2);
+        accel_sha_round_range(dmem_arg, regs[rs1], regs[rs2], 60, 3);
+      }
+#endif
+#ifdef ACCEL_SHA_PHASE_REG
+      // funct3=5, funct7=4..7: rs1 points at a 20-word W slice;
+      // a0..a4 are both the input and output working state, rd/rs2 unused.
+      if (funct3 == 5 && funct7 >= 4 && funct7 <= 7)
+        accel_sha_phase_regs(dmem_arg, regs[rs1], regs[10], regs[11],
+                             regs[12], regs[13], regs[14], funct7 - 4);
+#endif
+#ifdef ACCEL_SHA_ROUNDS80_REG
+      // funct3=6, funct7=1: rs1=W[80], a0..a4 in/out, rd/rs2 unused.
+      if (funct3 == 6 && funct7 == 1) {
+        accel_sha_phase_regs(dmem_arg, regs[rs1], regs[10], regs[11],
+                             regs[12], regs[13], regs[14], 0);
+        accel_sha_phase_regs(dmem_arg, regs[rs1] + 80, regs[10], regs[11],
+                             regs[12], regs[13], regs[14], 1);
+        accel_sha_phase_regs(dmem_arg, regs[rs1] + 160, regs[10], regs[11],
+                             regs[12], regs[13], regs[14], 2);
+        accel_sha_phase_regs(dmem_arg, regs[rs1] + 240, regs[10], regs[11],
+                             regs[12], regs[13], regs[14], 3);
+      }
+#endif
+#ifdef ACCEL_SHA_ROUND_REG
+      // funct3=7, funct7=0..3: rs1=W[i], a0..a4 in/out, rd/rs2 unused.
+      if (funct3 == 7 && funct7 <= 3)
+        accel_sha_round_regs(regs[10], regs[11], regs[12], regs[13],
+                             regs[14], regs[rs1], funct7);
+#endif
+#ifdef ACCEL_SHA_CH
+      if (funct3 == 7 && funct7 == 4 && rd != 0)
+        regs[rd] = accel_sha_boolean(regs[rs1], regs[rs2], regs[rd], 4);
+#endif
+#ifdef ACCEL_SHA_MAJ
+      if (funct3 == 7 && funct7 == 5 && rd != 0)
+        regs[rd] = accel_sha_boolean(regs[rs1], regs[rs2], regs[rd], 5);
+#endif
+#ifdef ACCEL_SHA_PARITY
+      if (funct3 == 7 && funct7 == 6 && rd != 0)
+        regs[rd] = accel_sha_boolean(regs[rs1], regs[rs2], regs[rd], 6);
+#endif
       break;
     }
 #endif
