@@ -214,7 +214,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : L1
-        Line          : computer.cpp:826
+        Line          : computer.cpp:865
     L1:
         Type          : S
         Latency       : (2 + {{{{0, 1}, 1 + 1}, 1 + {0, 1} + 1}, 1 + {0, 1} + {{0, 1}, 1 + 1} + 1} + 1 + {{{{0, {0, {0, 1} + 1} + 1}, {0, {0, {0, 1} + 1} + 1 + {0, 1} + 1} + 1}, {0, {0, {0, {0, 1} + 1} + 1 + {0, 1} + 1} + 1 + {0, 1} + 2 + 1} + 1}, {{{0, {0, {0, {0, 1} + 1} + 1 + {0, 1} + 1} + 1}, {0, {0, {0, 1} + 1} + 1 + {0, 1} + 1} + 1 + {0, 1} + 2}, {0, {0, {0, {0, 1} + 1} + 1 + {0, 1} + 1} + 1 + {0, 1} + 2 + 1} + 1} + 1} + 1 + {0, 1} + {0, 1} + 1 + {{{{0, 1}, 1 + 1}, 1 + {0, 1} + 1}, 1 + {1, {0, 1} + 1} + 1} + 2 + {0, L2 + 1 + L3 + 1}) * N1 + {1, 2 + {{{{0, 1}, 1 + 1}, 1 + {0, 1} + 1}, 1 + {0, 1} + {{0, 1}, 1 + 1} + 1} + 1 + {{{{0, {0, {0, 1} + 1} + 1}, {0, {0, {0, 1} + 1} + 1 + {0, 1} + 1} + 1}, {0, {0, {0, {0, 1} + 1} + 1 + {0, 1} + 1} + 1 + {0, 1} + 2 + 1} + 1}, {{{0, {0, {0, {0, 1} + 1} + 1 + {0, 1} + 1} + 1}, {0, {0, {0, 1} + 1} + 1 + {0, 1} + 1} + 1 + {0, 1} + 2}, {0, {0, {0, {0, 1} + 1} + 1 + {0, 1} + 1} + 1 + {0, 1} + 2 + 1} + 1} + 1} + 1 + {0, 1} + {0, 1} + 1 + {{{{0, 1}, 1 + 1}, 1 + {0, 1} + 1}, 1 + {1, {0, 1} + 1} + 1} + 2 + L2 + 1 + L3 + 1}
@@ -224,7 +224,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : L2, L3
-        Line          : computer.cpp:829
+        Line          : computer.cpp:868
     L2:
         Type          : S
         Latency       : 1 * 2
@@ -234,7 +234,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:660
+        Line          : computer.cpp:699
     L3:
         Type          : S
         Latency       : 1 * 2
@@ -244,7 +244,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:660
+        Line          : computer.cpp:699
 
 =======
 ; FSM ;

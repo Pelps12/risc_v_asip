@@ -239,7 +239,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : L1
-        Line          : computer.cpp:826
+        Line          : computer.cpp:879
     L1:
         Type          : S
         Latency       : (3 + {{{0, L4 + 11}, L5 + 11}, L2 + 2 + L3 + 2}) * N1 + {1, 3 + L5 + 11}
@@ -249,7 +249,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : L2, L3, L4, L5
-        Line          : computer.cpp:829
+        Line          : computer.cpp:882
     L2:
         Type          : S
         Latency       : 1 * 5
@@ -259,7 +259,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:502
+        Line          : computer.cpp:520
     L3:
         Type          : S
         Latency       : 1 * 5
@@ -269,7 +269,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:502
+        Line          : computer.cpp:520
     L4:
         Type          : S
         Latency       : 2 * 6
@@ -325,15 +325,15 @@ Cyber Synthesis Report
       Name                 / Port [Signal              ]   (ns)   (ns)  Stage
       -----------------------------------------------------------------------
       full_enc_delay_bpl_rg05 / dout [                    ]      -    0.00     0
-      _DMUX_8486           / o1   [full_enc_delay_bpl_rd00]   0.34    0.34     5
-      _NMUX_9578           / o1   [mul32s1i1           ]   0.09    0.43     7
+      _DMUX_8541           / o1   [full_enc_delay_bpl_rd00]   0.34    0.34     5
+      _NMUX_9633           / o1   [mul32s1i1           ]   0.09    0.43     7
       mul32s@1             / o1   [mul32s1ot           ]   7.61    8.04    76
-      _NMUX_9623           / o1   [addsub32s2i2        ]   0.08    8.12    78
+      _NMUX_9678           / o1   [addsub32s2i2        ]   0.08    8.12    78
       addsub32s@2          / o1   [addsub32s2ot        ]   0.00    8.12    78
       addsub32u_32@1       / o1   [addsub32u_321ot     ]   0.53    8.64    85
-      _NMUX_10226          / o1   [TR_82               ]   0.07    8.71    87
-      _NMUX_9943           / o1   [TR_07               ]   0.07    8.79    89
-      _NMUX_9463           / o1   [RG_op2_PC_result1_word_addr_zl]   0.20    8.99    92
+      _NMUX_10281          / o1   [TR_82               ]   0.07    8.71    87
+      _NMUX_9998           / o1   [TR_07               ]   0.07    8.79    89
+      _NMUX_9518           / o1   [RG_op2_PC_result1_word_addr_zl]   0.20    8.99    92
       RG_op2_PC_result1_word_addr_zl / din  [                    ]      -    8.99    92
 
   False Path                    :  Unchecked
