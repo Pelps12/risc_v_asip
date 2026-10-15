@@ -1,0 +1,141 @@
+variant	status	cycles	area	cpi
+accel_bf_encrypt_ctx_base_bf_cfb40_ctx_base	OK	1523547	44321	3.1
+accel_bf_encrypt_ctx_base_bf_cfb40_ctx_base_no_ci	OK	3669398	44321	3.0
+accel_bf_encrypt_ctx_base_bf_cfb40_ctx_u1	OK	1524327	34907	3.1
+accel_bf_encrypt_ctx_base_bf_cfb40_ctx_u1_no_ci	OK	3669398	34907	3.0
+accel_bf_encrypt_ctx_base_bf_cfb40_ctx_u2	OK	1524067	40058	3.1
+accel_bf_encrypt_ctx_base_bf_cfb40_ctx_u2_no_ci	OK	3669398	40058	3.0
+accel_bf_encrypt_ctx_base_bf_cfb40_ctx_u5	OK	1523547	44321	3.1
+accel_bf_encrypt_ctx_base_bf_cfb40_ctx_u5_no_ci	OK	3669398	44321	3.0
+accel_bf_encrypt_ctx_base_bf_cfb_block_ctx_base	OK	1768472	32141	3.1
+accel_bf_encrypt_ctx_base_bf_cfb_block_ctx_base_no_ci	OK	3669398	32141	3.0
+accel_bf_encrypt_ctx_u1_bf_cfb40_ctx_base	OK	1551534	39582	3.1
+accel_bf_encrypt_ctx_u1_bf_cfb40_ctx_base_no_ci	OK	3669398	39582	3.0
+accel_bf_encrypt_ctx_u1_bf_cfb40_ctx_u1	OK	1532663	32623	3.1
+accel_bf_encrypt_ctx_u1_bf_cfb40_ctx_u1_no_ci	OK	3669398	32623	3.0
+accel_bf_encrypt_ctx_u1_bf_cfb40_ctx_u2	OK	1550879	35799	3.1
+accel_bf_encrypt_ctx_u1_bf_cfb40_ctx_u2_no_ci	OK	3669398	35799	3.0
+accel_bf_encrypt_ctx_u1_bf_cfb40_ctx_u5	OK	1551534	39582	3.1
+accel_bf_encrypt_ctx_u1_bf_cfb40_ctx_u5_no_ci	OK	3669398	39582	3.0
+accel_bf_encrypt_ctx_u1_bf_cfb_block_ctx_base	OK	1785253	29263	3.1
+accel_bf_encrypt_ctx_u1_bf_cfb_block_ctx_base_no_ci	OK	3669398	29263	3.0
+accel_bf_encrypt_ctx_u2_bf_cfb40_ctx_base	FAIL		46602	3.1
+accel_bf_encrypt_ctx_u2_bf_cfb40_ctx_base_no_ci	OK	3669398	46602	3.0
+accel_bf_encrypt_ctx_u2_bf_cfb40_ctx_u1	FAIL		35273	3.1
+accel_bf_encrypt_ctx_u2_bf_cfb40_ctx_u1_no_ci	OK	3669398	35273	3.0
+accel_bf_encrypt_ctx_u2_bf_cfb40_ctx_u2	FAIL		40906	3.1
+accel_bf_encrypt_ctx_u2_bf_cfb40_ctx_u2_no_ci	OK	3669398	40906	3.0
+accel_bf_encrypt_ctx_u2_bf_cfb40_ctx_u5	FAIL		46602	3.1
+accel_bf_encrypt_ctx_u2_bf_cfb40_ctx_u5_no_ci	OK	3669398	46602	3.0
+accel_bf_encrypt_ctx_u2_bf_cfb_block_ctx_base	OK	1793063	30022	3.1
+accel_bf_encrypt_ctx_u2_bf_cfb_block_ctx_base_no_ci	OK	3669398	30022	3.0
+accel_bf_encrypt_ctx_u4_bf_cfb40_ctx_base	FAIL		60571	3.1
+accel_bf_encrypt_ctx_u4_bf_cfb40_ctx_base_no_ci	OK	3669398	60571	3.0
+accel_bf_encrypt_ctx_u4_bf_cfb40_ctx_u1	FAIL		38539	3.1
+accel_bf_encrypt_ctx_u4_bf_cfb40_ctx_u1_no_ci	OK	3669398	38539	3.0
+accel_bf_encrypt_ctx_u4_bf_cfb40_ctx_u2	FAIL		49472	3.1
+accel_bf_encrypt_ctx_u4_bf_cfb40_ctx_u2_no_ci	OK	3669398	49472	3.0
+accel_bf_encrypt_ctx_u4_bf_cfb40_ctx_u5	FAIL		60571	3.1
+accel_bf_encrypt_ctx_u4_bf_cfb40_ctx_u5_no_ci	OK	3669398	60571	3.0
+accel_bf_encrypt_ctx_u4_bf_cfb_block_ctx_base	OK	1786037	31695	3.1
+accel_bf_encrypt_ctx_u4_bf_cfb_block_ctx_base_no_ci	OK	3669398	31695	3.0
+accel_bf_f_base_bf_cfb40_ctx_base	OK	3370383	47125	3.0
+accel_bf_f_base_bf_cfb40_ctx_base_no_ci	OK	3669398	47125	3.0
+accel_bf_f_base_bf_cfb40_ctx_u1	OK	3371943	33560	3.0
+accel_bf_f_base_bf_cfb40_ctx_u1_no_ci	OK	3669398	33560	3.0
+accel_bf_f_base_bf_cfb40_ctx_u2	OK	3371163	40106	3.0
+accel_bf_f_base_bf_cfb40_ctx_u2_no_ci	OK	3669398	40106	3.0
+accel_bf_f_base_bf_cfb40_ctx_u5	OK	3370383	47125	3.0
+accel_bf_f_base_bf_cfb40_ctx_u5_no_ci	OK	3669398	47125	3.0
+accel_bf_f_base_bf_cfb_block_ctx_base	OK	3613483	30669	3.0
+accel_bf_f_base_bf_cfb_block_ctx_base_no_ci	OK	3669398	30669	3.0
+accel_bf_key_expand_ctx_base_bf_cfb40_ctx_base	OK	1871033	131676	4.4
+accel_bf_key_expand_ctx_base_bf_cfb40_ctx_base_no_ci	OK	5282129	131676	4.3
+accel_bf_key_expand_ctx_base_bf_cfb40_ctx_u1	OK	1871943	115281	4.4
+accel_bf_key_expand_ctx_base_bf_cfb40_ctx_u1_no_ci	OK	5282129	115281	4.3
+accel_bf_key_expand_ctx_base_bf_cfb40_ctx_u2	OK	1871553	124081	4.4
+accel_bf_key_expand_ctx_base_bf_cfb40_ctx_u2_no_ci	OK	5282129	124081	4.3
+accel_bf_key_expand_ctx_base_bf_cfb40_ctx_u5	OK	1871033	131676	4.4
+accel_bf_key_expand_ctx_base_bf_cfb40_ctx_u5_no_ci	OK	5282129	131676	4.3
+accel_bf_key_expand_ctx_base_bf_cfb_block_ctx_base	OK	2224763	112384	4.4
+accel_bf_key_expand_ctx_base_bf_cfb_block_ctx_base_no_ci	OK	5282129	112384	4.3
+accel_bf_key_expand_ctx_base_bf_f_base	OK	6336715	107944	4.4
+accel_bf_key_expand_ctx_base_bf_f_base_no_ci	OK	5282129	107944	4.3
+accel_bf_key_expand_ctx_base_bf_round_base	OK	7335115	108170	4.4
+accel_bf_key_expand_ctx_base_bf_round_base_no_ci	OK	5282129	108170	4.3
+accel_bf_key_expand_ctx_u1_bf_cfb40_ctx_base	OK	1319550	53737	3.1
+accel_bf_key_expand_ctx_u1_bf_cfb40_ctx_base_no_ci	OK	3669398	53737	3.0
+accel_bf_key_expand_ctx_u1_bf_cfb40_ctx_u1	OK	1320460	42585	3.1
+accel_bf_key_expand_ctx_u1_bf_cfb40_ctx_u1_no_ci	OK	3669398	42585	3.0
+accel_bf_key_expand_ctx_u1_bf_cfb40_ctx_u2	OK	1320070	48436	3.1
+accel_bf_key_expand_ctx_u1_bf_cfb40_ctx_u2_no_ci	OK	3669398	48436	3.0
+accel_bf_key_expand_ctx_u1_bf_cfb40_ctx_u5	OK	1319550	53737	3.1
+accel_bf_key_expand_ctx_u1_bf_cfb40_ctx_u5_no_ci	OK	3669398	53737	3.0
+accel_bf_key_expand_ctx_u1_bf_cfb_block_ctx_base	OK	1563170	39444	3.1
+accel_bf_key_expand_ctx_u1_bf_cfb_block_ctx_base_no_ci	OK	3669398	39444	3.0
+accel_bf_key_expand_ctx_u1_bf_encrypt_ctx_base	OK	1886798	38463	3.1
+accel_bf_key_expand_ctx_u1_bf_encrypt_ctx_base_no_ci	OK	3669398	38463	3.0
+accel_bf_key_expand_ctx_u1_bf_encrypt_ctx_u1	OK	1913726	34100	3.1
+accel_bf_key_expand_ctx_u1_bf_encrypt_ctx_u1_no_ci	OK	3669398	34100	3.0
+accel_bf_key_expand_ctx_u1_bf_encrypt_ctx_u2	FAIL		37940	3.1
+accel_bf_key_expand_ctx_u1_bf_encrypt_ctx_u2_no_ci	OK	3669398	37940	3.0
+accel_bf_key_expand_ctx_u1_bf_encrypt_ctx_u4	FAIL		43939	3.1
+accel_bf_key_expand_ctx_u1_bf_encrypt_ctx_u4_no_ci	OK	3669398	43939	3.0
+accel_bf_key_expand_ctx_u1_bf_f_base	OK	4362196	36760	3.0
+accel_bf_key_expand_ctx_u1_bf_f_base_no_ci	OK	3669398	36760	3.0
+accel_bf_key_expand_ctx_u1_bf_round_base	OK	5017396	36633	3.0
+accel_bf_key_expand_ctx_u1_bf_round_base_no_ci	OK	3669398	36633	3.0
+accel_bf_key_expand_ctx_u2_bf_cfb40_ctx_base	FAIL		62435	3.1
+accel_bf_key_expand_ctx_u2_bf_cfb40_ctx_base_no_ci	OK	3669398	62435	3.0
+accel_bf_key_expand_ctx_u2_bf_cfb40_ctx_u1	FAIL		50958	3.1
+accel_bf_key_expand_ctx_u2_bf_cfb40_ctx_u1_no_ci	OK	3669398	50958	3.0
+accel_bf_key_expand_ctx_u2_bf_cfb40_ctx_u2	FAIL		57014	3.1
+accel_bf_key_expand_ctx_u2_bf_cfb40_ctx_u2_no_ci	OK	3669398	57014	3.0
+accel_bf_key_expand_ctx_u2_bf_cfb40_ctx_u5	FAIL		62435	3.1
+accel_bf_key_expand_ctx_u2_bf_cfb40_ctx_u5_no_ci	OK	3669398	62435	3.0
+accel_bf_key_expand_ctx_u2_bf_cfb_block_ctx_base	FAIL		47868	3.1
+accel_bf_key_expand_ctx_u2_bf_cfb_block_ctx_base_no_ci	OK	3669398	47868	3.0
+accel_bf_key_expand_ctx_u2_bf_encrypt_ctx_base	FAIL		46215	3.1
+accel_bf_key_expand_ctx_u2_bf_encrypt_ctx_base_no_ci	OK	3669398	46215	3.0
+accel_bf_key_expand_ctx_u2_bf_encrypt_ctx_u1	FAIL		41170	3.1
+accel_bf_key_expand_ctx_u2_bf_encrypt_ctx_u1_no_ci	OK	3669398	41170	3.0
+accel_bf_key_expand_ctx_u2_bf_encrypt_ctx_u2	FAIL		45521	3.1
+accel_bf_key_expand_ctx_u2_bf_encrypt_ctx_u2_no_ci	OK	3669398	45521	3.0
+accel_bf_key_expand_ctx_u2_bf_encrypt_ctx_u4	FAIL		59059	3.1
+accel_bf_key_expand_ctx_u2_bf_encrypt_ctx_u4_no_ci	OK	3669398	59059	3.0
+accel_bf_key_expand_ctx_u2_bf_f_base	FAIL		45724	3.0
+accel_bf_key_expand_ctx_u2_bf_f_base_no_ci	OK	3669398	45724	3.0
+accel_bf_key_expand_ctx_u2_bf_round_base	FAIL		45090	3.0
+accel_bf_key_expand_ctx_u2_bf_round_base_no_ci	OK	3669398	45090	3.0
+accel_bf_key_expand_ctx_u4_bf_cfb40_ctx_base	FAIL		84363	3.1
+accel_bf_key_expand_ctx_u4_bf_cfb40_ctx_base_no_ci	OK	3669398	84363	3.0
+accel_bf_key_expand_ctx_u4_bf_cfb40_ctx_u1	FAIL		72997	3.1
+accel_bf_key_expand_ctx_u4_bf_cfb40_ctx_u1_no_ci	OK	3669398	72997	3.0
+accel_bf_key_expand_ctx_u4_bf_cfb40_ctx_u2	FAIL		79180	3.1
+accel_bf_key_expand_ctx_u4_bf_cfb40_ctx_u2_no_ci	OK	3669398	79180	3.0
+accel_bf_key_expand_ctx_u4_bf_cfb40_ctx_u5	FAIL		84363	3.1
+accel_bf_key_expand_ctx_u4_bf_cfb40_ctx_u5_no_ci	OK	3669398	84363	3.0
+accel_bf_key_expand_ctx_u4_bf_cfb_block_ctx_base	FAIL		69930	3.1
+accel_bf_key_expand_ctx_u4_bf_cfb_block_ctx_base_no_ci	OK	3669398	69930	3.0
+accel_bf_key_expand_ctx_u4_bf_encrypt_ctx_base	FAIL		69393	3.1
+accel_bf_key_expand_ctx_u4_bf_encrypt_ctx_base_no_ci	OK	3669398	69393	3.0
+accel_bf_key_expand_ctx_u4_bf_encrypt_ctx_u1	FAIL		60380	3.1
+accel_bf_key_expand_ctx_u4_bf_encrypt_ctx_u1_no_ci	OK	3669398	60380	3.0
+accel_bf_key_expand_ctx_u4_bf_encrypt_ctx_u2	FAIL		71248	3.1
+accel_bf_key_expand_ctx_u4_bf_encrypt_ctx_u2_no_ci	OK	3669398	71248	3.0
+accel_bf_key_expand_ctx_u4_bf_encrypt_ctx_u4	FAIL		87023	3.1
+accel_bf_key_expand_ctx_u4_bf_encrypt_ctx_u4_no_ci	OK	3669398	87023	3.0
+accel_bf_key_expand_ctx_u4_bf_f_base	FAIL		72264	3.0
+accel_bf_key_expand_ctx_u4_bf_f_base_no_ci	OK	3669398	72264	3.0
+accel_bf_key_expand_ctx_u4_bf_round_base	FAIL		67371	3.0
+accel_bf_key_expand_ctx_u4_bf_round_base_no_ci	OK	3669398	67371	3.0
+accel_bf_round_base_bf_cfb40_ctx_base	OK	3895551	47057	3.0
+accel_bf_round_base_bf_cfb40_ctx_base_no_ci	OK	3669398	47057	3.0
+accel_bf_round_base_bf_cfb40_ctx_u1	OK	3897111	34156	3.0
+accel_bf_round_base_bf_cfb40_ctx_u1_no_ci	OK	3669398	34156	3.0
+accel_bf_round_base_bf_cfb40_ctx_u2	OK	3896331	40801	3.0
+accel_bf_round_base_bf_cfb40_ctx_u2_no_ci	OK	3669398	40801	3.0
+accel_bf_round_base_bf_cfb40_ctx_u5	OK	3895551	47057	3.0
+accel_bf_round_base_bf_cfb40_ctx_u5_no_ci	OK	3669398	47057	3.0
+accel_bf_round_base_bf_cfb_block_ctx_base	OK	4138651	30510	3.0
+accel_bf_round_base_bf_cfb_block_ctx_base_no_ci	OK	3669398	30510	3.0

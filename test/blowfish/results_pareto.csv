@@ -1,4 +1,11 @@
 variant,status,family,no_ci,cycles,area,cpi,speedup,area_overhead_pct,aliases
-accel_bf_phase40_ctx,OK,phase40 (benchmark-specific),False,1871033,131676,4.4,1.9611615615544995,792.9002508984878,accel_bf_phase40_ctx
+accel_bf_key_expand_ctx_u1_bf_cfb40_ctx_base,OK,pair: key expand+cfb40,False,1319550,53737,3.1,2.780794967981509,264.392757849054,accel_bf_key_expand_ctx_u1_bf_cfb40_ctx_base;accel_bf_key_expand_ctx_u1_bf_cfb40_ctx_u5
+accel_bf_key_expand_ctx_u1_bf_cfb40_ctx_u2,OK,pair: key expand+cfb40,False,1320070,48436,3.1,2.779699561386896,228.44646368752967,accel_bf_key_expand_ctx_u1_bf_cfb40_ctx_u2
+accel_bf_key_expand_ctx_u1_bf_cfb40_ctx_u1,OK,pair: key expand+cfb40,False,1320460,42585,3.1,2.7788785726186327,188.77059740964265,accel_bf_key_expand_ctx_u1_bf_cfb40_ctx_u1
+accel_bf_encrypt_ctx_base_bf_cfb40_ctx_u2,OK,pair: encrypt+cfb40,False,1524067,40058,3.1,2.407635622318441,171.63490879500915,accel_bf_encrypt_ctx_base_bf_cfb40_ctx_u2
+accel_bf_encrypt_ctx_base_bf_cfb40_ctx_u1,OK,pair: encrypt+cfb40,False,1524327,34907,3.1,2.407224958949097,136.70577066522006,accel_bf_encrypt_ctx_base_bf_cfb40_ctx_u1
+accel_bf_encrypt_ctx_u1_bf_cfb40_ctx_u1,OK,pair: encrypt+cfb40,False,1532663,32623,3.1,2.394132304361755,121.2178748219977,accel_bf_encrypt_ctx_u1_bf_cfb40_ctx_u1
+accel_bf_encrypt_ctx_base_bf_cfb_block_ctx_base,OK,pair: encrypt+cfb block,False,1768472,32141,3.1,2.074897425574168,117.9494134400217,accel_bf_encrypt_ctx_base_bf_cfb_block_ctx_base
+accel_bf_encrypt_ctx_u1_bf_cfb_block_ctx_base,OK,pair: encrypt+cfb block,False,1785253,29263,3.1,2.0553938293339935,98.43357971112769,accel_bf_encrypt_ctx_u1_bf_cfb_block_ctx_base
 accel_bf_encrypt_ctx_u1,OK,full-block encrypt,False,2090217,27757,3.1,1.7555105522536656,88.2213331525056,accel_bf_encrypt_ctx_u1
 baseline,OK,baseline,False,3669398,14747,3.0,1.0,0.0,baseline

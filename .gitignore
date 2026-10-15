@@ -9,6 +9,9 @@ scripts/*/*.hex
 *.rpt
 *.bak
 *.fst
+test/**/rtl/cwb_batch.log
+test/**/rtl/rtl_batch.log
+test/**/*_batch_summary.tsv.lock
 rv32i_sim
 rtl/obj_dir
 test/sim

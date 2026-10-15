@@ -1,0 +1,16 @@
+
+#@VERSION { 3.00 }
+#@CNT { computer }
+@MCNT {
+     NAME	MEMB32W65536
+     LIMIT	1
+}
+@MCNT {
+     NAME	MEMB32W65536_0
+     LIMIT	1
+}
+@MCNT {
+     NAME	MEMB32W256
+     LIMIT	4
+}
+#@END { computer }

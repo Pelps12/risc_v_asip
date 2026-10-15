@@ -1,0 +1,70 @@
+Copyright (C) 1988-2018 NEC Corporation. All rights reserved.
+bdltran version : 6.10.04 (Linux 64-bit) Thu Mar 22 14:18:17 JST 2018
+         (BIF version : 3.41F)
+         (LICflex version : 1.53 cylmd)
+         make at Thu Mar 22 14:30:59 JST 2018
+ Option  -EE computer.IFF -c1000 -s -Zresource_fcnt=GENERATE -Zresource_mcnt=GENERATE -Zsync -Zdup_reset=YES -Zfolding_sharing=inter_stage -lb /proj/cad/cwb-6.1/packages/asic_45.BLIB -lfl /proj/cad/cwb-6.1/packages/asic_45.FLIB -o-P 
+
+scpars  -EE -DACCEL_BF_CFB_MEM -DACCEL_BF_CFB_MEM_N40 -DACCEL_BF_CFB_MEM_BYTE -DACCEL_BF_CFB_MEM_U5 -info_base_name computer computer.cpp
+
+############## CyberII started (automatic scheduling mode) ##############
+[Clock period]    100,000 (1/10ps) [define]
+[Datapath delay]   90,000 (1/10ps)
+[Clock uncertainty] 10,000 (1/10ps)
+
+******* Initial # of operations in the input behavior description *******
+ === Operators ===
+  != : 39  (1bit:25, 32bit:14)
+  !  : 23  (1bit:23)
+  <  : 14  (32bit:12, 33bit:2)
+  >> :  7  (32bit:7)
+  &  : 64  (1bit:13, 32bit:41, 34bit:1, 39bit:1, 47bit:3, 63bit:3, 32769bit:2)
+  +  : 44  (32bit:41, 33bit:3)
+  << :  7  (32bit:7)
+  |  : 26  (1bit:12, 32bit:2, 39bit:1, 62bit:3, 63bit:3, 78bit:3, 32769bit:2)
+  -  : 10  (32bit:10)
+  == : 24  (32bit:24)
+  >= :  2  (32bit:2)
+  *  :  6  (32bit:6)
+  ~  :  2  (32769bit:2)
+  ^  :  7  (32bit:6, 33bit:1)
+  >  : 10  (32bit:8, 33bit:2)
+  <= :  2  (32bit:1, 33bit:1)
+  += :  2  (32bit:2)
+  ++ :  2  (32bit:2)
+  ^= :  4  (32bit:4)
+  -= :  2  (32bit:2)
+  |> : 60  (1bit:60)
+  Data transfer : 866
+
+ === array / memory ===
+  read  : 66
+  write : 12
+
+********* After optimizing & expanding the behavior description *********
+ === Operators ===
+  != : 13  (1bit:3, 5bit:7, 32bit:3)
+  <  : 15  (32bit:9, 33bit:6)
+  >> : 56  (32bit:56)
+  &  : 82  (1bit:14, 32bit:68)
+  +  : 22  (32bit:22)
+  << :134  (8bit:130, 16bit:2, 32bit:2)
+  |  : 80  (1bit:12, 32bit:68)
+  -  :126  (32bit:126)
+  == : 24  (3bit:5, 7bit:5, 24bit:6, 32bit:8)
+  >= :  2  (32bit:2)
+  ~  : 91  (1bit:25, 32bit:66)
+  ^  :185  (32bit:185)
+  >  :  9  (32bit:7, 33bit:2)
+  <= :  3  (32bit:1, 33bit:2)
+  |> : 13  (1bit:11, 30bit:1, 31bit:1)
+  ~|>:  4  (14bit:4)
+  INCR:  2  (32bit:2)
+  Data transfer : 3577
+
+ === array / memory ===
+  read  : 258
+  write : 118
+
+!!!!!!!!  CyberII ABNORMAL finish [computer] (pos=556)  !!!!!!!!
+

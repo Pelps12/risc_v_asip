@@ -1,0 +1,120 @@
+variant,status,family,cycles,area,speedup,area_overhead_pct
+accel_bf_cfb40_ctx,OK,CFB40 pairing,2203343,46754,1.6653775649093219,217.0407540516715
+accel_bf_cfb40_ctx_u1,OK,CFB40 pairing,2204903,33358,1.6641992867713455,126.20193937750051
+accel_bf_cfb40_ctx_u2,OK,CFB40 pairing,2204123,39911,1.6647882173544761,170.6380958839086
+accel_bf_cfb40_ctx_u5,OK,CFB40 pairing,2203343,46754,1.6653775649093219,217.0407540516715
+accel_bf_cfb_block_ctx,OK,CFB block pairing,2446443,30271,1.4998910663359006,105.26886824438868
+accel_bf_cfb_mem_n40_byte_u1,OK,direct-DMEM CFB,4041061,34858,0.9080283618584327,136.3734996948532
+accel_bf_cfb_mem_n40_word_base,OK,direct-DMEM CFB,2987939,45720,1.2280699170900076,210.02915847290976
+accel_bf_cfb_mem_n40_word_u1,OK,direct-DMEM CFB,2568447,33427,1.4286446245532807,126.66983115209874
+accel_bf_cfb_mem_n40_word_u2,OK,direct-DMEM CFB,2568187,40443,1.4287892587260975,174.245609276463
+accel_bf_cfb_mem_n40_word_u5,OK,direct-DMEM CFB,2987939,45720,1.2280699170900076,210.02915847290976
+accel_bf_cfb_mem_n5200_byte_base,OK,direct-DMEM CFB,2942368,36025,1.2470900988591502,144.2869736217536
+accel_bf_cfb_mem_n5200_byte_u1,OK,direct-DMEM CFB,2942368,36025,1.2470900988591502,144.2869736217536
+accel_bf_cfb_mem_n5200_byte_u2,OK,direct-DMEM CFB,2942368,40297,1.2470900988591502,173.255577405574
+accel_bf_cfb_mem_n5200_byte_u5,OK,direct-DMEM CFB,2942368,49509,1.2470900988591502,235.72251983454262
+accel_bf_cfb_mem_n5200_word_base,OK,direct-DMEM CFB,1907434,33531,1.9237352380213417,127.37505933410185
+accel_bf_cfb_mem_n5200_word_u1,OK,direct-DMEM CFB,1907434,33531,1.9237352380213417,127.37505933410185
+accel_bf_cfb_mem_n5200_word_u2,OK,direct-DMEM CFB,1907434,37178,1.9237352380213417,152.105512985692
+accel_bf_cfb_mem_n5200_word_u5,OK,direct-DMEM CFB,1907434,45268,1.9237352380213417,206.9641282972808
+accel_bf_cfb_mem_n8_byte_base,OK,direct-DMEM CFB,5877967,39030,0.6242631168225341,164.66399945751678
+accel_bf_cfb_mem_n8_byte_u1,OK,direct-DMEM CFB,4238921,36016,0.8656443467571111,144.22594425984946
+accel_bf_cfb_mem_n8_byte_u2,OK,direct-DMEM CFB,5877967,39030,0.6242631168225341,164.66399945751678
+accel_bf_cfb_mem_n8_byte_u5,OK,direct-DMEM CFB,5877967,39030,0.6242631168225341,164.66399945751678
+accel_bf_cfb_mem_n8_word_base,OK,direct-DMEM CFB,3593457,35446,1.021133131689067,140.36075133925544
+accel_bf_cfb_mem_n8_word_u1,OK,direct-DMEM CFB,2680767,33254,1.3687866196502718,125.49671119549738
+accel_bf_cfb_mem_n8_word_u2,OK,direct-DMEM CFB,3593457,35446,1.021133131689067,140.36075133925544
+accel_bf_cfb_mem_n8_word_u5,OK,direct-DMEM CFB,3593457,35446,1.021133131689067,140.36075133925544
+accel_bf_encrypt_ctx,OK,full-block encryption,2090217,29158,1.7555105522536656,97.721570488913
+accel_bf_encrypt_ctx_base_bf_cfb40_ctx_base,OK,CFB40 pairing,1523547,44321,2.408457369546197,200.5424832169255
+accel_bf_encrypt_ctx_base_bf_cfb40_ctx_u1,OK,CFB40 pairing,1524327,34907,2.407224958949097,136.70577066522006
+accel_bf_encrypt_ctx_base_bf_cfb40_ctx_u2,OK,CFB40 pairing,1524067,40058,2.407635622318441,171.63490879500915
+accel_bf_encrypt_ctx_base_bf_cfb40_ctx_u5,OK,CFB40 pairing,1523547,44321,2.408457369546197,200.5424832169255
+accel_bf_encrypt_ctx_base_bf_cfb_block_ctx_base,OK,CFB block pairing,1768472,32141,2.074897425574168,117.9494134400217
+accel_bf_encrypt_ctx_u1,OK,full-block encryption,2090217,27757,1.7555105522536656,88.2213331525056
+accel_bf_encrypt_ctx_u1_bf_cfb40_ctx_base,OK,CFB40 pairing,1551534,39582,2.365012948475509,168.40713365430258
+accel_bf_encrypt_ctx_u1_bf_cfb40_ctx_u1,OK,CFB40 pairing,1532663,32623,2.394132304361755,121.2178748219977
+accel_bf_encrypt_ctx_u1_bf_cfb40_ctx_u2,OK,CFB40 pairing,1550879,35799,2.3660117907328684,142.7544585339391
+accel_bf_encrypt_ctx_u1_bf_cfb40_ctx_u5,OK,CFB40 pairing,1551534,39582,2.365012948475509,168.40713365430258
+accel_bf_encrypt_ctx_u1_bf_cfb_block_ctx_base,OK,CFB block pairing,1785253,29263,2.0553938293339935,98.43357971112769
+accel_bf_encrypt_ctx_u2,OK,full-block encryption,2098414,28229,1.7486530303362444,91.4219841323659
+accel_bf_encrypt_ctx_u2_bf_cfb_block_ctx_base,OK,CFB block pairing,1793063,30022,2.0464412014524864,103.58038923170814
+accel_bf_encrypt_ctx_u4,OK,full-block encryption,2107782,29316,1.7408811727208982,98.79297484234081
+accel_bf_encrypt_ctx_u4_bf_cfb_block_ctx_base,OK,CFB block pairing,1786037,31695,2.0544915922794433,114.92506950566217
+accel_bf_f,OK,other,6254966,15401,0.5866375612593258,4.4348002983657695
+accel_bf_f_base_bf_cfb40_ctx_base,OK,CFB40 pairing,3370383,47125,1.0887184038134539,219.55651997016344
+accel_bf_f_base_bf_cfb40_ctx_u1,OK,CFB40 pairing,3371943,33560,1.088214717745822,127.57170950023733
+accel_bf_f_base_bf_cfb40_ctx_u2,OK,CFB40 pairing,3371163,40106,1.088466502509668,171.96039872516445
+accel_bf_f_base_bf_cfb40_ctx_u5,OK,CFB40 pairing,3370383,47125,1.0887184038134539,219.55651997016344
+accel_bf_f_base_bf_cfb_block_ctx_base,OK,CFB block pairing,3613483,30669,1.015473990053364,107.96772224859293
+accel_bf_key_expand_ctx,OK,key expansion pairing,4173515,107480,0.8792104497048651,628.8262019393775
+accel_bf_key_expand_ctx_base_bf_cfb40_ctx_base,OK,CFB40 pairing,1871033,131676,1.9611615615544995,792.9002508984878
+accel_bf_key_expand_ctx_base_bf_cfb40_ctx_u1,OK,CFB40 pairing,1871943,115281,1.9602081900998054,681.725096629823
+accel_bf_key_expand_ctx_base_bf_cfb40_ctx_u2,OK,CFB40 pairing,1871553,124081,1.9606166643423937,741.3982504916254
+accel_bf_key_expand_ctx_base_bf_cfb40_ctx_u5,OK,CFB40 pairing,1871033,131676,1.9611615615544995,792.9002508984878
+accel_bf_key_expand_ctx_base_bf_cfb_block_ctx_base,OK,CFB block pairing,2224763,112384,1.649343323311292,662.0804231369092
+accel_bf_key_expand_ctx_base_bf_f_base,OK,key expansion pairing,6336715,107944,0.5790694389758732,631.9726045975452
+accel_bf_key_expand_ctx_base_bf_round_base,OK,key expansion pairing,7335115,108170,0.5002509163114689,633.5051196853598
+accel_bf_key_expand_ctx_u1,OK,key expansion pairing,2906196,36358,1.2626120192856918,146.54506001220588
+accel_bf_key_expand_ctx_u1_bf_cfb40_ctx_base,OK,CFB40 pairing,1319550,53737,2.780794967981509,264.392757849054
+accel_bf_key_expand_ctx_u1_bf_cfb40_ctx_u1,OK,CFB40 pairing,1320460,42585,2.7788785726186327,188.77059740964265
+accel_bf_key_expand_ctx_u1_bf_cfb40_ctx_u2,OK,CFB40 pairing,1320070,48436,2.779699561386896,228.44646368752967
+accel_bf_key_expand_ctx_u1_bf_cfb40_ctx_u5,OK,CFB40 pairing,1319550,53737,2.780794967981509,264.392757849054
+accel_bf_key_expand_ctx_u1_bf_cfb_block_ctx_base,OK,CFB block pairing,1563170,39444,2.3474081513846863,167.47135010510613
+accel_bf_key_expand_ctx_u1_bf_encrypt_ctx_base,OK,key expansion pairing,1886798,38463,1.9447752223608463,160.81914965755746
+accel_bf_key_expand_ctx_u1_bf_encrypt_ctx_u1,OK,key expansion pairing,1913726,34100,1.917410329378396,131.2334712144843
+accel_bf_key_expand_ctx_u1_bf_f_base,OK,key expansion pairing,4362196,36760,0.8411813682833141,149.2710381772564
+accel_bf_key_expand_ctx_u1_bf_round_base,OK,key expansion pairing,5017396,36633,0.7313351387851388,148.4098460703872
+accel_bf_key_mem_base,OK,direct-DMEM key expansion,6157781,90666,0.5958961515519957,514.8097918220654
+accel_bf_key_mem_base_bf_cfb_mem_n40_byte_u1,OK,direct-DMEM pair,3598874,108739,1.0195961292337548,637.3635315657422
+accel_bf_key_mem_base_bf_cfb_mem_n40_word_base,OK,direct-DMEM pair,1919289,116727,1.9118527746472782,691.530480775751
+accel_bf_key_mem_base_bf_cfb_mem_n40_word_u1,OK,direct-DMEM pair,3601098,104367,1.0189664374587972,607.7168237607649
+accel_bf_key_mem_base_bf_cfb_mem_n40_word_u2,OK,direct-DMEM pair,3583014,111252,1.0241093113228137,654.4042856174137
+accel_bf_key_mem_base_bf_cfb_mem_n40_word_u5,OK,direct-DMEM pair,1919289,116727,1.9118527746472782,691.530480775751
+accel_bf_key_mem_base_bf_cfb_mem_n5200_byte_base,OK,direct-DMEM pair,912061,105687,4.023193624110668,616.6677968400353
+accel_bf_key_mem_base_bf_cfb_mem_n5200_byte_u1,OK,direct-DMEM pair,912061,105687,4.023193624110668,616.6677968400353
+accel_bf_key_mem_base_bf_cfb_mem_n5200_byte_u2,OK,direct-DMEM pair,912061,110187,4.023193624110668,647.1824777920933
+accel_bf_key_mem_base_bf_cfb_mem_n5200_byte_u5,OK,direct-DMEM pair,912061,122184,4.023193624110668,728.5346172102801
+accel_bf_key_mem_base_bf_cfb_mem_n5200_word_base,OK,direct-DMEM pair,906596,101153,4.047445609731347,585.9225605207839
+accel_bf_key_mem_base_bf_cfb_mem_n5200_word_u1,OK,direct-DMEM pair,906596,101153,4.047445609731347,585.9225605207839
+accel_bf_key_mem_base_bf_cfb_mem_n5200_word_u2,OK,direct-DMEM pair,906595,105430,4.047450074178657,614.9250695056621
+accel_bf_key_mem_base_bf_cfb_mem_n5200_word_u5,OK,direct-DMEM pair,899041,116699,4.081457909038631,691.3406116498271
+accel_bf_key_mem_base_bf_cfb_mem_n8_byte_base,OK,direct-DMEM pair,2113249,107396,1.7363774926665054,628.2565945616058
+accel_bf_key_mem_base_bf_cfb_mem_n8_byte_u1,OK,direct-DMEM pair,2441232,105299,1.503092700734711,614.0367532379468
+accel_bf_key_mem_base_bf_cfb_mem_n8_byte_u2,OK,direct-DMEM pair,2113249,107396,1.7363774926665054,628.2565945616058
+accel_bf_key_mem_base_bf_cfb_mem_n8_byte_u5,OK,direct-DMEM pair,2113249,107396,1.7363774926665054,628.2565945616058
+accel_bf_key_mem_base_bf_cfb_mem_n8_word_base,OK,direct-DMEM pair,2105723,99248,1.742583426215129,573.004678917746
+accel_bf_key_mem_base_bf_cfb_mem_n8_word_u1,OK,direct-DMEM pair,2434356,102050,1.5073382857725,592.0051535905608
+accel_bf_key_mem_base_bf_cfb_mem_n8_word_u2,OK,direct-DMEM pair,2105723,99248,1.742583426215129,573.004678917746
+accel_bf_key_mem_base_bf_cfb_mem_n8_word_u5,OK,direct-DMEM pair,2105723,99248,1.742583426215129,573.004678917746
+accel_bf_key_mem_u1,OK,direct-DMEM key expansion,7083670,43634,0.5180080382061841,195.88390859157795
+accel_bf_key_mem_u1_bf_cfb_mem_n40_byte_u1,OK,direct-DMEM pair,3598912,55302,1.0195853635765475,275.00508578015865
+accel_bf_key_mem_u1_bf_cfb_mem_n40_word_base,OK,direct-DMEM pair,2236794,61991,1.6404720327397158,320.3634637553401
+accel_bf_key_mem_u1_bf_cfb_mem_n40_word_u1,OK,direct-DMEM pair,3583312,51754,1.0240241430274561,250.9459551095138
+accel_bf_key_mem_u1_bf_cfb_mem_n40_word_u2,OK,direct-DMEM pair,3583052,57907,1.024098450148086,292.6696955312945
+accel_bf_key_mem_u1_bf_cfb_mem_n40_word_u5,OK,direct-DMEM pair,2236794,61991,1.6404720327397158,320.3634637553401
+accel_bf_key_mem_u1_bf_cfb_mem_n5200_byte_base,OK,direct-DMEM pair,1046553,54379,3.506175033658114,268.746185664881
+accel_bf_key_mem_u1_bf_cfb_mem_n5200_byte_u1,OK,direct-DMEM pair,1046553,54379,3.506175033658114,268.746185664881
+accel_bf_key_mem_u1_bf_cfb_mem_n5200_byte_u2,OK,direct-DMEM pair,1046553,58275,3.506175033658114,295.1651183291517
+accel_bf_key_mem_u1_bf_cfb_mem_n5200_byte_u5,OK,direct-DMEM pair,1046553,67351,3.506175033658114,356.709839289347
+accel_bf_key_mem_u1_bf_cfb_mem_n5200_word_base,OK,direct-DMEM pair,1033533,50735,3.550344304439239,244.03607513392555
+accel_bf_key_mem_u1_bf_cfb_mem_n5200_word_u1,OK,direct-DMEM pair,1033533,50735,3.550344304439239,244.03607513392555
+accel_bf_key_mem_u1_bf_cfb_mem_n5200_word_u2,OK,direct-DMEM pair,1033533,53710,3.550344304439239,264.2096697633417
+accel_bf_key_mem_u1_bf_cfb_mem_n5200_word_u5,OK,direct-DMEM pair,1041088,62180,3.5245800547119934,321.6450803553265
+accel_bf_key_mem_u1_bf_cfb_mem_n8_byte_base,OK,direct-DMEM pair,2440620,54397,1.5034696101810197,268.8682443886892
+accel_bf_key_mem_u1_bf_cfb_mem_n8_byte_u1,OK,direct-DMEM pair,2742587,55214,1.3379331266428376,274.4083542415407
+accel_bf_key_mem_u1_bf_cfb_mem_n8_byte_u2,OK,direct-DMEM pair,2440620,54397,1.5034696101810197,268.8682443886892
+accel_bf_key_mem_u1_bf_cfb_mem_n8_byte_u5,OK,direct-DMEM pair,2440620,54397,1.5034696101810197,268.8682443886892
+accel_bf_key_mem_u1_bf_cfb_mem_n8_word_base,OK,direct-DMEM pair,2413970,50419,1.5200677721761249,241.8932664270699
+accel_bf_key_mem_u1_bf_cfb_mem_n8_word_u1,OK,direct-DMEM pair,2716587,51750,1.3507382609134182,250.91883094866753
+accel_bf_key_mem_u1_bf_cfb_mem_n8_word_u2,OK,direct-DMEM pair,2413970,50419,1.5200677721761249,241.8932664270699
+accel_bf_key_mem_u1_bf_cfb_mem_n8_word_u5,OK,direct-DMEM pair,2413970,50419,1.5200677721761249,241.8932664270699
+accel_bf_phase40_ctx,OK,other,1871033,131676,1.9611615615544995,792.9002508984878
+accel_bf_phase_ctx,OK,other,2224763,112384,1.649343323311292,662.0804231369092
+accel_bf_round,OK,other,7435334,15598,0.4935081598217377,5.770665220044755
+accel_bf_round_base_bf_cfb40_ctx_base,OK,CFB40 pairing,3895551,47057,0.94194582486534,219.09540923577677
+accel_bf_round_base_bf_cfb40_ctx_u1,OK,CFB40 pairing,3897111,34156,0.9415687672226939,131.61320946633214
+accel_bf_round_base_bf_cfb40_ctx_u2,OK,CFB40 pairing,3896331,40801,0.9417572583027468,176.6732216722045
+accel_bf_round_base_bf_cfb40_ctx_u5,OK,CFB40 pairing,3895551,47057,0.94194582486534,219.09540923577677
+accel_bf_round_base_bf_cfb_block_ctx_base,OK,CFB block pairing,4138651,30510,0.8866169193778359,106.88953685495355
+baseline,OK,baseline,3669398,14747,1.0,0.0

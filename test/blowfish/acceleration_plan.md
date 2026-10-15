@@ -19,11 +19,10 @@ comparisons must use end-to-end RV32I RTL cycles and synthesized area.
 
 ## 2. Common architectural rules
 
-All instructions use the RISC-V custom opcode `0x0B`. Compute instructions do
-not accept DMEM pointers and do not access DMEM internally. As in the AES
-register-bound instructions, the wrapper moves data with ordinary `lw` and
-`sw` instructions, binds values to documented GPRs, issues the custom
-instruction, and stores results when required.
+All instructions use the RISC-V custom opcode `0x0B`. The original candidates
+in Sections 4 through 15 are register-bound: compute instructions do not
+accept DMEM pointers or access DMEM internally. The direct-DMEM study in
+Section 16 deliberately relaxes that rule for `BF_KEY_MEM` and `BF_CFB_MEM`.
 
 The assembly templates use `rd=rs1=rs2=x0` because the operands are implicit:
 
@@ -51,9 +50,8 @@ context word 786..1041  S3[0..255]
 ```
 
 The accelerator context is implemented as 18 P registers and four independent
-256-word S memories. It is never initialized from a pointer. Software loads or
-stores four words with normal memory instructions and transfers those GPR
-values using the context instructions below.
+256-word S memories. The original candidates initialize it through GPR
+transfers. `BF_KEY_MEM` instead initializes it from checked DMEM addresses.
 
 Context setup, export, and scalar load/store cycles count toward end-to-end
 performance. The accelerator must have an explicit invalid state after reset;
@@ -76,7 +74,9 @@ may synthesize only the instructions named by their `accel.conf`.
 | 4 | 0 | `BF_KEY_EXPAND` | Full key schedule using resident context |
 | 5 | 0 | `BF_CFB_BLOCK` | One complete eight-byte CFB block |
 | 6 | 0 | `BF_CFB40` | Benchmark-specific five-block CFB chunk |
-| 7 | - | reserved | Future decrypt or context-check operation |
+| 7 | 0 | `BF_KEY_MEM` | Direct-DMEM context initialization and key schedule |
+| 7 | 1 | `BF_CFB_MEM` | Direct-DMEM CFB encryption using resident context |
+| 7 | 2..127 | reserved | Future memory-facing operations |
 
 ## 4. Context-management instruction formats
 
@@ -502,3 +502,149 @@ python3 scripts/plot_blowfish.py
 The summary overrides preserve the completed single-kernel batch summaries.
 The plot script merges `rtl_pair_batch_summary.tsv` with
 `rtl_batch_summary.tsv` by variant before recomputing the global Pareto front.
+
+### Pair synthesis and RTL results
+
+CWB synthesized 70 of the 74 CI pair configurations. The four
+`key-expand base + encrypt {base,U1,U2,U4}` configurations failed synthesis
+with `F_BT6702` at the key-byte modulo expression in `computer.cpp`. Explicit
+key-expand scheduling (`U1`, `U2`, or `U4`) avoids that CWB scheduling failure.
+Matching no-CI RTL/QOR was copied only for the 70 successful CI designs, giving
+140 RTL targets.
+
+Local verification completed for all 140 synthesized targets:
+
+- all 70 no-CI controls halt and return `x10 == 0`;
+- 38 CI configurations halt and match the ISS with `x10 == 0`;
+- 32 CI configurations halt but mismatch the ISS with nonzero `x10`;
+- no target reached the cycle limit or remained unverified.
+
+The 32 CI mismatches form four reproducible scheduling groups:
+
+- all 11 pair configurations using key-expand `U2`;
+- all 11 pair configurations using key-expand `U4`;
+- all eight `encrypt U2/U4 + CFB40 {base,U1,U2,U5}` configurations;
+- the two `key-expand U1 + encrypt U2/U4` configurations.
+
+Thus key-expand `U2/U4` preserves the earlier single-kernel RTL defect across
+every paired consumer. Encrypt `U2/U4` remains valid with CFB-block but fails
+when composed with CFB40 or key-expand U1, demonstrating a separate
+multi-kernel scheduling interaction.
+
+The independent-symbol `key-expand base + CFB40 base` configuration exactly
+reproduces the dedicated `phase40` result: 1,871,033 cycles and area 131,676.
+This validates resident-context handoff in the generic pairing implementation.
+
+After merging the pair results with the single-kernel study, the global Pareto
+front contains 10 unique cycle/area points: baseline, the prior
+`encrypt U1` point, and eight pair points. The dedicated `phase40` point is now
+dominated. The fastest verified design is
+`accel_bf_key_expand_ctx_u1_bf_cfb40_ctx_base` at 1,319,550 cycles and area
+53,737, a 2.781x speedup over baseline. Its CFB40 `U1` companion reaches
+1,320,460 cycles at area 42,585, giving up only 910 cycles for 20.8% less area.
+
+The pair Pareto points, ordered from fastest to smallest area, are:
+
+| Variant | RTL cycles | Area | Speedup |
+|---|---:|---:|---:|
+| `key_expand_u1 + cfb40_base` | 1,319,550 | 53,737 | 2.781x |
+| `key_expand_u1 + cfb40_u2` | 1,320,070 | 48,436 | 2.780x |
+| `key_expand_u1 + cfb40_u1` | 1,320,460 | 42,585 | 2.779x |
+| `encrypt_base + cfb40_u2` | 1,524,067 | 40,058 | 2.408x |
+| `encrypt_base + cfb40_u1` | 1,524,327 | 34,907 | 2.407x |
+| `encrypt_u1 + cfb40_u1` | 1,532,663 | 32,623 | 2.394x |
+| `encrypt_base + cfb_block_base` | 1,768,472 | 32,141 | 2.075x |
+| `encrypt_u1 + cfb_block_base` | 1,785,253 | 29,263 | 2.055x |
+
+The `base` and `U5` CFB40 schedules are exact aliases in both the fastest
+key-expand pair and the corresponding encrypt pairs. `results_pareto.csv`
+records these aliases without duplicating plotted points.
+
+## 16. Direct-DMEM experiment
+
+The next study moves the custom-instruction seam above scalar LOAD/STORE
+marshalling. It preserves the resident P/S module but lets two operations use
+the `dmem_arg` interface owned by `computer()`.
+
+### `BF_KEY_MEM`
+
+```text
+Encoding: .insn r 0x0B, 7, 0, x0, x0, x0
+Inputs:   a0 = DMEM byte address of bf_init_P[18]
+          a1 = DMEM byte address of bf_init_S[1024]
+          a2 = DMEM byte address of key bytes
+          a3 = key length, 1..72 bytes
+Outputs:  expanded, valid resident P/S context
+DMEM:     reads initial constants and key; no automatic P/S writeback
+```
+
+The implementation validates the complete ranges before loading state. It
+uses an increment-and-wrap key index rather than `% length`, which removes the
+expression responsible for the earlier `F_BT6702` synthesis failures. A lone
+`BF_KEY_MEM` experiment exports P/S through the existing context interface so
+the scalar CFB phase remains coherent. Paired coarse consumers retain the
+resident context without export.
+
+### `BF_CFB_MEM`
+
+```text
+Encoding: .insn r 0x0B, 7, 1, x0, x0, x0
+Inputs:   a0 = input DMEM byte address
+          a1 = output DMEM byte address
+          a2 = eight-byte IV DMEM address
+          a3 = configured byte length
+Outputs:  ciphertext in DMEM and final feedback in the IV
+Requires: valid resident context, encryption, num == 0, complete 8-byte blocks
+```
+
+The instruction supports disjoint input/output buffers and exact in-place
+operation. It rejects partial overlap and IV overlap. The processor blocks
+while the instruction uses the existing one-read/one-write DMEM interface.
+
+Two access implementations share this interface:
+
+- `ACCEL_BF_CFB_MEM_WORD` requires four-byte alignment and uses word accesses
+  with byte swaps between little-endian DMEM and Blowfish's big-endian stream
+  packing;
+- `ACCEL_BF_CFB_MEM_BYTE` accepts arbitrary alignment and assembles or writes
+  bytes explicitly. Byte stores use read-modify-write through the current
+  helper.
+
+The hardware length is fixed per configuration:
+
+- `N8` issues five eight-byte instructions for each existing 40-byte call;
+- `N40` replaces each existing 40-byte call with one instruction;
+- `N5200` is a whole-workload point that processes the contiguous fixture in
+  one instruction. Expected-output comparison remains scalar.
+
+### Matrix
+
+`scripts/generate_blowfish_mem_matrix.sh` writes `memory_matrix.csv` and an
+additive matrix of 124 CI configurations plus 124 exact no-CI controls:
+
+| Class | Design count | Axes |
+|---|---:|---|
+| key memory | 4 | key schedule `{base,U1,U2,U4}` |
+| CFB memory | 24 | length `{N8,N40,N5200}` x access `{WORD,BYTE}` x schedule `{base,U1,U2,U5}` |
+| paired key + CFB memory | 96 | full cross-product of the above axes |
+
+The manifest labels key `U2/U4` and single-port CFB unrolls as known-risk
+research points. They remain in the matrix because failures and scheduling
+interactions are part of the study.
+
+Generate and preview with:
+
+```bash
+bash scripts/generate_blowfish_mem_matrix.sh --dry-run
+bash scripts/generate_blowfish_mem_matrix.sh
+bash scripts/generate_blowfish_mem_matrix.sh --check
+
+MEM_FILTER='^accel_bf_(key_mem|cfb_mem)'
+bash scripts/cwb_batch.sh blowfish --filter "$MEM_FILTER" --dry-run
+CWB_BATCH_SUMMARY=test/blowfish/cwb_mem_batch_summary.tsv \
+  bash scripts/cwb_batch.sh blowfish --filter "$MEM_FILTER" -j<N>
+```
+
+Source-level verification currently covers RV32I compilation, opcode emission,
+and ISS execution for `N8 BYTE`, `N40 WORD`, and `N5200 WORD`. All three halt
+with `x10 == 0`. CWB synthesis and RTL comparison remain pending.

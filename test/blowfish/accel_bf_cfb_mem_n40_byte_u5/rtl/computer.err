@@ -1,0 +1,524 @@
+I_BT1173: LOG file is generated. (computer.LOG.gz)
+I_BT1921: License has been successfully obtained by FLEXlm.
+I_BT2619: Synthesize in ASIC mode.
+I_BT6773: The BLIB and FLIB files are loaded.
+	/proj/cad/cwb-6.1/packages/asic_45.BLIB
+	/proj/cad/cwb-6.1/packages/asic_45.FLIB
+I_BT4146: All signals are synthesized as descending bit-order because all declared signals are of descending bit-order.
+I_BT4563: Synthesis of function(mem_read_byte) by inline expansion, because function have pointer argument.
+I_BT4563: Synthesis of function(mem_read_half) by inline expansion, because function have pointer argument.
+I_BT4563: Synthesis of function(mem_read_word) by inline expansion, because function have pointer argument.
+I_BT4563: Synthesis of function(mem_write_byte) by inline expansion, because function have pointer argument.
+I_BT4563: Synthesis of function(mem_write_half) by inline expansion, because function have pointer argument.
+I_BT4563: Synthesis of function(mem_write_word) by inline expansion, because function have pointer argument.
+I_BT4563: Synthesis of function(accel_bf_cfb_mem) by inline expansion, because function have pointer argument.
+I_BT4563: Synthesis of function(bf_mem_read_be32) by inline expansion, because function have pointer argument.
+I_BT4563: Synthesis of function(bf_ctx_encrypt) by inline expansion, because function have pointer argument.
+I_BT4563: Synthesis of function(bf_mem_write_be32) by inline expansion, because function have pointer argument.
+I_BT4563: Synthesis of function(accel_bf_ctx_read4) by inline expansion, because function have pointer argument.
+I_BT4568: Function accel_bf_ctx_commit is inline-expanded.
+I_BT4568: Function accel_bf_ctx_begin is inline-expanded.
+I_BT4568: Function bf_mem_range_valid is inline-expanded.
+I_BT4568: Function bf_mem_ranges_overlap is inline-expanded.
+I_BT4568: Function sign_extend is inline-expanded.
+I_BT4568: Function bf_ctx_s_read is inline-expanded.
+I_BT4568: Function accel_bf_ctx_read4 is inline-expanded.
+I_BT4568: Function bf_ctx_s_write is inline-expanded.
+I_BT4568: Function accel_bf_ctx_write4 is inline-expanded.
+I_BT4568: Function bf_mem_write_be32 is inline-expanded.
+I_BT4568: Function bf_mem_read_be32 is inline-expanded.
+I_BT4568: Function accel_bf_cfb_mem is inline-expanded.
+I_BT4568: Function mem_write_word is inline-expanded.
+I_BT4568: Function mem_write_half is inline-expanded.
+I_BT4568: Function mem_write_byte is inline-expanded.
+I_BT4568: Function decode_imm_s is inline-expanded.
+I_BT4568: Function mem_read_word is inline-expanded.
+I_BT4568: Function mem_read_half is inline-expanded.
+I_BT4568: Function mem_read_byte is inline-expanded.
+I_BT4568: Function decode_imm_b is inline-expanded.
+I_BT4568: Function decode_imm_j is inline-expanded.
+I_BT4568: Function decode_imm_u is inline-expanded.
+I_BT4612: Since the iteration count of partial unroll is 1, loop is completely unrolled.
+	[Source Lines]
+	645(computer.cpp):   for (uint32_t offset = 0; offset < BF_MEM_CFB_BYTES; offset += 8) {
+I_BT4607: for loop is unrolled
+	[Source Lines]
+	645(computer.cpp):   for (uint32_t offset = 0; offset < BF_MEM_CFB_BYTES; offset += 8) {
+I_BT4607: for loop is unrolled
+	[Source Lines]
+	380(computer.cpp):   for (uint32_t i = 1; i <= 16; ++i) {
+I_BT4563: Synthesis of function(bf_mem_read_be32) by inline expansion, because function have pointer argument.
+I_BT4563: Synthesis of function(bf_ctx_encrypt) by inline expansion, because function have pointer argument.
+I_BT4563: Synthesis of function(bf_mem_write_be32) by inline expansion, because function have pointer argument.
+I_BT4568: Function bf_ctx_write_word is inline-expanded.
+I_BT4568: Function bf_ctx_encrypt is inline-expanded.
+I_BT4568: Function decode_imm_i is inline-expanded.
+I_BT4542: Function bf_ctx_read_word is converted using goto conversion.
+I_BT4542: Function accel_bf_ctx_f is converted using goto conversion.
+I_BT5514: 92 address decoders (R91,W1) to access to array signal 'bf_ctx_p'.
+	[Source Lines]
+	257(computer.cpp): uint32_t bf_ctx_p[18];
+I_BT5514: 40 address decoders (R39,W1) to access to array signal 'regs'.
+	[Source Lines]
+	19(computer.cpp): uint32_t regs[32] = {0};    // x0-x31 (x0 hardwired to 0)
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	102(computer.cpp):   uint32_t imm = ((instr >> 31) << 12) |         // bit 12
+	103(computer.cpp):                  (((instr >> 7) & 0x1) << 11) |  // bit 11
+	104(computer.cpp):                  (((instr >> 25) & 0x3F) << 5) | // bits 10:5
+	105(computer.cpp):                  (((instr >> 8) & 0xF) << 1);    // bits 4:1
+	738(computer.cpp):     uint32_t funct7 = (instr >> 25) & 0x7F;
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	114(computer.cpp):   uint32_t imm = ((instr >> 31) << 20) |          // bit 20
+	115(computer.cpp):                  (((instr >> 12) & 0xFF) << 12) | // bits 19:12
+	116(computer.cpp):                  (((instr >> 20) & 0x1) << 11) |  // bit 11
+	117(computer.cpp):                  (((instr >> 21) & 0x3FF) << 1);  // bits 10:1
+	735(computer.cpp):     uint32_t funct3 = (instr >> 12) & 0x7;
+	737(computer.cpp):     uint32_t rs2 = (instr >> 20) & 0x1F;
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	142(computer.cpp):   return (dmem_arg[word_addr] >> (byte_offset * 8)) & 0xFF;
+	424(computer.cpp):   return ((uint32_t)mem_read_byte(dmem_arg, addr) << 24) |
+	425(computer.cpp):          ((uint32_t)mem_read_byte(dmem_arg, addr + 1) << 16) |
+	426(computer.cpp):          ((uint32_t)mem_read_byte(dmem_arg, addr + 2) << 8) |
+	427(computer.cpp):          (uint32_t)mem_read_byte(dmem_arg, addr + 3);
+	637(computer.cpp):   uint32_t iv1 = bf_mem_read_be32(dmem_arg, iv_addr + 4);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	142(computer.cpp):   return (dmem_arg[word_addr] >> (byte_offset * 8)) & 0xFF;
+	424(computer.cpp):   return ((uint32_t)mem_read_byte(dmem_arg, addr) << 24) |
+	425(computer.cpp):          ((uint32_t)mem_read_byte(dmem_arg, addr + 1) << 16) |
+	426(computer.cpp):          ((uint32_t)mem_read_byte(dmem_arg, addr + 2) << 8) |
+	427(computer.cpp):          (uint32_t)mem_read_byte(dmem_arg, addr + 3);
+	646(computer.cpp):     uint32_t data0 = bf_mem_read_be32(dmem_arg, in_addr + offset);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	142(computer.cpp):   return (dmem_arg[word_addr] >> (byte_offset * 8)) & 0xFF;
+	424(computer.cpp):   return ((uint32_t)mem_read_byte(dmem_arg, addr) << 24) |
+	425(computer.cpp):          ((uint32_t)mem_read_byte(dmem_arg, addr + 1) << 16) |
+	426(computer.cpp):          ((uint32_t)mem_read_byte(dmem_arg, addr + 2) << 8) |
+	427(computer.cpp):          (uint32_t)mem_read_byte(dmem_arg, addr + 3);
+	636(computer.cpp):   uint32_t iv0 = bf_mem_read_be32(dmem_arg, iv_addr);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	142(computer.cpp):   return (dmem_arg[word_addr] >> (byte_offset * 8)) & 0xFF;
+	424(computer.cpp):   return ((uint32_t)mem_read_byte(dmem_arg, addr) << 24) |
+	425(computer.cpp):          ((uint32_t)mem_read_byte(dmem_arg, addr + 1) << 16) |
+	426(computer.cpp):          ((uint32_t)mem_read_byte(dmem_arg, addr + 2) << 8) |
+	427(computer.cpp):          (uint32_t)mem_read_byte(dmem_arg, addr + 3);
+	647(computer.cpp):     uint32_t data1 = bf_mem_read_be32(dmem_arg, in_addr + offset + 4);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	142(computer.cpp):   return (dmem_arg[word_addr] >> (byte_offset * 8)) & 0xFF;
+	424(computer.cpp):   return ((uint32_t)mem_read_byte(dmem_arg, addr) << 24) |
+	425(computer.cpp):          ((uint32_t)mem_read_byte(dmem_arg, addr + 1) << 16) |
+	426(computer.cpp):          ((uint32_t)mem_read_byte(dmem_arg, addr + 2) << 8) |
+	427(computer.cpp):          (uint32_t)mem_read_byte(dmem_arg, addr + 3);
+	647(computer.cpp):     uint32_t data1 = bf_mem_read_be32(dmem_arg, in_addr + offset + 4);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	142(computer.cpp):   return (dmem_arg[word_addr] >> (byte_offset * 8)) & 0xFF;
+	424(computer.cpp):   return ((uint32_t)mem_read_byte(dmem_arg, addr) << 24) |
+	425(computer.cpp):          ((uint32_t)mem_read_byte(dmem_arg, addr + 1) << 16) |
+	426(computer.cpp):          ((uint32_t)mem_read_byte(dmem_arg, addr + 2) << 8) |
+	427(computer.cpp):          (uint32_t)mem_read_byte(dmem_arg, addr + 3);
+	646(computer.cpp):     uint32_t data0 = bf_mem_read_be32(dmem_arg, in_addr + offset);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	142(computer.cpp):   return (dmem_arg[word_addr] >> (byte_offset * 8)) & 0xFF;
+	424(computer.cpp):   return ((uint32_t)mem_read_byte(dmem_arg, addr) << 24) |
+	425(computer.cpp):          ((uint32_t)mem_read_byte(dmem_arg, addr + 1) << 16) |
+	426(computer.cpp):          ((uint32_t)mem_read_byte(dmem_arg, addr + 2) << 8) |
+	427(computer.cpp):          (uint32_t)mem_read_byte(dmem_arg, addr + 3);
+	647(computer.cpp):     uint32_t data1 = bf_mem_read_be32(dmem_arg, in_addr + offset + 4);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	142(computer.cpp):   return (dmem_arg[word_addr] >> (byte_offset * 8)) & 0xFF;
+	424(computer.cpp):   return ((uint32_t)mem_read_byte(dmem_arg, addr) << 24) |
+	425(computer.cpp):          ((uint32_t)mem_read_byte(dmem_arg, addr + 1) << 16) |
+	426(computer.cpp):          ((uint32_t)mem_read_byte(dmem_arg, addr + 2) << 8) |
+	427(computer.cpp):          (uint32_t)mem_read_byte(dmem_arg, addr + 3);
+	646(computer.cpp):     uint32_t data0 = bf_mem_read_be32(dmem_arg, in_addr + offset);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	142(computer.cpp):   return (dmem_arg[word_addr] >> (byte_offset * 8)) & 0xFF;
+	424(computer.cpp):   return ((uint32_t)mem_read_byte(dmem_arg, addr) << 24) |
+	425(computer.cpp):          ((uint32_t)mem_read_byte(dmem_arg, addr + 1) << 16) |
+	426(computer.cpp):          ((uint32_t)mem_read_byte(dmem_arg, addr + 2) << 8) |
+	427(computer.cpp):          (uint32_t)mem_read_byte(dmem_arg, addr + 3);
+	647(computer.cpp):     uint32_t data1 = bf_mem_read_be32(dmem_arg, in_addr + offset + 4);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	142(computer.cpp):   return (dmem_arg[word_addr] >> (byte_offset * 8)) & 0xFF;
+	424(computer.cpp):   return ((uint32_t)mem_read_byte(dmem_arg, addr) << 24) |
+	425(computer.cpp):          ((uint32_t)mem_read_byte(dmem_arg, addr + 1) << 16) |
+	426(computer.cpp):          ((uint32_t)mem_read_byte(dmem_arg, addr + 2) << 8) |
+	427(computer.cpp):          (uint32_t)mem_read_byte(dmem_arg, addr + 3);
+	646(computer.cpp):     uint32_t data0 = bf_mem_read_be32(dmem_arg, in_addr + offset);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	142(computer.cpp):   return (dmem_arg[word_addr] >> (byte_offset * 8)) & 0xFF;
+	424(computer.cpp):   return ((uint32_t)mem_read_byte(dmem_arg, addr) << 24) |
+	425(computer.cpp):          ((uint32_t)mem_read_byte(dmem_arg, addr + 1) << 16) |
+	426(computer.cpp):          ((uint32_t)mem_read_byte(dmem_arg, addr + 2) << 8) |
+	427(computer.cpp):          (uint32_t)mem_read_byte(dmem_arg, addr + 3);
+	647(computer.cpp):     uint32_t data1 = bf_mem_read_be32(dmem_arg, in_addr + offset + 4);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	142(computer.cpp):   return (dmem_arg[word_addr] >> (byte_offset * 8)) & 0xFF;
+	424(computer.cpp):   return ((uint32_t)mem_read_byte(dmem_arg, addr) << 24) |
+	425(computer.cpp):          ((uint32_t)mem_read_byte(dmem_arg, addr + 1) << 16) |
+	426(computer.cpp):          ((uint32_t)mem_read_byte(dmem_arg, addr + 2) << 8) |
+	427(computer.cpp):          (uint32_t)mem_read_byte(dmem_arg, addr + 3);
+	646(computer.cpp):     uint32_t data0 = bf_mem_read_be32(dmem_arg, in_addr + offset);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	384(computer.cpp):       l ^= bf_ctx_p[i] ^ accel_bf_ctx_f(r);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT8371: Height of operation tree has been reduced.
+	[Source Lines]
+	382(computer.cpp):       r ^= bf_ctx_p[i] ^ accel_bf_ctx_f(l);
+I_BT4383: Generate memory library file / memory constraint file.
+	computer-auto.MLIB
+	computer-auto.MCNT
+W_BT4422: The comparison operation '>' is substituted in constant 0 by optimization.
+ [Action] If required, confirm the relevance of the bitwidth of the comparison target.
+	[Source Lines]
+	336(computer.cpp):   w2 = (count > 2) ? bf_ctx_read_word(index + 2) : 0;
+W_BT4422: The comparison operation '>' is substituted in constant 0 by optimization.
+ [Action] If required, confirm the relevance of the bitwidth of the comparison target.
+	[Source Lines]
+	337(computer.cpp):   w3 = (count > 3) ? bf_ctx_read_word(index + 3) : 0;
+W_BT4422: The comparison operation '>' is substituted in constant 0 by optimization.
+ [Action] If required, confirm the relevance of the bitwidth of the comparison target.
+	[Source Lines]
+	337(computer.cpp):   w3 = (count > 3) ? bf_ctx_read_word(index + 3) : 0;
+I_BT4392: No arithmetic macro functional unit required.
+I_BT4398: The empty FLIB file generated since additional functional units are not required.
+I_BT4319: Empty FLIB file (computer-amacro-auto.FLIB) generated. No functional units required.
+ [Action] If required, confirm the description.
+I_BT4318: Empty FCNT file (computer-amacro-auto.FCNT) generated. No functional units required.
+ [Action] If required, confirm the description.
+I_BT4382: Generate functional unit library files / functional unit constraint files.
+	computer-auto.FLIB
+	computer-auto.FCNT
+	computer-amacro-auto.FLIB
+	computer-amacro-auto.FCNT
+W_BT8105: Possible reference to signal 'r' before assignment.
+ [Action] Initialize signal 'r'.
+	[Source Lines]
+	372(computer.cpp):   uint32_t r = right;
+W_BT8105: Possible reference to signal 'l' before assignment.
+ [Action] Initialize signal 'l'.
+	[Source Lines]
+	371(computer.cpp):   uint32_t l = left ^ bf_ctx_p[0];
+W_BT8105: Possible reference to signal 'r_1' before assignment.
+ [Action] Initialize signal 'r_1'.
+	[Source Lines]
+	372(computer.cpp):   uint32_t r = right;
+W_BT8105: Possible reference to signal 'l_1' before assignment.
+ [Action] Initialize signal 'l_1'.
+	[Source Lines]
+	371(computer.cpp):   uint32_t l = left ^ bf_ctx_p[0];
+W_BT8105: Possible reference to signal 'r_2' before assignment.
+ [Action] Initialize signal 'r_2'.
+	[Source Lines]
+	372(computer.cpp):   uint32_t r = right;
+W_BT8105: Possible reference to signal 'l_2' before assignment.
+ [Action] Initialize signal 'l_2'.
+	[Source Lines]
+	371(computer.cpp):   uint32_t l = left ^ bf_ctx_p[0];
+W_BT8105: Possible reference to signal 'r_3' before assignment.
+ [Action] Initialize signal 'r_3'.
+	[Source Lines]
+	372(computer.cpp):   uint32_t r = right;
+W_BT8105: Possible reference to signal 'l_3' before assignment.
+ [Action] Initialize signal 'l_3'.
+	[Source Lines]
+	371(computer.cpp):   uint32_t l = left ^ bf_ctx_p[0];
+W_BT8105: Possible reference to signal 'r_4' before assignment.
+ [Action] Initialize signal 'r_4'.
+	[Source Lines]
+	372(computer.cpp):   uint32_t r = right;
+W_BT8105: Possible reference to signal 'l_4' before assignment.
+ [Action] Initialize signal 'l_4'.
+	[Source Lines]
+	371(computer.cpp):   uint32_t l = left ^ bf_ctx_p[0];
+W_BT8105: Possible reference to signal 'data0' before assignment.
+ [Action] Initialize signal 'data0'.
+	[Source Lines]
+	646(computer.cpp):     uint32_t data0 = bf_mem_read_be32(dmem_arg, in_addr + offset);
+W_BT8105: Possible reference to signal 'data1' before assignment.
+ [Action] Initialize signal 'data1'.
+	[Source Lines]
+	647(computer.cpp):     uint32_t data1 = bf_mem_read_be32(dmem_arg, in_addr + offset + 4);
+W_BT8105: Possible reference to signal 'out_addr' before assignment.
+ [Action] Initialize signal 'out_addr'.
+	[Source Lines]
+	616(computer.cpp):                       uint32_t out_addr, uint32_t iv_addr, uint32_t length) {
+W_BT8105: Possible reference to signal 'iv_addr' before assignment.
+ [Action] Initialize signal 'iv_addr'.
+	[Source Lines]
+	616(computer.cpp):                       uint32_t out_addr, uint32_t iv_addr, uint32_t length) {
+W_BT8105: Possible reference to signal 'handled' before assignment.
+ [Action] Initialize signal 'handled'.
+	[Source Lines]
+	979(computer.cpp):       bool handled = false;
+W_BT8105: Possible reference to signal 'i' before assignment.
+ [Action] Initialize signal 'i'.
+	[Source Lines]
+	319(computer.cpp):   for (uint32_t i = 0; i < count; ++i) {
+W_BT8105: Possible reference to signal 'stream0' before assignment.
+ [Action] Initialize signal 'stream0'.
+	[Source Lines]
+	648(computer.cpp):     uint32_t stream0 = iv0;
+W_BT8105: Possible reference to signal 'stream1' before assignment.
+ [Action] Initialize signal 'stream1'.
+	[Source Lines]
+	649(computer.cpp):     uint32_t stream1 = iv1;
+W_BT8105: Possible reference to signal 'in_addr' before assignment.
+ [Action] Initialize signal 'in_addr'.
+	[Source Lines]
+	615(computer.cpp): void accel_bf_cfb_mem(uint32_t dmem_arg[], uint32_t in_addr,
+X_BT2010: Unexpected error. (unknown node type in Cy_set_tct_shared_aryrwnod_s).
+ [Action] Contact customer support.
+I_BT1190: The following ERROR/WARNING/INFO/TIPS exist.
+	 1 system error exist
+	22 warning      exist
+	151 information  exist
+	 2 tips         exist
+	---> SEE computer.err FILE and computer.tips FILE for DETAILS
