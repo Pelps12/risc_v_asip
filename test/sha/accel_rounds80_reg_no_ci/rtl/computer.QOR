@@ -8,18 +8,18 @@ Cyber Synthesis Report
   Module Name         : computer
   Basic Library Name  : CWBSTDBLIB
 
-  Total Area          :     28,040
+  Total Area          :     27,684
     Sequential        :      8,232
-    Combinational     :     19,808
+    Combinational     :     19,452
 
   Latency Index       :         83
   Total States        :         83
 
   Clock Period        :       10ns
-  Critical Path Delay :   4.5262ns
+  Critical Path Delay :    4.235ns
 
-  Net                 :     26,083
-  Pin Pair            :     66,807
+  Net                 :     25,433
+  Pin Pair            :     65,895
 
   Port                :        150
     In                :         66
@@ -30,14 +30,14 @@ Cyber Synthesis Report
 ========
 
   Total :
-    Total           :     28,040
+    Total           :     27,684
       Sequential    : 
         REG         :      8,232 (29%)
-      Combinational :     19,808 (70%)
+      Combinational :     19,452 (70%)
         FU          :      3,697 (13%)
-        MUX         :      9,777 (34%)
+        MUX         :      9,770 (35%)
         DEC         :         42 ( <1%)
-        MISC        :      6,292 (22%)
+        MISC        :      5,943 (21%)
       Memory        :          -
 
 ===================
@@ -94,17 +94,17 @@ Cyber Synthesis Report
    8 bit: (1way: 1),  2way: 1 
   13 bit:  2way: 1 
   14 bit: (1way: 1),  2way: 1 
-  16 bit: (1way: 1),  2way: 5 ,  4way: 2 ,  9way: 1 
+  16 bit: (1way: 1),  2way: 5 ,  3way: 1 ,  4way: 1 ,  9way: 1 
   18 bit:  2way: 3 
   20 bit:  2way: 1 
   24 bit: (1way: 1),  2way: 1 
   25 bit:  2way: 1 
   27 bit: (1way: 1)
   31 bit:  2way: 2 
-  32 bit:  2way: 4 ,  3way:31 ,  4way: 4 ,  5way: 2 ,  6way: 3 ,  7way: 3 ,
-	  8way: 1 ,  9way: 1 , 10way: 3 , 11way: 1 , 12way: 1 , 22way: 2 ,
-	 32way: 2 , 39way: 1 
-   Total : 14,599 (# of Fanins)
+  32 bit:  2way: 5 ,  3way:32 ,  4way: 4 ,  5way: 3 ,  6way: 2 ,  7way: 3 ,
+	  8way: 1 ,  9way: 3 , 10way: 2 , 13way: 1 , 22way: 2 , 32way: 2 ,
+	 40way: 1 
+   Total : 14,679 (# of Fanins)
 
 ===========
 ; Decoder ;
@@ -135,7 +135,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : L1
-        Line          : computer.cpp:622
+        Line          : computer.cpp:635
     L1:
         Type          : S
         Latency       : (2 + {{{{{{{{{{{{{0, 2}, {2, {0, 2 + 3} + 1 + 1} + 1}, {{{{{{{{{0, {0, 2 + 3} + 1}, {0, {2, {0, 2 + 3} + 1 + 1} + 1 + 1} + 1}, {0, {0, {2, {0, 2 + 3} + 1 + 1} + 1 + 1} + 1} + 1}, {0, {0, {0, {2, {0, 2 + 3} + 1 + 1} + 1 + 1} + 1} + 1} + 1}, {{0, {0, {2, {0, 2 + 3} + 1 + 1} + 1 + 1} + 1} + 1, {0, {0, {0, {2, {0, 2 + 3} + 1 + 1} + 1 + 1} + 1} + 1} + 1} + 1}, {0, {{0, {0, {2, {0, 2 + 3} + 1 + 1} + 1 + 1} + 1} + 1, {0, {0, {0, {2, {0, 2 + 3} + 1 + 1} + 1 + 1} + 1} + 1} + 1} + 1} + 1}, {0, {0, {{0, {0, {2, {0, 2 + 3} + 1 + 1} + 1 + 1} + 1} + 1, {0, {0, {0, {2, {0, 2 + 3} + 1 + 1} + 1 + 1} + 1} + 1} + 1} + 1} + 1} + 1}, {0, {0, {0, {{0, {0, {2, {0, 2 + 3} + 1 + 1} + 1 + 1} + 1} + 1, {0, {0, {0, {2, {0, 2 + 3} + 1 + 1} + 1 + 1} + 1} + 1} + 1} + 1} + 1} + 1} + 1}, {0, {0, {0, {0, {{0, {0, {2, {0, 2 + 3} + 1 + 1} + 1 + 1} + 1} + 1, {0, {0, {0, {2, {0, 2 + 3} + 1 + 1} + 1 + 1} + 1} + 1} + 1} + 1} + 1} + 1} + 1} + 1} + 1}, {{{{{{{{{0, {0, 2 + 3} + 1}, {0, {2, {0, 2 + 3} + 1 + 1} + 1 + 1} + 1}, {0, {0, {2, {0, 2 + 3} + 1 + 1} + 1 + 1} + 1} + 1}, {0, {0, {0, {2, {0, 2 + 3} + 1 + 1} + 1 + 1} + 1} + 1} + 1}, {{0, {0, {2, {0, 2 + 3} + 1 + 1} + 1 + 1} + 1} + 1, {0, {0, {0, {2, {0, 2 + 3} + 1 + 1} + 1 + 1} + 1} + 1} + 1} + 1}, {0, {{0, {0, {2, {0, 2 + 3} + 1 + 1} + 1 + 1} + 1} + 1, {0, {0, {0, {2, {0, 2 + 3} + 1 + 1} + 1 + 1} + 1} + 1} + 1} + 1} + 1}, {0, {0, {{0, {0, {2, {0, 2 + 3} + 1 + 1} + 1 + 1} + 1} + 1, {0, {0, {0, {2, {0, 2 + 3} + 1 + 1} + 1 + 1} + 1} + 1} + 1} + 1} + 1} + 1}, {0, {0, {0, {{0, {0, {2, {0, 2 + 3} + 1 + 1} + 1 + 1} + 1} + 1, {0, {0, {0, {2, {0, 2 + 3} + 1 + 1} + 1 + 1} + 1} + 1} + 1} + 1} + 1} + 1} + 1}, {0, {0, {0, {0, {{0, {0, {2, {0, 2 + 3} + 1 + 1} + 1 + 1} + 1} + 1, {0, {0, {0, {2, {0, 2 + 3} + 1 + 1} + 1 + 1} + 1} + 1} + 1} + 1} + 1} + 1} + 1} + 1} + 1 + 1}, {{{{{{{{{0, {0, 2 + 3} + 1}, {0, {2, {0, 2 + 3} + 1 + 1} + 1 + 1} + 1}, {0, {0, {2, {0, 2 + 3} + 1 + 1} + 1 + 1} + 1} + 1}, {0, {0, {0, {2, {0, 2 + 3} + 1 + 1} + 1 + 1} + 1} + 1} + 1}, {{0, {0, {2, {0, 2 + 3} + 1 + 1} + 1 + 1} + 1} + 1, {0, {0, {0, ...
@@ -145,7 +145,7 @@ Cyber Synthesis Report
         Folding Stages: - , Total Folding States: - , Hazard: -
         User Operator : -
         Sub Loops     : -
-        Line          : computer.cpp:625
+        Line          : computer.cpp:638
 
 =======
 ; FSM ;
@@ -161,19 +161,19 @@ Cyber Synthesis Report
 =========
 
   Clock Period        :       10ns
-  Critical Path Delay :   4.5262ns
+  Critical Path Delay :    4.235ns
 
               Subtotal
       Class       (ns)    Ratio
       -------------------------
       IN           0.00      0%
-      FU           3.47     76%
-      MUX          0.69     15%
+      FU           3.20     75%
+      MUX          0.71     16%
       DEC          0.00      0%
-      MISC         0.37      8%
+      MISC         0.33      7%
       MEM          0.00      0%
       -------------------------
-      Total        4.53
+      Total        4.24
 
     Path: #1
                                                                 Arrival
@@ -181,21 +181,25 @@ Cyber Synthesis Report
       Name                 / Port [Signal              ]   (ns)   (ns)  Stage
       -----------------------------------------------------------------------
       RG_PC                / dout [                    ]      -    0.00     0
-      _XOR_65285           / o1   [                    ]   0.00    0.00     0
-      _RNOR_61788          / o1   [M_2624              ]   0.18    0.18     3
-      _AND_51005           / o1   [U_681               ]   0.05    0.23     4
-      _OR_52960            / o1   [                    ]   0.14    0.37     6
-      _NMUX_17140          / o1   [addsub32u1i2        ]   0.20    0.57    11
-      addsub32u@1          / o1   [addsub32u1ot        ]   1.59    2.16    33
-      _NMUX_17142          / o1   [addsub32u2i1        ]   0.13    2.29    36
-      addsub32u@2          / o1   [addsub32u2ot        ]   0.47    2.76    42
-      _NMUX_17146          / o1   [addsub32u3i2        ]   0.11    2.87    45
-      addsub32u@3          / o1   [addsub32u3ot        ]   0.47    3.34    51
-      _NMUX_17148          / o1   [addsub32u4i1        ]   0.07    3.41    53
-      addsub32u@4          / o1   [addsub32u4ot        ]   0.47    3.88    59
-      addsub32u@6          / o1   [addsub32u6ot        ]   0.47    4.35    65
-      _NMUX_17037          / o1   [RG_addr1_instr_next_rd]   0.18    4.53    68
-      RG_addr1_instr_next_rd / din  [                    ]      -    4.53    68
+      _XOR_62939           / o1   [                    ]   0.00    0.00     0
+      _RNOR_59626          / o1   [M_2072              ]   0.18    0.18     3
+      _AND_48265           / o1   [U_621               ]   0.05    0.23     4
+      _AND_48350           / o1   [U_629               ]   0.02    0.25     4
+      _OR_61883            / o1   [M_2208              ]   0.08    0.33     5
+      _NMUX_17559          / o1   [TR_11               ]   0.07    0.40     8
+      _NMUX_17128          / o1   [add32s1i1           ]   0.07    0.48    10
+      add32s@1             / o1   [add32s1ot           ]   1.06    1.54    27
+      _NMUX_17143          / o1   [addsub32u2i1        ]   0.12    1.66    30
+      addsub32u@2          / o1   [addsub32u2ot        ]   0.73    2.39    40
+      _NMUX_17147          / o1   [addsub32u3i2        ]   0.07    2.46    42
+      addsub32u@3          / o1   [addsub32u3ot        ]   0.47    2.93    48
+      _NMUX_17149          / o1   [addsub32u4i1        ]   0.08    3.01    50
+      addsub32u@4          / o1   [addsub32u4ot        ]   0.47    3.48    56
+      _NMUX_17152          / o1   [addsub32u6i1        ]   0.07    3.56    58
+      addsub32u@6          / o1   [addsub32u6ot        ]   0.47    4.03    64
+      _NMUX_17168          / o1   [                    ]   0.14    4.17    66
+      _NMUX_15749          / o1   [regs_rg10           ]   0.07    4.24    68
+      regs_rg10            / din  [                    ]      -    4.24    68
 
   False Path                    :  Unchecked
   Multi Cycle Path              :  Unchecked
@@ -206,8 +210,8 @@ Cyber Synthesis Report
 ; Wire ;
 ========
 
-  Total Net Count      :   26,083
-  Total Pin Pair Count :   66,807
+  Total Net Count      :   25,433
+  Total Pin Pair Count :   65,895
   Const Fanout         :    5,195
 
   Net Count :
@@ -230,9 +234,9 @@ Cyber Synthesis Report
           25         1         25
           27         1         27
           31         2         62
-          32       242      7,744
+          32       240      7,680
      ----------------------------
-       Total               10,294
+       Total               10,230
 
   Pin Pair Count :
       Fanout    Bit    Count   Subtotal
@@ -246,7 +250,7 @@ Cyber Synthesis Report
           68      1        1         68
           67     11        1        737
           66     16        1      1,056
-          55      1        1         55
+          57      1        1         57
           53      2        1        106
           53      1        1         53
           52      7        1        364
@@ -260,77 +264,75 @@ Cyber Synthesis Report
           45     20        1        900
           45      1        1         45
           44      1        1         44
+          41      3        1        123
           39      3        1        117
-          37      3        1        111
+          37      5        1        185
+          36     13        1        468
           36      1        1         36
-          35      5        1        175
+          35      7        1        245
           35      1        1         35
-          34     13        1        442
-          33      7        1        231
           32     32        1      1,024
           32      1        1         32
-          27      1        1         27
-          25     18        1        450
+          27      1        2         54
+          26     18        1        468
+          25     16        1        400
           25      1        4        100
-          24     32        1        768
-          24      1       13        312
-          23      1       11        253
-          22     14        1        308
-          22      1        9        198
-          21      1        4         84
-          20      1        8        160
+          24     16        1        384
+          24      1       15        360
+          23     14        1        322
+          23      1       10        230
+          22      1       10        220
+          21      1        2         42
+          20      1        9        180
           19      1       15        285
           18      3        1         54
           18      1       10        180
           17     30        1        510
-          17      1        4         68
+          17      1        3         51
           16      2        1         32
-          16      1        4         64
-          15      1        3         45
-          14      1        2         28
+          16      1        5         80
+          15      1        1         15
+          14      1        3         42
           13     16        1        208
           13      1        1         13
           12     16        1        192
           12      1        1         12
+          11     32        1        352
           11      7        1         77
-          11      1        1         11
-          10     16        1        160
           10      1        4         40
-           9     16        1        144
            9      1        4         36
-           8     16        1        128
            8      1        4         32
-           7     32        4        896
-           7      1        3         21
-           6     32        7      1,344
-           6     16        1         96
+           7     32        5      1,120
+           7     16        1        112
+           7      1        4         28
+           6     32        3        576
            6      5        1         30
            6      3        1         18
-           6      1        6         36
-           5     32        1        160
-           5     16        1         80
+           6      1        5         30
+           5     32        4        640
+           5     16        2        160
            5      6        1         30
            5      2        1         10
            5      1       13         65
            4     32        2        256
            4     30        1        120
-           4     16        1         64
            4     15        1         60
            4     11        1         44
            4      5        1         20
-           4      1       40        160
+           4      1       42        168
            3     32       39      3,744
            3     18        1         54
+           3     16        1         48
            3      7        1         21
            3      5        1         15
            3      2        1          6
-           3      1       54        162
+           3      1       52        156
            2     32       12        768
            2     16        1         32
            2     11        1         22
            2      7        1         14
-           2      1      144        288
-           1     32      162      5,184
+           2      1      143        286
+           1     32      160      5,120
            1     31        2         62
            1     27        1         27
            1     25        1         25
@@ -347,9 +349,9 @@ Cyber Synthesis Report
            1      4       18         72
            1      3       26         78
            1      2       48         96
-           1      1      452        452
+           1      1      453        453
     -----------------------------------
-       Total                     29,276
+       Total                     29,286
 
   Fanout for Consts:
       Value    Fanout
@@ -375,28 +377,28 @@ Cyber Synthesis Report
       ----------------------------------------------------
       RG_next_op2_PC_result1(31..0)                     48
       RL_addr_instr_next_next_pc(31..0)                 48
-      RG_next_op1(31..0)                                47
+      RG_in_a_next_op1(31..0)                           47
       FF_take(0..0)                                     41
       RG_imm1_mask_next_rs2(31..0)                      20
-      regs_rg11(31..0)                                  20
       RG_addr1_instr_next_rd(31..0)                     19
       regs_rg10(31..0)                                  19
-      RG_funct3_word_addr(15..0)                        17
-      RG_02(31..0)                                      15
+      regs_rg11(31..0)                                  17
+      regs_rg12(31..0)                                  14
+      regs_rg13(31..0)                                  14
 
     Fanout: (Top 10 Registers)
       Register Name                              Cone Size
       ----------------------------------------------------
       B01_streg(6..0)                                   54
       RG_PC(31..0)                                      52
-      RG_next_op2_PC_result1(31..0)                     48
+      RG_next_op2_PC_result1(31..0)                     49
       RG_addr1_instr_next_rd(31..0)                     44
       RL_addr_instr_next_next_pc(31..0)                 43
       RG_02(31..0)                                      34
       RG_imm1_mask_next_rs2(31..0)                      18
-      RG_next_op1(31..0)                                17
       FF_take(0..0)                                     17
-      RG_04(31..0)                                      14
+      RG_in_a_next_op1(31..0)                           16
+      FF_halt(0..0)                                     14
 
   Routability:
 
@@ -407,28 +409,28 @@ Cyber Synthesis Report
       RG_next_op2_PC_result1(31..0)               2,145       71 ( 2bit)
       RL_addr_instr_next_next_pc(31..0)           1,674       88 ( 1bit)
       RG_imm1_mask_next_rs2(31..0)                1,576      128 ( 1bit)
-      RG_addr1_instr_next_rd(31..0)               1,131       55 ( 1bit)
+      RG_addr1_instr_next_rd(31..0)               1,195       57 ( 1bit)
       regs_wd02(31..0)                            1,024       32 (32bit)
-      RG_05(31..0)                                  768       24 (32bit)
-      RG_next_op1(31..0)                            758       25 (18bit)
+      RG_in_a_next_op1(31..0)                       790       26 (18bit)
+      RG_in_d(31..0)                                784       25 (16bit)
       B01_streg(6..0)                               581       83 ( 7bit)
       RG_PC(31..0)                                  542       17 (30bit)
       regs_rd00(31..0)                              400       13 (16bit)
-      RG_04(31..0)                                  304       10 (16bit)
+      RG_in_c(31..0)                                352       11 (32bit)
       imem_arg_MEMB32W65536_RD1(31..0)              261       45 ( 1bit)
-      addsub32u2ot(31..0)                           224        8 (16bit)
       addsub32u4ot(31..0)                           224        7 (32bit)
       dmem_arg_MEMB32W65536_RD1(31..0)              224        7 (32bit)
       regs_rg10(31..0)                              224        7 (32bit)
       regs_rg11(31..0)                              224        7 (32bit)
-      addsub32u1ot(31..0)                           192        6 (32bit)
-      addsub32u3ot(31..0)                           192        6 (32bit)
+      M_2120(31..0)                                 224        7 (32bit)
+      addsub32u2ot(31..0)                           192        7 (16bit)
       regs_rg12(31..0)                              192        6 (32bit)
       regs_rg13(31..0)                              192        6 (32bit)
       regs_rd01(31..0)                              192        6 (32bit)
-      M_2661(31..0)                                 192        6 (32bit)
-      M_2679(31..0)                                 192        6 (32bit)
-      M_2666(31..0)                                 160        5 (32bit)
+      addsub32u1ot(31..0)                           160        5 (32bit)
+      addsub32u3ot(31..0)                           160        5 (32bit)
+      M_2100(31..0)                                 160        5 (32bit)
+      M_2109(31..0)                                 160        5 (32bit)
 
     Top 25 Nets
     sorted by "Max" (Maximum Fanout)
@@ -438,8 +440,8 @@ Cyber Synthesis Report
       RL_addr_instr_next_next_pc(31..0)           1,674       88 ( 1bit)
       B01_streg(6..0)                               581       83 ( 7bit)
       RG_next_op2_PC_result1(31..0)               2,145       71 ( 2bit)
-      RG_addr1_instr_next_rd(31..0)               1,131       55 ( 1bit)
-      M_2624(0..0)                                   53       53 ( 1bit)
+      RG_addr1_instr_next_rd(31..0)               1,195       57 ( 1bit)
+      M_2066(0..0)                                   53       53 ( 1bit)
       CLOCK(0..0)                                    48       48 ( 1bit)
       imem_arg_MEMB32W65536_RD1(31..0)              261       45 ( 1bit)
       TR_76(0..0)                                    36       36 ( 1bit)
@@ -447,18 +449,18 @@ Cyber Synthesis Report
       regs_wd02(31..0)                            1,024       32 (32bit)
       regs_we02(0..0)                                32       32 ( 1bit)
       rsft32u1ot(31..0)                              96       27 ( 1bit)
-      RG_next_op1(31..0)                            758       25 (18bit)
+      ST1_61d(0..0)                                  27       27 ( 1bit)
+      RG_in_a_next_op1(31..0)                       790       26 (18bit)
+      RG_in_d(31..0)                                784       25 (16bit)
       ST1_31d(0..0)                                  25       25 ( 1bit)
       ST1_47d(0..0)                                  25       25 ( 1bit)
+      ST1_55d(0..0)                                  25       25 ( 1bit)
       ST1_59d(0..0)                                  25       25 ( 1bit)
-      ST1_61d(0..0)                                  25       25 ( 1bit)
-      RG_05(31..0)                                  768       24 (32bit)
       ST1_27d(0..0)                                  24       24 ( 1bit)
       ST1_29d(0..0)                                  24       24 ( 1bit)
       ST1_30d(0..0)                                  24       24 ( 1bit)
       ST1_39d(0..0)                                  24       24 ( 1bit)
       ST1_43d(0..0)                                  24       24 ( 1bit)
-      ST1_45d(0..0)                                  24       24 ( 1bit)
 
 ================
 ; Primary Port ;
