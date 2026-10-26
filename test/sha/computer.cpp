@@ -284,11 +284,12 @@ inline uint32_t accel_sha_boolean(uint32_t b, uint32_t c, uint32_t d,
 // mis-synthesized the previous ternary over sha_f1/f2/f3 applied to reference
 // parameters whenever phase was not a compile-time constant (parity -> D,
 // maj -> 0), breaking the ROUND_REG/PHASE_REG variants.
-inline uint32_t sha_round_f(uint32_t b, uint32_t c, uint32_t d,
+// bdltran folds case (F_BT1647), so no lowercase a..e names next to A..E.
+inline uint32_t sha_round_f(uint32_t x, uint32_t y, uint32_t z,
                             uint32_t phase) {
-  if (phase == 0) return (b & c) | (~b & d);
-  if (phase == 2) return (b & c) | (b & d) | (c & d);
-  return b ^ c ^ d;
+  if (phase == 0) return (x & y) | (~x & z);
+  if (phase == 2) return (x & y) | (x & z) | (y & z);
+  return x ^ y ^ z;
 }
 
 // a0..a4 hold A..E. One round consumes rs1=W[i], selects phase via funct7,
@@ -296,13 +297,13 @@ inline uint32_t sha_round_f(uint32_t b, uint32_t c, uint32_t d,
 void accel_sha_round_regs(uint32_t &A, uint32_t &B, uint32_t &state_c,
                           uint32_t &D, uint32_t &E, uint32_t word,
                           uint32_t phase) {
-  uint32_t a = A, b = B, c = state_c, d = D, e = E;
-  uint32_t f = sha_round_f(b, c, d, phase);
+  uint32_t in_a = A, in_b = B, in_c = state_c, in_d = D, in_e = E;
+  uint32_t f = sha_round_f(in_b, in_c, in_d, phase);
   uint32_t k = phase == 0 ? 0x5a827999u :
                phase == 1 ? 0x6ed9eba1u :
                phase == 2 ? 0x8f1bbcdcu : 0xca62c1d6u;
-  uint32_t next = sha_rot32(a, 5) + f + e + word + k;
-  E = d; D = c; state_c = sha_rot32(b, 30); B = a; A = next;
+  uint32_t next = sha_rot32(in_a, 5) + f + in_e + word + k;
+  E = in_d; D = in_c; state_c = sha_rot32(in_b, 30); B = in_a; A = next;
 }
 
 // funct3=5/funct7=4..7: rs1 points at 20 W words; a0..a4 in/out.
