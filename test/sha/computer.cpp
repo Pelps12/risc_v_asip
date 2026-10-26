@@ -279,18 +279,30 @@ inline uint32_t accel_sha_boolean(uint32_t b, uint32_t c, uint32_t d,
 #if defined(ACCEL_SHA_ROUND_REG) || defined(ACCEL_SHA_ROUND_REG_HW) || \
     defined(ACCEL_SHA_PHASE_REG) || defined(ACCEL_SHA_PHASE_REG_HW) || \
     defined(ACCEL_SHA_ROUNDS80_REG) || defined(ACCEL_SHA_ROUNDS80_REG_HW)
+// Round function selected by a runtime phase. Arguments are by value and the
+// select is an if/return chain (same shape as accel_sha_boolean): CWB 6.1
+// mis-synthesized the previous ternary over sha_f1/f2/f3 applied to reference
+// parameters whenever phase was not a compile-time constant (parity -> D,
+// maj -> 0), breaking the ROUND_REG/PHASE_REG variants.
+inline uint32_t sha_round_f(uint32_t b, uint32_t c, uint32_t d,
+                            uint32_t phase) {
+  if (phase == 0) return (b & c) | (~b & d);
+  if (phase == 2) return (b & c) | (b & d) | (c & d);
+  return b ^ c ^ d;
+}
+
 // a0..a4 hold A..E. One round consumes rs1=W[i], selects phase via funct7,
 // and writes the next A..E to the same five architectural registers.
 void accel_sha_round_regs(uint32_t &A, uint32_t &B, uint32_t &state_c,
                           uint32_t &D, uint32_t &E, uint32_t word,
                           uint32_t phase) {
-  uint32_t f = phase == 0 ? sha_f1(B, state_c, D) :
-               phase == 2 ? sha_f3(B, state_c, D) : sha_f2(B, state_c, D);
+  uint32_t a = A, b = B, c = state_c, d = D, e = E;
+  uint32_t f = sha_round_f(b, c, d, phase);
   uint32_t k = phase == 0 ? 0x5a827999u :
                phase == 1 ? 0x6ed9eba1u :
                phase == 2 ? 0x8f1bbcdcu : 0xca62c1d6u;
-  uint32_t next = sha_rot32(A, 5) + f + E + word + k;
-  E = D; D = state_c; state_c = sha_rot32(B, 30); B = A; A = next;
+  uint32_t next = sha_rot32(a, 5) + f + e + word + k;
+  E = d; D = c; state_c = sha_rot32(b, 30); B = a; A = next;
 }
 
 // funct3=5/funct7=4..7: rs1 points at 20 W words; a0..a4 in/out.
