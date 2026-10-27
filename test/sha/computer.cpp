@@ -456,14 +456,24 @@ void accel_sha_transform(uint32_t dmem_arg[MEM_SIZE], uint32_t data_addr,
 // Cyber unroll_times=8
 #elif defined(ACCEL_SHA_TRANSFORM_SCHED_U4)
 // Cyber unroll_times=4
-#elif defined(ACCEL_SHA_TRANSFORM_SCHED_U2)
-// Cyber unroll_times=2
 #elif defined(ACCEL_SHA_TRANSFORM_SCHED_U1)
 // Cyber unroll_times=1
 #endif
+#ifdef ACCEL_SHA_TRANSFORM_SCHED_U2
+  // 2x unroll written out by hand on a rolled loop. CWB 6.1 with
+  // unroll_times=2 on the single-statement loop dropped the XOR datapath and
+  // wrote zeros to W[16..79]. W[i+1] only reads W[i-15..i-2], so the two
+  // statements are independent.
+// Cyber unroll_times=1
+  for (i = 16; i < 80; i += 2) {
+    W[i] = W[i - 3] ^ W[i - 8] ^ W[i - 14] ^ W[i - 16];
+    W[i + 1] = W[i - 2] ^ W[i - 7] ^ W[i - 13] ^ W[i - 15];
+  }
+#else
   for (i = 16; i < 80; ++i) {
     W[i] = W[i - 3] ^ W[i - 8] ^ W[i - 14] ^ W[i - 16];
   }
+#endif
 
   A = mem_read_word(dmem_arg, digest_addr + 0);
   B = mem_read_word(dmem_arg, digest_addr + 4);
